@@ -1,7 +1,6 @@
 package com.pfs.riskmodel.domain;
 
 import lombok.*;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import javax.persistence.Entity;
 
@@ -11,16 +10,13 @@ import javax.persistence.Entity;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @ToString
-@NoArgsConstructor
 @EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
 public class RiskSubFactorAttribute extends AbstractEntity  {
 
-    private String  description;
+    private String description;
     private Integer riskSubFactorScore;
     private Integer weightage;
-
-
-
 }

@@ -1,11 +1,9 @@
 package com.pfs.riskmodel.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import java.util.UUID;
 
@@ -15,9 +13,12 @@ import java.util.UUID;
 
 @Getter
 @Setter
+@ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class AbstractEntity {
+@MappedSuperclass
+public abstract class AbstractEntity {
 
     @Id
     protected String id;
