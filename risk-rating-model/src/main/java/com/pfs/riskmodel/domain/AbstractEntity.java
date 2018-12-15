@@ -2,9 +2,7 @@ package com.pfs.riskmodel.domain;
 
 import lombok.*;
 
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.PrePersist;
+import javax.persistence.*;
 import java.util.UUID;
 
 /**
@@ -20,15 +18,21 @@ import java.util.UUID;
 @MappedSuperclass
 public abstract class AbstractEntity {
 
-    @Id
-    protected String id;
+//    @Id
+//    protected String id;
 
-    @PrePersist
-    public void init() {
-        if(this.id == null) {
-            this.id = UUID.randomUUID().toString();
-        }
-    }
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO,generator="ENQ_SEQ")
+    @SequenceGenerator(name="ENQ_SEQ",sequenceName="ENQ_SEQ",allocationSize=1)
+    private Long id;
+
+
+//    @PrePersist
+//    public void init() {
+//        if(this.id == null) {
+//            this.id = UUID.randomUUID().toString();
+//        }
+//    }
 
 
 }

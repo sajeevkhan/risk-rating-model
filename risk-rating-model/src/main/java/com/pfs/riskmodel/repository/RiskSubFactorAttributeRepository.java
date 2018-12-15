@@ -10,7 +10,8 @@ import java.util.UUID;
  * Created by sajeev on 05-Dec-18.
  */
 @RepositoryRestResource
-public interface RiskSubFactorAttributeRepository  extends JpaRepository<RiskSubFactorAttribute, UUID> {
+public interface RiskSubFactorAttributeRepository  extends JpaRepository<RiskSubFactorAttribute, Long> {
 
+//    public RiskSubFactor<RiskSubFactorAttribute> findByRiskSubFactoreId(Long riskSubFactorId);
 
 }
