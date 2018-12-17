@@ -45,47 +45,71 @@ public class RiskModelTemplateValidator {
         // Validate header attributes
         if (riskModelTemplate.getVersion() == null) {
             validationResult.setAttributeName("RiskModelTemplate.Version");
-            validationResult.setValue(riskModelTemplate.getVersion());
+            validationResult.setValue(null);
             validationResult.setFailed(true);
             return validationResult;
         }
 
         if (riskModelTemplate.getDescription() == null) {
             validationResult.setAttributeName("RiskModelTemplate.Description");
-            validationResult.setValue(riskModelTemplate.getDescription());
+            validationResult.setValue(null);
             validationResult.setFailed(true);
             return validationResult;
         }
 
         if (riskModelTemplate.getActive() == null) {
             validationResult.setAttributeName("RiskModelTemplate.Active");
-            validationResult.setValue(riskModelTemplate.getActive().toString());
+            validationResult.setValue(null);
             validationResult.setFailed(true);
             return validationResult;
         }
 
-        ProjectType projectType = projectTypeRepository.findByCode(riskModelTemplate.getProjectType().getCode());
-        if (projectTypeRepository == null) {
+        if (riskModelTemplate.getProjectType() == null) {
             validationResult.setAttributeName("RiskModelTemplate.ProjectType");
-            validationResult.setValue(riskModelTemplate.getProjectType().getCode());
+            validationResult.setValue(null);
             validationResult.setFailed(true);
             return validationResult;
         }
+        else {
+            ProjectType projectType = projectTypeRepository.findByCode(riskModelTemplate.getProjectType().getCode());
+            if (projectTypeRepository == null) {
+                validationResult.setAttributeName("RiskModelTemplate.ProjectType");
+                validationResult.setValue(null);
+                validationResult.setFailed(true);
+                return validationResult;
+            }
+        }
 
-        ProjectRiskLevel projectRiskLevel = projectRiskLevelRepository.findByCode(riskModelTemplate.getProjectRiskLevel().getCode());
-        if (projectRiskLevel == null) {
+        if (riskModelTemplate.getProjectRiskLevel() == null) {
             validationResult.setAttributeName("RiskModelTemplate.projectRiskLevel");
-            validationResult.setValue(riskModelTemplate.getProjectRiskLevel().getCode());
+            validationResult.setValue(null);
             validationResult.setFailed(true);
             return validationResult;
         }
+        else {
+            ProjectRiskLevel projectRiskLevel = projectRiskLevelRepository.findByCode(riskModelTemplate.getProjectRiskLevel().getCode());
+            if (projectRiskLevel == null) {
+                validationResult.setAttributeName("RiskModelTemplate.projectRiskLevel");
+                validationResult.setValue(riskModelTemplate.getProjectRiskLevel().getCode());
+                validationResult.setFailed(true);
+                return validationResult;
+            }
+        }
 
-        ComputingMethod computingMethod = computingMethodRepository.findByCode(riskModelTemplate.getComputingMethod().getCode());
-        if (computingMethod == null) {
+        if (riskModelTemplate.getComputingMethod() == null) {
             validationResult.setAttributeName("RiskModelTemplate.ComputingMethod");
-            validationResult.setValue(riskModelTemplate.getComputingMethod().getCode());
+            validationResult.setValue(null);
             validationResult.setFailed(true);
             return validationResult;
+
+        }else {
+            ComputingMethod computingMethod = computingMethodRepository.findByCode(riskModelTemplate.getComputingMethod().getCode());
+            if (computingMethod == null) {
+                validationResult.setAttributeName("RiskModelTemplate.ComputingMethod");
+                validationResult.setValue(riskModelTemplate.getComputingMethod().getCode());
+                validationResult.setFailed(true);
+                return validationResult;
+            }
         }
 
         if (riskModelTemplate.getScore() == null) {

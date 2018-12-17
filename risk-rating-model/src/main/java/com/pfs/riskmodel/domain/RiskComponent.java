@@ -35,9 +35,10 @@ public class RiskComponent extends AuditModel  {
      ("05", "Equals");
      ("06", "Multiply")
     */
+
     @NotNull
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private ComputingMethod computingMethod;
+     private ComputingMethod computingMethod;
 
     /**
      ("01", "Normal");

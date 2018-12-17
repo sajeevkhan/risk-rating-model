@@ -1,5 +1,7 @@
 package com.pfs.riskmodel.dto;
 
+import com.pfs.riskmodel.domain.ComputingMethod;
+import com.pfs.riskmodel.domain.ScoreType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,6 +20,10 @@ public class RiskComponentDTO {
     private String scoreTypeCode;
     private Double score;
     private Double weightage;
+
+    private ComputingMethod computingMethod;
+    private ScoreType scoreType;
+
 
     private Set<RiskFactorDTO> riskFactors;
 

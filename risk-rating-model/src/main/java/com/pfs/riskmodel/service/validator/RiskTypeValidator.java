@@ -29,7 +29,7 @@ public class RiskTypeValidator {
         // Validate header attributes
         if (riskType.getDescription() == null) {
             validationResult.setAttributeName("RiskType.Description");
-            validationResult.setValue(riskType.getDescription());
+            validationResult.setValue(null);
             validationResult.setFailed(true);
             return validationResult;
         }
@@ -39,7 +39,7 @@ public class RiskTypeValidator {
 
         if (riskType.getScore() == null) {
             validationResult.setAttributeName("RiskType.Score");
-            validationResult.setValue(riskType.getScore().toString());
+            validationResult.setValue(null);
             validationResult.setFailed(true);
             return validationResult;
         }

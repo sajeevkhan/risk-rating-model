@@ -21,7 +21,7 @@ public class RiskModelTemplateDTO {
 
     private Long id;
     private String version;
-    private Boolean active;
+    private String active;
     private String description;
 
 
@@ -57,7 +57,7 @@ public class RiskModelTemplateDTO {
 
 
 
-    private Set<RiskType> riskTypes;
+    private Set<RiskTypeDTO> riskTypes;
 
 
 }

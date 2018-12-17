@@ -29,6 +29,9 @@ public class RiskFactorDTO {
     private Double score;
     private Double weightage;
 
+    private ComputingMethod computingMethod;
+    private ScoreType scoreType;
+
     private Set<RiskSubFactorDTO> riskSubFactors;
 
 

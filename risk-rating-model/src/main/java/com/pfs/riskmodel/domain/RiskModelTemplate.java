@@ -29,7 +29,7 @@ public class RiskModelTemplate extends AuditModel  {
     private String version;
 
     @NotNull
-    private Boolean active;
+    private String active;
 
 
     @NotNull
@@ -67,7 +67,7 @@ public class RiskModelTemplate extends AuditModel  {
      ("06", "Multiply")
      */
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     private ComputingMethod computingMethod;
 
 

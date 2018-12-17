@@ -33,38 +33,54 @@ public class RiskFactorValidator {
         // Validate header attributes
         if (riskFactor.getDescription() == null) {
             validationResult.setAttributeName("RiskFactor.Description");
-            validationResult.setValue(riskFactor.getDescription());
+            validationResult.setValue(null);
             validationResult.setFailed(true);
             return validationResult;
         }
 
-        ComputingMethod computingMethod = computingMethodRepository.findByCode(riskFactor.getComputingMethod().getCode());
-        if (computingMethod == null) {
+        if(riskFactor.getComputingMethod() == null){
             validationResult.setAttributeName("RiskFactor.ComputingMethod");
-            validationResult.setValue(riskFactor.getComputingMethod().getCode());
+            validationResult.setValue(null);
             validationResult.setFailed(true);
             return validationResult;
+
+        }else {
+            ComputingMethod computingMethod = computingMethodRepository.findByCode(riskFactor.getComputingMethod().getCode());
+            if (computingMethod == null) {
+                validationResult.setAttributeName("RiskFactor.ComputingMethod");
+                validationResult.setValue(riskFactor.getComputingMethod().getCode());
+                validationResult.setFailed(true);
+                return validationResult;
+            }
         }
 
-        ScoreType scoreType = scoreTypeRepository.findByCode(riskFactor.getScoreType().getCode());
-        if (computingMethod == null) {
+        if ( riskFactor.getScoreType() == null) {
             validationResult.setAttributeName("RiskFactor.ScoreType");
-            validationResult.setValue(riskFactor.getScoreType().getCode());
+            validationResult.setValue(null);
             validationResult.setFailed(true);
             return validationResult;
+
+        }else {
+            ScoreType scoreType = scoreTypeRepository.findByCode(riskFactor.getScoreType().getCode());
+            if (scoreType == null) {
+                validationResult.setAttributeName("RiskFactor.ScoreType");
+                validationResult.setValue(riskFactor.getScoreType().getCode());
+                validationResult.setFailed(true);
+                return validationResult;
+            }
         }
 
 
         if (riskFactor.getScore() == null) {
             validationResult.setAttributeName("RiskFactor.Score");
-            validationResult.setValue(riskFactor.getScore().toString());
+            validationResult.setValue(null);
             validationResult.setFailed(true);
             return validationResult;
         }
 
         if (riskFactor.getWeightage() == null) {
             validationResult.setAttributeName("RiskFactor.Weightage");
-            validationResult.setValue(riskFactor.getWeightage().toString());
+            validationResult.setValue(null);
             validationResult.setFailed(true);
             return validationResult;
         }

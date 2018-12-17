@@ -26,21 +26,21 @@ public class RiskSubFactorValidator {
         // Validate header attributes
         if (riskSubFactor.getDescription() == null) {
             validationResult.setAttributeName("RiskSubFactor.Description");
-            validationResult.setValue(riskSubFactor.getDescription());
+            validationResult.setValue(null);
             validationResult.setFailed(true);
             return validationResult;
         }
 
         if (riskSubFactor.getScore() == null) {
             validationResult.setAttributeName("RiskSubFactor.Score");
-            validationResult.setValue(riskSubFactor.getScore().toString());
+            validationResult.setValue(null);
             validationResult.setFailed(true);
             return validationResult;
         }
 
         if (riskSubFactor.getWeightage() == null) {
             validationResult.setAttributeName("RiskSubFactor.Weightage");
-            validationResult.setValue(riskSubFactor.getWeightage().toString());
+            validationResult.setValue(null);
             validationResult.setFailed(true);
             return validationResult;
         }
