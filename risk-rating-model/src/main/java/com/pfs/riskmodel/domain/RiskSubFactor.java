@@ -1,6 +1,8 @@
 package com.pfs.riskmodel.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -32,16 +34,22 @@ public class RiskSubFactor extends AuditModel  {
     private String description;
 
     @NotNull
-    private BigDecimal riskSubFactorScore;
+    private Double score;
 
 
     @NotNull
-    private BigDecimal weightage;
+    private Double weightage;
 
 
-    @OneToMany(mappedBy = "riskSubFactor", fetch = FetchType.EAGER,  cascade = { CascadeType.ALL })
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+    @JoinColumn(name="riskSubFactor__id",referencedColumnName = "id")
     private Set<RiskSubFactorAttribute> riskSubFactorAttribute;
 
 
+    public RiskSubFactorAttribute addRiskSubFactorAttribute (RiskSubFactorAttribute riskSubFactorAttribute) {
+
+        this.getRiskSubFactorAttribute().add(riskSubFactorAttribute);
+        return riskSubFactorAttribute;
+    }
 
 }

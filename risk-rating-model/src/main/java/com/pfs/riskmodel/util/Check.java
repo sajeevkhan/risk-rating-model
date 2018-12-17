@@ -11,11 +11,19 @@ package com.pfs.riskmodel.util;
     import java.util.Map;
 
 public final class Check {
+
     public static void isNull(Object object, String message, Object... args) {
         if (object != null) {
             throw new RestException(message, args);
         }
     }
+
+    public static void raiseError(Object object, String message, Object... args) {
+
+            throw new RestException(message, args);
+
+    }
+
 
     public static void isTrue(boolean expression, String message, Object... args) {
         if (!expression) {

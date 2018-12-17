@@ -1,15 +1,21 @@
 package com.pfs.riskmodel.service.Impl;
 
 import com.pfs.riskmodel.dao.RiskSubFactorAttributeDao;
+import com.pfs.riskmodel.domain.RiskSubFactor;
 import com.pfs.riskmodel.domain.RiskSubFactorAttribute;
 import com.pfs.riskmodel.repository.RiskSubFactorAttributeRepository;
 import com.pfs.riskmodel.service.IRiskSubFactorAttributeService;
+import com.pfs.riskmodel.service.validator.RiskSubFactorAttributeValidator;
+import com.pfs.riskmodel.service.validator.RiskSubFactorValidator;
 import com.pfs.riskmodel.util.Check;
+import com.pfs.riskmodel.util.ValidationResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -27,21 +33,44 @@ public class RiskSubFactorAttributeService implements IRiskSubFactorAttributeSer
     @Autowired
     private RiskSubFactorAttributeDao riskSubFactorAttributeDao;
 
-    @Override
-    public RiskSubFactorAttribute createRiskSubFactorAttribute(RiskSubFactorAttribute riskSubFactorAttribute) {
+    @Autowired
+    RiskSubFactorAttributeValidator riskSubFactorAttributeValidator;
 
-        return riskSubFactorAttributeRepository.save(riskSubFactorAttribute);
+    @Override
+    public Map<String, Object> createRiskSubFactorAttribute(RiskSubFactorAttribute riskSubFactorAttribute) {
+
+        Map<String, Object> result = new HashMap<>();
+
+        ValidationResult validationResult =  riskSubFactorAttributeValidator.validate(riskSubFactorAttribute);
+        result.put("ValidationResult", validationResult);
+
+        if (validationResult.isFailed()) {
+            return result;
+        }
+
+        riskSubFactorAttribute = riskSubFactorAttributeRepository.save(riskSubFactorAttribute);
+        result.put("RiskSubFactorAttribute", riskSubFactorAttribute);
+        return result;
+
     }
 
     @Override
-    public RiskSubFactorAttribute update(RiskSubFactorAttribute riskSubFactorAttribute) {
+    public Map<String, Object> update(RiskSubFactorAttribute riskSubFactorAttribute) {
 
         // Get Existing Entity
         RiskSubFactorAttribute riskSubFactorAttributeExisting;
 
-        try {
+        Map<String, Object> result = new HashMap<>();
 
-            if (riskSubFactorAttribute.getId() != null) {
+        ValidationResult validationResult =  riskSubFactorAttributeValidator.validate(riskSubFactorAttribute);
+        result.put("ValidationResult", validationResult);
+
+        if (validationResult.isFailed()) {
+            return result;
+        }
+
+             if (riskSubFactorAttribute.getId() != null) {
+
                 riskSubFactorAttributeExisting = riskSubFactorAttributeRepository.getOne(riskSubFactorAttribute.getId());
 
                 //If Entity Not Found, Return Null
@@ -49,17 +78,13 @@ public class RiskSubFactorAttributeService implements IRiskSubFactorAttributeSer
                 else {
                     // Save Entity
                     riskSubFactorAttributeExisting.setDescription(riskSubFactorAttribute.getDescription());
-                    riskSubFactorAttributeExisting.setRiskSubFactorScore(riskSubFactorAttribute.getRiskSubFactorScore());
+                    riskSubFactorAttributeExisting.setScore(riskSubFactorAttribute.getScore());
                     riskSubFactorAttributeExisting.setWeightage(riskSubFactorAttribute.getWeightage());
                     riskSubFactorAttributeRepository.save(riskSubFactorAttributeExisting);
-                    return riskSubFactorAttributeExisting;
-                }
+                    result.put("RiskSubFactorAttribute", riskSubFactorAttribute);
+                 }
             }
 
-        } catch (Exception ex) {
-
-
-        }
 
         return null;
     }

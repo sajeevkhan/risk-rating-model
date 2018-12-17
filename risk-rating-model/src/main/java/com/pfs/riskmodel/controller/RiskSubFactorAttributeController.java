@@ -6,6 +6,7 @@ import com.pfs.riskmodel.repository.RiskSubFactorAttributeRepository;
 import com.pfs.riskmodel.resource.RiskSubFactorAttributeResource;
 import com.pfs.riskmodel.service.IRiskSubFactorAttributeService;
 import com.pfs.riskmodel.util.Check;
+import com.pfs.riskmodel.util.CheckServiceResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -71,8 +74,15 @@ public class RiskSubFactorAttributeController {
     public ResponseEntity update(@PathVariable("id") String loanApplicationId,
                                  @RequestBody RiskSubFactorAttribute riskSubFactorAttribute,
                                  HttpServletRequest request) {
-       RiskSubFactorAttribute riskSubFactorAttributeUpdated =   riskSubFactorAttributeService.update(riskSubFactorAttribute);
 
+        Map<String, Object> result = new HashMap<>();
+
+        RiskSubFactorAttribute riskSubFactorAttributeUpdated;
+
+        result  =   riskSubFactorAttributeService.update(riskSubFactorAttribute);
+        CheckServiceResult.checkResult(result);
+
+        riskSubFactorAttributeUpdated = (RiskSubFactorAttribute) result.get("RiskSubFactorAttribute");
 
         Check.notNull(riskSubFactorAttributeUpdated, "Exception.notFound",
                 "RiskSubFactorAttribute",
@@ -84,9 +94,16 @@ public class RiskSubFactorAttributeController {
     @PostMapping("/riskSubFactorAttribute")
     public ResponseEntity createRiskSubFactorAttribute(@RequestBody RiskSubFactorAttribute riskSubFactorAttribute) {
 
-        // Create the RiskSubFactorAttribute.
+        Map<String, Object> result = new HashMap<>();
 
-        riskSubFactorAttribute = riskSubFactorAttributeService.createRiskSubFactorAttribute(riskSubFactorAttribute);
+
+        // Create the RiskSubFactorAttribute.
+        result = riskSubFactorAttributeService.createRiskSubFactorAttribute(riskSubFactorAttribute);
+        CheckServiceResult.checkResult(result);
+
+
+        riskSubFactorAttribute = (RiskSubFactorAttribute) result.get("RiskSubFactorAttribute");
+
         if ( riskSubFactorAttribute == null || riskSubFactorAttribute.getId() == null ) {
             Check.notNull(null, "Exception.CreateFailed",
                     "RiskSubFactorAttribute" );

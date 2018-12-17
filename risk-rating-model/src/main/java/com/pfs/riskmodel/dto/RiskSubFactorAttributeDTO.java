@@ -16,9 +16,9 @@ public class RiskSubFactorAttributeDTO {
      private Long id;
      private String description;
 
-     private BigDecimal riskSubFactorScore;
+     private Double score;
 
-     private BigDecimal weightage;
+     private Double weightage;
 
      @Override
      public boolean equals(Object o) {
@@ -28,7 +28,7 @@ public class RiskSubFactorAttributeDTO {
           RiskSubFactorAttributeDTO that = (RiskSubFactorAttributeDTO) o;
 
           if (description != null ? !description.equals(that.description) : that.description != null) return false;
-          if (riskSubFactorScore != null ? !riskSubFactorScore.equals(that.riskSubFactorScore) : that.riskSubFactorScore != null)
+          if (score != null ? !score.equals(that.score) : that.score != null)
                return false;
           return weightage != null ? weightage.equals(that.weightage) : that.weightage == null;
      }
@@ -36,7 +36,7 @@ public class RiskSubFactorAttributeDTO {
      @Override
      public int hashCode() {
           int result = description != null ? description.hashCode() : 0;
-          result = 31 * result + (riskSubFactorScore != null ? riskSubFactorScore.hashCode() : 0);
+          result = 31 * result + (score != null ? score.hashCode() : 0);
           result = 31 * result + (weightage != null ? weightage.hashCode() : 0);
           return result;
      }

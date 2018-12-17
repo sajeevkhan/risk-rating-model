@@ -1,8 +1,11 @@
 package com.pfs.riskmodel.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 /**
@@ -21,14 +24,15 @@ public class RiskSubFactorAttribute extends AggregateRoot<RiskSubFactorAttribute
     private String description;
 
     @Getter(AccessLevel.PUBLIC)
-    private BigDecimal riskSubFactorScore;
+    private Double score;
 
     @Getter(AccessLevel.PUBLIC)
-    private BigDecimal weightage;
+    private Double weightage;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumns({ @JoinColumn(name = "riskSubFactor__ID", referencedColumnName = "ID", nullable = true) })
-    RiskSubFactor riskSubFactor;
+//    @NotNull
+//    //@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinColumn(name="riskSubFactor__id",referencedColumnName = "id")
+//    RiskSubFactor riskSubFactor;
 
     @Override
     public boolean equals(Object o) {
@@ -39,7 +43,7 @@ public class RiskSubFactorAttribute extends AggregateRoot<RiskSubFactorAttribute
         RiskSubFactorAttribute that = (RiskSubFactorAttribute) o;
 
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
-        if (riskSubFactorScore != null ? !riskSubFactorScore.equals(that.riskSubFactorScore) : that.riskSubFactorScore != null)
+        if (score != null ? !score.equals(that.score) : that.score != null)
             return false;
         return weightage != null ? weightage.equals(that.weightage) : that.weightage == null;
     }
@@ -48,7 +52,7 @@ public class RiskSubFactorAttribute extends AggregateRoot<RiskSubFactorAttribute
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (riskSubFactorScore != null ? riskSubFactorScore.hashCode() : 0);
+        result = 31 * result + (score != null ? score.hashCode() : 0);
         result = 31 * result + (weightage != null ? weightage.hashCode() : 0);
         return result;
     }

@@ -1,6 +1,7 @@
 package com.pfs.riskmodel.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.pfs.riskmodel.domain.RiskSubFactorAttribute;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,8 +26,9 @@ public class RiskSubFactorDTO {
 
     private Long id;
     private String description;
-    private BigDecimal riskSubFactorScore;
-    private BigDecimal weightage;
+    private Double score;
+    private Double weightage;
+
 
     private Set<RiskSubFactorAttribute> riskSubFactorAttribute;
 }
