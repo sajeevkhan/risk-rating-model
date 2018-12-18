@@ -53,6 +53,9 @@ public class RiskModelTemplateController {
     @Autowired
     RiskFactorRepository riskFactorRepository;
 
+    @Autowired
+    ModelCategoryRepository modelCategoryRepository;
+
 
 
     @Autowired
@@ -113,7 +116,7 @@ public class RiskModelTemplateController {
         riskModelTemplate = (RiskModelTemplate) result.get("RiskModelTemplate");
         RiskModelTemplateDTO riskModelTemplateDTOResponse = mapDomainToDTO(riskModelTemplate);
 
-        return ResponseEntity.ok(riskModelTemplateDTO);
+        return ResponseEntity.ok(riskModelTemplateDTOResponse);
     }
 
 
@@ -137,7 +140,10 @@ public class RiskModelTemplateController {
 
     }
 
-        //MAP Domain to DTO
+     /*
+       MAP Domain to DTO
+
+     */
      private RiskModelTemplateDTO mapDomainToDTO (RiskModelTemplate riskModelTemplate) {
 
 
@@ -146,26 +152,43 @@ public class RiskModelTemplateController {
         DozerBeanMapper mapper = new DozerBeanMapper();
         riskModelTemplateDTO = mapper.map(riskModelTemplate, RiskModelTemplateDTO.class);
 
-        String computingMethodCode =  riskModelTemplate.getComputingMethod().getCode();
+         riskModelTemplateDTO.setModelCategoryCode(riskModelTemplate.getModelCategory().getCode());
+         riskModelTemplateDTO.setModelCategoryDescription(riskModelTemplate.getModelCategory().getValue());
+
+         String computingMethodCode =  riskModelTemplate.getComputingMethod().getCode();
         riskModelTemplateDTO.setComputingMethodCode(computingMethodCode);
+        riskModelTemplateDTO.setComputingMethodDescription(riskModelTemplate.getComputingMethod().getValue());
 
         String projectTypeCode = riskModelTemplate.getProjectType().getCode();
         riskModelTemplateDTO.setProjectTypeCode(projectTypeCode);
+        riskModelTemplateDTO.setProjectTypeDescription(riskModelTemplate.getProjectType().getValue());
+
 
         String projectRiskLevelCode = riskModelTemplate.getProjectRiskLevel().getCode();
         riskModelTemplateDTO.setProjectRiskLevelCode(projectRiskLevelCode);
+        riskModelTemplateDTO.setProjectRiskLevelDescription(riskModelTemplate.getProjectRiskLevel().getValue());
 
 
          for (RiskTypeDTO riskTypeDTO: riskModelTemplateDTO.getRiskTypes() ) {
 
              for (RiskComponentDTO riskComponentDTO : riskTypeDTO.getRiskComponents()) {
-                  RiskComponent riskComponent = riskComponentRepository.getOne(riskComponentDTO.getId());
+
+                 RiskComponent riskComponent = riskComponentRepository.getOne(riskComponentDTO.getId());
+
                   riskComponentDTO.setComputingMethodCode(  riskComponent.getComputingMethod().getCode());
+                  riskComponentDTO.setComputingMethodDescription(riskComponent.getComputingMethod().getValue());
+
                   riskComponentDTO.setScoreTypeCode(riskComponent.getScoreType().getCode());
+                  riskComponentDTO.setScoreTypeDescription(riskComponent.getScoreType().getDescription());
 
                   for (RiskFactorDTO riskFactorDTO: riskComponentDTO.getRiskFactors()) {
+
                       riskFactorDTO.setComputingMethodCode(riskFactorRepository.getOne(riskFactorDTO.getId()).getComputingMethod().getCode());
+                      riskFactorDTO.setComputingMethodDescription(riskFactorRepository.getOne(riskFactorDTO.getId()).getComputingMethod().getValue());
+
                       riskFactorDTO.setScoreTypeCode(riskFactorRepository.getOne(riskFactorDTO.getId()).getScoreType().getCode());
+                      riskFactorDTO.setScoreTypeDescription(riskFactorRepository.getOne(riskFactorDTO.getId()).getScoreType().getDescription());
+
                   }
 
              }
@@ -176,37 +199,42 @@ public class RiskModelTemplateController {
 
     }
 
+    /*
+        Map DTO to Domain
+     */
 
-    //Map DTO to Domain
     private  RiskModelTemplate mapDTOToDomain(RiskModelTemplateDTO riskModelTemplateDTO) {
 
         RiskModelTemplate riskModelTemplate = new RiskModelTemplate();
 
-        for (RiskTypeDTO riskTypeDTO: riskModelTemplateDTO.getRiskTypes()) {
-
-            for (RiskComponentDTO riskComponentDTO : riskTypeDTO.getRiskComponents()) {
-                riskComponentDTO.setComputingMethod(computingMethodRepository.findByCode(riskComponentDTO.getScoreTypeCode()));
-                riskComponentDTO.setScoreType(scoreTypeRepository.findByCode(riskComponentDTO.getScoreTypeCode()));
-
-                for (RiskFactorDTO riskFactorDTO: riskComponentDTO.getRiskFactors()) {
-
-                    ComputingMethod computingMethod = computingMethodRepository.findByCode(riskFactorDTO.getComputingMethodCode());
-                    ScoreType scoreType = scoreTypeRepository.findByCode(riskFactorDTO.getScoreTypeCode());
-
-                    riskFactorDTO.setComputingMethod(computingMethod);
-                    riskFactorDTO.setScoreType(scoreType);
-                }
-
-            }
-
-        }
-
-
-        DozerBeanMapper mapper = new DozerBeanMapper();
+         DozerBeanMapper mapper = new DozerBeanMapper();
         riskModelTemplate = mapper.map(riskModelTemplateDTO, RiskModelTemplate.class);
 
-//        ComputingMethod computingMethod = computingMethodRepository.findByCode(riskModelTemplateDTO.getComputingMethodCode());
-//        ScoreType scoreType = scoreTypeRepository.findByCode(riskFactorDTO.getScoreTypeCode());
+        for (RiskType riskType: riskModelTemplate.getRiskTypes()) {
+
+
+            for (RiskComponent riskComponent: riskType.getRiskComponents()) {
+
+                riskComponent.setComputingMethod(computingMethodRepository.findByCode(riskComponent.getComputingMethodCode()));
+                riskComponent.setComputingMethodCode(computingMethodRepository.findByCode(riskComponent.getComputingMethodCode()).getCode());
+
+                riskComponent.setScoreType(scoreTypeRepository.findByCode(riskComponent.getScoreTypeCode()));
+                riskComponent.setScoreTypeCode(scoreTypeRepository.findByCode(riskComponent.getScoreTypeCode()).getCode());
+
+
+                for (RiskFactor riskFactor: riskComponent.getRiskFactors()) {
+
+                    riskFactor.setComputingMethod(computingMethodRepository.findByCode(riskFactor.getComputingMethodCode()));
+                    riskFactor.setComputingMethodCode(computingMethodRepository.findByCode(riskFactor.getComputingMethodCode()).getCode());
+
+                    riskFactor.setScoreType(scoreTypeRepository.findByCode(riskFactor.getScoreTypeCode()));
+                    riskFactor.setScoreTypeCode(scoreTypeRepository.findByCode(riskFactor.getScoreTypeCode()).getCode());
+
+                }
+            }
+        }
+
+        riskModelTemplate.setModelCategory(modelCategoryRepository.findByCode(riskModelTemplateDTO.getModelCategoryCode()));
 
         riskModelTemplate.setComputingMethod(computingMethodRepository.findByCode(riskModelTemplateDTO.getComputingMethodCode()));
         riskModelTemplate.setProjectRiskLevel(projectRiskLevelRepository.findByCode(riskModelTemplateDTO.getProjectRiskLevelCode()));

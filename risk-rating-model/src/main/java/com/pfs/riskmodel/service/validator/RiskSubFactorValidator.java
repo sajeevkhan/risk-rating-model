@@ -24,6 +24,14 @@ public class RiskSubFactorValidator {
         validationResult.setSuccessful(true);
 
         // Validate header attributes
+
+        if (riskSubFactor.getItemNo() == null) {
+            validationResult.setAttributeName("RiskSubFactor.ItemNo");
+            validationResult.setValue(null);
+            validationResult.setFailed(true);
+            return validationResult;
+        }
+
         if (riskSubFactor.getDescription() == null) {
             validationResult.setAttributeName("RiskSubFactor.Description");
             validationResult.setValue(null);

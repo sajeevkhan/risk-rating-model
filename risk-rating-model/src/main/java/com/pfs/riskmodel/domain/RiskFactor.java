@@ -24,6 +24,10 @@ public class RiskFactor extends AuditModel  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @Getter(AccessLevel.PUBLIC)
+    private Integer itemNo;
+
     @NotNull
     @Size(max = 250)
     private String description;
@@ -48,6 +52,9 @@ public class RiskFactor extends AuditModel  {
     @NotNull
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private ScoreType scoreType;
+
+    private String computingMethodCode;
+    private String scoreTypeCode;
 
 
     @NotNull

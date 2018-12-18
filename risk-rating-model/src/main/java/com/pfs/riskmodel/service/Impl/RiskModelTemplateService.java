@@ -1,16 +1,12 @@
 package com.pfs.riskmodel.service.Impl;
 
-import com.pfs.riskmodel.domain.RiskComponent;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
 import com.pfs.riskmodel.domain.RiskType;
-import com.pfs.riskmodel.repository.RiskComponentRepository;
 import com.pfs.riskmodel.repository.RiskModelTemplateRepository;
 import com.pfs.riskmodel.repository.RiskTypeRepository;
-import com.pfs.riskmodel.service.IRiskComponentService;
 import com.pfs.riskmodel.service.IRiskModelTemplateService;
 import com.pfs.riskmodel.service.IRiskTypeService;
 import com.pfs.riskmodel.service.validator.RiskModelTemplateValidator;
-import com.pfs.riskmodel.service.validator.RiskTypeValidator;
 import com.pfs.riskmodel.util.ValidationResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -54,6 +50,18 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
 
         riskModelTemplate =  riskModelTemplateRepository.save(riskModelTemplate);
         result.put("RiskModelTemplate", riskModelTemplate);
+
+        Long createdRiskModelTemplateId = riskModelTemplate.getId();
+
+        //On Creating New Entities, Mark all other entities as Inactive
+        List<RiskModelTemplate> riskModelTemplatesActive = riskModelTemplateRepository.findByStatus("X");
+        for (RiskModelTemplate riskModelTemplateActive : riskModelTemplatesActive ) {
+            if ( riskModelTemplateActive.getId() != createdRiskModelTemplateId ) {
+                riskModelTemplateActive.setStatus("");
+                riskModelTemplateRepository.save(riskModelTemplateActive);
+            }
+            }
+
         return result;
     }
 
@@ -82,14 +90,13 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
         }
 
         //Update Header Attribtues
-        riskModelTemplateExisting.setActive(riskModelTemplate.getActive());
+        riskModelTemplateExisting.setStatus(riskModelTemplate.getStatus());
         riskModelTemplateExisting.setDescription(riskModelTemplate.getDescription());
         riskModelTemplateExisting.setProjectType(riskModelTemplate.getProjectType());
         riskModelTemplateExisting.setProjectRiskLevel(riskModelTemplate.getProjectRiskLevel());
         riskModelTemplateExisting.setComputingMethod(riskModelTemplate.getComputingMethod());
         riskModelTemplateExisting.setScore(riskModelTemplate.getScore());
-
-
+        riskModelTemplateExisting.setModelCategory(riskModelTemplate.getModelCategory());
 
         // Update RiskType Items
         for (RiskType riskType: riskModelTemplate.getRiskTypes()) {

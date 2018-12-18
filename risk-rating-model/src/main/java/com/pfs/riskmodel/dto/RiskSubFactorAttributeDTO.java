@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 public class RiskSubFactorAttributeDTO {
 
      private Long id;
+     private Integer itemNo;
      private String description;
 
      private Double score;

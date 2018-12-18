@@ -21,6 +21,9 @@ import java.math.BigDecimal;
 public class RiskSubFactorAttribute extends AggregateRoot<RiskSubFactorAttribute>  {
 
     @Getter(AccessLevel.PUBLIC)
+    private Integer itemNo;
+
+    @Getter(AccessLevel.PUBLIC)
     private String description;
 
     @Getter(AccessLevel.PUBLIC)

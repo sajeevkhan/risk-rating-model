@@ -1,10 +1,7 @@
 package com.pfs.riskmodel.service.validator;
 
 import com.pfs.riskmodel.domain.*;
-import com.pfs.riskmodel.repository.ComputingMethodRepository;
-import com.pfs.riskmodel.repository.ProjectRiskLevelRepository;
-import com.pfs.riskmodel.repository.ProjectTypeRepository;
-import com.pfs.riskmodel.repository.ScoreTypeRepository;
+import com.pfs.riskmodel.repository.*;
 import com.pfs.riskmodel.util.ValidationResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +31,8 @@ public class RiskModelTemplateValidator {
     @Autowired
     ScoreTypeRepository scoreTypeRepository;
 
+    @Autowired
+    ModelCategoryRepository modelCategoryRepository;
 
     public ValidationResult validate(RiskModelTemplate riskModelTemplate) {
 
@@ -50,6 +49,21 @@ public class RiskModelTemplateValidator {
             return validationResult;
         }
 
+        if (riskModelTemplate.getModelCategory() == null) {
+            validationResult.setAttributeName("RiskModelTemplate.ModelCategory");
+            validationResult.setValue(null);
+            validationResult.setFailed(true);
+            return validationResult;
+        } else  {
+
+            ModelCategory modelCategory = modelCategoryRepository.getOne(riskModelTemplate.getModelCategory().getId());
+
+            validationResult.setAttributeName("RiskModelTemplate.ModelCategory");
+            validationResult.setValue(riskModelTemplate.getModelCategory().getId().toString());
+            validationResult.setFailed(true);
+        }
+
+
         if (riskModelTemplate.getDescription() == null) {
             validationResult.setAttributeName("RiskModelTemplate.Description");
             validationResult.setValue(null);
@@ -57,8 +71,8 @@ public class RiskModelTemplateValidator {
             return validationResult;
         }
 
-        if (riskModelTemplate.getActive() == null) {
-            validationResult.setAttributeName("RiskModelTemplate.Active");
+        if (riskModelTemplate.getStatus() == null) {
+            validationResult.setAttributeName("RiskModelTemplate.Status");
             validationResult.setValue(null);
             validationResult.setFailed(true);
             return validationResult;

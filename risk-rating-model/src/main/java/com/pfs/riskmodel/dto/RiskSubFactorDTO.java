@@ -25,6 +25,7 @@ import java.util.Set;
 public class RiskSubFactorDTO {
 
     private Long id;
+    private Integer itemNo;
     private String description;
     private Double score;
     private Double weightage;

@@ -29,6 +29,10 @@ public class RiskSubFactor extends AuditModel  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @Getter(AccessLevel.PUBLIC)
+    private Integer itemNo;
+
     @NotNull
     @Size(max = 250)
     private String description;

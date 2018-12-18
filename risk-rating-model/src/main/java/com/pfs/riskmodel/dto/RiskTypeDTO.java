@@ -13,6 +13,7 @@ import java.util.Set;
 public class RiskTypeDTO {
 
     private Long id;
+    private Integer itemNo;
     private String description;
     private Double score;
 

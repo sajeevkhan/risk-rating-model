@@ -31,6 +31,13 @@ public class RiskComponentValidator {
         validationResult.setSuccessful(true);
 
         // Validate header attributes
+        if (riskComponent.getItemNo() == null) {
+            validationResult.setAttributeName("RiskComponent.itemNo");
+            validationResult.setValue(null);
+            validationResult.setFailed(true);
+            return validationResult;
+        }
+
         if (riskComponent.getDescription() == null) {
             validationResult.setAttributeName("RiskComponent.Description");
             validationResult.setValue(null);

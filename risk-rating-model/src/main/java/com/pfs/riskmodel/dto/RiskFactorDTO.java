@@ -23,14 +23,17 @@ import java.util.Set;
 public class RiskFactorDTO {
 
     private Long id;
+    private Integer itemNo;
     private String description;
     private String computingMethodCode;
+    private String computingMethodDescription;
     private String scoreTypeCode;
+    private String scoreTypeDescription;
     private Double score;
     private Double weightage;
 
-    private ComputingMethod computingMethod;
-    private ScoreType scoreType;
+//    private ComputingMethod computingMethod;
+//    private ScoreType scoreType;
 
     private Set<RiskSubFactorDTO> riskSubFactors;
 

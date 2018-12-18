@@ -1,13 +1,7 @@
 package com.pfs.riskmodel.appconfig;
 
-import com.pfs.riskmodel.domain.ComputingMethod;
-import com.pfs.riskmodel.domain.ProjectRiskLevel;
-import com.pfs.riskmodel.domain.ProjectType;
-import com.pfs.riskmodel.domain.ScoreType;
-import com.pfs.riskmodel.repository.ComputingMethodRepository;
-import com.pfs.riskmodel.repository.ProjectRiskLevelRepository;
-import com.pfs.riskmodel.repository.ProjectTypeRepository;
-import com.pfs.riskmodel.repository.ScoreTypeRepository;
+import com.pfs.riskmodel.domain.*;
+import com.pfs.riskmodel.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +29,31 @@ public class Initializer implements CommandLineRunner{
 
     private final ProjectRiskLevelRepository projectRiskLevelRepository;
 
+    private final ModelCategoryRepository modelCategoryRepository;
+
     @Override
     public void run(String... strings) throws Exception {
+
+
+
+        if(modelCategoryRepository.count() == 0) {
+            ModelCategory  c1 = new ModelCategory(1, "Renewable-Build");
+            ModelCategory  c2 = new ModelCategory( 2,"Renewable-Operational");
+            ModelCategory  c3 = new ModelCategory(  3,"InfraTransmission-Build");
+            ModelCategory  c4 = new ModelCategory( 4,"InfraTransmission-Operational");
+            ModelCategory  c5 = new ModelCategory( 5,"InfraRoadProjectHybridAnnuity-Build");
+            ModelCategory  c6 = new ModelCategory( 6,"InfraRoadProjectHybridAnnuity-Operational");
+            ModelCategory  c7 = new ModelCategory( 7,"InfraRoadProjectToll-Build");
+            ModelCategory  c8 = new ModelCategory( 8,"InfraRoadProjectToll-Operational");
+            ModelCategory  c9 = new ModelCategory( 9,"HoldingCompany-Build");
+            ModelCategory  c10 = new ModelCategory( 10,"HoldingCompany-Operational");
+
+
+            modelCategoryRepository.saveAll(Arrays.asList(c1,c2,c3,c4,c5,c6,c7,c8,c9,c10));
+            log.info("-------------------------- Added Model Category  data");
+        }
+
+
 
         if(computingMethodRepository.count() == 0) {
             ComputingMethod  c1 = new ComputingMethod("01", "Weighted");

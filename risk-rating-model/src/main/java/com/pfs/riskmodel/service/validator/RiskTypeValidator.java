@@ -27,6 +27,14 @@ public class RiskTypeValidator {
         validationResult.setSuccessful(true);
 
         // Validate header attributes
+        if (riskType.getItemNo() == null) {
+            validationResult.setAttributeName("RiskType.ItemNo");
+            validationResult.setValue(null);
+            validationResult.setFailed(true);
+            return validationResult;
+        }
+
+
         if (riskType.getDescription() == null) {
             validationResult.setAttributeName("RiskType.Description");
             validationResult.setValue(null);

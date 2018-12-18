@@ -75,9 +75,10 @@ public class RiskFactorController {
         riskFactor = riskFactorRepository.getOne(id);
 
 
-        riskFactorDTO =  mapDomainToDTO(riskFactor);
         Check.notNull(riskFactorDTO.getId(), "Exception.notFound",
                 "RiskFactor", id.toString());
+
+        riskFactorDTO =  mapDomainToDTO(riskFactor);
 
 
         return ResponseEntity.ok(riskFactorDTO);

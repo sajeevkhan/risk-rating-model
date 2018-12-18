@@ -1,9 +1,6 @@
 package com.pfs.riskmodel.dto;
 
-import com.pfs.riskmodel.domain.ComputingMethod;
-import com.pfs.riskmodel.domain.ProjectRiskLevel;
-import com.pfs.riskmodel.domain.ProjectType;
-import com.pfs.riskmodel.domain.RiskType;
+import com.pfs.riskmodel.domain.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,8 +18,12 @@ public class RiskModelTemplateDTO {
 
     private Long id;
     private String version;
-    private String active;
+    private String status;
     private String description;
+
+    private Integer modelCategoryCode;
+    private String modelCategoryDescription;
+
 
 
     /*
@@ -33,6 +34,7 @@ public class RiskModelTemplateDTO {
      "05", "Holding Company"
 */
      private String projectTypeCode;
+     private String projectTypeDescription;
 
 
     /*
@@ -41,6 +43,7 @@ public class RiskModelTemplateDTO {
     */
 
      private String projectRiskLevelCode;
+     private String projectRiskLevelDescription;
 
     /**
      ("01", "Weighted");
@@ -51,7 +54,7 @@ public class RiskModelTemplateDTO {
      ("06", "Multiply")
      */
      private String computingMethodCode;
-
+     private String computingMethodDescription;
 
      private Double score;
 
