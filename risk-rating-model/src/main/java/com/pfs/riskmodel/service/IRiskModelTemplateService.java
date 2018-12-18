@@ -13,4 +13,6 @@ public interface IRiskModelTemplateService {
     public Map<String, Object> createRiskModelTemplate(RiskModelTemplate riskModelTemplate);
 
     public Map<String, Object>  updateRiskModelTemplate(RiskModelTemplate riskModelTemplate);
+
+    public Map<String , Object> findByProjectTypeAndRiskLevel (String projectType, String projectRiskLevel);
 }

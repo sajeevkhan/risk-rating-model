@@ -15,5 +15,7 @@ public interface RiskModelTemplateRepository extends JpaRepository<RiskModelTemp
 
     List<RiskModelTemplate> findByProjectTypeAndProjectRiskLevelAndStatus(ProjectType projectType, ProjectRiskLevel projectRiskLevel, String active);
 
+
+
     List<RiskModelTemplate> findByStatus(String status);
 }

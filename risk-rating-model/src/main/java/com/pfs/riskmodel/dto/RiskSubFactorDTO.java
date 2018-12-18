@@ -31,5 +31,9 @@ public class RiskSubFactorDTO {
     private Double weightage;
 
 
-    private Set<RiskSubFactorAttribute> riskSubFactorAttribute;
+    private Set<RiskSubFactorAttributeDTO> riskSubFactorAttributes;
+
+    public void addRiskSubFactorAttribute(RiskSubFactorAttributeDTO riskSubFactorAttributeDTO) {
+        riskSubFactorAttributes.add(riskSubFactorAttributeDTO);
+    }
 }

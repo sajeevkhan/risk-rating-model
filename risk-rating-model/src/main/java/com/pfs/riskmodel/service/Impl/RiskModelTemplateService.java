@@ -1,7 +1,11 @@
 package com.pfs.riskmodel.service.Impl;
 
+import com.pfs.riskmodel.domain.ProjectRiskLevel;
+import com.pfs.riskmodel.domain.ProjectType;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
 import com.pfs.riskmodel.domain.RiskType;
+import com.pfs.riskmodel.repository.ProjectRiskLevelRepository;
+import com.pfs.riskmodel.repository.ProjectTypeRepository;
 import com.pfs.riskmodel.repository.RiskModelTemplateRepository;
 import com.pfs.riskmodel.repository.RiskTypeRepository;
 import com.pfs.riskmodel.service.IRiskModelTemplateService;
@@ -37,6 +41,74 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
 
     @Autowired
     RiskTypeRepository riskTypeRepository;
+
+    @Autowired
+    ProjectTypeRepository projectTypeRepository;
+
+    @Autowired
+    ProjectRiskLevelRepository projectRiskLevelRepository;
+
+    @Override
+    public Map<String, Object> findByProjectTypeAndRiskLevel(String projectTypeCode, String projectRiskLevelCode) {
+
+        Map<String, Object> result = new HashMap<>();
+        ValidationResult validationResult = new ValidationResult();
+
+
+        ProjectType projectType =  projectTypeRepository.findByCode(projectTypeCode);
+        if (projectType == null  ) {
+            validationResult.setAttributeName("ProjectType.Code");
+            validationResult.setValue(null);
+            validationResult.setFailed(true);
+            validationResult.setNotFound(true);
+            result.put("ValidationResult", validationResult);
+            return  result;
+        }
+
+        ProjectRiskLevel projectRiskLevel = projectRiskLevelRepository.findByCode(projectRiskLevelCode);
+        if (projectRiskLevel == null) {
+            validationResult.setAttributeName("ProjectType.RiskLevel");
+            validationResult.setValue(null);
+            validationResult.setFailed(true);
+            validationResult.setNotFound(true);
+            result.put("ValidationResult", validationResult);
+            return  result;
+        }
+
+        String status = "X";
+        List<RiskModelTemplate>  riskModelTemplates = riskModelTemplateRepository.findByProjectTypeAndProjectRiskLevelAndStatus(projectType, projectRiskLevel, status);
+
+        if ( riskModelTemplates.size() > 1 ){
+            validationResult.setAttributeName("RiskModelTemplate");
+            validationResult.setValue(null);
+            validationResult.setFailed(true);
+            validationResult.setMultipleValueFoundError(true);
+            result.put("ValidationResult", validationResult);
+            return  result;
+        }
+
+        if (riskModelTemplates.size() == 1) {
+            validationResult.setAttributeName("RiskModelTemplate");
+            validationResult.setValue(null);
+            validationResult.setFailed(false);
+            result.put("ValidationResult", validationResult);
+            result.put("RiskModelTemplate", riskModelTemplates.get(0));
+            return result;
+        }
+
+        if (riskModelTemplates.size() == 0) {
+            validationResult.setAttributeName("RiskModelTemplate");
+            validationResult.setValue(null);
+            validationResult.setFailed(true);
+            validationResult.setNotFound(true);
+            result.put("ValidationResult", validationResult);
+            return  result;
+        }
+
+
+        return null;
+    }
+
 
     @Override
     public Map<String, Object> createRiskModelTemplate(RiskModelTemplate riskModelTemplate) {
@@ -145,4 +217,5 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
         return result;
 
     }
+
 }

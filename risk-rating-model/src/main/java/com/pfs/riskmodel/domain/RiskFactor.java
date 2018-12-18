@@ -54,7 +54,10 @@ public class RiskFactor extends AuditModel  {
     private ScoreType scoreType;
 
     private String computingMethodCode;
+    private String computingMethodDescription;
+
     private String scoreTypeCode;
+    private String scoreTypeDescription;
 
 
     @NotNull

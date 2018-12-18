@@ -19,5 +19,9 @@ public class RiskTypeDTO {
 
     private Set<RiskComponentDTO> riskComponents;
 
+    public void addRiskComponentDTO (RiskComponentDTO riskComponentDTO) {
+        riskComponents.add(riskComponentDTO);
+    }
+
 
 }

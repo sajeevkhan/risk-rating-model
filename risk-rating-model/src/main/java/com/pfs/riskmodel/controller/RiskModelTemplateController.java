@@ -67,8 +67,6 @@ public class RiskModelTemplateController {
 
 
         List<RiskModelTemplateDTO> riskModelTemplateDTOS = new ArrayList<>();
-
-
         List<RiskModelTemplate> riskModelTemplates = new ArrayList<>();
 
         riskModelTemplates = riskModelTemplateRepository.findAll();
@@ -87,21 +85,44 @@ public class RiskModelTemplateController {
                              @PathVariable("id") Long id,
                              HttpServletRequest request) {
 
-
         RiskModelTemplate riskModelTemplate = new RiskModelTemplate();
         RiskModelTemplateDTO riskModelTemplateDTO = new RiskModelTemplateDTO();
 
         riskModelTemplate = riskModelTemplateRepository.getOne(id);
-
         Check.notNull(riskModelTemplate.getId(), "Exception.notFound",
                 "RiskModelTemplate", id.toString());
 
-
         riskModelTemplateDTO =  mapDomainToDTO(riskModelTemplate);
-
-
         return ResponseEntity.ok(riskModelTemplateDTO);
     }
+
+    @GetMapping("/riskModelTemplate")
+    public ResponseEntity findByProjectTypeAndRiskLevel (@RequestParam(value = "projectType",required = true) String projectType,
+                                                         @RequestParam(value = "projectRiskLevel",required = true) String projectRiskLevel,
+                                                         HttpServletRequest request) {
+
+        RiskModelTemplate riskModelTemplate = new RiskModelTemplate();
+        RiskModelTemplateDTO riskModelTemplateDTO = new RiskModelTemplateDTO();
+
+        Map<String, Object> result = riskModelTemplateService.findByProjectTypeAndRiskLevel(projectType,projectRiskLevel);
+        CheckServiceResult.checkResult(result);
+
+
+        riskModelTemplate = (RiskModelTemplate) result.get("RiskModelTemplate");
+
+        if (riskModelTemplate == null) {
+            Check.notNull(riskModelTemplate.getId(), "Exception.notFound",
+                    "RiskModelTemplate", projectType + ":" + projectRiskLevel);
+        }else {
+            Check.notNull(projectType, "Exception.notFound",
+                    "RiskModelTemplate", projectType + ":" + projectRiskLevel);
+        }
+
+        riskModelTemplateDTO =  mapDomainToDTO(riskModelTemplate);
+        return ResponseEntity.ok(riskModelTemplateDTO);
+    }
+
+
 
 
     @PostMapping("/riskModelTemplate")
