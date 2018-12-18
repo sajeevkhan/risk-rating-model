@@ -63,4 +63,8 @@ public class RiskModelTemplateDTO {
     private Set<RiskTypeDTO> riskTypes;
 
 
+    public void addRiskTypeDTO (RiskTypeDTO riskTypeDTO ) {
+        riskTypes.add(riskTypeDTO);
+    }
+
 }

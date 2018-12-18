@@ -1,5 +1,6 @@
 package com.pfs.riskmodel.domain;
 
+import com.pfs.riskmodel.dto.RiskTypeDTO;
 import lombok.*;
 
 import javax.persistence.*;
@@ -89,6 +90,7 @@ public class RiskModelTemplate extends AuditModel  {
 
         this.getRiskTypes().add(riskType);
         return riskType;
+
     }
 
 }

@@ -1,25 +1,22 @@
-package com.pfs.riskmodel.riskratingmodel;
+package com.pfs.riskmodel.riskratingmodel.RenewableProjectBuildPhase;
 
-import com.pfs.riskmodel.domain.RiskFactor;
-import com.pfs.riskmodel.domain.RiskModelTemplate;
-import com.pfs.riskmodel.domain.RiskSubFactorAttribute;
-import com.pfs.riskmodel.domain.RiskType;
 import com.pfs.riskmodel.dto.*;
 
 /**
  * Created by sajeev on 18-Dec-18.
  */
-public class RenewableProjectBuildData {
+public class RenewableProjectPostProject {
 
-    public  static  RiskModelTemplate riskModelTemplate ;
 
-    public static RiskModelTemplate getRenewableProjectBuildPhaseData( RiskModelTemplate riskModelTemplate) {
+    public static RiskTypeDTO riskTypeDTO ;
 
-    //---------------------------------------------------------------------------------//
-    // ---------------------------RiskType 1 -----------------------------------------//
-    //                      Project Implementation Risk
+    public static RiskTypeDTO buildRiskTypes () {
 
-        RiskTypeDTO riskTypeDTO = new RiskTypeDTO();
+         //---------------------------------------------------------------------------------//
+        // ---------------------------RiskType 1 -----------------------------------------//
+        //                      Project Implementation Risk
+
+        riskTypeDTO = new RiskTypeDTO();
         riskTypeDTO.setId(null);
         riskTypeDTO.setItemNo(1);
         riskTypeDTO.setDescription("Project Implementation Risk");
@@ -711,9 +708,6 @@ public class RenewableProjectBuildData {
 
 
 
-
-
-        return riskModelTemplate;
+        return riskTypeDTO;
     }
-
 }
