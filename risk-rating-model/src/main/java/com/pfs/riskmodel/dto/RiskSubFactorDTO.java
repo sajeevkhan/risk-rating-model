@@ -29,6 +29,9 @@ public class RiskSubFactorDTO {
     private String description;
     private Double score;
     private Double weightage;
+    private String scoreTypeCode;
+    private String scoreTypeDescription;
+
 
 
     private Set<RiskSubFactorAttributeDTO> riskSubFactorAttributes;

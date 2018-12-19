@@ -45,6 +45,20 @@ public class RiskSubFactor extends AuditModel  {
     private Double weightage;
 
 
+    /**
+     ("01", "Normal");
+     ("02", "Deflator");
+     ("03", "Multiplier");
+     */
+    @NotNull
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private ScoreType scoreType;
+
+    private String scoreTypeCode;
+    private String scoreTypeDescription;
+
+
+
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
     @JoinColumn(name="riskSubFactor__id",referencedColumnName = "id")
     private Set<RiskSubFactorAttribute> riskSubFactorAttribute;

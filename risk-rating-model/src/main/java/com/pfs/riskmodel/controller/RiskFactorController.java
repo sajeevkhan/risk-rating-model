@@ -7,7 +7,8 @@ import com.pfs.riskmodel.dto.RiskFactorDTO;
 import com.pfs.riskmodel.dto.RiskSubFactorDTO;
 import com.pfs.riskmodel.repository.ComputingMethodRepository;
 import com.pfs.riskmodel.repository.RiskFactorRepository;
- import com.pfs.riskmodel.repository.ScoreTypeRepository;
+import com.pfs.riskmodel.repository.RiskSubFactorRepository;
+import com.pfs.riskmodel.repository.ScoreTypeRepository;
 import com.pfs.riskmodel.service.IRiskFactorService;
  import com.pfs.riskmodel.util.Check;
 import com.pfs.riskmodel.util.CheckServiceResult;
@@ -32,6 +33,9 @@ public class RiskFactorController {
 
     @Autowired
     RiskFactorRepository riskFactorRepository;
+
+    @Autowired
+    RiskSubFactorRepository riskSubFactorRepository;
 
     @Autowired
     ComputingMethodRepository computingMethodRepository;
@@ -130,10 +134,11 @@ public class RiskFactorController {
         DozerBeanMapper mapper = new DozerBeanMapper();
         riskFactorDTO = mapper.map(riskFactor, RiskFactorDTO.class);
 
-//        for (RiskSubFactor riskSubFactor: riskFactor.getRiskSubFactors()) {
-//            RiskSubFactorDTO riskSubFactorDTO =  mapper.map(riskFactor, RiskSubFactorDTO.class);
-//            riskFactorDTO.addRiskSubFactorDTO(riskSubFactorDTO);
-//        }
+         for (RiskSubFactorDTO riskSubFactorDTO: riskFactorDTO.getRiskSubFactors()) {
+             riskSubFactorDTO.setScoreTypeCode( riskSubFactorRepository.getOne(riskSubFactorDTO.getId()).getScoreTypeCode());
+             riskSubFactorDTO.setScoreTypeDescription( riskSubFactorRepository.getOne(riskSubFactorDTO.getId()).getScoreTypeDescription());
+
+         }
 
 
         riskFactorDTO.setComputingMethodCode(riskFactor.getComputingMethod().getCode());
@@ -154,6 +159,13 @@ public class RiskFactorController {
 
         riskFactor.setScoreType(scoreTypeRepository.findByCode(riskFactorDTO.getScoreTypeCode()));
         riskFactor.setComputingMethod(computingMethodRepository.findByCode(riskFactorDTO.getComputingMethodCode()));
+
+        for (RiskSubFactor riskSubFactor: riskFactor.getRiskSubFactors()) {
+            riskSubFactor.setScoreType(scoreTypeRepository.findByCode(riskSubFactor.getScoreTypeCode()));
+            riskSubFactor.setScoreTypeCode(scoreTypeRepository.findByCode(riskSubFactor.getScoreTypeCode()).getCode());
+
+
+        }
 
         return riskFactor;
     }

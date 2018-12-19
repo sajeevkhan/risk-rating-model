@@ -21,6 +21,9 @@ public class RiskSubFactorAttributeDTO {
 
      private Double weightage;
 
+     private Character deflatorIndicator;
+
+
      @Override
      public boolean equals(Object o) {
           if (this == o) return true;

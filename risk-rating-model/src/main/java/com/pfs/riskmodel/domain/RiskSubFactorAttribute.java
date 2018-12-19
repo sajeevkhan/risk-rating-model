@@ -32,6 +32,7 @@ public class RiskSubFactorAttribute extends AggregateRoot<RiskSubFactorAttribute
     @Getter(AccessLevel.PUBLIC)
     private Double weightage;
 
+
 //    @NotNull
 //    //@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    @JoinColumn(name="riskSubFactor__id",referencedColumnName = "id")

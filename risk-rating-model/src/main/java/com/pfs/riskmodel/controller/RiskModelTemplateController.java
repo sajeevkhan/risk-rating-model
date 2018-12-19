@@ -2,10 +2,7 @@ package com.pfs.riskmodel.controller;
 
 import com.pfs.riskmodel.config.ApiController;
 import com.pfs.riskmodel.domain.*;
-import com.pfs.riskmodel.dto.RiskComponentDTO;
-import com.pfs.riskmodel.dto.RiskFactorDTO;
-import com.pfs.riskmodel.dto.RiskModelTemplateDTO;
-import com.pfs.riskmodel.dto.RiskTypeDTO;
+import com.pfs.riskmodel.dto.*;
 import com.pfs.riskmodel.repository.*;
 import com.pfs.riskmodel.service.IRiskModelTemplateService;
 import com.pfs.riskmodel.service.IRiskTypeService;
@@ -52,6 +49,9 @@ public class RiskModelTemplateController {
 
     @Autowired
     RiskFactorRepository riskFactorRepository;
+
+    @Autowired
+    RiskSubFactorRepository riskSubFactorRepository;
 
     @Autowired
     ModelCategoryRepository modelCategoryRepository;
@@ -210,6 +210,12 @@ public class RiskModelTemplateController {
                       riskFactorDTO.setScoreTypeCode(riskFactorRepository.getOne(riskFactorDTO.getId()).getScoreType().getCode());
                       riskFactorDTO.setScoreTypeDescription(riskFactorRepository.getOne(riskFactorDTO.getId()).getScoreType().getDescription());
 
+                      for (RiskSubFactorDTO riskSubFactorDTO: riskFactorDTO.getRiskSubFactors()) {
+                          riskSubFactorDTO.setScoreTypeCode( riskSubFactorRepository.getOne(riskSubFactorDTO.getId()).getScoreTypeCode());
+                          riskSubFactorDTO.setScoreTypeDescription( riskSubFactorRepository.getOne(riskSubFactorDTO.getId()).getScoreTypeDescription());
+
+                      }
+
                   }
 
              }
@@ -250,6 +256,15 @@ public class RiskModelTemplateController {
 
                     riskFactor.setScoreType(scoreTypeRepository.findByCode(riskFactor.getScoreTypeCode()));
                     riskFactor.setScoreTypeCode(scoreTypeRepository.findByCode(riskFactor.getScoreTypeCode()).getCode());
+
+                    for (RiskSubFactor riskSubFactor: riskFactor.getRiskSubFactors()) {
+
+                        riskSubFactor.setScoreType(scoreTypeRepository.findByCode(riskSubFactor.getScoreTypeCode()));
+                        riskSubFactor.setScoreTypeCode(scoreTypeRepository.findByCode(riskSubFactor.getScoreTypeCode()).getCode());
+
+
+                    }
+
 
                 }
             }

@@ -1,11 +1,11 @@
-package com.pfs.riskmodel.riskratingmodel.RenewableProjectBuildPhase;
+package com.pfs.riskmodel.riskratingmodel.Renewables.RenewableProjectBuildPhase.RiskTypes;
 
 import com.pfs.riskmodel.dto.*;
 
 /**
  * Created by sajeev on 18-Dec-18.
  */
-public class RenewableProjectPostProject {
+public class RenewablesBuildPhaseProjectImplementationRiskTypesData {
 
 
     public static RiskTypeDTO riskTypeDTO ;

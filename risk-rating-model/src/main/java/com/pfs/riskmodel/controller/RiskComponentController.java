@@ -2,10 +2,12 @@ package com.pfs.riskmodel.controller;
 
 import com.pfs.riskmodel.config.ApiController;
 import com.pfs.riskmodel.domain.RiskComponent;
- import com.pfs.riskmodel.dto.RiskComponentDTO;
- import com.pfs.riskmodel.repository.ComputingMethodRepository;
-import com.pfs.riskmodel.repository.RiskComponentRepository;
- import com.pfs.riskmodel.repository.ScoreTypeRepository;
+import com.pfs.riskmodel.domain.RiskFactor;
+import com.pfs.riskmodel.domain.RiskSubFactor;
+import com.pfs.riskmodel.dto.RiskComponentDTO;
+import com.pfs.riskmodel.dto.RiskFactorDTO;
+import com.pfs.riskmodel.dto.RiskSubFactorDTO;
+import com.pfs.riskmodel.repository.*;
 import com.pfs.riskmodel.service.IRiskComponentService;
  import com.pfs.riskmodel.util.Check;
 import com.pfs.riskmodel.util.CheckServiceResult;
@@ -30,6 +32,15 @@ public class RiskComponentController {
 
     @Autowired
     RiskComponentRepository riskComponentRepository;
+
+
+
+    @Autowired
+    RiskSubFactorRepository riskSubFactorRepository;
+
+    @Autowired
+    RiskFactorRepository riskFactorRepository;
+
 
     @Autowired
     ComputingMethodRepository computingMethodRepository;
@@ -133,6 +144,23 @@ public class RiskComponentController {
         riskComponentDTO.setComputingMethodCode(riskComponent.getComputingMethod().getCode());
         riskComponentDTO.setScoreTypeCode(riskComponent.getScoreType().getCode());
 
+         for (RiskFactorDTO riskFactorDTO: riskComponentDTO.getRiskFactors()) {
+
+             riskFactorDTO.setComputingMethodCode(riskFactorRepository.getOne(riskFactorDTO.getId()).getComputingMethod().getCode());
+             riskFactorDTO.setComputingMethodDescription(riskFactorRepository.getOne(riskFactorDTO.getId()).getComputingMethod().getValue());
+
+             riskFactorDTO.setScoreTypeCode(riskFactorRepository.getOne(riskFactorDTO.getId()).getScoreType().getCode());
+             riskFactorDTO.setScoreTypeDescription(riskFactorRepository.getOne(riskFactorDTO.getId()).getScoreType().getDescription());
+
+             for (RiskSubFactorDTO riskSubFactorDTO: riskFactorDTO.getRiskSubFactors()) {
+                 riskSubFactorDTO.setScoreTypeCode( riskSubFactorRepository.getOne(riskSubFactorDTO.getId()).getScoreTypeCode());
+                 riskSubFactorDTO.setScoreTypeDescription( riskSubFactorRepository.getOne(riskSubFactorDTO.getId()).getScoreTypeDescription());
+
+             }
+
+         }
+
+
         return riskComponentDTO;
 
     }
@@ -148,6 +176,26 @@ public class RiskComponentController {
 
         riskComponent.setScoreType(scoreTypeRepository.findByCode(riskComponentDTO.getScoreTypeCode()));
         riskComponent.setComputingMethod(computingMethodRepository.findByCode(riskComponentDTO.getComputingMethodCode()));
+
+
+        for (RiskFactor riskFactor: riskComponent.getRiskFactors()) {
+
+            riskFactor.setComputingMethod(computingMethodRepository.findByCode(riskFactor.getComputingMethodCode()));
+            riskFactor.setComputingMethodCode(computingMethodRepository.findByCode(riskFactor.getComputingMethodCode()).getCode());
+
+            riskFactor.setScoreType(scoreTypeRepository.findByCode(riskFactor.getScoreTypeCode()));
+            riskFactor.setScoreTypeCode(scoreTypeRepository.findByCode(riskFactor.getScoreTypeCode()).getCode());
+
+            for (RiskSubFactor riskSubFactor: riskFactor.getRiskSubFactors()) {
+
+                riskSubFactor.setScoreType(scoreTypeRepository.findByCode(riskSubFactor.getScoreTypeCode()));
+                riskSubFactor.setScoreTypeCode(scoreTypeRepository.findByCode(riskSubFactor.getScoreTypeCode()).getCode());
+
+
+            }
+
+
+        }
 
         return riskComponent;
     }
