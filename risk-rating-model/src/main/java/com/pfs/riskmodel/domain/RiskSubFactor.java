@@ -61,12 +61,12 @@ public class RiskSubFactor extends AuditModel  {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
     @JoinColumn(name="riskSubFactor__id",referencedColumnName = "id")
-    private Set<RiskSubFactorAttribute> riskSubFactorAttribute;
+    private Set<RiskSubFactorAttribute> riskSubFactorAttributes;
 
 
     public RiskSubFactorAttribute addRiskSubFactorAttribute (RiskSubFactorAttribute riskSubFactorAttribute) {
 
-        this.getRiskSubFactorAttribute().add(riskSubFactorAttribute);
+        this.getRiskSubFactorAttributes().add(riskSubFactorAttribute);
         return riskSubFactorAttribute;
     }
 

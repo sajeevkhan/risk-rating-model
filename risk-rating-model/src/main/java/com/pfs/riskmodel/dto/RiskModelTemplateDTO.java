@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -64,6 +65,9 @@ public class RiskModelTemplateDTO {
 
 
     public void addRiskTypeDTO (RiskTypeDTO riskTypeDTO ) {
+        if (riskTypes == null){
+            riskTypes = new HashSet<>();
+        }
         riskTypes.add(riskTypeDTO);
     }
 

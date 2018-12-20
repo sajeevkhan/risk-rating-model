@@ -55,7 +55,7 @@ public class RiskSubFactorValidator {
 
 
         // Validate Items
-        for (RiskSubFactorAttribute r : riskSubFactor.getRiskSubFactorAttribute() ) {
+        for (RiskSubFactorAttribute r : riskSubFactor.getRiskSubFactorAttributes() ) {
 
             validationResult = riskSubFactorAttributeValidator.validate(r);
         }

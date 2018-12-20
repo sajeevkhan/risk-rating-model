@@ -15,6 +15,7 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -37,6 +38,9 @@ public class RiskSubFactorDTO {
     private Set<RiskSubFactorAttributeDTO> riskSubFactorAttributes;
 
     public void addRiskSubFactorAttribute(RiskSubFactorAttributeDTO riskSubFactorAttributeDTO) {
+        if (riskSubFactorAttributes == null){
+            riskSubFactorAttributes = new HashSet<>();
+        }
         riskSubFactorAttributes.add(riskSubFactorAttributeDTO);
     }
 }

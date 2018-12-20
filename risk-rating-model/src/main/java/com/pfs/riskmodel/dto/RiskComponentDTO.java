@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -33,6 +34,10 @@ public class RiskComponentDTO {
 
 
     public void addRiskFactorDTO (RiskFactorDTO riskFactorDTO) {
+
+        if (riskFactors == null) {
+            riskFactors = new HashSet<>();
+        }
 
         this.riskFactors.add(riskFactorDTO);
     }

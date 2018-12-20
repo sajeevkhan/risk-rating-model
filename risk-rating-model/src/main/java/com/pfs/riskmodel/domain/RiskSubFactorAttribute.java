@@ -24,6 +24,8 @@ public class RiskSubFactorAttribute extends AggregateRoot<RiskSubFactorAttribute
     private Integer itemNo;
 
     @Getter(AccessLevel.PUBLIC)
+
+    @Column(columnDefinition = "LONGTEXT")
     private String description;
 
     @Getter(AccessLevel.PUBLIC)

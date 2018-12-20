@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -39,6 +40,9 @@ public class RiskFactorDTO {
 
 
     public void addRiskSubFactorDTO (RiskSubFactorDTO riskSubFactorDTO) {
+        if (riskSubFactors == null){
+            riskSubFactors = new HashSet<>();
+        }
         this.riskSubFactors.add(riskSubFactorDTO);
     }
 }

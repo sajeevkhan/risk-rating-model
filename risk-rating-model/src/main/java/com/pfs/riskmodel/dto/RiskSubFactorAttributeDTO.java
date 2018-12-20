@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import java.math.BigDecimal;
 
 /**
@@ -15,6 +16,8 @@ public class RiskSubFactorAttributeDTO {
 
      private Long id;
      private Integer itemNo;
+
+     @Column(columnDefinition = "LONGTEXT")
      private String description;
 
      private Double score;

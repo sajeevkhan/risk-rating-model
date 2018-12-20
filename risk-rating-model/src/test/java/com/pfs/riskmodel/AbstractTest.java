@@ -1,4 +1,4 @@
-package com.pfs.riskmodel.riskratingmodel;
+package com.pfs.riskmodel;
 
 /**
  * Created by sajeev on 18-Dec-18.

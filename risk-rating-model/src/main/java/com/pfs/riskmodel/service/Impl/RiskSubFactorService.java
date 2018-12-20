@@ -86,7 +86,7 @@ public class RiskSubFactorService implements IRiskSubFactorService {
 
 
         // Update RiskSubFactorAttribute Items
-        for (RiskSubFactorAttribute riskSubFactorAttribute: riskSubFactor.getRiskSubFactorAttribute()) {
+        for (RiskSubFactorAttribute riskSubFactorAttribute: riskSubFactor.getRiskSubFactorAttributes()) {
 
             Boolean itemFound = false;
 
@@ -97,7 +97,7 @@ public class RiskSubFactorService implements IRiskSubFactorService {
             }
 
             // Modified Items
-            for (RiskSubFactorAttribute riskSubFactorAttributeExisting : riskSubFactorExisting.getRiskSubFactorAttribute()) {
+            for (RiskSubFactorAttribute riskSubFactorAttributeExisting : riskSubFactorExisting.getRiskSubFactorAttributes()) {
 
                  if ( riskSubFactorAttributeExisting.getId() == riskSubFactorAttribute.getId() ) {
                     itemFound = true;

@@ -1,10 +1,10 @@
-package com.pfs.riskmodel.riskratingmodel.Renewables.RenewableProjectBuildPhase.RiskTypes;
+package com.pfs.riskmodel.ztemp.Renewables.RiskTypes;
 
+import com.pfs.riskmodel.Renewable.BuildPhase.PostProjectRisk.RPP_BusinessRiskComponentDTO;
+import com.pfs.riskmodel.Renewable.BuildPhase.PostProjectRisk.RPP_FinancialRiskRiskComponentDTO;
+import com.pfs.riskmodel.Renewable.BuildPhase.PostProjectRisk.RPP_ManagementRiskRiskComponentDTO;
 import com.pfs.riskmodel.dto.*;
-import com.pfs.riskmodel.riskratingmodel.Renewables.RenewableProjectBuildPhase.RiskTypes.RiskComponents.BuildPhaseBusinessRiskComponentDTO;
-import com.pfs.riskmodel.riskratingmodel.Renewables.RenewableProjectBuildPhase.RiskTypes.RiskComponents.BuildPhaseFinancialRiskRiskComponentDTO;
-import com.pfs.riskmodel.riskratingmodel.Renewables.RenewableProjectBuildPhase.RiskTypes.RiskComponents.BuildPhaseIndustryRiskRiskComponentDTO;
-import com.pfs.riskmodel.riskratingmodel.Renewables.RenewableProjectBuildPhase.RiskTypes.RiskComponents.BuildPhaseManagementRiskRiskComponentDTO;
+import com.pfs.riskmodel.Renewable.BuildPhase.PostProjectRisk.RPP_IndustryRiskRiskComponentDTO;
 
 /**
  * Created by sajeev on 18-Dec-18.
@@ -29,19 +29,19 @@ public class RenewablesBuildPhasePostProjectImplementationRiskTypesData {
 
         //  Risk Component 1 : Financial Risk - 32%
         RiskComponentDTO financialRiskComponent = new RiskComponentDTO();
-        financialRiskComponent = BuildPhaseFinancialRiskRiskComponentDTO.getFinancialRiskComponentDTO();
+        financialRiskComponent = RPP_FinancialRiskRiskComponentDTO.getFinancialRiskComponentDTO();
 
         //  Risk Component 1 : Management Risk - 20%
         RiskComponentDTO managementRiskComponent = new RiskComponentDTO();
-        managementRiskComponent = BuildPhaseManagementRiskRiskComponentDTO.managementRiskComponentDTO();
+        managementRiskComponent = RPP_ManagementRiskRiskComponentDTO.managementRiskComponentDTO();
 
         //  Risk Component 1 : Industry Risk - 16%
         RiskComponentDTO industryRiskComponent = new RiskComponentDTO();
-        industryRiskComponent = BuildPhaseIndustryRiskRiskComponentDTO.getIndustryRiskComponentDTO();
+        industryRiskComponent = RPP_IndustryRiskRiskComponentDTO.getIndustryRiskComponentDTO();
 
         //  Risk Component 1 : Business Risk - 32%
         RiskComponentDTO businessRiskComponent = new RiskComponentDTO();
-        businessRiskComponent = BuildPhaseBusinessRiskComponentDTO.getBusinessRiskComponentDTO();
+        businessRiskComponent = RPP_BusinessRiskComponentDTO.getBusinessRiskComponentDTO();
 
         riskTypeDTO.addRiskComponentDTO(financialRiskComponent);
         riskTypeDTO.addRiskComponentDTO(managementRiskComponent);

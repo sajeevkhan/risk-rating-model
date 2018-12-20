@@ -1,4 +1,4 @@
-package com.pfs.riskmodel.riskratingmodel.Renewables.RenewableProjectBuildPhase.RiskTypes.RiskComponents;
+package com.pfs.riskmodel.Renewable.BuildPhase.PostProjectRisk;
 
 import com.pfs.riskmodel.dto.RiskComponentDTO;
 import com.pfs.riskmodel.dto.RiskFactorDTO;
@@ -8,7 +8,7 @@ import com.pfs.riskmodel.dto.RiskSubFactorDTO;
 /**
  * Created by sajeev on 19-Dec-18.
  */
-public  class BuildPhaseIndustryRiskRiskComponentDTO {
+public  class RPP_IndustryRiskRiskComponentDTO {
     /**********************************************************************************************************************
      *  Risk Component 1 : Industry Risk - 16%
      *  This has only two levels below and therefore the Risk Factor will be a dummy entry (Industry Risk Factor) with same name
@@ -17,7 +17,7 @@ public  class BuildPhaseIndustryRiskRiskComponentDTO {
 
     public static RiskComponentDTO getIndustryRiskComponentDTO () {
 
-        RiskComponentDTO riskComponentDTO = new RiskComponentDTO();
+        //RiskComponentDTO riskComponentDTO = new RiskComponentDTO();
         /**********************************************************************************************************************
          *  Risk Component 1 : Industry Risk - 16%
          *  This has only two levels below and therefore the Risk Factor will be a dummy entry (Industry Risk Factor) with same name
@@ -75,36 +75,42 @@ public  class BuildPhaseIndustryRiskRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("Extremely favorable demand supply gap. Current production well below the estimated demand. Demand supply gap likely to remain insulated from recessionary trends. Growth potential in foreseeable future is high.");
         riskSubFactorAttributeDTO1.setScore(10D);
+        riskSubFactorAttributeDTO1.setWeightage(0D);
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Highly favorable demand-supply gap. Relative good growth potential in future.");
         riskSubFactorAttributeDTO2.setScore(8.00);
+        riskSubFactorAttributeDTO2.setWeightage(0D);
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Past growth rates relatively high and stable. Positive demand-supply gap scenario. Relatively insulated from economic recession. Favorable growth rate likely to continue in the medium term.");
         riskSubFactorAttributeDTO3.setScore(6.00);
+        riskSubFactorAttributeDTO3.setWeightage(0D);
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("Industry characterized by derived demand -strong linkages with overall economic growth. Marginal demand supply gap/ slight overcapacity situation likely to restrict medium term growth, despite positive long term growth prospects");
         riskSubFactorAttributeDTO4.setScore(4.00D);
+        riskSubFactorAttributeDTO4.setWeightage(0D);
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO5.setId(null);
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("Serious oversupply situation in industry. Production levels have been stagnant/declining for an extended period. Installed capacities likely to remain in excess of estimated demand over the medium term. Reversal in oversupply situation in medium term is unlikely");
         riskSubFactorAttributeDTO5.setScore(2.00D);
+        riskSubFactorAttributeDTO5.setWeightage(0D);
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO6.setId(null);
         riskSubFactorAttributeDTO6.setItemNo(6);
         riskSubFactorAttributeDTO6.setDescription("Demand showing a clearly declining trend. Industry likely to die out within a few years");
         riskSubFactorAttributeDTO6.setScore(0.00D);
+        riskSubFactorAttributeDTO6.setWeightage(0D);
 
         demandSupplyGapRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO1);
         demandSupplyGapRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO2);
@@ -137,36 +143,43 @@ public  class BuildPhaseIndustryRiskRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("Policy is highly favourable and unambiguous, with certain minimum return being made available to the industry. Favourable government policy likely to continue in the foreseeable future");
         riskSubFactorAttributeDTO1.setScore(10D);
+        riskSubFactorAttributeDTO1.setWeightage(0D);
+
 
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Favourable Policy, which has positive impact on industry. No change in the favourable policy is expected");
         riskSubFactorAttributeDTO2.setScore(8.00);
+        riskSubFactorAttributeDTO2.setWeightage(0D);
 
         riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("A mix of favourable and not so favourable policies. Slight impact of policy on the profitability");
         riskSubFactorAttributeDTO3.setScore(6.00);
+        riskSubFactorAttributeDTO3.setWeightage(0D);
 
         riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("The existing government policies are not significantly favourable/ unfavourable for the industry. Profitability is not particularly influenced by existing/ foreseen regulatory measures");
         riskSubFactorAttributeDTO4.setScore(4.00D);
+        riskSubFactorAttributeDTO4.setWeightage(0D);
 
         riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO5.setId(null);
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("Government policy has a significantly negative influence, in the form of high excise burden, inverted import duty structure, unviable price regulation, etc.");
         riskSubFactorAttributeDTO5.setScore(2.00D);
+        riskSubFactorAttributeDTO5.setWeightage(0D);
 
         riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO6.setId(null);
         riskSubFactorAttributeDTO6.setItemNo(6);
         riskSubFactorAttributeDTO6.setDescription("Government policy towards industry is extremely unfavourable");
         riskSubFactorAttributeDTO6.setScore(0.00D);
+        riskSubFactorAttributeDTO6.setWeightage(0D);
 
 
 
@@ -197,38 +210,45 @@ public  class BuildPhaseIndustryRiskRiskComponentDTO {
         riskSubFactorAttributeDTO1.setId(null);
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("The industry has a monopoly structure, with the prospect of new entrants in the medium term being unlikely");
-
         riskSubFactorAttributeDTO1.setScore(10D);
+        riskSubFactorAttributeDTO1.setWeightage(0D);
+
 
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Oligopoly structure. High chance of the structure to be the same or move into a monopoly structure");
         riskSubFactorAttributeDTO2.setScore(8.00);
+        riskSubFactorAttributeDTO2.setWeightage(0D);
 
         riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Industry is characterized by a few large players accounting for the bulk of market share. Capital investment involved is likely to discourage significant increase in competition in the medium term. Absence of serious threat from imports");
         riskSubFactorAttributeDTO3.setScore(6.00);
+        riskSubFactorAttributeDTO3.setWeightage(0D);
+
 
         riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("Industry has a fairly fragmented structure. Moderate entry barriers in the form of technology/ capital investment");
         riskSubFactorAttributeDTO4.setScore(4.00D);
+        riskSubFactorAttributeDTO4.setWeightage(0D);
 
         riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO5.setId(null);
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("Highly fragmented industry. Processes are very easily replicable leading to presence of large, cost-competitive unorganized sector/ Significantly lower cost of imports render domestic producers unviable");
         riskSubFactorAttributeDTO5.setScore(2.00D);
+        riskSubFactorAttributeDTO5.setWeightage(0D);
 
         riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO6.setId(null);
         riskSubFactorAttributeDTO6.setItemNo(6);
         riskSubFactorAttributeDTO6.setDescription("Extremely competitive industry, with a near absence of entry barriers, in the form of investment/ technology etc. No player is capable of building a significant market share in the industry. Majority of players in the industry are loss making");
         riskSubFactorAttributeDTO6.setScore(0.00D);
+        riskSubFactorAttributeDTO6.setWeightage(0D);
 
 
         // Collect Risk Sub Factor Attributes
@@ -245,9 +265,9 @@ public  class BuildPhaseIndustryRiskRiskComponentDTO {
         industryRiskFactorDTO.addRiskSubFactorDTO(extentOfCompetetionRiskSubFactorDTO);
 
         // Collect Risk Factors
-        riskComponentDTO.addRiskFactorDTO(industryRiskFactorDTO);
+        industryRiskComponentDTO.addRiskFactorDTO(industryRiskFactorDTO);
 
-        return  riskComponentDTO;
+        return  industryRiskComponentDTO;
 
     }
 }

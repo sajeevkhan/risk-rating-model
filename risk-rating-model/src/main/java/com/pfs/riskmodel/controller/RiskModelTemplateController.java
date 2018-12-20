@@ -259,9 +259,34 @@ public class RiskModelTemplateController {
 
                     for (RiskSubFactor riskSubFactor: riskFactor.getRiskSubFactors()) {
 
-                        riskSubFactor.setScoreType(scoreTypeRepository.findByCode(riskSubFactor.getScoreTypeCode()));
-                        riskSubFactor.setScoreTypeCode(scoreTypeRepository.findByCode(riskSubFactor.getScoreTypeCode()).getCode());
 
+                        if (riskSubFactor.getWeightage() == null) {
+                            System.out.println(" NULL Risk Sub Factor Weightage:" + riskSubFactor.getDescription());
+
+                        }
+
+
+                        riskSubFactor.setScoreType(scoreTypeRepository.findByCode(riskSubFactor.getScoreTypeCode()));
+                        try {
+                            riskSubFactor.setScoreTypeCode(scoreTypeRepository.findByCode(riskSubFactor.getScoreTypeCode()).getCode());
+                        }
+                        catch ( Exception ex) {
+                            System.out.println("");
+                        }
+
+                        if (riskSubFactor.getRiskSubFactorAttributes() == null){
+
+                            System.out.println(" NULL Risk Sub Factor Attributes:" + riskSubFactor.getDescription());
+                        }
+
+                        for (RiskSubFactorAttribute riskSubFactorAttribute: riskSubFactor.getRiskSubFactorAttributes() ){
+
+                            if (riskSubFactorAttribute.getWeightage() == null){
+                                System.out.println(" NULL Risk Sub Factor Attribute Weightage:" + riskSubFactorAttribute.getDescription());
+
+                            }
+                            //riskSubFactorAttribute.set
+                        }
 
                     }
 
