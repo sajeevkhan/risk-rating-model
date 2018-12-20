@@ -17,7 +17,7 @@ public class RenewablePostProjectRiskTypes {
 
         riskTypeDTO = new RiskTypeDTO();
         riskTypeDTO.setId(null);
-        riskTypeDTO.setItemNo(1);
+        riskTypeDTO.setItemNo(2);
         riskTypeDTO.setDescription("Post Project Implementation Risk");
         riskTypeDTO.setScore(0D);
 

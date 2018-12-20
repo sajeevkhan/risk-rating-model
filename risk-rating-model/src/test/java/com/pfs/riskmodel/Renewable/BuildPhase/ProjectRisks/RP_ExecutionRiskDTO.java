@@ -121,7 +121,7 @@ public class RP_ExecutionRiskDTO {
         //2.1.2                         Execution Risk  -> Construction Risk -> Capability of Contractor
         RiskSubFactorDTO capabilityOfContractorRiskSubFactorDTO = new RiskSubFactorDTO();
         capabilityOfContractorRiskSubFactorDTO.setId(null);
-        capabilityOfContractorRiskSubFactorDTO.setItemNo(1);
+        capabilityOfContractorRiskSubFactorDTO.setItemNo(2);
         capabilityOfContractorRiskSubFactorDTO.setDescription("Capability of Contractor");
         capabilityOfContractorRiskSubFactorDTO.setWeightage(0.28); //28%
         capabilityOfContractorRiskSubFactorDTO.setScore(0D);
@@ -191,7 +191,7 @@ public class RP_ExecutionRiskDTO {
         //2.1.3                         Execution Risk  -> Construction Risk -> Complexity of the Project
         RiskSubFactorDTO complexityOfProjectRiskSubFactorDTO = new RiskSubFactorDTO();
         complexityOfProjectRiskSubFactorDTO.setId(null);
-        complexityOfProjectRiskSubFactorDTO.setItemNo(1);
+        complexityOfProjectRiskSubFactorDTO.setItemNo(3);
         complexityOfProjectRiskSubFactorDTO.setDescription("Complexity of the Project");
         complexityOfProjectRiskSubFactorDTO.setWeightage(0.16); //16%
         complexityOfProjectRiskSubFactorDTO.setScore(0D);
@@ -256,7 +256,7 @@ public class RP_ExecutionRiskDTO {
         //2.1.4                         Execution Risk  -> Construction Risk -> Safeguards in Contract
         RiskSubFactorDTO safeguarfsInContractRiskSubFactorDTO = new RiskSubFactorDTO();
         safeguarfsInContractRiskSubFactorDTO.setId(null);
-        safeguarfsInContractRiskSubFactorDTO.setItemNo(1);
+        safeguarfsInContractRiskSubFactorDTO.setItemNo(4);
         safeguarfsInContractRiskSubFactorDTO.setDescription("Safeguards in Contract");
         safeguarfsInContractRiskSubFactorDTO.setWeightage(0.08); //8%
         safeguarfsInContractRiskSubFactorDTO.setScore(0D);
@@ -323,7 +323,7 @@ public class RP_ExecutionRiskDTO {
         //2.1.5                         Execution Risk  -> Construction Risk -> Quality of Equipment
         RiskSubFactorDTO qualityOfEquipmentRiskSubFactorDTO = new RiskSubFactorDTO();
         qualityOfEquipmentRiskSubFactorDTO.setId(null);
-        qualityOfEquipmentRiskSubFactorDTO.setItemNo(1);
+        qualityOfEquipmentRiskSubFactorDTO.setItemNo(5);
         qualityOfEquipmentRiskSubFactorDTO.setDescription("Quality of Equipment");
         qualityOfEquipmentRiskSubFactorDTO.setWeightage(0.20); //20%
         qualityOfEquipmentRiskSubFactorDTO.setScore(0D);

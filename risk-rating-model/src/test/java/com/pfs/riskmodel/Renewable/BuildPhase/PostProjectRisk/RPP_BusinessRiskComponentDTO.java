@@ -26,7 +26,7 @@ public class RPP_BusinessRiskComponentDTO {
         //  1                       Business Risk
         RiskComponentDTO businessRiskComponentDTO = new RiskComponentDTO();
         businessRiskComponentDTO.setId(null);
-        businessRiskComponentDTO.setItemNo(1);
+        businessRiskComponentDTO.setItemNo(4);
         businessRiskComponentDTO.setDescription("Business Risk");
         businessRiskComponentDTO.setWeightage(0.32);
         businessRiskComponentDTO.setComputingMethodCode("01");
@@ -53,7 +53,7 @@ public class RPP_BusinessRiskComponentDTO {
 
 
         //                       Risk Type 1 - Risk Component 1 - Risk Factor 1 - Risk SubFactor 1
-        // 1.1.1                      Market Risk -> Market Risk Factor - >  Offtake Risk and Sales Composition
+        // 1.1.1                      Business Risk -> Market Position Factor - >  Offtake Risk and Sales Composition
         ///                                     27.80%
         RiskSubFactorDTO offTakeRiskAndSalesSubFactorDTO = new RiskSubFactorDTO();
         offTakeRiskAndSalesSubFactorDTO.setId(null);
@@ -119,11 +119,11 @@ public class RPP_BusinessRiskComponentDTO {
 
 
         //                       Risk Type 1 - Risk Component 1 - Risk Factor 1 - Risk SubFactor 1
-        // 1.1.2                      Market Risk -> Market Risk Factor - >  Counterparty Risk - Renewable
+        // 1.1.2                      Business Risk -> Market Position Factor - >  Counterparty Risk - Renewable
         ///                                     27.80%
         RiskSubFactorDTO counterPartySubFactorDTO = new RiskSubFactorDTO();
         counterPartySubFactorDTO.setId(null);
-        counterPartySubFactorDTO.setItemNo(1);
+        counterPartySubFactorDTO.setItemNo(2);
         counterPartySubFactorDTO.setDescription("Counterparty Risk - Renewable");
         counterPartySubFactorDTO.setWeightage(0.278D);
         counterPartySubFactorDTO.setScore(0D);
@@ -132,8 +132,8 @@ public class RPP_BusinessRiskComponentDTO {
 
 
         //                       Risk Type 1 - Risk Component 1 - Risk Factor 1 - Risk SubFactor 1 ->Risk Sub Factor Attributes
-        //                       Industry Risk -> Business Risk Factor - >  Counterparty Risk - Renewable -> Attributes
-        // 1.1.1 -> Six Attributes
+        //                       Business Risk  - >  Market Position Factor -> Counterparty Risk - Renewable -> Attributes
+        // 1.1.2 -> Six Attributes
         riskSubFactorAttributeDTO1 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO1.setId(null);
         riskSubFactorAttributeDTO1.setItemNo(1);
@@ -186,20 +186,20 @@ public class RPP_BusinessRiskComponentDTO {
 
 
         //                       Risk Type 1 - Risk Component 1 - Risk Factor 1 - Risk SubFactor 1
-        // 1.1.3                     Market Risk -> Market Risk Factor - >  Cost of generation (per unit cost)
+        // 1.1.3                     Business Risk -> Market Risk Factor - >  Cost of generation (per unit cost)
         ///                                     22.20%
         RiskSubFactorDTO costOfGenerationSubFactorDTO = new RiskSubFactorDTO();
         costOfGenerationSubFactorDTO.setId(null);
-        costOfGenerationSubFactorDTO.setItemNo(1);
+        costOfGenerationSubFactorDTO.setItemNo(3);
         costOfGenerationSubFactorDTO.setDescription("Cost of generation (per unit cost)");
-        costOfGenerationSubFactorDTO.setWeightage(0.2228D);
+        costOfGenerationSubFactorDTO.setWeightage(0.222D);
         costOfGenerationSubFactorDTO.setScore(0D);
         costOfGenerationSubFactorDTO.setScoreTypeCode("01");
         costOfGenerationSubFactorDTO.setScoreTypeDescription("Normal");
 
 
         //                       Risk Type 1 - Risk Component 1 - Risk Factor 1 - Risk SubFactor 1 ->Risk Sub Factor Attributes
-        //                       Market Risk -> Market Risk Factor - >  Cost of generation (per unit cost) -> Attributes
+        //                       Business Risk -> Market Risk Factor - >  Cost of generation (per unit cost) -> Attributes
         // 1.1.3 -> Six Attributes
         riskSubFactorAttributeDTO1 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO1.setId(null);
@@ -252,19 +252,19 @@ public class RPP_BusinessRiskComponentDTO {
 
 
         //                       Risk Type 1 - Risk Component 1 - Risk Factor 1 - Risk SubFactor 1
-        // 1.1.4                      Market Risk -> Market Risk Factor - >  Price Risk
+        // 1.1.4                      Business Risk -> Market Risk Factor - >  Regulatory Risk - Renewable
         ///                                     27.80%
-        RiskSubFactorDTO priceRiskSubFactorDTO = new RiskSubFactorDTO();
-        priceRiskSubFactorDTO.setId(null);
-        priceRiskSubFactorDTO.setItemNo(1);
-        priceRiskSubFactorDTO.setDescription("Price Risk");
-        priceRiskSubFactorDTO.setWeightage(0.278D);
-        priceRiskSubFactorDTO.setScore(0D);
-        priceRiskSubFactorDTO.setScoreTypeCode("01");
-        priceRiskSubFactorDTO.setScoreTypeDescription("Normal");
+        RiskSubFactorDTO regulatoryRiskRenewable = new RiskSubFactorDTO();
+        regulatoryRiskRenewable.setId(null);
+        regulatoryRiskRenewable.setItemNo(4);
+        regulatoryRiskRenewable.setDescription("Regulatory Risk - Renewable");
+        regulatoryRiskRenewable.setWeightage(0.222D);
+        regulatoryRiskRenewable.setScore(0D);
+        regulatoryRiskRenewable.setScoreTypeCode("01");
+        regulatoryRiskRenewable.setScoreTypeDescription("Normal");
 
         //                       Risk Type 1 - Risk Component 1 - Risk Factor 1 - Risk SubFactor 1 ->Risk Sub Factor Attributes
-        //                       Industry Risk -> Business Risk Factor - >  Price Risk -> Attributes
+        //                       Business Risk -> Market Risk Factor - > Regulatory Risk - Renewable -> Attributes
         // 1.1.4 -> Six Attributes
         riskSubFactorAttributeDTO1 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO1.setId(null);
@@ -309,12 +309,12 @@ public class RPP_BusinessRiskComponentDTO {
         riskSubFactorAttributeDTO6.setScore(10.00D);
         riskSubFactorAttributeDTO6.setWeightage(0D);
 
-        priceRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO1);
-        priceRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO2);
-        priceRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO3);
-        priceRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO4);
-        priceRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO5);
-        priceRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO6);
+        regulatoryRiskRenewable.addRiskSubFactorAttribute(riskSubFactorAttributeDTO1);
+        regulatoryRiskRenewable.addRiskSubFactorAttribute(riskSubFactorAttributeDTO2);
+        regulatoryRiskRenewable.addRiskSubFactorAttribute(riskSubFactorAttributeDTO3);
+        regulatoryRiskRenewable.addRiskSubFactorAttribute(riskSubFactorAttributeDTO4);
+        regulatoryRiskRenewable.addRiskSubFactorAttribute(riskSubFactorAttributeDTO5);
+        regulatoryRiskRenewable.addRiskSubFactorAttribute(riskSubFactorAttributeDTO6);
 
         // Collect Risk Sub Factor Attributes
 
@@ -322,7 +322,7 @@ public class RPP_BusinessRiskComponentDTO {
         marketPositionRiskFactorDTO.addRiskSubFactorDTO(offTakeRiskAndSalesSubFactorDTO);
         marketPositionRiskFactorDTO.addRiskSubFactorDTO(counterPartySubFactorDTO);
         marketPositionRiskFactorDTO.addRiskSubFactorDTO(costOfGenerationSubFactorDTO);
-        marketPositionRiskFactorDTO.addRiskSubFactorDTO(priceRiskSubFactorDTO);
+        marketPositionRiskFactorDTO.addRiskSubFactorDTO(regulatoryRiskRenewable);
 
 
         //                       Risk Type 1 - Risk Component 1 - Risk Factor 1
@@ -331,7 +331,7 @@ public class RPP_BusinessRiskComponentDTO {
 
         RiskFactorDTO operatingEfficiencyRiskFactorDTO = new RiskFactorDTO();
         operatingEfficiencyRiskFactorDTO.setId(null);
-        operatingEfficiencyRiskFactorDTO.setItemNo(1);
+        operatingEfficiencyRiskFactorDTO.setItemNo(2);
         operatingEfficiencyRiskFactorDTO.setDescription("Operating Efficiency Risk Factor");
         operatingEfficiencyRiskFactorDTO.setWeightage(0.30);
         operatingEfficiencyRiskFactorDTO.setComputingMethodCode("01");
@@ -412,28 +412,16 @@ public class RPP_BusinessRiskComponentDTO {
 
 
         //                       Risk Type 1 - Risk Component 1 - Risk Factor 1
-        //1.2                            Business Risk -> Key Resources Risk  Factor
-        //                                       30%
-
-        RiskFactorDTO keyResourcesRiskFactorDTO = new RiskFactorDTO();
-        keyResourcesRiskFactorDTO.setId(null);
-        keyResourcesRiskFactorDTO.setItemNo(1);
-        keyResourcesRiskFactorDTO.setDescription("Key Resources Risk");
-        keyResourcesRiskFactorDTO.setWeightage(0.30);
-        keyResourcesRiskFactorDTO.setComputingMethodCode("01");
-        keyResourcesRiskFactorDTO.setComputingMethodDescription("Weighted");
-        keyResourcesRiskFactorDTO.setScoreTypeCode("01");
-        keyResourcesRiskFactorDTO.setScoreTypeDescription("Normal");
-        keyResourcesRiskFactorDTO.setScore(0D);
-
+        //1.2                            Business Risk -> Operating Efficiency -> Key Resources Renewable Risk  Factor
+        //                                       85%
 
         //                       Risk Type 1 - Risk Component 1 - Risk Factor 1 - Risk SubFactor 1
         // 1.2.1       Business  Risk -> Key Resources Risk Factor - >  Operations and Maintenance Risk        ///                                     27.80%
         RiskSubFactorDTO keyResourcesRiskSubFactorDTO = new RiskSubFactorDTO();
         keyResourcesRiskSubFactorDTO.setId(null);
-        keyResourcesRiskSubFactorDTO.setItemNo(1);
+        keyResourcesRiskSubFactorDTO.setItemNo(2);
         keyResourcesRiskSubFactorDTO.setDescription("Key Resources Risk");
-        keyResourcesRiskSubFactorDTO.setWeightage(0.15D);
+        keyResourcesRiskSubFactorDTO.setWeightage(0.85D);
         keyResourcesRiskSubFactorDTO.setScore(0D);
         keyResourcesRiskSubFactorDTO.setScoreTypeCode("01");
         keyResourcesRiskSubFactorDTO.setScoreTypeDescription("Normal");
@@ -503,14 +491,13 @@ public class RPP_BusinessRiskComponentDTO {
         keyResourcesRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO7);
 
 
-        keyResourcesRiskFactorDTO.addRiskSubFactorDTO(keyResourcesRiskSubFactorDTO);
+        operatingEfficiencyRiskFactorDTO.addRiskSubFactorDTO(keyResourcesRiskSubFactorDTO);
 
 
         // Collect Risk Factors
 
         businessRiskComponentDTO.addRiskFactorDTO(operatingEfficiencyRiskFactorDTO);
         businessRiskComponentDTO.addRiskFactorDTO(marketPositionRiskFactorDTO);
-        businessRiskComponentDTO.addRiskFactorDTO(keyResourcesRiskFactorDTO);
 
         return businessRiskComponentDTO;
 

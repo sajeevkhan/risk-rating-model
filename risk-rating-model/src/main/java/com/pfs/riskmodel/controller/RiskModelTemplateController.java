@@ -284,6 +284,12 @@ public class RiskModelTemplateController {
                             if (riskSubFactorAttribute.getWeightage() == null){
                                 System.out.println(" NULL Risk Sub Factor Attribute Weightage:" + riskSubFactorAttribute.getDescription());
 
+//                                String description = riskSubFactorAttribute.getDescription();
+//                                description.replace("/", "-");
+
+
+                                //riskSubFactorAttribute.setDescription(description);
+
                             }
                             //riskSubFactorAttribute.set
                         }

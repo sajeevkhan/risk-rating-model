@@ -131,7 +131,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         ///                                     15%
         RiskSubFactorDTO minimumDSCRRiskSubFactorDTO = new RiskSubFactorDTO();
         minimumDSCRRiskSubFactorDTO.setId(null);
-        minimumDSCRRiskSubFactorDTO.setItemNo(1);
+        minimumDSCRRiskSubFactorDTO.setItemNo(2);
         minimumDSCRRiskSubFactorDTO.setDescription("Minimum DSCR");
         minimumDSCRRiskSubFactorDTO.setWeightage(0.15D);
         minimumDSCRRiskSubFactorDTO.setScore(0D);
@@ -204,7 +204,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         ///                                     15%
         RiskSubFactorDTO adjustedDebtEquityRatioRiskSubFactorDTO = new RiskSubFactorDTO();
         adjustedDebtEquityRatioRiskSubFactorDTO.setId(null);
-        adjustedDebtEquityRatioRiskSubFactorDTO.setItemNo(1);
+        adjustedDebtEquityRatioRiskSubFactorDTO.setItemNo(3);
         adjustedDebtEquityRatioRiskSubFactorDTO.setDescription("Adjust Debt/Equity Ratio");
         adjustedDebtEquityRatioRiskSubFactorDTO.setWeightage(0.20D);
         adjustedDebtEquityRatioRiskSubFactorDTO.setScore(0D);
@@ -278,7 +278,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         ///                                     15%
         RiskSubFactorDTO sensitivityToProjectCostDSCRRiskSubFactorDTO = new RiskSubFactorDTO();
         sensitivityToProjectCostDSCRRiskSubFactorDTO.setId(null);
-        sensitivityToProjectCostDSCRRiskSubFactorDTO.setItemNo(1);
+        sensitivityToProjectCostDSCRRiskSubFactorDTO.setItemNo(4);
         sensitivityToProjectCostDSCRRiskSubFactorDTO.setDescription("Sensitivity to Project Cost – DSCR");
         sensitivityToProjectCostDSCRRiskSubFactorDTO.setWeightage(0.15D);
         sensitivityToProjectCostDSCRRiskSubFactorDTO.setScore(0D);
@@ -350,7 +350,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         ///                                     15%
         RiskSubFactorDTO degreeOfExposureToIRRAndCurrencyRiskRiskSubFactorDTO = new RiskSubFactorDTO();
         degreeOfExposureToIRRAndCurrencyRiskRiskSubFactorDTO.setId(null);
-        degreeOfExposureToIRRAndCurrencyRiskRiskSubFactorDTO.setItemNo(1);
+        degreeOfExposureToIRRAndCurrencyRiskRiskSubFactorDTO.setItemNo(5);
         degreeOfExposureToIRRAndCurrencyRiskRiskSubFactorDTO.setDescription("Degree of Exposure to Interest Rate Risk / Currency Risk");
         degreeOfExposureToIRRAndCurrencyRiskRiskSubFactorDTO.setWeightage(0.15D);
         degreeOfExposureToIRRAndCurrencyRiskRiskSubFactorDTO.setScore(0D);
@@ -421,7 +421,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         ///                                     15%
         RiskSubFactorDTO internalRateOfReturnRiskSubFactorDTO = new RiskSubFactorDTO();
         internalRateOfReturnRiskSubFactorDTO.setId(null);
-        internalRateOfReturnRiskSubFactorDTO.setItemNo(1);
+        internalRateOfReturnRiskSubFactorDTO.setItemNo(6);
         internalRateOfReturnRiskSubFactorDTO.setDescription("Internal Rate of Return - Build Phase");
         internalRateOfReturnRiskSubFactorDTO.setWeightage(0.20D);
         internalRateOfReturnRiskSubFactorDTO.setScore(0D);
@@ -494,7 +494,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
 
         RiskSubFactorDTO repaymentStructureSubFactorDTO = new RiskSubFactorDTO();
         repaymentStructureSubFactorDTO.setId(null);
-        repaymentStructureSubFactorDTO.setItemNo(1);
+        repaymentStructureSubFactorDTO.setItemNo(7);
         repaymentStructureSubFactorDTO.setDescription("Repayment Structure");
         repaymentStructureSubFactorDTO.setWeightage(0.00D);
         repaymentStructureSubFactorDTO.setScore(0D);

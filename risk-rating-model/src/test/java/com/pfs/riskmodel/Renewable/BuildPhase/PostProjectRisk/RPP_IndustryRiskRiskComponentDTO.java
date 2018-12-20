@@ -27,7 +27,7 @@ public  class RPP_IndustryRiskRiskComponentDTO {
         //  1                       Industry Risk
         RiskComponentDTO industryRiskComponentDTO = new RiskComponentDTO();
         industryRiskComponentDTO.setId(null);
-        industryRiskComponentDTO.setItemNo(1);
+        industryRiskComponentDTO.setItemNo(3);
         industryRiskComponentDTO.setDescription("Industry Risk");
         industryRiskComponentDTO.setWeightage(0.16);
         industryRiskComponentDTO.setComputingMethodCode("01");
@@ -125,9 +125,9 @@ public  class RPP_IndustryRiskRiskComponentDTO {
         ///                                     50%
         RiskSubFactorDTO impactOfGovtDirectivesRiskSubFactorDTO = new RiskSubFactorDTO();
         impactOfGovtDirectivesRiskSubFactorDTO.setId(null);
-        impactOfGovtDirectivesRiskSubFactorDTO.setItemNo(1);
+        impactOfGovtDirectivesRiskSubFactorDTO.setItemNo(2);
         impactOfGovtDirectivesRiskSubFactorDTO.setDescription("Impact of Government directives / Regulations");
-        impactOfGovtDirectivesRiskSubFactorDTO.setWeightage(0.25D);
+        impactOfGovtDirectivesRiskSubFactorDTO.setWeightage(0.50D);
         impactOfGovtDirectivesRiskSubFactorDTO.setScore(0D);
         impactOfGovtDirectivesRiskSubFactorDTO.setScoreTypeCode("01");
         impactOfGovtDirectivesRiskSubFactorDTO.setScoreTypeDescription("Normal");//
@@ -197,7 +197,7 @@ public  class RPP_IndustryRiskRiskComponentDTO {
         ///                                     25%
         RiskSubFactorDTO extentOfCompetetionRiskSubFactorDTO = new RiskSubFactorDTO();
         extentOfCompetetionRiskSubFactorDTO.setId(null);
-        extentOfCompetetionRiskSubFactorDTO.setItemNo(1);
+        extentOfCompetetionRiskSubFactorDTO.setItemNo(3);
         extentOfCompetetionRiskSubFactorDTO.setDescription("Extent of Competition");
         extentOfCompetetionRiskSubFactorDTO.setWeightage(0.25D);
         extentOfCompetetionRiskSubFactorDTO.setScore(0D);
