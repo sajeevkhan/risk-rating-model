@@ -13,7 +13,8 @@ import java.util.List;
  */
 public interface RiskModelTemplateRepository extends JpaRepository<RiskModelTemplate, Long> {
 
-    List<RiskModelTemplate> findByProjectTypeAndProjectRiskLevelAndStatus(ProjectType projectType, ProjectRiskLevel projectRiskLevel, String active);
+    List<RiskModelTemplate>
+    findByProjectTypeAndProjectRiskLevelAndStatus(ProjectType projectType, ProjectRiskLevel projectRiskLevel, String active);
 
 
 

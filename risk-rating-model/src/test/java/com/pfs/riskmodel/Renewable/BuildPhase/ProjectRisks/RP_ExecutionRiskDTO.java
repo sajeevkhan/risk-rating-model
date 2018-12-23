@@ -101,7 +101,7 @@ public class RP_ExecutionRiskDTO {
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO6.setId(null);
-        riskSubFactorAttributeDTO6.setItemNo(5);
+        riskSubFactorAttributeDTO6.setItemNo(6);
         riskSubFactorAttributeDTO6.setDescription("Sponsor with extensive international / national experience");
         riskSubFactorAttributeDTO6.setScore(10.00D);
         riskSubFactorAttributeDTO6.setWeightage(0D);

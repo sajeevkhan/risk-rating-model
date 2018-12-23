@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.Id;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by sajeev on 15-Dec-18.
@@ -192,6 +193,18 @@ public class RiskModelTemplateController {
 
          for (RiskTypeDTO riskTypeDTO: riskModelTemplateDTO.getRiskTypes() ) {
 
+             //TODO
+             //Sort Risk components by Item Number
+             Set <RiskComponentDTO> riskComponentDTOSet = riskTypeDTO.getRiskComponents();
+                riskComponentDTOSet =  riskComponentDTOSet.stream()
+                     .sorted(Comparator.comparing(RiskComponentDTO::getItemNo))
+                     .collect(Collectors.toSet());
+
+                riskTypeDTO.setRiskComponents(riskComponentDTOSet);
+
+
+
+
              for (RiskComponentDTO riskComponentDTO : riskTypeDTO.getRiskComponents()) {
 
                  RiskComponent riskComponent = riskComponentRepository.getOne(riskComponentDTO.getId());
@@ -240,6 +253,16 @@ public class RiskModelTemplateController {
         for (RiskType riskType: riskModelTemplate.getRiskTypes()) {
 
 
+            //TODO
+            //Sort Risk components by Item Number
+            Set <RiskComponent> riskComponentSet = riskType.getRiskComponents();
+            riskComponentSet =  riskComponentSet.stream()
+                    .sorted(Comparator.comparing(RiskComponent::getItemNo))
+                    .collect(Collectors.toSet());
+
+            riskType.setRiskComponents(riskComponentSet);
+
+
             for (RiskComponent riskComponent: riskType.getRiskComponents()) {
 
                 riskComponent.setComputingMethod(computingMethodRepository.findByCode(riskComponent.getComputingMethodCode()));
@@ -251,6 +274,17 @@ public class RiskModelTemplateController {
 
                 for (RiskFactor riskFactor: riskComponent.getRiskFactors()) {
 
+
+                    //TODO 
+                    Set <RiskSubFactor> riskSubFactorSet = riskFactor.getRiskSubFactors();
+                    riskSubFactorSet =  riskSubFactorSet.stream()
+                            .sorted(Comparator.comparing(RiskSubFactor::getItemNo))
+                            .collect(Collectors.toSet());
+
+                    riskFactor.setRiskSubFactors(riskSubFactorSet);
+
+
+
                     riskFactor.setComputingMethod(computingMethodRepository.findByCode(riskFactor.getComputingMethodCode()));
                     riskFactor.setComputingMethodCode(computingMethodRepository.findByCode(riskFactor.getComputingMethodCode()).getCode());
 
@@ -258,6 +292,10 @@ public class RiskModelTemplateController {
                     riskFactor.setScoreTypeCode(scoreTypeRepository.findByCode(riskFactor.getScoreTypeCode()).getCode());
 
                     for (RiskSubFactor riskSubFactor: riskFactor.getRiskSubFactors()) {
+
+
+
+
 
 
                         if (riskSubFactor.getWeightage() == null) {

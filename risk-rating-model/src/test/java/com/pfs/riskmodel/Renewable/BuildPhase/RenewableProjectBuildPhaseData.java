@@ -35,7 +35,8 @@ public class RenewableProjectBuildPhaseData {
         riskModelTemplateDTO.setProjectTypeCode("01");
         riskModelTemplateDTO.setProjectTypeDescription("Renewables");
         riskModelTemplateDTO.setDescription("Renewables Build Phase");
-        riskModelTemplateDTO.setComputingMethodCode("02");
+        riskModelTemplateDTO.setComputingMethodCode("03");
+        riskModelTemplateDTO.setComputingMethodDescription("Minimum");
         riskModelTemplateDTO.setScore(0D);
 
 

@@ -55,6 +55,8 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
         ValidationResult validationResult = new ValidationResult();
 
 
+
+
         ProjectType projectType =  projectTypeRepository.findByCode(projectTypeCode);
         if (projectType == null  ) {
             validationResult.setAttributeName("ProjectType.Code");
@@ -76,7 +78,8 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
         }
 
         String status = "X";
-        List<RiskModelTemplate>  riskModelTemplates = riskModelTemplateRepository.findByProjectTypeAndProjectRiskLevelAndStatus(projectType, projectRiskLevel, status);
+        List<RiskModelTemplate>  riskModelTemplates =
+                riskModelTemplateRepository.findByProjectTypeAndProjectRiskLevelAndStatus(projectType, projectRiskLevel, status);
 
         if ( riskModelTemplates.size() > 1 ){
             validationResult.setAttributeName("RiskModelTemplate");
@@ -126,7 +129,26 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
         Long createdRiskModelTemplateId = riskModelTemplate.getId();
 
         //On Creating New Entities, Mark all other entities as Inactive
-        List<RiskModelTemplate> riskModelTemplatesActive = riskModelTemplateRepository.findByStatus("X");
+
+//        this.findByProjectTypeAndRiskLevel(riskModelTemplate.getProjectType().getCode(),
+//                                           riskModelTemplate.getProjectRiskLevel().getCode());
+//
+//
+//        Map<String, Object> saerchResult = this.findByProjectTypeAndRiskLevel(
+//                riskModelTemplate.getProjectType().getCode(),
+//                riskModelTemplate.getProjectRiskLevel().getCode());
+
+
+        List<RiskModelTemplate> riskModelTemplatesActive =
+                riskModelTemplateRepository.findByProjectTypeAndProjectRiskLevelAndStatus(
+                        riskModelTemplate.getProjectType(),
+                        riskModelTemplate.getProjectRiskLevel(),
+                        "X");
+
+
+        //riskModelTemplateRepository.findByStatus("X");
+
+
         for (RiskModelTemplate riskModelTemplateActive : riskModelTemplatesActive ) {
             if ( riskModelTemplateActive.getId() != createdRiskModelTemplateId ) {
                 riskModelTemplateActive.setStatus("");
