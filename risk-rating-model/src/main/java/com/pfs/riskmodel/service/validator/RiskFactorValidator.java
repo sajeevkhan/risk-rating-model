@@ -29,6 +29,7 @@ public class RiskFactorValidator {
 
         ValidationResult validationResult = new ValidationResult();
         validationResult.setSuccessful(true);
+        validationResult.setObject(RiskFactor.class);
 
         // Validate header attributes
 

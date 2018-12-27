@@ -34,11 +34,15 @@ public class RiskModelTemplateValidator {
     @Autowired
     ModelCategoryRepository modelCategoryRepository;
 
+    @Autowired
+    RiskRatingModifierValidator riskRatingModifierValidator;
+
     public ValidationResult validate(RiskModelTemplate riskModelTemplate) {
 
 
         ValidationResult validationResult = new ValidationResult();
         validationResult.setSuccessful(true);
+        validationResult.setObject(RiskModelTemplate.class);
 
 
         // Validate header attributes
@@ -139,6 +143,12 @@ public class RiskModelTemplateValidator {
             validationResult = riskTypeValidator.validate(r);
         }
 
+
+        // Validate Risk Rating Modifiers
+
+        for (RiskRatingModifier r: riskModelTemplate.getRiskRatingModifiers()) {
+            validationResult = riskRatingModifierValidator.validate(r);
+        }
         return validationResult;
     }
 }

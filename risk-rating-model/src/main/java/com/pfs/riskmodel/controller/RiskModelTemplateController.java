@@ -275,7 +275,7 @@ public class RiskModelTemplateController {
                 for (RiskFactor riskFactor: riskComponent.getRiskFactors()) {
 
 
-                    //TODO 
+                    //TODO
                     Set <RiskSubFactor> riskSubFactorSet = riskFactor.getRiskSubFactors();
                     riskSubFactorSet =  riskSubFactorSet.stream()
                             .sorted(Comparator.comparing(RiskSubFactor::getItemNo))

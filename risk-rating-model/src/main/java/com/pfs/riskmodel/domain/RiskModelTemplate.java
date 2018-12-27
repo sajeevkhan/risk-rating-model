@@ -81,6 +81,20 @@ public class RiskModelTemplate extends AuditModel  {
 
 
 
+
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+    @JoinColumn(name="riskRatingModifiers__id",referencedColumnName = "id")
+    private Set<RiskRatingModifier> riskRatingModifiers;
+
+
+    public RiskRatingModifier addRiskRatingModifier (RiskRatingModifier riskRatingModifier) {
+
+        this.getRiskRatingModifiers().add(riskRatingModifier);
+        return riskRatingModifier;
+    }
+
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
     @JoinColumn(name="riskModelTemplate__id",referencedColumnName = "id")
     private Set<RiskType> riskTypes;

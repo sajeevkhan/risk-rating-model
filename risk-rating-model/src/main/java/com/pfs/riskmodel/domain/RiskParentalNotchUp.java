@@ -17,7 +17,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter(AccessLevel.PUBLIC)
 @Setter(AccessLevel.PUBLIC)
-public class RiskType extends AuditModel  {
+public class RiskParentalNotchUp extends AuditModel  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

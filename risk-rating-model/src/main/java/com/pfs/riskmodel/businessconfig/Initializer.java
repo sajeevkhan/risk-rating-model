@@ -1,10 +1,9 @@
-package com.pfs.riskmodel.appconfig;
+package com.pfs.riskmodel.businessconfig;
 
 import com.pfs.riskmodel.domain.*;
 import com.pfs.riskmodel.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -30,6 +29,8 @@ public class Initializer implements CommandLineRunner{
     private final ProjectRiskLevelRepository projectRiskLevelRepository;
 
     private final ModelCategoryRepository modelCategoryRepository;
+
+    private final RatingModifierComputingMethodRepository riskRatingComputingMethodRepository;
 
     @Override
     public void run(String... strings) throws Exception {
@@ -103,6 +104,21 @@ public class Initializer implements CommandLineRunner{
             projectRiskLevelRepository.saveAll(Arrays.asList(p1,p2 ));
             log.info("-------------------------- Added project Risk Level (Phases) data");
         }
+
+
+        if(riskRatingComputingMethodRepository.count() == 0) {
+
+            //Modifiers to cap final ratings at sub-investment grade
+            RatingModifierComputationMethod  m1 = new RatingModifierComputationMethod("01", "On Select Any One - Notch Down to Sub Investment Grade");
+            // Modifiers having impact on final ratings up to 2 notches
+            RatingModifierComputationMethod m2 = new RatingModifierComputationMethod("02", "Notch Down By Selection- OneorTwoBYOne, MoreThanThree By Two");
+
+
+
+            riskRatingComputingMethodRepository.saveAll(Arrays.asList(m1,m2 ));
+            log.info("-------------------------- Added Risk Rating Modifier Computing Method data");
+        }
+
 
 
     }

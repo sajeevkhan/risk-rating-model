@@ -20,11 +20,15 @@ public class RiskTypeValidator {
     @Autowired
     RiskComponentValidator riskComponentValidator;
 
+    @Autowired
+    RiskRatingModifierValidator riskRatingModifierValidator;
+
     public ValidationResult validate(RiskType riskType) {
 
 
         ValidationResult validationResult = new ValidationResult();
         validationResult.setSuccessful(true);
+        validationResult.setObject(RiskType.class);
 
         // Validate header attributes
         if (riskType.getItemNo() == null) {
@@ -57,6 +61,8 @@ public class RiskTypeValidator {
 
             validationResult = riskComponentValidator.validate(r);
         }
+
+
 
         return validationResult;
     }

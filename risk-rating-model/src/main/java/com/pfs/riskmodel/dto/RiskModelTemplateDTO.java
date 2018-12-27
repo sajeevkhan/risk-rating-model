@@ -61,6 +61,7 @@ public class RiskModelTemplateDTO {
 
 
 
+    // Risk Types
     private Set<RiskTypeDTO> riskTypes;
 
 
@@ -69,6 +70,18 @@ public class RiskModelTemplateDTO {
             riskTypes = new HashSet<>();
         }
         riskTypes.add(riskTypeDTO);
+    }
+
+
+    // Risk Rating Modifiers
+
+    private Set<RiskRatingModifierDTO> riskRatingModifiers;
+
+    public void addRiskRatingModifierDTO (RiskRatingModifierDTO riskRatingModifierDTO) {
+        if (riskRatingModifiers == null){
+            riskRatingModifiers = new HashSet<>();
+        }
+        riskRatingModifiers.add(riskRatingModifierDTO);
     }
 
 }

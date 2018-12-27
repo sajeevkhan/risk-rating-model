@@ -22,6 +22,7 @@ public class RiskSubFactorValidator {
 
         ValidationResult validationResult = new ValidationResult();
         validationResult.setSuccessful(true);
+        validationResult.setObject(RiskSubFactor.class);
 
         // Validate header attributes
 

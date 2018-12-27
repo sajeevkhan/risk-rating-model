@@ -29,6 +29,7 @@ public class RiskComponentValidator {
 
         ValidationResult validationResult = new ValidationResult();
         validationResult.setSuccessful(true);
+        validationResult.setObject(RiskComponent.class);
 
         // Validate header attributes
         if (riskComponent.getItemNo() == null) {

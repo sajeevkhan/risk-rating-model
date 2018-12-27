@@ -17,7 +17,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter(AccessLevel.PUBLIC)
 @Setter(AccessLevel.PUBLIC)
-public class RiskType extends AuditModel  {
+public class RiskRatingModifierAttribute extends AuditModel  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,23 +28,18 @@ public class RiskType extends AuditModel  {
     private Integer itemNo;
 
     @NotNull
-    @Size(max = 250)
+
+    @Column(columnDefinition = "LONGTEXT")
     private String description;
 
-
-    @NotNull
-    private Double score;
-
-
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
-    @JoinColumn(name="riskType__id",referencedColumnName = "id")
-    private Set<RiskComponent> riskComponents;
+    /**
+     ("N", "No");
+     ("Y", "Yes");
+     */
+    private Character yesOrNoIndicator;
 
 
-    public RiskComponent addRiskComponent (RiskComponent riskComponent) {
 
-        this.getRiskComponents().add(riskComponent);
-        return riskComponent;
-    }
+
 
 }
