@@ -64,7 +64,6 @@ public class RiskModelTemplateDTO {
     // Risk Types
     private Set<RiskTypeDTO> riskTypes;
 
-
     public void addRiskTypeDTO (RiskTypeDTO riskTypeDTO ) {
         if (riskTypes == null){
             riskTypes = new HashSet<>();
@@ -74,7 +73,6 @@ public class RiskModelTemplateDTO {
 
 
     // Risk Rating Modifiers
-
     private Set<RiskRatingModifierDTO> riskRatingModifiers;
 
     public void addRiskRatingModifierDTO (RiskRatingModifierDTO riskRatingModifierDTO) {
@@ -83,5 +81,18 @@ public class RiskModelTemplateDTO {
         }
         riskRatingModifiers.add(riskRatingModifierDTO);
     }
+
+
+    // Risk - Parental NotchUp
+    private Set<RiskParentalNotchUpDTO> riskParentalNotchUps;
+
+    public void addRiskParentalNotchUpModifierDTO (RiskParentalNotchUpDTO riskParentalNotchUpDTO) {
+        if (riskParentalNotchUps == null){
+            riskParentalNotchUps = new HashSet<>();
+        }
+        riskParentalNotchUps.add(riskParentalNotchUpDTO);
+    }
+
+
 
 }

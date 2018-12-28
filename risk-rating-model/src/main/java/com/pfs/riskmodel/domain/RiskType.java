@@ -47,4 +47,8 @@ public class RiskType extends AuditModel  {
         return riskComponent;
     }
 
+
+
+
+
 }

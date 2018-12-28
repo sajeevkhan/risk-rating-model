@@ -80,7 +80,16 @@ public class RiskModelTemplate extends AuditModel  {
     private Double score;
 
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+    @JoinColumn(name="riskTypeParentalNotchUp__id",referencedColumnName = "id")
+    private Set<RiskParentalNotchUp> riskParentalNotchUps;
 
+
+    public RiskParentalNotchUp addRiskParentalNotchUp (RiskParentalNotchUp riskParentalNotchUp) {
+
+        this.getRiskParentalNotchUps().add(riskParentalNotchUp);
+        return riskParentalNotchUp;
+    }
 
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )

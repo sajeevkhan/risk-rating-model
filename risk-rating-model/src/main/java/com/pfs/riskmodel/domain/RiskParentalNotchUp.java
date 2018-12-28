@@ -1,6 +1,7 @@
 package com.pfs.riskmodel.domain;
 
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -32,19 +33,40 @@ public class RiskParentalNotchUp extends AuditModel  {
     private String description;
 
 
+    @Nullable
+    private Boolean isParentalNotchUpApplicable;
+
+
+    @Nullable
+    private String sourceOfRatingOfPaentalNotchUp;
+
+    @Nullable
+    private String obligorRatingGradeOfParentFirm;
+
+    @Nullable
+    private String ratingGradeOfParentEntity;
+
+
+    @Nullable
+    private Boolean parentRatingBetterOrNot;
+
+    @Nullable
+    private Boolean isBorrowerRatingAtD;
+
+
     @NotNull
-    private Double score;
+    private Double parentalNotchUpScore;
 
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
     @JoinColumn(name="riskType__id",referencedColumnName = "id")
-    private Set<RiskComponent> riskComponents;
+    private Set<RiskSubFactor> riskSubFactors;
 
 
-    public RiskComponent addRiskComponent (RiskComponent riskComponent) {
+    public RiskSubFactor addRiskSubFactor (RiskSubFactor riskSubFactor) {
 
-        this.getRiskComponents().add(riskComponent);
-        return riskComponent;
+        this.getRiskSubFactors().add(riskSubFactor);
+        return riskSubFactor;
     }
 
 }

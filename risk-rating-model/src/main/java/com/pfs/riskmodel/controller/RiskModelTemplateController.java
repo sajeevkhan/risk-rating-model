@@ -40,6 +40,9 @@ public class RiskModelTemplateController {
     ComputingMethodRepository computingMethodRepository;
 
     @Autowired
+    RatingModifierComputingMethodRepository ratingModifierComputingMethodRepository;
+
+    @Autowired
     ProjectRiskLevelRepository projectRiskLevelRepository;
 
     @Autowired
@@ -274,7 +277,6 @@ public class RiskModelTemplateController {
 
                 for (RiskFactor riskFactor: riskComponent.getRiskFactors()) {
 
-
                     //TODO
                     Set <RiskSubFactor> riskSubFactorSet = riskFactor.getRiskSubFactors();
                     riskSubFactorSet =  riskSubFactorSet.stream()
@@ -283,8 +285,6 @@ public class RiskModelTemplateController {
 
                     riskFactor.setRiskSubFactors(riskSubFactorSet);
 
-
-
                     riskFactor.setComputingMethod(computingMethodRepository.findByCode(riskFactor.getComputingMethodCode()));
                     riskFactor.setComputingMethodCode(computingMethodRepository.findByCode(riskFactor.getComputingMethodCode()).getCode());
 
@@ -292,11 +292,6 @@ public class RiskModelTemplateController {
                     riskFactor.setScoreTypeCode(scoreTypeRepository.findByCode(riskFactor.getScoreTypeCode()).getCode());
 
                     for (RiskSubFactor riskSubFactor: riskFactor.getRiskSubFactors()) {
-
-
-
-
-
 
                         if (riskSubFactor.getWeightage() == null) {
                             System.out.println(" NULL Risk Sub Factor Weightage:" + riskSubFactor.getDescription());
@@ -331,13 +326,33 @@ public class RiskModelTemplateController {
                             }
                             //riskSubFactorAttribute.set
                         }
-
                     }
-
-
                 }
+
+
+                // Rating Modifiers
+                if (riskModelTemplate.getRiskRatingModifiers() != null ) {
+                    for (RiskRatingModifier riskRatingModifier : riskModelTemplate.getRiskRatingModifiers()) {
+                        riskRatingModifier.setComputingMethod(ratingModifierComputingMethodRepository.findByCode(riskRatingModifier.getComputingMethodCode()));
+                    }
+                }
+
+                // Parental Notchup
+                if (riskModelTemplate.getRiskParentalNotchUps() != null) {
+                    for (RiskParentalNotchUp riskParentalNotchUp : riskModelTemplate.getRiskParentalNotchUps()) {
+
+                        for (RiskSubFactor riskSubFactor : riskParentalNotchUp.getRiskSubFactors()) {
+                            riskSubFactor.setScoreType(scoreTypeRepository.findByCode(riskSubFactor.getScoreTypeCode()));
+                        }
+                    }
+                }
+
+
             }
         }
+
+
+
 
         riskModelTemplate.setModelCategory(modelCategoryRepository.findByCode(riskModelTemplateDTO.getModelCategoryCode()));
 

@@ -1,6 +1,7 @@
 package com.pfs.riskmodel.service.validator;
 
 import com.pfs.riskmodel.domain.*;
+import com.pfs.riskmodel.dto.RiskParentalNotchUpDTO;
 import com.pfs.riskmodel.repository.*;
 import com.pfs.riskmodel.util.ValidationResult;
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +37,9 @@ public class RiskModelTemplateValidator {
 
     @Autowired
     RiskRatingModifierValidator riskRatingModifierValidator;
+
+    @Autowired
+    RiskParentalNotchUpValidator riskParentalNotchUpValidator;
 
     public ValidationResult validate(RiskModelTemplate riskModelTemplate) {
 
@@ -144,11 +148,22 @@ public class RiskModelTemplateValidator {
         }
 
 
-        // Validate Risk Rating Modifiers
-
-        for (RiskRatingModifier r: riskModelTemplate.getRiskRatingModifiers()) {
-            validationResult = riskRatingModifierValidator.validate(r);
+        // Validate Parental NotchUp
+        if (riskModelTemplate.getRiskRatingModifiers() != null) {
+            for (RiskRatingModifier r : riskModelTemplate.getRiskRatingModifiers()) {
+                validationResult = riskRatingModifierValidator.validate(r);
+            }
         }
+
+
+        if (riskModelTemplate.getRiskParentalNotchUps() != null) {
+            for (RiskParentalNotchUp r : riskModelTemplate.getRiskParentalNotchUps()) {
+                validationResult = riskParentalNotchUpValidator.validate(r);
+            }
+        }
+
         return validationResult;
+
+
     }
 }

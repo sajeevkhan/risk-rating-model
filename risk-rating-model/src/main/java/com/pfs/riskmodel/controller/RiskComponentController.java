@@ -3,6 +3,7 @@ package com.pfs.riskmodel.controller;
 import com.pfs.riskmodel.config.ApiController;
 import com.pfs.riskmodel.domain.RiskComponent;
 import com.pfs.riskmodel.domain.RiskFactor;
+import com.pfs.riskmodel.domain.RiskRatingModifier;
 import com.pfs.riskmodel.domain.RiskSubFactor;
 import com.pfs.riskmodel.dto.RiskComponentDTO;
 import com.pfs.riskmodel.dto.RiskFactorDTO;
@@ -196,6 +197,8 @@ public class RiskComponentController {
 
 
         }
+
+
 
         return riskComponent;
     }

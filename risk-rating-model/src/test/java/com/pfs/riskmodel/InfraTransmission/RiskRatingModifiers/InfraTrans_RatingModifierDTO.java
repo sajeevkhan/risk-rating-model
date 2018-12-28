@@ -1,19 +1,15 @@
-package com.pfs.riskmodel.HoldingCompany.RiskRatingModifiers;
+package com.pfs.riskmodel.InfraTransmission.RiskRatingModifiers;
 
-import com.pfs.riskmodel.domain.RatingModifierComputationMethod;
-import com.pfs.riskmodel.domain.RiskRatingModifier;
-import com.pfs.riskmodel.dto.RiskParentalNotchUpDTO;
 import com.pfs.riskmodel.dto.RiskRatingModifierAttributeDTO;
 import com.pfs.riskmodel.dto.RiskRatingModifierDTO;
 
-import javax.persistence.Column;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created by sajeev on 25-Dec-18.
  */
-public class HC_RatingModifierDTO {
+public class InfraTrans_RatingModifierDTO {
 
 
     public Set<RiskRatingModifierDTO> getRiskRatingModifierDTOs () {

@@ -18,8 +18,6 @@ public class RiskTypeDTO {
     private String description;
     private Double score;
 
-
-
     private Set<RiskComponentDTO> riskComponents;
 
     public void addRiskComponentDTO (RiskComponentDTO riskComponentDTO) {

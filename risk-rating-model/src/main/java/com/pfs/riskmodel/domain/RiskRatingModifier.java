@@ -45,6 +45,8 @@ public class RiskRatingModifier extends AuditModel  {
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
      private RatingModifierComputationMethod computingMethod;
 
+    private String computingMethodCode;
+    private String computingMethodDescription;
 
 
 
