@@ -238,6 +238,13 @@ public class RiskModelTemplateController {
 
         }
 
+//
+//        for (RiskRatingModifierDTO riskRatingModifierDTO: riskModelTemplateDTO.getRiskRatingModifiers()) {
+//             riskRatingModifierDTO.setComputingMethodCode(ris);
+//
+//        }
+
+
         return riskModelTemplateDTO;
 
     }

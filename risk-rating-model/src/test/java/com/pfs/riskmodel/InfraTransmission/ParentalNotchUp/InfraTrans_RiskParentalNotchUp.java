@@ -1,5 +1,7 @@
 package com.pfs.riskmodel.InfraTransmission.ParentalNotchUp;
 
+import com.pfs.riskmodel.domain.RiskParentalNotchUpCondition;
+import com.pfs.riskmodel.dto.RiskParentalNotchUpConditionDTO;
 import com.pfs.riskmodel.dto.RiskParentalNotchUpDTO;
 import com.pfs.riskmodel.dto.RiskSubFactorAttributeDTO;
 import com.pfs.riskmodel.dto.RiskSubFactorDTO;
@@ -29,25 +31,47 @@ public class InfraTrans_RiskParentalNotchUp {
         riskParentalNotchUpDTO.setId(null);
         riskParentalNotchUpDTO.setItemNo(1);
         riskParentalNotchUpDTO.setDescription("Parental Notchup");
-
         riskParentalNotchUpDTO.setIsParentalNotchUpApplicable(true);
-
-        riskParentalNotchUpDTO.setObligorRatingGradeOfParentFirm(null);
-
-        riskParentalNotchUpDTO.setIsBorrowerRatingAtD(null);
-
-        riskParentalNotchUpDTO.setParentRatingBetterOrNot(null);
-
-        riskParentalNotchUpDTO.setRatingGradeOfParentEntity(null);
-
         riskParentalNotchUpDTO.setParentalNotchUpScore(0D);
 
 
+
         // TODO
-        //Notchup Criteria
+        //Notchup Conditions
+        Set<RiskParentalNotchUpConditionDTO> riskParentalNotchUpConditionDTOS = new HashSet<>();
+
+        // NotchUp Conditions
         //        1. The parent’s rating is better than the borrower’s rating.
         //        2. The borrower’s rating is not GRADE10 (in default).
         //        3. The notch-up score as a percentage of maximum possible score is higher than 35%.
+
+        RiskParentalNotchUpConditionDTO riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
+        riskParentalNotchUpConditionDTO.setId(null);
+        riskParentalNotchUpConditionDTO.setItemNo(1);
+        riskParentalNotchUpConditionDTO.setDescription("The parent’s rating is better than the borrower’s rating");
+        riskParentalNotchUpConditionDTO.setValueType('0');
+        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
+        riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
+
+        riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
+        riskParentalNotchUpConditionDTO.setId(null);
+        riskParentalNotchUpConditionDTO.setItemNo(2);
+        riskParentalNotchUpConditionDTO.setDescription("The borrower’s rating is not GRADE10 (in default)");
+        riskParentalNotchUpConditionDTO.setValueType('0');
+        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
+        riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
+
+        riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
+        riskParentalNotchUpConditionDTO.setId(null);
+        riskParentalNotchUpConditionDTO.setItemNo(3);
+        riskParentalNotchUpConditionDTO.setDescription("The notch-up score as a percentage of maximum possible score is higher than 35%.)");
+        riskParentalNotchUpConditionDTO.setValueType('0');
+        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
+        riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
+
+        riskParentalNotchUpDTO.setRiskParentalConditions(riskParentalNotchUpConditionDTOS);
+
+
 
 
         // 1.1.1        Risk Sub Factor 1

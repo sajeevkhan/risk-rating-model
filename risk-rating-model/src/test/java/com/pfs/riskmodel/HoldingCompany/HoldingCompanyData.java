@@ -2,8 +2,7 @@ package com.pfs.riskmodel.HoldingCompany;
 
 import com.pfs.riskmodel.HoldingCompany.ParentalNotchup.HC_RiskParentalNotchUp;
 import com.pfs.riskmodel.HoldingCompany.RiskRatingModifiers.HC_RatingModifierDTO;
-import com.pfs.riskmodel.domain.RiskModelTemplate;
-import com.pfs.riskmodel.domain.RiskType;
+import com.pfs.riskmodel.HoldingCompany.RiskTypes.HoldingCompanyRiskTypes;
 import com.pfs.riskmodel.dto.RiskModelTemplateDTO;
 import com.pfs.riskmodel.dto.RiskParentalNotchUpDTO;
 import com.pfs.riskmodel.dto.RiskRatingModifierDTO;

@@ -1,8 +1,12 @@
 package com.pfs.riskmodel.Renewable.BuildPhase;
 
-import com.pfs.riskmodel.Renewable.BuildPhase.PostProjectRisk.RenewablePostProjectRiskTypes;
-import com.pfs.riskmodel.Renewable.BuildPhase.ProjectRisks.RenewableProjectRiskTypes;
+import com.pfs.riskmodel.Renewable.ParentalNotchUp.Renewable_RiskParentalNotchUp;
+import com.pfs.riskmodel.Renewable.RiskTypes.RenewablePostProjectRiskTypes;
+import com.pfs.riskmodel.Renewable.RiskTypes.RenewableProjectRiskTypes;
 import com.pfs.riskmodel.dto.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by sajeev on 18-Dec-18.
@@ -43,9 +47,19 @@ public class RenewableProjectBuildPhaseData {
         RiskTypeDTO projectImplRiskTypeDTO = RenewableProjectRiskTypes.buildRiskTypes();
         RiskTypeDTO postProjectImplRiskTypeDTO = RenewablePostProjectRiskTypes.buildRiskTypes();
 
+        // Risk Types
 
         riskModelTemplateDTO.addRiskTypeDTO(projectImplRiskTypeDTO);
         riskModelTemplateDTO.addRiskTypeDTO(postProjectImplRiskTypeDTO);
+
+
+        // Parental NotchUP
+        Renewable_RiskParentalNotchUp renewable_riskParentalNotchUp = new Renewable_RiskParentalNotchUp();
+        RiskParentalNotchUpDTO riskParentalNotchUpDTO = renewable_riskParentalNotchUp.getParentalNotchUp();
+        Set<RiskParentalNotchUpDTO> riskParentalNotchUpDTOSet = new HashSet<>();
+        riskParentalNotchUpDTOSet.add(riskParentalNotchUpDTO);
+
+        riskModelTemplateDTO.setRiskParentalNotchUps(riskParentalNotchUpDTOSet);
 
 
         return riskModelTemplateDTO;

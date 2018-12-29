@@ -3,6 +3,7 @@ package com.pfs.riskmodel.HoldingCompany.ParentalNotchup;
 import com.pfs.riskmodel.domain.RiskParentalNotchUp;
 import com.pfs.riskmodel.domain.RiskSubFactor;
 import com.pfs.riskmodel.domain.RiskSubFactorAttribute;
+import com.pfs.riskmodel.dto.RiskParentalNotchUpConditionDTO;
 import com.pfs.riskmodel.dto.RiskParentalNotchUpDTO;
 import com.pfs.riskmodel.dto.RiskSubFactorAttributeDTO;
 import com.pfs.riskmodel.dto.RiskSubFactorDTO;
@@ -38,12 +39,60 @@ public class HC_RiskParentalNotchUp {
         riskParentalNotchUpDTO.setId(null);
         riskParentalNotchUpDTO.setItemNo(1);
         riskParentalNotchUpDTO.setDescription("Parental Notchup");
+
+//        Rating of Parent Entity
+//        Is Parent's Rating Better than Company?
+//        Is Borrower's Rating at D?
+
+
+        //        riskParentalNotchUpDTO.setIsParentalNotchUpApplicable(true);
+        //        riskParentalNotchUpDTO.setObligorRatingGradeOfParentFirm(null);
+        //        riskParentalNotchUpDTO.setIsBorrowerRatingAtD(null);
+        //        riskParentalNotchUpDTO.setParentRatingBetterOrNot(null);
+        //        riskParentalNotchUpDTO.setRatingGradeOfParentEntity(null);
+
         riskParentalNotchUpDTO.setIsParentalNotchUpApplicable(true);
-        riskParentalNotchUpDTO.setObligorRatingGradeOfParentFirm(null);
-        riskParentalNotchUpDTO.setIsBorrowerRatingAtD(null);
-        riskParentalNotchUpDTO.setParentRatingBetterOrNot(null);
-        riskParentalNotchUpDTO.setRatingGradeOfParentEntity(null);
         riskParentalNotchUpDTO.setParentalNotchUpScore(0D);
+
+
+
+        //Notchup Conditions
+        Set<RiskParentalNotchUpConditionDTO> riskParentalNotchUpConditionDTOS = new HashSet<>();
+
+        // NotchUp Conditions
+//        Rating of Parent Entity
+//        Is Parent's Rating Better than Company?
+//        Is Borrower's Rating at D?
+
+        RiskParentalNotchUpConditionDTO riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
+        riskParentalNotchUpConditionDTO.setId(null);
+        riskParentalNotchUpConditionDTO.setItemNo(1);
+        riskParentalNotchUpConditionDTO.setDescription("Rating of Parent Entity");
+        riskParentalNotchUpConditionDTO.setValueType('1');
+        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue(null);
+        riskParentalNotchUpConditionDTO.setValue("");
+        riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
+
+
+        riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
+        riskParentalNotchUpConditionDTO.setId(null);
+        riskParentalNotchUpConditionDTO.setItemNo(2);
+        riskParentalNotchUpConditionDTO.setDescription("The parent’s rating is better than the borrower’s rating");
+        riskParentalNotchUpConditionDTO.setValueType('0');
+        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue(' ');
+        riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
+
+        riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
+        riskParentalNotchUpConditionDTO.setId(null);
+        riskParentalNotchUpConditionDTO.setItemNo(3);
+        riskParentalNotchUpConditionDTO.setDescription("Is Borrower's Rating at D");
+        riskParentalNotchUpConditionDTO.setValueType('0');
+        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue(' ');
+        riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
+
+
+        riskParentalNotchUpDTO.setRiskParentalConditions(riskParentalNotchUpConditionDTOS);
+
 
 
         // 1.1.1        Risk Sub Factor 1

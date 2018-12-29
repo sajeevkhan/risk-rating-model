@@ -1,11 +1,13 @@
 package com.pfs.riskmodel.Renewable.OperationalPhase;
 
-import com.pfs.riskmodel.Renewable.BuildPhase.PostProjectRisk.RenewablePostProjectRiskTypes;
-import com.pfs.riskmodel.Renewable.BuildPhase.ProjectRisks.RenewableProjectRiskTypes;
-import com.pfs.riskmodel.Renewable.OperationalPhase.OperationalPhaseRisk.RenewablesOperatonalRiskTypes;
-import com.pfs.riskmodel.domain.RiskModelTemplate;
+import com.pfs.riskmodel.Renewable.ParentalNotchUp.Renewable_RiskParentalNotchUp;
+import com.pfs.riskmodel.Renewable.RiskTypes.RenewablesOperatonalRiskTypes;
 import com.pfs.riskmodel.dto.RiskModelTemplateDTO;
+import com.pfs.riskmodel.dto.RiskParentalNotchUpDTO;
 import com.pfs.riskmodel.dto.RiskTypeDTO;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by sajeev on 20-Dec-18.
@@ -38,8 +40,16 @@ public class RenewablesOperationalPhaseData {
 
         RiskTypeDTO operationPhaseRiskTypeDTO = RenewablesOperatonalRiskTypes.buildOperationalRiskTypes();
 
-
         riskModelTemplateDTO.addRiskTypeDTO(operationPhaseRiskTypeDTO);
+
+
+        // Parental NotchUP
+        Renewable_RiskParentalNotchUp renewable_riskParentalNotchUp = new Renewable_RiskParentalNotchUp();
+        RiskParentalNotchUpDTO riskParentalNotchUpDTO = renewable_riskParentalNotchUp.getParentalNotchUp();
+        Set<RiskParentalNotchUpDTO> riskParentalNotchUpDTOSet = new HashSet<>();
+        riskParentalNotchUpDTOSet.add(riskParentalNotchUpDTO);
+
+        riskModelTemplateDTO.setRiskParentalNotchUps(riskParentalNotchUpDTOSet);
 
 
         return riskModelTemplateDTO;

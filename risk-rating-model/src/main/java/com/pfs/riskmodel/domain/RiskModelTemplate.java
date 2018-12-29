@@ -2,6 +2,7 @@ package com.pfs.riskmodel.domain;
 
 import com.pfs.riskmodel.dto.RiskTypeDTO;
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -80,6 +81,7 @@ public class RiskModelTemplate extends AuditModel  {
     private Double score;
 
 
+    @Nullable
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
     @JoinColumn(name="riskTypeParentalNotchUp__id",referencedColumnName = "id")
     private Set<RiskParentalNotchUp> riskParentalNotchUps;
@@ -92,6 +94,7 @@ public class RiskModelTemplate extends AuditModel  {
     }
 
 
+    @Nullable
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
     @JoinColumn(name="riskRatingModifiers__id",referencedColumnName = "id")
     private Set<RiskRatingModifier> riskRatingModifiers;

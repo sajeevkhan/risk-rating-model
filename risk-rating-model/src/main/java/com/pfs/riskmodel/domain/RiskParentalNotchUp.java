@@ -29,30 +29,26 @@ public class RiskParentalNotchUp extends AuditModel  {
     private Integer itemNo;
 
     @NotNull
-    @Size(max = 250)
+
+    @Column(columnDefinition = "LONGTEXT")
     private String description;
 
 
-    @Nullable
+//
+//    @Nullable
+//    private String sourceOfRatingOfPaentalNotchUp;
+//    @Nullable
+//    private String obligorRatingGradeOfParentFirm;
+//    @Nullable
+//    private String ratingGradeOfParentEntity;
+//    @Nullable
+//    private Boolean parentRatingBetterOrNot;
+//    @Nullable
+//    private Boolean isBorrowerRatingAtD;
+
+
+    @NotNull
     private Boolean isParentalNotchUpApplicable;
-
-
-    @Nullable
-    private String sourceOfRatingOfPaentalNotchUp;
-
-    @Nullable
-    private String obligorRatingGradeOfParentFirm;
-
-    @Nullable
-    private String ratingGradeOfParentEntity;
-
-
-    @Nullable
-    private Boolean parentRatingBetterOrNot;
-
-    @Nullable
-    private Boolean isBorrowerRatingAtD;
-
 
     @NotNull
     private Double parentalNotchUpScore;
@@ -64,9 +60,20 @@ public class RiskParentalNotchUp extends AuditModel  {
 
 
     public RiskSubFactor addRiskSubFactor (RiskSubFactor riskSubFactor) {
-
         this.getRiskSubFactors().add(riskSubFactor);
         return riskSubFactor;
+    }
+
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+    @JoinColumn(name="riskParentalConditions__id",referencedColumnName = "id")
+    private Set<RiskParentalNotchUpCondition> riskParentalConditions;
+
+
+    public RiskParentalNotchUpCondition addRiskSubFactor (RiskParentalNotchUpCondition riskParentalNotchUpCondition) {
+
+        this.riskParentalConditions.add(riskParentalNotchUpCondition);
+        return riskParentalNotchUpCondition;
     }
 
 }

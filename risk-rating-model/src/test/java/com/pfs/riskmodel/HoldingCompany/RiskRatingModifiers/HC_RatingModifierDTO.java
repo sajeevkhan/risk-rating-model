@@ -104,42 +104,42 @@ public class HC_RatingModifierDTO {
         riskRatingModifierAttributeDTO.setId(null);
         riskRatingModifierAttributeDTO.setItemNo(1);
         riskRatingModifierAttributeDTO.setDescription("History of legal issues or cases pending appeal with penalty amount above 10% of current EBITDA (Cases of VAT / excise / tax related matters not to be considered) for group entities");
-        riskRatingModifierAttributeDTO.setYesNoIndicator(' ');
+        riskRatingModifierAttributeDTO.setYesNoIndicator('N');
         riskRatingModifierAttributes.add(riskRatingModifierAttributeDTO);
 
         riskRatingModifierAttributeDTO = new RiskRatingModifierAttributeDTO();
         riskRatingModifierAttributeDTO.setId(null);
         riskRatingModifierAttributeDTO.setItemNo(2);
         riskRatingModifierAttributeDTO.setDescription("Account of the entity/group companies has been in the SMA 2 Category in last 12 months");
-        riskRatingModifierAttributeDTO.setYesNoIndicator(' ');
+        riskRatingModifierAttributeDTO.setYesNoIndicator('N');
         riskRatingModifierAttributes.add(riskRatingModifierAttributeDTO);
 
         riskRatingModifierAttributeDTO = new RiskRatingModifierAttributeDTO();
         riskRatingModifierAttributeDTO.setId(null);
         riskRatingModifierAttributeDTO.setItemNo(3);
         riskRatingModifierAttributeDTO.setDescription("Non-compliance with regulatory requirements and / or violations reported by regulators (RBI, SEBI, FEMA) for group entities");
-        riskRatingModifierAttributeDTO.setYesNoIndicator(' ');
+        riskRatingModifierAttributeDTO.setYesNoIndicator('N');
         riskRatingModifierAttributes.add(riskRatingModifierAttributeDTO);
 
         riskRatingModifierAttributeDTO = new RiskRatingModifierAttributeDTO();
         riskRatingModifierAttributeDTO.setId(null);
         riskRatingModifierAttributeDTO.setItemNo(4);
         riskRatingModifierAttributeDTO.setDescription("Adverse liquidity position vis-à-vis loan repayment evidenced by adverse liquidity position arising due to stretched receivables/slow realization of debtors/excess inventory levels/inability to meet large repayment in near term/inability to raise funds from external or internal sources/substantial cash flow mismatch for the entity");
-        riskRatingModifierAttributeDTO.setYesNoIndicator(' ');
+        riskRatingModifierAttributeDTO.setYesNoIndicator('N');
         riskRatingModifierAttributes.add(riskRatingModifierAttributeDTO);
 
         riskRatingModifierAttributeDTO = new RiskRatingModifierAttributeDTO();
         riskRatingModifierAttributeDTO.setId(null);
         riskRatingModifierAttributeDTO.setItemNo(5);
         riskRatingModifierAttributeDTO.setDescription("Adverse Labor Relations for group entities");
-        riskRatingModifierAttributeDTO.setYesNoIndicator(' ');
+        riskRatingModifierAttributeDTO.setYesNoIndicator('N');
         riskRatingModifierAttributes.add(riskRatingModifierAttributeDTO);
 
         riskRatingModifierAttributeDTO = new RiskRatingModifierAttributeDTO();
         riskRatingModifierAttributeDTO.setId(null);
         riskRatingModifierAttributeDTO.setItemNo(6);
         riskRatingModifierAttributeDTO.setDescription("Insufficiency of Insurance Cover as proposed by Independent Engineers for the entity");
-        riskRatingModifierAttributeDTO.setYesNoIndicator(' ');
+        riskRatingModifierAttributeDTO.setYesNoIndicator('N');
         riskRatingModifierAttributes.add(riskRatingModifierAttributeDTO);
 
 
@@ -147,7 +147,7 @@ public class HC_RatingModifierDTO {
         riskRatingModifierAttributeDTO.setId(null);
         riskRatingModifierAttributeDTO.setItemNo(7);
         riskRatingModifierAttributeDTO.setDescription("Insufficiency of Insurance Cover as proposed by Independent Engineers");
-        riskRatingModifierAttributeDTO.setYesNoIndicator(' ');
+        riskRatingModifierAttributeDTO.setYesNoIndicator('N');
         riskRatingModifierAttributes.add(riskRatingModifierAttributeDTO);
 
         riskRatingModifierDTO2.setRiskRatingModifierAttributes(riskRatingModifierAttributes);

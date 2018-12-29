@@ -1,6 +1,7 @@
 package com.pfs.riskmodel.dto;
 
 import com.pfs.riskmodel.domain.RiskComponent;
+import com.pfs.riskmodel.domain.RiskParentalNotchUpCondition;
 import com.pfs.riskmodel.domain.RiskSubFactor;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -23,12 +24,13 @@ public class RiskParentalNotchUpDTO {
     private Long    id;
     private Integer itemNo;
     private String  description;
+//    private String  sourceOfRatingOfPaentalNotchUp;
+//    private String  obligorRatingGradeOfParentFirm;
+//    private String  ratingGradeOfParentEntity;
+//    private Boolean parentRatingBetterOrNot;
+//    private Boolean isBorrowerRatingAtD;
+
     private Boolean isParentalNotchUpApplicable;
-    private String  sourceOfRatingOfPaentalNotchUp;
-    private String  obligorRatingGradeOfParentFirm;
-    private String  ratingGradeOfParentEntity;
-    private Boolean parentRatingBetterOrNot;
-    private Boolean isBorrowerRatingAtD;
     private Double  parentalNotchUpScore;
 
     private Set<RiskSubFactorDTO> riskSubFactors;
@@ -38,6 +40,18 @@ public class RiskParentalNotchUpDTO {
             riskSubFactors = new HashSet<>();
         }
         riskSubFactors.add(riskSubFactorDTO);
+    }
+
+
+    private Set<RiskParentalNotchUpConditionDTO> riskParentalConditions;
+    public RiskParentalNotchUpConditionDTO addRiskSubFactor (RiskParentalNotchUpConditionDTO riskParentalNotchUpConditionDTO) {
+
+        if (riskParentalConditions == null) {
+            riskParentalConditions = new HashSet<>();
+        }
+
+        this.riskParentalConditions.add(riskParentalNotchUpConditionDTO);
+        return riskParentalNotchUpConditionDTO;
     }
 
 

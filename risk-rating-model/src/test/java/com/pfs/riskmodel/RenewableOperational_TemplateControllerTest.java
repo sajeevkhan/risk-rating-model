@@ -1,6 +1,5 @@
 package com.pfs.riskmodel;
 
-import com.pfs.riskmodel.Renewable.BuildPhase.RenewableProjectBuildPhaseData;
 import com.pfs.riskmodel.Renewable.OperationalPhase.RenewablesOperationalPhaseData;
 import com.pfs.riskmodel.dto.RiskModelTemplateDTO;
 import org.junit.Before;

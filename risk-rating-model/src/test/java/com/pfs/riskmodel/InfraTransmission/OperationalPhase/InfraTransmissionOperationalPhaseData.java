@@ -1,9 +1,10 @@
 package com.pfs.riskmodel.InfraTransmission.OperationalPhase;
 
-import com.pfs.riskmodel.InfraTransmission.BuildPhase.PostProjectRisk.PostProjectImplRiskTypes;
-import com.pfs.riskmodel.Renewable.OperationalPhase.OperationalPhaseRisk.RenewablesOperatonalRiskTypes;
-import com.pfs.riskmodel.domain.RiskParentalNotchUp;
+import com.pfs.riskmodel.InfraTransmission.RiskTypes.PostProjectImplRiskTypes;
+import com.pfs.riskmodel.InfraTransmission.ParentalNotchUp.InfraTrans_RiskParentalNotchUp;
+import com.pfs.riskmodel.InfraTransmission.RiskRatingModifiers.InfraTrans_RatingModifierDTO;
 import com.pfs.riskmodel.dto.RiskModelTemplateDTO;
+import com.pfs.riskmodel.dto.RiskParentalNotchUpDTO;
 import com.pfs.riskmodel.dto.RiskRatingModifierDTO;
 import com.pfs.riskmodel.dto.RiskTypeDTO;
 
@@ -19,7 +20,7 @@ public class InfraTransmissionOperationalPhaseData {
     RiskModelTemplateDTO riskModelTemplateDTO = new RiskModelTemplateDTO();
 
 
-    public RiskModelTemplateDTO getInfraTransmissionBuildPhaseData() {
+    public RiskModelTemplateDTO getInfraTransmissionOperationalPhaseData() {
 
 
         riskModelTemplateDTO = new RiskModelTemplateDTO();
@@ -34,11 +35,12 @@ public class InfraTransmissionOperationalPhaseData {
         riskModelTemplateDTO.setProjectRiskLevelCode("02");
         riskModelTemplateDTO.setProjectRiskLevelDescription("Infrastructure Transmission Operational Phase");
 
-        riskModelTemplateDTO.setProjectTypeCode("01");
+        riskModelTemplateDTO.setProjectTypeCode("02");
         riskModelTemplateDTO.setProjectTypeDescription("Infrastructure Transmission");
+
         riskModelTemplateDTO.setDescription("Infrastructure Transmission Operational Phase");
-        riskModelTemplateDTO.setComputingMethodCode("01");
-        riskModelTemplateDTO.setComputingMethodDescription("Normal");
+        riskModelTemplateDTO.setComputingMethodCode("05");
+        riskModelTemplateDTO.setComputingMethodDescription("Equals");
         riskModelTemplateDTO.setScore(0D);
 
 
@@ -52,11 +54,20 @@ public class InfraTransmissionOperationalPhaseData {
 
         // Rating Modifiers
         Set<RiskRatingModifierDTO> riskRatingModifierDTOSet = new HashSet<>();
-        //TODO
+        InfraTrans_RatingModifierDTO infraTrans_ratingModifierDTO = new InfraTrans_RatingModifierDTO();
+        riskRatingModifierDTOSet = infraTrans_ratingModifierDTO.getRiskRatingModifierDTOs();
+
+        riskModelTemplateDTO.setRiskRatingModifiers(riskRatingModifierDTOSet);
 
         // Parental Notchup
-        Set<RiskParentalNotchUp> riskParentalNotchUpSet = new HashSet<>();
-        //TODO
+        RiskParentalNotchUpDTO riskParentalNotchUpDTO = new RiskParentalNotchUpDTO();
+        InfraTrans_RiskParentalNotchUp infraTrans_riskParentalNotchUp = new InfraTrans_RiskParentalNotchUp();
+        riskParentalNotchUpDTO = infraTrans_riskParentalNotchUp.getInfraTransmissonParentalNotchup();
+
+        Set <RiskParentalNotchUpDTO> riskParentalNotchUpDTOSet = new HashSet<>();
+        riskParentalNotchUpDTOSet.add(riskParentalNotchUpDTO);
+
+        riskModelTemplateDTO.setRiskParentalNotchUps(riskParentalNotchUpDTOSet);
 
         return riskModelTemplateDTO;
 
