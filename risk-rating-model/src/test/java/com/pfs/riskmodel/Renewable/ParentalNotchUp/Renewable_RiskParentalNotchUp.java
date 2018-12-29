@@ -66,7 +66,7 @@ public class Renewable_RiskParentalNotchUp {
         riskParentalNotchUpConditionDTO.setItemNo(1);
         riskParentalNotchUpConditionDTO.setDescription("Source of Rating of Parent Firm");
         riskParentalNotchUpConditionDTO.setValueType('1');
-        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue(null);
+        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
         riskParentalNotchUpConditionDTO.setValue("");
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 
@@ -75,9 +75,9 @@ public class Renewable_RiskParentalNotchUp {
         riskParentalNotchUpConditionDTO.setItemNo(2);
         riskParentalNotchUpConditionDTO.setDescription("Nature of Rating of Parent Firm");
         riskParentalNotchUpConditionDTO.setValueType('2');
-        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue(null);
+        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
         riskParentalNotchUpConditionDTO.setValue("");
-        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm(' ');
+        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('1');
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 
          riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
@@ -85,17 +85,19 @@ public class Renewable_RiskParentalNotchUp {
         riskParentalNotchUpConditionDTO.setItemNo(3);
         riskParentalNotchUpConditionDTO.setDescription("Obligor Rating Grade of the Parent Firm as per reference source");
         riskParentalNotchUpConditionDTO.setValueType('1');
-        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue(null);
+        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
         riskParentalNotchUpConditionDTO.setValue("");
+        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('1');
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 
 
         riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
         riskParentalNotchUpConditionDTO.setId(null);
-        riskParentalNotchUpConditionDTO.setItemNo(2);
+        riskParentalNotchUpConditionDTO.setItemNo(4);
         riskParentalNotchUpConditionDTO.setDescription("Borrower Rating Grade of the Parent Firm");
         riskParentalNotchUpConditionDTO.setValueType('1');
-        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue(' ');
+        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
+        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('1');
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 
 

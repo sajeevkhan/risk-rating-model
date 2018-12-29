@@ -28,7 +28,7 @@ public class RiskParentalNotchUpCondition extends AggregateRoot<RiskParentalNotc
     private Integer itemNo;
 
     @Getter(AccessLevel.PUBLIC)
-    @Null
+    @Nullable
     @Column(columnDefinition = "LONGTEXT")
     private String description;
 
