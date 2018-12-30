@@ -25,6 +25,7 @@ public class RiskSubFactorAttributesBuilder {
             riskSubFactorAttributeDTO.setDescription(riskAttribute.getDescription());
             riskSubFactorAttributeDTO.setScore(riskAttribute.getScore());
             riskSubFactorAttributeDTO.setWeightage(0D);
+            riskSubFactorAttributeDTO.setIsSelected(false);
             riskSubFactorAttributes.add(riskSubFactorAttributeDTO);
             i++;
         }

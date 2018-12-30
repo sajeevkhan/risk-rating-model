@@ -67,14 +67,14 @@ public class HC_BusinessRiskDTO {
 
         // 1.1.2        Risk Sub Factor 1
         //  Cyclicality or seasonality of the business/Industry  - 10%
-        RiskSubFactorDTO cyclicailityOfBusIndSubFactorDTO = new RiskSubFactorDTO();
-        cyclicailityOfBusIndSubFactorDTO.setId(null);
-        cyclicailityOfBusIndSubFactorDTO.setItemNo(1);
-        cyclicailityOfBusIndSubFactorDTO.setDescription("Cyclicality or seasonality of the business/Industry");
-        cyclicailityOfBusIndSubFactorDTO.setWeightage(0.10);
-        cyclicailityOfBusIndSubFactorDTO.setScore(0D);
-        cyclicailityOfBusIndSubFactorDTO.setScoreTypeCode("01");
-        cyclicailityOfBusIndSubFactorDTO.setScoreTypeDescription("Normal");
+        RiskSubFactorDTO cyclicalityOfBusIndSubFactorDTO = new RiskSubFactorDTO();
+        cyclicalityOfBusIndSubFactorDTO.setId(null);
+        cyclicalityOfBusIndSubFactorDTO.setItemNo(1);
+        cyclicalityOfBusIndSubFactorDTO.setDescription("Cyclicality or seasonality of the business/Industry");
+        cyclicalityOfBusIndSubFactorDTO.setWeightage(0.10);
+        cyclicalityOfBusIndSubFactorDTO.setScore(0D);
+        cyclicalityOfBusIndSubFactorDTO.setScoreTypeCode("01");
+        cyclicalityOfBusIndSubFactorDTO.setScoreTypeDescription("Normal");
 
         // 1.1.1        Risk Sub Factor Attributes
         // -> Four Attributes
@@ -87,8 +87,8 @@ public class HC_BusinessRiskDTO {
 
 
         Set<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS1 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
-        cyclicailityOfBusIndSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS1);
-        businessRiskFactorDTO.addRiskSubFactorDTO(cyclicailityOfBusIndSubFactorDTO);
+        cyclicalityOfBusIndSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS1);
+        businessRiskFactorDTO.addRiskSubFactorDTO(cyclicalityOfBusIndSubFactorDTO);
 
         // 1.1.2        Risk Sub Factor 2
         //          Asset Concentration - 25%

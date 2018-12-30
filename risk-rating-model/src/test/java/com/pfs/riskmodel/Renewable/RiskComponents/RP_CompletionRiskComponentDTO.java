@@ -72,7 +72,8 @@ public class RP_CompletionRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("Sponsors with low ability to raise additional fund from various sources including own sources");
         riskSubFactorAttributeDTO1.setScore(0D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
+        riskSubFactorAttributeDTO1.setIsSelected(false);
 
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
@@ -80,21 +81,21 @@ public class RP_CompletionRiskComponentDTO {
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Sponsors with moderate ability to raise additional fund from various sources including own sources");
         riskSubFactorAttributeDTO2.setScore(3.33D);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(0D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Sponsors with high ability to raise additional fund from various sources including own sources");
         riskSubFactorAttributeDTO3.setScore(6.67D);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
-
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
+        
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("Sponsors with very high/excellent ability to raise additional fund from various sources including own sources");
         riskSubFactorAttributeDTO4.setScore(10.00D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
 
 
@@ -148,35 +149,35 @@ public class RP_CompletionRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("Majority of critical clearances are still to be obtained");
         riskSubFactorAttributeDTO1.setScore(0D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);riskSubFactorAttributeDTO1.setIsSelected(false);
 
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Project is at the mid-way path as far as obtaining clearances are concerned");
         riskSubFactorAttributeDTO2.setScore(2.5D);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(0D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
         riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("A few critical clearances are not yet procured but are likely to be obtained in a short period of time.");
         riskSubFactorAttributeDTO3.setScore(5.00D);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
-
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
+        
         riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("All the critical and most significant clearances are obtained. Very few clearances pending which are in the final stage of being procured");
         riskSubFactorAttributeDTO4.setScore(7.50D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO5.setId(null);
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("The project has obtained all relevant clearance required from all the agencies.");
         riskSubFactorAttributeDTO5.setScore(10.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(0D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
         //Collect RiskSubFactorAttributes
         clearancesRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO1);
@@ -209,28 +210,28 @@ public class RP_CompletionRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("Gestation period above 24 months");
         riskSubFactorAttributeDTO1.setScore(0D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Gestation period between 18 - 24 months");
         riskSubFactorAttributeDTO2.setScore(2.00D);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(0D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
         riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Gestation period between 12 - 18 months");
         riskSubFactorAttributeDTO3.setScore(4.00D);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);riskSubFactorAttributeDTO3.setIsSelected(false);riskSubFactorAttributeDTO3.setIsSelected(false);riskSubFactorAttributeDTO3.setIsSelected(false);riskSubFactorAttributeDTO3.setIsSelected(false);
 
         riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("Gestation period between 6 - 12 months");
         riskSubFactorAttributeDTO4.setScore(6.0D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
         riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO5.setId(null);
@@ -245,7 +246,7 @@ public class RP_CompletionRiskComponentDTO {
         riskSubFactorAttributeDTO6.setItemNo(6);
         riskSubFactorAttributeDTO6.setDescription("Gestation Period less than 6 months with all clearance in place");
         riskSubFactorAttributeDTO6.setScore(10.00D);
-        riskSubFactorAttributeDTO6.setWeightage(0D);
+        riskSubFactorAttributeDTO6.setWeightage(00D);riskSubFactorAttributeDTO6.setIsSelected(false);
 
         //Collect RiskSubFactorAttributes
         gestationPeriodRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO1);
@@ -277,35 +278,35 @@ public class RP_CompletionRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("Leasing arrangement with private parties coterminous with earlier envisaged project duration not covered for delays");
         riskSubFactorAttributeDTO1.setScore(0D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Leasing arrangement with government agencies coterminous with earlier envisaged project duration not covered for delays");
         riskSubFactorAttributeDTO2.setScore(2.00D);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(0D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
         riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Leasing arrangement with private land owners upto the complete project duration and leasing arrangements are favourable for the borrower");
         riskSubFactorAttributeDTO3.setScore(4.00D);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
         riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("Combination of leasing arrangement with government agencies and private land owners upto the complete project duration");
         riskSubFactorAttributeDTO4.setScore(6.0D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
         riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO5.setId(null);
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("Land acquisition is in the advanced stage from private land owners or government agencies");
         riskSubFactorAttributeDTO5.setScore(8.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
@@ -313,7 +314,7 @@ public class RP_CompletionRiskComponentDTO {
         riskSubFactorAttributeDTO6.setItemNo(6);
         riskSubFactorAttributeDTO6.setDescription("Land acquired from private land owners or government agencies for the project / Land leased from government for the project");
         riskSubFactorAttributeDTO6.setScore(10.00D);
-        riskSubFactorAttributeDTO6.setWeightage(0D);
+        riskSubFactorAttributeDTO6.setWeightage(00D);riskSubFactorAttributeDTO6.setIsSelected(false);
 
 
         //Collect RiskSubFactorAttributes
@@ -350,35 +351,35 @@ public class RP_CompletionRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("Evacuation approval is not in place");
         riskSubFactorAttributeDTO1.setScore(0D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Evacuation approval received, entire work to be completed by state agency");
         riskSubFactorAttributeDTO2.setScore(2.00D);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(0D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
         riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Evacuation approval received, entire work to be completed by borrower & state agency. Work is yet to commence.");
         riskSubFactorAttributeDTO3.setScore(4.00D);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
-
+        riskSubFactorAttributeDTO3.setWeightage(0D);riskSubFactorAttributeDTO3.setIsSelected(false);
+        
         riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("Evacuation approval received, entire work to be completed by borrower. Work is yet to commence.");
         riskSubFactorAttributeDTO4.setScore(6.0D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
         riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO5.setId(null);
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("Evacuation approval received, entire work to be completed by borrower. Work has commenced with work not nearing completion.");
         riskSubFactorAttributeDTO5.setScore(8.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
@@ -386,7 +387,7 @@ public class RP_CompletionRiskComponentDTO {
         riskSubFactorAttributeDTO6.setItemNo(6);
         riskSubFactorAttributeDTO6.setDescription("Evacuation approval received, entire work to be completed by borrower, work nearing completion");
         riskSubFactorAttributeDTO6.setScore(10.00D);
-        riskSubFactorAttributeDTO6.setWeightage(0D);
+        riskSubFactorAttributeDTO6.setWeightage(00D);riskSubFactorAttributeDTO6.setIsSelected(false);
 
 
         //Collect RiskSubFactorAttributes

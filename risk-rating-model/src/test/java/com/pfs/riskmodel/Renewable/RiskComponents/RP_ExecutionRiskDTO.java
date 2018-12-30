@@ -67,7 +67,7 @@ public class RP_ExecutionRiskDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("New entrant in the area of project management");
         riskSubFactorAttributeDTO1.setScore(0D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
@@ -75,21 +75,21 @@ public class RP_ExecutionRiskDTO {
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Experience in projects exists but new entrant in infrastructure projects");
         riskSubFactorAttributeDTO2.setScore(2.0D);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Local player with reasonable experience in execution of projects of similar type");
         riskSubFactorAttributeDTO3.setScore(4.00D);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("Good experience in projects of similar nature");
         riskSubFactorAttributeDTO4.setScore(6.00D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
@@ -97,15 +97,14 @@ public class RP_ExecutionRiskDTO {
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("Very Good experience in projects of similar nature");
         riskSubFactorAttributeDTO5.setScore(8.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO6.setId(null);
         riskSubFactorAttributeDTO6.setItemNo(6);
         riskSubFactorAttributeDTO6.setDescription("Sponsor with extensive international / national experience");
         riskSubFactorAttributeDTO6.setScore(10.00D);
-        riskSubFactorAttributeDTO6.setWeightage(0D);
-
+        riskSubFactorAttributeDTO6.setWeightage(00D);riskSubFactorAttributeDTO6.setIsSelected(false);
 
         //Collect RiskSubFactorAttributes
         capabilityOfSponsorRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO1);
@@ -137,28 +136,28 @@ public class RP_ExecutionRiskDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("New entrant in the area of construction");
         riskSubFactorAttributeDTO1.setScore(0D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Experience in construction exists but new entrant in infrastructure construction");
         riskSubFactorAttributeDTO2.setScore(2.0D);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
         riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Local player with reasonable experience in execution of projects of similar type");
         riskSubFactorAttributeDTO3.setScore(4.00D);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
         riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("Good experience in projects of similar nature");
         riskSubFactorAttributeDTO4.setScore(6.00D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
@@ -166,14 +165,14 @@ public class RP_ExecutionRiskDTO {
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("Very Good experience in projects of similar nature");
         riskSubFactorAttributeDTO5.setScore(8.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
         riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO6.setId(null);
         riskSubFactorAttributeDTO6.setItemNo(5);
         riskSubFactorAttributeDTO6.setDescription("Contractor with extensive international / national experience");
         riskSubFactorAttributeDTO6.setScore(10.00D);
-        riskSubFactorAttributeDTO6.setWeightage(0D);
+        riskSubFactorAttributeDTO6.setWeightage(00D);riskSubFactorAttributeDTO6.setIsSelected(false);
 
 
         //Collect RiskSubFactorAttributes
@@ -208,14 +207,14 @@ public class RP_ExecutionRiskDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("Project is extremely complicated and completion is likely to be affected by them");
         riskSubFactorAttributeDTO1.setScore(0D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("The project has high level of complexity in terms of project construction");
         riskSubFactorAttributeDTO2.setScore(2.0D);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
@@ -223,7 +222,7 @@ public class RP_ExecutionRiskDTO {
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("The project has average level of challenges in terms of project construction");
         riskSubFactorAttributeDTO3.setScore(4.00D);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
@@ -231,14 +230,14 @@ public class RP_ExecutionRiskDTO {
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("The project has few complexities and may not involve significant slippages on account of the same");
         riskSubFactorAttributeDTO4.setScore(6.00D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
         riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO5.setId(null);
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("Extremely low level of difficulty to execute the project (e.g.-Project close to completion)");
         riskSubFactorAttributeDTO5.setScore(8.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
 
         //Collect RiskSubFactorAttributes
@@ -272,35 +271,35 @@ public class RP_ExecutionRiskDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("The contract does not mention any kind of assurances of safeguards");
         riskSubFactorAttributeDTO1.setScore(0D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("The contract contains very poor level of safeguards");
         riskSubFactorAttributeDTO2.setScore(2.0D);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
         riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("The contract ensures minimal level of safeguards");
         riskSubFactorAttributeDTO3.setScore(4.00D);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
         riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("The contract ensures moderate level of safeguards");
         riskSubFactorAttributeDTO4.setScore(6.00D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
         riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO5.setId(null);
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("The contract ensures high level of safeguards");
         riskSubFactorAttributeDTO5.setScore(8.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
@@ -308,7 +307,7 @@ public class RP_ExecutionRiskDTO {
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("The contract ensures very high level of safeguards");
         riskSubFactorAttributeDTO5.setScore(10.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
         //Collect RiskSubFactorAttributes
         safeguarfsInContractRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO1);
@@ -338,14 +337,14 @@ public class RP_ExecutionRiskDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("Proven technology in world, however yet to be established in India");
         riskSubFactorAttributeDTO1.setScore(2D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Reliable supplier but expected challenges in the Indian conditions");
         riskSubFactorAttributeDTO2.setScore(4.0D);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
@@ -353,7 +352,7 @@ public class RP_ExecutionRiskDTO {
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Reliable supplier with proven delivery track record");
         riskSubFactorAttributeDTO3.setScore(6.00D);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
@@ -361,7 +360,7 @@ public class RP_ExecutionRiskDTO {
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("Supplier with impeccable track record");
         riskSubFactorAttributeDTO4.setScore(8.00D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
         qualityOfEquipmentRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO1);
         qualityOfEquipmentRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO2);

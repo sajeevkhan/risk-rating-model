@@ -74,7 +74,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("Less than 1");
         riskSubFactorAttributeDTO1.setScore(0D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
@@ -82,7 +82,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Equal to or above 1 but less than 1.05");
         riskSubFactorAttributeDTO2.setScore(2.00);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
@@ -90,7 +90,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Equal to or above 1.05 but less than 1.1");
         riskSubFactorAttributeDTO3.setScore(4.00);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
@@ -98,7 +98,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("Equal to or above 1.1 but less than 1.2");
         riskSubFactorAttributeDTO4.setScore(6.00D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
@@ -106,7 +106,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("Equal to or above 1.2 but less than 1.4");
         riskSubFactorAttributeDTO5.setScore(8.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
@@ -114,7 +114,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO6.setItemNo(5);
         riskSubFactorAttributeDTO6.setDescription("Equal to or above 1.4");
         riskSubFactorAttributeDTO6.setScore(10.00D);
-        riskSubFactorAttributeDTO6.setWeightage(0D);
+        riskSubFactorAttributeDTO6.setWeightage(00D);riskSubFactorAttributeDTO6.setIsSelected(false);
 
 
         // Collect Risk Sub Factor Attributes
@@ -148,7 +148,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("Less than 1");
         riskSubFactorAttributeDTO1.setScore(0D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
@@ -156,7 +156,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Equal to or above 1 but less than 1.1");
         riskSubFactorAttributeDTO2.setScore(2.00);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
@@ -164,7 +164,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Equal to or above 1.1 but less than 1.2");
         riskSubFactorAttributeDTO3.setScore(4.00);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
@@ -172,14 +172,14 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("Equal to or above 1.2 but less than 1.3");
         riskSubFactorAttributeDTO4.setScore(6.00D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
         riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO5.setId(null);
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("Equal to or above 1.3 but less than 1.5");
         riskSubFactorAttributeDTO5.setScore(8.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
@@ -187,7 +187,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO6.setItemNo(6);
         riskSubFactorAttributeDTO6.setDescription("Equal to or above 1.5");
         riskSubFactorAttributeDTO6.setScore(10.00D);
-        riskSubFactorAttributeDTO6.setWeightage(0D);
+        riskSubFactorAttributeDTO6.setWeightage(00D);riskSubFactorAttributeDTO6.setIsSelected(false);
 
         // Collect Risk Sub Factor Attributes
         minimumDSCRRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO1);
@@ -221,7 +221,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("Less than 1");
         riskSubFactorAttributeDTO1.setScore(10D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
@@ -229,7 +229,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription(">1.00 to 1.33");
         riskSubFactorAttributeDTO2.setScore(8.00);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
@@ -237,7 +237,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription(">1.33 to 2.33");
         riskSubFactorAttributeDTO3.setScore(6.00);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
@@ -245,7 +245,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription(">2.33 to 3.00");
         riskSubFactorAttributeDTO4.setScore(4.00D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
@@ -253,7 +253,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription(">3. to 4.00");
         riskSubFactorAttributeDTO5.setScore(2.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
@@ -261,7 +261,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO6.setItemNo(6);
         riskSubFactorAttributeDTO6.setDescription("> 4.00");
         riskSubFactorAttributeDTO6.setScore(0.00D);
-        riskSubFactorAttributeDTO6.setWeightage(0D);
+        riskSubFactorAttributeDTO6.setWeightage(00D);riskSubFactorAttributeDTO6.setIsSelected(false);
 
 
         // Collect Risk Sub Factor Attributes
@@ -295,14 +295,14 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("Less than 1");
         riskSubFactorAttributeDTO1.setScore(0D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Equal to or above 1 but less than 1.05");
         riskSubFactorAttributeDTO2.setScore(2.00);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
@@ -310,14 +310,14 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Equal to or above 1.05 but less than 1.1");
         riskSubFactorAttributeDTO3.setScore(4.00);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
         riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("Equal to or above 1.1 but less than 1.2");
         riskSubFactorAttributeDTO4.setScore(6.00D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
@@ -325,7 +325,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("Equal to or above 1.2 but less than 1.4");
         riskSubFactorAttributeDTO5.setScore(8.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
@@ -333,7 +333,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO6.setItemNo(6);
         riskSubFactorAttributeDTO6.setDescription("Equal to or above 1.4");
         riskSubFactorAttributeDTO6.setScore(10.00D);
-        riskSubFactorAttributeDTO6.setWeightage(0D);
+        riskSubFactorAttributeDTO6.setWeightage(00D);riskSubFactorAttributeDTO6.setIsSelected(false);
 
         // Collect Risk Sub Factor Attributes
         sensitivityToProjectCostDSCRRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO1);
@@ -367,28 +367,28 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("No exposure absolutely to IRR/CR. All position are hedged fully");
         riskSubFactorAttributeDTO1.setScore(10D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Minimal exposure to IRR/CR. Most of the positions are hedged");
         riskSubFactorAttributeDTO2.setScore(8.00);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
         riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Exposure to IRR/CR is small");
         riskSubFactorAttributeDTO3.setScore(6.00);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
         riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription(">Average exposure to IRR/CR");
         riskSubFactorAttributeDTO4.setScore(4.00D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
@@ -396,7 +396,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("High Risk exposure to IRR/CR");
         riskSubFactorAttributeDTO5.setScore(2.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
@@ -404,7 +404,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO6.setItemNo(6);
         riskSubFactorAttributeDTO6.setDescription("Extremely High exposure to IRR/CR");
         riskSubFactorAttributeDTO6.setScore(0.00D);
-        riskSubFactorAttributeDTO6.setWeightage(0D);
+        riskSubFactorAttributeDTO6.setWeightage(00D);riskSubFactorAttributeDTO6.setIsSelected(false);
 
         // Collect Risk Sub Factor Attributes
         degreeOfExposureToIRRAndCurrencyRiskRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO1);
@@ -438,28 +438,28 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("Less than 10%");
         riskSubFactorAttributeDTO1.setScore(0D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Equal to or above 10% but less than 13.5%");
         riskSubFactorAttributeDTO2.setScore(2.00);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
         riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Equal to or above 13.5% but less than 17%");
         riskSubFactorAttributeDTO3.setScore(4.00);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
         riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("Equal to or above 17% but less than 20.5%");
         riskSubFactorAttributeDTO4.setScore(6.00D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
@@ -467,7 +467,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("Equal to or above 20.5% but less than 24%");
         riskSubFactorAttributeDTO5.setScore(8.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
@@ -475,7 +475,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO6.setItemNo(6);
         riskSubFactorAttributeDTO6.setDescription("Equal to or above 24%");
         riskSubFactorAttributeDTO6.setScore(10.00D);
-        riskSubFactorAttributeDTO6.setWeightage(0D);
+        riskSubFactorAttributeDTO6.setWeightage(00D);riskSubFactorAttributeDTO6.setIsSelected(false);
 
         // Collect Risk Sub Factor Attributes
         internalRateOfReturnRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO1);
@@ -513,28 +513,28 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("Payment structure and liquidity maintained (cash surplus to service debt) is sufficient for cumulative lean months payment");
         riskSubFactorAttributeDTO1.setScore(1.00);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Liquidity maintained (cash surplus to service debt) is sufficient only for 2-3 months of cumulative lean months payment; whereas payment is adversely structured");
         riskSubFactorAttributeDTO2.setScore(0.90);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
         riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Large bullet payment with no firm policy on maintaining liquidity buffer. Back-ended payment, however no current payment issues envisaged");
         riskSubFactorAttributeDTO3.setScore(0.75);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
         riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("Monthly payment however no liquidity buffer maintained for lean season");
         riskSubFactorAttributeDTO4.setScore(0.25);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
@@ -542,7 +542,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("Bullet payment and no sufficient liquidity buffer");
         riskSubFactorAttributeDTO5.setScore(0.50);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
         // Collect Risk Sub Factor Attributes
         repaymentStructureSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO1);

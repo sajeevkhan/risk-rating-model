@@ -20,6 +20,10 @@ import java.math.BigDecimal;
 @Setter(AccessLevel.PUBLIC)
 public class RiskSubFactorAttribute extends AggregateRoot<RiskSubFactorAttribute>  {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    protected Long id;
+
     @Getter(AccessLevel.PUBLIC)
     private Integer itemNo;
 
@@ -34,6 +38,8 @@ public class RiskSubFactorAttribute extends AggregateRoot<RiskSubFactorAttribute
     @Getter(AccessLevel.PUBLIC)
     private Double weightage;
 
+    @Getter
+    private Boolean isSelected;
 
 //    @NotNull
 //    //@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

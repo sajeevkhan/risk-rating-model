@@ -26,6 +26,8 @@ public class RiskModelTemplate extends AuditModel  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+
     @NotNull
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private ModelCategory modelCategory;

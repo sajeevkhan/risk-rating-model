@@ -72,42 +72,42 @@ public class RPP_BusinessRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("No arrangements with any prospective buyers. Extremely high exposure to market risk.");
         riskSubFactorAttributeDTO1.setScore(0D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Short/Medium term PPAs on competitive bidding to SEBs, Group captive consumers or other industrial consumers");
         riskSubFactorAttributeDTO2.setScore(2.00);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Long term PPA with 3rd party (open access)");
         riskSubFactorAttributeDTO3.setScore(4.00);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("Long term PPA proposed /signed in group captive scheme");
         riskSubFactorAttributeDTO4.setScore(6.00D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO5.setId(null);
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("Long term PPA not signed but proposed to be signed with State Discom and COD to be achieved within control period of PPA");
         riskSubFactorAttributeDTO5.setScore(8.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO6.setId(null);
         riskSubFactorAttributeDTO6.setItemNo(6);
         riskSubFactorAttributeDTO6.setDescription("Long term PPA signed with State Discoms, NTPC, SEC, Govt. nominated agencies, etc");
         riskSubFactorAttributeDTO6.setScore(10.00D);
-        riskSubFactorAttributeDTO6.setWeightage(0D);
+        riskSubFactorAttributeDTO6.setWeightage(00D);riskSubFactorAttributeDTO6.setIsSelected(false);
 
 
         offTakeRiskAndSalesSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO1);
@@ -139,35 +139,35 @@ public class RPP_BusinessRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("No off taker as on date (Off taker is Group Captive/Open access consumers) OR Over dues more than 210 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)");
         riskSubFactorAttributeDTO1.setScore(0D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Non listed off taker & non-investment grade borrower (Off taker is Group Captive/Open access consumers) OR Over dues not more than 180 days but less than 210 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)");
         riskSubFactorAttributeDTO2.setScore(2.00);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
         riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Non Listed off taker & long term credit rating not yet assigned (Off taker is Group Captive/Open access consumers) OR Over dues not more than 120 days but less than 90 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)");
         riskSubFactorAttributeDTO3.setScore(4.00);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
         riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("Non listed off taker & long term investment credit rating not below BBB+ (Off taker is Group Captive/Open access consumers) OR Over dues not more than 90 days but less than 30 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)");
         riskSubFactorAttributeDTO4.setScore(6.00D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
         riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO5.setId(null);
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("Listed off taker & long term investment credit rating not below BBB+ (quantum < 50% of project capacity): Off taker is Group Captive/Open access consumers OR Over dues not more than 30 days but less than 15 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)");
         riskSubFactorAttributeDTO5.setScore(8.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
@@ -175,7 +175,7 @@ public class RPP_BusinessRiskComponentDTO {
         riskSubFactorAttributeDTO6.setItemNo(6);
         riskSubFactorAttributeDTO6.setDescription("Listed off taker & long term investment credit rating not below BBB+ (quantum ≥ 50% of project capacity): Off taker is Group Captive/Open access consumers OR Over dues not more than 15 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)");
         riskSubFactorAttributeDTO6.setScore(10.00D);
-        riskSubFactorAttributeDTO6.setWeightage(0D);
+        riskSubFactorAttributeDTO6.setWeightage(00D);riskSubFactorAttributeDTO6.setIsSelected(false);
 
         counterPartySubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO1);
         counterPartySubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO2);
@@ -206,42 +206,42 @@ public class RPP_BusinessRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("Cost is extremely non-competitive and amongst the most expensive in the industry");
         riskSubFactorAttributeDTO1.setScore(0D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Cost is non-competitive and the generation cost falls amongst the expensive power plant projects in the industry.");
         riskSubFactorAttributeDTO2.setScore(2.00);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
         riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Generation is not competitive and higher than the average industry cost.");
         riskSubFactorAttributeDTO3.setScore(4.00);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
         riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("Generation cost is moderately competitive and within the range of average industry cost");
         riskSubFactorAttributeDTO4.setScore(6.00D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
         riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO5.setId(null);
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("Generation cost is competitive and is lower by 10-20% than the industry standards");
         riskSubFactorAttributeDTO5.setScore(8.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
         riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO6.setId(null);
         riskSubFactorAttributeDTO6.setItemNo(6);
         riskSubFactorAttributeDTO6.setDescription("The generation cost is extremely competitive and amongst the best in the industry-Lower by at least 20%");
         riskSubFactorAttributeDTO6.setScore(10.00D);
-        riskSubFactorAttributeDTO6.setWeightage(0D);
+        riskSubFactorAttributeDTO6.setWeightage(00D);riskSubFactorAttributeDTO6.setIsSelected(false);
 
         costOfGenerationSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO1);
         costOfGenerationSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO2);
@@ -271,7 +271,7 @@ public class RPP_BusinessRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("Tariff determined through competitive bidding/preferential and project’s CoD is beyond the control period of tariff order/PPA; Impact on tariff is significant");
         riskSubFactorAttributeDTO1.setScore(0D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
@@ -279,35 +279,35 @@ public class RPP_BusinessRiskComponentDTO {
         riskSubFactorAttributeDTO2.setDescription("" +
                 "Tariff determined through competitive bidding/preferential and project’s CoD is beyond the control period of tariff order/PPA; Impact on tariff is not significant");
         riskSubFactorAttributeDTO2.setScore(2.00);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
         riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Tariff determined is through preferential tariff and more than 25% of APPC of the state");
         riskSubFactorAttributeDTO3.setScore(4.00);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
         riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("Tariff determined through competitive bidding and more than 25% of APPC of the state");
         riskSubFactorAttributeDTO4.setScore(6.00D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
         riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO5.setId(null);
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("Tariff determined is through preferential tariff and less than APPC of the state");
         riskSubFactorAttributeDTO5.setScore(8.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
         riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO6.setId(null);
         riskSubFactorAttributeDTO6.setItemNo(6);
         riskSubFactorAttributeDTO6.setDescription("Tariff determined through competitive bidding and less than average power procurement cost (APPC) of the state");
         riskSubFactorAttributeDTO6.setScore(10.00D);
-        riskSubFactorAttributeDTO6.setWeightage(0D);
+        riskSubFactorAttributeDTO6.setWeightage(00D);riskSubFactorAttributeDTO6.setIsSelected(false);
 
         regulatoryRiskRenewable.addRiskSubFactorAttribute(riskSubFactorAttributeDTO1);
         regulatoryRiskRenewable.addRiskSubFactorAttribute(riskSubFactorAttributeDTO2);
@@ -360,28 +360,28 @@ public class RPP_BusinessRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("Highly Reputed O&M contractors with excellent track record of operating projects of similar scale and elsewhere");
         riskSubFactorAttributeDTO1.setScore(10D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Reputed O& M contractors with very good track record of operating projects of similar type");
         riskSubFactorAttributeDTO2.setScore(8.00);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
         riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Contractors risk is minimal as their past track record is good");
         riskSubFactorAttributeDTO3.setScore(6.00);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
         riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("The contractors experience is insufficient for the project");
         riskSubFactorAttributeDTO4.setScore(4.00D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
@@ -389,7 +389,7 @@ public class RPP_BusinessRiskComponentDTO {
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("No prior experiences of contractors");
         riskSubFactorAttributeDTO5.setScore(2.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
@@ -397,7 +397,7 @@ public class RPP_BusinessRiskComponentDTO {
         riskSubFactorAttributeDTO6.setItemNo(6);
         riskSubFactorAttributeDTO6.setDescription("Extremely high risk as the O&M contractors have bad reputation");
         riskSubFactorAttributeDTO6.setScore(0.00D);
-        riskSubFactorAttributeDTO6.setWeightage(0D);
+        riskSubFactorAttributeDTO6.setWeightage(00D);riskSubFactorAttributeDTO6.setIsSelected(false);
 
         operationsAndMaintenanceRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO1);
         operationsAndMaintenanceRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO2);
@@ -434,7 +434,7 @@ public class RPP_BusinessRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("Operational project – Availability of key resource is highly favourable and PLF significantly higher than base case.");
         riskSubFactorAttributeDTO1.setScore(10D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
@@ -442,7 +442,7 @@ public class RPP_BusinessRiskComponentDTO {
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Operational project - Availability of key resource is favourable and PLF is higher than base case.");
         riskSubFactorAttributeDTO2.setScore(7.00);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
 
         riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
@@ -450,28 +450,28 @@ public class RPP_BusinessRiskComponentDTO {
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Operational project - Availability of key resource is moderately favourable and PLF is as per base case.");
         riskSubFactorAttributeDTO3.setScore(3.00);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
         riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("Operational project - Availability of key resource is below average and PLF is less than base case.");
         riskSubFactorAttributeDTO4.setScore(0.00D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
         riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO5.setId(null);
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("Under construction project - Availability of key resource is expected to be highly favourable and generation assessment is based on more than 2 years resource data at site");
         riskSubFactorAttributeDTO5.setScore(8.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
         riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO6.setId(null);
         riskSubFactorAttributeDTO6.setItemNo(6);
         riskSubFactorAttributeDTO6.setDescription("Under construction project - Availability of key resource is expected to be moderately favourable generation assessment based on 1 to 2 year resource data at site");
         riskSubFactorAttributeDTO6.setScore(4.00D);
-        riskSubFactorAttributeDTO6.setWeightage(0D);
+        riskSubFactorAttributeDTO6.setWeightage(00D);riskSubFactorAttributeDTO6.setIsSelected(false);
 
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO7 = new RiskSubFactorAttributeDTO();
@@ -479,7 +479,7 @@ public class RPP_BusinessRiskComponentDTO {
         riskSubFactorAttributeDTO7.setItemNo(6);
         riskSubFactorAttributeDTO7.setDescription("Under construction project - Availability of key resource is expected to be below average and generation assessment is based on 0 to 1 year resource data at site");
         riskSubFactorAttributeDTO7.setScore(0.00D);
-        riskSubFactorAttributeDTO7.setWeightage(0D);
+        riskSubFactorAttributeDTO7.setWeightage(00D);riskSubFactorAttributeDTO7.setIsSelected(false);
 
 
         keyResourcesRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO1);

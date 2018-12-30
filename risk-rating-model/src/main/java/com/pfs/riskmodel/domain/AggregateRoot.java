@@ -26,9 +26,9 @@ import java.util.UUID;
 @Setter(AccessLevel.PUBLIC)
 public abstract class AggregateRoot<A extends AbstractAggregateRoot<A>> extends AbstractAggregateRoot<A> {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    protected Long id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    protected Long id;
 
 //    @Version
 //    @JsonIgnore

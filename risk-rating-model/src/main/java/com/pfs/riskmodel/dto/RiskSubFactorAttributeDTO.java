@@ -26,6 +26,8 @@ public class RiskSubFactorAttributeDTO {
 
      private Character deflatorIndicator;
 
+     private Boolean isSelected;
+
 
      @Override
      public boolean equals(Object o) {

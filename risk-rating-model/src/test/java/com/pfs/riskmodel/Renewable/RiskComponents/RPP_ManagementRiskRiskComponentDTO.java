@@ -74,42 +74,42 @@ public   class RPP_ManagementRiskRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("Strong comfort on the promoters.");
         riskSubFactorAttributeDTO1.setScore(10D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Good comfort on the promoters.");
         riskSubFactorAttributeDTO2.setScore(8.00);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Above average comfort on the management & promoter");
         riskSubFactorAttributeDTO3.setScore(6.00);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("Average comfort on Promoter/ Management");
         riskSubFactorAttributeDTO4.setScore(4.00D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO5.setId(null);
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("Low comfort on Promoter/ Management");
         riskSubFactorAttributeDTO5.setScore(2.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO6.setId(null);
         riskSubFactorAttributeDTO6.setItemNo(6);
         riskSubFactorAttributeDTO6.setDescription("Very low/no comfort on Promoter/ Management");
         riskSubFactorAttributeDTO6.setScore(00.00D);
-        riskSubFactorAttributeDTO6.setWeightage(0D);
+        riskSubFactorAttributeDTO6.setWeightage(00D);riskSubFactorAttributeDTO6.setIsSelected(false);
 
         //Collect Risk Sub Factor Attributes
         managementCapabilityRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO1);
@@ -138,42 +138,42 @@ public   class RPP_ManagementRiskRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("Company is part of an extremely financially sound group");
         riskSubFactorAttributeDTO1.setScore(10D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
           riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("The group has high financial strength");
         riskSubFactorAttributeDTO2.setScore(8.00);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
           riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("The group has above average financial strength");
         riskSubFactorAttributeDTO3.setScore(6.00);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
          riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("The group has average financial strength");
         riskSubFactorAttributeDTO4.setScore(4.00D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
          riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO5.setId(null);
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("The group has low financial strength");
         riskSubFactorAttributeDTO5.setScore(2.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
          riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO6.setId(null);
         riskSubFactorAttributeDTO6.setItemNo(6);
         riskSubFactorAttributeDTO6.setDescription("The group has very low financial strength");
         riskSubFactorAttributeDTO6.setScore(00.00D);
-        riskSubFactorAttributeDTO6.setWeightage(0D);
+        riskSubFactorAttributeDTO6.setWeightage(00D);riskSubFactorAttributeDTO6.setIsSelected(false);
 
 
         //Collect Risk Sub Factor Attributes
@@ -202,42 +202,42 @@ public   class RPP_ManagementRiskRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("Extremely strong credit track record");
         riskSubFactorAttributeDTO1.setScore(10D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
           riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("Strong credit track record");
         riskSubFactorAttributeDTO2.setScore(8.00);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
           riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Above average credit track record");
         riskSubFactorAttributeDTO3.setScore(6.00);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
           riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("Average credit track record");
         riskSubFactorAttributeDTO4.setScore(4.00D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
           riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO5.setId(null);
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("Below average credit track record");
         riskSubFactorAttributeDTO5.setScore(2.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
           riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO6.setId(null);
         riskSubFactorAttributeDTO6.setItemNo(6);
         riskSubFactorAttributeDTO6.setDescription("Poor credit track record");
         riskSubFactorAttributeDTO6.setScore(0.00D);
-        riskSubFactorAttributeDTO6.setWeightage(0D);
+        riskSubFactorAttributeDTO6.setWeightage(00D);riskSubFactorAttributeDTO6.setIsSelected(false);
 
 
         //Collect Risk Sub Factor Attributes
@@ -267,28 +267,28 @@ public   class RPP_ManagementRiskRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("The Sponsor / Promoter has significant experience in Power Industry and owns multiple projects");
         riskSubFactorAttributeDTO1.setScore(1D);
-        riskSubFactorAttributeDTO1.setWeightage(0D);
+        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
           riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("The Promoter / Sponsor has significant experience in the industry; however, this is the first project");
         riskSubFactorAttributeDTO2.setScore(0.90);
-        riskSubFactorAttributeDTO2.setWeightage(0D);
+        riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
           riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("The promoter / Sponsor are new entrant into the business");
         riskSubFactorAttributeDTO3.setScore(0.75);
-        riskSubFactorAttributeDTO3.setWeightage(0D);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
           riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("The Promoter / Sponsors are only equity investors and the management succession plan is uncertain");
         riskSubFactorAttributeDTO4.setScore(0.50D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
 
         //Collect Risk Sub Factor Attributes

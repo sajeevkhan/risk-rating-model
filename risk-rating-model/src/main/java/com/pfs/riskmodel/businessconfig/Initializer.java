@@ -57,12 +57,12 @@ public class Initializer implements CommandLineRunner{
 
 
         if(computingMethodRepository.count() == 0) {
-            ComputingMethod  c1 = new ComputingMethod("01", "Weighted");
-            ComputingMethod  c2 = new ComputingMethod("02", "Sum");
-            ComputingMethod  c3 = new ComputingMethod("03", "Minimum");
-            ComputingMethod  c4 = new ComputingMethod("04", "Maximum");
-            ComputingMethod  c5 = new ComputingMethod("05", "Equals");
-            ComputingMethod  c6 = new ComputingMethod("06", "Multiply");
+            ComputingMethod  c1 = new ComputingMethod(null,"01", "Weighted");
+            ComputingMethod  c2 = new ComputingMethod(null,"02", "Sum");
+            ComputingMethod  c3 = new ComputingMethod(null,"03", "Minimum");
+            ComputingMethod  c4 = new ComputingMethod(null,"04", "Maximum");
+            ComputingMethod  c5 = new ComputingMethod(null,"05", "Equals");
+            ComputingMethod  c6 = new ComputingMethod(null,"06", "Multiply");
 
 
             computingMethodRepository.saveAll(Arrays.asList(c1,c2,c3,c4,c5,c6));
@@ -70,9 +70,9 @@ public class Initializer implements CommandLineRunner{
         }
 
         if (scoreTypeRepository.count() == 0) {
-            ScoreType s1 = new ScoreType("01","Normal");
-            ScoreType s2 = new ScoreType("02","Deflator");
-            ScoreType s3 = new ScoreType("03","Multiplier");
+            ScoreType s1 = new ScoreType(null,"01","Normal");
+            ScoreType s2 = new ScoreType(null,"02","Deflator");
+            ScoreType s3 = new ScoreType(null,"03","Multiplier");
 
             scoreTypeRepository.saveAll(Arrays.asList( s1,s2,s3));
             log.info("-------------------------- Added Score Types data");
@@ -82,11 +82,11 @@ public class Initializer implements CommandLineRunner{
 
 
         if(projectTypeRepository.count() == 0) {
-            ProjectType  p1 = new ProjectType("01", "Renewable Project");
-            ProjectType  p2 = new ProjectType("02", "Infrastructure Transmission Project");
-            ProjectType  p3 = new ProjectType("03", "Infrastructure Road Project – Hybrid Annuity");
-            ProjectType  p4 = new ProjectType("04", "Infrastrucutre Road Project - Toll ");
-            ProjectType  p5 = new ProjectType("05", "Holding Company");
+            ProjectType  p1 = new ProjectType(null,"01", "Renewable Project");
+            ProjectType  p2 = new ProjectType(null,"02", "Infrastructure Transmission Project");
+            ProjectType  p3 = new ProjectType(null,"03", "Infrastructure Road Project – Hybrid Annuity");
+            ProjectType  p4 = new ProjectType(null,"04", "Infrastrucutre Road Project - Toll ");
+            ProjectType  p5 = new ProjectType(null,"05", "Holding Company");
 
 
 
@@ -96,8 +96,8 @@ public class Initializer implements CommandLineRunner{
 
 
         if(projectRiskLevelRepository.count() == 0) {
-            ProjectRiskLevel p1 = new ProjectRiskLevel("01", "Build Phase ");
-            ProjectRiskLevel  p2 = new ProjectRiskLevel("02", "Operational Risk Phase");
+            ProjectRiskLevel p1 = new ProjectRiskLevel(null,"01", "Build Phase ");
+            ProjectRiskLevel  p2 = new ProjectRiskLevel(null,"02", "Operational Risk Phase");
 
 
 
@@ -109,9 +109,9 @@ public class Initializer implements CommandLineRunner{
         if(riskRatingComputingMethodRepository.count() == 0) {
 
             //Modifiers to cap final ratings at sub-investment grade
-            RatingModifierComputationMethod  m1 = new RatingModifierComputationMethod("01", "On Select Any One - Notch Down to Sub Investment Grade");
+            RatingModifierComputationMethod  m1 = new RatingModifierComputationMethod(null,"01", "On Select Any One - Notch Down to Sub Investment Grade");
             // Modifiers having impact on final ratings up to 2 notches
-            RatingModifierComputationMethod m2 = new RatingModifierComputationMethod("02", "Notch Down By Selection- OneorTwoBYOne, MoreThanThree By Two");
+            RatingModifierComputationMethod m2 = new RatingModifierComputationMethod(null,"02", "Notch Down By Selection- OneorTwoBYOne, MoreThanThree By Two");
 
 
 

@@ -3,6 +3,9 @@ package com.pfs.riskmodel.domain;
 import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * Created by sajeev on 17-Dec-18.
@@ -15,6 +18,11 @@ import javax.persistence.Entity;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 public class ProjectType extends AggregateRoot<ProjectType> {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    protected Long id;
+
     private String code;
 
     private String value;
