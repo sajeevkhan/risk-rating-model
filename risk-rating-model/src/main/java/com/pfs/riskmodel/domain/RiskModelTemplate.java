@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -31,6 +33,11 @@ public class RiskModelTemplate extends AuditModel  {
     @NotNull
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private ModelCategory modelCategory;
+
+    @NotNull
+    // 0 - Template
+    // 1 - Project Valuation
+    private Integer modelType;
 
 
     @NotNull
@@ -63,7 +70,7 @@ public class RiskModelTemplate extends AuditModel  {
     */
 
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private ProjectRiskLevel projectRiskLevel;
 
     /**
@@ -80,13 +87,28 @@ public class RiskModelTemplate extends AuditModel  {
 
 
     @NotNull
+    private String loanNumber;
+
+    @NotNull
+    private String projectName;
+
+    @NotNull
+    private Double loanAmountInCrores;
+
+    @NotNull
+    private Date ratingDate;
+
+
+
+
+    @NotNull
     private Double score;
 
 
     @Nullable
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
     @JoinColumn(name="riskTypeParentalNotchUp__id",referencedColumnName = "id")
-    private Set<RiskParentalNotchUp> riskParentalNotchUps;
+    private List<RiskParentalNotchUp> riskParentalNotchUps;
 
 
     public RiskParentalNotchUp addRiskParentalNotchUp (RiskParentalNotchUp riskParentalNotchUp) {
@@ -97,9 +119,9 @@ public class RiskModelTemplate extends AuditModel  {
 
 
     @Nullable
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
     @JoinColumn(name="riskRatingModifiers__id",referencedColumnName = "id")
-    private Set<RiskRatingModifier> riskRatingModifiers;
+    private List<RiskRatingModifier> riskRatingModifiers;
 
 
     public RiskRatingModifier addRiskRatingModifier (RiskRatingModifier riskRatingModifier) {
@@ -109,15 +131,28 @@ public class RiskModelTemplate extends AuditModel  {
     }
 
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
     @JoinColumn(name="riskModelTemplate__id",referencedColumnName = "id")
-    private Set<RiskType> riskTypes;
+    private List<RiskType> riskTypes;
 
 
     public RiskType addRiskType (RiskType riskType) {
 
         this.getRiskTypes().add(riskType);
         return riskType;
+
+    }
+
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+    @JoinColumn(name="riskModelSummary__id",referencedColumnName = "id")
+    private List<RiskModelSummary> riskModelSummaries;
+
+
+    public RiskModelSummary addRiskModelSummary (RiskModelSummary riskModelSummary) {
+
+        this.getRiskModelSummaries().add(riskModelSummary);
+        return riskModelSummary;
 
     }
 

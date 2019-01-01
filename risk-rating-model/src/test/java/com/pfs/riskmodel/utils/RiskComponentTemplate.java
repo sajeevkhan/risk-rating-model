@@ -6,7 +6,9 @@ import com.pfs.riskmodel.dto.RiskFactorDTO;
 import com.pfs.riskmodel.dto.RiskSubFactorAttributeDTO;
 import com.pfs.riskmodel.dto.RiskSubFactorDTO;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -17,7 +19,7 @@ public class RiskComponentTemplate {
 
 
         RiskAttribute riskAttribute ;
-        Set<RiskAttribute> riskSubFactorAttributes = new HashSet<>();
+        List<RiskAttribute> riskSubFactorAttributes = new ArrayList<>();
         RiskSubFactorAttributesBuilder riskSubFactorAttributesBuilder = new RiskSubFactorAttributesBuilder();
 
 
@@ -28,7 +30,7 @@ public class RiskComponentTemplate {
             //Business Risk Component 35.00%
 
             RiskComponentDTO riskComponentDTO = new RiskComponentDTO();
-            Set<RiskFactor> riskFactorList = new HashSet<>();
+            List<RiskFactor> riskFactorList = new ArrayList<>();
 
             riskComponentDTO.setId(null);
             riskComponentDTO.setItemNo(1);
@@ -77,7 +79,7 @@ public class RiskComponentTemplate {
             //
             // 1.1.1       Risk Sub Factor Attributes
             // -> Four Attributes
-            riskSubFactorAttributes = new HashSet<>(); //TODO - Check Scores
+            riskSubFactorAttributes = new ArrayList<>(); //TODO - Check Scores
             riskSubFactorAttributes.add(new RiskAttribute(0D, ""));
             riskSubFactorAttributes.add(new RiskAttribute(2D,""));
             riskSubFactorAttributes.add(new RiskAttribute(4D,""));
@@ -86,7 +88,7 @@ public class RiskComponentTemplate {
             riskSubFactorAttributes.add(new RiskAttribute(10D,""));
 
             //TODO Set Correct Risk Sub Factor Name
-            Set<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
+            List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
             // TODO - Set Correct RiskFactorDTO Name
             // TODO - Set Correct Risk SubFactor
             RiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS);

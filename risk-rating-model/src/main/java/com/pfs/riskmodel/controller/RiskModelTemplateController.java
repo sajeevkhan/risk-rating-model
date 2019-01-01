@@ -4,6 +4,7 @@ import com.pfs.riskmodel.config.ApiController;
 import com.pfs.riskmodel.domain.*;
 import com.pfs.riskmodel.dto.*;
 import com.pfs.riskmodel.repository.*;
+import com.pfs.riskmodel.service.IRiskModelService;
 import com.pfs.riskmodel.service.IRiskModelTemplateService;
 import com.pfs.riskmodel.service.IRiskTypeService;
 import com.pfs.riskmodel.util.Check;
@@ -60,11 +61,46 @@ public class RiskModelTemplateController {
     @Autowired
     ModelCategoryRepository modelCategoryRepository;
 
-
-
     @Autowired
     IRiskModelTemplateService riskModelTemplateService;
 
+    @Autowired
+    IRiskModelService riskModelService;
+
+
+    //-----------------------------------------------------------------------------------------------------------------
+    //                              RISK MODEL - VALUATIONS
+    //-----------------------------------------------------------------------------------------------------------------
+
+    @PostMapping("/riskModel")
+    public ResponseEntity createRiskModel(@RequestBody RiskModelTemplateDTO riskModelTemplateDTO,
+                                          HttpServletRequest request) {
+
+        RiskModelTemplate riskModelTemplate = mapDTOToDomain(riskModelTemplateDTO);
+
+
+        Map<String, Object> result = riskModelService.createRiskModel(riskModelTemplate);
+        CheckServiceResult.checkResult(result);
+
+
+        riskModelTemplate = (RiskModelTemplate) result.get("RiskModel");
+        RiskModelTemplateDTO riskModelTemplateDTOResponse = mapDomainToDTO(riskModelTemplate);
+
+        return ResponseEntity.ok(riskModelTemplateDTOResponse);
+    }
+
+
+
+
+
+
+
+
+
+
+    //-----------------------------------------------------------------------------------------------------------------
+    //                              RISK MODEL - TEMPLATES
+    //-----------------------------------------------------------------------------------------------------------------
 
     @GetMapping("/riskModelTemplate/all")
     public ResponseEntity findAll (){
@@ -165,22 +201,32 @@ public class RiskModelTemplateController {
 
     }
 
-     /*
-       MAP Domain to DTO
 
-     */
+
+
+    //-----------------------------------------------------------------------------------------------------------------
+    //                              DTO-> DOMAIN -> DTO Mappers
+    //-----------------------------------------------------------------------------------------------------------------
+
+
+
+    /*
+       MAP Domain to DTO   */
      private RiskModelTemplateDTO mapDomainToDTO (RiskModelTemplate riskModelTemplate) {
 
 
         RiskModelTemplateDTO riskModelTemplateDTO = new RiskModelTemplateDTO();
 
+        // Sort Risk Model Template
+        riskModelTemplate = sortRiskModelTemplate(riskModelTemplate);
+
         DozerBeanMapper mapper = new DozerBeanMapper();
         riskModelTemplateDTO = mapper.map(riskModelTemplate, RiskModelTemplateDTO.class);
 
-         riskModelTemplateDTO.setModelCategoryCode(riskModelTemplate.getModelCategory().getCode());
-         riskModelTemplateDTO.setModelCategoryDescription(riskModelTemplate.getModelCategory().getValue());
+        riskModelTemplateDTO.setModelCategoryCode(riskModelTemplate.getModelCategory().getCode());
+        riskModelTemplateDTO.setModelCategoryDescription(riskModelTemplate.getModelCategory().getValue());
 
-         String computingMethodCode =  riskModelTemplate.getComputingMethod().getCode();
+        String computingMethodCode =  riskModelTemplate.getComputingMethod().getCode();
         riskModelTemplateDTO.setComputingMethodCode(computingMethodCode);
         riskModelTemplateDTO.setComputingMethodDescription(riskModelTemplate.getComputingMethod().getValue());
 
@@ -195,26 +241,12 @@ public class RiskModelTemplateController {
 
 
          for (RiskTypeDTO riskTypeDTO: riskModelTemplateDTO.getRiskTypes() ) {
-
-             //TODO
-             //Sort Risk components by Item Number
-             Set <RiskComponentDTO> riskComponentDTOSet = riskTypeDTO.getRiskComponents();
-                riskComponentDTOSet =  riskComponentDTOSet.stream()
-                     .sorted(Comparator.comparing(RiskComponentDTO::getItemNo))
-                     .collect(Collectors.toSet());
-
-                riskTypeDTO.setRiskComponents(riskComponentDTOSet);
-
-
-
-
              for (RiskComponentDTO riskComponentDTO : riskTypeDTO.getRiskComponents()) {
 
                  RiskComponent riskComponent = riskComponentRepository.getOne(riskComponentDTO.getId());
 
                   riskComponentDTO.setComputingMethodCode(  riskComponent.getComputingMethod().getCode());
                   riskComponentDTO.setComputingMethodDescription(riskComponent.getComputingMethod().getValue());
-
                   riskComponentDTO.setScoreTypeCode(riskComponent.getScoreType().getCode());
                   riskComponentDTO.setScoreTypeDescription(riskComponent.getScoreType().getDescription());
 
@@ -229,21 +261,11 @@ public class RiskModelTemplateController {
                       for (RiskSubFactorDTO riskSubFactorDTO: riskFactorDTO.getRiskSubFactors()) {
                           riskSubFactorDTO.setScoreTypeCode( riskSubFactorRepository.getOne(riskSubFactorDTO.getId()).getScoreTypeCode());
                           riskSubFactorDTO.setScoreTypeDescription( riskSubFactorRepository.getOne(riskSubFactorDTO.getId()).getScoreTypeDescription());
-
                       }
-
                   }
-
              }
 
         }
-
-//
-//        for (RiskRatingModifierDTO riskRatingModifierDTO: riskModelTemplateDTO.getRiskRatingModifiers()) {
-//             riskRatingModifierDTO.setComputingMethodCode(ris);
-//
-//        }
-
 
         return riskModelTemplateDTO;
 
@@ -257,21 +279,10 @@ public class RiskModelTemplateController {
 
         RiskModelTemplate riskModelTemplate = new RiskModelTemplate();
 
-         DozerBeanMapper mapper = new DozerBeanMapper();
+        DozerBeanMapper mapper = new DozerBeanMapper();
         riskModelTemplate = mapper.map(riskModelTemplateDTO, RiskModelTemplate.class);
 
         for (RiskType riskType: riskModelTemplate.getRiskTypes()) {
-
-
-            //TODO
-            //Sort Risk components by Item Number
-            Set <RiskComponent> riskComponentSet = riskType.getRiskComponents();
-            riskComponentSet =  riskComponentSet.stream()
-                    .sorted(Comparator.comparing(RiskComponent::getItemNo))
-                    .collect(Collectors.toSet());
-
-            riskType.setRiskComponents(riskComponentSet);
-
 
             for (RiskComponent riskComponent: riskType.getRiskComponents()) {
 
@@ -283,14 +294,6 @@ public class RiskModelTemplateController {
 
 
                 for (RiskFactor riskFactor: riskComponent.getRiskFactors()) {
-
-                    //TODO
-                    Set <RiskSubFactor> riskSubFactorSet = riskFactor.getRiskSubFactors();
-                    riskSubFactorSet =  riskSubFactorSet.stream()
-                            .sorted(Comparator.comparing(RiskSubFactor::getItemNo))
-                            .collect(Collectors.toSet());
-
-                    riskFactor.setRiskSubFactors(riskSubFactorSet);
 
                     riskFactor.setComputingMethod(computingMethodRepository.findByCode(riskFactor.getComputingMethodCode()));
                     riskFactor.setComputingMethodCode(computingMethodRepository.findByCode(riskFactor.getComputingMethodCode()).getCode());
@@ -304,7 +307,6 @@ public class RiskModelTemplateController {
                             System.out.println(" NULL Risk Sub Factor Weightage:" + riskSubFactor.getDescription());
 
                         }
-
 
                         riskSubFactor.setScoreType(scoreTypeRepository.findByCode(riskSubFactor.getScoreTypeCode()));
                         try {
@@ -324,15 +326,8 @@ public class RiskModelTemplateController {
                             if (riskSubFactorAttribute.getWeightage() == null){
                                 System.out.println(" NULL Risk Sub Factor Attribute Weightage:" + riskSubFactorAttribute.getDescription());
 
-//                                String description = riskSubFactorAttribute.getDescription();
-//                                description.replace("/", "-");
-
-
-                                //riskSubFactorAttribute.setDescription(description);
-
                             }
-                            //riskSubFactorAttribute.set
-                        }
+                                                     }
                     }
                 }
 
@@ -359,19 +354,65 @@ public class RiskModelTemplateController {
         }
 
 
-
-
         riskModelTemplate.setModelCategory(modelCategoryRepository.findByCode(riskModelTemplateDTO.getModelCategoryCode()));
-
         riskModelTemplate.setComputingMethod(computingMethodRepository.findByCode(riskModelTemplateDTO.getComputingMethodCode()));
         riskModelTemplate.setProjectRiskLevel(projectRiskLevelRepository.findByCode(riskModelTemplateDTO.getProjectRiskLevelCode()));
         riskModelTemplate.setProjectType(projectTypeRepository.findByCode(riskModelTemplateDTO.getProjectTypeCode()));
+
+        riskModelTemplate = sortRiskModelTemplate(riskModelTemplate);
 
         return riskModelTemplate;
     }
 
 
 
+
+    private RiskModelTemplate sortRiskModelTemplate (RiskModelTemplate riskModelTemplate) {
+
+
+        for (RiskType riskType: riskModelTemplate.getRiskTypes()) {
+
+            for (RiskComponent riskComponent: riskType.getRiskComponents()) {
+                for (RiskFactor riskFactor: riskComponent.getRiskFactors()) {
+                    for (RiskSubFactor riskSubFactor: riskFactor.getRiskSubFactors()) {
+
+                        // Sort RiskSubFactorAttributes
+                        List<RiskSubFactorAttribute> riskSubFactorAttributes = riskSubFactor.getRiskSubFactorAttributes();
+                        Collections.sort(riskSubFactorAttributes,
+                                                (a, b) -> a.getItemNo().compareTo(b.getItemNo()));
+                        riskSubFactor.setRiskSubFactorAttributes(riskSubFactorAttributes);
+                    }
+
+                    // Sort RiskSubFactors
+                    List<RiskSubFactor> riskSubFactors = riskFactor.getRiskSubFactors();
+                    Collections.sort(riskSubFactors,
+                            (a, b) -> a.getItemNo().compareTo(b.getItemNo()));
+                    riskFactor.setRiskSubFactors(riskSubFactors);
+                }
+
+                //Sort RiskFactors
+                List<RiskFactor> riskFactors = riskComponent.getRiskFactors();
+                Collections.sort(riskFactors,
+                        (a, b) -> a.getItemNo().compareTo(b.getItemNo()));
+
+                riskComponent.setRiskFactors(riskFactors);
+            }
+
+            //Sort RiskComponents
+            List<RiskComponent> riskComponents = riskType.getRiskComponents();
+            Collections.sort(riskComponents,
+                    (a, b) -> a.getItemNo().compareTo(b.getItemNo()));
+            riskType.setRiskComponents(riskComponents);
+        }
+
+        //Sort Risk Types
+        List<RiskType> riskTypes = riskModelTemplate.getRiskTypes();
+        Collections.sort(riskTypes,
+                (a, b) -> a.getItemNo().compareTo(b.getItemNo()));
+        riskModelTemplate.setRiskTypes(riskTypes);
+
+        return riskModelTemplate;
+    }
 
 
 }

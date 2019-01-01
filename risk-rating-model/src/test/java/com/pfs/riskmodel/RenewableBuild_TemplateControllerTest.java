@@ -1,7 +1,6 @@
 package com.pfs.riskmodel;
 
-import com.pfs.riskmodel.Renewable.BuildPhase.RenewableProjectBuildPhaseData;
-import com.pfs.riskmodel.domain.RiskSubFactorAttribute;
+import com.pfs.riskmodel.Templates.Renewable.BuildPhase.RenewableProjectBuildPhaseData;
 import com.pfs.riskmodel.dto.RiskModelTemplateDTO;
 import org.junit.Before;
 import org.junit.Test;

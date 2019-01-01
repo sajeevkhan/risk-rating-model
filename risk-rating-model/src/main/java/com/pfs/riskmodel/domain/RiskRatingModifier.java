@@ -1,10 +1,13 @@
 package com.pfs.riskmodel.domain;
 
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -28,12 +31,25 @@ public class RiskRatingModifier extends AuditModel  {
     private Integer itemNo;
 
 
+    // 0 - subInvestmentGradeCapping
+    // 1 - notchDown
+    private Integer modifierType;
+
+
     @NotNull
     @Size(max = 250)
     private String description;
 
     @NotNull
     private Double score;
+
+
+
+    @Nullable
+    private Boolean subInvestmentGradeCapping;
+
+    @Nullable
+    private Integer numberOfNotchesDown;
 
 
 
@@ -52,7 +68,7 @@ public class RiskRatingModifier extends AuditModel  {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
     @JoinColumn(name="riskRatingModifier__id",referencedColumnName = "id")
-    private Set<RiskRatingModifierAttribute> riskRatingModifierAttributes;
+    private List<RiskRatingModifierAttribute> riskRatingModifierAttributes;
 
 
     public RiskRatingModifierAttribute addRiskRatingModifierAttribute (RiskRatingModifierAttribute riskRatingModifierAttribute) {

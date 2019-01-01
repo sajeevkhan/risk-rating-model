@@ -16,7 +16,7 @@ import javax.validation.constraints.Null;
 @NoArgsConstructor
 @Getter(AccessLevel.PUBLIC)
 @Setter(AccessLevel.PUBLIC)
-public class RiskParentalNotchUpCondition extends AggregateRoot<RiskParentalNotchUpCondition>  {
+public class RiskParentalNotchUpCondition extends AuditModel { //AggregateRoot<RiskParentalNotchUpCondition>  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

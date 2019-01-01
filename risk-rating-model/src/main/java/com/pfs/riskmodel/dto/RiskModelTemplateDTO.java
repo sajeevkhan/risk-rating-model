@@ -7,8 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by sajeev on 17-Dec-18.
@@ -21,6 +20,13 @@ public class RiskModelTemplateDTO {
     private String version;
     private String status;
     private String description;
+
+
+    // 0 - Template
+    // 1 - Project Valuation
+    private Integer modelType;
+
+
 
     private Integer modelCategoryCode;
     private String modelCategoryDescription;
@@ -57,42 +63,56 @@ public class RiskModelTemplateDTO {
      private String computingMethodCode;
      private String computingMethodDescription;
 
-     private Double score;
+
+     private String loanNumber;
+     private String projectName;
+     private Double loanAmountInCrores;
+     private Date ratingDate;
+
+
+    private Double score;
 
 
 
     // Risk Types
-    private Set<RiskTypeDTO> riskTypes;
+    private List<RiskTypeDTO> riskTypes;
 
     public void addRiskTypeDTO (RiskTypeDTO riskTypeDTO ) {
         if (riskTypes == null){
-            riskTypes = new HashSet<>();
+            riskTypes = new ArrayList<>();
         }
         riskTypes.add(riskTypeDTO);
     }
 
 
     // Risk Rating Modifiers
-    private Set<RiskRatingModifierDTO> riskRatingModifiers;
+    private List<RiskRatingModifierDTO> riskRatingModifiers;
 
     public void addRiskRatingModifierDTO (RiskRatingModifierDTO riskRatingModifierDTO) {
         if (riskRatingModifiers == null){
-            riskRatingModifiers = new HashSet<>();
+            riskRatingModifiers = new ArrayList<>();
         }
         riskRatingModifiers.add(riskRatingModifierDTO);
     }
 
 
     // Risk - Parental NotchUp
-    private Set<RiskParentalNotchUpDTO> riskParentalNotchUps;
+    private List<RiskParentalNotchUpDTO> riskParentalNotchUps;
 
     public void addRiskParentalNotchUpModifierDTO (RiskParentalNotchUpDTO riskParentalNotchUpDTO) {
         if (riskParentalNotchUps == null){
-            riskParentalNotchUps = new HashSet<>();
+            riskParentalNotchUps = new ArrayList<>();
         }
         riskParentalNotchUps.add(riskParentalNotchUpDTO);
     }
 
 
+    private List<RiskModelSummaryDTO> riskModelSummaries;
+    public RiskModelSummaryDTO addRiskModelSummaryDTO (RiskModelSummaryDTO riskModelSummaryDTO) {
+
+        this.getRiskModelSummaries().add(riskModelSummaryDTO);
+        return riskModelSummaryDTO;
+
+    }
 
 }

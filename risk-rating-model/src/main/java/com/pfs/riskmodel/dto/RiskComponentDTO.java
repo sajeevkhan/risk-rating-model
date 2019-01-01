@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -30,13 +32,13 @@ public class RiskComponentDTO {
 //    private ScoreType scoreType;
 
 
-    private Set<RiskFactorDTO> riskFactors;
+    private List<RiskFactorDTO> riskFactors;
 
 
     public void addRiskFactorDTO (RiskFactorDTO riskFactorDTO) {
 
         if (riskFactors == null) {
-            riskFactors = new HashSet<>();
+            riskFactors = new ArrayList<>();
         }
 
         this.riskFactors.add(riskFactorDTO);

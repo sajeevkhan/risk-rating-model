@@ -5,11 +5,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import org.hibernate.annotations.Type;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.domain.AbstractAggregateRoot;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -29,27 +32,29 @@ public abstract class AggregateRoot<A extends AbstractAggregateRoot<A>> extends 
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
 //    protected Long id;
+//@Temporal(TemporalType.TIMESTAMP)
+//@Column(name = "created_at", nullable = false, updatable = false)
+//@CreatedDate
+//private Date createdAt;
 
-//    @Version
-//    @JsonIgnore
-//    protected Long version;
+//    @Temporal(TemporalType.TIMESTAMP)
+//    @Column(name = "updated_at", nullable = false)
+//    @LastModifiedDate
+//    private Date updatedAt;
 //
-//    protected LocalDate createdOn;
+//    public Date getCreatedAt() {
+//        return createdAt;
+//    }
 //
-//    protected LocalTime createdAt;
+//    public void setCreatedAt(Date createdAt) {
+//        this.createdAt = createdAt;
+//    }
 //
-//    protected String createdByUserName;
+//    public Date getUpdatedAt() {
+//        return updatedAt;
+//    }
 //
-//    protected LocalDate changedOn;
-//
-//    protected LocalTime changedAt;
-//
-//    protected String changedByUserName;
-
-//    @PrePersist
-//    public void init() {
-//        if (this.id == null) {
-//            this.id = UUID.randomUUID();
-//        }
+//    public void setUpdatedAt(Date updatedAt) {
+//        this.updatedAt = updatedAt;
 //    }
 }

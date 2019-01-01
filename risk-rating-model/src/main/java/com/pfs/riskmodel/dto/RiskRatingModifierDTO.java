@@ -2,8 +2,11 @@ package com.pfs.riskmodel.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.lang.Nullable;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -20,13 +23,17 @@ public class RiskRatingModifierDTO {
     private String computingMethodCode;
     private String computingMethodDescription;
 
+    private Integer modifierType;
+    private Boolean subInvestmentGradeCapping;
+    private Integer numberOfNotchesDown;
 
 
-    private Set<RiskRatingModifierAttributeDTO> riskRatingModifierAttributes;
+
+    private List<RiskRatingModifierAttributeDTO> riskRatingModifierAttributes;
 
     public void addRiskRatingModifierAttribute(RiskRatingModifierAttributeDTO riskRatingModifierAttributeDTO) {
         if (riskRatingModifierAttributes == null){
-            riskRatingModifierAttributes = new HashSet<>();
+            riskRatingModifierAttributes = new ArrayList<>();
         }
         riskRatingModifierAttributes.add(riskRatingModifierAttributeDTO);
     }

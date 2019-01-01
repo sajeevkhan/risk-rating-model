@@ -8,6 +8,7 @@ import org.springframework.lang.Nullable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -46,7 +47,7 @@ public class RiskParentalNotchUpConditionDTO   {
 
 
 
-     private Set<RiskParentalNotchUpConditionDTO> riskParentalConditions;
+     private List<RiskParentalNotchUpConditionDTO> riskParentalConditions;
 
      public RiskParentalNotchUpConditionDTO addRiskSubFactor (RiskParentalNotchUpConditionDTO riskParentalNotchUpConditionDTO) {
 

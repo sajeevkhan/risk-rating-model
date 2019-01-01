@@ -1,17 +1,11 @@
 package com.pfs.riskmodel.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
  import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.math.BigDecimal;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by sajeev on 15-Dec-18.
@@ -61,7 +55,7 @@ public class RiskSubFactor extends AuditModel  {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
     @JoinColumn(name="riskSubFactor__id",referencedColumnName = "id")
-    private Set<RiskSubFactorAttribute> riskSubFactorAttributes;
+    private List<RiskSubFactorAttribute> riskSubFactorAttributes;
 
 
     public RiskSubFactorAttribute addRiskSubFactorAttribute (RiskSubFactorAttribute riskSubFactorAttribute) {

@@ -3,7 +3,9 @@ package com.pfs.riskmodel.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -18,11 +20,11 @@ public class RiskTypeDTO {
     private String description;
     private Double score;
 
-    private Set<RiskComponentDTO> riskComponents;
+    private List<RiskComponentDTO> riskComponents;
 
     public void addRiskComponentDTO (RiskComponentDTO riskComponentDTO) {
         if (riskComponents == null){
-            riskComponents = new HashSet<>();
+            riskComponents = new ArrayList<>();
         }
         riskComponents.add(riskComponentDTO);
     }

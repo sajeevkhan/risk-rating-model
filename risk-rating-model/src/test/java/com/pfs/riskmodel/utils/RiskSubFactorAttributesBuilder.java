@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
  */
 public class RiskSubFactorAttributesBuilder {
 
-    public Set<RiskSubFactorAttributeDTO> buildRiskSubFactorAttributes (Set<RiskAttribute> riskAttributes) {
+    public List<RiskSubFactorAttributeDTO> buildRiskSubFactorAttributes (List<RiskAttribute> riskAttributes) {
 
-        Set<RiskSubFactorAttributeDTO> riskSubFactorAttributes = new HashSet<>();
+        List<RiskSubFactorAttributeDTO> riskSubFactorAttributes = new ArrayList<>();
 
         int i = 1;
         for (RiskAttribute riskAttribute: riskAttributes) {
@@ -30,9 +30,9 @@ public class RiskSubFactorAttributesBuilder {
             i++;
         }
 
-        riskSubFactorAttributes =  riskSubFactorAttributes.stream()
-                                        .sorted(Comparator.comparing(RiskSubFactorAttributeDTO::getItemNo))
-                                        .collect(Collectors.toSet());
+//        riskSubFactorAttributes =  riskSubFactorAttributes.stream()
+//                                        .sorted(Comparator.comparing(RiskSubFactorAttributeDTO::getItemNo))
+//                                        .collect(Collectors.toSet());
 
 
         return riskSubFactorAttributes;

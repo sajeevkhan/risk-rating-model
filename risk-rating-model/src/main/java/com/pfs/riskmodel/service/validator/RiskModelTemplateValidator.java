@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 /**
  * Created by sajeev on 17-Dec-18.
  */
@@ -48,6 +50,12 @@ public class RiskModelTemplateValidator {
         validationResult.setSuccessful(true);
         validationResult.setObject(RiskModelTemplate.class);
 
+        if (riskModelTemplate.getModelType() == null) {
+            validationResult.setAttributeName("RiskModelTemplate.ModelType");
+            validationResult.setValue(null);
+            validationResult.setFailed(true);
+            return validationResult;
+        }
 
         // Validate header attributes
         if (riskModelTemplate.getVersion() == null) {
@@ -56,6 +64,29 @@ public class RiskModelTemplateValidator {
             validationResult.setFailed(true);
             return validationResult;
         }
+
+
+         if (riskModelTemplate.getLoanNumber() == null) {
+            validationResult.setAttributeName("RiskModelTemplate.LoanNumber");
+            validationResult.setValue(null);
+            validationResult.setFailed(true);
+            return validationResult;
+        }
+
+        if (riskModelTemplate.getLoanAmountInCrores() == null) {
+            validationResult.setAttributeName("RiskModelTemplate.LoanAmount");
+            validationResult.setValue(null);
+            validationResult.setFailed(true);
+            return validationResult;
+        }
+
+        if (riskModelTemplate.getRatingDate() == null) {
+            validationResult.setAttributeName("RiskModelTemplate.RatingDate");
+            validationResult.setValue(null);
+            validationResult.setFailed(true);
+            return validationResult;
+        }
+
 
         if (riskModelTemplate.getModelCategory() == null) {
             validationResult.setAttributeName("RiskModelTemplate.ModelCategory");

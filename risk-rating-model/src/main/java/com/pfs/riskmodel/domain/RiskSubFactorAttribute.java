@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Getter(AccessLevel.PUBLIC)
 @Setter(AccessLevel.PUBLIC)
-public class RiskSubFactorAttribute extends AggregateRoot<RiskSubFactorAttribute>  {
+public class RiskSubFactorAttribute extends AuditModel { //AggregateRoot<RiskSubFactorAttribute>  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

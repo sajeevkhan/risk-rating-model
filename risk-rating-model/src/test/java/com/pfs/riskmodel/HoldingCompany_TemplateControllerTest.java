@@ -1,9 +1,6 @@
 package com.pfs.riskmodel;
 
-import com.pfs.riskmodel.AbstractTest;
-import com.pfs.riskmodel.HoldingCompany.HoldingCompanyData;
-import com.pfs.riskmodel.Renewable.BuildPhase.RenewableProjectBuildPhaseData;
-import com.pfs.riskmodel.domain.RiskParentalNotchUp;
+import com.pfs.riskmodel.Templates.HoldingCompany.HoldingCompanyData;
 import com.pfs.riskmodel.dto.RiskModelTemplateDTO;
 import org.junit.Before;
 import org.junit.Test;

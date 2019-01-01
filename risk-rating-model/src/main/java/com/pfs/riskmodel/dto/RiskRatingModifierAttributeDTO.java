@@ -18,7 +18,7 @@ public class RiskRatingModifierAttributeDTO {
      @Column(columnDefinition = "LONGTEXT")
      private String description;
 
-     private Character yesNoIndicator;
+     private Character yesOrNoIndicator;
 
      @Override
      public boolean equals(Object o) {
@@ -29,14 +29,14 @@ public class RiskRatingModifierAttributeDTO {
 
           if (itemNo != null ? !itemNo.equals(that.itemNo) : that.itemNo != null) return false;
           if (description != null ? !description.equals(that.description) : that.description != null) return false;
-          return yesNoIndicator != null ? yesNoIndicator.equals(that.yesNoIndicator) : that.yesNoIndicator == null;
+          return yesOrNoIndicator != null ? yesOrNoIndicator.equals(that.yesOrNoIndicator) : that.yesOrNoIndicator == null;
      }
 
      @Override
      public int hashCode() {
           int result = itemNo != null ? itemNo.hashCode() : 0;
           result = 31 * result + (description != null ? description.hashCode() : 0);
-          result = 31 * result + (yesNoIndicator != null ? yesNoIndicator.hashCode() : 0);
+          result = 31 * result + (yesOrNoIndicator != null ? yesOrNoIndicator.hashCode() : 0);
           return result;
      }
 }

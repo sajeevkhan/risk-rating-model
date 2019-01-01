@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -38,7 +39,7 @@ public class RiskType extends AuditModel  {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
     @JoinColumn(name="riskType__id",referencedColumnName = "id")
-    private Set<RiskComponent> riskComponents;
+    private List<RiskComponent> riskComponents;
 
 
     public RiskComponent addRiskComponent (RiskComponent riskComponent) {

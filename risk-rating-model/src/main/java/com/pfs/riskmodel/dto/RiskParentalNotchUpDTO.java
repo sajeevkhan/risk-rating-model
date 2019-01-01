@@ -11,7 +11,9 @@ import org.springframework.lang.Nullable;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -33,21 +35,21 @@ public class RiskParentalNotchUpDTO {
     private Boolean isParentalNotchUpApplicable;
     private Double  parentalNotchUpScore;
 
-    private Set<RiskSubFactorDTO> riskSubFactors;
+    private List<RiskSubFactorDTO> riskSubFactors;
 
     public void addRiskSubFactorDTO(RiskSubFactorDTO riskSubFactorDTO) {
         if (riskSubFactors == null) {
-            riskSubFactors = new HashSet<>();
+            riskSubFactors = new ArrayList<>();
         }
         riskSubFactors.add(riskSubFactorDTO);
     }
 
 
-    private Set<RiskParentalNotchUpConditionDTO> riskParentalConditions;
+    private List<RiskParentalNotchUpConditionDTO> riskParentalConditions;
     public RiskParentalNotchUpConditionDTO addRiskSubFactor (RiskParentalNotchUpConditionDTO riskParentalNotchUpConditionDTO) {
 
         if (riskParentalConditions == null) {
-            riskParentalConditions = new HashSet<>();
+            riskParentalConditions = new ArrayList<>();
         }
 
         this.riskParentalConditions.add(riskParentalNotchUpConditionDTO);

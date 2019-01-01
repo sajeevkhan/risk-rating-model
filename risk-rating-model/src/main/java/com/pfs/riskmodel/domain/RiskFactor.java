@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -70,7 +71,7 @@ public class RiskFactor extends AuditModel  {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
     @JoinColumn(name="riskFactor__id",referencedColumnName = "id")
-    private Set<RiskSubFactor> riskSubFactors;
+    private List<RiskSubFactor> riskSubFactors;
 
 
     public RiskSubFactor addRiskSubFactor (RiskSubFactor riskSubFactor) {

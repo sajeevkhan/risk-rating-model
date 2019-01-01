@@ -78,8 +78,11 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
         }
 
         String status = "X";
+        // Find Risk Model Tempalates - modelType = 1 ONLY
         List<RiskModelTemplate>  riskModelTemplates =
-                riskModelTemplateRepository.findByProjectTypeAndProjectRiskLevelAndStatus(projectType, projectRiskLevel, status);
+                riskModelTemplateRepository.findByProjectTypeAndProjectRiskLevelAndModelTypeAndStatus(projectType,
+                                                                                          projectRiskLevel, 0,
+                                                                                          status);
 
         if ( riskModelTemplates.size() > 1 ){
             validationResult.setAttributeName("RiskModelTemplate");
@@ -140,9 +143,10 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
 
 
         List<RiskModelTemplate> riskModelTemplatesActive =
-                riskModelTemplateRepository.findByProjectTypeAndProjectRiskLevelAndStatus(
+                riskModelTemplateRepository.findByProjectTypeAndProjectRiskLevelAndModelTypeAndStatus(
                         riskModelTemplate.getProjectType(),
                         riskModelTemplate.getProjectRiskLevel(),
+                        0, //Find Template Models only
                         "X");
 
 

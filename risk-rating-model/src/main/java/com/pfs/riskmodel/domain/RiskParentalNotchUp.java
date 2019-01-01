@@ -6,6 +6,7 @@ import org.springframework.lang.Nullable;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -56,7 +57,7 @@ public class RiskParentalNotchUp extends AuditModel  {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
     @JoinColumn(name="riskType__id",referencedColumnName = "id")
-    private Set<RiskSubFactor> riskSubFactors;
+    private List<RiskSubFactor> riskSubFactors;
 
 
     public RiskSubFactor addRiskSubFactor (RiskSubFactor riskSubFactor) {
@@ -65,9 +66,9 @@ public class RiskParentalNotchUp extends AuditModel  {
     }
 
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
     @JoinColumn(name="riskParentalConditions__id",referencedColumnName = "id")
-    private Set<RiskParentalNotchUpCondition> riskParentalConditions;
+    private List<RiskParentalNotchUpCondition> riskParentalConditions;
 
 
     public RiskParentalNotchUpCondition addRiskSubFactor (RiskParentalNotchUpCondition riskParentalNotchUpCondition) {

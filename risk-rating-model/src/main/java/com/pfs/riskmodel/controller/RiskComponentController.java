@@ -96,6 +96,8 @@ public class RiskComponentController {
     }
 
 
+
+
     @PostMapping("/riskComponent")
     public ResponseEntity create(@RequestBody RiskComponentDTO riskComponentDTO, HttpServletRequest request) {
 
