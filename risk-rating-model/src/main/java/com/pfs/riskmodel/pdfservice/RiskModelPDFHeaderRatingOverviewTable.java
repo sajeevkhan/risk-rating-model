@@ -9,7 +9,7 @@ import com.pfs.riskmodel.domain.RiskType;
 /**
  * Created by sajeev on 03-Jan-19.
  */
-public class RiskModelPDFHeaderRating {
+public class RiskModelPDFHeaderRatingOverviewTable {
 
     public Document buildHeaderRatingTable(   Document doc, RiskModelTemplate riskModelTemplate) throws Exception {
 
@@ -35,7 +35,7 @@ public class RiskModelPDFHeaderRating {
         // First Row - Risk Rating Label
         // First Column - Project Name Text
         PdfPCell projectDetailsCell1 = new PdfPCell();
-        projectDetailsCell1.setBackgroundColor(BaseColor.BLUE.darker());
+        projectDetailsCell1.setBackgroundColor(BaseColor.BLUE.darker().darker().darker().darker());
         projectDetailsCell1.setPhrase(new Phrase("Risk Rating",headerfont));
         projectDetailsCell1.setColspan(3);
         projectDetailsCell1.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -68,17 +68,17 @@ public class RiskModelPDFHeaderRating {
         // Second Row - Risk Rating Label
         // First Column - Rating Type
         projectDetailsCell1 = new PdfPCell();
-        projectDetailsCell1.setBackgroundColor(BaseColor.ORANGE);
+        projectDetailsCell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
         projectDetailsCell1.setPhrase(new Phrase("Project Rating ",valueFont));
 
         // Second Column - Project Score
         projectDetailsCell2 = new PdfPCell();
-        projectDetailsCell2.setBackgroundColor(BaseColor.ORANGE);
+        projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
         projectDetailsCell2.setPhrase(new Phrase(riskModelTemplate.getScore().toString(),valueFont));
 
         // Third Column - Project Grade
         projectDetailsCell3 = new PdfPCell();
-        projectDetailsCell3.setBackgroundColor(BaseColor.ORANGE);
+        projectDetailsCell3.setBackgroundColor(BaseColor.WHITE);
         projectDetailsCell3.setPhrase(new Phrase(riskModelTemplate.getOverallProjectGrade(),valueFont));
 
         projectDetailsTable.addCell(projectDetailsCell1);
@@ -91,17 +91,17 @@ public class RiskModelPDFHeaderRating {
         for (RiskType riskType: riskModelTemplate.getRiskTypes()) {
 
             projectDetailsCell1 = new PdfPCell();
-            projectDetailsCell1.setBackgroundColor(BaseColor.ORANGE);
+            projectDetailsCell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
             projectDetailsCell1.setPhrase(new Phrase(riskType.getDescription(),valueFont));
 
             // Second Column - Project Score
             projectDetailsCell2 = new PdfPCell();
-            projectDetailsCell2.setBackgroundColor(BaseColor.ORANGE);
+            projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
             projectDetailsCell2.setPhrase(new Phrase(riskType.getScore().toString(),valueFont));
 
             // Third Column - Project Grade
             projectDetailsCell3 = new PdfPCell();
-            projectDetailsCell3.setBackgroundColor(BaseColor.ORANGE);
+            projectDetailsCell3.setBackgroundColor(BaseColor.WHITE);
             projectDetailsCell3.setPhrase(new Phrase(riskType.getGrade(),valueFont));
 
             projectDetailsTable.addCell(projectDetailsCell1);
@@ -109,6 +109,44 @@ public class RiskModelPDFHeaderRating {
             projectDetailsTable.addCell(projectDetailsCell3);
             projectDetailsTable.completeRow();
         }
+
+
+
+        // Modified Rating  Row -
+        // First Column - Modified Rating Label
+        projectDetailsCell1 = new PdfPCell();
+        projectDetailsCell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
+        projectDetailsCell1.setPhrase(new Phrase("Modified Rating",valueFont));
+
+        // Second Column - Score Label
+        projectDetailsCell2 = new PdfPCell();
+        projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
+        projectDetailsCell2.setPhrase(new Phrase( riskModelTemplate.getModifiedProjectGrade(),valueFont));
+
+        projectDetailsCell2.setColspan(2);
+
+        projectDetailsTable.addCell(projectDetailsCell1);
+        projectDetailsTable.addCell(projectDetailsCell2);
+        projectDetailsTable.completeRow();
+
+
+
+        // Modified Rating  Row -
+        // First Column - Modified Rating Label
+        projectDetailsCell1 = new PdfPCell();
+        projectDetailsCell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
+        projectDetailsCell1.setPhrase(new Phrase("Overall Rating  (Post Parental Notchup)",valueFont));
+
+        // Second Column - Score Label
+        projectDetailsCell2 = new PdfPCell();
+        projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
+        projectDetailsCell2.setPhrase(new Phrase( riskModelTemplate.getAfterParentalNotchUpGrade(),valueFont));
+
+        projectDetailsCell2.setColspan(2);
+
+        projectDetailsTable.addCell(projectDetailsCell1);
+        projectDetailsTable.addCell(projectDetailsCell2);
+        projectDetailsTable.completeRow();
 
 
         doc.add(projectDetailsTable);

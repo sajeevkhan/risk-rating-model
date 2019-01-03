@@ -78,7 +78,7 @@ public abstract class AbstractITextPdfView extends AbstractView {
 
         protected Document newDocument() {
 
-                return new Document(PageSize.A4);
+                return new Document(PageSize.A4,36, 36, 70, 80);
         }
 
         protected PdfWriter newWriter(Document document, OutputStream os) throws DocumentException {

@@ -11,7 +11,7 @@ import com.pfs.riskmodel.domain.RiskModelTemplate;
 /**
  * Created by sajeev on 03-Jan-19.
  */
-public class RiskModelPDFHeader {
+public class RiskModelPDFHeaderTable {
 
     public Document buildHeader(   Document doc, RiskModelTemplate riskModelTemplate) throws Exception {
 

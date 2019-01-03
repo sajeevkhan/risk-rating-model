@@ -1,20 +1,16 @@
 package com.pfs.riskmodel.pdfservice;
 
 import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.pfs.riskmodel.domain.RiskComponent;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
+import com.pfs.riskmodel.domain.RiskType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Map;
 
 /**
@@ -47,19 +43,41 @@ public class RiskModelPDFBuilder extends AbstractITextPdfView  {
         doc.add(new Paragraph(" "));
 
 
-        RiskModelPDFHeader riskModelPDFHeader = new RiskModelPDFHeader();
-        doc = riskModelPDFHeader.buildHeader(doc, riskModelTemplate);
+        RiskModelPDFHeaderTable riskModelPDFHeaderTable = new RiskModelPDFHeaderTable();
+        doc = riskModelPDFHeaderTable.buildHeader(doc, riskModelTemplate);
 
-        RiskModelPDFHeaderRating riskModelPDFHeaderRating = new RiskModelPDFHeaderRating();
-        doc = riskModelPDFHeaderRating.buildHeaderRatingTable(doc, riskModelTemplate);
+        RiskModelPDFHeaderRatingOverviewTable riskModelPDFHeaderRatingOverviewTable = new RiskModelPDFHeaderRatingOverviewTable();
+        doc = riskModelPDFHeaderRatingOverviewTable.buildHeaderRatingTable(doc, riskModelTemplate);
+
+        RiskModelPDFRiskTypeComponentTable riskModelPDFRiskTypeComponentOverviewTable = new RiskModelPDFRiskTypeComponentTable();
+        doc = riskModelPDFRiskTypeComponentOverviewTable.buildRiskTypeComponentOverview(doc, riskModelTemplate);
 
 
-//        PdfPTable table = new PdfPTable(1);
-//        table.setWidthPercentage(1.0f);
-//        table.setWidths(new float[] {3.0f});
-//        table.setSpacingBefore(10);
-//
-//        doc.add(table);
+        Font parafont = new Font(Font.FontFamily.HELVETICA );
+        parafont.setSize(14);
+        parafont.setStyle(Font.BOLD);
+        parafont.setStyle(Font.UNDERLINE);
+        parafont.setColor(BaseColor.BLUE.darker().darker().darker().darker());
+
+        for (RiskType riskType: riskModelTemplate.getRiskTypes()){
+
+            // Risk Type Desc. BOLD AND UNDERLINED
+            Phrase riskTypeDesc = new Phrase(riskType.getDescription(),parafont);
+            Paragraph riskTypePara = new Paragraph();
+            riskTypePara.setAlignment(Element.ALIGN_CENTER);
+
+            doc.add(new Paragraph(""));
+            doc.add(new Paragraph( riskTypeDesc.getContent().toString()));
+            doc.add(new Paragraph(""));
+
+
+            for (RiskComponent riskComponent: riskType.getRiskComponents()){
+
+                RiskModelPDFComponentTable riskModelPDFComponentTable = new RiskModelPDFComponentTable();
+                riskModelPDFComponentTable.buildRiskComponentTable(doc,riskModelTemplate,riskComponent);
+            }
+
+        }
 
 
     }
