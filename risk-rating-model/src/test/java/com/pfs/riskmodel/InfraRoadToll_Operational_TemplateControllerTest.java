@@ -1,6 +1,6 @@
 package com.pfs.riskmodel;
 
-import com.pfs.riskmodel.Templates.InfraRoadToll.OperationalPhase.InfraRoadToll_OperationalPhaseData;
+import com.pfs.riskmodel.ModelTemplates.InfraRoadToll.OperationalPhase.InfraRoadToll_OperationalPhaseData;
 import com.pfs.riskmodel.dto.RiskModelTemplateDTO;
 import org.junit.Before;
 import org.junit.Test;

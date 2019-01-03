@@ -1,6 +1,6 @@
 package com.pfs.riskmodel;
 
-import com.pfs.riskmodel.Templates.InfraRoadHAM.BuildPhase.InfraRoadHAM_BuildPhaseData;
+import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.BuildPhase.InfraRoadHAM_BuildPhaseData;
 import com.pfs.riskmodel.dto.RiskModelTemplateDTO;
 import org.junit.Before;
 import org.junit.Test;

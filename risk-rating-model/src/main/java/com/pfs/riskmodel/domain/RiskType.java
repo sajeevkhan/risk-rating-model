@@ -1,6 +1,7 @@
 package com.pfs.riskmodel.domain;
 
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -35,6 +36,9 @@ public class RiskType extends AuditModel  {
 
     @NotNull
     private Double score;
+
+    @Nullable
+    private String grade;
 
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )

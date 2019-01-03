@@ -1,10 +1,10 @@
 package com.pfs.riskmodel.ztemp.RiskTypes;
 
-import com.pfs.riskmodel.Templates.Renewable.RiskComponents.RPP_BusinessRiskComponentDTO;
-import com.pfs.riskmodel.Templates.Renewable.RiskComponents.RPP_FinancialRiskRiskComponentDTO;
-import com.pfs.riskmodel.Templates.Renewable.RiskComponents.RPP_ManagementRiskRiskComponentDTO;
+import com.pfs.riskmodel.ModelTemplates.Renewable.RiskComponents.RPP_BusinessRiskComponentDTO;
+import com.pfs.riskmodel.ModelTemplates.Renewable.RiskComponents.RPP_FinancialRiskRiskComponentDTO;
+import com.pfs.riskmodel.ModelTemplates.Renewable.RiskComponents.RPP_ManagementRiskRiskComponentDTO;
 import com.pfs.riskmodel.dto.*;
-import com.pfs.riskmodel.Templates.Renewable.RiskComponents.RPP_IndustryRiskRiskComponentDTO;
+import com.pfs.riskmodel.ModelTemplates.Renewable.RiskComponents.RPP_IndustryRiskRiskComponentDTO;
 
 /**
  * Created by sajeev on 18-Dec-18.

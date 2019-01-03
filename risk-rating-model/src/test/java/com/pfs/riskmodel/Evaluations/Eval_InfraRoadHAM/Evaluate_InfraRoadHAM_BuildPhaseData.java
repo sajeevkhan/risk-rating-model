@@ -1,11 +1,9 @@
 package com.pfs.riskmodel.Evaluations.Eval_InfraRoadHAM;
 
-import com.pfs.riskmodel.Templates.InfraRoadHAM.RiskTypes.InfraRoadHAM_PostProjectImplRiskTypes;
-import com.pfs.riskmodel.Templates.InfraRoadHAM.RiskTypes.InfraRoadHAM_ProjectImplRiskTypes;
-import com.pfs.riskmodel.Templates.InfraTransmission.ParentalNotchUp.InfraTrans_RiskParentalNotchUp;
-import com.pfs.riskmodel.Templates.InfraTransmission.RiskRatingModifiers.InfraTrans_RatingModifierDTO;
-import com.pfs.riskmodel.domain.RiskRatingModifier;
-import com.pfs.riskmodel.domain.RiskRatingModifierAttribute;
+import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.RiskTypes.InfraRoadHAM_PostProjectImplRiskTypes;
+import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.RiskTypes.InfraRoadHAM_ProjectImplRiskTypes;
+import com.pfs.riskmodel.ModelTemplates.InfraTransmission.ParentalNotchUp.InfraTrans_RiskParentalNotchUp;
+import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskRatingModifiers.InfraTrans_RatingModifierDTO;
 import com.pfs.riskmodel.dto.*;
 
 import java.time.Instant;
@@ -44,6 +42,11 @@ public class Evaluate_InfraRoadHAM_BuildPhaseData {
         riskModelTemplateDTO.setComputingMethodCode("03");
         riskModelTemplateDTO.setComputingMethodDescription("Minimum"); //Minimum of PIR and PPIR
         riskModelTemplateDTO.setScore(0D);
+
+        riskModelTemplateDTO.setOverallProjectGrade("");
+        riskModelTemplateDTO.setModifiedProjectGrade("");
+        riskModelTemplateDTO.setAfterParentalNotchUpGrade("");
+        riskModelTemplateDTO.setFinalProjectGrade("");
 
 
 

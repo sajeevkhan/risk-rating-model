@@ -133,14 +133,6 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
 
         //On Creating New Entities, Mark all other entities as Inactive
 
-//        this.findByProjectTypeAndRiskLevel(riskModelTemplate.getProjectType().getCode(),
-//                                           riskModelTemplate.getProjectRiskLevel().getCode());
-//
-//
-//        Map<String, Object> saerchResult = this.findByProjectTypeAndRiskLevel(
-//                riskModelTemplate.getProjectType().getCode(),
-//                riskModelTemplate.getProjectRiskLevel().getCode());
-
 
         List<RiskModelTemplate> riskModelTemplatesActive =
                 riskModelTemplateRepository.findByProjectTypeAndProjectRiskLevelAndModelTypeAndStatus(
@@ -148,9 +140,6 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
                         riskModelTemplate.getProjectRiskLevel(),
                         0, //Find Template Models only
                         "X");
-
-
-        //riskModelTemplateRepository.findByStatus("X");
 
 
         for (RiskModelTemplate riskModelTemplateActive : riskModelTemplatesActive ) {

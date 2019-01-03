@@ -1,6 +1,6 @@
 package com.pfs.riskmodel;
 
-import com.pfs.riskmodel.Templates.InfraTransmission.OperationalPhase.InfraTransmissionOperationalPhaseData;
+import com.pfs.riskmodel.ModelTemplates.InfraTransmission.OperationalPhase.InfraTransmissionOperationalPhaseData;
 import com.pfs.riskmodel.dto.RiskModelTemplateDTO;
 import org.junit.Before;
 import org.junit.Test;

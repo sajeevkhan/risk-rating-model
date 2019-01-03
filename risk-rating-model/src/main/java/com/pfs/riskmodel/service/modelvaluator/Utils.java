@@ -2,6 +2,9 @@ package com.pfs.riskmodel.service.modelvaluator;
 
 import com.pfs.riskmodel.businessconfig.ProjectGrade;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.List;
 
@@ -29,9 +32,10 @@ public class Utils {
     public static Double round(Double score) {
 
 
-        Math.round(score * 100/100);
+        BigDecimal bd = new BigDecimal(Double.toString(score));
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
 
-        return score;
     }
 
     public static ProjectGrade fetchGrade(List<ProjectGrade> projectGrades, Double score) {
@@ -39,7 +43,7 @@ public class Utils {
         ProjectGrade projectGrade = new ProjectGrade();
 
         for (ProjectGrade projectGrade1: projectGrades) {
-            if ( score >= projectGrade1.getFromScore() || score <= projectGrade1.getToScore() ) {
+            if ( score >= projectGrade1.getFromScore() & score <= projectGrade1.getToScore() ) {
                 return projectGrade1;
             }
         }

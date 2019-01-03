@@ -1,8 +1,8 @@
 package com.pfs.riskmodel.Evaluations.Eval_InfraRoadHAM;
 
-import com.pfs.riskmodel.Templates.InfraTransmission.ParentalNotchUp.InfraTrans_RiskParentalNotchUp;
-import com.pfs.riskmodel.Templates.InfraTransmission.RiskRatingModifiers.InfraTrans_RatingModifierDTO;
-import com.pfs.riskmodel.Templates.InfraTransmission.RiskTypes.InfraTrans_PostProjectImplRiskTypes;
+import com.pfs.riskmodel.ModelTemplates.InfraTransmission.ParentalNotchUp.InfraTrans_RiskParentalNotchUp;
+import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskRatingModifiers.InfraTrans_RatingModifierDTO;
+import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskTypes.InfraTrans_PostProjectImplRiskTypes;
 import com.pfs.riskmodel.dto.*;
 
 import java.time.Instant;
@@ -49,6 +49,12 @@ public class Evaluate_InfraRoadHAM_OperationalPhaseData {
         riskModelTemplateDTO.setLoanAmountInCrores(0D);
         riskModelTemplateDTO.setProjectName("ABC Infra. Road HAM Operational Phase");
         riskModelTemplateDTO.setRatingDate(Date.from(Instant.now()));
+
+
+        riskModelTemplateDTO.setOverallProjectGrade("");
+        riskModelTemplateDTO.setModifiedProjectGrade("");
+        riskModelTemplateDTO.setAfterParentalNotchUpGrade("");
+        riskModelTemplateDTO.setFinalProjectGrade("");
 
 
         // RiskType

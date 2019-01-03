@@ -7,6 +7,7 @@ import com.pfs.riskmodel.domain.RiskModelTemplate;
 import com.pfs.riskmodel.domain.RiskRatingModifier;
 import com.pfs.riskmodel.domain.RiskType;
 import com.pfs.riskmodel.service.modelvaluator.Utils;
+import org.springframework.lang.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,18 +44,21 @@ public class InfraRoadHAM_BuildPhase_Valuator {
                ProjectGrade projectGrade = Utils.fetchGrade(InfraRoad_HAM_BuildPhaseGrade.projectGradeList,riskType.getScore());
                projectIRScore = riskType.getScore();
                projectIRGrade = projectGrade.getCommonScaleGrade();
+               riskType.setGrade(projectGrade.getCommonScaleGrade());
             }
 
             if (riskType.getDescription().equals("Infra Road HAM Post Project Implementation Risk Type")) {
                 ProjectGrade projectGrade = Utils.fetchGrade(InfraRoad_HAM_BuildPhaseGrade.projectGradeList,riskType.getScore());
                 postProjectIRScore = riskType.getScore();
                 postProjectIRGrade = projectGrade.getCommonScaleGrade();
+                riskType.setGrade(projectGrade.getCommonScaleGrade());
             }
         }
 
 
         // Build Phase Score = Min of ProjectIR and PostProjectIR
             overallProjectScore = Math.min(projectIRScore, postProjectIRScore);
+            riskModelTemplate.setScore(overallProjectScore);
         //  Build Phase Grade
              ProjectGrade overallProjectGradeObject = Utils.fetchGrade(InfraRoad_HAM_BuildPhaseGrade.projectGradeList,overallProjectScore); //.getCommonScaleGrade();
              overallProjectGrade = overallProjectGradeObject.getCommonScaleGrade();
@@ -173,7 +177,10 @@ public class InfraRoadHAM_BuildPhase_Valuator {
 
         riskModelTemplate.setRiskModelSummaries(riskModelSummaries);
 
-
+        riskModelTemplate.setOverallProjectGrade(overallProjectGrade);
+        riskModelTemplate.setModifiedProjectGrade(modifiedProjectGrade);
+        riskModelTemplate.setAfterParentalNotchUpGrade(afterParentalNotchUpGrade);
+        riskModelTemplate.setFinalProjectGrade(finalProjectGrade);
 
 
 

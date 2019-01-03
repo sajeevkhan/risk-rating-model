@@ -1,9 +1,9 @@
 package com.pfs.riskmodel.Evaluations.Eval_InfraRoadToll;
 
-import com.pfs.riskmodel.Templates.InfraRoadHAM.RiskTypes.InfraRoadHAM_PostProjectImplRiskTypes;
-import com.pfs.riskmodel.Templates.InfraRoadHAM.RiskTypes.InfraRoadHAM_ProjectImplRiskTypes;
-import com.pfs.riskmodel.Templates.InfraTransmission.ParentalNotchUp.InfraTrans_RiskParentalNotchUp;
-import com.pfs.riskmodel.Templates.InfraTransmission.RiskRatingModifiers.InfraTrans_RatingModifierDTO;
+import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.RiskTypes.InfraRoadHAM_PostProjectImplRiskTypes;
+import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.RiskTypes.InfraRoadHAM_ProjectImplRiskTypes;
+import com.pfs.riskmodel.ModelTemplates.InfraTransmission.ParentalNotchUp.InfraTrans_RiskParentalNotchUp;
+import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskRatingModifiers.InfraTrans_RatingModifierDTO;
 import com.pfs.riskmodel.dto.*;
 
 import java.time.Instant;
@@ -35,7 +35,7 @@ public class Evaluate_InfraRoad_Toll_BuildPhaseData {
         riskModelTemplateDTO.setProjectRiskLevelCode("01");
         riskModelTemplateDTO.setProjectRiskLevelDescription("Infrastructure Road TOLL Build Phase");
 
-        riskModelTemplateDTO.setProjectTypeCode("03");
+        riskModelTemplateDTO.setProjectTypeCode("04");
         riskModelTemplateDTO.setProjectTypeDescription("Infrastructure Road TOLL");
 
         riskModelTemplateDTO.setDescription("Infrastructure TOLL Road  Build Phase");
@@ -49,6 +49,11 @@ public class Evaluate_InfraRoad_Toll_BuildPhaseData {
         riskModelTemplateDTO.setLoanAmountInCrores(2000D);
         riskModelTemplateDTO.setProjectName("ABC ROAD Infrastructures - TOLL ROAD Project");
         riskModelTemplateDTO.setRatingDate(Date.from(Instant.now()));
+
+        riskModelTemplateDTO.setOverallProjectGrade("");
+        riskModelTemplateDTO.setModifiedProjectGrade("");
+        riskModelTemplateDTO.setAfterParentalNotchUpGrade("");
+        riskModelTemplateDTO.setFinalProjectGrade("");
 
 
         // RiskType

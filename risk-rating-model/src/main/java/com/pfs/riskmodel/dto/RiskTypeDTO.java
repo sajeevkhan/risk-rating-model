@@ -19,6 +19,7 @@ public class RiskTypeDTO {
     private Integer itemNo;
     private String description;
     private Double score;
+    private String grade;
 
     private List<RiskComponentDTO> riskComponents;
 

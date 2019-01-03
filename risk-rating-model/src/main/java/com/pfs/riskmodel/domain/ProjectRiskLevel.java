@@ -15,9 +15,12 @@ import javax.persistence.Id;
 @Setter
 @ToString
 @EqualsAndHashCode
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+//@NoArgsConstructor(access = AccessLevel.PRIVATE)
+
 @AllArgsConstructor
 public class ProjectRiskLevel extends AggregateRoot<ProjectRiskLevel> {
+    public ProjectRiskLevel() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @Setter
 @ToString
 @EqualsAndHashCode
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 public class ProjectType extends AggregateRoot<ProjectType> {
 

@@ -104,6 +104,15 @@ public class RiskModelTemplate extends AuditModel  {
     @NotNull
     private Double score;
 
+    @Nullable
+    private String overallProjectGrade;
+    @Nullable
+    private String modifiedProjectGrade;
+    @Nullable
+    private String afterParentalNotchUpGrade;
+    @Nullable
+    private String finalProjectGrade;
+
 
     @Nullable
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )

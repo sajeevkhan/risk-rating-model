@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.pfs.riskmodel.domain.RiskModelTemplate;
 import org.springframework.web.servlet.view.AbstractView;
 
 import com.itextpdf.text.Document;
@@ -45,17 +46,26 @@ public abstract class AbstractITextPdfView extends AbstractView {
                 ByteArrayOutputStream baos = createTemporaryOutputStream();
 
                 // Apply preferences and build metadata.
+
                 Document document = newDocument();
                 PdfWriter writer = newWriter(document, baos);
                 prepareWriter(model, writer, request);
                 buildPdfMetadata(model, document, request);
 
+
+                RiskModelTemplate riskModelTemplate = new RiskModelTemplate();
+                riskModelTemplate = (RiskModelTemplate) model.get("RiskModelTemplate");
+
+
                 //Footer
-                PDFFooter event = new PDFFooter();
+
+                PDFFooter event = new PDFFooter( riskModelTemplate.getProjectName(),
+                                                 riskModelTemplate.getLoanAmountInCrores().toString(),
+                        riskModelTemplate.getRatingDate(),
+                        riskModelTemplate.getProjectType().getValue(),
+                        riskModelTemplate.getProjectRiskLevel().getValue());
+
                 writer.setPageEvent(event);
-
-
-
 
                 // Build PDF document.
                 document.open();
@@ -67,6 +77,7 @@ public abstract class AbstractITextPdfView extends AbstractView {
         }
 
         protected Document newDocument() {
+
                 return new Document(PageSize.A4);
         }
 

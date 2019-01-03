@@ -41,8 +41,7 @@ public class RiskTypeEvaluator {
             score =  score + riskComponent.getScore() * riskComponent.getWeightage();
         }
 
-        Math.round(score);
-
+        score = Utils.round(score);
         return score;
     }
 

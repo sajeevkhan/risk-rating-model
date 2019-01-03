@@ -3,6 +3,7 @@ package com.pfs.riskmodel.dto;
 import com.pfs.riskmodel.domain.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -70,7 +71,12 @@ public class RiskModelTemplateDTO {
      private Date ratingDate;
 
 
-    private Double score;
+     private Double score;
+     private String overallProjectGrade;
+     private String modifiedProjectGrade;
+     private String afterParentalNotchUpGrade;
+     private String finalProjectGrade;
+
 
 
 
