@@ -33,10 +33,16 @@ public class InfraTrans_RiskParentalNotchUp {
         riskParentalNotchUpDTO.setIsParentalNotchUpApplicable(true);
         riskParentalNotchUpDTO.setParentalNotchUpScore(0D);
 
+        /*          Condition CATEGORY VALUES
+         0 - Rating of Parent Entity
+         1 - Source of Rating of Parent Firm
+         2 - Nature of Rating of Parent Firm
+         3 - Is Parent's rating at GRADE 10
+         4 - Is Parent's Rating Better Than Borrower's Rating
+      */
 
 
-        // TODO
-        //Notchup Conditions
+         //Notchup Conditions
         List<RiskParentalNotchUpConditionDTO> riskParentalNotchUpConditionDTOS = new ArrayList<>();
 
         // NotchUp Conditions
@@ -47,25 +53,23 @@ public class InfraTrans_RiskParentalNotchUp {
         RiskParentalNotchUpConditionDTO riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
         riskParentalNotchUpConditionDTO.setId(null);
         riskParentalNotchUpConditionDTO.setItemNo(1);
+        riskParentalNotchUpConditionDTO.setCategory(4);
         riskParentalNotchUpConditionDTO.setDescription("The parent’s rating is better than the borrower’s rating");
         riskParentalNotchUpConditionDTO.setValueType('0');
         riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
+        riskParentalNotchUpConditionDTO.setValue(" ");
+        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm(' ');
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 
         riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
         riskParentalNotchUpConditionDTO.setId(null);
         riskParentalNotchUpConditionDTO.setItemNo(2);
+        riskParentalNotchUpConditionDTO.setCategory(3);
         riskParentalNotchUpConditionDTO.setDescription("The borrower’s rating is not GRADE10 (in default)");
         riskParentalNotchUpConditionDTO.setValueType('0');
         riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
-        riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
-
-        riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
-        riskParentalNotchUpConditionDTO.setId(null);
-        riskParentalNotchUpConditionDTO.setItemNo(3);
-        riskParentalNotchUpConditionDTO.setDescription("The notch-up score as a percentage of maximum possible score is higher than 35%.)");
-        riskParentalNotchUpConditionDTO.setValueType('0');
-        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
+        riskParentalNotchUpConditionDTO.setValue(" ");
+        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm(' ');
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 
         riskParentalNotchUpDTO.setRiskParentalConditions(riskParentalNotchUpConditionDTOS);

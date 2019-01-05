@@ -39,6 +39,17 @@ public class RiskParentalNotchUpCondition extends AuditModel { //AggregateRoot<R
     @Getter
     private Character valueType;
 
+    /*
+        0 - Rating of Parent Entity
+        1 - Source of Rating of Parent Firm
+        2 - Nature of Rating of Parent Firm
+        3 - Is Parent's rating at GRADE 10
+        4 - Is Parent's Rating Better Than Borrower's Rating
+     */
+    @Column
+    private Integer category;
+
+
     @Nullable
     @Getter(AccessLevel.PUBLIC)
     private Character yesNoIndicatorValue  ;

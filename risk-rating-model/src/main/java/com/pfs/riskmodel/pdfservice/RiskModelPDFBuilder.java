@@ -31,24 +31,19 @@ public class RiskModelPDFBuilder extends AbstractITextPdfView  {
 
         RiskModelTemplate riskModelTemplate = (RiskModelTemplate) model.get("RiskModelTemplate");
 
-//        doc.add(new Paragraph("Recommended books for Spring framework"));
-//
-//           Path path = Paths.get(ClassLoader.getSystemResource("images/pfs-logo.jpg").toURI());
-//            Image img = Image.getInstance(path.toAbsolutePath().toString());
-//            img.setAbsolutePosition(50,50);
-
-        //doc.add(img);
-
         doc.add(new Paragraph(" "));
         doc.add(new Paragraph(" "));
 
 
+        // Header Table with Loan Details
         RiskModelPDFHeaderTable riskModelPDFHeaderTable = new RiskModelPDFHeaderTable();
         doc = riskModelPDFHeaderTable.buildHeader(doc, riskModelTemplate);
 
+        // Rating Overview Table
         RiskModelPDFHeaderRatingOverviewTable riskModelPDFHeaderRatingOverviewTable = new RiskModelPDFHeaderRatingOverviewTable();
         doc = riskModelPDFHeaderRatingOverviewTable.buildHeaderRatingTable(doc, riskModelTemplate);
 
+        // Risk Component Scores
         RiskModelPDFRiskTypeComponentTable riskModelPDFRiskTypeComponentOverviewTable = new RiskModelPDFRiskTypeComponentTable();
         doc = riskModelPDFRiskTypeComponentOverviewTable.buildRiskTypeComponentOverview(doc, riskModelTemplate);
 
@@ -59,6 +54,7 @@ public class RiskModelPDFBuilder extends AbstractITextPdfView  {
         parafont.setStyle(Font.UNDERLINE);
         parafont.setColor(BaseColor.BLUE.darker().darker().darker().darker());
 
+        // Details
         for (RiskType riskType: riskModelTemplate.getRiskTypes()){
 
             // Risk Type Desc. BOLD AND UNDERLINED
@@ -66,19 +62,26 @@ public class RiskModelPDFBuilder extends AbstractITextPdfView  {
             Paragraph riskTypePara = new Paragraph();
             riskTypePara.setAlignment(Element.ALIGN_CENTER);
 
-            doc.add(new Paragraph(""));
+            doc.add(new Paragraph(" "));
             doc.add(new Paragraph( riskTypeDesc.getContent().toString()));
-            doc.add(new Paragraph(""));
+            doc.add(new Paragraph(" "));
 
-
+            // Component, Factors, Sub Factors and Attribtues
             for (RiskComponent riskComponent: riskType.getRiskComponents()){
 
                 RiskModelPDFComponentTable riskModelPDFComponentTable = new RiskModelPDFComponentTable();
                 riskModelPDFComponentTable.buildRiskComponentTable(doc,riskModelTemplate,riskComponent);
             }
-
         }
 
+
+        // Rating Modifiers
+        RiskModelPDFRiskRatingModifiersTable riskModelPDFRiskRatingModifiersTable = new RiskModelPDFRiskRatingModifiersTable();
+        doc = riskModelPDFRiskRatingModifiersTable.buildRatingModifiers(doc, riskModelTemplate);
+
+        // Parental Notchup
+        RiskModelPDFRiskParentalNotchupTable riskModelPDFRiskParentalNotchupTable = new RiskModelPDFRiskParentalNotchupTable();
+        doc = riskModelPDFRiskParentalNotchupTable.buildParentalNotchup(doc,riskModelTemplate);
 
     }
 

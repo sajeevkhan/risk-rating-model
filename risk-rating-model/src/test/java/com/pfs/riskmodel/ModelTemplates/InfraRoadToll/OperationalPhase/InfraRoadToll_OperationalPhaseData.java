@@ -50,10 +50,10 @@ public class InfraRoadToll_OperationalPhaseData {
         riskModelTemplateDTO.setProjectName("Template Model for Infra Road Toll Operational");
         riskModelTemplateDTO.setRatingDate(Date.from(Instant.now()));
 
-        riskModelTemplateDTO.setOverallProjectGrade("");
-        riskModelTemplateDTO.setModifiedProjectGrade("");
-        riskModelTemplateDTO.setAfterParentalNotchUpGrade("");
-        riskModelTemplateDTO.setFinalProjectGrade("");
+        riskModelTemplateDTO.setOverallProjectGrade(" ");
+        riskModelTemplateDTO.setModifiedProjectGrade(" ");
+        riskModelTemplateDTO.setAfterParentalNotchUpGrade(" ");
+        riskModelTemplateDTO.setFinalProjectGrade(" ");
 
 
 

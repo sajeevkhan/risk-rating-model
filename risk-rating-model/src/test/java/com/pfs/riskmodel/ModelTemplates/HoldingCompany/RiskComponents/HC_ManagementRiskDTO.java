@@ -65,7 +65,7 @@ public class HC_ManagementRiskDTO {
 
 
         // 1.1.1        Risk Sub Factor 1
-        //  ""  Management Integrity - 50%
+        //  ArrayList<>()  Management Integrity - 50%
         RiskSubFactorDTO managementIntegrityRiskSubFactorDTO = new RiskSubFactorDTO();
         managementIntegrityRiskSubFactorDTO.setId(null);
         managementIntegrityRiskSubFactorDTO.setItemNo(1);

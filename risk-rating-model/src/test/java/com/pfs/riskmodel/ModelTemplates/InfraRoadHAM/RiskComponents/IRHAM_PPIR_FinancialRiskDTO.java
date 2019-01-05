@@ -30,7 +30,7 @@ public class IRHAM_PPIR_FinancialRiskDTO {
         List<RiskFactor> riskFactorList = new ArrayList<>();
 
         riskComponentDTO.setId(null);
-        riskComponentDTO.setItemNo(3);
+        riskComponentDTO.setItemNo(2);
         riskComponentDTO.setComputingMethodCode("01");
         riskComponentDTO.setComputingMethodDescription("Weighted");
         riskComponentDTO.setDescription("Financial Risk");

@@ -49,10 +49,10 @@ public class HoldingCompanyData {
         riskModelTemplateDTO.setProjectName("Template Model for Holding Co.");
         riskModelTemplateDTO.setRatingDate(Date.from(Instant.now()));
 
-        riskModelTemplateDTO.setOverallProjectGrade("");
-        riskModelTemplateDTO.setModifiedProjectGrade("");
-        riskModelTemplateDTO.setAfterParentalNotchUpGrade("");
-        riskModelTemplateDTO.setFinalProjectGrade("");
+        riskModelTemplateDTO.setOverallProjectGrade(" ");
+        riskModelTemplateDTO.setModifiedProjectGrade(" ");
+        riskModelTemplateDTO.setAfterParentalNotchUpGrade(" ");
+        riskModelTemplateDTO.setFinalProjectGrade(" ");
 
 
         //Final Holding Company Rating

@@ -6,9 +6,11 @@ import com.pfs.riskmodel.domain.RiskModelSummary;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
 import com.pfs.riskmodel.domain.RiskRatingModifier;
 import com.pfs.riskmodel.domain.RiskType;
+import com.pfs.riskmodel.service.modelvaluator.RiskParentalNotchUpEvaluator;
 import com.pfs.riskmodel.service.modelvaluator.Utils;
 import org.springframework.lang.Nullable;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,12 +32,14 @@ public class InfraRoadHAM_BuildPhase_Valuator {
 
 
           //GRADE
-          String projectIRGrade = "";
-          String postProjectIRGrade = "";
-          String overallProjectGrade = "";
-          String modifiedProjectGrade = "";
-          String afterParentalNotchUpGrade = "";
-          String finalProjectGrade = "";
+          String projectIRGrade = " ";
+          String postProjectIRGrade = " ";
+          String overallProjectGrade = " ";
+          String modifiedProjectGrade = " ";
+          Integer modifiedProjectGradeAsNumber = 0;
+          String afterParentalNotchUpGrade = " ";
+          Integer afterParentNotchupGradeAsNumber;
+          String finalProjectGrade = " ";
 
           // Overall
 
@@ -92,6 +96,7 @@ public class InfraRoadHAM_BuildPhase_Valuator {
             for (ProjectGrade projectGrade: InfraRoad_HAM_BuildPhaseGrade.projectGradeList){
                 if (projectGrade.getItemNo() == itemNumberofModifiedGrade)
                     modifiedProjectGrade = projectGrade.getCommonScaleGrade();
+                    modifiedProjectGradeAsNumber = projectGrade.getGradeAsNumber();
             }
 
         }
@@ -179,8 +184,66 @@ public class InfraRoadHAM_BuildPhase_Valuator {
 
         riskModelTemplate.setOverallProjectGrade(overallProjectGrade);
         riskModelTemplate.setModifiedProjectGrade(modifiedProjectGrade);
+        riskModelTemplate.setModifiedProjectGradeAsNumber(modifiedProjectGradeAsNumber);
+
+
+        // Evaluate Parental NotchUp
+        RiskParentalNotchUpEvaluator riskParentalNotchUpEvaluator = new RiskParentalNotchUpEvaluator();
+
+        Integer numberofNotchesAfterParental =
+                riskParentalNotchUpEvaluator.evaluateParentalNotchup(riskModelTemplate.getRiskParentalNotchUps().get(0),
+                        riskModelTemplate.getProjectRiskLevel().getCode(),
+                        riskModelTemplate.getModifiedProjectGradeAsNumber());
+
+
+        // TODO   - Parental Notcup Cappings ------------------------
+
+
+
+        // Get Modified Project Grade Object
+        ProjectGrade modProjectGrade =  Utils.getProjectGradeByCommonScaleGrade(InfraRoad_HAM_BuildPhaseGrade.projectGradeList,
+                                                                riskModelTemplate.getModifiedProjectGrade());
+
+        modifiedProjectGradeAsNumber = modProjectGrade.getGradeAsNumber();
+
+        afterParentNotchupGradeAsNumber = modifiedProjectGradeAsNumber + numberofNotchesAfterParental;
+
+        ProjectGrade afterParentalNotchUpGradeObject = Utils.getProjectGradeByGradeAsNumber( InfraRoad_HAM_BuildPhaseGrade.projectGradeList,
+                                                                                                 afterParentNotchupGradeAsNumber);
+
+        // Set the Grade after Parental Notchup
+        riskModelTemplate.setAfterParentalNotchUpGrade(afterParentalNotchUpGradeObject.getCommonScaleGrade());
+
         riskModelTemplate.setAfterParentalNotchUpGrade(afterParentalNotchUpGrade);
         riskModelTemplate.setFinalProjectGrade(finalProjectGrade);
+
+        return riskModelTemplate;
+    }
+
+
+
+    public   RiskModelTemplate setGradeAfterParentalNotchup (RiskModelTemplate riskModelTemplate, Integer numberOfNotches) {
+
+
+        ProjectGrade projectGrade = new ProjectGrade();
+
+        String modifiedProjectGrade =  riskModelTemplate.getModifiedProjectGrade();
+
+
+
+        for (RiskType riskType : riskModelTemplate.getRiskTypes()) {
+            if (riskType.getDescription().equals("Infra Road HAM Project Implementation Risk Type")){
+                 projectGrade = Utils.fetchGrade(InfraRoad_HAM_BuildPhaseGrade.projectGradeList,riskType.getScore());
+             }
+
+            if (riskType.getDescription().equals("Infra Road HAM Post Project Implementation Risk Type")) {
+                 projectGrade = Utils.fetchGrade(InfraRoad_HAM_BuildPhaseGrade.projectGradeList,riskType.getScore());
+            }
+        }
+
+
+
+
 
 
 

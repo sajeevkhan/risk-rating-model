@@ -25,5 +25,6 @@ public class ProjectGrade {
     private Double toScore;
     private String gradeCategory;
     private String commonScaleGrade;
+    private Integer gradeAsNumber;
 
 }

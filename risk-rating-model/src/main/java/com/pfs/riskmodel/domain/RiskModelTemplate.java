@@ -108,6 +108,9 @@ public class RiskModelTemplate extends AuditModel  {
     private String overallProjectGrade;
     @Nullable
     private String modifiedProjectGrade;
+
+    private Integer modifiedProjectGradeAsNumber;
+
     @Nullable
     private String afterParentalNotchUpGrade;
     @Nullable

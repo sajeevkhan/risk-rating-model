@@ -57,10 +57,10 @@ public class RenewablesOperationalPhaseData {
         riskModelTemplateDTO.setRatingDate(Date.from(Instant.now()));
 
 
-        riskModelTemplateDTO.setOverallProjectGrade("");
-        riskModelTemplateDTO.setModifiedProjectGrade("");
-        riskModelTemplateDTO.setAfterParentalNotchUpGrade("");
-        riskModelTemplateDTO.setFinalProjectGrade("");
+        riskModelTemplateDTO.setOverallProjectGrade(" ");
+        riskModelTemplateDTO.setModifiedProjectGrade(" ");
+        riskModelTemplateDTO.setAfterParentalNotchUpGrade(" ");
+        riskModelTemplateDTO.setFinalProjectGrade(" ");
 
 
         // Parental NotchUP

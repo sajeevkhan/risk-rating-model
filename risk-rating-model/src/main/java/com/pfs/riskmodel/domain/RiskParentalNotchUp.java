@@ -1,6 +1,8 @@
 package com.pfs.riskmodel.domain;
 
 import lombok.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
@@ -34,20 +36,6 @@ public class RiskParentalNotchUp extends AuditModel  {
     @Column(columnDefinition = "LONGTEXT")
     private String description;
 
-
-//
-//    @Nullable
-//    private String sourceOfRatingOfPaentalNotchUp;
-//    @Nullable
-//    private String obligorRatingGradeOfParentFirm;
-//    @Nullable
-//    private String ratingGradeOfParentEntity;
-//    @Nullable
-//    private Boolean parentRatingBetterOrNot;
-//    @Nullable
-//    private Boolean isBorrowerRatingAtD;
-
-
     @NotNull
     private Boolean isParentalNotchUpApplicable;
 
@@ -65,16 +53,15 @@ public class RiskParentalNotchUp extends AuditModel  {
         return riskSubFactor;
     }
 
+     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+     @JoinColumn(name="riskParentalConditions__id",referencedColumnName = "id")
+     private Set<RiskParentalNotchUpCondition> riskParentalConditions;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
-    @JoinColumn(name="riskParentalConditions__id",referencedColumnName = "id")
-    private List<RiskParentalNotchUpCondition> riskParentalConditions;
 
-
-    public RiskParentalNotchUpCondition addRiskSubFactor (RiskParentalNotchUpCondition riskParentalNotchUpCondition) {
+     public RiskParentalNotchUpCondition addRiskSubFactor (RiskParentalNotchUpCondition riskParentalNotchUpCondition) {
 
         this.riskParentalConditions.add(riskParentalNotchUpCondition);
-        return riskParentalNotchUpCondition;
+         return riskParentalNotchUpCondition;
     }
 
 }

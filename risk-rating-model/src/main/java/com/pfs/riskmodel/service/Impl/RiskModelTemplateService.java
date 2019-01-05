@@ -144,7 +144,7 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
 
         for (RiskModelTemplate riskModelTemplateActive : riskModelTemplatesActive ) {
             if ( riskModelTemplateActive.getId() != createdRiskModelTemplateId ) {
-                riskModelTemplateActive.setStatus("");
+                riskModelTemplateActive.setStatus(" ");
                 riskModelTemplateRepository.save(riskModelTemplateActive);
             }
             }

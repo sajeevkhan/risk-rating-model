@@ -28,12 +28,12 @@ public class InfraRoadHAM_OperationalPhase_Valuator {
 
 
           //GRADE
-          String projectIRGrade = "";
-          String postProjectIRGrade = "";
-          String overallProjectGrade = "";
-          String modifiedProjectGrade = "";
-          String afterParentalNotchUpGrade = "";
-          String finalProjectGrade = "";
+          String projectIRGrade = " ";
+          String postProjectIRGrade = " ";
+          String overallProjectGrade = " ";
+          String modifiedProjectGrade = " ";
+          String afterParentalNotchUpGrade = " ";
+          String finalProjectGrade = " ";
 
         // Risk Type Score
         for (RiskType riskType : riskModelTemplate.getRiskTypes()) {

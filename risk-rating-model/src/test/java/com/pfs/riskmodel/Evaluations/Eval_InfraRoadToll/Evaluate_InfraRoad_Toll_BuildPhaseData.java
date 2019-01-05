@@ -50,10 +50,10 @@ public class Evaluate_InfraRoad_Toll_BuildPhaseData {
         riskModelTemplateDTO.setProjectName("ABC ROAD Infrastructures - TOLL ROAD Project");
         riskModelTemplateDTO.setRatingDate(Date.from(Instant.now()));
 
-        riskModelTemplateDTO.setOverallProjectGrade("");
-        riskModelTemplateDTO.setModifiedProjectGrade("");
-        riskModelTemplateDTO.setAfterParentalNotchUpGrade("");
-        riskModelTemplateDTO.setFinalProjectGrade("");
+        riskModelTemplateDTO.setOverallProjectGrade(" ");
+        riskModelTemplateDTO.setModifiedProjectGrade(" ");
+        riskModelTemplateDTO.setAfterParentalNotchUpGrade(" ");
+        riskModelTemplateDTO.setFinalProjectGrade(" ");
 
 
         // RiskType

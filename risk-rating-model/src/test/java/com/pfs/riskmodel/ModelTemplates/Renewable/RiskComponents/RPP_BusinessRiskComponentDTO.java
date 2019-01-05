@@ -276,7 +276,7 @@ public class RPP_BusinessRiskComponentDTO {
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
-        riskSubFactorAttributeDTO2.setDescription("" +
+        riskSubFactorAttributeDTO2.setDescription(" " +
                 "Tariff determined through competitive bidding/preferential and project’s CoD is beyond the control period of tariff order/PPA; Impact on tariff is not significant");
         riskSubFactorAttributeDTO2.setScore(2.00);
         riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);

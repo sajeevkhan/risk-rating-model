@@ -77,4 +77,6 @@ public class RiskRatingModifier extends AuditModel  {
         return riskRatingModifierAttribute;
     }
 
+
+
 }

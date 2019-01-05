@@ -181,12 +181,12 @@ public class ROP_ManagementRiskDTO {
 //
 //
 //        riskSubFactorAttributes = new ArrayList<>();
-//        riskSubFactorAttributes.add(new RiskAttribute(0D, ""));
-//        riskSubFactorAttributes.add(new RiskAttribute(2D,""));
-//        riskSubFactorAttributes.add(new RiskAttribute(4D,""));
-//        riskSubFactorAttributes.add(new RiskAttribute(6D,""));
-//        riskSubFactorAttributes.add(new RiskAttribute(8D,""));
-//        riskSubFactorAttributes.add(new RiskAttribute(10D,""));
+//        riskSubFactorAttributes.add(new RiskAttribute(0D, ArrayList<>()));
+//        riskSubFactorAttributes.add(new RiskAttribute(2D,ArrayList<>()));
+//        riskSubFactorAttributes.add(new RiskAttribute(4D,ArrayList<>()));
+//        riskSubFactorAttributes.add(new RiskAttribute(6D,ArrayList<>()));
+//        riskSubFactorAttributes.add(new RiskAttribute(8D,ArrayList<>()));
+//        riskSubFactorAttributes.add(new RiskAttribute(10D,ArrayList<>()));
 
 
 

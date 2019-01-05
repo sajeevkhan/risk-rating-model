@@ -101,7 +101,7 @@ public class HC_FinancialRiskDTO {
 
 
         // 1.1.2        Risk Sub Factor 2
-        //  ""  Cash Flow Mismatch  20%
+        //  ArrayList<>()  Cash Flow Mismatch  20%
         RiskSubFactorDTO cashFlowMismatchRiskSubFactorDTO = new RiskSubFactorDTO();
         cashFlowMismatchRiskSubFactorDTO.setId(null);
         cashFlowMismatchRiskSubFactorDTO.setItemNo(2);

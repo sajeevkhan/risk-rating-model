@@ -70,7 +70,7 @@ public class RiskComponentTemplate {
             RiskSubFactorDTO RiskSubFactorDTO = new RiskSubFactorDTO(); //TODO Attr. Name
             RiskSubFactorDTO.setId(null);
             RiskSubFactorDTO.setItemNo(1);  //TODO Item Number
-            RiskSubFactorDTO.setDescription(""); //TODO Desc
+            RiskSubFactorDTO.setDescription(" "); //TODO Desc
             RiskSubFactorDTO.setWeightage(0.00); //TODO  Weightage
             RiskSubFactorDTO.setScore(0D);
             RiskSubFactorDTO.setScoreTypeCode("01");
@@ -80,12 +80,12 @@ public class RiskComponentTemplate {
             // 1.1.1       Risk Sub Factor Attributes
             // -> Four Attributes
             riskSubFactorAttributes = new ArrayList<>(); //TODO - Check Scores
-            riskSubFactorAttributes.add(new RiskAttribute(0D, ""));
-            riskSubFactorAttributes.add(new RiskAttribute(2D,""));
-            riskSubFactorAttributes.add(new RiskAttribute(4D,""));
-            riskSubFactorAttributes.add(new RiskAttribute(6D,""));
-            riskSubFactorAttributes.add(new RiskAttribute(8D,""));
-            riskSubFactorAttributes.add(new RiskAttribute(10D,""));
+            riskSubFactorAttributes.add(new RiskAttribute(0D, " "));
+            riskSubFactorAttributes.add(new RiskAttribute(2D," "));
+            riskSubFactorAttributes.add(new RiskAttribute(4D," "));
+            riskSubFactorAttributes.add(new RiskAttribute(6D," "));
+            riskSubFactorAttributes.add(new RiskAttribute(8D," "));
+            riskSubFactorAttributes.add(new RiskAttribute(10D," "));
 
             //TODO Set Correct Risk Sub Factor Name
             List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);

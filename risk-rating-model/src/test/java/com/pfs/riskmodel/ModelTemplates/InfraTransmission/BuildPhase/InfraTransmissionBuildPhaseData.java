@@ -50,10 +50,10 @@ public class InfraTransmissionBuildPhaseData {
         riskModelTemplateDTO.setProjectName("Template Model for Infra Transmission Build");
         riskModelTemplateDTO.setRatingDate(Date.from(Instant.now()));
 
-        riskModelTemplateDTO.setOverallProjectGrade("");
-        riskModelTemplateDTO.setModifiedProjectGrade("");
-        riskModelTemplateDTO.setAfterParentalNotchUpGrade("");
-        riskModelTemplateDTO.setFinalProjectGrade("");
+        riskModelTemplateDTO.setOverallProjectGrade(" ");
+        riskModelTemplateDTO.setModifiedProjectGrade(" ");
+        riskModelTemplateDTO.setAfterParentalNotchUpGrade(" ");
+        riskModelTemplateDTO.setFinalProjectGrade(" ");
 
         // RiskType
         //Project Risk Rating of Infrastructure Tranmission Operational Phase = Minimum of PIR and PPIR  Scores

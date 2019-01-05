@@ -86,16 +86,17 @@ public class RiskModelEvaluator {
 
 
         // Evaluate Rating Modifiers
+        //   ----Parental Notchup will be evaluated inside this
         for (RiskRatingModifier riskRatingModifier : riskModelTemplate.getRiskRatingModifiers() ){
              riskRatingModifier =  riskRatingModifierEvaluator.evaluateRiskRatingModifier(riskRatingModifier);
         }
 
-        // Evaluate Parental NotchUp //TODO
 
 
         // Evaluate Category Specific Valuation
         CategoricModelValuator categoricModelValuator = new CategoricModelValuator();
         riskModelTemplate = categoricModelValuator.executeCategoricValuation(riskModelTemplate);
+
 
         System.out.println("----------------------------------------------------------------------------------------");
         System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");

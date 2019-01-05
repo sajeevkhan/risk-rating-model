@@ -52,4 +52,28 @@ public class Utils {
 
     }
 
+    public static ProjectGrade getProjectGradeByCommonScaleGrade( List<ProjectGrade> projectGrades, String commonScaleGrade ) {
+
+
+        for (ProjectGrade projectGrade : projectGrades) {
+            if (projectGrade.getCommonScaleGrade().equals(commonScaleGrade)) {
+                return projectGrade;
+            }
+        }
+        return null;
+    }
+
+
+    public static ProjectGrade getProjectGradeByGradeAsNumber(List<ProjectGrade> projectGrades, Integer gradeAsNumber) {
+
+        for (ProjectGrade projectGrade: projectGrades) {
+            if (projectGrade.getGradeAsNumber() == gradeAsNumber) {
+                return projectGrade;
+            }
+        }
+
+        return null;
+    }
+
+
 }

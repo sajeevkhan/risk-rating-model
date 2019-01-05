@@ -21,52 +21,52 @@ public class InfraTransmission_OperationalPhase_RiskModelSummary {
         riskModelSummary.setId(null);
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName("Project Implementation Risk Score");
-        riskModelSummary.setValue("");
+        riskModelSummary.setValue(" ");
         riskModelSummaries.add(riskModelSummary);
 
         riskModelSummary = new RiskModelSummaryDTO(); itemNo++;
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName("Project Implementation Risk Grade");
-        riskModelSummary.setValue("");
+        riskModelSummary.setValue(" ");
         riskModelSummaries.add(riskModelSummary);
 
 
         riskModelSummary = new RiskModelSummaryDTO();itemNo++;
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName("Post Project Implementation Risk Score");
-        riskModelSummary.setValue("");
+        riskModelSummary.setValue(" ");
         riskModelSummaries.add(riskModelSummary);
 
         riskModelSummary = new RiskModelSummaryDTO();itemNo++;
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName("Post Project Implementation Risk Grade");
-        riskModelSummary.setValue("");
+        riskModelSummary.setValue(" ");
         riskModelSummaries.add(riskModelSummary);
 
 
         riskModelSummary = new RiskModelSummaryDTO();itemNo++;
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName("Overall Project Score");
-        riskModelSummary.setValue("");
+        riskModelSummary.setValue(" ");
         riskModelSummaries.add(riskModelSummary);
 
 
         riskModelSummary = new RiskModelSummaryDTO();itemNo++;
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName("Overall Project Grade");
-        riskModelSummary.setValue("");
+        riskModelSummary.setValue(" ");
         riskModelSummaries.add(riskModelSummary);
 
         riskModelSummary = new RiskModelSummaryDTO();itemNo++;
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName("Modified Project Grade");
-        riskModelSummary.setValue("");
+        riskModelSummary.setValue(" ");
         riskModelSummaries.add(riskModelSummary);
 
         riskModelSummary = new RiskModelSummaryDTO();itemNo++;
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName("Grade after Parental Notchup");
-        riskModelSummary.setValue("");
+        riskModelSummary.setValue(" ");
         riskModelSummaries.add(riskModelSummary);
 
 
@@ -74,7 +74,7 @@ public class InfraTransmission_OperationalPhase_RiskModelSummary {
         riskModelSummary = new RiskModelSummaryDTO();itemNo++;
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName("Final Project Grade");
-        riskModelSummary.setValue("");
+        riskModelSummary.setValue(" ");
         riskModelSummaries.add(riskModelSummary);
 
 

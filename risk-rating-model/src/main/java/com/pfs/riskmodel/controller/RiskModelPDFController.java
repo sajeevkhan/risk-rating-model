@@ -40,7 +40,7 @@ public class RiskModelPDFController {
 
 
         Check.notNull(id, "Exception.IdNullFoRead",
-                "Risk Model PDF Document", "");
+                "Risk Model PDF Document", " ");
 
 
 

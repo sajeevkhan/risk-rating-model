@@ -105,7 +105,7 @@ public class PIR_ExecutionRiskDTO {
 
 
         // 1.1.1        Risk Sub Factor 1
-        // Capability of Sponsor as contractor/developer ""  - 20%
+        // Capability of Sponsor as contractor/developer ArrayList<>()  - 20%
         RiskSubFactorDTO capabilityOfSponsorRiskSubFactorDTO = new RiskSubFactorDTO();
         capabilityOfSponsorRiskSubFactorDTO.setId(null);
         capabilityOfSponsorRiskSubFactorDTO.setItemNo(1);

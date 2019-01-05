@@ -43,10 +43,10 @@ public class Evaluate_InfraRoadHAM_BuildPhaseData {
         riskModelTemplateDTO.setComputingMethodDescription("Minimum"); //Minimum of PIR and PPIR
         riskModelTemplateDTO.setScore(0D);
 
-        riskModelTemplateDTO.setOverallProjectGrade("");
-        riskModelTemplateDTO.setModifiedProjectGrade("");
-        riskModelTemplateDTO.setAfterParentalNotchUpGrade("");
-        riskModelTemplateDTO.setFinalProjectGrade("");
+        riskModelTemplateDTO.setOverallProjectGrade(" ");
+        riskModelTemplateDTO.setModifiedProjectGrade(" ");
+        riskModelTemplateDTO.setAfterParentalNotchUpGrade(" ");
+        riskModelTemplateDTO.setFinalProjectGrade(" ");
 
 
 

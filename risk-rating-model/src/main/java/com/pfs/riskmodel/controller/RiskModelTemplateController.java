@@ -313,7 +313,7 @@ public class RiskModelTemplateController {
                             riskSubFactor.setScoreTypeCode(scoreTypeRepository.findByCode(riskSubFactor.getScoreTypeCode()).getCode());
                         }
                         catch ( Exception ex) {
-                            System.out.println("");
+                            System.out.println(" ");
                         }
 
                         if (riskSubFactor.getRiskSubFactorAttributes() == null){
