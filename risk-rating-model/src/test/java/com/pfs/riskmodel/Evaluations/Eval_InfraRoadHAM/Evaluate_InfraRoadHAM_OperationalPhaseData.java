@@ -5,6 +5,7 @@ import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskRatingModifiers.In
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskTypes.InfraTrans_PostProjectImplRiskTypes;
 import com.pfs.riskmodel.dto.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
@@ -74,20 +75,21 @@ public class Evaluate_InfraRoadHAM_OperationalPhaseData {
                     if (riskSubFactorDTO.getScoreTypeCode().equals("02") || riskSubFactorDTO.getScoreTypeCode().equals("03"))
                         riskDeflator = true;
 
+
+                    Integer maxItems = riskSubFactorDTO.getRiskSubFactorAttributes().size();
+
                     for (RiskSubFactorAttributeDTO riskSubFactorAttributeDTO : riskSubFactorDTO.getRiskSubFactorAttributes()) {
 
                         Integer itemNo = 1;
                         if (riskDeflator == true)
                             itemNo = 1;
                         else
-                            itemNo = 2;
+                            itemNo = maxItems;
 
                         if (riskSubFactorAttributeDTO.getItemNo() == itemNo) {
                             riskSubFactorAttributeDTO.setIsSelected(true);
                             break;
                         }
-
-
                     }
                 }
             }

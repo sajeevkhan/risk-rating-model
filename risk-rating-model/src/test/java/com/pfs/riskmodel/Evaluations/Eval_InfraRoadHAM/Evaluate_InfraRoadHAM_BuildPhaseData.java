@@ -90,7 +90,7 @@ public class Evaluate_InfraRoadHAM_BuildPhaseData {
                         if (riskDeflator == true)
                             itemNo = 1;
                         else
-                            itemNo = 2;
+                            itemNo = 3;
 
                         if (riskSubFactorAttributeDTO.getItemNo() == itemNo) {
                             riskSubFactorAttributeDTO.setIsSelected(true);
