@@ -13,7 +13,7 @@ import java.util.Set;
  */
 @Entity
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter(AccessLevel.PUBLIC)

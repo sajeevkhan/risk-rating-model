@@ -42,12 +42,21 @@ public class RiskModelPDFController {
         Check.notNull(id, "Exception.IdNullFoRead",
                 "Risk Model PDF Document", " ");
 
+        RiskModelTemplate riskModelTemplate = new RiskModelTemplate();
+
+        try {
 
 
-        Optional<RiskModelTemplate> riskModelTemplateOptional = riskModelTemplateRepository.findById(id);
-        RiskModelTemplate riskModelTemplate =  riskModelTemplateOptional.get();
+            Optional<RiskModelTemplate> riskModelTemplateOptional = riskModelTemplateRepository.findById(id);
+             riskModelTemplate = riskModelTemplateOptional.get();
+        }
+        catch ( Exception ex) {
+            System.out.println(ex);
+        }
 
-         riskModelTemplate = riskModelTemplateRepository.getOne(id);
+       // riskModelTemplate = riskModelTemplateRepository.findById(id);
+
+         //riskModelTemplate = riskModelTemplateRepository.getOne(id);
 
 
 

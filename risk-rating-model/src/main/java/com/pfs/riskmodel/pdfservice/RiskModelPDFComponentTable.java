@@ -155,7 +155,7 @@ public class RiskModelPDFComponentTable {
                     if (riskSubFactorAttribute.getIsSelected() == true)
                         projectDetailsCell3.addElement(this.getImage());
                     else
-                        projectDetailsCell3.setPhrase(new Phrase("", valueFont));
+                        projectDetailsCell3.setPhrase(new Phrase(" ", valueFont));
 
                     projectDetailsTable.addCell(projectDetailsCell1);
                     projectDetailsTable.addCell(projectDetailsCell2);

@@ -56,7 +56,7 @@ public class RiskModelPDFRiskParentalNotchupTable {
 
         RiskParentalNotchUp riskParentalNotchUp = new RiskParentalNotchUp();
         try {
-             riskParentalNotchUp = riskModelTemplate.getRiskParentalNotchUps().get(0);
+             riskParentalNotchUp = riskModelTemplate.getRiskParentalNotchUps().iterator().next();
 
         }
         catch (Exception ex) {

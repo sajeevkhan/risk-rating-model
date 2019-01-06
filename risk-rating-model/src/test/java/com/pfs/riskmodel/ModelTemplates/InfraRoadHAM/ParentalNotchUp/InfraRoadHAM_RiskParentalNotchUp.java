@@ -34,7 +34,6 @@ public class InfraRoadHAM_RiskParentalNotchUp {
         riskParentalNotchUpDTO.setParentalNotchUpScore(0D);
 
 
-        // TODO
         //Notchup Conditions
         List<RiskParentalNotchUpConditionDTO> riskParentalNotchUpConditionDTOS = new ArrayList<>();
 
@@ -51,7 +50,7 @@ public class InfraRoadHAM_RiskParentalNotchUp {
         riskParentalNotchUpConditionDTO.setValueType('0');
         riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
         riskParentalNotchUpConditionDTO.setValue(" ");
-        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm(' ');
+        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('0');
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 
         riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
@@ -62,7 +61,7 @@ public class InfraRoadHAM_RiskParentalNotchUp {
         riskParentalNotchUpConditionDTO.setValueType('0');
         riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
         riskParentalNotchUpConditionDTO.setValue(" ");
-        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm(' ');
+        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('0');
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 
         riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
@@ -73,10 +72,10 @@ public class InfraRoadHAM_RiskParentalNotchUp {
         riskParentalNotchUpConditionDTO.setValueType('0');
         riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
         riskParentalNotchUpConditionDTO.setValue(" ");
-        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm(' ');
+        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('0');
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 
-        riskParentalNotchUpDTO.setRiskParentalConditions(riskParentalNotchUpConditionDTOS);
+         riskParentalNotchUpDTO.setRiskParentalConditions(riskParentalNotchUpConditionDTOS);
 
 
 
@@ -160,7 +159,7 @@ public class InfraRoadHAM_RiskParentalNotchUp {
 
         List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS3 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
         extentOfMgmtControlRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS3);
-        riskParentalNotchUpDTO.addRiskSubFactorDTO(extentOfMgmtControlRiskSubFactorDTO);
+         riskParentalNotchUpDTO.addRiskSubFactorDTO(extentOfMgmtControlRiskSubFactorDTO);
 
 
         // 1.1.4        Risk Sub Factor 4

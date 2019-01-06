@@ -2,6 +2,7 @@ package com.pfs.riskmodel.domain;
 
 import com.pfs.riskmodel.dto.RiskTypeDTO;
 import lombok.*;
+import org.hibernate.annotations.IndexColumn;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
@@ -17,7 +18,7 @@ import java.util.Set;
  */
 @Entity
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter(AccessLevel.PUBLIC)
@@ -70,7 +71,7 @@ public class RiskModelTemplate extends AuditModel  {
     */
 
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private ProjectRiskLevel projectRiskLevel;
 
     /**
@@ -118,7 +119,8 @@ public class RiskModelTemplate extends AuditModel  {
 
 
     @Nullable
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+    @IndexColumn (name = "INDEX_COL1")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
     @JoinColumn(name="riskTypeParentalNotchUp__id",referencedColumnName = "id")
     private List<RiskParentalNotchUp> riskParentalNotchUps;
 
@@ -131,8 +133,9 @@ public class RiskModelTemplate extends AuditModel  {
 
 
     @Nullable
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
-    @JoinColumn(name="riskRatingModifiers__id",referencedColumnName = "id")
+    @IndexColumn (name = "INDEX_COL2")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+    @JoinColumn(name="riskRatingModifier__id",referencedColumnName = "id")
     private List<RiskRatingModifier> riskRatingModifiers;
 
 
@@ -142,8 +145,8 @@ public class RiskModelTemplate extends AuditModel  {
         return riskRatingModifier;
     }
 
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+    @IndexColumn(name = "INDEX_COL3")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
     @JoinColumn(name="riskModelTemplate__id",referencedColumnName = "id")
     private List<RiskType> riskTypes;
 
@@ -155,8 +158,8 @@ public class RiskModelTemplate extends AuditModel  {
 
     }
 
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+    @IndexColumn (name = "INDEX_COL4")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
     @JoinColumn(name="riskModelSummary__id",referencedColumnName = "id")
     private List<RiskModelSummary> riskModelSummaries;
 

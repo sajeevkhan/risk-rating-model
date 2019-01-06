@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Entity
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter(AccessLevel.PUBLIC)

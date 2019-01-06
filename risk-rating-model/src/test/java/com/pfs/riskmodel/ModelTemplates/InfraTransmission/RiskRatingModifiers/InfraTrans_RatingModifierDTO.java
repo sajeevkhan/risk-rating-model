@@ -42,7 +42,7 @@ public class InfraTrans_RatingModifierDTO {
         riskRatingModifierAttributeDTO.setId(null);
         riskRatingModifierAttributeDTO.setItemNo(1);
         riskRatingModifierAttributeDTO.setDescription("Account of the entity has been into the NPA Category in the past 12 months as on rating date");
-        riskRatingModifierAttributeDTO.setYesOrNoIndicator(' ');
+        riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
 
         riskRatingModifierAttributes.add(riskRatingModifierAttributeDTO);
 
@@ -50,42 +50,42 @@ public class InfraTrans_RatingModifierDTO {
         riskRatingModifierAttributeDTO.setId(null);
         riskRatingModifierAttributeDTO.setItemNo(2);
         riskRatingModifierAttributeDTO.setDescription("Entity has undergone stress restructuring in past 12 months");
-        riskRatingModifierAttributeDTO.setYesOrNoIndicator(' ');
+        riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
         riskRatingModifierAttributes.add(riskRatingModifierAttributeDTO);
 
         riskRatingModifierAttributeDTO = new RiskRatingModifierAttributeDTO();
         riskRatingModifierAttributeDTO.setId(null);
         riskRatingModifierAttributeDTO.setItemNo(3);
         riskRatingModifierAttributeDTO.setDescription("Promoters/Whole-time Directors are currently in the RBI or CIBIL list of defaulters");
-        riskRatingModifierAttributeDTO.setYesOrNoIndicator(' ');
+        riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
         riskRatingModifierAttributes.add(riskRatingModifierAttributeDTO);
 
         riskRatingModifierAttributeDTO = new RiskRatingModifierAttributeDTO();
         riskRatingModifierAttributeDTO.setId(null);
         riskRatingModifierAttributeDTO.setItemNo(4);
         riskRatingModifierAttributeDTO.setDescription("Any group / associated entity has been classified as NPA within last 1 year");
-        riskRatingModifierAttributeDTO.setYesOrNoIndicator(' ');
+        riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
         riskRatingModifierAttributes.add(riskRatingModifierAttributeDTO);
 
         riskRatingModifierAttributeDTO = new RiskRatingModifierAttributeDTO();
         riskRatingModifierAttributeDTO.setId(null);
         riskRatingModifierAttributeDTO.setItemNo(5);
         riskRatingModifierAttributeDTO.setDescription("Account of the entity/group companies is in the SMA 2 Category as on rating date");
-        riskRatingModifierAttributeDTO.setYesOrNoIndicator(' ');
+        riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
         riskRatingModifierAttributes.add(riskRatingModifierAttributeDTO);
 
         riskRatingModifierAttributeDTO = new RiskRatingModifierAttributeDTO();
         riskRatingModifierAttributeDTO.setId(null);
         riskRatingModifierAttributeDTO.setItemNo(6);
         riskRatingModifierAttributeDTO.setDescription("If entity/promoters have been declared fraudulent (proven case) by Government entity/Regulatory authority/CBI/ED/RBI/Banks/Key Stakeholders etc. and Lender views as having material impact on repayment capability");
-        riskRatingModifierAttributeDTO.setYesOrNoIndicator(' ');
+        riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
         riskRatingModifierAttributes.add(riskRatingModifierAttributeDTO);
 
         riskRatingModifierAttributeDTO = new RiskRatingModifierAttributeDTO();
         riskRatingModifierAttributeDTO.setId(null);
         riskRatingModifierAttributeDTO.setItemNo(7);
         riskRatingModifierAttributeDTO.setDescription("Negative Net Worth");
-        riskRatingModifierAttributeDTO.setYesOrNoIndicator(' ');
+        riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
         riskRatingModifierAttributes.add(riskRatingModifierAttributeDTO);
 
         riskRatingModifierDTO1.setRiskRatingModifierAttributes(riskRatingModifierAttributes);

@@ -1,6 +1,7 @@
 package com.pfs.riskmodel.domain;
 
 import lombok.*;
+import org.hibernate.annotations.IndexColumn;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.lang.Nullable;
@@ -16,7 +17,7 @@ import java.util.Set;
  */
 @Entity
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter(AccessLevel.PUBLIC)
@@ -53,15 +54,16 @@ public class RiskParentalNotchUp extends AuditModel  {
         return riskSubFactor;
     }
 
+    @IndexColumn(name = "INDEX_COL")
      @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
      @JoinColumn(name="riskParentalConditions__id",referencedColumnName = "id")
-     private Set<RiskParentalNotchUpCondition> riskParentalConditions;
+    private List<RiskParentalNotchUpCondition> riskParentalConditions;
 
 
-     public RiskParentalNotchUpCondition addRiskSubFactor (RiskParentalNotchUpCondition riskParentalNotchUpCondition) {
+    public RiskParentalNotchUpCondition addRiskSubFactor (RiskParentalNotchUpCondition riskParentalNotchUpCondition) {
 
         this.riskParentalConditions.add(riskParentalNotchUpCondition);
-         return riskParentalNotchUpCondition;
+        return riskParentalNotchUpCondition;
     }
 
 }

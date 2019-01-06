@@ -11,7 +11,7 @@ import javax.validation.constraints.Null;
  */
 @Entity
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter(AccessLevel.PUBLIC)

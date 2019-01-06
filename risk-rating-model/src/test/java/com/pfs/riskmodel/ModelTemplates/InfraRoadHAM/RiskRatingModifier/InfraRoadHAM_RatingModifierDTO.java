@@ -1,8 +1,15 @@
 package com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.RiskRatingModifier;
 
+import com.pfs.riskmodel.domain.RatingModifierComputationMethod;
 import com.pfs.riskmodel.dto.RiskRatingModifierAttributeDTO;
 import com.pfs.riskmodel.dto.RiskRatingModifierDTO;
+import lombok.AccessLevel;
+import lombok.Getter;
+import org.springframework.lang.Nullable;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,15 +30,26 @@ public class InfraRoadHAM_RatingModifierDTO {
 
         riskRatingModifierDTO1.setId(null);
         riskRatingModifierDTO1.setItemNo(1);
+        riskRatingModifierDTO1.setModifierType(0);
         riskRatingModifierDTO1.setDescription("Modifiers considered for capping Final ratings at Sub-Investment grade");
-        riskRatingModifierDTO1.setComputingMethodCode("01");
-        riskRatingModifierDTO1.setComputingMethodDescription("On Select Any One - Notch Down to Sub Investment Grade");
         riskRatingModifierDTO1.setScore(0D);
-
         riskRatingModifierDTO1.setSubInvestmentGradeCapping(false);
         riskRatingModifierDTO1.setNumberOfNotchesDown(0);
-        riskRatingModifierDTO1.setModifierType(0);
+        riskRatingModifierDTO1.setComputingMethodCode("01");
+        riskRatingModifierDTO1.setComputingMethodDescription("On Select Any One - Notch Down to Sub Investment Grade");
 
+//
+//
+//        private Long id;
+//        private Integer itemNo;
+//        private Integer modifierType;
+//        private String description;
+//        private Double score;
+//        private Boolean subInvestmentGradeCapping;
+//        private Integer numberOfNotchesDown;
+//        private RatingModifierComputationMethod computingMethod;
+//        private String computingMethodCode;
+//        private String computingMethodDescription;
 
 
         List<RiskRatingModifierAttributeDTO> riskRatingModifierAttributes = new ArrayList<>();
@@ -111,42 +129,42 @@ public class InfraRoadHAM_RatingModifierDTO {
         riskRatingModifierAttributeDTO.setId(null);
         riskRatingModifierAttributeDTO.setItemNo(1);
         riskRatingModifierAttributeDTO.setDescription("History of legal issues or cases pending appeal with penalty amount above 10% of current EBITDA (Cases of VAT / excise / tax related matters not to be considered) for group entities");
-        riskRatingModifierAttributeDTO.setYesOrNoIndicator(' ');
+        riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
         riskRatingModifierAttributes.add(riskRatingModifierAttributeDTO);
 
         riskRatingModifierAttributeDTO = new RiskRatingModifierAttributeDTO();
         riskRatingModifierAttributeDTO.setId(null);
         riskRatingModifierAttributeDTO.setItemNo(2);
         riskRatingModifierAttributeDTO.setDescription("Account of the entity/group companies has been in the SMA 2 Category in last 12 months");
-        riskRatingModifierAttributeDTO.setYesOrNoIndicator(' ');
+        riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
         riskRatingModifierAttributes.add(riskRatingModifierAttributeDTO);
 
         riskRatingModifierAttributeDTO = new RiskRatingModifierAttributeDTO();
         riskRatingModifierAttributeDTO.setId(null);
         riskRatingModifierAttributeDTO.setItemNo(3);
         riskRatingModifierAttributeDTO.setDescription("Non-compliance with regulatory requirements and / or violations reported by regulators (RBI, SEBI, FEMA) for group entities");
-        riskRatingModifierAttributeDTO.setYesOrNoIndicator(' ');
+        riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
         riskRatingModifierAttributes.add(riskRatingModifierAttributeDTO);
 
         riskRatingModifierAttributeDTO = new RiskRatingModifierAttributeDTO();
         riskRatingModifierAttributeDTO.setId(null);
         riskRatingModifierAttributeDTO.setItemNo(4);
         riskRatingModifierAttributeDTO.setDescription("Adverse liquidity position vis-à-vis loan repayment evidenced by adverse liquidity position arising due to stretched receivables/slow realization of debtors/excess inventory levels/inability to meet large repayment in near term/inability to raise funds from external or internal sources/substantial cash flow mismatch for the entity");
-        riskRatingModifierAttributeDTO.setYesOrNoIndicator(' ');
+        riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
         riskRatingModifierAttributes.add(riskRatingModifierAttributeDTO);
 
         riskRatingModifierAttributeDTO = new RiskRatingModifierAttributeDTO();
         riskRatingModifierAttributeDTO.setId(null);
         riskRatingModifierAttributeDTO.setItemNo(5);
         riskRatingModifierAttributeDTO.setDescription("Adverse Labor Relations for group entities");
-        riskRatingModifierAttributeDTO.setYesOrNoIndicator(' ');
+        riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
         riskRatingModifierAttributes.add(riskRatingModifierAttributeDTO);
 
         riskRatingModifierAttributeDTO = new RiskRatingModifierAttributeDTO();
         riskRatingModifierAttributeDTO.setId(null);
         riskRatingModifierAttributeDTO.setItemNo(6);
         riskRatingModifierAttributeDTO.setDescription("Insufficiency of Insurance Cover as proposed by Independent Engineers for the entity");
-        riskRatingModifierAttributeDTO.setYesOrNoIndicator(' ');
+        riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
         riskRatingModifierAttributes.add(riskRatingModifierAttributeDTO);
 
 
