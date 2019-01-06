@@ -1,9 +1,12 @@
 package com.pfs.riskmodel.Evaluations.Eval_InfraRoadHAM;
 
+import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.ParentalNotchUp.InfraRoadHAM_RiskParentalNotchUp;
 import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.RiskTypes.InfraRoadHAM_PostProjectImplRiskTypes;
 import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.RiskTypes.InfraRoadHAM_ProjectImplRiskTypes;
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.ParentalNotchUp.InfraTrans_RiskParentalNotchUp;
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskRatingModifiers.InfraTrans_RatingModifierDTO;
+import com.pfs.riskmodel.domain.RiskParentalNotchUp;
+import com.pfs.riskmodel.domain.RiskSubFactor;
 import com.pfs.riskmodel.dto.*;
 
 import java.time.Instant;
@@ -159,11 +162,50 @@ public class Evaluate_InfraRoadHAM_BuildPhaseData {
 
         // Parental Notchup
         RiskParentalNotchUpDTO riskParentalNotchUpDTO = new RiskParentalNotchUpDTO();
-        InfraTrans_RiskParentalNotchUp infraTrans_riskParentalNotchUp = new InfraTrans_RiskParentalNotchUp();
-        riskParentalNotchUpDTO = infraTrans_riskParentalNotchUp.getInfraTransmissonParentalNotchup();
+        InfraRoadHAM_RiskParentalNotchUp infraRoadHAM_riskParentalNotchUp = new InfraRoadHAM_RiskParentalNotchUp();
+        riskParentalNotchUpDTO = infraRoadHAM_riskParentalNotchUp.getInfraRoadHAM_ParentalNotchup();
+
+        for (RiskParentalNotchUpConditionDTO riskParentalNotchUpConditionDTO: riskParentalNotchUpDTO.getRiskParentalConditions()){
+
+
+
+            if (riskParentalNotchUpConditionDTO.getItemNo() == 1) {
+                riskParentalNotchUpConditionDTO.setValue("3");
+
+            }
+
+             if (riskParentalNotchUpConditionDTO.getItemNo() == 2) {
+                 riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
+
+             }
+
+            if (riskParentalNotchUpConditionDTO.getItemNo() == 3) {
+                riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
+
+            }
+            if (riskParentalNotchUpConditionDTO.getItemNo() == 4) {
+                riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
+
+            }
+
+
+        for (RiskSubFactorDTO riskSubFactorDTO: riskParentalNotchUpDTO.getRiskSubFactors()) {
+
+             for (RiskSubFactorAttributeDTO riskSubFactorAttributeDTO: riskSubFactorDTO.getRiskSubFactorAttributes()){
+                 if (riskSubFactorAttributeDTO.getItemNo() == 1)
+                     riskSubFactorAttributeDTO.setIsSelected(true);
+             }
+
+        }
+
+
+        }
+
 
         List<RiskParentalNotchUpDTO> riskParentalNotchUpDTOSet = new ArrayList<>();
         riskParentalNotchUpDTOSet.add(riskParentalNotchUpDTO);
+
+
 
         riskModelTemplateDTO.setRiskParentalNotchUps(riskParentalNotchUpDTOSet);
 

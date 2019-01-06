@@ -5,10 +5,24 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.pfs.riskmodel.domain.*;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 /**
  * Created by sajeev on 03-Jan-19.
  */
 public class RiskModelPDFRiskParentalNotchupTable {
+
+    private Image getImg() throws  Exception{
+    Path path = Paths.get(ClassLoader.getSystemResource("images/Tick_Icon.png").toURI());
+    Image img = Image.getInstance(path.toAbsolutePath().toString());
+        img.scalePercent(50f);
+        img.setAlignment(Element.ALIGN_CENTER);
+
+
+        return img;
+}
+
 
     public Document buildParentalNotchup(  Document doc, RiskModelTemplate riskModelTemplate) throws Exception {
 
@@ -26,15 +40,18 @@ public class RiskModelPDFRiskParentalNotchupTable {
         paraFont.setStyle(Font.UNDERLINE);
 
 
+
         // Value Font
         Font valueFont = new Font(Font.FontFamily.HELVETICA);
         valueFont.setColor(BaseColor.BLACK);
         valueFont.setSize(8);
 
+        Paragraph riskParaHeader = new Paragraph("Parental Notchup",paraFont);
+        riskParaHeader.setAlignment(Element.ALIGN_CENTER);
 
-        doc.add(new Paragraph( " ",paraFont));
-        doc.add(new Paragraph( "Parental Notchup.",paraFont));
-        doc.add(new Paragraph( " ",paraFont));
+        doc.add(new Paragraph( " "));
+        doc.add(new Paragraph( riskParaHeader));
+        doc.add(new Paragraph( " "));
 
 
         //Rating Modifiers Table
@@ -120,7 +137,88 @@ public class RiskModelPDFRiskParentalNotchupTable {
             ratingConditonsTable.completeRow();
         }
 
+
+        //Rating Modifiers Table
+        float[] columnWidths1 = {14, 3,3};
+        PdfPTable parentalNotchupSubFactorsTable = new PdfPTable(columnWidths1);
+        parentalNotchupSubFactorsTable.setWidthPercentage(100.0f);
+
+        parentalNotchupSubFactorsTable.setSpacingBefore(10);
+
+
+
+
+        for (RiskSubFactor riskSubFactor : riskParentalNotchUp.getRiskSubFactors()) {
+
+            Integer riskSubFactorSectionNumber = riskSubFactor.getItemNo();
+            // First Row - Risk Factor  Description
+            // First Column - Risk Type Description
+            cell1 = new PdfPCell();
+            cell1.setBackgroundColor(BaseColor.LIGHT_GRAY.darker().darker().darker());
+
+            String sectionNumber= " ";
+
+            sectionNumber =  riskSubFactor.getItemNo().toString();
+
+            cell1.setPhrase(new Phrase(sectionNumber + "  " + riskSubFactor.getDescription(), headerfont));
+            cell1.setColspan(3);
+            cell1.setHorizontalAlignment(Element.ALIGN_LEFT);
+            parentalNotchupSubFactorsTable.addCell(cell1);
+            parentalNotchupSubFactorsTable.completeRow();
+
+            for (RiskSubFactorAttribute riskSubFactorAttribute : riskSubFactor.getRiskSubFactorAttributes()) {
+
+                valueFont.setStyle(Font.NORMAL);
+
+                // Second Row - Risk Component  Column Headings
+                // First Column - Risk Component Label
+                cell1 = new PdfPCell();
+                cell1.setBackgroundColor(BaseColor.WHITE);
+                cell1.setPhrase(new Phrase(riskSubFactorAttribute.getDescription().toString(), valueFont));
+
+                // Second Column - Score Label
+                PdfPCell cell2 = new PdfPCell();
+                cell2.setBackgroundColor(BaseColor.WHITE);
+                cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+                if (riskSubFactorAttribute.getIsSelected()) {
+                    valueFont.setStyle(Font.BOLD);
+                    cell2.setPhrase(new Phrase(riskSubFactorAttribute.getScore().toString(), valueFont));
+                }
+                else
+                    cell2.setPhrase(new Phrase(riskSubFactorAttribute.getScore().toString(), valueFont));
+
+                // Third Column - Score Label
+                PdfPCell cell3 = new PdfPCell();
+                cell3.setBackgroundColor(BaseColor.WHITE);
+                cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell3.setVerticalAlignment(Element.ALIGN_CENTER);
+
+
+                if (riskSubFactorAttribute.getIsSelected() == true){
+                    cell1.setBackgroundColor(BaseColor.YELLOW  );
+                    cell2.setBackgroundColor(BaseColor.YELLOW );
+                    cell3.setBackgroundColor(BaseColor.YELLOW);
+                    cell3.addElement(this.getImg());
+                }
+                else
+                    cell3.setPhrase(new Phrase(" ", valueFont));
+
+                parentalNotchupSubFactorsTable.addCell(cell1);
+                parentalNotchupSubFactorsTable.addCell(cell2);
+                parentalNotchupSubFactorsTable.addCell(cell3);
+
+                parentalNotchupSubFactorsTable.completeRow();
+            }
+
+        }
+
+
+
+
+
         doc.add(ratingConditonsTable);
+        doc.add(parentalNotchupSubFactorsTable);
 
         return doc;
     }

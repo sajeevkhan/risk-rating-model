@@ -63,7 +63,7 @@ public class RiskModelPDFBuilder extends AbstractITextPdfView  {
             riskTypePara.setAlignment(Element.ALIGN_CENTER);
 
             doc.add(new Paragraph(" "));
-            doc.add(new Paragraph( riskTypeDesc.getContent().toString()));
+            doc.add(new Paragraph( riskTypeDesc.getContent().toString(),parafont));
             doc.add(new Paragraph(" "));
 
             // Component, Factors, Sub Factors and Attribtues

@@ -116,7 +116,7 @@ public class IRHAM_PIR_CompletionRiskDTO {
         //  1.2 Key Completion Risks -   60%
         RiskFactorDTO keyCompletionRiskFactorDTO = new RiskFactorDTO();
         keyCompletionRiskFactorDTO.setId(null);
-        keyCompletionRiskFactorDTO.setItemNo(1);
+        keyCompletionRiskFactorDTO.setItemNo(2);
         keyCompletionRiskFactorDTO.setDescription("Key Completion Risks");
         keyCompletionRiskFactorDTO.setWeightage(0.60);
         keyCompletionRiskFactorDTO.setScore(0D);

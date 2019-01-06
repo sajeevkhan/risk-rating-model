@@ -147,17 +147,17 @@ public class IRHAM_PIR_ExecutionRiskDTO {
 
         // 8 Attributes - With or without ISO
         riskSubFactorAttributes = new ArrayList<>(); //TODO - Check Scores
-        riskSubFactorAttributes.add(new RiskAttribute(2D, "With ISO - Timelines were significantly breached during previously undertaken projects viz time over run of 1-2 years"));
         riskSubFactorAttributes.add(new RiskAttribute(0D,"Without ISO - Timelines were significantly breached during previously undertaken projects viz time over run of 1-2 years"));
+        riskSubFactorAttributes.add(new RiskAttribute(2D, "With ISO - Timelines were significantly breached during previously undertaken projects viz time over run of 1-2 years"));
 
-        riskSubFactorAttributes.add(new RiskAttribute(5D,"With ISO - Timelines were Moderately breached during previously undertaken projects viz time over run of 6 months to 1 years"));
         riskSubFactorAttributes.add(new RiskAttribute(3D,"Without ISO - Timelines were Moderately breached during previously undertaken projects viz time over run of 6 months to 1 years"));
+        riskSubFactorAttributes.add(new RiskAttribute(5D,"With ISO - Timelines were Moderately breached during previously undertaken projects viz time over run of 6 months to 1 years"));
 
-        riskSubFactorAttributes.add(new RiskAttribute(8D,"With ISO - Timelines were breached (by a low margin) during previously undertaken projects viz time over run of up to 6 months"));
         riskSubFactorAttributes.add(new RiskAttribute(6D,"Without ISO - Timelines were breached (by a low margin) during previously undertaken projects viz time over run of up to 6 months"));
+        riskSubFactorAttributes.add(new RiskAttribute(8D,"With ISO - Timelines were breached (by a low margin) during previously undertaken projects viz time over run of up to 6 months"));
 
-        riskSubFactorAttributes.add(new RiskAttribute(10D,"With ISO - Timelines were not breached during previously undertaken projects"));
         riskSubFactorAttributes.add(new RiskAttribute(8D,"Without ISO - Timelines were not breached during previously undertaken projects"));
+        riskSubFactorAttributes.add(new RiskAttribute(10D,"With ISO - Timelines were not breached during previously undertaken projects"));
 
 
 

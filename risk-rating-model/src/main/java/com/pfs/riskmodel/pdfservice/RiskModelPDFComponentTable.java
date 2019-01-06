@@ -89,10 +89,10 @@ public class RiskModelPDFComponentTable {
                 // First Row - Risk Factor  Description
                 // First Column - Risk Type Description
                 projectDetailsCell1 = new PdfPCell();
-                projectDetailsCell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
+                projectDetailsCell1.setBackgroundColor(BaseColor.GRAY);
                 projectDetailsCell1.setFixedHeight(15);
 
-                String sectionNumber = riskFactor.toString() + "." +
+                String sectionNumber = riskComponent.getItemNo().toString() + "." +
                                        riskFactor.getItemNo().toString();
 
                 projectDetailsCell1.setPhrase(new Phrase(sectionNumber + "  " + riskFactor.getDescription(), subHeaderFont));
@@ -113,12 +113,12 @@ public class RiskModelPDFComponentTable {
                 String sectionNumber= " ";
 
                 if (riskComponent.getRiskFactors().size() > 1) {
-                    sectionNumber = riskFactor.getItemNo().toString()  + "." +
-                            riskSubFactor.getItemNo().toString() + "." +
+                    sectionNumber = riskComponent.getItemNo().toString()  + "." +
+                            riskFactor.getItemNo().toString() + "." +
                             riskSubFactor.getItemNo().toString();
 
                 } else {
-                    sectionNumber =  riskFactorSectionNumber.toString() + "." +
+                    sectionNumber =  riskComponent.getItemNo().toString() + "." +
                             riskSubFactor.getItemNo().toString() ;
                 }
                 projectDetailsCell1.setPhrase(new Phrase(sectionNumber + "  " + riskSubFactor.getDescription(), headerfont));
@@ -152,10 +152,15 @@ public class RiskModelPDFComponentTable {
                     projectDetailsCell3.setVerticalAlignment(Element.ALIGN_CENTER);
 
 
-                    if (riskSubFactorAttribute.getIsSelected() == true)
+                    if (riskSubFactorAttribute.getIsSelected() == true){
+                        projectDetailsCell1.setBackgroundColor(BaseColor.YELLOW.brighter().brighter() );
+                        projectDetailsCell2.setBackgroundColor(BaseColor.YELLOW.brighter().brighter() );
+                        projectDetailsCell3.setBackgroundColor(BaseColor.YELLOW.brighter().brighter());
                         projectDetailsCell3.addElement(this.getImage());
+                    }
                     else
                         projectDetailsCell3.setPhrase(new Phrase(" ", valueFont));
+
 
                     projectDetailsTable.addCell(projectDetailsCell1);
                     projectDetailsTable.addCell(projectDetailsCell2);

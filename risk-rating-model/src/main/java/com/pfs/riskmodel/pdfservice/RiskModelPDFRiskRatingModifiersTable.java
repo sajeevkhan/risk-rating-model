@@ -32,7 +32,11 @@ public class RiskModelPDFRiskRatingModifiersTable {
         valueFont.setSize(8);
 
 
-        doc.add(new Paragraph( "Rating Modifiers.",paraFont));
+        Paragraph ratingModHeaderPara = new Paragraph("Rating Modifiers", paraFont);
+        ratingModHeaderPara.setAlignment(Element.ALIGN_CENTER);
+        doc.add(new Paragraph(" "));
+        doc.add(ratingModHeaderPara);
+        doc.add(new Paragraph(" "));
 
 
         //Rating Modifiers Table

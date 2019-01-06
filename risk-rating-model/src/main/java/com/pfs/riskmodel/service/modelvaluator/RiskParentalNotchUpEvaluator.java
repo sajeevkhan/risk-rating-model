@@ -41,6 +41,8 @@ public class RiskParentalNotchUpEvaluator {
     public Integer evaluateParentalNotchup(RiskParentalNotchUp riskParentalNotchUp, String riskLevel, Integer borrowerRatingGrade) {
 
 
+        borrowersRating =  borrowerRatingGrade;
+
         // Calculate Maximum Possible Score
         this.calcMaxPossibleScore( riskParentalNotchUp);
 
@@ -159,15 +161,14 @@ public class RiskParentalNotchUpEvaluator {
 
         for (RiskSubFactor riskSubFactor: riskParentalNotchUp.getRiskSubFactors()) {
 
-             Double maxScore = 0D; Double maxWeightage = 0D;
+             Double maxScore = 0D;
              for (RiskSubFactorAttribute riskSubFactorAttribute: riskSubFactor.getRiskSubFactorAttributes()){
                  if (riskSubFactorAttribute.getScore() > maxScore) {
                      maxScore = riskSubFactorAttribute.getScore();
-                     maxWeightage = riskSubFactorAttribute.getWeightage();
                  }
              }
 
-             maxParentalScore =maxParentalScore + maxScore * maxWeightage;
+             maxParentalScore =maxParentalScore + maxScore * riskSubFactor.getWeightage();
         }
 
         maximumScoreParentalNotchup = maxParentalScore;

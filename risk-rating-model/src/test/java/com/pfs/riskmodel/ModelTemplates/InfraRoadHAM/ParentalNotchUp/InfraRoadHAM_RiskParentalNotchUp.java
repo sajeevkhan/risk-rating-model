@@ -41,10 +41,23 @@ public class InfraRoadHAM_RiskParentalNotchUp {
         //        1. The parent’s rating is better than the borrower’s rating.
         //        2. The borrower’s rating is not GRADE10 (in default).
         //        3. The notch-up score as a percentage of maximum possible score is higher than 35%.
+        //
 
         RiskParentalNotchUpConditionDTO riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
+
         riskParentalNotchUpConditionDTO.setId(null);
         riskParentalNotchUpConditionDTO.setItemNo(1);
+        riskParentalNotchUpConditionDTO.setDescription("Rating of Parent Entity");
+        riskParentalNotchUpConditionDTO.setCategory(0);
+        riskParentalNotchUpConditionDTO.setValueType('0');
+        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
+        riskParentalNotchUpConditionDTO.setValue("2");
+        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('0');
+        riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
+
+        riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
+        riskParentalNotchUpConditionDTO.setId(null);
+        riskParentalNotchUpConditionDTO.setItemNo(2);
         riskParentalNotchUpConditionDTO.setDescription("The parent’s rating is better than the borrower’s rating");
         riskParentalNotchUpConditionDTO.setCategory(4);
         riskParentalNotchUpConditionDTO.setValueType('0');
@@ -55,7 +68,7 @@ public class InfraRoadHAM_RiskParentalNotchUp {
 
         riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
         riskParentalNotchUpConditionDTO.setId(null);
-        riskParentalNotchUpConditionDTO.setItemNo(2);
+        riskParentalNotchUpConditionDTO.setItemNo(3);
         riskParentalNotchUpConditionDTO.setDescription("The borrower’s rating is not GRADE10 (in default)");
         riskParentalNotchUpConditionDTO.setCategory(3);
         riskParentalNotchUpConditionDTO.setValueType('0');
@@ -66,7 +79,7 @@ public class InfraRoadHAM_RiskParentalNotchUp {
 
         riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
         riskParentalNotchUpConditionDTO.setId(null);
-        riskParentalNotchUpConditionDTO.setItemNo(3);
+        riskParentalNotchUpConditionDTO.setItemNo(4);
         riskParentalNotchUpConditionDTO.setCategory(3);
         riskParentalNotchUpConditionDTO.setDescription("The notch-up score as a percentage of maximum possible score is higher than 35%.)");
         riskParentalNotchUpConditionDTO.setValueType('0');

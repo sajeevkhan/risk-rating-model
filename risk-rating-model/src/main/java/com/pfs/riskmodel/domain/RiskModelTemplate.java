@@ -120,7 +120,7 @@ public class RiskModelTemplate extends AuditModel  {
 
     @Nullable
     @IndexColumn (name = "INDEX_COL1")
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
     @JoinColumn(name="riskTypeParentalNotchUp__id",referencedColumnName = "id")
     private List<RiskParentalNotchUp> riskParentalNotchUps;
 
@@ -134,7 +134,7 @@ public class RiskModelTemplate extends AuditModel  {
 
     @Nullable
     @IndexColumn (name = "INDEX_COL2")
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
     @JoinColumn(name="riskRatingModifier__id",referencedColumnName = "id")
     private List<RiskRatingModifier> riskRatingModifiers;
 
@@ -146,7 +146,7 @@ public class RiskModelTemplate extends AuditModel  {
     }
 
     @IndexColumn(name = "INDEX_COL3")
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
     @JoinColumn(name="riskModelTemplate__id",referencedColumnName = "id")
     private List<RiskType> riskTypes;
 
@@ -159,7 +159,7 @@ public class RiskModelTemplate extends AuditModel  {
     }
 
     @IndexColumn (name = "INDEX_COL4")
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
     @JoinColumn(name="riskModelSummary__id",referencedColumnName = "id")
     private List<RiskModelSummary> riskModelSummaries;
 
