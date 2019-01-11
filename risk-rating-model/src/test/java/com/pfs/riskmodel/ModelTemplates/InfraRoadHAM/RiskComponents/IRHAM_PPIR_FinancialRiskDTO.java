@@ -40,6 +40,7 @@ public class IRHAM_PPIR_FinancialRiskDTO {
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.40D);
 
+        riskComponentDTO.setIsApplicable(true);
 
         // 1.1 Financial Risk Factor
         // No Concrete Risk Factors - Therefore a dummy Risk Factor called "Financial Risk Factor" is added

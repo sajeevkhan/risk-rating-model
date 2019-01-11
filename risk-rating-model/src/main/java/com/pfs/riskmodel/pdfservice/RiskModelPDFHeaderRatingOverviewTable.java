@@ -65,27 +65,6 @@ public class RiskModelPDFHeaderRatingOverviewTable {
         projectDetailsTable.completeRow();
 
 
-        // Second Row - Risk Rating Label
-        // First Column - Rating Type
-        projectDetailsCell1 = new PdfPCell();
-        projectDetailsCell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
-        projectDetailsCell1.setPhrase(new Phrase("Project Rating ",valueFont));
-
-        // Second Column - Project Score
-        projectDetailsCell2 = new PdfPCell();
-        projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
-        projectDetailsCell2.setPhrase(new Phrase(riskModelTemplate.getScore().toString(),valueFont));
-
-        // Third Column - Project Grade
-        projectDetailsCell3 = new PdfPCell();
-        projectDetailsCell3.setBackgroundColor(BaseColor.WHITE);
-        projectDetailsCell3.setPhrase(new Phrase(riskModelTemplate.getOverallProjectGrade(),valueFont));
-
-        projectDetailsTable.addCell(projectDetailsCell1);
-        projectDetailsTable.addCell(projectDetailsCell2);
-        projectDetailsTable.addCell(projectDetailsCell3);
-        projectDetailsTable.completeRow();
-
 
         // Risk Types Score and Grade
         for (RiskType riskType: riskModelTemplate.getRiskTypes()) {
@@ -110,6 +89,28 @@ public class RiskModelPDFHeaderRatingOverviewTable {
             projectDetailsTable.completeRow();
         }
 
+
+
+        // Project Rating Row
+        // First Column - Rating Type
+        projectDetailsCell1 = new PdfPCell();
+        projectDetailsCell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
+        projectDetailsCell1.setPhrase(new Phrase("Project Rating ",valueFont));
+
+        // Second Column - Project Score
+        projectDetailsCell2 = new PdfPCell();
+        projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
+        projectDetailsCell2.setPhrase(new Phrase(riskModelTemplate.getScore().toString(),valueFont));
+
+        // Third Column - Project Grade
+        projectDetailsCell3 = new PdfPCell();
+        projectDetailsCell3.setBackgroundColor(BaseColor.WHITE);
+        projectDetailsCell3.setPhrase(new Phrase(riskModelTemplate.getOverallProjectGrade(),valueFont));
+
+        projectDetailsTable.addCell(projectDetailsCell1);
+        projectDetailsTable.addCell(projectDetailsCell2);
+        projectDetailsTable.addCell(projectDetailsCell3);
+        projectDetailsTable.completeRow();
 
 
         // Modified Rating  Row -

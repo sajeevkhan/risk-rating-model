@@ -39,6 +39,7 @@ public class IRToll_PPIR_FinancialRiskDTO {
         riskComponentDTO.setScoreTypeCode("01");
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.40D);
+        riskComponentDTO.setIsApplicable(true);
 
 
         // 1.1 Financial Risk Factor

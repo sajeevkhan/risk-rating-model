@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by sajeev on 18-Dec-18.
  */
-public class InfraRoad_Toll_ModelControllerTest extends AbstractTest {
+public class EVAL_InfraRoad_Toll_BUILD_ModelControllerTest extends AbstractTest {
 
     @Override
     @Before
@@ -25,17 +25,18 @@ public class InfraRoad_Toll_ModelControllerTest extends AbstractTest {
 
 
     @Test
-    public void evaluate_INFRA_ROAD_HAM () throws Exception {
+    public void evaluate_INFRA_ROAD_TOLL () throws Exception {
         String uri = "/api/riskModel";
 
 
 
         RiskModelTemplateDTO riskModelTemplateDTO = new RiskModelTemplateDTO();
 
-        Evaluate_InfraRoad_Toll_BuildPhaseData evaluate_infraRoadHAM_buildPhaseData = new Evaluate_InfraRoad_Toll_BuildPhaseData() ;
+        Evaluate_InfraRoad_Toll_BuildPhaseData evaluate_infraRoad_toll_buildPhaseData =
+                new Evaluate_InfraRoad_Toll_BuildPhaseData() ;
 
 
-        riskModelTemplateDTO = evaluate_infraRoadHAM_buildPhaseData.getInfraRoad_Toll_BuildPhaseData();
+        riskModelTemplateDTO = evaluate_infraRoad_toll_buildPhaseData.getInfraRoad_Toll_BuildPhaseData();
 
         String inputJson = super.mapToJson(riskModelTemplateDTO);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
@@ -47,6 +48,8 @@ public class InfraRoad_Toll_ModelControllerTest extends AbstractTest {
         int status = mvcResult.getResponse().getStatus();
         assertEquals(200, status);
         String content = mvcResult.getResponse().getContentAsString();
+
+        System.out.println(content);
 
         //String jsonOutput = mapToJSON(content);
 

@@ -44,6 +44,7 @@ public class IRToll_PPIR_ManagementRiskDTO {
         riskComponentDTO.setScoreTypeCode("01");
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.10D);
+        riskComponentDTO.setIsApplicable(true);
 
         // 1.1 Management Risk Factor
         //  No Concrete Risk Factors - Therefore a dummy Risk Factor called "Management Risk Factor" is added

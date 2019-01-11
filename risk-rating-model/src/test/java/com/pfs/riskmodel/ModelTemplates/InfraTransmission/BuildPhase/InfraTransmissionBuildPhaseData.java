@@ -58,15 +58,17 @@ public class InfraTransmissionBuildPhaseData {
         // RiskType
         //Project Risk Rating of Infrastructure Tranmission Operational Phase = Minimum of PIR and PPIR  Scores
 
-        // Post Project Impl. Risk Types
-        InfraTrans_PostProjectImplRiskTypes infraTransPostProjectImplRiskTypes = new InfraTrans_PostProjectImplRiskTypes();
-        RiskTypeDTO postProjectImplRiskTypeDTO = infraTransPostProjectImplRiskTypes.buildPostProjectImplRiskTypes();
 
         // Project Impl. Risk Types
         InfraTrans_ProjectImplRiskTypes infraTransProjectImplRiskTypes = new InfraTrans_ProjectImplRiskTypes();
         RiskTypeDTO projectImplRiskTypeDTO = infraTransProjectImplRiskTypes.buildProjectImplRiskTypes();
+        riskModelTemplateDTO.addRiskTypeDTO(projectImplRiskTypeDTO);
 
 
+
+        // Post Project Impl. Risk Types
+        InfraTrans_PostProjectImplRiskTypes infraTransPostProjectImplRiskTypes = new InfraTrans_PostProjectImplRiskTypes();
+        RiskTypeDTO postProjectImplRiskTypeDTO = infraTransPostProjectImplRiskTypes.buildPostProjectImplRiskTypes();
         riskModelTemplateDTO.addRiskTypeDTO(postProjectImplRiskTypeDTO);
 
 

@@ -15,7 +15,8 @@ public class CheckServiceResult {
 
         if (validationResult.isFailed()) {
 
-            Check.raiseError( validationResult.getObject(), "Validation.Error", validationResult.getAttributeName(), validationResult.getValue()   );
+            Check.raiseError( validationResult.getObject(), "Validation.Error",
+                                validationResult.getAttributeName(), validationResult.getValue()   );
 
 
         }

@@ -27,6 +27,8 @@ public class RP_ExecutionRiskDTO {
         executionRiskRiskComponentDTO.setScoreTypeDescription("Normal");
         executionRiskRiskComponentDTO.setScore(0D);
 
+        executionRiskRiskComponentDTO.setIsApplicable(true);
+
         //                       Risk Type 1- Risk Component 2 - Risk Factor 1
         //2.1                             Execution Risk -> Construction Risk
 
@@ -198,7 +200,6 @@ public class RP_ExecutionRiskDTO {
         complexityOfProjectRiskSubFactorDTO.setScoreTypeDescription("Normal");
 
 
-
         //                      Risk Type 1 - Risk Component 2 - Risk Factor 2 - Risk SubFactor 3 -> Risk Sub Factor Attributes
         //                      Execution Risk  -> Construction Risk -> Complexity of the Project-> Attributes
         // 2.1.3 -> Five Attributes
@@ -246,21 +247,20 @@ public class RP_ExecutionRiskDTO {
         complexityOfProjectRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO3);
         complexityOfProjectRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO4);
         complexityOfProjectRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO5);
-        complexityOfProjectRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO6);
 
 
 
 
         //                       Risk Type 1 - Risk Component 2 - Risk Factor 4 - Risk SubFactor
         //2.1.4                         Execution Risk  -> Construction Risk -> Safeguards in Contract
-        RiskSubFactorDTO safeguarfsInContractRiskSubFactorDTO = new RiskSubFactorDTO();
-        safeguarfsInContractRiskSubFactorDTO.setId(null);
-        safeguarfsInContractRiskSubFactorDTO.setItemNo(4);
-        safeguarfsInContractRiskSubFactorDTO.setDescription("Safeguards in Contract");
-        safeguarfsInContractRiskSubFactorDTO.setWeightage(0.08); //8%
-        safeguarfsInContractRiskSubFactorDTO.setScore(0D);
-        safeguarfsInContractRiskSubFactorDTO.setScoreTypeCode("01");
-        safeguarfsInContractRiskSubFactorDTO.setScoreTypeDescription("Normal");
+        RiskSubFactorDTO safeguardsInContractRiskSubFactorDTO = new RiskSubFactorDTO();
+        safeguardsInContractRiskSubFactorDTO.setId(null);
+        safeguardsInContractRiskSubFactorDTO.setItemNo(4);
+        safeguardsInContractRiskSubFactorDTO.setDescription("Safeguards in Contract");
+        safeguardsInContractRiskSubFactorDTO.setWeightage(0.08); //8%
+        safeguardsInContractRiskSubFactorDTO.setScore(0D);
+        safeguardsInContractRiskSubFactorDTO.setScoreTypeCode("01");
+        safeguardsInContractRiskSubFactorDTO.setScoreTypeDescription("Normal");
 
 
         //                      Risk Type 1 - Risk Component 2 - Risk Factor 2 - Risk SubFactor 3 -> Risk Sub Factor Attributes
@@ -302,20 +302,20 @@ public class RP_ExecutionRiskDTO {
         riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
 
-        riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
-        riskSubFactorAttributeDTO5.setId(null);
-        riskSubFactorAttributeDTO5.setItemNo(5);
-        riskSubFactorAttributeDTO5.setDescription("The contract ensures very high level of safeguards");
-        riskSubFactorAttributeDTO5.setScore(10.00D);
-        riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
+        riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
+        riskSubFactorAttributeDTO6.setId(null);
+        riskSubFactorAttributeDTO6.setItemNo(6);
+        riskSubFactorAttributeDTO6.setDescription("The contract ensures very high level of safeguards");
+        riskSubFactorAttributeDTO6.setScore(10.00D);
+        riskSubFactorAttributeDTO6.setWeightage(00D);riskSubFactorAttributeDTO6.setIsSelected(false);
 
         //Collect RiskSubFactorAttributes
-        safeguarfsInContractRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO1);
-        safeguarfsInContractRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO2);
-        safeguarfsInContractRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO3);
-        safeguarfsInContractRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO4);
-        safeguarfsInContractRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO5);
-        safeguarfsInContractRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO6);
+        safeguardsInContractRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO1);
+        safeguardsInContractRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO2);
+        safeguardsInContractRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO3);
+        safeguardsInContractRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO4);
+        safeguardsInContractRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO5);
+        safeguardsInContractRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO6);
 
 
         //                       Risk Type 1 - Risk Component 2 - Risk Factor 5 - Risk SubFactor
@@ -373,6 +373,7 @@ public class RP_ExecutionRiskDTO {
         constructionRiskRiskFactorDTO.addRiskSubFactorDTO(capabilityOfSponsorRiskSubFactorDTO);
         constructionRiskRiskFactorDTO.addRiskSubFactorDTO(capabilityOfContractorRiskSubFactorDTO);
         constructionRiskRiskFactorDTO.addRiskSubFactorDTO(complexityOfProjectRiskSubFactorDTO);
+        constructionRiskRiskFactorDTO.addRiskSubFactorDTO(safeguardsInContractRiskSubFactorDTO);
         constructionRiskRiskFactorDTO.addRiskSubFactorDTO(qualityOfEquipmentRiskSubFactorDTO);
 
         // Collect RiskFactors into Risk Components

@@ -34,14 +34,16 @@ public class ROP_FinancialRiskDTO {
 
         riskComponentDTO.setId(null);
         riskComponentDTO.setItemNo(2);
-        riskComponentDTO.setComputingMethodCode("01");
-        riskComponentDTO.setComputingMethodDescription("Weighted");
+        riskComponentDTO.setComputingMethodCode("05");
+        riskComponentDTO.setComputingMethodDescription("Equals");
         riskComponentDTO.setDescription("Financial Risk");
         riskComponentDTO.setScoreTypeDescription("01");
         riskComponentDTO.setScoreTypeCode("01");
         riskComponentDTO.setScoreTypeDescription("Normal");
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.32D);
+
+        riskComponentDTO.setIsApplicable(true);
 
         /*
          --------------------------    Risk Factor 1
@@ -58,8 +60,8 @@ public class ROP_FinancialRiskDTO {
         financialRiskFactorDTO.setScore(0D);
         financialRiskFactorDTO.setScoreTypeCode("01");
         financialRiskFactorDTO.setScoreTypeDescription("Normal");
-        financialRiskFactorDTO.setComputingMethodCode("05");
-        financialRiskFactorDTO.setComputingMethodDescription("Equals");
+        financialRiskFactorDTO.setComputingMethodCode("01");
+        financialRiskFactorDTO.setComputingMethodDescription("Weighted");
 
 
         //                      Risk Sub Factor 1
@@ -132,7 +134,7 @@ public class ROP_FinancialRiskDTO {
         riskSubFactorAttributes.add(new RiskAttribute(8D,">1.00 to 1.33"));
         riskSubFactorAttributes.add(new RiskAttribute(6D,">1.33 to 2.33"));
         riskSubFactorAttributes.add(new RiskAttribute(4D,">2.33 to 3.00"));
-        riskSubFactorAttributes.add(new RiskAttribute(0D,">3. to 4.00"));
+        riskSubFactorAttributes.add(new RiskAttribute(2D,">3. to 4.00"));
         riskSubFactorAttributes.add(new RiskAttribute(0D,"> 4.00"));
 
         List<RiskSubFactorAttributeDTO>  riskSubFactorAttributeDTOS3 =   riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
@@ -160,7 +162,7 @@ public class ROP_FinancialRiskDTO {
         riskSubFactorAttributes.add(new RiskAttribute(8D,"Minimal exposure to IRR/CR. Most of the positions are hedged"));
         riskSubFactorAttributes.add(new RiskAttribute(6D,"Exposure to IRR/CR is small"));
         riskSubFactorAttributes.add(new RiskAttribute(4D,"Average exposure to IRR/CR"));
-        riskSubFactorAttributes.add(new RiskAttribute(0D,"High Risk exposure to IRR/CR"));
+        riskSubFactorAttributes.add(new RiskAttribute(2D,"High Risk exposure to IRR/CR"));
         riskSubFactorAttributes.add(new RiskAttribute(0D,"Extremely High exposure to IRR/CR"));
 
         List<RiskSubFactorAttributeDTO>  riskSubFactorAttributeDTOS4 =   riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
@@ -206,10 +208,10 @@ public class ROP_FinancialRiskDTO {
         RiskSubFactorDTO repaymentStructureDTO = new RiskSubFactorDTO();
         repaymentStructureDTO.setId(null);
         repaymentStructureDTO.setItemNo(6);
-        repaymentStructureDTO.setDescription("Repayment Structure");
+        repaymentStructureDTO.setDescription("Repayment Structure (Deflator)");
         repaymentStructureDTO.setWeightage(0.00);
         repaymentStructureDTO.setScore(0D);
-        repaymentStructureDTO.setScoreTypeCode("01");
+        repaymentStructureDTO.setScoreTypeCode("02");
         repaymentStructureDTO.setScoreTypeDescription("Deflator");
 
 

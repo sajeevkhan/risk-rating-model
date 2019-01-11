@@ -36,8 +36,6 @@ public class Renewable_RiskParentalNotchUp {
         riskParentalNotchUpDTO.setIsParentalNotchUpApplicable(true);
         riskParentalNotchUpDTO.setParentalNotchUpScore(0D);
 
-
-
         //Notchup Conditions
         List<RiskParentalNotchUpConditionDTO> riskParentalNotchUpConditionDTOS = new ArrayList<>();
 
@@ -51,11 +49,11 @@ public class Renewable_RiskParentalNotchUp {
 
 
         // NotchUp Conditions
-        //        Source of Rating of the Parent Firm
-        //        Nature of Rating of Parent Firm - Short Term or Long Term
-        //        Rating of Parent Entity
-        //        Is Parent's Rating Better than Company?
-        //        Is Borrower's Rating at D?
+        //       Source of Rating of the Parent Firm
+        //       Nature of Rating of Parent Firm - Short Term or Long Term
+        //       Obligor Rating Grade of Parent Firm
+        //       Rating of Parent Entity
+        //       Borrower Rating Grade of Parent Firm
 
 
         RiskParentalNotchUpConditionDTO riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
@@ -66,8 +64,7 @@ public class Renewable_RiskParentalNotchUp {
         riskParentalNotchUpConditionDTO.setValueType('1');
         riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
         riskParentalNotchUpConditionDTO.setValue(" ");
-        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm(' ');
-        riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
+        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('0');
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 
         riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
@@ -81,22 +78,22 @@ public class Renewable_RiskParentalNotchUp {
         riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('1');
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 
-         riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
+        riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
         riskParentalNotchUpConditionDTO.setId(null);
         riskParentalNotchUpConditionDTO.setItemNo(3);
-        riskParentalNotchUpConditionDTO.setCategory(3);
+        riskParentalNotchUpConditionDTO.setCategory(0);
         riskParentalNotchUpConditionDTO.setDescription("Obligor Rating Grade of the Parent Firm as per reference source");
         riskParentalNotchUpConditionDTO.setValueType('1');
         riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
         riskParentalNotchUpConditionDTO.setValue(" ");
-        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('1');
+        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('0');
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 
 
         riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
         riskParentalNotchUpConditionDTO.setId(null);
         riskParentalNotchUpConditionDTO.setItemNo(4);
-        riskParentalNotchUpConditionDTO.setCategory(4);
+        riskParentalNotchUpConditionDTO.setCategory(0);
         riskParentalNotchUpConditionDTO.setDescription("Borrower Rating Grade of the Parent Firm");
         riskParentalNotchUpConditionDTO.setValueType('1');
         riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
@@ -123,8 +120,12 @@ public class Renewable_RiskParentalNotchUp {
         // 1.1.1       Risk Sub Factor Attributes
         // -> Four Attributes
         List<RiskAttribute> riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(0D, " "));
-        riskSubFactorAttributes.add(new RiskAttribute(0D," "));
+
+        riskSubFactorAttributes.add(new RiskAttribute(4D, "100% holding by the parent company"));
+        riskSubFactorAttributes.add(new RiskAttribute(3D,"76-100% holding by the parent company"));
+        riskSubFactorAttributes.add(new RiskAttribute(2D, "51-75% holding by the parent company"));
+        riskSubFactorAttributes.add(new RiskAttribute(1D," 26-50% holding by the parent company"));
+        riskSubFactorAttributes.add(new RiskAttribute(0D," Less than 26% holding by the parent company"));
 
          List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS1 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
          parentFinancialDebtEquityRatioSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS1);
@@ -149,8 +150,9 @@ public class Renewable_RiskParentalNotchUp {
         // 1.1.2       Risk Sub Factor Attributes
         // -> Four Attributes
         riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(0D, " "));
-        riskSubFactorAttributes.add(new RiskAttribute(2D," "));
+        riskSubFactorAttributes.add(new RiskAttribute(4.00D, "Common Board of Directors"));
+        riskSubFactorAttributes.add(new RiskAttribute(2.00D, "Separate Board of Directors, but with common Directors in both the Boards"));
+        riskSubFactorAttributes.add(new RiskAttribute(0.00D, "Separate Board of Directors with no common Directors"));
 
 
         List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS2 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
@@ -158,14 +160,11 @@ public class Renewable_RiskParentalNotchUp {
         riskParentalNotchUpDTO.addRiskSubFactorDTO(parentFinancialIntCovRationSubFactorDTO);
 
 
-
-
-
         // 1.1.3       Risk Sub Factor 3
         //    Stated Posture of Parent : Past History of Support  - 20%
         RiskSubFactorDTO pastHistoryRiskSubFactorDTO = new RiskSubFactorDTO();
         pastHistoryRiskSubFactorDTO.setId(null);
-        pastHistoryRiskSubFactorDTO.setItemNo(4);
+        pastHistoryRiskSubFactorDTO.setItemNo(3);
         pastHistoryRiskSubFactorDTO.setDescription("Stated Posture of Parent");
         pastHistoryRiskSubFactorDTO.setWeightage(0.20);
         pastHistoryRiskSubFactorDTO.setScore(0D);
@@ -175,12 +174,9 @@ public class Renewable_RiskParentalNotchUp {
 
         //
         // 1.1.3       Risk Sub Factor Attributes
-
-        riskSubFactorAttributes = new ArrayList<>(); //TODO - Check Scores
-        riskSubFactorAttributes.add(new RiskAttribute(10D, "Legally enforceable provisions such as put options and cross-default provisions are provided by the parent"));
-        riskSubFactorAttributes.add(new RiskAttribute(8D,"Assurances such as Letters of Credit, maintenance of debt service reserve account and shortfall undertakings are available from the parent"));
-        riskSubFactorAttributes.add(new RiskAttribute(4D,"Parent has a track record of having provided support in the form of regular equity infusions and unsecured loans"));
-        riskSubFactorAttributes.add(new RiskAttribute(0D,"None of the above comforts are available"));
+        riskSubFactorAttributes = new ArrayList<>();
+        riskSubFactorAttributes.add(new RiskAttribute(4D, "Support extended by the parent is clearly explicit in nature"));
+        riskSubFactorAttributes.add(new RiskAttribute(0D, "Support extended by the parent is purely implicit in nature"));
 
 
         List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS4 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
@@ -188,10 +184,7 @@ public class Renewable_RiskParentalNotchUp {
         riskParentalNotchUpDTO.addRiskSubFactorDTO(pastHistoryRiskSubFactorDTO);
 
 
-
-
-
-        // 1.1.4        Risk Sub Factor 5
+        // 1.1.4        Risk Sub Factor 4
         //    Past Track Record Name - 15%
         RiskSubFactorDTO pastTrackRecordRiskSubFactorDTO = new RiskSubFactorDTO();
         pastTrackRecordRiskSubFactorDTO.setId(null);
@@ -204,13 +197,11 @@ public class Renewable_RiskParentalNotchUp {
 
 
         //
-        // 1.1.5       Risk Sub Factor Attributes
+        // 1.1.4       Risk Sub Factor Attributes
         // -> Four Attributes
         riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(10.0D, "Parent is a public limited company listed on a stock exchange"));
-        riskSubFactorAttributes.add(new RiskAttribute(5.0D,"Parent is an unlisted public limited company"));
-        riskSubFactorAttributes.add(new RiskAttribute(2.5D,"Parent is an unlisted private limited company"));
-        riskSubFactorAttributes.add(new RiskAttribute(0.0D,"None of the above"));
+        riskSubFactorAttributes.add(new RiskAttribute(4.0D, "Honoured in terms of parent's commitment to the company / No such occasion or event has arisen in the past "));
+        riskSubFactorAttributes.add(new RiskAttribute(0.0D,"Did not honour in terms of parent's commitment to the company"));
 
 
         List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS5 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
@@ -225,7 +216,7 @@ public class Renewable_RiskParentalNotchUp {
         RiskSubFactorDTO brandNameRiskSubFactorDTO = new RiskSubFactorDTO();
         brandNameRiskSubFactorDTO.setId(null);
         brandNameRiskSubFactorDTO.setItemNo(3);
-        brandNameRiskSubFactorDTO.setDescription("Shared Name");
+        brandNameRiskSubFactorDTO.setDescription("Brand Name");
         brandNameRiskSubFactorDTO.setWeightage(0.15);
         brandNameRiskSubFactorDTO.setScore(0D);
         brandNameRiskSubFactorDTO.setScoreTypeCode("01");
@@ -236,8 +227,8 @@ public class Renewable_RiskParentalNotchUp {
         // 1.1.5       Risk Sub Factor Attributes
         // -> Four Attributes
         riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(0D, "The parent and the borrower do not share a common name"));
-        riskSubFactorAttributes.add(new RiskAttribute(10D,"Both the parent and the borrower share a common name"));
+        riskSubFactorAttributes.add(new RiskAttribute(4D, "Common Brand Used"));
+        riskSubFactorAttributes.add(new RiskAttribute(0D,"No Common Brand"));
 
         List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS3 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
         brandNameRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS3);

@@ -19,8 +19,6 @@ public class RiskModelPDFComponentTable {
         Image img = Image.getInstance(path.toAbsolutePath().toString());
         img.scalePercent(50f);
         img.setAlignment(Element.ALIGN_CENTER);
-
-
         return img;
     }
 
@@ -28,8 +26,6 @@ public class RiskModelPDFComponentTable {
     public Document buildRiskComponentTable(  Document doc,
                                                      RiskModelTemplate riskModelTemplate,
                                                      RiskComponent riskComponent) throws Exception {
-
-
 
         // Main Header Font - Risk Component
         Font mainHeaderFont = new Font(Font.FontFamily.HELVETICA );
@@ -41,18 +37,15 @@ public class RiskModelPDFComponentTable {
         subHeaderFont.setColor(BaseColor.WHITE);
         subHeaderFont.setSize(10);
 
-
         // Header Font - Risk Sub Factor
         Font headerfont = new Font(Font.FontFamily.HELVETICA );
         headerfont.setColor(BaseColor.WHITE);
         headerfont.setSize(8);
 
-
         // Value Font
         Font valueFont = new Font(Font.FontFamily.HELVETICA);
         valueFont.setColor(BaseColor.BLACK);
         valueFont.setSize(8);
-
 
         // Value Font
         Font selectedValueFont = new Font(Font.FontFamily.HELVETICA);
@@ -84,7 +77,6 @@ public class RiskModelPDFComponentTable {
         for (RiskFactor riskFactor: riskComponent.getRiskFactors()) {
 
             Integer riskFactorSectionNumber = riskFactor.getItemNo();
-
             if (riskComponent.getRiskFactors().size() > 1) {
                 // First Row - Risk Factor  Description
                 // First Column - Risk Type Description
@@ -128,7 +120,6 @@ public class RiskModelPDFComponentTable {
                 projectDetailsTable.completeRow();
 
                 for (RiskSubFactorAttribute riskSubFactorAttribute : riskSubFactor.getRiskSubFactorAttributes()) {
-
                     // Second Row - Risk Component  Column Headings
                     // First Column - Risk Component Label
                     projectDetailsCell1 = new PdfPCell();
@@ -140,6 +131,7 @@ public class RiskModelPDFComponentTable {
                     projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
                     projectDetailsCell2.setHorizontalAlignment(Element.ALIGN_CENTER);
 
+                    System.out.println("Risk Sub Factor Attribtue ---    :    " + riskSubFactorAttribute.getDescription());
                     if (riskSubFactorAttribute.getIsSelected())
                         projectDetailsCell2.setPhrase(new Phrase(riskSubFactorAttribute.getScore().toString(), selectedValueFont));
                     else
@@ -151,7 +143,6 @@ public class RiskModelPDFComponentTable {
                     projectDetailsCell3.setHorizontalAlignment(Element.ALIGN_CENTER);
                     projectDetailsCell3.setVerticalAlignment(Element.ALIGN_CENTER);
 
-
                     if (riskSubFactorAttribute.getIsSelected() == true){
                         projectDetailsCell1.setBackgroundColor(BaseColor.YELLOW.brighter().brighter() );
                         projectDetailsCell2.setBackgroundColor(BaseColor.YELLOW.brighter().brighter() );
@@ -161,18 +152,12 @@ public class RiskModelPDFComponentTable {
                     else
                         projectDetailsCell3.setPhrase(new Phrase(" ", valueFont));
 
-
                     projectDetailsTable.addCell(projectDetailsCell1);
                     projectDetailsTable.addCell(projectDetailsCell2);
                     projectDetailsTable.addCell(projectDetailsCell3);
-
                     projectDetailsTable.completeRow();
                 }
-
             }
-
-
-
         }
         doc.add(projectDetailsTable);
 

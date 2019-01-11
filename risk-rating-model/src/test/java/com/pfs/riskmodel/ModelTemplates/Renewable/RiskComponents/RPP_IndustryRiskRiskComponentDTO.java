@@ -9,10 +9,6 @@ import com.pfs.riskmodel.dto.RiskSubFactorDTO;
  * Created by sajeev on 19-Dec-18.
  */
 public  class RPP_IndustryRiskRiskComponentDTO {
-    /**********************************************************************************************************************
-     *  Risk Component 1 : Industry Risk - 16%
-     *  This has only two levels below and therefore the Risk Factor will be a dummy entry (Industry Risk Factor) with same name
-     **********************************************************************************************************************/
 
 
     public static RiskComponentDTO getIndustryRiskComponentDTO () {
@@ -27,15 +23,16 @@ public  class RPP_IndustryRiskRiskComponentDTO {
         //  1                       Industry Risk
         RiskComponentDTO industryRiskComponentDTO = new RiskComponentDTO();
         industryRiskComponentDTO.setId(null);
-        industryRiskComponentDTO.setItemNo(3);
+        industryRiskComponentDTO.setItemNo(2);
         industryRiskComponentDTO.setDescription("Industry Risk");
         industryRiskComponentDTO.setWeightage(0.16);
-        industryRiskComponentDTO.setComputingMethodCode("01");
-        industryRiskComponentDTO.setComputingMethodDescription("Weighted");
+        industryRiskComponentDTO.setComputingMethodCode("05");
+        industryRiskComponentDTO.setComputingMethodDescription("Equals");
         industryRiskComponentDTO.setScoreTypeCode("01");
         industryRiskComponentDTO.setScoreTypeDescription("Normal");
         industryRiskComponentDTO.setScore(0D);
 
+        industryRiskComponentDTO.setIsApplicable(true);
 
 
         //                       Risk Type 1 - Risk Component 1 - Risk Factor 1
@@ -48,8 +45,8 @@ public  class RPP_IndustryRiskRiskComponentDTO {
         industryRiskFactorDTO.setItemNo(1);
         industryRiskFactorDTO.setDescription("Industry Risk Factor");
         industryRiskFactorDTO.setWeightage(1.00);
-        industryRiskFactorDTO.setComputingMethodCode("05");
-        industryRiskFactorDTO.setComputingMethodDescription("Equals");
+        industryRiskFactorDTO.setComputingMethodCode("01");
+        industryRiskFactorDTO.setComputingMethodDescription("Weighted");
         industryRiskFactorDTO.setScoreTypeCode("01");
         industryRiskFactorDTO.setScoreTypeDescription("Normal");
         industryRiskFactorDTO.setScore(0D);
@@ -96,7 +93,7 @@ public  class RPP_IndustryRiskRiskComponentDTO {
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("Industry characterized by derived demand -strong linkages with overall economic growth. Marginal demand supply gap/ slight overcapacity situation likely to restrict medium term growth, despite positive long term growth prospects");
         riskSubFactorAttributeDTO4.setScore(4.00D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(0D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO5.setId(null);
@@ -165,7 +162,7 @@ public  class RPP_IndustryRiskRiskComponentDTO {
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("The existing government policies are not significantly favourable/ unfavourable for the industry. Profitability is not particularly influenced by existing/ foreseen regulatory measures");
         riskSubFactorAttributeDTO4.setScore(4.00D);
-        riskSubFactorAttributeDTO4.setWeightage(0D);
+        riskSubFactorAttributeDTO4.setWeightage(0D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
         riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO5.setId(null);

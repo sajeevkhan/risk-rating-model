@@ -84,6 +84,10 @@ public class HoldingCompanyData {
          riskModelTemplateDTO.setRiskParentalNotchUps(riskParentalNotchUpDTOs);
          riskModelTemplateDTO.setRiskRatingModifiers(riskRatingModifierDTOs);
 
+
+
+
+
          HoldingCompanyRiskModelSummary holdingCompanyRiskModelSummary = new HoldingCompanyRiskModelSummary();
          List<RiskModelSummaryDTO> riskModelSummaryDTOS = holdingCompanyRiskModelSummary.getRiskModelSummary();
          riskModelTemplateDTO.setRiskModelSummaries(riskModelSummaryDTOS);

@@ -43,6 +43,7 @@ public class IRHAM_PIR_ExecutionRiskDTO {
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.70D);
 
+        riskComponentDTO.setIsApplicable(true);
 
         // DEFLATOR
         // Social Risk - Risk Factor - DEFLATOR

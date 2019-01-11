@@ -42,6 +42,7 @@ public class HC_ManagementRiskDTO {
         managementRiskComponentDTO.setScore(0D);
         managementRiskComponentDTO.setWeightage(0.10D);
 
+        managementRiskComponentDTO.setIsApplicable(true);
 
         // Management Risk Factor
 

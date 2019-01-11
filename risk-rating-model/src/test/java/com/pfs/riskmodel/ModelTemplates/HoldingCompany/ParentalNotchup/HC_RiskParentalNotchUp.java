@@ -53,7 +53,7 @@ public class HC_RiskParentalNotchUp {
         riskParentalNotchUpConditionDTO.setValueType('1');
         riskParentalNotchUpConditionDTO.setYesNoIndicatorValue(null);
         riskParentalNotchUpConditionDTO.setValue(" ");
-        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm(' ');
+        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('0');
 
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 
@@ -64,9 +64,9 @@ public class HC_RiskParentalNotchUp {
         riskParentalNotchUpConditionDTO.setCategory(4);
         riskParentalNotchUpConditionDTO.setDescription("The parent’s rating is better than the borrower’s rating");
         riskParentalNotchUpConditionDTO.setValueType('0');
-        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue(' ');
+        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
         riskParentalNotchUpConditionDTO.setValue(" ");
-        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm(' ');
+        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('0');
 
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 
@@ -76,9 +76,9 @@ public class HC_RiskParentalNotchUp {
         riskParentalNotchUpConditionDTO.setCategory(3);
         riskParentalNotchUpConditionDTO.setDescription("Is Borrower's Rating at D");
         riskParentalNotchUpConditionDTO.setValueType('0');
-        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue(' ');
+        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
         riskParentalNotchUpConditionDTO.setValue(" ");
-        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm(' ');
+        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('0');
 
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 

@@ -39,6 +39,8 @@ public class PPIR_BusinessRisk {
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.35D);
 
+        riskComponentDTO.setIsApplicable(true);
+
 
         // BusinessRisk Factor
         // No Concrete Risk Factors - Therefore a dummy Risk Factor called "Business Risk Factor" is added
@@ -50,8 +52,8 @@ public class PPIR_BusinessRisk {
         businessRiskFactorDTO.setScore(0D);
         businessRiskFactorDTO.setScoreTypeCode("01");
         businessRiskFactorDTO.setScoreTypeDescription("Normal");
-        businessRiskFactorDTO.setComputingMethodCode("05");
-        businessRiskFactorDTO.setComputingMethodDescription("Equals");
+        businessRiskFactorDTO.setComputingMethodCode("01");
+        businessRiskFactorDTO.setComputingMethodDescription("Weighted");
 
 
         // 1.1.1        Risk Sub Factor 1
@@ -141,7 +143,7 @@ public class PPIR_BusinessRisk {
 
         // 1.1.4       Risk Sub Factor Attributes
         // -> Four Attributes
-        riskSubFactorAttributes = new ArrayList<>(); //TODO - Check Scores
+        riskSubFactorAttributes = new ArrayList<>();
         riskSubFactorAttributes.add(new RiskAttribute(10D, "Line availability over 99%"));
         riskSubFactorAttributes.add(new RiskAttribute(7D,"Line availability over the upper threshold (generally 98%) and below 99%"));
         riskSubFactorAttributes.add(new RiskAttribute(4D,"Line availability below upper threshold mentioned in the agreement leading to lower than base charges (normally 98%)"));
@@ -156,14 +158,10 @@ public class PPIR_BusinessRisk {
         disruptionRiskMultiplierRiskSubFactorDTO.setId(null);
         disruptionRiskMultiplierRiskSubFactorDTO.setItemNo(5);
         disruptionRiskMultiplierRiskSubFactorDTO.setDescription("Disruption risk (Multiplier)");
-        disruptionRiskMultiplierRiskSubFactorDTO.setWeightage(1.00);  // Does Not Matter
+        disruptionRiskMultiplierRiskSubFactorDTO.setWeightage(0.00);  // Does Not Matter
         disruptionRiskMultiplierRiskSubFactorDTO.setScore(0D);
         disruptionRiskMultiplierRiskSubFactorDTO.setScoreTypeCode("03");
         disruptionRiskMultiplierRiskSubFactorDTO.setScoreTypeDescription("Multiplier");
-
-
-
-
 
         //  Disruption Risk Multiplier - Risk Sub Factor Attributes
         // -> Two Attributes
@@ -181,7 +179,7 @@ public class PPIR_BusinessRisk {
         repaymentPeriodMultiplierRiskSubFactorDTO.setId(null);
         repaymentPeriodMultiplierRiskSubFactorDTO.setItemNo(6);
         repaymentPeriodMultiplierRiskSubFactorDTO.setDescription("Repayment Period (Multiplier)");
-        repaymentPeriodMultiplierRiskSubFactorDTO.setWeightage(1.00); // Does Not Matter
+        repaymentPeriodMultiplierRiskSubFactorDTO.setWeightage(0.00); // Does Not Matter
         repaymentPeriodMultiplierRiskSubFactorDTO.setScore(0D);
         repaymentPeriodMultiplierRiskSubFactorDTO.setScoreTypeCode("03");
         repaymentPeriodMultiplierRiskSubFactorDTO.setScoreTypeDescription("Multiplier");

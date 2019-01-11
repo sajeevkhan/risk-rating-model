@@ -17,7 +17,7 @@ public class InfraRoadHAM_PostProjectImplRiskTypes {
         riskTypeDTO = new RiskTypeDTO();
         riskTypeDTO.setId(null);
         riskTypeDTO.setItemNo(1);
-        riskTypeDTO.setDescription("Infra Road HAM Post Project Implementation Risk Type");
+        riskTypeDTO.setDescription("Infra Road HAM Post Project Implementation Risk");
         riskTypeDTO.setScore(0D);
         riskTypeDTO.setGrade(" ");
 

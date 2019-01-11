@@ -39,6 +39,7 @@ public class IRHAM_PPIR_BusinessRisk {
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.35D);
 
+        riskComponentDTO.setIsApplicable(true);
 
         // BusinessRisk Factor
         // No Concrete Risk Factors - Therefore a dummy Risk Factor called "Business Risk Factor" is added

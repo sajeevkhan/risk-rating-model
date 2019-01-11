@@ -36,6 +36,8 @@ public class ROP_BusinessRiskDTO {
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.32D);
 
+        riskComponentDTO.setIsApplicable(true);
+
         /*
          --------------------------    Risk Factor 1
             1.1 Market Position 70%
@@ -62,7 +64,7 @@ public class ROP_BusinessRiskDTO {
         offTakeRiskandSalesCompositionDTO.setId(null);
         offTakeRiskandSalesCompositionDTO.setItemNo(1);
         offTakeRiskandSalesCompositionDTO.setDescription("Offtake Risk and Sales Composition ");
-        offTakeRiskandSalesCompositionDTO.setWeightage(0.278); //28%
+        offTakeRiskandSalesCompositionDTO.setWeightage(0.278);
         offTakeRiskandSalesCompositionDTO.setScore(0D);
         offTakeRiskandSalesCompositionDTO.setScoreTypeCode("01");
         offTakeRiskandSalesCompositionDTO.setScoreTypeDescription("Normal");
@@ -98,15 +100,32 @@ public class ROP_BusinessRiskDTO {
         // 1.1.2        Risk Sub Factor Attributes
         // -> Five Attributes
         riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(0D, "No off taker as on date (Off taker is Group Captive/Open access consumers) OR Over dues more than 210 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency) "));
-        riskSubFactorAttributes.add(new RiskAttribute(2D, "Non listed off taker & non-investment grade borrower (Off taker is Group Captive/Open access consumers) OR Over dues not more than 180 days but less than 210 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)"));
-        riskSubFactorAttributes.add(new RiskAttribute(4D, "Non Listed off taker & long term credit rating not yet assigned (Off taker is Group Captive/Open access consumers) OR Over dues not more than 120 days but less than 90 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)"));
-        riskSubFactorAttributes.add(new RiskAttribute(6D, " Non listed off taker & long term investment credit rating not below BBB+ (Off taker is Group Captive/Open access consumers) OR Over dues not more than 90 days but less than 30 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)"));
-        riskSubFactorAttributes.add(new RiskAttribute(8D, "Listed off taker & long term investment credit rating not below BBB+ (quantum < 50% of project capacity): Off taker is Group Captive/Open access consumers OR Over dues not more than 30 days but less than 15 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)"));
-        riskSubFactorAttributes.add(new RiskAttribute(10D,"Listed off taker & long term investment credit rating not below BBB+ (quantum ≥ 50% of project capacity): Off taker is Group Captive/Open access consumers OR Over dues not more than 15 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)"));
+        riskSubFactorAttributes.add(new RiskAttribute(0D, "No off taker as on date (Off taker is Group Captive/Open access consumers) \n " +
+                "OR " +
+                "\n Over dues more than 210 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency) "));
+        riskSubFactorAttributes.add(new RiskAttribute(2D, "Non listed off taker & non-investment grade borrower (Off taker is Group Captive/Open access consumers) " +
+                "\n" +
+                "OR " +
+                "\n Over dues not more than 180 days but less than 210 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)"));
+        riskSubFactorAttributes.add(new RiskAttribute(4D, "Non Listed off taker & long term credit rating not yet assigned (Off taker is Group Captive/Open access consumers) " +
+                "\n" +
+                "OR " +
+                "\nOver dues not more than 120 days but less than 90 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)"));
+        riskSubFactorAttributes.add(new RiskAttribute(6D, " Non listed off taker & long term investment credit rating not below BBB+ (Off taker is Group Captive/Open access consumers) " +
+                "\n" +
+                "OR" +
+                "\nOver dues not more than 90 days but less than 30 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)"));
+        riskSubFactorAttributes.add(new RiskAttribute(8D, "Listed off taker & long term investment credit rating not below BBB+ (quantum < 50% of project capacity): Off taker is Group Captive/Open access consumers " +
+                "\n" +
+                "OR" +
+                "\n Over dues not more than 30 days but less than 15 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)"));
+        riskSubFactorAttributes.add(new RiskAttribute(10D,"Listed off taker & long term investment credit rating not below BBB+ (quantum ≥ 50% of project capacity): Off taker is Group Captive/Open access consumers " +
+                "\n" +
+                "OR" +
+                "\nOver dues not more than 15 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)"));
 
         List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS1 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
-        counterPartyRiskRenewableDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS);
+        counterPartyRiskRenewableDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS1);
         marketPositionRiskFactorDTO.addRiskSubFactorDTO(counterPartyRiskRenewableDTO);
 
 
@@ -171,7 +190,7 @@ public class ROP_BusinessRiskDTO {
 
         RiskFactorDTO operationEfficiencyRiskFactorDTO  =  new RiskFactorDTO();
         operationEfficiencyRiskFactorDTO.setId(null);
-        operationEfficiencyRiskFactorDTO.setItemNo(1);
+        operationEfficiencyRiskFactorDTO.setItemNo(2);
         operationEfficiencyRiskFactorDTO.setDescription("Operating Efficiency");
         operationEfficiencyRiskFactorDTO.setWeightage(0.30);
         operationEfficiencyRiskFactorDTO.setScore(0D);
@@ -189,7 +208,7 @@ public class ROP_BusinessRiskDTO {
         operationsAndMaintenanceRiskSubFactorDTO.setId(null);
         operationsAndMaintenanceRiskSubFactorDTO.setItemNo(1);
         operationsAndMaintenanceRiskSubFactorDTO.setDescription("Operations and Maintenance Risk");
-        operationsAndMaintenanceRiskSubFactorDTO.setWeightage(0.15); //28%
+        operationsAndMaintenanceRiskSubFactorDTO.setWeightage(0.15);
         operationsAndMaintenanceRiskSubFactorDTO.setScore(0D);
         operationsAndMaintenanceRiskSubFactorDTO.setScoreTypeCode("01");
         operationsAndMaintenanceRiskSubFactorDTO.setScoreTypeDescription("Normal");

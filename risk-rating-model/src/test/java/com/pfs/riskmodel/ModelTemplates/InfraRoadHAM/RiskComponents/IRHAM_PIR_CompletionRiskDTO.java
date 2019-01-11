@@ -39,6 +39,8 @@ public class IRHAM_PIR_CompletionRiskDTO {
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.30D);
 
+        riskComponentDTO.setIsApplicable(true);
+
         //  Risk Factor
         //1.1 Funding Risk 40%  (Calculation Method = Weightage)
         RiskFactorDTO fundingRiskFactorDTO = new RiskFactorDTO();

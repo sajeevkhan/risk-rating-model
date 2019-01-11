@@ -54,11 +54,6 @@ public class RiskModelPDFController {
             System.out.println(ex);
         }
 
-       // riskModelTemplate = riskModelTemplateRepository.findById(id);
-
-         //riskModelTemplate = riskModelTemplateRepository.getOne(id);
-
-
 
         Check.notNull(riskModelTemplate.getId(), "Exception.notFound",
                 "RiskComponent", id.toString());
@@ -66,6 +61,54 @@ public class RiskModelPDFController {
 
 
         return new ModelAndView("RiskModelPDFBuilder", "RiskModelTemplate",riskModelTemplate);
+
+
+
+    }
+
+
+    @GetMapping("/riskModelPDFDebugMode")
+    public ModelAndView getRiskModelAsPDFDebugMode (
+            @RequestParam(value = "id",required = true) Long id,
+            HttpServletRequest request){
+
+
+        Check.notNull(id, "Exception.IdNullFoRead",
+                "Risk Model PDF Document", " ");
+
+        RiskModelTemplate riskModelTemplate = new RiskModelTemplate();
+
+        try {
+
+
+            Optional<RiskModelTemplate> riskModelTemplateOptional = riskModelTemplateRepository.findById(id);
+            riskModelTemplate = riskModelTemplateOptional.get();
+        }
+        catch ( Exception ex) {
+            System.out.println(ex);
+        }
+
+
+        Check.notNull(riskModelTemplate.getId(), "Exception.notFound",
+                "RiskComponent", id.toString());
+
+
+
+        return new ModelAndView("RiskModelPDFBuilderDebugMode", "RiskModelTemplate",riskModelTemplate);
+
+
+
+    }
+
+
+
+    @GetMapping("/testPDF")
+    public ModelAndView getTestPDF (
+            @RequestParam(value = "id",required = false) Integer id,
+            HttpServletRequest request){
+
+
+        return new ModelAndView("TestPDF", "Month",id);
 
 
 

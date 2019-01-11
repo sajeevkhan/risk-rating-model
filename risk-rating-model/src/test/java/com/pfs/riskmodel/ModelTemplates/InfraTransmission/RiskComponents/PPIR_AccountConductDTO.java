@@ -41,6 +41,8 @@ public class PPIR_AccountConductDTO {
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.13D);
 
+        riskComponentDTO.setIsApplicable(true);
+
 
         // Account Conduct Factor
         // No Concrete Risk Factors - Therefore a dummy Risk Factor called "Account Conduct Risk Factor" is added
@@ -52,8 +54,8 @@ public class PPIR_AccountConductDTO {
         accountConductRiskFactorDTO.setScore(0D);
         accountConductRiskFactorDTO.setScoreTypeCode("01");
         accountConductRiskFactorDTO.setScoreTypeDescription("Normal");
-        accountConductRiskFactorDTO.setComputingMethodCode("05");
-        accountConductRiskFactorDTO.setComputingMethodDescription("Equals");
+        accountConductRiskFactorDTO.setComputingMethodCode("01");
+        accountConductRiskFactorDTO.setComputingMethodDescription("Weightage");
 
 
 

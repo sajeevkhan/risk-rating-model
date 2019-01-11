@@ -8,6 +8,8 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
 
+import java.text.SimpleDateFormat;
+
 /**
  * Created by sajeev on 03-Jan-19.
  */
@@ -102,6 +104,7 @@ public class RiskModelPDFHeaderTable {
         projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
         projectDetailsCell2.setPhrase(new Phrase(riskModelTemplate.getProjectRiskLevel().getValue(),valueFont));
 
+
         // Third Column - Rating Date  Text
         projectDetailsCell3 = new PdfPCell();
         projectDetailsCell3.setBackgroundColor(BaseColor.BLACK);
@@ -110,7 +113,11 @@ public class RiskModelPDFHeaderTable {
         // Fourth Column - Loan Number
         projectDetailsCell4 = new PdfPCell();
         projectDetailsCell4.setBackgroundColor(BaseColor.WHITE);
-        projectDetailsCell4.setPhrase(new Phrase(riskModelTemplate.getRatingDate().toString() ,valueFont));
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+        String dateAsString = sdf.format(riskModelTemplate.getRatingDate());
+
+        projectDetailsCell4.setPhrase(new Phrase(dateAsString ,valueFont));
 
         projectDetailsTable.addCell(projectDetailsCell1);
         projectDetailsTable.addCell(projectDetailsCell2);

@@ -56,16 +56,13 @@ public abstract class AbstractITextPdfView extends AbstractView {
                 RiskModelTemplate riskModelTemplate = new RiskModelTemplate();
                 riskModelTemplate = (RiskModelTemplate) model.get("RiskModelTemplate");
 
-
-                //Footer
-
-                PDFFooter event = new PDFFooter( riskModelTemplate.getProjectName(),
-                                                 riskModelTemplate.getLoanAmountInCrores().toString(),
+                 PDFFooter event = new PDFFooter(riskModelTemplate.getProjectName(),
+                        riskModelTemplate.getLoanAmountInCrores().toString(),
                         riskModelTemplate.getRatingDate(),
                         riskModelTemplate.getProjectType().getValue(),
                         riskModelTemplate.getProjectRiskLevel().getValue());
 
-                writer.setPageEvent(event);
+                        writer.setPageEvent(event);
 
                 // Build PDF document.
                 document.open();

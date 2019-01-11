@@ -42,7 +42,7 @@ public class HC_FinancialRiskDTO {
         riskComponentDTO.setScoreTypeCode("01");
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.55D);
-
+        riskComponentDTO.setIsApplicable(true);
 
 //                Interest Coverage Ratio  20%
 //

@@ -1,6 +1,7 @@
 package com.pfs.riskmodel.domain;
 
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -27,6 +28,11 @@ public class RiskComponent extends AuditModel  {
 
     @Getter(AccessLevel.PUBLIC)
     private Integer itemNo;
+
+    @Getter(AccessLevel.PUBLIC)
+    @NotNull
+    @ColumnDefault("1")
+    private Boolean isApplicable;
 
 
     @NotNull

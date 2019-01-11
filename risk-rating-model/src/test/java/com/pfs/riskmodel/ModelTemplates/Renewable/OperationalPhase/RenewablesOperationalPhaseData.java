@@ -2,11 +2,9 @@ package com.pfs.riskmodel.ModelTemplates.Renewable.OperationalPhase;
 
 import com.pfs.riskmodel.ModelTemplates.Renewable.BuildPhase.Renewable_BuildPhase_RiskModelSummary;
 import com.pfs.riskmodel.ModelTemplates.Renewable.ParentalNotchUp.Renewable_RiskParentalNotchUp;
+import com.pfs.riskmodel.ModelTemplates.Renewable.RiskRatingModifiers.Renewable_RatingModifierDTO;
 import com.pfs.riskmodel.ModelTemplates.Renewable.RiskTypes.RenewablesOperatonalRiskTypes;
-import com.pfs.riskmodel.dto.RiskModelSummaryDTO;
-import com.pfs.riskmodel.dto.RiskModelTemplateDTO;
-import com.pfs.riskmodel.dto.RiskParentalNotchUpDTO;
-import com.pfs.riskmodel.dto.RiskTypeDTO;
+import com.pfs.riskmodel.dto.*;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -61,6 +59,13 @@ public class RenewablesOperationalPhaseData {
         riskModelTemplateDTO.setModifiedProjectGrade(" ");
         riskModelTemplateDTO.setAfterParentalNotchUpGrade(" ");
         riskModelTemplateDTO.setFinalProjectGrade(" ");
+
+        // Rating Modifiers
+        List<RiskRatingModifierDTO> riskRatingModifierDTOSet = new ArrayList<>();
+        Renewable_RatingModifierDTO renewable_ratingModifierDTO = new Renewable_RatingModifierDTO();
+        riskRatingModifierDTOSet = renewable_ratingModifierDTO.getRiskRatingModifierDTOs();
+
+        riskModelTemplateDTO.setRiskRatingModifiers(riskRatingModifierDTOSet);
 
 
         // Parental NotchUP

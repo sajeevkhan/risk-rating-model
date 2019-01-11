@@ -30,8 +30,8 @@ public class ROP_IndustryRiskDTO {
 
         riskComponentDTO.setId(null);
         riskComponentDTO.setItemNo(3);
-        riskComponentDTO.setComputingMethodCode("01");
-        riskComponentDTO.setComputingMethodDescription("Weighted");
+        riskComponentDTO.setComputingMethodCode("05");
+        riskComponentDTO.setComputingMethodDescription("Equals");
         riskComponentDTO.setDescription("Industry Risk");
         riskComponentDTO.setScoreTypeDescription("01");
         riskComponentDTO.setScoreTypeCode("01");
@@ -39,6 +39,8 @@ public class ROP_IndustryRiskDTO {
 
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.16D);
+
+        riskComponentDTO.setIsApplicable(true);
 
         /*
          --------------------------    Risk Factor 1
@@ -54,8 +56,8 @@ public class ROP_IndustryRiskDTO {
         industryRiskFactorDTO.setScore(0D);
         industryRiskFactorDTO.setScoreTypeCode("01");
         industryRiskFactorDTO.setScoreTypeDescription("Normal");
-        industryRiskFactorDTO.setComputingMethodCode("05");
-        industryRiskFactorDTO.setComputingMethodDescription("Equals");
+        industryRiskFactorDTO.setComputingMethodCode("01");
+        industryRiskFactorDTO.setComputingMethodDescription("Weighted");
 
 
         //  ------------- Risk Sub Factor 1

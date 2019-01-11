@@ -42,6 +42,8 @@ public class HC_BusinessRiskDTO {
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.35D);
 
+        riskComponentDTO.setIsApplicable(true);
+
 
         // BusinessRisk Factor
 

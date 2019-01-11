@@ -51,25 +51,49 @@ public class InfraTrans_RiskParentalNotchUp {
         //        3. The notch-up score as a percentage of maximum possible score is higher than 35%.
 
         RiskParentalNotchUpConditionDTO riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
+        riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
         riskParentalNotchUpConditionDTO.setId(null);
         riskParentalNotchUpConditionDTO.setItemNo(1);
+        riskParentalNotchUpConditionDTO.setCategory(0);
+        riskParentalNotchUpConditionDTO.setDescription("Obligor Rating Grade of the Parent Firm as per reference source");
+        riskParentalNotchUpConditionDTO.setValueType('1');
+        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
+        riskParentalNotchUpConditionDTO.setValue(" ");
+        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('0');
+        riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
+
+
+        riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
+        riskParentalNotchUpConditionDTO.setId(null);
+        riskParentalNotchUpConditionDTO.setItemNo(2);
+        riskParentalNotchUpConditionDTO.setCategory(0);
+        riskParentalNotchUpConditionDTO.setDescription("Borrower Rating Grade of the Parent Firm");
+        riskParentalNotchUpConditionDTO.setValueType('1');
+        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
+        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('1');
+        riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
+
+
+        riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
+        riskParentalNotchUpConditionDTO.setId(null);
+        riskParentalNotchUpConditionDTO.setItemNo(3);
         riskParentalNotchUpConditionDTO.setCategory(4);
         riskParentalNotchUpConditionDTO.setDescription("The parent’s rating is better than the borrower’s rating");
         riskParentalNotchUpConditionDTO.setValueType('0');
         riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
         riskParentalNotchUpConditionDTO.setValue(" ");
-        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm(' ');
+        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('0');
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 
         riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
         riskParentalNotchUpConditionDTO.setId(null);
-        riskParentalNotchUpConditionDTO.setItemNo(2);
+        riskParentalNotchUpConditionDTO.setItemNo(4);
         riskParentalNotchUpConditionDTO.setCategory(3);
         riskParentalNotchUpConditionDTO.setDescription("The borrower’s rating is not GRADE10 (in default)");
         riskParentalNotchUpConditionDTO.setValueType('0');
         riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
         riskParentalNotchUpConditionDTO.setValue(" ");
-        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm(' ');
+        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('0');
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 
         riskParentalNotchUpDTO.setRiskParentalConditions(riskParentalNotchUpConditionDTOS);
@@ -175,9 +199,9 @@ public class InfraTrans_RiskParentalNotchUp {
         // 1.1.4       Risk Sub Factor Attributes
 
         riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(10D, "Legally enforceable provisions such as put options and cross-default provisions are provided by the parent"));
-        riskSubFactorAttributes.add(new RiskAttribute(8D,"Assurances such as Letters of Credit, maintenance of debt service reserve account and shortfall undertakings are available from the parent"));
-        riskSubFactorAttributes.add(new RiskAttribute(4D,"Parent has a track record of having provided support in the form of regular equity infusions and unsecured loans"));
+        riskSubFactorAttributes.add(new RiskAttribute(4.00D, "Legally enforceable provisions such as put options and cross-default provisions are provided by the parent"));
+        riskSubFactorAttributes.add(new RiskAttribute(2.50D,"Assurances such as Letters of Credit, maintenance of debt service reserve account and shortfall undertakings are available from the parent"));
+        riskSubFactorAttributes.add(new RiskAttribute(1.25D,"Parent has a track record of having provided support in the form of regular equity infusions and unsecured loans"));
         riskSubFactorAttributes.add(new RiskAttribute(0D,"None of the above comforts are available"));
 
 
@@ -235,7 +259,7 @@ public class InfraTrans_RiskParentalNotchUp {
 
 
         List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS6 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
-        listingStatusRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS5);
+        listingStatusRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS6);
         riskParentalNotchUpDTO.addRiskSubFactorDTO(listingStatusRiskSubFactorDTO);
 
 

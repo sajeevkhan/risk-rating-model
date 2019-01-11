@@ -29,8 +29,8 @@ public class RiskParentalNotchUpEvaluator {
 
         private Integer numberOfNotchesForUpgrade;
 
-////The post notch-up grade would be capped at one notch below the parent’s grade.
-//
+ // TODO
+////The post notch-up grade would be capped at one notch below the parent’s grad
 //    For SPVs/Projects,
 //             For Build-phase projects,
 //                                  the maximum notch-up would be limited to two notches and final rating should not exceed P3 (GRADE5).
@@ -116,7 +116,8 @@ public class RiskParentalNotchUpEvaluator {
                 case 3: // Is Parent's rating at GRADE 10
                     if (riskParentalNotchUpCondition.getYesNoIndicatorValue() == 'Y')
                         isNotchupCriteriaApplicable = false;
-                    break;
+                        return isNotchupCriteriaApplicable;
+
                 case 4: //Is Parent's Rating Better Than Borrower's Rating
                      if (riskParentalNotchUpCondition.getYesNoIndicatorValue() == 'Y')
                          isNotchupCriteriaApplicable = true;
@@ -126,6 +127,12 @@ public class RiskParentalNotchUpEvaluator {
             if (isNotchupCriteriaApplicable == false)
                 break;
         }
+
+        // Check if parent's rating is greater than borrower's rating
+        if (parentsRating < borrowersRating)
+            isNotchupCriteriaApplicable = true;
+        else
+            return false;
 
         // Check - Notch-up score as a percentage of maximum possible score is higher than 35%.
         if (notchupScoreAsAPctOfMaxScore > 0.35)

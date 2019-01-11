@@ -59,7 +59,7 @@ public class InfraRoadToll_RiskParentalNotchUp {
         riskParentalNotchUpConditionDTO.setValueType('1');
         riskParentalNotchUpConditionDTO.setYesNoIndicatorValue(null);
         riskParentalNotchUpConditionDTO.setValue(" ");
-        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm(' ');
+        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('0');
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 
 
@@ -70,7 +70,7 @@ public class InfraRoadToll_RiskParentalNotchUp {
         riskParentalNotchUpConditionDTO.setDescription("The parent’s rating is better than the borrower’s rating");
         riskParentalNotchUpConditionDTO.setValueType('0');
         riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
-        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm(' ');
+        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('0');
         riskParentalNotchUpConditionDTO.setValue(" ");
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 
@@ -82,7 +82,7 @@ public class InfraRoadToll_RiskParentalNotchUp {
         riskParentalNotchUpConditionDTO.setValueType('0');
         riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
         riskParentalNotchUpConditionDTO.setValue(" ");
-        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm(' ');
+        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('0');
 
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 

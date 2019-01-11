@@ -38,6 +38,7 @@ public class IRToll_PPIR_BusinessRisk {
         riskComponentDTO.setScoreTypeCode("01");
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.50D);
+        riskComponentDTO.setIsApplicable(true);
 
 
         // BusinessRisk Factor

@@ -9,10 +9,6 @@ import com.pfs.riskmodel.dto.RiskSubFactorDTO;
  * Created by sajeev on 19-Dec-18.
  */
 public class RPP_BusinessRiskComponentDTO {
-    /**********************************************************************************************************************
-     *  Risk Component 1 : Business Risk - 32%
-     *  This has only two levels below and therefore the Risk Factor will be a dummy entry (Industry Risk Factor) with same name
-     **********************************************************************************************************************/
 
 
     public static RiskComponentDTO getBusinessRiskComponentDTO() {
@@ -26,7 +22,7 @@ public class RPP_BusinessRiskComponentDTO {
         //  1                       Business Risk
         RiskComponentDTO businessRiskComponentDTO = new RiskComponentDTO();
         businessRiskComponentDTO.setId(null);
-        businessRiskComponentDTO.setItemNo(4);
+        businessRiskComponentDTO.setItemNo(1);
         businessRiskComponentDTO.setDescription("Business Risk");
         businessRiskComponentDTO.setWeightage(0.32);
         businessRiskComponentDTO.setComputingMethodCode("01");
@@ -35,6 +31,7 @@ public class RPP_BusinessRiskComponentDTO {
         businessRiskComponentDTO.setScoreTypeDescription("Normal");
         businessRiskComponentDTO.setScore(0D);
 
+        businessRiskComponentDTO.setIsApplicable(true);
 
         //                       Risk Type 1 - Risk Component 1 - Risk Factor 1
         //1.1                            Business Risk -> Market Position Risk  Factor
@@ -137,35 +134,55 @@ public class RPP_BusinessRiskComponentDTO {
         riskSubFactorAttributeDTO1 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO1.setId(null);
         riskSubFactorAttributeDTO1.setItemNo(1);
-        riskSubFactorAttributeDTO1.setDescription("No off taker as on date (Off taker is Group Captive/Open access consumers) OR Over dues more than 210 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)");
+        riskSubFactorAttributeDTO1.setDescription(
+                "No off taker as on date (Off taker is Group Captive/Open access consumers)"+
+                 "\n" +
+                "OR\n" +
+                "Over dues more than 210 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)");
         riskSubFactorAttributeDTO1.setScore(0D);
         riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
-        riskSubFactorAttributeDTO2.setDescription("Non listed off taker & non-investment grade borrower (Off taker is Group Captive/Open access consumers) OR Over dues not more than 180 days but less than 210 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)");
+        riskSubFactorAttributeDTO2.setDescription(
+                "Non listed off taker & non-investment grade borrower (Off taker is Group Captive/Open access consumers)"+
+                "\n" +
+                "OR\n" +
+                "Over dues not more than 180 days but less than 210 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)");
         riskSubFactorAttributeDTO2.setScore(2.00);
         riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
         riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
-        riskSubFactorAttributeDTO3.setDescription("Non Listed off taker & long term credit rating not yet assigned (Off taker is Group Captive/Open access consumers) OR Over dues not more than 120 days but less than 90 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)");
+        riskSubFactorAttributeDTO3.setDescription(
+                "Non Listed off taker & long term credit rating not yet assigned (Off taker is Group Captive/Open access consumers)" +
+                "\n" +
+                "OR\n" +
+                "Over dues not more than 120 days but less than 90 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)");
         riskSubFactorAttributeDTO3.setScore(4.00);
         riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
         riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
-        riskSubFactorAttributeDTO4.setDescription("Non listed off taker & long term investment credit rating not below BBB+ (Off taker is Group Captive/Open access consumers) OR Over dues not more than 90 days but less than 30 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)");
+        riskSubFactorAttributeDTO4.setDescription(
+                "Non listed off taker & long term investment credit rating not below BBB+ (Off taker is Group Captive/Open access consumers)" +
+                "\n" +
+                "OR\n" +
+                "Over dues not more than 90 days but less than 30 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)");
         riskSubFactorAttributeDTO4.setScore(6.00D);
         riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
         riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO5.setId(null);
         riskSubFactorAttributeDTO5.setItemNo(5);
-        riskSubFactorAttributeDTO5.setDescription("Listed off taker & long term investment credit rating not below BBB+ (quantum < 50% of project capacity): Off taker is Group Captive/Open access consumers OR Over dues not more than 30 days but less than 15 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)");
+        riskSubFactorAttributeDTO5.setDescription(
+                "Listed off taker & long term investment credit rating not below BBB+ (quantum < 50% of project capacity): Off taker is Group Captive/Open access consumers" +
+                "\n" +
+                "OR\n" +
+                "Over dues not more than 30 days but less than 15 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)");
         riskSubFactorAttributeDTO5.setScore(8.00D);
         riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
@@ -173,7 +190,11 @@ public class RPP_BusinessRiskComponentDTO {
         riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO6.setId(null);
         riskSubFactorAttributeDTO6.setItemNo(6);
-        riskSubFactorAttributeDTO6.setDescription("Listed off taker & long term investment credit rating not below BBB+ (quantum ≥ 50% of project capacity): Off taker is Group Captive/Open access consumers OR Over dues not more than 15 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)");
+        riskSubFactorAttributeDTO6.setDescription(
+                "Listed off taker & long term investment credit rating not below BBB+ (quantum ≥ 50% of project capacity): Off taker is Group Captive/Open access consumers" +
+                "\n" +
+                "OR\n" +
+                "Over dues not more than 15 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)");
         riskSubFactorAttributeDTO6.setScore(10.00D);
         riskSubFactorAttributeDTO6.setWeightage(00D);riskSubFactorAttributeDTO6.setIsSelected(false);
 
@@ -252,12 +273,12 @@ public class RPP_BusinessRiskComponentDTO {
 
 
         //                       Risk Type 1 - Risk Component 1 - Risk Factor 1 - Risk SubFactor 1
-        // 1.1.4                      Business Risk -> Market Risk Factor - >  Regulatory Risk - Renewable
+        // 1.1.4                      Business Risk -> Market Risk Factor - >  Price Risk - Renewable
         ///                                     27.80%
         RiskSubFactorDTO regulatoryRiskRenewable = new RiskSubFactorDTO();
         regulatoryRiskRenewable.setId(null);
         regulatoryRiskRenewable.setItemNo(4);
-        regulatoryRiskRenewable.setDescription("Regulatory Risk - Renewable");
+        regulatoryRiskRenewable.setDescription("Price Risk - Renewable");
         regulatoryRiskRenewable.setWeightage(0.222D);
         regulatoryRiskRenewable.setScore(0D);
         regulatoryRiskRenewable.setScoreTypeCode("01");

@@ -22,7 +22,7 @@ public class InfraRoadHAM_ProjectImplRiskTypes {
 
         riskTypeDTO.setId(null);
         riskTypeDTO.setItemNo(1);
-        riskTypeDTO.setDescription("Infra Road HAM Project Implementation Risk Type");
+        riskTypeDTO.setDescription("Infra Road HAM Project Implementation Risk");
         riskTypeDTO.setScore(0D);
         riskTypeDTO.setGrade(" ");
 

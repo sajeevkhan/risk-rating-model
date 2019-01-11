@@ -15,8 +15,8 @@ public   class RPP_ManagementRiskRiskComponentDTO {
 
     public static RiskComponentDTO managementRiskComponentDTO () {
 
-        //RiskComponentDTO riskComponentDTO = new RiskComponentDTO();
-        /**********************************************************************************************************************
+
+         /**********************************************************************************************************************
          *  Risk Component 2 : Management Risk - 20%
          *  This has only two levels below and therefore the Risk Factor will be a dummy entry (Management Risk Factor)
          **********************************************************************************************************************/
@@ -25,15 +25,16 @@ public   class RPP_ManagementRiskRiskComponentDTO {
         //  1                       Management Risk
         RiskComponentDTO managementRiskComponentDTO = new RiskComponentDTO();
         managementRiskComponentDTO.setId(null);
-        managementRiskComponentDTO.setItemNo(2);
+        managementRiskComponentDTO.setItemNo(4);
         managementRiskComponentDTO.setDescription("Management Risk");
         managementRiskComponentDTO.setWeightage(0.20D);
-        managementRiskComponentDTO.setComputingMethodCode("01");
-        managementRiskComponentDTO.setComputingMethodDescription("Weighted");
+        managementRiskComponentDTO.setComputingMethodCode("05");
+        managementRiskComponentDTO.setComputingMethodDescription("Equals");
         managementRiskComponentDTO.setScoreTypeCode("01");
         managementRiskComponentDTO.setScoreTypeDescription("Normal");
         managementRiskComponentDTO.setScore(0D);
 
+        managementRiskComponentDTO.setIsApplicable(true);
 
 
         //                       Risk Type 1 - Risk Component 1 - Risk Factor 1
@@ -46,8 +47,8 @@ public   class RPP_ManagementRiskRiskComponentDTO {
         managementRiskFactorDTO.setItemNo(1);
         managementRiskFactorDTO.setDescription("Management Risk Factor");
         managementRiskFactorDTO.setWeightage(1.00);
-        managementRiskFactorDTO.setComputingMethodCode("05");
-        managementRiskFactorDTO.setComputingMethodDescription("Equals");
+        managementRiskFactorDTO.setComputingMethodCode("01");
+        managementRiskFactorDTO.setComputingMethodDescription("Weighted");
         managementRiskFactorDTO.setScoreTypeCode("01");
         managementRiskFactorDTO.setScoreTypeDescription("Normal");
         managementRiskFactorDTO.setScore(0D);
@@ -55,7 +56,7 @@ public   class RPP_ManagementRiskRiskComponentDTO {
 
         //                       Risk Type 1 - Risk Component 1 - Risk Factor 1 - Risk SubFactor 1
         // 1.1.1                      Management Risk -> Management Risk Factor - > Management Capability/Quality
-        ///                                     15%
+        ///                                     30%
         RiskSubFactorDTO managementCapabilityRiskSubFactorDTO = new RiskSubFactorDTO();
         managementCapabilityRiskSubFactorDTO.setId(null);
         managementCapabilityRiskSubFactorDTO.setItemNo(1);
@@ -186,12 +187,12 @@ public   class RPP_ManagementRiskRiskComponentDTO {
 
         //                       Risk Type 1 - Risk Component 1 - Risk Factor 1 - Risk SubFactor 1
         // 1.1.3                     Management Risk -> Management Risk Factor - > Credit Track Record
-        ///                                     30%
+        ///                                     40%
         RiskSubFactorDTO creditTrackRecordRiskSubFactorDTO = new RiskSubFactorDTO();
         creditTrackRecordRiskSubFactorDTO.setId(null);
         creditTrackRecordRiskSubFactorDTO.setItemNo(3);
         creditTrackRecordRiskSubFactorDTO.setDescription("Credit Track Record");
-        creditTrackRecordRiskSubFactorDTO.setWeightage(0.30D);
+        creditTrackRecordRiskSubFactorDTO.setWeightage(0.40D);
         creditTrackRecordRiskSubFactorDTO.setScore(0D);
         creditTrackRecordRiskSubFactorDTO.setScoreTypeCode("01");
         creditTrackRecordRiskSubFactorDTO.setScoreTypeDescription("Normal");
@@ -251,7 +252,7 @@ public   class RPP_ManagementRiskRiskComponentDTO {
 
         //                       Risk Type 1 - Risk Component 1 - Risk Factor 1 - Risk SubFactor 1
         // 1.1.4                     Management Risk -> Management Risk Factor - > Management Structure
-        ///                                     30%
+        ///                                     DEFLATOR
         RiskSubFactorDTO managementStructureRiskSubFactorDTO = new RiskSubFactorDTO();
         managementStructureRiskSubFactorDTO.setId(null);
         managementStructureRiskSubFactorDTO.setItemNo(4);
@@ -266,29 +267,29 @@ public   class RPP_ManagementRiskRiskComponentDTO {
         riskSubFactorAttributeDTO1.setId(null);
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("The Sponsor / Promoter has significant experience in Power Industry and owns multiple projects");
-        riskSubFactorAttributeDTO1.setScore(1D);
-        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
+        riskSubFactorAttributeDTO1.setScore(1.00D);
+        riskSubFactorAttributeDTO1.setWeightage(0.00D);riskSubFactorAttributeDTO1.setIsSelected(false);
 
           riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
         riskSubFactorAttributeDTO2.setItemNo(2);
         riskSubFactorAttributeDTO2.setDescription("The Promoter / Sponsor has significant experience in the industry; however, this is the first project");
         riskSubFactorAttributeDTO2.setScore(0.90);
-        riskSubFactorAttributeDTO2.setWeightage(00D);riskSubFactorAttributeDTO2.setIsSelected(false);
+        riskSubFactorAttributeDTO2.setWeightage(0.00D);riskSubFactorAttributeDTO2.setIsSelected(false);
 
           riskSubFactorAttributeDTO3 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO3.setId(null);
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("The promoter / Sponsor are new entrant into the business");
         riskSubFactorAttributeDTO3.setScore(0.75);
-        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
+        riskSubFactorAttributeDTO3.setWeightage(0.00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
           riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
         riskSubFactorAttributeDTO4.setDescription("The Promoter / Sponsors are only equity investors and the management succession plan is uncertain");
         riskSubFactorAttributeDTO4.setScore(0.50D);
-        riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
+        riskSubFactorAttributeDTO4.setWeightage(0.00D);riskSubFactorAttributeDTO4.setIsSelected(false);
 
 
         //Collect Risk Sub Factor Attributes

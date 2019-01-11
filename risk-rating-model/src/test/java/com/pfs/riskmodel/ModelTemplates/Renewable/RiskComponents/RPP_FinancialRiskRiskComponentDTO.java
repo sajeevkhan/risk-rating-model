@@ -9,10 +9,7 @@ import com.pfs.riskmodel.dto.RiskSubFactorDTO;
  * Created by sajeev on 19-Dec-18.
  */
 public  class RPP_FinancialRiskRiskComponentDTO {
-    /**********************************************************************************************************************
-     *  Risk Component 1 : Financial Risk - 32%
-     *  This has only two levels below and therefore the Risk Factor will be a dummy entry (Financial Risk Factor) with same name
-     **********************************************************************************************************************/
+
     public static RiskComponentDTO getFinancialRiskComponentDTO () {
 
      //   RiskComponentDTO riskComponentDTO = new RiskComponentDTO();
@@ -25,15 +22,16 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         //  1                       Financial Risk
         RiskComponentDTO financialRiskComponentDTO = new RiskComponentDTO();
         financialRiskComponentDTO.setId(null);
-        financialRiskComponentDTO.setItemNo(1);
+        financialRiskComponentDTO.setItemNo(3);
         financialRiskComponentDTO.setDescription("Financial Risk");
         financialRiskComponentDTO.setWeightage(0.32D);
-        financialRiskComponentDTO.setComputingMethodCode("01");
-        financialRiskComponentDTO.setComputingMethodDescription("Weighted");
+        financialRiskComponentDTO.setComputingMethodCode("05");
+        financialRiskComponentDTO.setComputingMethodDescription("Equals");
         financialRiskComponentDTO.setScoreTypeCode("01");
         financialRiskComponentDTO.setScoreTypeDescription("Normal");
         financialRiskComponentDTO.setScore(0D);
 
+        financialRiskComponentDTO.setIsApplicable(true);
 
 
         //                       Risk Type 1 - Risk Component 1 - Risk Factor 1
@@ -46,8 +44,8 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         financialRiskFactorDTO.setItemNo(1);
         financialRiskFactorDTO.setDescription("Financial Risk Factor");
         financialRiskFactorDTO.setWeightage(1.00);
-        financialRiskFactorDTO.setComputingMethodCode("05");
-        financialRiskFactorDTO.setComputingMethodDescription("Equals");
+        financialRiskFactorDTO.setComputingMethodCode("01");
+        financialRiskFactorDTO.setComputingMethodDescription("Weighted");
         financialRiskFactorDTO.setScoreTypeCode("01");
         financialRiskFactorDTO.setScoreTypeDescription("Normal");
         financialRiskFactorDTO.setScore(0D);

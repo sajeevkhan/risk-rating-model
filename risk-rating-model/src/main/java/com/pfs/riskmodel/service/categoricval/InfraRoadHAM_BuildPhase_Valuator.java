@@ -76,6 +76,7 @@ public class InfraRoadHAM_BuildPhase_Valuator {
 
         for (RiskRatingModifier riskRatingModifier: riskModelTemplate.getRiskRatingModifiers()) {
 
+            // Execute Grade Capping to SubInvestment GRADE
             if (riskRatingModifier.getSubInvestmentGradeCapping() == true) {
 
                 if (overallProjectScore >= 6.25 ){
@@ -109,6 +110,8 @@ public class InfraRoadHAM_BuildPhase_Valuator {
         // GRADE AFTER PARENTAL NOTCHUP
 
         // TODO Evaluate ParentalNotcup to SET afterParentalNotchUpGrade
+
+
 
 
         finalProjectGrade = modifiedProjectGrade;
@@ -199,18 +202,14 @@ public class InfraRoadHAM_BuildPhase_Valuator {
         // TODO   - Parental Notcup Cappings ------------------------
 
 
-
+        // Apply after Parental Notchup
         // Get Modified Project Grade Object
         ProjectGrade modProjectGrade =  Utils.getProjectGradeByCommonScaleGrade(InfraRoad_HAM_BuildPhaseGrade.projectGradeList,
                                                                 riskModelTemplate.getModifiedProjectGrade());
-
         modifiedProjectGradeAsNumber = modProjectGrade.getGradeAsNumber();
-
         afterParentNotchupGradeAsNumber = modifiedProjectGradeAsNumber + numberofNotchesAfterParental;
-
         ProjectGrade afterParentalNotchUpGradeObject = Utils.getProjectGradeByGradeAsNumber( InfraRoad_HAM_BuildPhaseGrade.projectGradeList,
                                                                                                  afterParentNotchupGradeAsNumber);
-
         // Set the Grade after Parental Notchup
         riskModelTemplate.setAfterParentalNotchUpGrade(afterParentalNotchUpGradeObject.getCommonScaleGrade());
 

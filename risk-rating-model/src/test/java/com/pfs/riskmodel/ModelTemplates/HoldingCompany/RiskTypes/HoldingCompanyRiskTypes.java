@@ -23,7 +23,7 @@ public class HoldingCompanyRiskTypes {
         riskTypeDTO = new RiskTypeDTO();
         riskTypeDTO.setId(null);
         riskTypeDTO.setItemNo(1);
-        riskTypeDTO.setDescription("Holding Company Risk Rating");
+        riskTypeDTO.setDescription("Holding Company Risk");
         riskTypeDTO.setScore(0D);
         riskTypeDTO.setGrade(" ");
 

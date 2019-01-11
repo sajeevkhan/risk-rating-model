@@ -18,7 +18,7 @@ import java.util.List;
 public class HoldingCompany_Grade implements CommandLineRunner {
 
 
-     private  static  List<ProjectGrade> projectGradeList;
+     public   static  List<ProjectGrade> projectGradeList;
 
     @Override
     public void run(String... strings) throws Exception {

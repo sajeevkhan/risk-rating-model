@@ -35,8 +35,8 @@ public class ROP_ManagementRiskDTO {
 
         riskComponentDTO.setId(null);
         riskComponentDTO.setItemNo(4);
-        riskComponentDTO.setComputingMethodCode("01");
-        riskComponentDTO.setComputingMethodDescription("Weighted");
+        riskComponentDTO.setComputingMethodCode("05");
+        riskComponentDTO.setComputingMethodDescription("Equals");
         riskComponentDTO.setDescription("Management Risk");
         riskComponentDTO.setScoreTypeDescription("01");
         riskComponentDTO.setScoreTypeCode("01");
@@ -44,6 +44,8 @@ public class ROP_ManagementRiskDTO {
 
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.20D);
+
+        riskComponentDTO.setIsApplicable(true);
 
         /*
          --------------------------    Risk Factor 1
@@ -60,8 +62,8 @@ public class ROP_ManagementRiskDTO {
         managementRiskFactorDTO.setScore(0D);
         managementRiskFactorDTO.setScoreTypeCode("01");
         managementRiskFactorDTO.setScoreTypeDescription("Normal");
-        managementRiskFactorDTO.setComputingMethodCode("05");
-        managementRiskFactorDTO.setComputingMethodDescription("Equals");
+        managementRiskFactorDTO.setComputingMethodCode("01");
+        managementRiskFactorDTO.setComputingMethodDescription("Weighted");
 
 
         // 4.1.1        Risk Sub Factor 1
@@ -146,7 +148,7 @@ public class ROP_ManagementRiskDTO {
 
 
         List<RiskSubFactorAttributeDTO>  riskSubFactorAttributeDTOS3 =   riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
-        creditTrackRecordSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS1);
+        creditTrackRecordSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS3);
         managementRiskFactorDTO.addRiskSubFactorDTO(creditTrackRecordSubFactorDTO);
 
 
@@ -157,10 +159,10 @@ public class ROP_ManagementRiskDTO {
         RiskSubFactorDTO repaymentStructureDTO = new RiskSubFactorDTO();
         repaymentStructureDTO.setId(null);
         repaymentStructureDTO.setItemNo(4);
-        repaymentStructureDTO.setDescription("Management Structure");
+        repaymentStructureDTO.setDescription("Management Structure (Deflator)");
         repaymentStructureDTO.setWeightage(0.00);
         repaymentStructureDTO.setScore(0D);
-        repaymentStructureDTO.setScoreTypeCode("01");
+        repaymentStructureDTO.setScoreTypeCode("02");
         repaymentStructureDTO.setScoreTypeDescription("Deflator");
 
 
@@ -173,20 +175,14 @@ public class ROP_ManagementRiskDTO {
         riskSubFactorAttributes.add(new RiskAttribute(0.75D,"The promoter / Sponsor are new entrant into the business"));
         riskSubFactorAttributes.add(new RiskAttribute(0.50D,"The Promoter / Sponsors are only equity investors and the management succession plan is uncertain"));
 
+        List<RiskSubFactorAttributeDTO>  riskSubFactorAttributeDTOS4 =   riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
+        repaymentStructureDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS4);
+        managementRiskFactorDTO.addRiskSubFactorDTO(repaymentStructureDTO);
+
 
 
 
         riskComponentDTO.addRiskFactorDTO( managementRiskFactorDTO);
-
-//
-//
-//        riskSubFactorAttributes = new ArrayList<>();
-//        riskSubFactorAttributes.add(new RiskAttribute(0D, ArrayList<>()));
-//        riskSubFactorAttributes.add(new RiskAttribute(2D,ArrayList<>()));
-//        riskSubFactorAttributes.add(new RiskAttribute(4D,ArrayList<>()));
-//        riskSubFactorAttributes.add(new RiskAttribute(6D,ArrayList<>()));
-//        riskSubFactorAttributes.add(new RiskAttribute(8D,ArrayList<>()));
-//        riskSubFactorAttributes.add(new RiskAttribute(10D,ArrayList<>()));
 
 
 

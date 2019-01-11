@@ -293,7 +293,6 @@ public class RiskModelTemplateController {
                 riskComponent.setScoreType(scoreTypeRepository.findByCode(riskComponent.getScoreTypeCode()));
                 riskComponent.setScoreTypeCode(scoreTypeRepository.findByCode(riskComponent.getScoreTypeCode()).getCode());
 
-
                 for (RiskFactor riskFactor: riskComponent.getRiskFactors()) {
 
                     riskFactor.setComputingMethod(computingMethodRepository.findByCode(riskFactor.getComputingMethodCode()));
@@ -326,9 +325,8 @@ public class RiskModelTemplateController {
 
                             if (riskSubFactorAttribute.getWeightage() == null){
                                 System.out.println(" NULL Risk Sub Factor Attribute Weightage:" + riskSubFactorAttribute.getDescription());
-
                             }
-                                                     }
+                        }
                     }
                 }
 
@@ -353,7 +351,6 @@ public class RiskModelTemplateController {
 
             }
         }
-
 
         riskModelTemplate.setModelCategory(modelCategoryRepository.findByCode(riskModelTemplateDTO.getModelCategoryCode()));
         riskModelTemplate.setComputingMethod(computingMethodRepository.findByCode(riskModelTemplateDTO.getComputingMethodCode()));

@@ -1,14 +1,27 @@
 package com.pfs.riskmodel.ModelTemplates.Renewable.RiskComponents;
 
+import com.pfs.riskmodel.domain.RiskSubFactorAttribute;
 import com.pfs.riskmodel.dto.RiskComponentDTO;
 import com.pfs.riskmodel.dto.RiskFactorDTO;
 import com.pfs.riskmodel.dto.RiskSubFactorAttributeDTO;
 import com.pfs.riskmodel.dto.RiskSubFactorDTO;
+import com.pfs.riskmodel.utils.RiskAttribute;
+import com.pfs.riskmodel.utils.RiskSubFactorAttributesBuilder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by sajeev on 20-Dec-18.
  */
 public class RP_CompletionRiskComponentDTO {
+
+
+
+    RiskAttribute riskAttribute ;
+    List<RiskAttribute> riskSubFactorAttributes = new ArrayList<>();
+    RiskSubFactorAttributesBuilder riskSubFactorAttributesBuilder = new RiskSubFactorAttributesBuilder();
+
 
 
     public RiskComponentDTO getCompletionRisk(){
@@ -34,6 +47,8 @@ public class RP_CompletionRiskComponentDTO {
         completionRiskComponentDTO.setScoreTypeCode("01");
         completionRiskComponentDTO.setScoreTypeDescription("Normal");
         completionRiskComponentDTO.setScore(0D);
+
+        completionRiskComponentDTO.setIsApplicable(true);
 
 
         //                       Risk Type 1 - Risk Component 1 - Risk Factor 1
@@ -107,10 +122,6 @@ public class RP_CompletionRiskComponentDTO {
 
         // Collect FundingRiskFactor
         fundingRiskFactorDTO.addRiskSubFactorDTO(financialFlexibilityRiskSubFactorDTO);
-
-
-
-
 
 
 
@@ -210,7 +221,8 @@ public class RP_CompletionRiskComponentDTO {
         riskSubFactorAttributeDTO1.setItemNo(1);
         riskSubFactorAttributeDTO1.setDescription("Gestation period above 24 months");
         riskSubFactorAttributeDTO1.setScore(0D);
-        riskSubFactorAttributeDTO1.setWeightage(00D);riskSubFactorAttributeDTO1.setIsSelected(false);
+        riskSubFactorAttributeDTO1.setWeightage(00D);
+        riskSubFactorAttributeDTO1.setIsSelected(false);
 
         riskSubFactorAttributeDTO2 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO2.setId(null);
@@ -224,7 +236,7 @@ public class RP_CompletionRiskComponentDTO {
         riskSubFactorAttributeDTO3.setItemNo(3);
         riskSubFactorAttributeDTO3.setDescription("Gestation period between 12 - 18 months");
         riskSubFactorAttributeDTO3.setScore(4.00D);
-        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);riskSubFactorAttributeDTO3.setIsSelected(false);riskSubFactorAttributeDTO3.setIsSelected(false);riskSubFactorAttributeDTO3.setIsSelected(false);riskSubFactorAttributeDTO3.setIsSelected(false);
+        riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
         riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
@@ -238,7 +250,7 @@ public class RP_CompletionRiskComponentDTO {
         riskSubFactorAttributeDTO5.setItemNo(5);
         riskSubFactorAttributeDTO5.setDescription("Gestation Period less than 6 months but some clearance pending");
         riskSubFactorAttributeDTO5.setScore(8.00D);
-        riskSubFactorAttributeDTO5.setWeightage(0D);
+        riskSubFactorAttributeDTO5.setWeightage(0D);riskSubFactorAttributeDTO5.setIsSelected(false);
 
 
         RiskSubFactorAttributeDTO riskSubFactorAttributeDTO6 = new RiskSubFactorAttributeDTO();
@@ -398,10 +410,10 @@ public class RP_CompletionRiskComponentDTO {
         evacuationInfraConstructionRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO5);
         evacuationInfraConstructionRiskSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO6);
 
-
-        // Collect Risk Sub Factors into RiskFactors
-        // --- Completion Risk
-        completionRiskComponentDTO.addRiskFactorDTO(fundingRiskFactorDTO);
+//
+//        // Collect Risk Sub Factors into RiskFactors
+//        // --- Completion Risk
+//        completionRiskComponentDTO.addRiskFactorDTO(fundingRiskFactorDTO);
 
         // ---- Key Completion Risk
         keyCompletionRiskFactorDTO.addRiskSubFactorDTO(clearancesRiskSubFactorDTO);

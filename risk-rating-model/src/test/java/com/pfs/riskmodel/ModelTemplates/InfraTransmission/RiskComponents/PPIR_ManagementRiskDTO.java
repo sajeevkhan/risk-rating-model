@@ -36,14 +36,16 @@ public class PPIR_ManagementRiskDTO {
 
         riskComponentDTO.setId(null);
         riskComponentDTO.setItemNo(3);
-        riskComponentDTO.setComputingMethodCode("01");
-        riskComponentDTO.setComputingMethodDescription("Weighted");
+        riskComponentDTO.setComputingMethodCode("05");
+        riskComponentDTO.setComputingMethodDescription("Equals");
         riskComponentDTO.setDescription("Management Risk");
         riskComponentDTO.setScoreTypeDescription("01");
         riskComponentDTO.setScoreTypeDescription("Normal");
         riskComponentDTO.setScoreTypeCode("01");
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.12D);
+
+        riskComponentDTO.setIsApplicable(true);
 
         // 1.1 Management Risk Factor
         //  No Concrete Risk Factors - Therefore a dummy Risk Factor called "Management Risk Factor" is added
@@ -56,8 +58,8 @@ public class PPIR_ManagementRiskDTO {
         managementRiskFactorDTO.setScore(0D);
         managementRiskFactorDTO.setScoreTypeCode("01");
         managementRiskFactorDTO.setScoreTypeDescription("Normal");
-        managementRiskFactorDTO.setComputingMethodCode("05");
-        managementRiskFactorDTO.setComputingMethodDescription("Equals");
+        managementRiskFactorDTO.setComputingMethodCode("01");
+        managementRiskFactorDTO.setComputingMethodDescription("Weighted");
 
 
 
@@ -101,7 +103,7 @@ public class PPIR_ManagementRiskDTO {
         managementIntgAndCorpGovRiskSubFactorDTO.setScoreTypeDescription("Normal");
 
         //
-        // 1.1.1       Risk Sub Factor Attributes
+        // 1.1.2      Risk Sub Factor Attributes
         // -> Four Attributes
         riskSubFactorAttributes = new ArrayList<>(); //TODO - Check Scores
         riskSubFactorAttributes.add(new RiskAttribute(10D, "Top management is regarded as having the highest degree of integrity with extremely robust corporate governance standards. A very high degree of compliance in its financial and regulatory related dealings and maintains well above minimum compliance standards. They hold themselves to a high level of stringent scrutiny through their audit/due diligence/ other related processes evaluated by companies of strong repute"));

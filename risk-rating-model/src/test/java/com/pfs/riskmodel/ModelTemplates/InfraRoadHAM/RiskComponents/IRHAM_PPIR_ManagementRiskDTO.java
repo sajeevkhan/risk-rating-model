@@ -45,6 +45,8 @@ public class IRHAM_PPIR_ManagementRiskDTO {
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.12D);
 
+        riskComponentDTO.setIsApplicable(true);
+
         // 1.1 Management Risk Factor
         //  No Concrete Risk Factors - Therefore a dummy Risk Factor called "Management Risk Factor" is added
 

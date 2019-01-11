@@ -40,6 +40,8 @@ public class PPIR_FinancialRiskDTO {
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.40D);
 
+        riskComponentDTO.setIsApplicable(true);
+
 
         // 1.1 Financial Risk Factor
         // No Concrete Risk Factors - Therefore a dummy Risk Factor called "Financial Risk Factor" is added
@@ -51,8 +53,8 @@ public class PPIR_FinancialRiskDTO {
         financialRiskFactorDTO.setScore(0D);
         financialRiskFactorDTO.setScoreTypeCode("01");
         financialRiskFactorDTO.setScoreTypeDescription("Normal");
-        financialRiskFactorDTO.setComputingMethodCode("05");
-        financialRiskFactorDTO.setComputingMethodDescription("Equals");
+        financialRiskFactorDTO.setComputingMethodCode("01");
+        financialRiskFactorDTO.setComputingMethodDescription("Weighted");
 
 
         // 1.1.1        Risk Sub Factor 1
@@ -144,7 +146,7 @@ public class PPIR_FinancialRiskDTO {
         averageDSCRRiskSubFactorDTO.setId(null);
         averageDSCRRiskSubFactorDTO.setItemNo(4);
         averageDSCRRiskSubFactorDTO.setDescription("Average DSCR");
-        averageDSCRRiskSubFactorDTO.setWeightage(0.00); //TODO  Weightage
+        averageDSCRRiskSubFactorDTO.setWeightage(0.15); //TODO  Weightage
         averageDSCRRiskSubFactorDTO.setScore(0D);
         averageDSCRRiskSubFactorDTO.setScoreTypeCode("01");
         averageDSCRRiskSubFactorDTO.setScoreTypeDescription("Normal");

@@ -20,6 +20,7 @@ public class RiskComponentDTO {
 
     private Long id;
     private Integer itemNo;
+    private  Boolean isApplicable;
     private String description;
     private String computingMethodCode;
     private String computingMethodDescription;

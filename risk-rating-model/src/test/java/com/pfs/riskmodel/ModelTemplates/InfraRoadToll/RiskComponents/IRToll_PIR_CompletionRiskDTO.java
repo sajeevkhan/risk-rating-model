@@ -39,6 +39,8 @@ public class IRToll_PIR_CompletionRiskDTO {
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.40D);
 
+        riskComponentDTO.setIsApplicable(true);
+
         //  Risk Factor
         //1.1 Funding Risk 30%  (Calculation Method = Weightage)
         RiskFactorDTO fundingRiskFactorDTO = new RiskFactorDTO();

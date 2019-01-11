@@ -23,6 +23,7 @@ public class RiskRatingModifierEvaluator {
 
         for (RiskRatingModifierAttribute riskRatingModifierAttribute:riskRatingModifier.getRiskRatingModifierAttributes()){
 
+             // Modifier Type 0 is for SubInvestment GRADE Capping
              if (riskRatingModifier.getModifierType() == 0) {
                  if (riskRatingModifierAttribute.getYesOrNoIndicator().equals('Y') ){
                      subInvestmentGradeCapping = true;
@@ -30,11 +31,12 @@ public class RiskRatingModifierEvaluator {
                  }
              }
 
+             // Modifier Type 1 is used for Notch Down
              if (riskRatingModifier.getModifierType() == 1) {
 
                  if (riskRatingModifierAttribute.getYesOrNoIndicator().equals('Y') ) {
-                     numberOfNotchesDownItems += 1;
-                     numberOfNotchesDown += 1;
+                     numberOfNotchesDownItems -= 1;
+                     numberOfNotchesDown -= 1;
                  }
              }
         }
@@ -48,20 +50,6 @@ public class RiskRatingModifierEvaluator {
     }
 
 
-    // Weighted Computation
-    private Double computeWeighted ( List<RiskComponent> riskComponentSet) {
-
-        Double score = 0D;
-        // Computing Method = 01 - Weighted
-        for (RiskComponent riskComponent: riskComponentSet) {
-            String scoreTypeCode = riskComponent.getScoreType().getCode();
-            score =  score + riskComponent.getScore() * riskComponent.getWeightage();
-        }
-
-        Math.round(score);
-
-        return score;
-    }
 
 
 

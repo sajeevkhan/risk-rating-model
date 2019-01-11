@@ -43,6 +43,8 @@ public class PIR_ExecutionRiskDTO {
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.70D);  //TODO
 
+        riskComponentDTO.setIsApplicable(true);
+
 
         // DEFLATOR
         // Social Risk - Risk Factor - DEFLATOR
@@ -59,8 +61,8 @@ public class PIR_ExecutionRiskDTO {
         socialRiskDeflatorRiskFactorDTO.setScore(0D);
         socialRiskDeflatorRiskFactorDTO.setScoreTypeCode("02");
         socialRiskDeflatorRiskFactorDTO.setScoreTypeDescription("Deflator");
-        socialRiskDeflatorRiskFactorDTO.setComputingMethodCode("06");
-        socialRiskDeflatorRiskFactorDTO.setComputingMethodDescription("Multiply");
+        socialRiskDeflatorRiskFactorDTO.setComputingMethodCode("05");
+        socialRiskDeflatorRiskFactorDTO.setComputingMethodDescription("Equals");
 
 
         // Social Risk DEFLATOR
@@ -68,7 +70,7 @@ public class PIR_ExecutionRiskDTO {
         RiskSubFactorDTO socialRiskRiskSubFactorDTO = new RiskSubFactorDTO();
         socialRiskRiskSubFactorDTO.setId(null);
         socialRiskRiskSubFactorDTO.setItemNo(1);
-        socialRiskRiskSubFactorDTO.setDescription("Social Risk Sub Factor");
+        socialRiskRiskSubFactorDTO.setDescription("Social Risk (Deflator)");
         socialRiskRiskSubFactorDTO.setWeightage(0.00);
         socialRiskRiskSubFactorDTO.setScore(0D);
         socialRiskRiskSubFactorDTO.setScoreTypeCode("01");
@@ -146,17 +148,17 @@ public class PIR_ExecutionRiskDTO {
 
         // 8 Attributes - With or without ISO
         riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(2D, "With ISO - Timelines were significantly breached during previously undertaken projects viz time over run of 1-2 years"));
         riskSubFactorAttributes.add(new RiskAttribute(0D,"Without ISO - Timelines were significantly breached during previously undertaken projects viz time over run of 1-2 years"));
+        riskSubFactorAttributes.add(new RiskAttribute(2D, "With ISO - Timelines were significantly breached during previously undertaken projects viz time over run of 1-2 years"));
 
-        riskSubFactorAttributes.add(new RiskAttribute(5D,"With ISO - Timelines were Moderately breached during previously undertaken projects viz time over run of 6 months to 1 years"));
         riskSubFactorAttributes.add(new RiskAttribute(3D,"Without ISO - Timelines were Moderately breached during previously undertaken projects viz time over run of 6 months to 1 years"));
+        riskSubFactorAttributes.add(new RiskAttribute(5D,"With ISO - Timelines were Moderately breached during previously undertaken projects viz time over run of 6 months to 1 years"));
 
-        riskSubFactorAttributes.add(new RiskAttribute(8D,"With ISO - Timelines were breached (by a low margin) during previously undertaken projects viz time over run of up to 6 months"));
         riskSubFactorAttributes.add(new RiskAttribute(6D,"Without ISO - Timelines were breached (by a low margin) during previously undertaken projects viz time over run of up to 6 months"));
+        riskSubFactorAttributes.add(new RiskAttribute(8D,"With ISO - Timelines were breached (by a low margin) during previously undertaken projects viz time over run of up to 6 months"));
 
-        riskSubFactorAttributes.add(new RiskAttribute(10D,"With ISO - Timelines were not breached during previously undertaken projects"));
         riskSubFactorAttributes.add(new RiskAttribute(8D,"Without ISO - Timelines were not breached during previously undertaken projects"));
+        riskSubFactorAttributes.add(new RiskAttribute(10D,"With ISO - Timelines were not breached during previously undertaken projects"));
 
 
 
@@ -182,15 +184,15 @@ public class PIR_ExecutionRiskDTO {
         // -> Four Attributes
         riskSubFactorAttributes = new ArrayList<>();
         riskSubFactorAttributes.add(new RiskAttribute(0D, "On standalone basis, TOL/TNW is more than 4.5\n" +
-                "OR External credit rating below BBB- (In case of 3rd party contractor)\n" +
+                "OR\n" + "External credit rating below BBB- (In case of 3rd party contractor)\n" +
                 "OR\n" +
                 "Unrated borrower"));
         riskSubFactorAttributes.add(new RiskAttribute(3D,"On standalone basis, TOL/TNW is between 3.5 & 4.5\n" +
-                "OR External credit rating between BBB+ to BBB- (In case of 3rd party contractor"));
+                "OR\n External credit rating between BBB+ to BBB- (In case of 3rd party contractor"));
         riskSubFactorAttributes.add(new RiskAttribute(7D,"On standalone basis, TOL/TNW is between 2.5 & 3.5\n" +
-                "OR External credit rating A- to A+ (In case of 3rd party contractor"));
+                "OR\n External credit rating A- to A+ (In case of 3rd party contractor"));
         riskSubFactorAttributes.add(new RiskAttribute(10D,"On standalone basis, TOL/TNW is below 2.5\n" +
-                "OR External credit rating more than A+ (In case of 3rd party contractor"));
+                "OR\n External credit rating more than A+ (In case of 3rd party contractor"));
 
         List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS3 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
         financialStrengthOfContractorRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS3);

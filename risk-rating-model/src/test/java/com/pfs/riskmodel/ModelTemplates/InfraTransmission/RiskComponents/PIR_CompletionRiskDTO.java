@@ -39,6 +39,9 @@ public class PIR_CompletionRiskDTO {
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.30D);
 
+        riskComponentDTO.setIsApplicable(true);
+
+
         //  Risk Factor
         //1.1 Funding Risk 40%  (Calculation Method = Sum of Risk Sub Factors)
         RiskFactorDTO fundingRiskFactorDTO = new RiskFactorDTO();
@@ -49,8 +52,8 @@ public class PIR_CompletionRiskDTO {
         fundingRiskFactorDTO.setScore(0D);
         fundingRiskFactorDTO.setScoreTypeCode("01");
         fundingRiskFactorDTO.setScoreTypeDescription("Normal");
-        fundingRiskFactorDTO.setComputingMethodCode("02");
-        fundingRiskFactorDTO.setComputingMethodDescription("Sum");
+        fundingRiskFactorDTO.setComputingMethodCode("01");
+        fundingRiskFactorDTO.setComputingMethodDescription("Weighted");
 
 
         // Risk Sub Factor 1
@@ -59,7 +62,7 @@ public class PIR_CompletionRiskDTO {
         financialFlexibilityRiskSubFactorDTO.setId(null);
         financialFlexibilityRiskSubFactorDTO.setItemNo(1);
         financialFlexibilityRiskSubFactorDTO.setDescription("Financial Flexibility");
-        financialFlexibilityRiskSubFactorDTO.setWeightage(1.00); // Does not matter, Comp.Method of Risk Factor = Sum
+        financialFlexibilityRiskSubFactorDTO.setWeightage(0.30);
         financialFlexibilityRiskSubFactorDTO.setScore(0D);
         financialFlexibilityRiskSubFactorDTO.setScoreTypeCode("01");
         financialFlexibilityRiskSubFactorDTO.setScoreTypeDescription("Normal");
@@ -88,7 +91,7 @@ public class PIR_CompletionRiskDTO {
         financialClosureRiskSubFactorDTO.setId(null);
         financialClosureRiskSubFactorDTO.setItemNo(2);
         financialClosureRiskSubFactorDTO.setDescription("Financial Closure");
-        financialClosureRiskSubFactorDTO.setWeightage(1.00); // Does not matter, Comp.Method of Risk Factor = Sum
+        financialClosureRiskSubFactorDTO.setWeightage(0.70);
         financialClosureRiskSubFactorDTO.setScore(0D);
         financialClosureRiskSubFactorDTO.setScoreTypeCode("01");
         financialClosureRiskSubFactorDTO.setScoreTypeDescription("Normal");
@@ -104,8 +107,8 @@ public class PIR_CompletionRiskDTO {
         riskSubFactorAttributes.add(new RiskAttribute(8D,"Majority of funds tied up (i.e. > 70%). Very minor hurdles / problems expected in achieving closure beyond 70%"));
         riskSubFactorAttributes.add(new RiskAttribute(10D,"Funds totally tied up. Sanction letter may be submitted"));
 
-        List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
-        financialClosureRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS);
+        List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS2 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
+        financialClosureRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS2);
         fundingRiskFactorDTO.addRiskSubFactorDTO(financialClosureRiskSubFactorDTO);
 
 
@@ -116,14 +119,14 @@ public class PIR_CompletionRiskDTO {
         //  1.2 Key Completion Risks -   60%
         RiskFactorDTO keyCompletionRiskFactorDTO = new RiskFactorDTO();
         keyCompletionRiskFactorDTO.setId(null);
-        keyCompletionRiskFactorDTO.setItemNo(1);
+        keyCompletionRiskFactorDTO.setItemNo(2);
         keyCompletionRiskFactorDTO.setDescription("Key Completion Risks");
         keyCompletionRiskFactorDTO.setWeightage(0.60);
         keyCompletionRiskFactorDTO.setScore(0D);
         keyCompletionRiskFactorDTO.setScoreTypeCode("01");
         keyCompletionRiskFactorDTO.setScoreTypeDescription("Normal");
-        keyCompletionRiskFactorDTO.setComputingMethodCode("02");
-        keyCompletionRiskFactorDTO.setComputingMethodDescription("Sum");
+        keyCompletionRiskFactorDTO.setComputingMethodCode("01");
+        keyCompletionRiskFactorDTO.setComputingMethodDescription("Weighted");
 
 
         // 1.2.1        Risk Sub Factor 1
@@ -132,7 +135,7 @@ public class PIR_CompletionRiskDTO {
         clearancesRiskSubFactorDTO.setId(null);
         clearancesRiskSubFactorDTO.setItemNo(1);
         clearancesRiskSubFactorDTO.setDescription("Clearances");
-        clearancesRiskSubFactorDTO.setWeightage(1.00);  //Does not matter, Comp.Method of Risk Factor = Sum
+        clearancesRiskSubFactorDTO.setWeightage(0.42);
         clearancesRiskSubFactorDTO.setScore(0D);
         clearancesRiskSubFactorDTO.setScoreTypeCode("01");
         clearancesRiskSubFactorDTO.setScoreTypeDescription("Normal");
@@ -147,8 +150,8 @@ public class PIR_CompletionRiskDTO {
         riskSubFactorAttributes.add(new RiskAttribute(10D,"The project has obtained all relevant clearance required such as approval under section 68 of EA 2003, CERC approval for adoptation of transmission charges, approval of Section 164 of EA 2003 etc."));
 
 
-        List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS4 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
-        clearancesRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS);
+        List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS3 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
+        clearancesRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS3);
         keyCompletionRiskFactorDTO.addRiskSubFactorDTO(clearancesRiskSubFactorDTO);
 
 
@@ -158,7 +161,7 @@ public class PIR_CompletionRiskDTO {
         landAcqusitionRiskSubFactorDTO.setId(null);
         landAcqusitionRiskSubFactorDTO.setItemNo(2);
         landAcqusitionRiskSubFactorDTO.setDescription("Land Acquisition/ Right of Way (RoW)");
-        landAcqusitionRiskSubFactorDTO.setWeightage(1.00);  // Does not matter
+        landAcqusitionRiskSubFactorDTO.setWeightage(0.58);
         landAcqusitionRiskSubFactorDTO.setScore(0D);
         landAcqusitionRiskSubFactorDTO.setScoreTypeCode("01");
         landAcqusitionRiskSubFactorDTO.setScoreTypeDescription("Normal");
@@ -172,8 +175,8 @@ public class PIR_CompletionRiskDTO {
         riskSubFactorAttributes.add(new RiskAttribute(7D,"More than 50% of Land for sub-station has been in possession of the company; Detailed rout survey has been completed and RoW for 10%-25% tower location has been obtained"));
         riskSubFactorAttributes.add(new RiskAttribute(10D,"100% land for substation has been acquired (or no land acquisition involved); RoW for more than 25% tower location has been obtained"));
 
-        List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS5 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
-        landAcqusitionRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS);
+        List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS4 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
+        landAcqusitionRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS4);
         keyCompletionRiskFactorDTO.addRiskSubFactorDTO(landAcqusitionRiskSubFactorDTO);
 
 
