@@ -69,39 +69,6 @@ public class CategoricModelValuator {
     }
 
 
-    // Execute Parental Notchup Valuation for specific categories
-    public RiskModelTemplate executeParentalNotchUpValuation (RiskModelTemplate riskModelTemplate, Integer numberOfNotchesAfterParental) {
-
-        switch (riskModelTemplate.getModelCategory().getCode()) {
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                InfraRoadHAM_BuildPhase_Valuator infraRoadHAM_buildPhase_valuator = new InfraRoadHAM_BuildPhase_Valuator();
-                riskModelTemplate = infraRoadHAM_buildPhase_valuator.setGradeAfterParentalNotchup(riskModelTemplate,numberOfNotchesAfterParental);
-                break;
-            case 6: //TODO Change METHOD
-                InfraRoadHAM_OperationalPhase_Valuator infraRoadHAM_operationalPhase_valuator = new InfraRoadHAM_OperationalPhase_Valuator();
-                riskModelTemplate = infraRoadHAM_operationalPhase_valuator.valuate(riskModelTemplate);
-                break;
-            case 7:
-                break;
-            case 8:
-                break;
-            case 9:
-                break;
-
-        }
-
-
-        return riskModelTemplate;
-    }
-
 
     // Execute Account Conduct Redistribution
     public  RiskModelTemplate executeAccountConductWeightageReDistribution(RiskModelTemplate riskModelTemplate) {

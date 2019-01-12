@@ -1,5 +1,6 @@
 package com.pfs.riskmodel.service.categoricval;
 
+import com.pfs.riskmodel.businessconfig.Infra_Transmission_BuildPhaseGrade;
 import com.pfs.riskmodel.businessconfig.Renewables_Grade;
 import com.pfs.riskmodel.businessconfig.ProjectGrade;
 import com.pfs.riskmodel.businessconfig.Renewables_Grade;
@@ -20,6 +21,9 @@ import java.util.List;
  */
 public class Renewables_BuildPhase_Valuator {
 
+
+
+    List<ProjectGrade> projectGradeList = Renewables_Grade.projectGradeList;
 
     public RiskModelTemplate valuate (RiskModelTemplate riskModelTemplate) {
 
@@ -53,7 +57,7 @@ public class Renewables_BuildPhase_Valuator {
 
                 // TODO - Change the Grade Scale - OPEN WITH PFS
                 ProjectGrade projectGrade =
-                        Utils.fetchGrade(Renewables_Grade.projectGradeList,riskType.getScore());
+                        Utils.fetchGrade(projectGradeList,riskType.getScore());
 
                 postProjectImplScore = riskType.getScore();
                 postProjectImplScoreGrade = projectGrade.getCommonScaleGrade();
@@ -62,7 +66,7 @@ public class Renewables_BuildPhase_Valuator {
 
             else {
                 ProjectGrade projectGrade =
-                        Utils.fetchGrade(Renewables_Grade.projectGradeList,riskType.getScore());
+                        Utils.fetchGrade(projectGradeList,riskType.getScore());
 
                 projectImplScore = riskType.getScore();
                 projectImplScoreGrade = projectGrade.getCommonScaleGrade();
@@ -81,7 +85,7 @@ public class Renewables_BuildPhase_Valuator {
 
         //  Build Phase Grade
         ProjectGrade overallProjectGradeObject =
-                Utils.fetchGrade(Renewables_Grade.projectGradeList,overallProjectScore);
+                Utils.fetchGrade(projectGradeList,overallProjectScore);
         overallProjectGrade = overallProjectGradeObject.getCommonScaleGrade();
 
 
@@ -97,9 +101,10 @@ public class Renewables_BuildPhase_Valuator {
         riskModelTemplate.setModifiedProjectGradeAsNumber(modifiedProjectGradeAsNumber);
 
 
-        //    Overall Rating Grade
+        // Overall Rating Grade
         // GRADE AFTER PARENTAL NOTCHUP
         // Check if Parental Notchup is Applicable
+
 
         // Evaluate Parental NotchUp
         RiskParentalNotchUpEvaluator riskParentalNotchUpEvaluator = new RiskParentalNotchUpEvaluator();
@@ -112,25 +117,29 @@ public class Renewables_BuildPhase_Valuator {
 
         // TODO   - Parental Notchup Cappings ------------------------
 
-
-
         // Apply after Parental Notchup
         // Get Modified Project Grade Object
-        ProjectGrade modProjectGrade =  Utils.getProjectGradeByCommonScaleGrade(Renewables_Grade.projectGradeList,
+        ProjectGrade modProjectGrade =  Utils.getProjectGradeByCommonScaleGrade(projectGradeList,
                 riskModelTemplate.getModifiedProjectGrade());
         modifiedProjectGradeAsNumber = modProjectGrade.getGradeAsNumber();
         afterParentNotchupGradeAsNumber = modifiedProjectGradeAsNumber - numberofNotchesAfterParental;
 
         ProjectGrade afterParentalNotchUpGradeObject =
-                Utils.getProjectGradeByGradeAsNumber( Renewables_Grade.projectGradeList, afterParentNotchupGradeAsNumber);
+                Utils.getProjectGradeByGradeAsNumber( projectGradeList, afterParentNotchupGradeAsNumber);
         // Set the Grade after Parental Notchup
-        if (afterParentalNotchUpGrade != null) {
+        if (afterParentalNotchUpGradeObject != null) {
             riskModelTemplate.setAfterParentalNotchUpGrade(afterParentalNotchUpGradeObject.getCommonScaleGrade());
             afterParentalNotchUpGrade = afterParentalNotchUpGradeObject.getCommonScaleGrade();
         }
         else {
             afterParentalNotchUpGrade = modifiedProjectGrade;
         }
+
+
+
+
+        //    Overall Rating Grade
+        // GRADE AFTER PARENTAL NOTCHUP
         riskModelTemplate.setFinalProjectGrade(afterParentalNotchUpGrade);
         finalProjectGrade = afterParentalNotchUpGrade;
 

@@ -43,6 +43,7 @@ public class InfraRoad_Toll_BuildPhaseGrade implements CommandLineRunner {
         projectGradeList.add(p5);
         projectGradeList.add(p6);
         projectGradeList.add(p7);
+
         projectGradeList.add(p8);
 
     }

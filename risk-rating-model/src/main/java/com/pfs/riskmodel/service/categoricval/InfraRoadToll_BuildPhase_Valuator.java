@@ -1,10 +1,12 @@
 package com.pfs.riskmodel.service.categoricval;
 
 import com.pfs.riskmodel.businessconfig.InfraRoad_Toll_BuildPhaseGrade;
+import com.pfs.riskmodel.businessconfig.Infra_Transmission_BuildPhaseGrade;
 import com.pfs.riskmodel.businessconfig.ProjectGrade;
 import com.pfs.riskmodel.businessconfig.Renewables_Grade;
 import com.pfs.riskmodel.domain.RiskModelSummary;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
+import com.pfs.riskmodel.domain.RiskRatingModifier;
 import com.pfs.riskmodel.domain.RiskType;
 import com.pfs.riskmodel.service.modelvaluator.RiskParentalNotchUpEvaluator;
 import com.pfs.riskmodel.service.modelvaluator.Utils;
@@ -16,6 +18,9 @@ import java.util.List;
  * Created by sajeev on 31-Dec-18.
  */
 public class InfraRoadToll_BuildPhase_Valuator {
+
+
+    List<ProjectGrade> projectGradeList = InfraRoad_Toll_BuildPhaseGrade.projectGradeList;
 
 
     public RiskModelTemplate valuate (RiskModelTemplate riskModelTemplate) {
@@ -49,7 +54,7 @@ public class InfraRoadToll_BuildPhase_Valuator {
             if (riskType.getDescription().contains("Post")) {
 
                  ProjectGrade projectGrade =
-                        Utils.fetchGrade(InfraRoad_Toll_BuildPhaseGrade.projectGradeList,riskType.getScore());
+                        Utils.fetchGrade(projectGradeList,riskType.getScore());
 
                 postProjectImplScore = riskType.getScore();
                 postProjectImplScoreGrade = projectGrade.getCommonScaleGrade();
@@ -58,16 +63,13 @@ public class InfraRoadToll_BuildPhase_Valuator {
 
             else {
                 ProjectGrade projectGrade =
-                        Utils.fetchGrade(Renewables_Grade.projectGradeList,riskType.getScore());
+                        Utils.fetchGrade(projectGradeList,riskType.getScore());
 
                 projectImplScore = riskType.getScore();
                 projectImplScoreGrade = projectGrade.getCommonScaleGrade();
                 riskType.setGrade(projectImplScoreGrade);
             }
         }
-
-
-
 
 
         // Build Phase Phase Score = Minimum of Project Impl Score and Post Project Impl Score
@@ -77,24 +79,53 @@ public class InfraRoadToll_BuildPhase_Valuator {
 
         //  Build Phase Grade
         ProjectGrade overallProjectGradeObject =
-                Utils.fetchGrade(InfraRoad_Toll_BuildPhaseGrade.projectGradeList,overallProjectScore);
+                Utils.fetchGrade(projectGradeList,overallProjectScore);
         overallProjectGrade = overallProjectGradeObject.getCommonScaleGrade();
 
 
-        // MODIFIERS ARE NOT APPLICABLE FOR RENEWABLES
-        // Therefore, overall project score is passed on
-        modifiedProjectGrade = overallProjectGrade;
-        modifiedProjectGradeAsNumber = overallProjectGradeObject.getGradeAsNumber();
+        Boolean ratingModifiersInAction = false;
 
+        // EXECUTE RISK RATING MODIFIERS
+        for (RiskRatingModifier riskRatingModifier: riskModelTemplate.getRiskRatingModifiers()) {
 
+            // Execute Grade Capping to SubInvestment GRADE
+            if (riskRatingModifier.getModifierType() == 0)
+                if (riskRatingModifier.getSubInvestmentGradeCapping() == true) {
+                    if (overallProjectScore >= 6.25) {
+                        modifiedProjectGrade = "GRADE 7";
+                        ratingModifiersInAction = true;
+                    }
+                }
+
+            if (riskRatingModifier.getNumberOfNotchesDown() != 0) {
+
+                // Add the "Number of Notch downs" to the overall project grade number
+                modifiedProjectGradeAsNumber = overallProjectGradeObject.getGradeAsNumber() + riskRatingModifier.getNumberOfNotchesDown();
+
+                // Find the the Modified Grade
+                for (ProjectGrade projectGrade : projectGradeList) {
+                    if (projectGrade.getItemNo() == modifiedProjectGradeAsNumber) {
+                        modifiedProjectGrade = projectGrade.getCommonScaleGrade();
+                        ratingModifiersInAction = true;
+                        break;
+                    }
+                    else // Rating is not found in the rating table
+                        ratingModifiersInAction = false;
+                }
+            }
+        }
+
+        if (ratingModifiersInAction == false) {
+            // If Rating Modifiers do not influence the calculation, Project Rating is passed on
+            modifiedProjectGrade = overallProjectGrade;
+            modifiedProjectGradeAsNumber = overallProjectGradeObject.getGradeAsNumber();
+        }
+
+        // Set the Grade on the Model
         riskModelTemplate.setOverallProjectGrade(overallProjectGrade);
         riskModelTemplate.setModifiedProjectGrade(modifiedProjectGrade);
         riskModelTemplate.setModifiedProjectGradeAsNumber(modifiedProjectGradeAsNumber);
 
-
-        //    Overall Rating Grade
-        // GRADE AFTER PARENTAL NOTCHUP
-        // Check if Parental Notchup is Applicable
 
         // Evaluate Parental NotchUp
         RiskParentalNotchUpEvaluator riskParentalNotchUpEvaluator = new RiskParentalNotchUpEvaluator();
@@ -107,25 +138,27 @@ public class InfraRoadToll_BuildPhase_Valuator {
 
         // TODO   - Parental Notchup Cappings ------------------------
 
-
-
         // Apply after Parental Notchup
         // Get Modified Project Grade Object
-        ProjectGrade modProjectGrade =  Utils.getProjectGradeByCommonScaleGrade(InfraRoad_Toll_BuildPhaseGrade.projectGradeList,
+        ProjectGrade modProjectGrade =  Utils.getProjectGradeByCommonScaleGrade(projectGradeList,
                 riskModelTemplate.getModifiedProjectGrade());
         modifiedProjectGradeAsNumber = modProjectGrade.getGradeAsNumber();
         afterParentNotchupGradeAsNumber = modifiedProjectGradeAsNumber - numberofNotchesAfterParental;
 
         ProjectGrade afterParentalNotchUpGradeObject =
-                Utils.getProjectGradeByGradeAsNumber( InfraRoad_Toll_BuildPhaseGrade.projectGradeList, afterParentNotchupGradeAsNumber);
+                Utils.getProjectGradeByGradeAsNumber( projectGradeList, afterParentNotchupGradeAsNumber);
         // Set the Grade after Parental Notchup
-        if (afterParentalNotchUpGrade != null) {
+        if (afterParentalNotchUpGradeObject != null) {
             riskModelTemplate.setAfterParentalNotchUpGrade(afterParentalNotchUpGradeObject.getCommonScaleGrade());
             afterParentalNotchUpGrade = afterParentalNotchUpGradeObject.getCommonScaleGrade();
         }
         else {
             afterParentalNotchUpGrade = modifiedProjectGrade;
         }
+
+
+        //    Overall Rating Grade
+        // GRADE AFTER PARENTAL NOTCHUP
         riskModelTemplate.setFinalProjectGrade(afterParentalNotchUpGrade);
         finalProjectGrade = afterParentalNotchUpGrade;
 

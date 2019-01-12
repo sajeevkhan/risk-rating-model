@@ -66,8 +66,21 @@ public class Utils {
 
     public static ProjectGrade getProjectGradeByGradeAsNumber(List<ProjectGrade> projectGrades, Integer gradeAsNumber) {
 
+        if (gradeAsNumber < 0)
+            gradeAsNumber = gradeAsNumber * -1; 
+
         for (ProjectGrade projectGrade: projectGrades) {
             if (projectGrade.getGradeAsNumber() == gradeAsNumber) {
+                return projectGrade;
+            }
+        }
+
+        return null;
+    }
+
+    public static ProjectGrade getProjectGradeByItemNumber (List<ProjectGrade> projectGradeList , Integer itemNumber) {
+        for (ProjectGrade projectGrade: projectGradeList ) {
+            if (projectGrade.getItemNo() == itemNumber) {
                 return projectGrade;
             }
         }

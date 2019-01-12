@@ -84,6 +84,9 @@ public class RiskParentalNotchUpEvaluator {
          Utils.round(numberOfNotches);
 
          int number = (int) Math.round(numberOfNotches);
+         if (number < 0 )
+             number = number * -1;
+
          return number;
      }
 
@@ -114,7 +117,7 @@ public class RiskParentalNotchUpEvaluator {
                 case 2:  //Nature of Rating of Parent Firm
                     break;
                 case 3: // Is Parent's rating at GRADE 10
-                    if (riskParentalNotchUpCondition.getYesNoIndicatorValue() == 'Y')
+                    if (riskParentalNotchUpCondition.getYesNoIndicatorValue() == 'N')
                         isNotchupCriteriaApplicable = false;
                         return isNotchupCriteriaApplicable;
 

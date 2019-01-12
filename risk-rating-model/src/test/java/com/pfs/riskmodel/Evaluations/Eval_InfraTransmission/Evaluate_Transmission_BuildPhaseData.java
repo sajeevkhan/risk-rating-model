@@ -165,13 +165,17 @@ public class Evaluate_Transmission_BuildPhaseData {
         riskRatingModifierDTOSet = infraTrans_ratingModifierDTO.getRiskRatingModifierDTOs();
 
         for (RiskRatingModifierDTO riskRatingModifierDTO:riskRatingModifierDTOSet) {
-            for (RiskRatingModifierAttributeDTO riskRatingModifierAttributeDTO: riskRatingModifierDTO.getRiskRatingModifierAttributes()){
-                if (riskRatingModifierDTO.getItemNo()/2 == 0)
+            if (riskRatingModifierDTO.getModifierType() == 0)
+                for (RiskRatingModifierAttributeDTO riskRatingModifierAttributeDTO : riskRatingModifierDTO.getRiskRatingModifierAttributes()) {
+                    riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
+                }
+            else {
+                for (RiskRatingModifierAttributeDTO riskRatingModifierAttributeDTO : riskRatingModifierDTO.getRiskRatingModifierAttributes()) {
                     riskRatingModifierAttributeDTO.setYesOrNoIndicator('Y');
-                //else
-                //    riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
+
                 }
 
+            }
         }
 
 

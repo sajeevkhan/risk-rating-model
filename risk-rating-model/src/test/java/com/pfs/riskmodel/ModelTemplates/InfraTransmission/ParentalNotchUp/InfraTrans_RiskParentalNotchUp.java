@@ -77,7 +77,7 @@ public class InfraTrans_RiskParentalNotchUp {
         riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
         riskParentalNotchUpConditionDTO.setId(null);
         riskParentalNotchUpConditionDTO.setItemNo(3);
-        riskParentalNotchUpConditionDTO.setCategory(4);
+        riskParentalNotchUpConditionDTO.setCategory(4);  //4 - Is Parent's Rating Better Than Borrower's Rating
         riskParentalNotchUpConditionDTO.setDescription("The parent’s rating is better than the borrower’s rating");
         riskParentalNotchUpConditionDTO.setValueType('0');
         riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
@@ -88,7 +88,7 @@ public class InfraTrans_RiskParentalNotchUp {
         riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
         riskParentalNotchUpConditionDTO.setId(null);
         riskParentalNotchUpConditionDTO.setItemNo(4);
-        riskParentalNotchUpConditionDTO.setCategory(3);
+        riskParentalNotchUpConditionDTO.setCategory(3); //3 - Is Parent's rating at GRADE 10
         riskParentalNotchUpConditionDTO.setDescription("The borrower’s rating is not GRADE10 (in default)");
         riskParentalNotchUpConditionDTO.setValueType('0');
         riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');

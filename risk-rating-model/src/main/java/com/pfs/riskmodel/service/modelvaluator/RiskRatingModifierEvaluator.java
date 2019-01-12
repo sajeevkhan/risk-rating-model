@@ -31,18 +31,27 @@ public class RiskRatingModifierEvaluator {
                  }
              }
 
-             // Modifier Type 1 is used for Notch Down
+
+              // Modifier Type 1 is used for Notch Down
              if (riskRatingModifier.getModifierType() == 1) {
 
-                 if (riskRatingModifierAttribute.getYesOrNoIndicator().equals('Y') ) {
-                     numberOfNotchesDownItems -= 1;
-                     numberOfNotchesDown -= 1;
+                 if (riskRatingModifierAttribute.getYesOrNoIndicator().equals('Y')) {
+                     numberOfNotchesDownItems += 1;
                  }
              }
+
         }
 
-        riskRatingModifier.setSubInvestmentGradeCapping(subInvestmentGradeCapping);
-        riskRatingModifier.setNumberOfNotchesDown(numberOfNotchesDown);
+        if (numberOfNotchesDownItems == 3 || numberOfNotchesDownItems == 4)
+            numberOfNotchesDown = 1;
+        if (numberOfNotchesDownItems == 5 || numberOfNotchesDownItems == 6)
+            numberOfNotchesDown = 2;
+
+        if (riskRatingModifier.getModifierType() == 0)
+           riskRatingModifier.setSubInvestmentGradeCapping(subInvestmentGradeCapping);
+
+        if (riskRatingModifier.getModifierType() == 1)
+            riskRatingModifier.setNumberOfNotchesDown(numberOfNotchesDown);
 
          return riskRatingModifier;
 
