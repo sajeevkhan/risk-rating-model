@@ -10,6 +10,7 @@ import com.pfs.riskmodel.service.modelvaluator.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by sajeev on 31-Dec-18.
@@ -71,7 +72,7 @@ public class InfraTransmission_OperationalPhase_Valuator {
             // Execute Grade Capping to SubInvestment GRADE
             if (riskRatingModifier.getModifierType() == 0)
                 if (riskRatingModifier.getSubInvestmentGradeCapping() == true) {
-                    if (overallProjectScore >= 6.25) {
+                    if (overallProjectScore >= 5.00) {
                         modifiedProjectGrade = "GRADE 7";
                         ratingModifiersInAction = true;
                     }
@@ -80,18 +81,26 @@ public class InfraTransmission_OperationalPhase_Valuator {
             if (riskRatingModifier.getNumberOfNotchesDown() != 0) {
 
                 // Add the "Number of Notch downs" to the overall project grade number
-                modifiedProjectGradeAsNumber = overallProjectGradeObject.getGradeAsNumber() + riskRatingModifier.getNumberOfNotchesDown();
+                riskRatingModifier.setIsApplicable(true);
+
+                // Add the "Number of Notch downs" to the overall project grade number
+                Integer modifiedGradeAsNumber = overallProjectGradeObject.getGradeAsNumber() + 2;
+
+
+                //modifiedProjectGradeItemNumber = overallProjectGradeObject.getItemNo() - riskRatingModifier.getNumberOfNotchesDown();
 
                 // Find the the Modified Grade
-                for (ProjectGrade projectGrade : projectGradeList) {
-                    if (projectGrade.getItemNo() == modifiedProjectGradeAsNumber) {
-                        modifiedProjectGrade = projectGrade.getCommonScaleGrade();
-                        ratingModifiersInAction = true;
-                        break;
-                    }
-                    else // Rating is not found in the rating table
-                        ratingModifiersInAction = false;
+                ProjectGrade modifiedProjectGradeObject =
+                        Utils.getProjectGradeByGradeAsNumber(projectGradeList,modifiedGradeAsNumber);
+
+                if (modifiedProjectGradeObject != null) {
+                    modifiedProjectGrade = modifiedProjectGradeObject.getCommonScaleGrade();
+                    modifiedProjectGradeAsNumber = modifiedProjectGradeObject.getGradeAsNumber();
+                    ratingModifiersInAction = true;
+
                 }
+                else // Rating is not found in the rating table
+                    ratingModifiersInAction = false;
             }
         }
 
@@ -106,37 +115,62 @@ public class InfraTransmission_OperationalPhase_Valuator {
         riskModelTemplate.setModifiedProjectGrade(modifiedProjectGrade);
         riskModelTemplate.setModifiedProjectGradeAsNumber(modifiedProjectGradeAsNumber);
 
-
         // Evaluate Parental NotchUp
         RiskParentalNotchUpEvaluator riskParentalNotchUpEvaluator = new RiskParentalNotchUpEvaluator();
 
-        Integer numberofNotchesAfterParental =
+        Map<String, Integer> parentalNotchupResult =
                 riskParentalNotchUpEvaluator.evaluateParentalNotchup(
                         riskModelTemplate.getRiskParentalNotchUps().get(0),
                         riskModelTemplate.getProjectRiskLevel().getCode(),
                         riskModelTemplate.getModifiedProjectGradeAsNumber());
 
-        // TODO   - Parental Notchup Cappings ------------------------
+         if (riskModelTemplate.getRiskParentalNotchUps().get(0).getIsParentalNotchUpApplicable() == true) {
 
-        // Apply after Parental Notchup
-        // Get Modified Project Grade Object
-        ProjectGrade modProjectGrade =  Utils.getProjectGradeByCommonScaleGrade(projectGradeList,
-                riskModelTemplate.getModifiedProjectGrade());
-        modifiedProjectGradeAsNumber = modProjectGrade.getGradeAsNumber();
-        afterParentNotchupGradeAsNumber = modifiedProjectGradeAsNumber - numberofNotchesAfterParental;
+             // Apply after Parental Notchup
+             // Get Modified Project Grade Object
+             ProjectGrade modProjectGrade = Utils.getProjectGradeByCommonScaleGrade(projectGradeList,
+                     riskModelTemplate.getModifiedProjectGrade());
+             modifiedProjectGradeAsNumber = modProjectGrade.getGradeAsNumber();
 
-        ProjectGrade afterParentalNotchUpGradeObject =
-                Utils.getProjectGradeByGradeAsNumber(projectGradeList, afterParentNotchupGradeAsNumber);
-        // Set the Grade after Parental Notchup
-        if (afterParentalNotchUpGradeObject != null) {
-            riskModelTemplate.setAfterParentalNotchUpGrade(afterParentalNotchUpGradeObject.getCommonScaleGrade());
-            afterParentalNotchUpGrade = afterParentalNotchUpGradeObject.getCommonScaleGrade();
-        }
-        else {
-            afterParentalNotchUpGrade = modifiedProjectGrade;
-        }
+             Integer numberOfNotchesAfterParental = parentalNotchupResult.get("NotchupCalc");
 
+             Integer afterParentNotchupGradeItemNumber = 0;
+             afterParentNotchupGradeAsNumber = 0;
 
+             afterParentNotchupGradeItemNumber = modProjectGrade.getItemNo() + numberOfNotchesAfterParental;
+             if (afterParentNotchupGradeItemNumber >= 10) {
+                 afterParentNotchupGradeItemNumber = 10;
+             }
+             if (afterParentNotchupGradeItemNumber < 0)
+                 afterParentNotchupGradeItemNumber = 0;
+
+             //The post notch-up grade would be capped at one notch below the parent’s grade.
+             // Fetch Parent's Grade
+             Integer parentRating = parentalNotchupResult.get("Parent Rating");
+             Integer parentRatingGradeItemNumber = 0;
+             ProjectGrade parentalProjectGradeObject = Utils.getProjectGradeByGradeAsNumber(projectGradeList, parentRating);
+             if (parentalProjectGradeObject != null)
+                 parentRatingGradeItemNumber = parentalProjectGradeObject.getItemNo();
+             else
+                 afterParentNotchupGradeAsNumber = afterParentNotchupGradeItemNumber;
+
+//        // If, after Parental Notchup rating is higher than Parent's rating, Cap it to ONE LEVEL below Parent's Rating
+//        if (afterParentNotchupGradeItemNumber <= parentRatingGradeItemNumber ) {
+//            afterParentNotchupGradeAsNumber = parentRatingGradeItemNumber + 1;
+//        }
+
+             // Fetch the After Parental Notchup Grade
+             ProjectGrade afterParentalNotchUpGradeObject =
+                     Utils.getProjectGradeByItemNumber(projectGradeList, afterParentNotchupGradeAsNumber);
+             // Set the Grade after Parental Notchup
+             if (afterParentalNotchUpGradeObject != null) {
+                 riskModelTemplate.setAfterParentalNotchUpGrade(afterParentalNotchUpGradeObject.getCommonScaleGrade());
+                 afterParentalNotchUpGrade = afterParentalNotchUpGradeObject.getCommonScaleGrade();
+             } else {
+                 afterParentalNotchUpGrade = modifiedProjectGrade;
+             }
+
+         }
         //    Overall Rating Grade
         // GRADE AFTER PARENTAL NOTCHUP
         riskModelTemplate.setFinalProjectGrade(afterParentalNotchUpGrade);

@@ -22,7 +22,7 @@ public class InfraTrans_ProjectImplRiskTypes {
 
         riskTypeDTO.setId(null);
         riskTypeDTO.setItemNo(1);
-        riskTypeDTO.setDescription("Infra. Transmission - Project Implementation Risk");
+        riskTypeDTO.setDescription("Project Implementation Risk");
         riskTypeDTO.setScore(0D);
         riskTypeDTO.setGrade(" ");
 

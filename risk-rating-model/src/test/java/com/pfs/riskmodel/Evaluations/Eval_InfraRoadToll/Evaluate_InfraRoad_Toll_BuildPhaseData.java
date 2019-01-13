@@ -38,12 +38,12 @@ public class Evaluate_InfraRoad_Toll_BuildPhaseData {
         riskModelTemplateDTO.setModelType(1); //Valuation - NOT TEMPLATE
 
         riskModelTemplateDTO.setProjectRiskLevelCode("01");
-        riskModelTemplateDTO.setProjectRiskLevelDescription("Infrastructure Road TOLL Build Phase");
+        riskModelTemplateDTO.setProjectRiskLevelDescription("Infrastructure Road Toll Build Phase");
 
         riskModelTemplateDTO.setProjectTypeCode("04");
-        riskModelTemplateDTO.setProjectTypeDescription("Infrastructure Road TOLL");
+        riskModelTemplateDTO.setProjectTypeDescription("Infrastructure Road Toll");
 
-        riskModelTemplateDTO.setDescription("Infrastructure TOLL Road  Build Phase");
+        riskModelTemplateDTO.setDescription("Infrastructure Toll Road  Build Phase");
         riskModelTemplateDTO.setComputingMethodCode("03");
         riskModelTemplateDTO.setComputingMethodDescription("Minimum"); //Minimum of PIR and PPIR
         riskModelTemplateDTO.setScore(0D);

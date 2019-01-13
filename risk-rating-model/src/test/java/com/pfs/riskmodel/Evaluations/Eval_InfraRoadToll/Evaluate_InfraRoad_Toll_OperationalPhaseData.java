@@ -34,12 +34,12 @@ public class Evaluate_InfraRoad_Toll_OperationalPhaseData {
         riskModelTemplateDTO.setModelType(1); //Valuation - NOT TEMPLATE
 
         riskModelTemplateDTO.setProjectRiskLevelCode("01");
-        riskModelTemplateDTO.setProjectRiskLevelDescription("Infrastructure Road TOLL Build Phase");
+        riskModelTemplateDTO.setProjectRiskLevelDescription("Infrastructure Road Toll Operational Phase");
 
         riskModelTemplateDTO.setProjectTypeCode("04");
-        riskModelTemplateDTO.setProjectTypeDescription("Infrastructure Road TOLL");
+        riskModelTemplateDTO.setProjectTypeDescription("Infrastructure Road Toll");
 
-        riskModelTemplateDTO.setDescription("Infrastructure TOLL Road  Operational Phase");
+        riskModelTemplateDTO.setDescription("Infrastructure Toll Road  Operational Phase");
         riskModelTemplateDTO.setComputingMethodCode("03");
         riskModelTemplateDTO.setComputingMethodDescription("Minimum"); //Minimum of PIR and PPIR
         riskModelTemplateDTO.setScore(0D);
@@ -58,16 +58,16 @@ public class Evaluate_InfraRoad_Toll_OperationalPhaseData {
 
 
         // RiskType
-        //Project Risk Rating of Infrastructure Tranmission Operational Phase = Minimum of PIR and PPIR  Scores
+        //Project Risk Rating of Infrastructure Tranmission Operational Phase =  PPIR  Scores
 
 
-        // Project Impl. Risk Types
-        InfraTrans_ProjectImplRiskTypes projectImplRiskTypes = new InfraTrans_ProjectImplRiskTypes();
-        RiskTypeDTO projectImplRiskTypeDTO = projectImplRiskTypes.buildProjectImplRiskTypes();
+        //  Post Project Impl. Risk Types
+        InfraTrans_PostProjectImplRiskTypes infraTrans_postProjectImplRiskTypes = new InfraTrans_PostProjectImplRiskTypes();
+        RiskTypeDTO postProjectImplRiskTypes = infraTrans_postProjectImplRiskTypes.buildPostProjectImplRiskTypes();
 
 
         // Set TEST DATA for Risk Sub Factor Attributes per Risk Component per Risk Sub Factor
-        for (RiskComponentDTO riskComponentDTO: projectImplRiskTypeDTO.getRiskComponents()) {
+        for (RiskComponentDTO riskComponentDTO: postProjectImplRiskTypes.getRiskComponents()) {
 
             for (RiskFactorDTO riskFactorDTO: riskComponentDTO.getRiskFactors())  {
 
@@ -112,55 +112,11 @@ public class Evaluate_InfraRoad_Toll_OperationalPhaseData {
         }
 
 
-        riskModelTemplateDTO.addRiskTypeDTO(projectImplRiskTypeDTO);
-
-
-        // Post Project Impl. Risk Types
-        InfraTrans_PostProjectImplRiskTypes postProjectImplRiskTypes = new InfraTrans_PostProjectImplRiskTypes();
-        RiskTypeDTO postProjectImplRiskTypeDTO = postProjectImplRiskTypes.buildPostProjectImplRiskTypes();
-
-
-
-
-        // Set TEST DATA for Risk Sub Factor Attributes per Risk Component per Risk Sub Factor
-        for (RiskComponentDTO riskComponentDTO: postProjectImplRiskTypeDTO.getRiskComponents()) {
-
-            for (RiskFactorDTO riskFactorDTO: riskComponentDTO.getRiskFactors())  {
-
-                for (RiskSubFactorDTO riskSubFactorDTO: riskFactorDTO.getRiskSubFactors()) {
-
-                    Boolean riskDeflator = false;
-                    if (riskSubFactorDTO.getScoreTypeCode().equals("02") ||  riskSubFactorDTO.getScoreTypeCode().equals("03"))
-                        riskDeflator = true;
-
-                    for (RiskSubFactorAttributeDTO riskSubFactorAttributeDTO: riskSubFactorDTO.getRiskSubFactorAttributes()) {
-                        // Select the second last attribute
-                        Integer secondLastItem = riskSubFactorDTO.getRiskSubFactorAttributes().size() - 1;
-
-                        // Select first attribute for Deflators and secondLastItem for Normal SubFactors
-                        Integer itemNo = 1;
-                        if (riskDeflator == true)
-                            itemNo = 1;
-                        else
-                            itemNo = secondLastItem;
-
-
-                        if (riskSubFactorAttributeDTO.getItemNo() == itemNo) {
-                             riskSubFactorAttributeDTO.setIsSelected(true);
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-
-
-        riskModelTemplateDTO.addRiskTypeDTO(postProjectImplRiskTypeDTO);
+        riskModelTemplateDTO.addRiskTypeDTO(postProjectImplRiskTypes);
 
 
 
         // Rating Modifiers
-
         List<RiskRatingModifierDTO> riskRatingModifierDTOSet = new ArrayList<>();
         InfraTrans_RatingModifierDTO infraTrans_ratingModifierDTO = new InfraTrans_RatingModifierDTO();
         riskRatingModifierDTOSet = infraTrans_ratingModifierDTO.getRiskRatingModifierDTOs();

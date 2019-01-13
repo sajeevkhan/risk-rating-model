@@ -27,8 +27,10 @@ public class RiskRatingModifierEvaluator {
              if (riskRatingModifier.getModifierType() == 0) {
                  if (riskRatingModifierAttribute.getYesOrNoIndicator().equals('Y') ){
                      subInvestmentGradeCapping = true;
+                     riskRatingModifier.setIsApplicable(true);
                      break;
-                 }
+                 } else
+                     riskRatingModifier.setIsApplicable(false);
              }
 
 
@@ -37,15 +39,22 @@ public class RiskRatingModifierEvaluator {
 
                  if (riskRatingModifierAttribute.getYesOrNoIndicator().equals('Y')) {
                      numberOfNotchesDownItems += 1;
+
                  }
              }
 
         }
 
+        riskRatingModifier.setCountOfDowngradeBy1or2Notches(numberOfNotchesDownItems);
+
         if (numberOfNotchesDownItems == 3 || numberOfNotchesDownItems == 4)
             numberOfNotchesDown = 1;
         if (numberOfNotchesDownItems == 5 || numberOfNotchesDownItems == 6)
             numberOfNotchesDown = 2;
+
+        riskRatingModifier.setNumberOfNotchesDown(numberOfNotchesDown);
+        riskRatingModifier.setNumberOfNotchesDownGraded(numberOfNotchesDown);
+
 
         if (riskRatingModifier.getModifierType() == 0)
            riskRatingModifier.setSubInvestmentGradeCapping(subInvestmentGradeCapping);

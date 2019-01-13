@@ -51,6 +51,15 @@ public class RiskRatingModifier extends AuditModel  {
     @Nullable
     private Integer numberOfNotchesDown;
 
+    @Nullable
+    private Boolean isApplicable;
+
+    @Nullable
+    private Integer countOfDowngradeBy1or2Notches;
+
+    @Nullable
+    private Integer numberOfNotchesDownGraded;
+
 
 
     /**

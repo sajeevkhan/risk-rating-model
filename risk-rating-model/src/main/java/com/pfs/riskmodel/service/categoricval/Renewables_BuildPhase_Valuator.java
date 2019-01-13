@@ -15,6 +15,7 @@ import org.springframework.lang.Nullable;
 import javax.swing.text.Document;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by sajeev on 31-Dec-18.
@@ -109,7 +110,7 @@ public class Renewables_BuildPhase_Valuator {
         // Evaluate Parental NotchUp
         RiskParentalNotchUpEvaluator riskParentalNotchUpEvaluator = new RiskParentalNotchUpEvaluator();
 
-        Integer numberofNotchesAfterParental =
+        Map<String, Integer> parentalNotchupResult =
                 riskParentalNotchUpEvaluator.evaluateParentalNotchup(
                         riskModelTemplate.getRiskParentalNotchUps().get(0),
                         riskModelTemplate.getProjectRiskLevel().getCode(),
@@ -122,10 +123,26 @@ public class Renewables_BuildPhase_Valuator {
         ProjectGrade modProjectGrade =  Utils.getProjectGradeByCommonScaleGrade(projectGradeList,
                 riskModelTemplate.getModifiedProjectGrade());
         modifiedProjectGradeAsNumber = modProjectGrade.getGradeAsNumber();
-        afterParentNotchupGradeAsNumber = modifiedProjectGradeAsNumber - numberofNotchesAfterParental;
+
+        Integer numberOfNotchesAfterParental = parentalNotchupResult.get("Notchup");
+
+        Integer afterParentNotchupGradeItemNumber = 0;
+        afterParentNotchupGradeAsNumber = 0;
+
+        afterParentNotchupGradeItemNumber = modProjectGrade.getItemNo() - numberOfNotchesAfterParental;
+        if (afterParentNotchupGradeItemNumber > 8 ) {
+            afterParentNotchupGradeItemNumber = 8;
+        }
+        //The post notch-up grade would be capped at one notch below the parent’s grade.
+        // Fetch Parent's Grade
+        Integer parentRating = parentalNotchupResult.get("Parent Rating");
+        if (afterParentNotchupGradeItemNumber >= parentRating ) {
+            afterParentNotchupGradeAsNumber = parentRating - 1;
+        }
 
         ProjectGrade afterParentalNotchUpGradeObject =
-                Utils.getProjectGradeByGradeAsNumber( projectGradeList, afterParentNotchupGradeAsNumber);
+                Utils.getProjectGradeByItemNumber(projectGradeList,afterParentNotchupGradeAsNumber);
+
         // Set the Grade after Parental Notchup
         if (afterParentalNotchUpGradeObject != null) {
             riskModelTemplate.setAfterParentalNotchUpGrade(afterParentalNotchUpGradeObject.getCommonScaleGrade());

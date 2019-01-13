@@ -145,10 +145,10 @@ public class InfraTrans_RiskParentalNotchUp {
         // 1.1.2       Risk Sub Factor Attributes
         // -> Four Attributes
         riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(4.0D, "The subsidiary is currently profitable and is projected to remain profitable in the next 2 years"));
-        riskSubFactorAttributes.add(new RiskAttribute(2.5D,"The subsidiary is currently loss making, but is projected to become profitable by the end of next 2 years"));
-        riskSubFactorAttributes.add(new RiskAttribute(1.25D,"The subsidiary is currently profitable, but is projected to make losses in either of the next 2 years "));
-        riskSubFactorAttributes.add(new RiskAttribute(0D,"The subsidiary is currently loss making and is projected to remain loss making at the end of next 2 years "));
+        riskSubFactorAttributes.add(new RiskAttribute(4.0D, "The borrower is currently profitable and is projected to remain profitable in the next 2 years"));
+        riskSubFactorAttributes.add(new RiskAttribute(2.5D,"The borrower is currently loss making, but is projected to become profitable by the end of next 2 years"));
+        riskSubFactorAttributes.add(new RiskAttribute(1.25D,"The borrower is currently profitable, but is projected to make losses in either of the next 2 years "));
+        riskSubFactorAttributes.add(new RiskAttribute(0D,"The borrower is currently loss making and is projected to remain loss making at the end of next 2 years "));
 
 
         List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS2 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
@@ -173,10 +173,10 @@ public class InfraTrans_RiskParentalNotchUp {
         // -> Four Attributes
         riskSubFactorAttributes = new ArrayList<>();
         riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(4.0D, "Both the parent and the subsidiary share a common Board of Directors and a common Treasury"));
-        riskSubFactorAttributes.add(new RiskAttribute(2.5D,"Parent and the subsidiary have separate Boards but they share a common Treasury"));
-        riskSubFactorAttributes.add(new RiskAttribute(1.25D,"Both the parent and the subsidiary share a common Board of Directors, but separate treasuries"));
-        riskSubFactorAttributes.add(new RiskAttribute(0D,"Both the parent and the subsidiary have separate Boards and Treasuries"));
+        riskSubFactorAttributes.add(new RiskAttribute(4.0D, "Both the parent and the borrower share a common Board of Directors and a common Treasury"));
+        riskSubFactorAttributes.add(new RiskAttribute(2.5D,"Parent and the borrower have separate Boards but they share a common Treasury"));
+        riskSubFactorAttributes.add(new RiskAttribute(1.25D,"Both the parent and the borrower share a common Board of Directors, but separate treasuries"));
+        riskSubFactorAttributes.add(new RiskAttribute(0D,"Both the parent and the borrower have separate Boards and Treasuries"));
 
         List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS3 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
         extentOfMgmtControlRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS3);
@@ -189,7 +189,7 @@ public class InfraTrans_RiskParentalNotchUp {
         pastHistoryRiskSubFactorDTO.setId(null);
         pastHistoryRiskSubFactorDTO.setItemNo(4);
         pastHistoryRiskSubFactorDTO.setDescription("Stated Posture of Parent");
-        pastHistoryRiskSubFactorDTO.setWeightage(0.20);
+        pastHistoryRiskSubFactorDTO.setWeightage(0.19);
         pastHistoryRiskSubFactorDTO.setScore(0D);
         pastHistoryRiskSubFactorDTO.setScoreTypeCode("01");
         pastHistoryRiskSubFactorDTO.setScoreTypeDescription("Normal");

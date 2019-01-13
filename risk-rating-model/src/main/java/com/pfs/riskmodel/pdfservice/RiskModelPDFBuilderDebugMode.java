@@ -76,11 +76,13 @@ public class RiskModelPDFBuilderDebugMode extends AbstractITextPdfView  {
 
 
         // Rating Modifiers
-        RiskModelPDFRiskRatingModifiersTable riskModelPDFRiskRatingModifiersTable = new RiskModelPDFRiskRatingModifiersTable();
+        RiskModelPDFRiskRatingModifiersTableDebugMode riskModelPDFRiskRatingModifiersTable =
+                new RiskModelPDFRiskRatingModifiersTableDebugMode();
         doc = riskModelPDFRiskRatingModifiersTable.buildRatingModifiers(doc, riskModelTemplate);
 
         // Parental Notchup
-        RiskModelPDFRiskParentalNotchupTable riskModelPDFRiskParentalNotchupTable = new RiskModelPDFRiskParentalNotchupTable();
+        RiskModelPDFRiskParentalNotchupTableDebugMode riskModelPDFRiskParentalNotchupTable =
+                new RiskModelPDFRiskParentalNotchupTableDebugMode();
         doc = riskModelPDFRiskParentalNotchupTable.buildParentalNotchup(doc,riskModelTemplate);
 
     }

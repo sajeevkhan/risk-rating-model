@@ -90,7 +90,7 @@ public class RiskModelPDFController {
 
 
         Check.notNull(riskModelTemplate.getId(), "Exception.notFound",
-                "RiskComponent", id.toString());
+                "RiskModel", id.toString());
 
 
 

@@ -24,7 +24,7 @@ public class RenewablesOperatonalRiskTypes {
 
         riskTypeDTO.setId(null);
         riskTypeDTO.setItemNo(1);
-        riskTypeDTO.setDescription("Renewable Operational Phase Risk");
+        riskTypeDTO.setDescription("Operational Phase Risk");
         riskTypeDTO.setScore(0D);
         riskTypeDTO.setGrade(" ");
 

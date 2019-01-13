@@ -20,7 +20,7 @@ public class InfraRoadToll_PostProjectImplRiskTypes {
         riskTypeDTO = new RiskTypeDTO();
         riskTypeDTO.setId(null);
         riskTypeDTO.setItemNo(1);
-        riskTypeDTO.setDescription("Infra Road Toll Project Implementation Risk");
+        riskTypeDTO.setDescription("Post Project Implementation Risk");
         riskTypeDTO.setScore(0D);
         riskTypeDTO.setGrade(" ");
 

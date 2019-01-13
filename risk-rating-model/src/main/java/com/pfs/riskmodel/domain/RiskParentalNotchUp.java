@@ -43,6 +43,11 @@ public class RiskParentalNotchUp extends AuditModel  {
     @NotNull
     private Double parentalNotchUpScore;
 
+    @Nullable
+    private Integer numberOfNotchesUpgraded;
+
+    @Nullable
+    private Integer numberOfNotchesCalculated;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
     @JoinColumn(name="riskType__id",referencedColumnName = "id")

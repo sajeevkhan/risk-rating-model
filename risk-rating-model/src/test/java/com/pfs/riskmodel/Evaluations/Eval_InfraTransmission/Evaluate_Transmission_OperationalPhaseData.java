@@ -34,7 +34,7 @@ public class Evaluate_Transmission_OperationalPhaseData {
         riskModelTemplateDTO.setModelType(1); //Valuation - NOT TEMPLATE
 
         riskModelTemplateDTO.setProjectRiskLevelCode("02"); // Operational
-        riskModelTemplateDTO.setProjectRiskLevelDescription("Infrastructure Transmission Build Phase");
+        riskModelTemplateDTO.setProjectRiskLevelDescription("Infrastructure Transmission Operational Phase");
 
         riskModelTemplateDTO.setProjectTypeCode("02"); // Infra Transmission
         riskModelTemplateDTO.setProjectTypeDescription("Infrastructure Transmission");
@@ -109,10 +109,10 @@ public class Evaluate_Transmission_OperationalPhaseData {
 
         for (RiskRatingModifierDTO riskRatingModifierDTO:riskRatingModifierDTOSet) {
             for (RiskRatingModifierAttributeDTO riskRatingModifierAttributeDTO: riskRatingModifierDTO.getRiskRatingModifierAttributes()){
-                if (riskRatingModifierDTO.getItemNo()/2 == 0)
-                    riskRatingModifierAttributeDTO.setYesOrNoIndicator('Y');
-                else
+                if (riskRatingModifierDTO.getItemNo() == 0)
                     riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
+                else
+                    riskRatingModifierAttributeDTO.setYesOrNoIndicator('Y');
                 }
 
         }

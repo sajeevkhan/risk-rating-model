@@ -12,6 +12,7 @@ import com.pfs.riskmodel.service.modelvaluator.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by sajeev on 31-Dec-18.
@@ -44,7 +45,7 @@ public class InfraRoadHAM_OperationalPhase_Valuator {
 
         // Risk Type Score
         for (RiskType riskType : riskModelTemplate.getRiskTypes()) {
-            if (riskType.getDescription().equals("Infra Road HAM Post Project Implementation Risk Type")) {
+            if (riskType.getDescription().contains("Post")) {
                 ProjectGrade projectGrade = Utils.fetchGrade(projectGradeList,riskType.getScore());
                 postProjectIRScore = riskType.getScore();
                 postProjectIRGrade = projectGrade.getCommonScaleGrade();
@@ -52,7 +53,7 @@ public class InfraRoadHAM_OperationalPhase_Valuator {
         }
 
 
-        // Build Phase Score = PostProjectIR
+        // Operational Phase Score = PostProjectIR
             overallProjectScore = postProjectIRScore;
         //  Build Phase Grade
              ProjectGrade overallProjectGradeObject = Utils.fetchGrade(projectGradeList,overallProjectScore); //.getCommonScaleGrade();
@@ -69,7 +70,7 @@ public class InfraRoadHAM_OperationalPhase_Valuator {
             // Execute Grade Capping to SubInvestment GRADE
             if (riskRatingModifier.getModifierType() == 0)
                 if (riskRatingModifier.getSubInvestmentGradeCapping() == true) {
-                    if (overallProjectScore >= 6.25) {
+                    if (overallProjectScore >= 5.00) {
                         modifiedProjectGrade = "GRADE 7";
                         ratingModifiersInAction = true;
                     }
@@ -104,11 +105,10 @@ public class InfraRoadHAM_OperationalPhase_Valuator {
         riskModelTemplate.setModifiedProjectGrade(modifiedProjectGrade);
         riskModelTemplate.setModifiedProjectGradeAsNumber(modifiedProjectGradeAsNumber);
 
-
         // Evaluate Parental NotchUp
         RiskParentalNotchUpEvaluator riskParentalNotchUpEvaluator = new RiskParentalNotchUpEvaluator();
 
-        Integer numberofNotchesAfterParental =
+        Map<String, Integer> parentalNotchupResult =
                 riskParentalNotchUpEvaluator.evaluateParentalNotchup(
                         riskModelTemplate.getRiskParentalNotchUps().get(0),
                         riskModelTemplate.getProjectRiskLevel().getCode(),
@@ -121,10 +121,28 @@ public class InfraRoadHAM_OperationalPhase_Valuator {
         ProjectGrade modProjectGrade =  Utils.getProjectGradeByCommonScaleGrade(projectGradeList,
                 riskModelTemplate.getModifiedProjectGrade());
         modifiedProjectGradeAsNumber = modProjectGrade.getGradeAsNumber();
-        afterParentNotchupGradeAsNumber = modifiedProjectGradeAsNumber - numberofNotchesAfterParental;
+
+        Integer numberOfNotchesAfterParental = parentalNotchupResult.get("Notchup");
+
+        Integer afterParentNotchupGradeItemNumber = 0;
+        afterParentNotchupGradeAsNumber = 0;
+
+        afterParentNotchupGradeItemNumber = modProjectGrade.getItemNo() - numberOfNotchesAfterParental;
+        if (afterParentNotchupGradeItemNumber > 8 ) {
+            afterParentNotchupGradeItemNumber = 8;
+        }
+        //The post notch-up grade would be capped at one notch below the parent’s grade.
+        // Fetch Parent's Grade
+        Integer parentRating = parentalNotchupResult.get("Parent Rating");
+        if (afterParentNotchupGradeItemNumber >= parentRating ) {
+            afterParentNotchupGradeAsNumber = parentRating - 1;
+        }
 
         ProjectGrade afterParentalNotchUpGradeObject =
-                Utils.getProjectGradeByGradeAsNumber( projectGradeList, afterParentNotchupGradeAsNumber);
+                Utils.getProjectGradeByItemNumber(projectGradeList,afterParentNotchupGradeAsNumber);
+
+
+
         // Set the Grade after Parental Notchup
         if (afterParentalNotchUpGradeObject != null) {
             riskModelTemplate.setAfterParentalNotchUpGrade(afterParentalNotchUpGradeObject.getCommonScaleGrade());

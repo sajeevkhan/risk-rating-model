@@ -29,6 +29,8 @@ public class RiskParentalNotchUpEvaluator {
 
         private Integer numberOfNotchesForUpgrade;
 
+        private Integer numberOfNotchesCalculated;
+
  // TODO
 ////The post notch-up grade would be capped at one notch below the parent’s grad
 //    For SPVs/Projects,
@@ -38,11 +40,25 @@ public class RiskParentalNotchUpEvaluator {
 //                                  the post notch-up rating can go as high as (P1) GRADE3 provided above criteria are met.
 
 
-    public Integer evaluateParentalNotchup(RiskParentalNotchUp riskParentalNotchUp, String riskLevel, Integer borrowerRatingGrade) {
+    public  Map <String, Integer> evaluateParentalNotchup(RiskParentalNotchUp riskParentalNotchUp,
+                                                         String riskLevel,
+                                                         Integer borrowerRatingGrade) {
 
+        // Set Initial Values
+        numberOfNotchesForUpgrade = 0;
+        numberOfNotchesCalculated = 0;
+        notchupScore = 0D;
+
+        // Set Initial Values
+        riskParentalNotchUp.setNumberOfNotchesUpgraded(0);
+        riskParentalNotchUp.setParentalNotchUpScore(0.0D);
+        riskParentalNotchUp.setNumberOfNotchesCalculated(0);
+        riskParentalNotchUp.setIsParentalNotchUpApplicable(false);
+
+
+        Map <String, Integer> result = new HashMap<>();
 
         borrowersRating =  borrowerRatingGrade;
-
         // Calculate Maximum Possible Score
         this.calcMaxPossibleScore( riskParentalNotchUp);
 
@@ -52,21 +68,32 @@ public class RiskParentalNotchUpEvaluator {
         //The notch-up score would then be represented as a percentage of maximum possible score.
         notchupScoreAsAPctOfMaxScore = notchupScore / maximumScoreParentalNotchup;
 
+        riskParentalNotchUp.setParentalNotchUpScore(notchupScore);
+
         // Check if Notchup Conditions are Applicable;
         Boolean isNotchupApplicable = false;
         isNotchupApplicable = this.isNotchupCriteriaApplicable(riskParentalNotchUp);
+
+        result.put("Parent Rating", parentsRating);
+
 
         if (isNotchupApplicable == true) {
             riskParentalNotchUp.setIsParentalNotchUpApplicable(true);
         } else {
             riskParentalNotchUp.setIsParentalNotchUpApplicable(false);
-            return 0;
+            result.put("Notchup",0);
+            return result;
         }
 
         //Calculate Number of Notches
-        numberOfNotchesForUpgrade = calculateNumberOfNotches();
+        numberOfNotchesCalculated = calculateNumberOfNotches();
+        riskParentalNotchUp.setNumberOfNotchesCalculated(numberOfNotchesCalculated);
 
-        return  numberOfNotchesForUpgrade;
+
+        result.put("NotchupCalc",numberOfNotchesCalculated);
+
+        return  result;
+
 
     }
 

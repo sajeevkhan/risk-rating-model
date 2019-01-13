@@ -22,7 +22,7 @@ public class InfraTrans_PostProjectImplRiskTypes {
         riskTypeDTO = new RiskTypeDTO();
         riskTypeDTO.setId(null);
         riskTypeDTO.setItemNo(2);
-        riskTypeDTO.setDescription("Infra Transmission Post Project Implementation Risk");
+        riskTypeDTO.setDescription("Post Project Implementation Risk");
         riskTypeDTO.setScore(0D);
         riskTypeDTO.setGrade(" ");
 
