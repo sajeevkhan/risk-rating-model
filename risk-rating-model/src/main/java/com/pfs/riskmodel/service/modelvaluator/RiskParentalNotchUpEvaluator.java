@@ -125,7 +125,7 @@ public class RiskParentalNotchUpEvaluator {
     /*
     The notch-up criteria would be applicable if all the following conditions are true:
             1. The parent’s rating is better than the borrower’s rating.
-            2. The borrower’s rating is not GRADE10 (in Default).
+            2. The borrower’s rating is GRADE10 (in Default).
             3. The notch-up score as a percentage of maximum possible score is higher than 35%.
     */
     private Boolean isNotchupCriteriaApplicable (RiskParentalNotchUp riskParentalNotchUp ) {
@@ -144,13 +144,25 @@ public class RiskParentalNotchUpEvaluator {
                 case 2:  //Nature of Rating of Parent Firm
                     break;
                 case 3: // Is Parent's rating at GRADE 10
-                    if (riskParentalNotchUpCondition.getYesNoIndicatorValue() == 'N')
+                    if (riskParentalNotchUpCondition.getYesNoIndicatorValue() == 'N') {
+                        isNotchupCriteriaApplicable = true;
+                        riskParentalNotchUp.setIsParentalNotchUpApplicable(true);
+                }
+                    else {
                         isNotchupCriteriaApplicable = false;
-                        return isNotchupCriteriaApplicable;
-
+                        riskParentalNotchUp.setIsParentalNotchUpApplicable(false);
+                        return false;
+                    }
+                    break;
                 case 4: //Is Parent's Rating Better Than Borrower's Rating
-                     if (riskParentalNotchUpCondition.getYesNoIndicatorValue() == 'Y')
+                     if (riskParentalNotchUpCondition.getYesNoIndicatorValue() == 'Y') {
                          isNotchupCriteriaApplicable = true;
+                         riskParentalNotchUp.setIsParentalNotchUpApplicable(true);
+                     } else {
+                         isNotchupCriteriaApplicable = false;
+                         riskParentalNotchUp.setIsParentalNotchUpApplicable(false);
+                         return false;
+                     }
                     break;
             }
 
@@ -159,14 +171,22 @@ public class RiskParentalNotchUpEvaluator {
         }
 
         // Check if parent's rating is greater than borrower's rating
-        if (parentsRating < borrowersRating)
+        if (parentsRating < borrowersRating) {
             isNotchupCriteriaApplicable = true;
-        else
+            riskParentalNotchUp.setIsParentalNotchUpApplicable(true);
+        }
+        else {
+            riskParentalNotchUp.setIsParentalNotchUpApplicable(false);
             return false;
-
+        }
         // Check - Notch-up score as a percentage of maximum possible score is higher than 35%.
-        if (notchupScoreAsAPctOfMaxScore > 0.35)
+        if (notchupScoreAsAPctOfMaxScore > 0.35) {
             isNotchupCriteriaApplicable = true;
+            riskParentalNotchUp.setIsParentalNotchUpApplicable(true);
+        } else {
+            isNotchupCriteriaApplicable = false;
+            riskParentalNotchUp.setIsParentalNotchUpApplicable(false);
+        }
 
         return isNotchupCriteriaApplicable;
 

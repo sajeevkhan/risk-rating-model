@@ -51,8 +51,8 @@ public class IRToll_PPIR_BusinessRisk {
         businessRiskFactorDTO.setScore(0D);
         businessRiskFactorDTO.setScoreTypeCode("01");
         businessRiskFactorDTO.setScoreTypeDescription("Normal");
-        businessRiskFactorDTO.setComputingMethodCode("05");
-        businessRiskFactorDTO.setComputingMethodDescription("Equals");
+        businessRiskFactorDTO.setComputingMethodCode("01");
+        businessRiskFactorDTO.setComputingMethodDescription("Weighted");
 
 
         // 1.1.1        Risk Sub Factor 1
@@ -66,12 +66,14 @@ public class IRToll_PPIR_BusinessRisk {
         counterPartyRiskSubFactorDTO.setScoreTypeCode("01");
         counterPartyRiskSubFactorDTO.setScoreTypeDescription("Normal");
 
+
         // 1.1.1      Risk Sub Factor Attributes
         // -> Four Attributes
         riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(0D, "Any other counterparty"));
-        riskSubFactorAttributes.add(new RiskAttribute(5D, "State Authority Project/ Any other authority within the state"));
-        riskSubFactorAttributes.add(new RiskAttribute(10D, "NHAI Project / Project with multilateral funding"));
+        riskSubFactorAttributes.add(new RiskAttribute(0D, "Multiple competing facilities (alternate roads and railways) already existing which are maintained extremely well and forms direct competition to the project"));
+        riskSubFactorAttributes.add(new RiskAttribute(4D, "Some competition from existing and proposed roads or other modes like railways, DFC, Inland waterways, sea routes etc."));
+        riskSubFactorAttributes.add(new RiskAttribute(7D, "No risk due to competition from existing and proposed roads or other modes like railways, DFC, Inland waterways, sea routes etc."));
+        riskSubFactorAttributes.add(new RiskAttribute(10D, "Expected positive traffic diversion from competiting roads and no risk of diversion due to existing and proposed other modes like railways, DFC, Inland waterways, sea routes etc."));
 
         List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS1 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
         counterPartyRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS1);
@@ -79,74 +81,17 @@ public class IRToll_PPIR_BusinessRisk {
 
 
         // 1.1.2        Risk Sub Factor 2
-        //Concession Agreement 20%
-        RiskSubFactorDTO concessionAgmtSubFactorDTO = new RiskSubFactorDTO();
-        concessionAgmtSubFactorDTO.setId(null);
-        concessionAgmtSubFactorDTO.setItemNo(2);
-        concessionAgmtSubFactorDTO.setDescription("Concession Agreement");
-        concessionAgmtSubFactorDTO.setWeightage(0.20);
-        concessionAgmtSubFactorDTO.setScore(0D);
-        concessionAgmtSubFactorDTO.setScoreTypeCode("01");
-        concessionAgmtSubFactorDTO.setScoreTypeDescription("Normal");
-
-
-
-        // 1.1.2       Risk Sub Factor Attributes
-        // -> Four Attributes
-        riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(0D, "Agreement is not robust and can pose challenges for the road developer in case of cancellation and hence to the lender. The relief to the other road developers has not been easy in the past"));
-        riskSubFactorAttributes.add(new RiskAttribute(3D, "Concession Agreement does not contain or is unclear on some of the key safeguards / clauses e.g. termination, substitution."));
-        riskSubFactorAttributes.add(new RiskAttribute(7D, "Concession Agreement contains most of the standard clauses in similar manner as per the model concession framework for the sector"));
-        riskSubFactorAttributes.add(new RiskAttribute(10D, "Concession Agreement is standard as per the model concession framework for the sector."));
-
-        List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS2 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
-        concessionAgmtSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS2);
-        businessRiskFactorDTO.addRiskSubFactorDTO(concessionAgmtSubFactorDTO);
-
-
-
-        // 1.1.3        Risk Sub Factor 3
-        //Operations and Maintenance Risk 20%
-        RiskSubFactorDTO operationsAndMaintenanceRiskSubFactorDTO = new RiskSubFactorDTO();
-        operationsAndMaintenanceRiskSubFactorDTO.setId(null);
-        operationsAndMaintenanceRiskSubFactorDTO.setItemNo(3);
-        operationsAndMaintenanceRiskSubFactorDTO.setDescription("Operations and Maintenance Risk");
-        operationsAndMaintenanceRiskSubFactorDTO.setWeightage(0.20);
-        operationsAndMaintenanceRiskSubFactorDTO.setScore(0D);
-        operationsAndMaintenanceRiskSubFactorDTO.setScoreTypeCode("01");
-        operationsAndMaintenanceRiskSubFactorDTO.setScoreTypeDescription("Normal");
-
-        // 1.1.3       Risk Sub Factor Attributes
-        // -> Four Attributes
-        riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(0D, "O&M contractor has not very good reputation or any Operational project with no or little provisions for Monthly Maintenance Reserve (MMR) and project faces significant continuity risk"));
-        riskSubFactorAttributes.add(new RiskAttribute(3D, "No prior experiences of contractors OR Contractor yet to be appointed\n" +
-                "OR\n" +
-                "Operational project with inadequate provisions to cover the MMR costs hampering continuity of the road project"));
-        riskSubFactorAttributes.add(new RiskAttribute(7D, "Contractors risk is minimal as their past track record is good\n" +
-                "OR\n" +
-                "operational project with just adequate provisions/reserve (1x) to cover the MMR costs"));
-        riskSubFactorAttributes.add(new RiskAttribute(10D, "Reputed O& M contractors with good track record of operating projects of similar type\n" +
-                "OR\n" +
-                "Operational project with more than adequate provisions/reserve to cover the MMR costs"));
-
-         List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS3 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
-         operationsAndMaintenanceRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS3);
-        businessRiskFactorDTO.addRiskSubFactorDTO(operationsAndMaintenanceRiskSubFactorDTO);
-
-
-        // 1.1.4        Risk Sub Factor 4
         //Geopolitical risks to toll collection 15%
         RiskSubFactorDTO geoPolicticalRisksTollCollectionRiskSubFactorDTO = new RiskSubFactorDTO();
         geoPolicticalRisksTollCollectionRiskSubFactorDTO.setId(null);
-        geoPolicticalRisksTollCollectionRiskSubFactorDTO.setItemNo(4);
+        geoPolicticalRisksTollCollectionRiskSubFactorDTO.setItemNo(2);
         geoPolicticalRisksTollCollectionRiskSubFactorDTO.setDescription("Geopolitical risks to toll collection");
         geoPolicticalRisksTollCollectionRiskSubFactorDTO.setWeightage(0.15);
         geoPolicticalRisksTollCollectionRiskSubFactorDTO.setScore(0D);
         geoPolicticalRisksTollCollectionRiskSubFactorDTO.setScoreTypeCode("01");
         geoPolicticalRisksTollCollectionRiskSubFactorDTO.setScoreTypeDescription("Normal");
 
-        // 1.1.4       Risk Sub Factor Attributes
+        // 1.1.2       Risk Sub Factor Attributes
         // -> Four Attributes
         riskSubFactorAttributes = new ArrayList<>();
         riskSubFactorAttributes.add(new RiskAttribute(0D, "Presence of leakage route to avoid the toll plaza"));
@@ -155,24 +100,24 @@ public class IRToll_PPIR_BusinessRisk {
         riskSubFactorAttributes.add(new RiskAttribute(6D, "Share of local traffic is very high"));
         riskSubFactorAttributes.add(new RiskAttribute(10D, "Average toll rates, limited risks around toll collection i.e. historically it has been observed that the toll collection have been responded positively by the people"));
 
-        List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS4 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
-        geoPolicticalRisksTollCollectionRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS4);
+        List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS2 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
+        geoPolicticalRisksTollCollectionRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS2);
         businessRiskFactorDTO.addRiskSubFactorDTO(geoPolicticalRisksTollCollectionRiskSubFactorDTO);
 
 
 
-        // 1.1.5        Risk Sub Factor 5
+        // 1.1.3        Risk Sub Factor 5
         // Tolling Operation Efficiency 15%
         RiskSubFactorDTO tollingOperationEfficiencyRiskSubFactorDTO = new RiskSubFactorDTO();
         tollingOperationEfficiencyRiskSubFactorDTO.setId(null);
-        tollingOperationEfficiencyRiskSubFactorDTO.setItemNo(5);
+        tollingOperationEfficiencyRiskSubFactorDTO.setItemNo(3);
         tollingOperationEfficiencyRiskSubFactorDTO.setDescription("Tolling Operation Efficiency");
         tollingOperationEfficiencyRiskSubFactorDTO.setWeightage(0.20);
         tollingOperationEfficiencyRiskSubFactorDTO.setScore(0D);
         tollingOperationEfficiencyRiskSubFactorDTO.setScoreTypeCode("01");
         tollingOperationEfficiencyRiskSubFactorDTO.setScoreTypeDescription("Normal");
 
-        // 1.1.5      Risk Sub Factor Attributes
+        // 1.1.3      Risk Sub Factor Attributes
         // -> Four Attributes
         riskSubFactorAttributes = new ArrayList<>();
         riskSubFactorAttributes.add(new RiskAttribute(0D, "Toll Collection Agency has bad reputation, Inadequate toll management system (TMS), Absence of Standard Operating Procedure (SOP) document for tolling operations"));
@@ -180,9 +125,77 @@ public class IRToll_PPIR_BusinessRisk {
         riskSubFactorAttributes.add(new RiskAttribute(8D, "Reputed Toll Collection Agency, Pilferage-free toll management system, Availability of Standard Operating Procedure (SOP) document for tolling operations"));
         riskSubFactorAttributes.add(new RiskAttribute(10D, "Pilferage-free toll management system, Provision of data management centre at HQ, Availability of Standard Operating Procedure (SOP) document for tolling operations"));
 
-        List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS5 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
-        tollingOperationEfficiencyRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS5);
+        List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS3 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
+        tollingOperationEfficiencyRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS3);
         businessRiskFactorDTO.addRiskSubFactorDTO(tollingOperationEfficiencyRiskSubFactorDTO);
+
+
+        // 1.1.4        Risk Sub Factor 4
+        //Concession Agreement 20%
+        RiskSubFactorDTO concessionAgmtSubFactorDTO = new RiskSubFactorDTO();
+        concessionAgmtSubFactorDTO.setId(null);
+        concessionAgmtSubFactorDTO.setItemNo(4);
+        concessionAgmtSubFactorDTO.setDescription("Concession Agreement");
+        concessionAgmtSubFactorDTO.setWeightage(0.20);
+        concessionAgmtSubFactorDTO.setScore(0D);
+        concessionAgmtSubFactorDTO.setScoreTypeCode("01");
+        concessionAgmtSubFactorDTO.setScoreTypeDescription("Normal");
+
+        // 1.1.4       Risk Sub Factor Attributes
+        // -> Four Attributes
+        riskSubFactorAttributes = new ArrayList<>();
+        riskSubFactorAttributes.add(new RiskAttribute(0D, "Agreement is not robust and can pose challenges for the road developer in case of cancellation and hence to the lender. The relief to the other road developers has not been easy in the past"));
+        riskSubFactorAttributes.add(new RiskAttribute(3D, "Concession Agreement does not contain or is unclear on some of the key safeguards / clauses e.g. termination, substitution."));
+        riskSubFactorAttributes.add(new RiskAttribute(7D, "Concession Agreement contains most of the standard clauses in similar manner as per the model concession framework for the sector"));
+        riskSubFactorAttributes.add(new RiskAttribute(10D, "Concession Agreement is standard as per the model concession framework for the sector."));
+
+        List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS4 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
+        concessionAgmtSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS4);
+        businessRiskFactorDTO.addRiskSubFactorDTO(concessionAgmtSubFactorDTO);
+
+
+
+
+
+        // 1.1.5        Risk Sub Factor 5
+        //Operations and Maintenance Risk 20%
+        RiskSubFactorDTO operationsAndMaintenanceRiskSubFactorDTO = new RiskSubFactorDTO();
+        operationsAndMaintenanceRiskSubFactorDTO.setId(null);
+        operationsAndMaintenanceRiskSubFactorDTO.setItemNo(5);
+        operationsAndMaintenanceRiskSubFactorDTO.setDescription("Operations and Maintenance Risk");
+        operationsAndMaintenanceRiskSubFactorDTO.setWeightage(0.20);
+        operationsAndMaintenanceRiskSubFactorDTO.setScore(0D);
+        operationsAndMaintenanceRiskSubFactorDTO.setScoreTypeCode("01");
+        operationsAndMaintenanceRiskSubFactorDTO.setScoreTypeDescription("Normal");
+
+        // 1.1.5       Risk Sub Factor Attributes
+        // -> Four Attributes
+        riskSubFactorAttributes = new ArrayList<>();
+        riskSubFactorAttributes.add(new RiskAttribute(0D,
+                "O&M contractor has not very good reputation or any Operational project with  no or little provisions for Monthly Maintenance Reserve (MMR) and project faces significant continuity risk"));
+        riskSubFactorAttributes.add(new RiskAttribute(3D,
+                "No prior experiences of contractors" +
+                        "\nOR" +
+                        "\nContractor yet to be appointed OR Operational project with inadequate provisions to cover the MMR costs hampering continuity of the road project"));
+        riskSubFactorAttributes.add(new RiskAttribute(7D,
+                "Contractors risk is minimal as their past track record is good" +
+                        "\n" +
+                        "OR" +
+                        "\n" +
+                        "operational project with just adequate provisions/reserve (1x) to cover the MMR costs"));
+        riskSubFactorAttributes.add(new RiskAttribute(10D,
+                "Reputed O& M contractors with good track record of operating projects of similar type" +
+                        "\n" +
+                        "OR" +
+                        "\n" +
+                        "Operational project with more than adequate provisions/reserve to cover the MMR costs\n"));
+
+        List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS5 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
+        operationsAndMaintenanceRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS5);
+        businessRiskFactorDTO.addRiskSubFactorDTO(operationsAndMaintenanceRiskSubFactorDTO);
+
+
+
 
 
         //Single commodity dependent Road (Multiplier)

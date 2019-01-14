@@ -43,6 +43,7 @@ public class IRToll_PIR_ExecutionRiskDTO {
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.60D);
 
+
         riskComponentDTO.setIsApplicable(true);
 
 
@@ -73,8 +74,8 @@ public class IRToll_PIR_ExecutionRiskDTO {
         socialRiskRiskSubFactorDTO.setDescription("Social Risk Sub Factor");
         socialRiskRiskSubFactorDTO.setWeightage(0.00);
         socialRiskRiskSubFactorDTO.setScore(0D);
-        socialRiskRiskSubFactorDTO.setScoreTypeCode("01");
-        socialRiskRiskSubFactorDTO.setScoreTypeDescription("Normal");
+        socialRiskRiskSubFactorDTO.setScoreTypeCode("02");
+        socialRiskRiskSubFactorDTO.setScoreTypeDescription("Deflator");
 
         //
         //  Social Risk Defalator      Risk Sub Factor Attributes
@@ -117,6 +118,7 @@ public class IRToll_PIR_ExecutionRiskDTO {
         capabilityOfSponsorRiskSubFactorDTO.setScoreTypeCode("01");
         capabilityOfSponsorRiskSubFactorDTO.setScoreTypeDescription("Normal");
 
+
         //
         // 1.1.1       Risk Sub Factor Attributes
         // -> Six Attributes
@@ -148,17 +150,17 @@ public class IRToll_PIR_ExecutionRiskDTO {
 
         // 8 Attributes - With or without ISO
         riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(2D, "With ISO - Timelines were significantly breached during previously undertaken projects viz time over run of 1-2 years"));
         riskSubFactorAttributes.add(new RiskAttribute(0D,"Without ISO - Timelines were significantly breached during previously undertaken projects viz time over run of 1-2 years"));
+        riskSubFactorAttributes.add(new RiskAttribute(2D, "With ISO - Timelines were significantly breached during previously undertaken projects viz time over run of 1-2 years"));
 
-        riskSubFactorAttributes.add(new RiskAttribute(5D,"With ISO - Timelines were Moderately breached during previously undertaken projects viz time over run of 6 months to 1 years"));
         riskSubFactorAttributes.add(new RiskAttribute(3D,"Without ISO - Timelines were Moderately breached during previously undertaken projects viz time over run of 6 months to 1 years"));
+        riskSubFactorAttributes.add(new RiskAttribute(5D,"With ISO - Timelines were Moderately breached during previously undertaken projects viz time over run of 6 months to 1 years"));
 
-        riskSubFactorAttributes.add(new RiskAttribute(8D,"With ISO - Timelines were breached (by a low margin) during previously undertaken projects viz time over run of up to 6 months"));
         riskSubFactorAttributes.add(new RiskAttribute(6D,"Without ISO - Timelines were breached (by a low margin) during previously undertaken projects viz time over run of up to 6 months"));
+        riskSubFactorAttributes.add(new RiskAttribute(8D,"With ISO - Timelines were breached (by a low margin) during previously undertaken projects viz time over run of up to 6 months"));
 
-        riskSubFactorAttributes.add(new RiskAttribute(10D,"With ISO - Timelines were not breached during previously undertaken projects"));
         riskSubFactorAttributes.add(new RiskAttribute(8D,"Without ISO - Timelines were not breached during previously undertaken projects"));
+        riskSubFactorAttributes.add(new RiskAttribute(10D,"With ISO - Timelines were not breached during previously undertaken projects"));
 
 
 

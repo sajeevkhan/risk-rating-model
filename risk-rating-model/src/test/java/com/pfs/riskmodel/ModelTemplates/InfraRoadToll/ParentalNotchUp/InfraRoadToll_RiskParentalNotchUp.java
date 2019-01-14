@@ -47,7 +47,7 @@ public class InfraRoadToll_RiskParentalNotchUp {
         // NotchUp Conditions
         //        1. Rating of Parent Entity
         //        1. The parent’s rating is better than the borrower’s rating.
-        //        2. The borrower’s rating is not GRADE10 (in default).
+        //        2. The borrower’s rating is GRADE10 (in default).
         //        3. The notch-up score as a percentage of maximum possible score is higher than 35%.
 
 
@@ -78,12 +78,11 @@ public class InfraRoadToll_RiskParentalNotchUp {
         riskParentalNotchUpConditionDTO.setId(null);
         riskParentalNotchUpConditionDTO.setItemNo(3);
         riskParentalNotchUpConditionDTO.setCategory(3);
-        riskParentalNotchUpConditionDTO.setDescription("The borrower’s rating is not GRADE10 (in default)");
+        riskParentalNotchUpConditionDTO.setDescription("The borrower’s rating is GRADE10 (in default)");
         riskParentalNotchUpConditionDTO.setValueType('0');
         riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
         riskParentalNotchUpConditionDTO.setValue(" ");
         riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('0');
-
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 
 

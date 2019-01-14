@@ -1,13 +1,9 @@
 package com.pfs.riskmodel.Evaluations.Renewables;
-
-import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.ParentalNotchUp.InfraRoadHAM_RiskParentalNotchUp;
-import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.RiskTypes.InfraRoadHAM_PostProjectImplRiskTypes;
-import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.RiskTypes.InfraRoadHAM_ProjectImplRiskTypes;
-import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskRatingModifiers.InfraTrans_RatingModifierDTO;
+ ;
 import com.pfs.riskmodel.ModelTemplates.Renewable.BuildPhase.Renewable_BuildPhase_RiskModelSummary;
 import com.pfs.riskmodel.ModelTemplates.Renewable.ParentalNotchUp.Renewable_RiskParentalNotchUp;
-import com.pfs.riskmodel.ModelTemplates.Renewable.RiskRatingModifiers.Renewable_RatingModifierDTO;
-import com.pfs.riskmodel.ModelTemplates.Renewable.RiskTypes.RenewablePostProjectRiskTypes;
+ import com.pfs.riskmodel.ModelTemplates.Renewable.RiskRatingModifiers.Renewable_RatingModifierDTO;
+ import com.pfs.riskmodel.ModelTemplates.Renewable.RiskTypes.RenewablePostProjectRiskTypes;
 import com.pfs.riskmodel.ModelTemplates.Renewable.RiskTypes.RenewableProjectRiskTypes;
 import com.pfs.riskmodel.domain.RiskType;
 import com.pfs.riskmodel.dto.*;
@@ -152,7 +148,25 @@ public class Evaluate_Renewables_BuildPhaseData {
         riskModelTemplateDTO.addRiskTypeDTO(projectRiskTypeDTO);
 
 
-            // Rating Modifiers ARE NOT APPLICABLE FOR RENEWABLES
+        // Rating Modifiers ARE APPLICABLE FOR RENEWABLES
+        Renewable_RatingModifierDTO renewable_ratingModifierDTO = new Renewable_RatingModifierDTO();
+        List<RiskRatingModifierDTO> renewable_ratingModifierDTOS =  renewable_ratingModifierDTO.getRiskRatingModifierDTOs();
+
+
+        for (RiskRatingModifierDTO riskRatingModifierDTO: renewable_ratingModifierDTOS)
+        if (riskRatingModifierDTO.getModifierType() == 0) {
+            for (RiskRatingModifierAttributeDTO riskRatingModifierAttributeDTO : riskRatingModifierDTO.getRiskRatingModifierAttributes()) {
+                riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
+            }
+        } else {
+            for (RiskRatingModifierAttributeDTO riskRatingModifierAttributeDTO : riskRatingModifierDTO.getRiskRatingModifierAttributes()) {
+                riskRatingModifierAttributeDTO.setYesOrNoIndicator('Y');
+            }
+
+        }
+
+        riskModelTemplateDTO.setRiskRatingModifiers(renewable_ratingModifierDTOS);
+
 
         // Parental Notchup
         Renewable_RiskParentalNotchUp renewable_riskParentalNotchUp = new Renewable_RiskParentalNotchUp();
@@ -180,7 +194,18 @@ public class Evaluate_Renewables_BuildPhaseData {
             if (riskParentalNotchUpConditionDTO.getItemNo() == 4) {
                 riskParentalNotchUpConditionDTO.setValue("1");
             }
+
+            //            3 - Is Parent's rating at GRADE 10
+           if (riskParentalNotchUpConditionDTO.getCategory() == 3) {
+                riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
+            }
+
+            //            4 - Is Parent's Rating Better Than Borrower's Rating
+            if (riskParentalNotchUpConditionDTO.getCategory() == 4) {
+                riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
+            }
         }
+
 
         // Select First Item for Parental Notcuhup Sub Factor Attributes
         for (RiskSubFactorDTO riskSubFactorDTO: riskParentalNotchUpDTO.getRiskSubFactors()) {

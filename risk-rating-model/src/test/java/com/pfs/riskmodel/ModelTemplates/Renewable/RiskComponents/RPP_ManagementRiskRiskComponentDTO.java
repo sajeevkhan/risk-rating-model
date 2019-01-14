@@ -27,7 +27,7 @@ public   class RPP_ManagementRiskRiskComponentDTO {
         managementRiskComponentDTO.setId(null);
         managementRiskComponentDTO.setItemNo(4);
         managementRiskComponentDTO.setDescription("Management Risk");
-        managementRiskComponentDTO.setWeightage(0.20D);
+        managementRiskComponentDTO.setWeightage(0.17D);
         managementRiskComponentDTO.setComputingMethodCode("05");
         managementRiskComponentDTO.setComputingMethodDescription("Equals");
         managementRiskComponentDTO.setScoreTypeCode("01");

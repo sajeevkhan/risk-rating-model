@@ -15,7 +15,7 @@ public  class RPP_IndustryRiskRiskComponentDTO {
 
         //RiskComponentDTO riskComponentDTO = new RiskComponentDTO();
         /**********************************************************************************************************************
-         *  Risk Component 1 : Industry Risk - 16%
+         *  Risk Component 1 : Industry Risk - 14%
          *  This has only two levels below and therefore the Risk Factor will be a dummy entry (Industry Risk Factor) with same name
          **********************************************************************************************************************/
 
@@ -25,7 +25,7 @@ public  class RPP_IndustryRiskRiskComponentDTO {
         industryRiskComponentDTO.setId(null);
         industryRiskComponentDTO.setItemNo(2);
         industryRiskComponentDTO.setDescription("Industry Risk");
-        industryRiskComponentDTO.setWeightage(0.16);
+        industryRiskComponentDTO.setWeightage(0.14);
         industryRiskComponentDTO.setComputingMethodCode("05");
         industryRiskComponentDTO.setComputingMethodDescription("Equals");
         industryRiskComponentDTO.setScoreTypeCode("01");

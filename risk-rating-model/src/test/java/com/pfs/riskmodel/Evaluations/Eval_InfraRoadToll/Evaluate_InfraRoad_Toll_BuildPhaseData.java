@@ -1,14 +1,10 @@
 package com.pfs.riskmodel.Evaluations.Eval_InfraRoadToll;
 
-import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.RiskTypes.InfraRoadHAM_PostProjectImplRiskTypes;
-import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.RiskTypes.InfraRoadHAM_ProjectImplRiskTypes;
+import com.pfs.riskmodel.ModelTemplates.InfraRoadToll.BuildPhase.InfraRoadToll_BuildPhase_RiskModelSummary;
+import com.pfs.riskmodel.ModelTemplates.InfraRoadToll.ParentalNotchUp.InfraRoadToll_RiskParentalNotchUp;
+import com.pfs.riskmodel.ModelTemplates.InfraRoadToll.RiskRatingModifier.InfraRoadToll_RatingModifierDTO;
 import com.pfs.riskmodel.ModelTemplates.InfraRoadToll.RiskTypes.InfraRoadToll_PostProjectImplRiskTypes;
 import com.pfs.riskmodel.ModelTemplates.InfraRoadToll.RiskTypes.InfraRoadToll_ProjectImplRiskTypes;
-import com.pfs.riskmodel.ModelTemplates.InfraTransmission.BuildPhase.InfraTransmission_BuildPhase_RiskModelSummary;
-import com.pfs.riskmodel.ModelTemplates.InfraTransmission.ParentalNotchUp.InfraTrans_RiskParentalNotchUp;
-import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskRatingModifiers.InfraTrans_RatingModifierDTO;
-import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskTypes.InfraTrans_PostProjectImplRiskTypes;
-import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskTypes.InfraTrans_ProjectImplRiskTypes;
 import com.pfs.riskmodel.dto.*;
 
 import java.time.Instant;
@@ -105,11 +101,6 @@ public class Evaluate_InfraRoad_Toll_BuildPhaseData {
                                 break;
                             }
                         }
-
-
-
-
-
                     }
                 }
             }
@@ -166,17 +157,21 @@ public class Evaluate_InfraRoad_Toll_BuildPhaseData {
         // Rating Modifiers
 
         List<RiskRatingModifierDTO> riskRatingModifierDTOSet = new ArrayList<>();
-        InfraTrans_RatingModifierDTO infraTrans_ratingModifierDTO = new InfraTrans_RatingModifierDTO();
-        riskRatingModifierDTOSet = infraTrans_ratingModifierDTO.getRiskRatingModifierDTOs();
+        InfraRoadToll_RatingModifierDTO infraRoadToll_ratingModifierDTO = new InfraRoadToll_RatingModifierDTO();
+        riskRatingModifierDTOSet = infraRoadToll_ratingModifierDTO.getRiskRatingModifierDTOs();
 
         for (RiskRatingModifierDTO riskRatingModifierDTO:riskRatingModifierDTOSet) {
-            for (RiskRatingModifierAttributeDTO riskRatingModifierAttributeDTO: riskRatingModifierDTO.getRiskRatingModifierAttributes()){
-                if (riskRatingModifierDTO.getItemNo()/2 == 0)
-                    riskRatingModifierAttributeDTO.setYesOrNoIndicator('Y');
-                else
+
+            if (riskRatingModifierDTO.getModifierType() == 0) {
+                for (RiskRatingModifierAttributeDTO riskRatingModifierAttributeDTO : riskRatingModifierDTO.getRiskRatingModifierAttributes()) {
                     riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
                 }
+            } else {
+                for (RiskRatingModifierAttributeDTO riskRatingModifierAttributeDTO : riskRatingModifierDTO.getRiskRatingModifierAttributes()) {
+                    riskRatingModifierAttributeDTO.setYesOrNoIndicator('Y');
+                }
 
+            }
         }
 
 
@@ -184,8 +179,8 @@ public class Evaluate_InfraRoad_Toll_BuildPhaseData {
 
         // Parental Notchup
         RiskParentalNotchUpDTO riskParentalNotchUpDTO = new RiskParentalNotchUpDTO();
-        InfraTrans_RiskParentalNotchUp infraTrans_riskParentalNotchUp = new InfraTrans_RiskParentalNotchUp();
-        riskParentalNotchUpDTO = infraTrans_riskParentalNotchUp.getInfraTransmissonParentalNotchup();
+        InfraRoadToll_RiskParentalNotchUp infraRoadToll_riskParentalNotchUp = new InfraRoadToll_RiskParentalNotchUp();
+        riskParentalNotchUpDTO = infraRoadToll_riskParentalNotchUp.getInfraRoadToll_ParentalNotchup();
 
 
         for (RiskParentalNotchUpConditionDTO riskParentalNotchUpConditionDTO: riskParentalNotchUpDTO.getRiskParentalConditions()) {
@@ -200,17 +195,20 @@ public class Evaluate_InfraRoad_Toll_BuildPhaseData {
                 riskParentalNotchUpConditionDTO.setValue("1");
 
             }
-            // The parent’s rating is better than the borrower’s rating
-            if (riskParentalNotchUpConditionDTO.getItemNo() == 3) {
-                riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
+
+//            3 - Is Parent's rating at GRADE 10
+//            4 - Is Parent's Rating Better Than Borrower's Rating
+//
+            if (riskParentalNotchUpConditionDTO.getCategory() == 3) {
+                riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
             }
-            // The borrower’s rating is not GRADE10 (in default)
-            if (riskParentalNotchUpConditionDTO.getItemNo() == 4) {
+
+            if (riskParentalNotchUpConditionDTO.getCategory() == 4) {
                 riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
             }
         }
 
-        // Select First Item for Parental Notcuhup Sub Factor Attributes
+        // Select First Item for Parental Notchup Sub Factor Attributes
         for (RiskSubFactorDTO riskSubFactorDTO: riskParentalNotchUpDTO.getRiskSubFactors()) {
             for (RiskSubFactorAttributeDTO riskSubFactorAttributeDTO: riskSubFactorDTO.getRiskSubFactorAttributes()){
                 if (riskSubFactorAttributeDTO.getItemNo() == 1)
@@ -223,8 +221,8 @@ public class Evaluate_InfraRoad_Toll_BuildPhaseData {
         riskParentalNotchUpDTOSet.add(riskParentalNotchUpDTO);
 
 
-        InfraTransmission_BuildPhase_RiskModelSummary infraTransmission_buildPhase_riskModelSummary = new InfraTransmission_BuildPhase_RiskModelSummary();
-        List<RiskModelSummaryDTO> riskModelSummaryDTOS = infraTransmission_buildPhase_riskModelSummary.getRiskModelSummary();
+        InfraRoadToll_BuildPhase_RiskModelSummary infraRoadToll_buildPhase_riskModelSummary = new InfraRoadToll_BuildPhase_RiskModelSummary();
+        List<RiskModelSummaryDTO> riskModelSummaryDTOS = infraRoadToll_buildPhase_riskModelSummary.getRiskModelSummary();
         riskModelTemplateDTO.setRiskModelSummaries(riskModelSummaryDTOS);
 
         riskModelTemplateDTO.setRiskParentalNotchUps(riskParentalNotchUpDTOSet);

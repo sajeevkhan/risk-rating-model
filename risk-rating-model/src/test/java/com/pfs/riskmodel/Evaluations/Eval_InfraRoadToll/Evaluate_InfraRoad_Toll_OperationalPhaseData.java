@@ -1,5 +1,7 @@
 package com.pfs.riskmodel.Evaluations.Eval_InfraRoadToll;
 
+import com.pfs.riskmodel.ModelTemplates.InfraRoadToll.RiskRatingModifier.InfraRoadToll_RatingModifierDTO;
+import com.pfs.riskmodel.ModelTemplates.InfraRoadToll.RiskTypes.InfraRoadToll_PostProjectImplRiskTypes;
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.BuildPhase.InfraTransmission_BuildPhase_RiskModelSummary;
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.ParentalNotchUp.InfraTrans_RiskParentalNotchUp;
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskRatingModifiers.InfraTrans_RatingModifierDTO;
@@ -28,8 +30,8 @@ public class Evaluate_InfraRoad_Toll_OperationalPhaseData {
         riskModelTemplateDTO.setId(null);
         riskModelTemplateDTO.setStatus("X");
         riskModelTemplateDTO.setVersion("v1");
-        // Model Category 5: InfraRoadProjectToll-Build
-        riskModelTemplateDTO.setModelCategoryCode(7);
+        // Model Category 8: InfraRoadProjectToll-Operational
+        riskModelTemplateDTO.setModelCategoryCode(8);
 
         riskModelTemplateDTO.setModelType(1); //Valuation - NOT TEMPLATE
 
@@ -58,12 +60,12 @@ public class Evaluate_InfraRoad_Toll_OperationalPhaseData {
 
 
         // RiskType
-        //Project Risk Rating of Infrastructure Tranmission Operational Phase =  PPIR  Scores
+        //Project Risk Rating of Infrastructure TOLL Operational Phase =  PPIR  Scores
 
 
         //  Post Project Impl. Risk Types
-        InfraTrans_PostProjectImplRiskTypes infraTrans_postProjectImplRiskTypes = new InfraTrans_PostProjectImplRiskTypes();
-        RiskTypeDTO postProjectImplRiskTypes = infraTrans_postProjectImplRiskTypes.buildPostProjectImplRiskTypes();
+        InfraRoadToll_PostProjectImplRiskTypes infraRoadToll_postProjectImplRiskTypes = new InfraRoadToll_PostProjectImplRiskTypes();
+        RiskTypeDTO postProjectImplRiskTypes = infraRoadToll_postProjectImplRiskTypes.buildPostProjectImplRiskTypes();
 
 
         // Set TEST DATA for Risk Sub Factor Attributes per Risk Component per Risk Sub Factor
@@ -101,11 +103,6 @@ public class Evaluate_InfraRoad_Toll_OperationalPhaseData {
                                 break;
                             }
                         }
-
-
-
-
-
                     }
                 }
             }
@@ -118,12 +115,12 @@ public class Evaluate_InfraRoad_Toll_OperationalPhaseData {
 
         // Rating Modifiers
         List<RiskRatingModifierDTO> riskRatingModifierDTOSet = new ArrayList<>();
-        InfraTrans_RatingModifierDTO infraTrans_ratingModifierDTO = new InfraTrans_RatingModifierDTO();
-        riskRatingModifierDTOSet = infraTrans_ratingModifierDTO.getRiskRatingModifierDTOs();
+        InfraRoadToll_RatingModifierDTO infraRoadToll_ratingModifierDTO = new InfraRoadToll_RatingModifierDTO();
+        riskRatingModifierDTOSet = infraRoadToll_ratingModifierDTO.getRiskRatingModifierDTOs();
 
         for (RiskRatingModifierDTO riskRatingModifierDTO:riskRatingModifierDTOSet) {
             for (RiskRatingModifierAttributeDTO riskRatingModifierAttributeDTO: riskRatingModifierDTO.getRiskRatingModifierAttributes()){
-                if (riskRatingModifierDTO.getItemNo()/2 == 0)
+                if (riskRatingModifierAttributeDTO.getItemNo() / 2 == 0)
                     riskRatingModifierAttributeDTO.setYesOrNoIndicator('Y');
                 else
                     riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
@@ -152,15 +149,19 @@ public class Evaluate_InfraRoad_Toll_OperationalPhaseData {
                 riskParentalNotchUpConditionDTO.setValue("1");
 
             }
-            // The parent’s rating is better than the borrower’s rating
-            if (riskParentalNotchUpConditionDTO.getItemNo() == 3) {
-                riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
+
+//            3 - Is Parent's rating at GRADE 10
+//            4 - Is Parent's Rating Better Than Borrower's Rating
+//
+            if (riskParentalNotchUpConditionDTO.getCategory() == 3) {
+                riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
             }
-            // The borrower’s rating is not GRADE10 (in default)
-            if (riskParentalNotchUpConditionDTO.getItemNo() == 4) {
+
+            if (riskParentalNotchUpConditionDTO.getCategory() == 4) {
                 riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
             }
         }
+
 
         // Select First Item for Parental Notcuhup Sub Factor Attributes
         for (RiskSubFactorDTO riskSubFactorDTO: riskParentalNotchUpDTO.getRiskSubFactors()) {

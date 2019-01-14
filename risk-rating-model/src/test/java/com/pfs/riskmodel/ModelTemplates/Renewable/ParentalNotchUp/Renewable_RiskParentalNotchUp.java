@@ -100,6 +100,29 @@ public class Renewable_RiskParentalNotchUp {
         riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('1');
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 
+        riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
+        riskParentalNotchUpConditionDTO.setId(null);
+        riskParentalNotchUpConditionDTO.setItemNo(3);
+        riskParentalNotchUpConditionDTO.setCategory(4);  //4 - Is Parent's Rating Better Than Borrower's Rating
+        riskParentalNotchUpConditionDTO.setDescription("The parent’s rating is better than the borrower’s rating");
+        riskParentalNotchUpConditionDTO.setValueType('0');
+        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
+        riskParentalNotchUpConditionDTO.setValue(" ");
+        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('0');
+        riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
+
+        riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
+        riskParentalNotchUpConditionDTO.setId(null);
+        riskParentalNotchUpConditionDTO.setItemNo(4);
+        riskParentalNotchUpConditionDTO.setCategory(3); //3 - Is Parent's rating at GRADE 10
+        riskParentalNotchUpConditionDTO.setDescription("The borrower’s rating is GRADE10 (in default)");
+        riskParentalNotchUpConditionDTO.setValueType('0');
+        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
+        riskParentalNotchUpConditionDTO.setValue(" ");
+        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('0');
+        riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
+
+
 
         riskParentalNotchUpDTO.setRiskParentalConditions(riskParentalNotchUpConditionDTOS);
 

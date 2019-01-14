@@ -52,13 +52,13 @@ public class IRToll_PPIR_ManagementRiskDTO {
         RiskFactorDTO managementRiskFactorDTO = new RiskFactorDTO();
         managementRiskFactorDTO.setId(null);
         managementRiskFactorDTO.setItemNo(1);
-        managementRiskFactorDTO.setDescription("Business Risk Factor");
+        managementRiskFactorDTO.setDescription("Management Risk Factor");
         managementRiskFactorDTO.setWeightage(1.000);
         managementRiskFactorDTO.setScore(0D);
         managementRiskFactorDTO.setScoreTypeCode("01");
         managementRiskFactorDTO.setScoreTypeDescription("Normal");
-        managementRiskFactorDTO.setComputingMethodCode("05");
-        managementRiskFactorDTO.setComputingMethodDescription("Equals");
+        managementRiskFactorDTO.setComputingMethodCode("01");
+        managementRiskFactorDTO.setComputingMethodDescription("Weighted");
 
 
 

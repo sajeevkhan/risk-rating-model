@@ -53,8 +53,8 @@ public class IRToll_PPIR_AccountConductDTO {
         accountConductRiskFactorDTO.setScore(0D);
         accountConductRiskFactorDTO.setScoreTypeCode("01");
         accountConductRiskFactorDTO.setScoreTypeDescription("Normal");
-        accountConductRiskFactorDTO.setComputingMethodCode("05");
-        accountConductRiskFactorDTO.setComputingMethodDescription("Equals");
+        accountConductRiskFactorDTO.setComputingMethodCode("01");
+        accountConductRiskFactorDTO.setComputingMethodDescription("Weighted");
 
 
 
@@ -64,7 +64,7 @@ public class IRToll_PPIR_AccountConductDTO {
         complianceWithFinCovInclSRSARiskSubFactorDTO.setId(null);
         complianceWithFinCovInclSRSARiskSubFactorDTO.setItemNo(1);
         complianceWithFinCovInclSRSARiskSubFactorDTO.setDescription("Compliance with financial covenants including DSRA");
-        complianceWithFinCovInclSRSARiskSubFactorDTO.setWeightage(0.60);
+        complianceWithFinCovInclSRSARiskSubFactorDTO.setWeightage(0.50);
         complianceWithFinCovInclSRSARiskSubFactorDTO.setScore(0D);
         complianceWithFinCovInclSRSARiskSubFactorDTO.setScoreTypeCode("01");
         complianceWithFinCovInclSRSARiskSubFactorDTO.setScoreTypeDescription("Normal");
@@ -88,11 +88,11 @@ public class IRToll_PPIR_AccountConductDTO {
 
         // 1.1.2       Risk Sub Factor 2
         //  "Trend in Working capital Drawing power limits"  - 40%
-        RiskSubFactorDTO trendInWorkCapitalRiskSubFactorDTO = new RiskSubFactorDTO(); //TODO Attr. Name
+        RiskSubFactorDTO trendInWorkCapitalRiskSubFactorDTO = new RiskSubFactorDTO();
         trendInWorkCapitalRiskSubFactorDTO.setId(null);
-        trendInWorkCapitalRiskSubFactorDTO.setItemNo(2);  //TODO Item Number
-        trendInWorkCapitalRiskSubFactorDTO.setDescription("Trend in Working capital Drawing power limits"); //TODO Desc
-        trendInWorkCapitalRiskSubFactorDTO.setWeightage(0.60); //TODO  Weightage
+        trendInWorkCapitalRiskSubFactorDTO.setItemNo(2);
+        trendInWorkCapitalRiskSubFactorDTO.setDescription("Trend in Working capital Drawing power limits");
+        trendInWorkCapitalRiskSubFactorDTO.setWeightage(0.50);
         trendInWorkCapitalRiskSubFactorDTO.setScore(0D);
         trendInWorkCapitalRiskSubFactorDTO.setScoreTypeCode("01");
         trendInWorkCapitalRiskSubFactorDTO.setScoreTypeDescription("Normal");

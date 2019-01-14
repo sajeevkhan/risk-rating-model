@@ -54,7 +54,7 @@ public class RenewableProjectBuildPhaseData {
 
         riskModelTemplateDTO.setLoanNumber(" ");
         riskModelTemplateDTO.setLoanAmountInCrores(0D);
-        riskModelTemplateDTO.setProjectName("Template Model for Renewables Build");
+        riskModelTemplateDTO.setProjectName(" ");
         riskModelTemplateDTO.setRatingDate(Date.from(Instant.now()));
 
         riskModelTemplateDTO.setOverallProjectGrade(" ");

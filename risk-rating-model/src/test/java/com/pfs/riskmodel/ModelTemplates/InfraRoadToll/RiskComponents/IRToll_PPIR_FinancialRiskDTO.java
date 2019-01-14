@@ -38,7 +38,7 @@ public class IRToll_PPIR_FinancialRiskDTO {
         riskComponentDTO.setScoreTypeDescription("Normal");
         riskComponentDTO.setScoreTypeCode("01");
         riskComponentDTO.setScore(0D);
-        riskComponentDTO.setWeightage(0.40D);
+        riskComponentDTO.setWeightage(0.30D);
         riskComponentDTO.setIsApplicable(true);
 
 
@@ -52,8 +52,8 @@ public class IRToll_PPIR_FinancialRiskDTO {
         financialRiskFactorDTO.setScore(0D);
         financialRiskFactorDTO.setScoreTypeCode("01");
         financialRiskFactorDTO.setScoreTypeDescription("Normal");
-        financialRiskFactorDTO.setComputingMethodCode("05");
-        financialRiskFactorDTO.setComputingMethodDescription("Equals");
+        financialRiskFactorDTO.setComputingMethodCode("01");
+        financialRiskFactorDTO.setComputingMethodDescription("Weighted");
 
 
         // 1.1.1        Risk Sub Factor 1
@@ -98,49 +98,22 @@ public class IRToll_PPIR_FinancialRiskDTO {
         // 1.1.2      Risk Sub Factor Attributes
         // -> Four Attributes
         riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(0D, "More than 4"));
-        riskSubFactorAttributes.add(new RiskAttribute(3D,"Equal to or above 3 but less than or equal to 4"));
-        riskSubFactorAttributes.add(new RiskAttribute(7D,"Equal to or above 2.33 but less than 3"));
-        riskSubFactorAttributes.add(new RiskAttribute(10D,"Less than 2.33"));
+        riskSubFactorAttributes.add(new RiskAttribute(0D, "Less Than 2.33"));
+        riskSubFactorAttributes.add(new RiskAttribute(3D,"Equal to or above 2.33 but less than or equal to 3"));
+        riskSubFactorAttributes.add(new RiskAttribute(7D,"Equal to or above 3 but less than 4"));
+        riskSubFactorAttributes.add(new RiskAttribute(10D,"Less than 4"));
 
         List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS2 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
         debtEquityRatioRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS2);
         financialRiskFactorDTO.addRiskSubFactorDTO(debtEquityRatioRiskSubFactorDTO);
 
 
+
         // 1.1.3        Risk Sub Factor 3
-        // 1.1.3 Difference between WACC and Internal Rate of return (%) 30%
-
-        RiskSubFactorDTO differenceWACCAndIRRRiskSubFactorDTO = new RiskSubFactorDTO();
-        differenceWACCAndIRRRiskSubFactorDTO.setId(null);
-        differenceWACCAndIRRRiskSubFactorDTO.setItemNo(3);
-        differenceWACCAndIRRRiskSubFactorDTO.setDescription("Difference between WACC and Internal Rate of return (%)");
-        differenceWACCAndIRRRiskSubFactorDTO.setWeightage(0.30);
-        differenceWACCAndIRRRiskSubFactorDTO.setScore(0D);
-        differenceWACCAndIRRRiskSubFactorDTO.setScoreTypeCode("01");
-        differenceWACCAndIRRRiskSubFactorDTO.setScoreTypeDescription("Normal");
-
-        //
-        // 1.1.3       Risk Sub Factor Attributes
-        // -> Three Attributes
-        riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(0D, "WACC - IRR >= 2%"));
-        riskSubFactorAttributes.add(new RiskAttribute(5D,"WACC-IRR <=0%"));
-        riskSubFactorAttributes.add(new RiskAttribute(10D,"WACC-IRR <2%"));
-
-         List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS3 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
-        differenceWACCAndIRRRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS3);
-        financialRiskFactorDTO.addRiskSubFactorDTO(differenceWACCAndIRRRiskSubFactorDTO);
-
-
-
-        // 1.1.4        Risk Sub Factor 4
-        // 1.1.4 Average DSCR
-
-
+        // 1.1.3 Average DSCR - 10%
         RiskSubFactorDTO averageDSCRRiskSubFactorDTO = new RiskSubFactorDTO();
         averageDSCRRiskSubFactorDTO.setId(null);
-        averageDSCRRiskSubFactorDTO.setItemNo(4);
+        averageDSCRRiskSubFactorDTO.setItemNo(3);
         averageDSCRRiskSubFactorDTO.setDescription("Average DSCR");
         averageDSCRRiskSubFactorDTO.setWeightage(0.10);
         averageDSCRRiskSubFactorDTO.setScore(0D);
@@ -148,7 +121,7 @@ public class IRToll_PPIR_FinancialRiskDTO {
         averageDSCRRiskSubFactorDTO.setScoreTypeDescription("Normal");
 
         //
-        // 1.1.4      Risk Sub Factor Attributes
+        // 1.1.3      Risk Sub Factor Attributes
         // -> Four Attributes
         riskSubFactorAttributes = new ArrayList<>();
         riskSubFactorAttributes.add(new RiskAttribute(0D, "Less than 1"));
@@ -156,9 +129,35 @@ public class IRToll_PPIR_FinancialRiskDTO {
         riskSubFactorAttributes.add(new RiskAttribute(7D,"Equal to or above 1.1 but less than 1.2"));
         riskSubFactorAttributes.add(new RiskAttribute(10D,"Equal to or above 1.2"));
 
-         List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS4 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
-         averageDSCRRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS4);
+        List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS3 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
+        averageDSCRRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS3);
         financialRiskFactorDTO.addRiskSubFactorDTO(averageDSCRRiskSubFactorDTO);
+
+
+        // 1.1.4        Risk Sub Factor 4
+        // 1.1.4 Difference between WACC and Internal Rate of return (%) 30%
+
+        RiskSubFactorDTO differenceWACCAndIRRRiskSubFactorDTO = new RiskSubFactorDTO();
+        differenceWACCAndIRRRiskSubFactorDTO.setId(null);
+        differenceWACCAndIRRRiskSubFactorDTO.setItemNo(4);
+        differenceWACCAndIRRRiskSubFactorDTO.setDescription("Difference between WACC and Internal Rate of return (%)");
+        differenceWACCAndIRRRiskSubFactorDTO.setWeightage(0.30);
+        differenceWACCAndIRRRiskSubFactorDTO.setScore(0D);
+        differenceWACCAndIRRRiskSubFactorDTO.setScoreTypeCode("01");
+        differenceWACCAndIRRRiskSubFactorDTO.setScoreTypeDescription("Normal");
+
+        //
+        // 1.1.4       Risk Sub Factor Attributes
+        // -> Three Attributes
+        riskSubFactorAttributes = new ArrayList<>();
+        riskSubFactorAttributes.add(new RiskAttribute(0D, "WACC - IRR >= 2%"));
+        riskSubFactorAttributes.add(new RiskAttribute(5D,"WACC-IRR <2% and >0%"));
+        riskSubFactorAttributes.add(new RiskAttribute(10D,"WACC-IRR <=0%"));
+
+         List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS4 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
+        differenceWACCAndIRRRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS4);
+        financialRiskFactorDTO.addRiskSubFactorDTO(differenceWACCAndIRRRiskSubFactorDTO);
+
 
 
         riskComponentDTO.addRiskFactorDTO(financialRiskFactorDTO);

@@ -106,8 +106,8 @@ public class IRToll_PIR_CompletionRiskDTO {
         riskSubFactorAttributes.add(new RiskAttribute(8D,"Majority of funds tied up (i.e. > 70%). Very minor hurdles / problems expected in achieving closure beyond 70%"));
         riskSubFactorAttributes.add(new RiskAttribute(10D,"Funds totally tied up. Sanction letter may be submitted"));
 
-        List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
-        financialClosureRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS);
+        List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS2 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
+        financialClosureRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS2);
         fundingRiskFactorDTO.addRiskSubFactorDTO(financialClosureRiskSubFactorDTO);
 
 
@@ -118,9 +118,9 @@ public class IRToll_PIR_CompletionRiskDTO {
         //  1.2 Key Completion Risks -   70%
         RiskFactorDTO keyCompletionRiskFactorDTO = new RiskFactorDTO();
         keyCompletionRiskFactorDTO.setId(null);
-        keyCompletionRiskFactorDTO.setItemNo(1);
+        keyCompletionRiskFactorDTO.setItemNo(2);
         keyCompletionRiskFactorDTO.setDescription("Key Completion Risks");
-        keyCompletionRiskFactorDTO.setWeightage(0.60);
+        keyCompletionRiskFactorDTO.setWeightage(0.70);
         keyCompletionRiskFactorDTO.setScore(0D);
         keyCompletionRiskFactorDTO.setScoreTypeCode("01");
         keyCompletionRiskFactorDTO.setScoreTypeDescription("Normal");
@@ -150,8 +150,8 @@ public class IRToll_PIR_CompletionRiskDTO {
         riskSubFactorAttributes.add(new RiskAttribute(10D,"The project has obtained all relevant clearance required from all the agencies or Such relevant clearances are identified as Condition Precedents (CPs) to attain Appointed Date as per Concession Agreement (CA)."));
 
 
-        List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS4 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
-        clearancesRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS);
+        List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS3 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
+        clearancesRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS3);
         keyCompletionRiskFactorDTO.addRiskSubFactorDTO(clearancesRiskSubFactorDTO);
 
 
@@ -175,8 +175,8 @@ public class IRToll_PIR_CompletionRiskDTO {
         riskSubFactorAttributes.add(new RiskAttribute(7D, "50% of the remaining land is yet to be acquired by competent authority and >75% & <100% of total length (in km) of the project can be constructed"));
         riskSubFactorAttributes.add(new RiskAttribute(10D, "Entire remaining land has been acquired and 100% of total length (in km) of the project can be constructed"));
 
-        List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS5 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
-        landAcqusitionRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS);
+        List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS4 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
+        landAcqusitionRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS4);
         keyCompletionRiskFactorDTO.addRiskSubFactorDTO(landAcqusitionRiskSubFactorDTO);
 
 

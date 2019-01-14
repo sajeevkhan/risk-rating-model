@@ -47,7 +47,7 @@ public class InfraRoadToll_OperationalPhaseData {
 
         riskModelTemplateDTO.setLoanNumber(" ");
         riskModelTemplateDTO.setLoanAmountInCrores(0D);
-        riskModelTemplateDTO.setProjectName("Template Model for Infra Road Toll Operational");
+        riskModelTemplateDTO.setProjectName("");
         riskModelTemplateDTO.setRatingDate(Date.from(Instant.now()));
 
         riskModelTemplateDTO.setOverallProjectGrade(" ");
@@ -58,7 +58,7 @@ public class InfraRoadToll_OperationalPhaseData {
 
 
         // RiskType
-        //Project Risk Rating of Infrastructure Tranmission Operational Phase = Post Project Implementation Score
+        //Project Risk Rating of Infrastructure TOLL  Operational Phase = Post Project Implementation Score
         InfraRoadToll_PostProjectImplRiskTypes infraRoadToll_postProjectImplRiskTypes = new InfraRoadToll_PostProjectImplRiskTypes();
         RiskTypeDTO riskTypeDTO = infraRoadToll_postProjectImplRiskTypes.buildPostProjectImplRiskTypes();
 

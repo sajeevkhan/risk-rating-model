@@ -138,7 +138,6 @@ public class InfraRoadToll_BuildPhase_Valuator {
                         riskModelTemplate.getProjectRiskLevel().getCode(),
                         riskModelTemplate.getModifiedProjectGradeAsNumber());
 
-        // TODO   - Parental Notchup Cappings ------------------------
 
         if (riskModelTemplate.getRiskParentalNotchUps().get(0).getIsParentalNotchUpApplicable() == true) {
 
@@ -153,22 +152,30 @@ public class InfraRoadToll_BuildPhase_Valuator {
 
             Integer afterParentNotchupGradeItemNumber = 0;
 
-            afterParentNotchupGradeItemNumber = modProjectGrade.getItemNo() - numberOfNotchesAfterParental;
+
+            afterParentNotchupGradeItemNumber = modProjectGrade.getItemNo() + numberOfNotchesAfterParental;
+
             if (afterParentNotchupGradeItemNumber >= 8) {
                 afterParentNotchupGradeItemNumber = 8;
             }
             if (afterParentNotchupGradeItemNumber < 0)
                 afterParentNotchupGradeItemNumber = 0;
-
-            //The post notch-up grade would be capped at one notch below the parent’s grade.
-            // Fetch Parent's Grade
-            Integer parentRating = parentalNotchupResult.get("Parent Rating");
-            if (afterParentNotchupGradeItemNumber <= parentRating) {
-                afterParentNotchupGradeAsNumber = parentRating + 1;
-            }
+            //
+//            //The post notch-up grade would be capped at one notch below the parent’s grade.
+//            // Fetch Parent's Grade
+//            Integer parentRating = parentalNotchupResult.get("Parent Rating");
+//            if (afterParentNotchupGradeItemNumber <= parentRating) {
+//                afterParentNotchupGradeAsNumber = parentRating + 1;
+//            }
 
             ProjectGrade afterParentalNotchUpGradeObject =
-                    Utils.getProjectGradeByItemNumber(projectGradeList, afterParentNotchupGradeAsNumber);
+                    Utils.getProjectGradeByItemNumber(projectGradeList, afterParentNotchupGradeItemNumber);
+
+            System.out.println("Modified Grade Item Number : " + modProjectGrade.getItemNo());
+            System.out.println("Number of Notches after Parental : " + numberOfNotchesAfterParental);
+            System.out.println("After Parental Item Number : " + afterParentNotchupGradeItemNumber);
+            System.out.println("After Parental GRADE : " + afterParentalNotchUpGradeObject.getCommonScaleGrade());
+
 
             Integer numberOfNotchesUpagraded = afterParentNotchupGradeItemNumber -  modProjectGrade.getItemNo();
             riskModelTemplate.getRiskParentalNotchUps().get(0).setNumberOfNotchesUpgraded(numberOfNotchesUpagraded);
