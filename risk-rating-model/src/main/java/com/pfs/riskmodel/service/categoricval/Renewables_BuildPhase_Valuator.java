@@ -8,6 +8,7 @@ import com.pfs.riskmodel.domain.RiskModelSummary;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
 import com.pfs.riskmodel.domain.RiskRatingModifier;
 import com.pfs.riskmodel.domain.RiskType;
+import com.pfs.riskmodel.service.modelvaluator.CommonComputation;
 import com.pfs.riskmodel.service.modelvaluator.RiskParentalNotchUpEvaluator;
 import com.pfs.riskmodel.service.modelvaluator.Utils;
 import org.springframework.lang.Nullable;
@@ -36,28 +37,26 @@ public class Renewables_BuildPhase_Valuator {
         String projectImplScoreGrade = " ";
 
 
-        // Project Scores and Grade
-        Double projectScore = 0D;
-        String projectScoreGrade = "";
-        Double overallProjectScore = 0D;
-
         // Modified Project Scores and Grade
         String overallProjectGrade = "";
-        String modifiedProjectGrade = "";
-        Integer modifiedProjectGradeAsNumber = 0;
 
         // After Parental Notchup GRADE
         String afterParentalNotchUpGrade = " ";
-        Integer afterParentNotchupGradeAsNumber = 0;
         String finalProjectGrade = " ";
+//        // Project Scores and Grade
+        Double projectScore = 0D;
+        Double overallProjectScore = 0D;
+
+        ProjectGrade projectGrade = new ProjectGrade();
+        ProjectGrade modifiedProjectGrade = new ProjectGrade();
+        ProjectGrade afterParentalNotchupGrade = new ProjectGrade();
 
 
         // Risk Type Score
         for (RiskType riskType : riskModelTemplate.getRiskTypes()) {
-            if (riskType.getDescription().contains("Post")) {
+            if (riskType.getDescription().contains("Post")) { //Post Project Risk
 
-                // TODO - Change the Grade Scale - OPEN WITH PFS
-                ProjectGrade projectGrade =
+                 projectGrade =
                         Utils.fetchGrade(projectGradeList,riskType.getScore());
 
                 postProjectImplScore = riskType.getScore();
@@ -65,8 +64,8 @@ public class Renewables_BuildPhase_Valuator {
                 riskType.setGrade(postProjectImplScoreGrade);
             }
 
-            else {
-                ProjectGrade projectGrade =
+            else {  // Project Risk
+                 projectGrade =
                         Utils.fetchGrade(projectGradeList,riskType.getScore());
 
                 projectImplScore = riskType.getScore();
@@ -82,123 +81,33 @@ public class Renewables_BuildPhase_Valuator {
         riskModelTemplate.setScore(overallProjectScore);
 
         //  Build Phase Grade
-        ProjectGrade overallProjectGradeObject =
-                Utils.fetchGrade(projectGradeList,overallProjectScore);
+        ProjectGrade overallProjectGradeObject = Utils.fetchGrade(projectGradeList,overallProjectScore);
         overallProjectGrade = overallProjectGradeObject.getCommonScaleGrade();
-
-
-
-
-        Boolean ratingModifiersInAction = false;
-
-        // EXECUTE RISK RATING MODIFIERS
-        for (RiskRatingModifier riskRatingModifier: riskModelTemplate.getRiskRatingModifiers()) {
-
-            // Execute Grade Capping to SubInvestment GRADE
-            if (riskRatingModifier.getModifierType() == 0)
-                if (riskRatingModifier.getSubInvestmentGradeCapping() == true) {
-                    if (overallProjectScore >= 4.25) {
-                        modifiedProjectGrade = "GRADE 7";
-                        ratingModifiersInAction = true;
-                    }
-                }
-
-            if (riskRatingModifier.getNumberOfNotchesDown() != 0) {
-
-                // Add the "Number of Notch downs" to the overall project grade number
-                modifiedProjectGradeAsNumber =
-                        overallProjectGradeObject.getGradeAsNumber() + riskRatingModifier.getNumberOfNotchesDown();
-
-                // Find the the Modified Grade
-                for (ProjectGrade projectGrade : projectGradeList) {
-                    if (projectGrade.getGradeAsNumber() == modifiedProjectGradeAsNumber) {
-                        modifiedProjectGrade = projectGrade.getCommonScaleGrade();
-                        ratingModifiersInAction = true;
-                        break;
-                    }
-                    else // Rating is not found in the rating table
-                        ratingModifiersInAction = false;
-                }
-            }
-        }
-
-        if (ratingModifiersInAction == false) {
-            // If Rating Modifiers do not influence the calculation, Project Rating is passed on
-            modifiedProjectGrade = overallProjectGrade;
-            modifiedProjectGradeAsNumber = overallProjectGradeObject.getGradeAsNumber();
-        }
-
-        // Set the Grade on the Model
         riskModelTemplate.setOverallProjectGrade(overallProjectGrade);
-        riskModelTemplate.setModifiedProjectGrade(modifiedProjectGrade);
-        riskModelTemplate.setModifiedProjectGradeAsNumber(modifiedProjectGradeAsNumber);
 
 
-        // Evaluate Parental NotchUp
-        RiskParentalNotchUpEvaluator riskParentalNotchUpEvaluator = new RiskParentalNotchUpEvaluator();
+        // Compute Modified Project Grade
+        CommonComputation commonComputation = new CommonComputation();
+        modifiedProjectGrade = commonComputation.applyRatingModifier(riskModelTemplate,
+                projectGrade,
+                projectGradeList,
+                4.25);
 
-        Map<String, Integer> parentalNotchupResult =
-                riskParentalNotchUpEvaluator.evaluateParentalNotchup(
-                        riskModelTemplate.getRiskParentalNotchUps().get(0),
-                        riskModelTemplate.getProjectRiskLevel().getCode(),
-                        riskModelTemplate.getModifiedProjectGradeAsNumber());
+        // Check if Parental Notchup needs to be evaluated or not
+        if ( modifiedProjectGrade.getGradeAsNumber() >= 7 ) {
+            riskModelTemplate.getRiskParentalNotchUps().get(0).setIsParentalNotchUpApplicable(false);
+            riskModelTemplate.setFinalProjectGrade(modifiedProjectGrade.getCommonScaleGrade());
+            riskModelTemplate.setAfterParentalNotchUpGrade(modifiedProjectGrade.getCommonScaleGrade());
+        }
+        else {  // Evaluate Parental Notchup
 
-
-        if (riskModelTemplate.getRiskParentalNotchUps().get(0).getIsParentalNotchUpApplicable() == true) {
-
-            // Apply after Parental Notchup
-            // Get Modified Project Grade Object
-            ProjectGrade modProjectGrade = Utils.getProjectGradeByCommonScaleGrade(projectGradeList,
-                    riskModelTemplate.getModifiedProjectGrade());
-            modifiedProjectGradeAsNumber = modProjectGrade.getGradeAsNumber();
-
-            Integer numberOfNotchesAfterParental = parentalNotchupResult.get("NotchupCalc");
-
-            Integer afterParentNotchupGradeItemNumber = 0;
-
-
-            afterParentNotchupGradeItemNumber = modProjectGrade.getItemNo() + numberOfNotchesAfterParental;
-
-            if (afterParentNotchupGradeItemNumber >= 10) {
-                afterParentNotchupGradeItemNumber = 10;
-            }
-            if (afterParentNotchupGradeItemNumber < 0)
-                afterParentNotchupGradeItemNumber = 0;
-            //
-//            //The post notch-up grade would be capped at one notch below the parent’s grade.
-//            // Fetch Parent's Grade
-//            Integer parentRating = parentalNotchupResult.get("Parent Rating");
-//            if (afterParentNotchupGradeItemNumber <= parentRating) {
-//                afterParentNotchupGradeAsNumber = parentRating + 1;
-//            }
-
-            ProjectGrade afterParentalNotchUpGradeObject =
-                    Utils.getProjectGradeByItemNumber(projectGradeList, afterParentNotchupGradeItemNumber);
-
-            System.out.println("Modified Grade Item Number : " + modProjectGrade.getItemNo());
-            System.out.println("Number of Notches after Parental : " + numberOfNotchesAfterParental);
-            System.out.println("After Parental Item Number : " + afterParentNotchupGradeItemNumber);
-            System.out.println("After Parental GRADE : " + afterParentalNotchUpGradeObject.getCommonScaleGrade());
-
-
-            Integer numberOfNotchesUpagraded = afterParentNotchupGradeItemNumber -  modProjectGrade.getItemNo();
-            riskModelTemplate.getRiskParentalNotchUps().get(0).setNumberOfNotchesUpgraded(numberOfNotchesUpagraded);
-
-            //        Utils.getProjectGradeByGradeAsNumber( projectGradeList, afterParentNotchupGradeAsNumber);
-            // Set the Grade after Parental Notchup
-            if (afterParentalNotchUpGradeObject != null) {
-                riskModelTemplate.setAfterParentalNotchUpGrade(afterParentalNotchUpGradeObject.getCommonScaleGrade());
-                afterParentalNotchUpGrade = afterParentalNotchUpGradeObject.getCommonScaleGrade();
-            } else {
-                afterParentalNotchUpGrade = modifiedProjectGrade;
-            }
-
+            afterParentalNotchupGrade = commonComputation.evaluateParentalNotchup(
+                    riskModelTemplate, projectGradeList,
+                    modifiedProjectGrade,
+                    projectGradeList.size() );
         }
 
-        //    Overall Rating Grade
-        // GRADE AFTER PARENTAL NOTCHUP
-        riskModelTemplate.setFinalProjectGrade(afterParentalNotchUpGrade);
-        finalProjectGrade = afterParentalNotchUpGrade;
+
 
 
         // Prepare Summary
@@ -234,31 +143,31 @@ public class Renewables_BuildPhase_Valuator {
         riskModelSummary = new RiskModelSummary();itemNo++;
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName("Overall Project Score");
-        riskModelSummary.setValue(overallProjectScore.toString());
+        riskModelSummary.setValue(riskModelTemplate.getScore().toString());
         riskModelSummaries.add(riskModelSummary);
 
         riskModelSummary = new RiskModelSummary();itemNo++;
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName("Overall Project Grade");
-        riskModelSummary.setValue(overallProjectGrade.toString());
+        riskModelSummary.setValue(riskModelTemplate.getOverallProjectGrade());
         riskModelSummaries.add(riskModelSummary);
 
         riskModelSummary = new RiskModelSummary();itemNo++;
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName("Modified Project Grade");
-        riskModelSummary.setValue(modifiedProjectGrade.toString());
+        riskModelSummary.setValue(riskModelTemplate.getModifiedProjectGrade());
         riskModelSummaries.add(riskModelSummary);
 
         riskModelSummary = new RiskModelSummary();itemNo++;
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName("Grade after Parental Notchup");
-        riskModelSummary.setValue(afterParentalNotchUpGrade.toString());
+        riskModelSummary.setValue(riskModelTemplate.getFinalProjectGrade());
         riskModelSummaries.add(riskModelSummary);
 
         riskModelSummary = new RiskModelSummary();itemNo++;
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName("Final Project Grade");
-        riskModelSummary.setValue(finalProjectGrade.toString());
+        riskModelSummary.setValue(riskModelTemplate.getFinalProjectGrade());
         riskModelSummaries.add(riskModelSummary);
 
         riskModelTemplate.setRiskModelSummaries(riskModelSummaries);

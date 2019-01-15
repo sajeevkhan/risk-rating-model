@@ -28,13 +28,13 @@ public class ROP_ManagementRiskDTO {
     public RiskComponentDTO getManagementRiskDTO() {
 
 
-        // 4.0 Management Risk - 20%
+        // 4.0 Management Risk - 17%
 
         RiskComponentDTO riskComponentDTO = new RiskComponentDTO();
         List<RiskFactor> riskFactorList = new ArrayList<>();
 
         riskComponentDTO.setId(null);
-        riskComponentDTO.setItemNo(4);
+        riskComponentDTO.setItemNo(2);
         riskComponentDTO.setComputingMethodCode("05");
         riskComponentDTO.setComputingMethodDescription("Equals");
         riskComponentDTO.setDescription("Management Risk");
@@ -43,7 +43,7 @@ public class ROP_ManagementRiskDTO {
         riskComponentDTO.setScoreTypeDescription("Normal");
 
         riskComponentDTO.setScore(0D);
-        riskComponentDTO.setWeightage(0.20D);
+        riskComponentDTO.setWeightage(0.17D);
 
         riskComponentDTO.setIsApplicable(true);
 

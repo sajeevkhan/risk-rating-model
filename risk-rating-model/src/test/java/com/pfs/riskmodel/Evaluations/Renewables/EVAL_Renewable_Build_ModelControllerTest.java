@@ -37,7 +37,7 @@ public class EVAL_Renewable_Build_ModelControllerTest extends AbstractTest {
         riskModelTemplateDTO = evaluate_renewables_buildPhaseData.getRenewablesBuildPhaseData();
 
 
-                String inputJson = super.mapToJson(riskModelTemplateDTO);
+        String inputJson = super.mapToJson(riskModelTemplateDTO);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(inputJson)).andReturn();

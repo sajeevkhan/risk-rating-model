@@ -24,7 +24,7 @@ public class ROP_IndustryRiskDTO {
 
 
 
-        // 2.0 Industry Risk - 16%
+        // 2.0 Industry Risk - 14%
 
         RiskComponentDTO riskComponentDTO = new RiskComponentDTO();
 
@@ -38,7 +38,7 @@ public class ROP_IndustryRiskDTO {
         riskComponentDTO.setScoreTypeDescription("Normal");
 
         riskComponentDTO.setScore(0D);
-        riskComponentDTO.setWeightage(0.16D);
+        riskComponentDTO.setWeightage(0.14D);
 
         riskComponentDTO.setIsApplicable(true);
 
@@ -104,14 +104,14 @@ public class ROP_IndustryRiskDTO {
         // 2.1.1        Risk Sub Factor Attributes
         // -> Six Attributes
 
-
         riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(10D, "Policy is highly favourable and unambiguous, with certain minimum return being made available to the industry. Favourable government policy likely to continue in the foreseeable future"));
-        riskSubFactorAttributes.add(new RiskAttribute(8D,"Favourable Policy, which has positive impact on industry. No change in the favourable policy is expected"));
-        riskSubFactorAttributes.add(new RiskAttribute(6D,"A mix of favourable and not so favourable policies. Slight impact of policy on the profitability"));
-        riskSubFactorAttributes.add(new RiskAttribute(4D,"The existing government policies are not significantly favourable/ unfavourable for the industry. Profitability is not particularly influenced by existing/ foreseen regulatory measures"));
-        riskSubFactorAttributes.add(new RiskAttribute(2D,"Government policy has a significantly negative influence, in the form of high excise burden, inverted import duty structure, unviable price regulation, etc"));
+
         riskSubFactorAttributes.add(new RiskAttribute(0D,"Government policy towards industry is extremely unfavourable"));
+        riskSubFactorAttributes.add(new RiskAttribute(2D,"Government policy has a significantly negative influence, in the form of high excise burden, inverted import duty structure, unviable price regulation, etc"));
+        riskSubFactorAttributes.add(new RiskAttribute(4D,"The existing government policies are not significantly favourable/ unfavourable for the industry. Profitability is not particularly influenced by existing/ foreseen regulatory measures"));
+        riskSubFactorAttributes.add(new RiskAttribute(6D,"A mix of favourable and not so favourable policies. Slight impact of policy on the profitability"));
+        riskSubFactorAttributes.add(new RiskAttribute(8D,"Favourable Policy, which has positive impact on industry. No change in the favourable policy is expected"));
+        riskSubFactorAttributes.add(new RiskAttribute(10D,"Policy is highly favourable and unambiguous, with certain minimum return being made available to the industry. Favourable government policy likely to continue in the foreseeable future"));
 
         List<RiskSubFactorAttributeDTO>  riskSubFactorAttributeDTOS2 =   riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
         impactOfGovtDirectivesDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS2);
@@ -135,13 +135,12 @@ public class ROP_IndustryRiskDTO {
 
 
         riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(10D, "The industry has a monopoly structure, with the prospect of new entrants in the medium term being unlikely"));
-        riskSubFactorAttributes.add(new RiskAttribute(8D,"Oligopoly structure. High chance of the structure to be the same or move into a monopoly structure"));
-        riskSubFactorAttributes.add(new RiskAttribute(6D,"Industry is characterized by a few large players accounting for the bulk of market share. Capital investment involved is likely to discourage significant increase in competition in the medium term. Absence of serious threat from imports"));
-        riskSubFactorAttributes.add(new RiskAttribute(4D,"Industry has a fairly fragmented structure. Moderate entry barriers in the form of technology/ capital investment"));
-        riskSubFactorAttributes.add(new RiskAttribute(2D,"Highly fragmented industry. Processes are very easily replicable leading to presence of large, cost-competitive unorganized sector/ Significantly lower cost of imports render domestic producers unviable"));
         riskSubFactorAttributes.add(new RiskAttribute(0D,"Extremely competitive industry, with a near absence of entry barriers, in the form of investment/ technology etc. No player is capable of building a significant market share in the industry. Majority of players in the industry are loss making"));
-
+        riskSubFactorAttributes.add(new RiskAttribute(2D,"Highly fragmented industry. Processes are very easily replicable leading to presence of large, cost-competitive unorganized sector/ Significantly lower cost of imports render domestic producers unviable"));
+        riskSubFactorAttributes.add(new RiskAttribute(4D,"Industry has a fairly fragmented structure. Moderate entry barriers in the form of technology/ capital investment"));
+        riskSubFactorAttributes.add(new RiskAttribute(6D,"Industry is characterized by a few large players accounting for the bulk of market share. Capital investment involved is likely to discourage significant increase in competition in the medium term. Absence of serious threat from imports"));
+        riskSubFactorAttributes.add(new RiskAttribute(8D,"Oligopoly structure. High chance of the structure to be the same or move into a monopoly structure"));
+        riskSubFactorAttributes.add(new RiskAttribute(10D,"The industry has a monopoly structure, with the prospect of new entrants in the medium term being unlikely"));
 
         List<RiskSubFactorAttributeDTO>  riskSubFactorAttributeDTOS3 =   riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
         extentOfCompetetionDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS3);

@@ -20,7 +20,7 @@ public class ROP_BusinessRiskDTO {
 
     public RiskComponentDTO getBusinessRiskDTO() {
 
-        // 1.0 Business Risk - 32%
+        // 1.0 Business Risk - 28%
 
         RiskComponentDTO riskComponentDTO = new RiskComponentDTO();
         List<RiskFactor> riskFactorList = new ArrayList<>();
@@ -34,7 +34,7 @@ public class ROP_BusinessRiskDTO {
         riskComponentDTO.setScoreTypeDescription("Normal");
         riskComponentDTO.setScoreTypeCode("01");
         riskComponentDTO.setScore(0D);
-        riskComponentDTO.setWeightage(0.32D);
+        riskComponentDTO.setWeightage(0.28D);
 
         riskComponentDTO.setIsApplicable(true);
 
@@ -242,12 +242,13 @@ public class ROP_BusinessRiskDTO {
         // 1.2.2        Risk Sub Factor Attributes
         // -> Six Attributes
         riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(10D, "Operational project - PLF significantly higher than base case. "));
-        riskSubFactorAttributes.add(new RiskAttribute( 8D, "Operational project - PLF higher than base case."));
-        riskSubFactorAttributes.add(new RiskAttribute(6D, "Operational project - PLF as per base case."));
-        riskSubFactorAttributes.add(new RiskAttribute(4D, "Operational project - PLF less than base case. Under construction project - generation assessment based on more than 2 years resource data at site"));
-        riskSubFactorAttributes.add(new RiskAttribute(2D, "Under construction project - generation assessment based on 1 to 2 year resource data at site"));
-        riskSubFactorAttributes.add(new RiskAttribute(0D, "Under construction project - generation assessment based on 0 to 1 year resource data at site"));
+        riskSubFactorAttributes.add(new RiskAttribute(10D, "Operational project – Availability of key resource is highly favourable and PLF significantly higher than base case. "));
+        riskSubFactorAttributes.add(new RiskAttribute(7D, "Operational project - Availability of key resource is favourable and PLF is higher than base case. "));
+        riskSubFactorAttributes.add(new RiskAttribute(3D, "Operational project - Availability of key resource is moderately favourable and PLF is as per base case. "));
+        riskSubFactorAttributes.add(new RiskAttribute(0D, "Operational project - Availability of key resource is below average and PLF is less than base case."));
+        riskSubFactorAttributes.add(new RiskAttribute(8D, "Under construction project - Availability of key resource is expected to be highly favourable and generation assessment is based on more than 2 years resource data at site"));
+        riskSubFactorAttributes.add(new RiskAttribute(4D, "Under construction project - Availability of key resource is expected to be moderately favourable generation assessment based on 1 to 2 year resource data at site"));
+        riskSubFactorAttributes.add(new RiskAttribute(0D, "Under construction project - Availability of key resource is expected to be below average and generation assessment is based on 0 to 1 year resource data at site "));
 
 
 

@@ -27,13 +27,13 @@ public class ROP_FinancialRiskDTO {
 
 
 
-        // 3.0 Financial Risk - 32%
+        // 3.0 Financial Risk - 28%
 
         RiskComponentDTO riskComponentDTO = new RiskComponentDTO();
         List<RiskFactor> riskFactorList = new ArrayList<>();
 
         riskComponentDTO.setId(null);
-        riskComponentDTO.setItemNo(2);
+        riskComponentDTO.setItemNo(4);
         riskComponentDTO.setComputingMethodCode("05");
         riskComponentDTO.setComputingMethodDescription("Equals");
         riskComponentDTO.setDescription("Financial Risk");
@@ -41,7 +41,7 @@ public class ROP_FinancialRiskDTO {
         riskComponentDTO.setScoreTypeCode("01");
         riskComponentDTO.setScoreTypeDescription("Normal");
         riskComponentDTO.setScore(0D);
-        riskComponentDTO.setWeightage(0.32D);
+        riskComponentDTO.setWeightage(0.28D);
 
         riskComponentDTO.setIsApplicable(true);
 

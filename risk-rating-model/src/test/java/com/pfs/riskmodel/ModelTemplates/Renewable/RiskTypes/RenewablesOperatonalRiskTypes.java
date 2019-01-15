@@ -1,9 +1,6 @@
 package com.pfs.riskmodel.ModelTemplates.Renewable.RiskTypes;
 
-import com.pfs.riskmodel.ModelTemplates.Renewable.RiskComponents.ROP_BusinessRiskDTO;
-import com.pfs.riskmodel.ModelTemplates.Renewable.RiskComponents.ROP_FinancialRiskDTO;
-import com.pfs.riskmodel.ModelTemplates.Renewable.RiskComponents.ROP_IndustryRiskDTO;
-import com.pfs.riskmodel.ModelTemplates.Renewable.RiskComponents.ROP_ManagementRiskDTO;
+import com.pfs.riskmodel.ModelTemplates.Renewable.RiskComponents.*;
 import com.pfs.riskmodel.dto.RiskComponentDTO;
 import com.pfs.riskmodel.dto.RiskTypeDTO;
 
@@ -35,7 +32,7 @@ public class RenewablesOperatonalRiskTypes {
         riskComponentDTOs.add(rop_businessRiskDTO.getBusinessRiskDTO());
 
 
-       ROP_FinancialRiskDTO rop_financialRiskDTO = new ROP_FinancialRiskDTO();
+        ROP_FinancialRiskDTO rop_financialRiskDTO = new ROP_FinancialRiskDTO();
         riskComponentDTOs.add(rop_financialRiskDTO.getFinancialRiskDTO());
 
 
@@ -45,6 +42,8 @@ public class RenewablesOperatonalRiskTypes {
         ROP_ManagementRiskDTO rop_managementRiskDTO = new ROP_ManagementRiskDTO();
         riskComponentDTOs.add(rop_managementRiskDTO.getManagementRiskDTO());
 
+        ROP_BP_AccountConductRiskDTO rop_bp_accountConductRiskDTO = new ROP_BP_AccountConductRiskDTO();
+        riskComponentDTOs.add(rop_bp_accountConductRiskDTO.getAccountConductRiskDTO());
 
 
         riskTypeDTO.setRiskComponents(riskComponentDTOs);

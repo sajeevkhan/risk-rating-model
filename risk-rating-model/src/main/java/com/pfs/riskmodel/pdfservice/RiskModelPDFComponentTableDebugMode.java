@@ -4,6 +4,7 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.pfs.riskmodel.domain.*;
+import com.pfs.riskmodel.service.modelvaluator.Utils;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -81,8 +82,10 @@ public class RiskModelPDFComponentTableDebugMode {
         // First Column - Risk Component Weightage
         PdfPCell projectDetailsCell2 = new PdfPCell();
         //projectDetailsCell2.setBackgroundColor(BaseColor.BLUE.darker().darker().darker().darker());
-        if (riskComponent.getScoreTypeCode().equals("01"))
-          projectDetailsCell2.setPhrase(new Phrase((riskComponent.getWeightage() * 100) + "%" , weightageValueFont));
+        if (riskComponent.getScoreTypeCode().equals("01")) {
+          Double weightage = Utils.round(riskComponent.getWeightage() * 100);
+          projectDetailsCell2.setPhrase(new Phrase((weightage) + "%" , weightageValueFont));
+        }
         else
             projectDetailsCell2.setPhrase(new Phrase((" ") , weightageValueFont));
 
@@ -121,7 +124,8 @@ public class RiskModelPDFComponentTableDebugMode {
                 projectDetailsCell2.setFixedHeight(15);
                 projectDetailsCell2.setBackgroundColor(BaseColor.LIGHT_GRAY);
                 if (riskFactor.getScoreTypeCode().equals("01")){
-                 projectDetailsCell2.setPhrase(new Phrase((riskFactor.getWeightage() * 100) + "%" , weightageValueFont));
+                    Double weightage = Utils.round(riskFactor.getWeightage() * 100);
+                 projectDetailsCell2.setPhrase(new Phrase(weightage + "%" , weightageValueFont));
                 } else {
                     projectDetailsCell2.setPhrase(new Phrase((" ") , weightageValueFont));
                 }
@@ -160,7 +164,8 @@ public class RiskModelPDFComponentTableDebugMode {
                 projectDetailsCell2 = new PdfPCell();
                 projectDetailsCell2.setBackgroundColor(BaseColor.ORANGE);
                 if (riskSubFactor.getScoreTypeCode().equals("01")) {
-                 projectDetailsCell2.setPhrase(new Phrase((riskSubFactor.getWeightage() * 100) + "%", weightageValueFont));
+                    Double weightage = Utils.round(riskSubFactor.getWeightage() * 100);
+                 projectDetailsCell2.setPhrase(new Phrase(weightage + "%", weightageValueFont));
                 } else {
                     projectDetailsCell2.setPhrase(new Phrase((" "), weightageValueFont));
                 }

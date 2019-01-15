@@ -30,20 +30,20 @@ public class Evaluate_Renewables_OperationalPhaseData {
         riskModelTemplateDTO.setId(null);
         riskModelTemplateDTO.setStatus("X");
         riskModelTemplateDTO.setVersion("v1");
-        // Model Category 1: Renewable-Build
+        // Model Category 2: Renewable-Operational
         riskModelTemplateDTO.setModelCategoryCode(2);
 
         riskModelTemplateDTO.setModelType(1); //Valuation - NOT TEMPLATE
 
         riskModelTemplateDTO.setProjectRiskLevelCode("01");
-        riskModelTemplateDTO.setProjectRiskLevelDescription("Build Phase");
+        riskModelTemplateDTO.setProjectRiskLevelDescription("Operational Phase");
 
         riskModelTemplateDTO.setProjectTypeCode("01");
         riskModelTemplateDTO.setProjectTypeDescription("Renewables");
 
-        riskModelTemplateDTO.setDescription("Renewables Build Phase");
-        riskModelTemplateDTO.setComputingMethodCode("03");
-        riskModelTemplateDTO.setComputingMethodDescription("Minimum"); //Minimum of PIR and PPIR
+        riskModelTemplateDTO.setDescription("Renewables Operational Phase");
+        riskModelTemplateDTO.setComputingMethodCode("05");
+        riskModelTemplateDTO.setComputingMethodDescription("Equals");
         riskModelTemplateDTO.setScore(0D);
 
         riskModelTemplateDTO.setOverallProjectGrade(" ");
@@ -92,19 +92,31 @@ public class Evaluate_Renewables_OperationalPhaseData {
                             riskSubFactorAttributeDTO.setIsSelected(true);
                             break;
                         }
-
-
                     }
                 }
             }
-
         }
 
         riskModelTemplateDTO.addRiskTypeDTO(operationalPhaseRiskTypeDTO);
 
 
+        // Rating Modifiers ARE APPLICABLE FOR RENEWABLES
+        Renewable_RatingModifierDTO renewable_ratingModifierDTO = new Renewable_RatingModifierDTO();
+        List<RiskRatingModifierDTO> renewable_ratingModifierDTOS =  renewable_ratingModifierDTO.getRiskRatingModifierDTOs();
 
-        // Rating Modifiers ARE NOT APPLICABLE FOR RENEWABLES
+
+        for (RiskRatingModifierDTO riskRatingModifierDTO: renewable_ratingModifierDTOS)
+            if (riskRatingModifierDTO.getModifierType() == 0) {
+                for (RiskRatingModifierAttributeDTO riskRatingModifierAttributeDTO : riskRatingModifierDTO.getRiskRatingModifierAttributes()) {
+                    riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
+                }
+            } else {
+                for (RiskRatingModifierAttributeDTO riskRatingModifierAttributeDTO : riskRatingModifierDTO.getRiskRatingModifierAttributes()) {
+                    riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
+                }
+            }
+
+        riskModelTemplateDTO.setRiskRatingModifiers(renewable_ratingModifierDTOS);
 
 
         // Parental Notchup
@@ -127,16 +139,27 @@ public class Evaluate_Renewables_OperationalPhaseData {
 
             // Rating of Parent Entity ("Obligor Rating Grade of the Parent Firm as per reference source")
             if (riskParentalNotchUpConditionDTO.getItemNo() == 3) {
-                riskParentalNotchUpConditionDTO.setValue("3");
+                riskParentalNotchUpConditionDTO.setValue("1");
             }
             //Borrower Rating Grade of Parent Firm
             if (riskParentalNotchUpConditionDTO.getItemNo() == 4) {
-                riskParentalNotchUpConditionDTO.setValue("3");
+                riskParentalNotchUpConditionDTO.setValue("1");
+            }
+
+            //            3 - Is Parent's rating at GRADE 10
+            if (riskParentalNotchUpConditionDTO.getCategory() == 3) {
+                riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
+            }
+
+            //            4 - Is Parent's Rating Better Than Borrower's Rating
+            if (riskParentalNotchUpConditionDTO.getCategory() == 4) {
+                riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
             }
         }
 
 
-            // Select First Item for Parental Notcuhup Sub Factor Attributes
+
+        // Select First Item for Parental Notcuhup Sub Factor Attributes
         for (RiskSubFactorDTO riskSubFactorDTO: riskParentalNotchUpDTO.getRiskSubFactors()) {
              for (RiskSubFactorAttributeDTO riskSubFactorAttributeDTO: riskSubFactorDTO.getRiskSubFactorAttributes()){
                  if (riskSubFactorAttributeDTO.getItemNo() == 1)
