@@ -1,5 +1,7 @@
 package com.pfs.riskmodel.Evaluations.Eval_InfraRoadHAM;
 
+import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.ParentalNotchUp.InfraRoadHAM_RiskParentalNotchUp;
+import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.RiskTypes.InfraRoadHAM_PostProjectImplRiskTypes;
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.ParentalNotchUp.InfraTrans_RiskParentalNotchUp;
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskRatingModifiers.InfraTrans_RatingModifierDTO;
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskTypes.InfraTrans_PostProjectImplRiskTypes;
@@ -59,9 +61,9 @@ public class Evaluate_InfraRoadHAM_OperationalPhaseData {
 
 
         // RiskType
-        //Project Risk Rating of Infrastructure Tranmission Operational Phase = Post Project Implementation Score
-        InfraTrans_PostProjectImplRiskTypes infraTransPostProjectImplRiskTypes = new InfraTrans_PostProjectImplRiskTypes();
-        RiskTypeDTO riskTypeDTO = infraTransPostProjectImplRiskTypes.buildPostProjectImplRiskTypes();
+        //Project Risk Rating of Infrastructure HAM Operational Phase = Post Project Implementation Score
+        InfraRoadHAM_PostProjectImplRiskTypes infraTrans_postProjectImplRiskTypes = new InfraRoadHAM_PostProjectImplRiskTypes();
+        RiskTypeDTO riskTypeDTO = infraTrans_postProjectImplRiskTypes.buildPostProjectImplRiskTypes();
 
 
         // Set TEST DATA for Risk Sub Factor Attributes per Risk Component per Risk Sub Factor
@@ -75,16 +77,24 @@ public class Evaluate_InfraRoadHAM_OperationalPhaseData {
                     if (riskSubFactorDTO.getScoreTypeCode().equals("02") || riskSubFactorDTO.getScoreTypeCode().equals("03"))
                         riskDeflator = true;
 
-
-                    Integer maxItems = riskSubFactorDTO.getRiskSubFactorAttributes().size();
-
                     for (RiskSubFactorAttributeDTO riskSubFactorAttributeDTO : riskSubFactorDTO.getRiskSubFactorAttributes()) {
 
-                        Integer itemNo = 1;
-                        if (riskDeflator == true)
-                            itemNo = 1;
+                        Integer selectedItem = 0;
+                        if (riskComponentDTO.getDescription().contains("Financial"))
+                            selectedItem = riskSubFactorDTO.getRiskSubFactorAttributes().size();
                         else
-                            itemNo = maxItems;
+                            selectedItem = riskSubFactorDTO.getRiskSubFactorAttributes().size() - 1;
+
+                        // Select first attribute for Deflators and secondLastItem for Normal SubFactors
+                        Integer itemNo = 1;
+                        if (riskDeflator == true) {
+                            if ( riskSubFactorDTO.getRiskSubFactorAttributes().size() == 2)
+                                itemNo = 2;
+                            else
+                                itemNo = 3;
+                        }
+                        else
+                            itemNo = selectedItem;;
 
                         if (riskSubFactorAttributeDTO.getItemNo() == itemNo) {
                             riskSubFactorAttributeDTO.setIsSelected(true);
@@ -98,71 +108,70 @@ public class Evaluate_InfraRoadHAM_OperationalPhaseData {
 
 
         riskModelTemplateDTO.addRiskTypeDTO(riskTypeDTO);
-
-
         // Rating Modifiers
+
         List<RiskRatingModifierDTO> riskRatingModifierDTOSet = new ArrayList<>();
         InfraTrans_RatingModifierDTO infraTrans_ratingModifierDTO = new InfraTrans_RatingModifierDTO();
         riskRatingModifierDTOSet = infraTrans_ratingModifierDTO.getRiskRatingModifierDTOs();
 
+        for (RiskRatingModifierDTO riskRatingModifierDTO:riskRatingModifierDTOSet) {
 
-        for (RiskRatingModifierDTO riskRatingModifierDTO : riskRatingModifierDTOSet) {
-            for (RiskRatingModifierAttributeDTO riskRatingModifierAttributeDTO : riskRatingModifierDTO.getRiskRatingModifierAttributes()) {
-                if (riskRatingModifierDTO.getItemNo() / 2 == 0)
-                    riskRatingModifierAttributeDTO.setYesOrNoIndicator('Y');
-                else
-                    riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
+            for (RiskRatingModifierAttributeDTO riskRatingModifierAttributeDTO:
+                    riskRatingModifierDTO.getRiskRatingModifierAttributes()) {
+                //if (riskRatingModifierDTO.getItemNo()/2 == 0)
+                riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
+//                else
+//                    riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
+//                }
             }
 
         }
 
-        riskModelTemplateDTO.setRiskRatingModifiers(riskRatingModifierDTOSet);
 
+        riskModelTemplateDTO.setRiskRatingModifiers(riskRatingModifierDTOSet);
 
         // Parental Notchup
         RiskParentalNotchUpDTO riskParentalNotchUpDTO = new RiskParentalNotchUpDTO();
-        InfraTrans_RiskParentalNotchUp infraTrans_riskParentalNotchUp = new InfraTrans_RiskParentalNotchUp();
-        riskParentalNotchUpDTO = infraTrans_riskParentalNotchUp.getInfraTransmissonParentalNotchup();
+        InfraRoadHAM_RiskParentalNotchUp infraRoadHAM_riskParentalNotchUp = new InfraRoadHAM_RiskParentalNotchUp();
+        riskParentalNotchUpDTO = infraRoadHAM_riskParentalNotchUp.getInfraRoadHAM_ParentalNotchup();
 
-        for (RiskParentalNotchUpConditionDTO riskParentalNotchUpConditionDTO : riskParentalNotchUpDTO.getRiskParentalConditions()) {
+        for (RiskParentalNotchUpConditionDTO riskParentalNotchUpConditionDTO: riskParentalNotchUpDTO.getRiskParentalConditions()){
 
             if (riskParentalNotchUpConditionDTO.getItemNo() == 1) {
-                riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('3');
-
+                riskParentalNotchUpConditionDTO.setValue("1");
             }
 
             if (riskParentalNotchUpConditionDTO.getItemNo() == 2) {
                 riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
-
             }
-
-            if (riskParentalNotchUpConditionDTO.getItemNo() == 3) {
+            //            3 - Is Parent's rating at GRADE 10
+            if (riskParentalNotchUpConditionDTO.getCategory() == 3) {
                 riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
-
             }
-            if (riskParentalNotchUpConditionDTO.getItemNo() == 4) {
+
+            //            4 - Is Parent's Rating Better Than Borrower's Rating
+            if (riskParentalNotchUpConditionDTO.getCategory() == 4) {
                 riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
-
             }
-        }
 
 
-            for (RiskSubFactorDTO riskSubFactorDTO : riskParentalNotchUpDTO.getRiskSubFactors()) {
-
+            for (RiskSubFactorDTO riskSubFactorDTO: riskParentalNotchUpDTO.getRiskSubFactors()) {
                 for (RiskSubFactorAttributeDTO riskSubFactorAttributeDTO : riskSubFactorDTO.getRiskSubFactorAttributes()) {
                     if (riskSubFactorAttributeDTO.getItemNo() == 1)
                         riskSubFactorAttributeDTO.setIsSelected(true);
                 }
-
             }
+        }
 
 
-            List<RiskParentalNotchUpDTO> riskParentalNotchUpDTOSet = new ArrayList<>();
-            riskParentalNotchUpDTOSet.add(riskParentalNotchUpDTO);
+        List<RiskParentalNotchUpDTO> riskParentalNotchUpDTOSet = new ArrayList<>();
+        riskParentalNotchUpDTOSet.add(riskParentalNotchUpDTO);
 
-            riskModelTemplateDTO.setRiskParentalNotchUps(riskParentalNotchUpDTOSet);
 
-            return riskModelTemplateDTO;
+
+        riskModelTemplateDTO.setRiskParentalNotchUps(riskParentalNotchUpDTOSet);
+
+        return riskModelTemplateDTO;
 
 
 

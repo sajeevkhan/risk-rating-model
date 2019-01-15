@@ -107,70 +107,12 @@ public class Renewables_BuildPhase_Valuator {
                     projectGradeList.size() );
         }
 
-
-
-
         // Prepare Summary
-        RiskModelSummary riskModelSummary = new RiskModelSummary();
-        List<RiskModelSummary> riskModelSummaries = new ArrayList<>();
-        Integer itemNo = 0;
+        List<RiskModelSummary> riskModelSummaryList =
+                commonComputation.getBuildPhaseSummary(projectScore, projectGrade.getCommonScaleGrade(),
+                                                       postProjectImplScore,postProjectImplScoreGrade,riskModelTemplate, 1);
+        riskModelTemplate.setRiskModelSummaries(riskModelSummaryList);
 
-
-        riskModelSummary = new RiskModelSummary();itemNo++;
-        riskModelSummary.setItemNo(itemNo);
-        riskModelSummary.setName("Project Implementation Risk Score");
-        riskModelSummary.setValue(projectImplScore.toString());
-        riskModelSummaries.add(riskModelSummary);
-
-        riskModelSummary = new RiskModelSummary();itemNo++;
-        riskModelSummary.setItemNo(itemNo);
-        riskModelSummary.setName(" Project Implementation Risk Grade");
-        riskModelSummary.setValue(projectImplScoreGrade.toString());
-        riskModelSummaries.add(riskModelSummary);
-
-        riskModelSummary = new RiskModelSummary();itemNo++;
-        riskModelSummary.setItemNo(itemNo);
-        riskModelSummary.setName("Post Project Implementation Risk Score");
-        riskModelSummary.setValue(postProjectImplScoreGrade.toString());
-        riskModelSummaries.add(riskModelSummary);
-
-        riskModelSummary = new RiskModelSummary();itemNo++;
-        riskModelSummary.setItemNo(itemNo);
-        riskModelSummary.setName(" Post Project Implementation Risk Grade");
-        riskModelSummary.setValue(postProjectImplScoreGrade.toString());
-        riskModelSummaries.add(riskModelSummary);
-
-        riskModelSummary = new RiskModelSummary();itemNo++;
-        riskModelSummary.setItemNo(itemNo);
-        riskModelSummary.setName("Overall Project Score");
-        riskModelSummary.setValue(riskModelTemplate.getScore().toString());
-        riskModelSummaries.add(riskModelSummary);
-
-        riskModelSummary = new RiskModelSummary();itemNo++;
-        riskModelSummary.setItemNo(itemNo);
-        riskModelSummary.setName("Overall Project Grade");
-        riskModelSummary.setValue(riskModelTemplate.getOverallProjectGrade());
-        riskModelSummaries.add(riskModelSummary);
-
-        riskModelSummary = new RiskModelSummary();itemNo++;
-        riskModelSummary.setItemNo(itemNo);
-        riskModelSummary.setName("Modified Project Grade");
-        riskModelSummary.setValue(riskModelTemplate.getModifiedProjectGrade());
-        riskModelSummaries.add(riskModelSummary);
-
-        riskModelSummary = new RiskModelSummary();itemNo++;
-        riskModelSummary.setItemNo(itemNo);
-        riskModelSummary.setName("Grade after Parental Notchup");
-        riskModelSummary.setValue(riskModelTemplate.getFinalProjectGrade());
-        riskModelSummaries.add(riskModelSummary);
-
-        riskModelSummary = new RiskModelSummary();itemNo++;
-        riskModelSummary.setItemNo(itemNo);
-        riskModelSummary.setName("Final Project Grade");
-        riskModelSummary.setValue(riskModelTemplate.getFinalProjectGrade());
-        riskModelSummaries.add(riskModelSummary);
-
-        riskModelTemplate.setRiskModelSummaries(riskModelSummaries);
         return riskModelTemplate;
     }
 

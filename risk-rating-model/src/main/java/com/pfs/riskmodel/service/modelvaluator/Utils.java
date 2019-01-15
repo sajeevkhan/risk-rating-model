@@ -88,5 +88,9 @@ public class Utils {
         return null;
     }
 
+    public static ProjectGrade getHighestGrade(List<ProjectGrade> projectGradeList) {
+        return projectGradeList.get(projectGradeList.size()-1);
+
+    }
 
 }

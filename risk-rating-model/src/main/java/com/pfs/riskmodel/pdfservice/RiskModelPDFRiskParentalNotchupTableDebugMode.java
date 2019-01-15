@@ -4,6 +4,7 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.pfs.riskmodel.domain.*;
+import com.pfs.riskmodel.service.modelvaluator.Utils;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -243,8 +244,17 @@ public class RiskModelPDFRiskParentalNotchupTableDebugMode {
             cell1.setColspan(2);
             cell1.setHorizontalAlignment(Element.ALIGN_LEFT);
 
+            cell2 = new PdfPCell();
+            cell2.setBackgroundColor(BaseColor.ORANGE);
+            Double weightage = Utils.round(riskSubFactor.getWeightage() * 100);
+            cell2.setPhrase(new Phrase(weightage + "%", valueFont));
+            cell2.setHorizontalAlignment(Element.ALIGN_LEFT);
+
+
             parentalNotchupSubFactorsTable.addCell(cell1);
-             parentalNotchupSubFactorsTable.completeRow();
+            parentalNotchupSubFactorsTable.addCell(cell2);
+
+            parentalNotchupSubFactorsTable.completeRow();
 
             for (RiskSubFactorAttribute riskSubFactorAttribute : riskSubFactor.getRiskSubFactorAttributes()) {
 

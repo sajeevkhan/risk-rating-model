@@ -48,6 +48,7 @@ public class InfraRoadHAM_Operational_ModelControllerTest extends AbstractTest {
         assertEquals(200, status);
         String content = mvcResult.getResponse().getContentAsString();
 
+        System.out.println(content);
         //String jsonOutput = mapToJSON(content);
 
         //System.out.println(jsonOutput);

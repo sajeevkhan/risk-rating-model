@@ -30,7 +30,7 @@ public class IRHAM_PPIR_FinancialRiskDTO {
         List<RiskFactor> riskFactorList = new ArrayList<>();
 
         riskComponentDTO.setId(null);
-        riskComponentDTO.setItemNo(2);
+        riskComponentDTO.setItemNo(3);
         riskComponentDTO.setComputingMethodCode("01");
         riskComponentDTO.setComputingMethodDescription("Weighted");
         riskComponentDTO.setDescription("Financial Risk");
@@ -57,12 +57,12 @@ public class IRHAM_PPIR_FinancialRiskDTO {
 
 
         // 1.1.1        Risk Sub Factor 1
-        // 1.1.1     Minimum DSCR 40%
+        // 1.1.1     Minimum DSCR 30%
         RiskSubFactorDTO minimumDSCRRiskSubFactorDTO = new RiskSubFactorDTO();
         minimumDSCRRiskSubFactorDTO.setId(null);
         minimumDSCRRiskSubFactorDTO.setItemNo(1);
         minimumDSCRRiskSubFactorDTO.setDescription("Minimum DSCR (Debt Service Coverage Ratio)");
-        minimumDSCRRiskSubFactorDTO.setWeightage(0.40);
+        minimumDSCRRiskSubFactorDTO.setWeightage(0.30);
         minimumDSCRRiskSubFactorDTO.setScore(0D);
         minimumDSCRRiskSubFactorDTO.setScoreTypeCode("01");
         minimumDSCRRiskSubFactorDTO.setScoreTypeDescription("Normal");
@@ -124,20 +124,16 @@ public class IRHAM_PPIR_FinancialRiskDTO {
         // 1.1.1       Risk Sub Factor Attributes
         // -> Three Attributes
         riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(0D, "WACC - IRR >= 2%"));
-        riskSubFactorAttributes.add(new RiskAttribute(5D,"WACC-IRR <=0%"));
-        riskSubFactorAttributes.add(new RiskAttribute(10D,"WACC-IRR <2%"));
+        riskSubFactorAttributes.add(new RiskAttribute(00D,"WACC-IRR greater than or equal to 2%"));
+        riskSubFactorAttributes.add(new RiskAttribute(05D,"WACC-IRR between 0 and 2%"));
+        riskSubFactorAttributes.add(new RiskAttribute(10D,"WACC-IRR below  0%"));
 
          List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS3 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
         differenceWACCAndIRRRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS3);
         financialRiskFactorDTO.addRiskSubFactorDTO(differenceWACCAndIRRRiskSubFactorDTO);
 
 
-
-        //TODO Average DSCR  is missing in the Table for Financial Risk
-        // TODO Therefore, we do not know the weightage of this
-        // TODO Clarify with PFS
-        // 1.1.4        Risk Sub Factor 3
+        // 1.1.4        Risk Sub Factor 4
         // 1.1.4 Average DSCR
 
 
@@ -145,7 +141,7 @@ public class IRHAM_PPIR_FinancialRiskDTO {
         averageDSCRRiskSubFactorDTO.setId(null);
         averageDSCRRiskSubFactorDTO.setItemNo(4);
         averageDSCRRiskSubFactorDTO.setDescription("Average DSCR");
-        averageDSCRRiskSubFactorDTO.setWeightage(0.00); //TODO  Weightage
+        averageDSCRRiskSubFactorDTO.setWeightage(0.10);
         averageDSCRRiskSubFactorDTO.setScore(0D);
         averageDSCRRiskSubFactorDTO.setScoreTypeCode("01");
         averageDSCRRiskSubFactorDTO.setScoreTypeDescription("Normal");
@@ -153,7 +149,7 @@ public class IRHAM_PPIR_FinancialRiskDTO {
         //
         // 1.1.4      Risk Sub Factor Attributes
         // -> Four Attributes
-        riskSubFactorAttributes = new ArrayList<>(); //TODO - Check Scores
+        riskSubFactorAttributes = new ArrayList<>();
         riskSubFactorAttributes.add(new RiskAttribute(0D, "Less than 1"));
         riskSubFactorAttributes.add(new RiskAttribute(3D,"Equal to or above 1 but less than 1.1"));
         riskSubFactorAttributes.add(new RiskAttribute(7D,"Equal to or above 1.1 but less than 1.2"));

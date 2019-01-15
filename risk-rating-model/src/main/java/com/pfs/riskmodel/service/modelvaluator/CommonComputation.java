@@ -1,9 +1,11 @@
 package com.pfs.riskmodel.service.modelvaluator;
 
 import com.pfs.riskmodel.businessconfig.ProjectGrade;
+import com.pfs.riskmodel.domain.RiskModelSummary;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
 import com.pfs.riskmodel.domain.RiskRatingModifier;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -32,7 +34,8 @@ public class CommonComputation {
             if (riskRatingModifier.getModifierType() == 0)
                 if (riskRatingModifier.getSubInvestmentGradeCapping() == true) {
                     if (riskModelTemplate.getScore() >= subInvestmentStartScore) {
-                        modifiedProjectGrade.setCommonScaleGrade("GRADE 7");
+                        modifiedProjectGrade = Utils.getProjectGradeByGradeAsNumber(projectGradeList,7);
+                        //modifiedProjectGrade.setCommonScaleGrade("GRADE 7");
                         ratingModifiersInAction = true;
                         break;
                     }
@@ -99,66 +102,172 @@ public class CommonComputation {
                         riskModelTemplate.getModifiedProjectGradeAsNumber());
 
         Integer modifiedProjectGradeAsNumber = modifiedProjectGrade.getGradeAsNumber();
+        ProjectGrade afterParentalNotchUpGradeObject = new ProjectGrade();
 
-        if (riskModelTemplate.getRiskParentalNotchUps().get(0).getIsParentalNotchUpApplicable() == true) {
+        if (riskModelTemplate.getRiskParentalNotchUps().get(0).getIsParentalNotchUpApplicable() == true ) {
 
             // Apply after Parental Notchup
             Integer numberOfNotchesAfterParental = parentalNotchupResult.get("NotchupCalc");
 
-            Integer afterParentNotchupGradeItemNumber = 0;
-            Integer afterParentNotchupGradeAsNumber = 0;
+            if (numberOfNotchesAfterParental > 0) {
+                Integer afterParentNotchupGradeItemNumber = 0;
+                Integer afterParentNotchupGradeAsNumber = 0;
 
-            afterParentNotchupGradeAsNumber = modifiedProjectGrade.getGradeAsNumber() - numberOfNotchesAfterParental;
+                afterParentNotchupGradeAsNumber = modifiedProjectGrade.getGradeAsNumber() - numberOfNotchesAfterParental;
 
-            afterParentNotchupGradeItemNumber = modifiedProjectGrade.getItemNo() + numberOfNotchesAfterParental;
+                // Check if after grade notchup has crossed the highest grade.
+                //   If yes, cap it to the highest grade
+                if (afterParentNotchupGradeAsNumber < Utils.getHighestGrade(projectGradeList).getGradeAsNumber()) {
 
-            if (afterParentNotchupGradeItemNumber >= totalItemsInGradeTable) {
-                afterParentNotchupGradeItemNumber = totalItemsInGradeTable;
-            }
-            if (afterParentNotchupGradeItemNumber < 0)
-                afterParentNotchupGradeItemNumber = 0;
+                    afterParentalNotchUpGradeObject = Utils.getHighestGrade(projectGradeList);
+                    afterParentNotchupGradeAsNumber = afterParentalNotchUpGradeObject.getGradeAsNumber();
 
-            //The post notch-up grade would be capped at one notch below the parent’s grade.
-            // Fetch Parent's Grade
-            Integer parentRating = parentalNotchupResult.get("Parent Rating");
-            if (afterParentNotchupGradeAsNumber >= parentRating) {
-                afterParentNotchupGradeAsNumber = parentRating + 1;
-            }
+                    //The post notch-up grade would be capped at one notch below the parent’s grade.
+                    // Fetch Parent's Grade
+                    Integer parentRating = parentalNotchupResult.get("Parent Rating");
+                    if (afterParentNotchupGradeAsNumber >= parentRating) {
+                        afterParentNotchupGradeAsNumber = parentRating + 1;
+                    }
+
+                    // Get the Re-capped Grade
+                    if(afterParentNotchupGradeAsNumber <= Utils.getHighestGrade(projectGradeList).getGradeAsNumber())
+                        afterParentalNotchUpGradeObject = Utils.getHighestGrade(projectGradeList);
+                    else
+                        afterParentalNotchUpGradeObject =
+                                Utils.getProjectGradeByGradeAsNumber(projectGradeList,afterParentNotchupGradeAsNumber);
+
+                    riskModelTemplate.setAfterParentalNotchUpGrade(afterParentalNotchUpGradeObject.getCommonScaleGrade());
+                    riskModelTemplate.setFinalProjectGrade(afterParentalNotchUpGradeObject.getCommonScaleGrade());
+                    return afterParentalNotchUpGradeObject;
+
+                }
+                else {
+                    afterParentNotchupGradeItemNumber = modifiedProjectGrade.getItemNo() + numberOfNotchesAfterParental;
+
+                    if (afterParentNotchupGradeItemNumber >= totalItemsInGradeTable) {
+                        afterParentNotchupGradeItemNumber = totalItemsInGradeTable;
+                    }
+                    if (afterParentNotchupGradeItemNumber < 0)
+                        afterParentNotchupGradeItemNumber = 0;
+
+                    //The post notch-up grade would be capped at one notch below the parent’s grade.
+                    // Fetch Parent's Grade
+                    Integer parentRating = parentalNotchupResult.get("Parent Rating");
+                    if (afterParentNotchupGradeAsNumber >= parentRating) {
+                        afterParentNotchupGradeAsNumber = parentRating + 1;
+                    }
+
+                    afterParentalNotchUpGradeObject =
+                            Utils.getProjectGradeByGradeAsNumber(projectGradeList, afterParentNotchupGradeAsNumber);
+
+                }
+                System.out.println("Modified Grade Item Number : " + modifiedProjectGrade.getItemNo());
+                System.out.println("Number of Notches after Parental : " + numberOfNotchesAfterParental);
+                System.out.println("After Parental Item Number : " + afterParentNotchupGradeItemNumber);
+                System.out.println("After Parental GRADE : " + afterParentalNotchUpGradeObject.getCommonScaleGrade());
 
 
-            ProjectGrade afterParentalNotchUpGradeObject =
-                    Utils.getProjectGradeByGradeAsNumber( projectGradeList, afterParentNotchupGradeAsNumber);
+                Integer numberOfNotchesUpagraded = afterParentNotchupGradeItemNumber - modifiedProjectGrade.getItemNo();
+                riskModelTemplate.getRiskParentalNotchUps().get(0).setNumberOfNotchesUpgraded(numberOfNotchesUpagraded);
 
+                // Set the Grade after Parental Notchup
+                if (afterParentalNotchUpGradeObject != null) {
+                    riskModelTemplate.setAfterParentalNotchUpGrade(afterParentalNotchUpGradeObject.getCommonScaleGrade());
+                    riskModelTemplate.setFinalProjectGrade(afterParentalNotchUpGradeObject.getCommonScaleGrade());
+                    return afterParentalNotchUpGradeObject;
 
-            //        Utils.getProjectGradeByItemNumber(projectGradeList, afterParentNotchupGradeItemNumber);
-
-            System.out.println("Modified Grade Item Number : " + modifiedProjectGrade.getItemNo());
-            System.out.println("Number of Notches after Parental : " + numberOfNotchesAfterParental);
-            System.out.println("After Parental Item Number : " + afterParentNotchupGradeItemNumber);
-            System.out.println("After Parental GRADE : " + afterParentalNotchUpGradeObject.getCommonScaleGrade());
-
-
-            Integer numberOfNotchesUpagraded = afterParentNotchupGradeItemNumber -  modifiedProjectGrade.getItemNo();
-            riskModelTemplate.getRiskParentalNotchUps().get(0).setNumberOfNotchesUpgraded(numberOfNotchesUpagraded);
-
-
-            // Set the Grade after Parental Notchup
-            if (afterParentalNotchUpGradeObject != null) {
-                riskModelTemplate.setAfterParentalNotchUpGrade(afterParentalNotchUpGradeObject.getCommonScaleGrade());
-                riskModelTemplate.setFinalProjectGrade(afterParentalNotchUpGradeObject.getCommonScaleGrade());
-               // riskModelTemplate.setOverallProjectGrade(afterParentalNotchUpGrade.getCommonScaleGrade());
-
+                } else {
+                    riskModelTemplate.setAfterParentalNotchUpGrade(modifiedProjectGrade.getCommonScaleGrade());
+                    riskModelTemplate.setFinalProjectGrade(modifiedProjectGrade.getCommonScaleGrade());
+                    return modifiedProjectGrade;
+                }
             } else {
                 riskModelTemplate.setAfterParentalNotchUpGrade(modifiedProjectGrade.getCommonScaleGrade());
                 riskModelTemplate.setFinalProjectGrade(modifiedProjectGrade.getCommonScaleGrade());
-                //riskModelTemplate.setOverallProjectGrade(modifiedProjectGrade.getCommonScaleGrade());
-
+                return modifiedProjectGrade;
             }
-
         }
 
-        return afterParentalNotchUpGrade;
+        riskModelTemplate.setAfterParentalNotchUpGrade(modifiedProjectGrade.getCommonScaleGrade());
+        riskModelTemplate.setFinalProjectGrade(modifiedProjectGrade.getCommonScaleGrade());
+        return modifiedProjectGrade;
+    }
 
+
+
+    // mode = 1 for build phase
+    public List<RiskModelSummary> getBuildPhaseSummary( Double projectScore, String projectGrade,
+                                      Double postProjectScore, String postProjectGrade,
+                                      RiskModelTemplate riskModelTemplate , Integer mode ) {
+
+        // Prepare Summary
+        RiskModelSummary riskModelSummary = new RiskModelSummary();
+        List<RiskModelSummary> riskModelSummaries = new ArrayList<>();
+        Integer itemNo = 0;
+
+
+        if (mode == 1) { // Build Phase Only
+            riskModelSummary = new RiskModelSummary();
+            itemNo++;
+            riskModelSummary.setItemNo(itemNo);
+            riskModelSummary.setName("Project Implementation Risk Score");
+            riskModelSummary.setValue(projectScore.toString());
+            riskModelSummaries.add(riskModelSummary);
+
+            riskModelSummary = new RiskModelSummary();
+            itemNo++;
+            riskModelSummary.setItemNo(itemNo);
+            riskModelSummary.setName(" Project Implementation Risk Grade");
+            riskModelSummary.setValue(projectGrade.toString());
+            riskModelSummaries.add(riskModelSummary);
+        }
+
+            riskModelSummary = new RiskModelSummary();
+            itemNo++;
+            riskModelSummary.setItemNo(itemNo);
+            riskModelSummary.setName("Post Project Implementation Risk Score");
+            riskModelSummary.setValue(postProjectScore.toString());
+            riskModelSummaries.add(riskModelSummary);
+
+            riskModelSummary = new RiskModelSummary();
+            itemNo++;
+            riskModelSummary.setItemNo(itemNo);
+            riskModelSummary.setName(" Post Project Implementation Risk Grade");
+            riskModelSummary.setValue(postProjectGrade.toString());
+            riskModelSummaries.add(riskModelSummary);
+
+        riskModelSummary = new RiskModelSummary();itemNo++;
+        riskModelSummary.setItemNo(itemNo);
+        riskModelSummary.setName("Overall Project Score");
+        riskModelSummary.setValue(riskModelTemplate.getScore().toString());
+        riskModelSummaries.add(riskModelSummary);
+
+        riskModelSummary = new RiskModelSummary();itemNo++;
+        riskModelSummary.setItemNo(itemNo);
+        riskModelSummary.setName("Overall Project Grade");
+        riskModelSummary.setValue(riskModelTemplate.getOverallProjectGrade());
+        riskModelSummaries.add(riskModelSummary);
+
+        riskModelSummary = new RiskModelSummary();itemNo++;
+        riskModelSummary.setItemNo(itemNo);
+        riskModelSummary.setName("Modified Project Grade");
+        riskModelSummary.setValue(riskModelTemplate.getModifiedProjectGrade());
+        riskModelSummaries.add(riskModelSummary);
+
+        riskModelSummary = new RiskModelSummary();itemNo++;
+        riskModelSummary.setItemNo(itemNo);
+        riskModelSummary.setName("Grade after Parental Notchup");
+        riskModelSummary.setValue(riskModelTemplate.getFinalProjectGrade());
+        riskModelSummaries.add(riskModelSummary);
+
+        riskModelSummary = new RiskModelSummary();itemNo++;
+        riskModelSummary.setItemNo(itemNo);
+        riskModelSummary.setName("Final Project Grade");
+        riskModelSummary.setValue(riskModelTemplate.getFinalProjectGrade());
+        riskModelSummaries.add(riskModelSummary);
+
+
+        return riskModelSummaries;
 
     }
 

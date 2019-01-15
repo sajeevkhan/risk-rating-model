@@ -85,19 +85,27 @@ public class Evaluate_InfraRoadHAM_BuildPhaseData {
                         riskDeflator = true;
 
                     for (RiskSubFactorAttributeDTO riskSubFactorAttributeDTO: riskSubFactorDTO.getRiskSubFactorAttributes()) {
-
-                        Integer itemNo = 1;
-                        if (riskDeflator == true)
-                            itemNo = 1;
+                        Integer selectedItem = 0;
+                        if (riskComponentDTO.getDescription().contains("Financial"))
+                            selectedItem = riskSubFactorDTO.getRiskSubFactorAttributes().size();
                         else
-                            itemNo = 3;
+                            selectedItem = riskSubFactorDTO.getRiskSubFactorAttributes().size() - 1;
+
+                        // Select first attribute for Deflators and secondLastItem for Normal SubFactors
+                        Integer itemNo = 1;
+                        if (riskDeflator == true) {
+                            if ( riskSubFactorDTO.getRiskSubFactorAttributes().size() == 2)
+                                itemNo = 2;
+                            else
+                                itemNo = 3;
+                        }
+                        else
+                            itemNo = selectedItem;
 
                         if (riskSubFactorAttributeDTO.getItemNo() == itemNo) {
                             riskSubFactorAttributeDTO.setIsSelected(true);
                             break;
                         }
-
-
                     }
                 }
             }
@@ -105,7 +113,6 @@ public class Evaluate_InfraRoadHAM_BuildPhaseData {
         }
 
 
-        riskModelTemplateDTO.addRiskTypeDTO(postProjectImplRiskTypeDTO);
 
 
         // Set TEST DATA for Risk Sub Factor Attributes per Risk Component per Risk Sub Factor
@@ -121,24 +128,33 @@ public class Evaluate_InfraRoadHAM_BuildPhaseData {
 
                     for (RiskSubFactorAttributeDTO riskSubFactorAttributeDTO : riskSubFactorDTO.getRiskSubFactorAttributes()) {
 
-                        Integer itemNo = 1;
-                        if (riskDeflator == true)
-                            itemNo = 1;
+                        Integer selectedItem = 0;
+                        if (riskComponentDTO.getDescription().contains("Financial"))
+                            selectedItem = riskSubFactorDTO.getRiskSubFactorAttributes().size();
                         else
-                            itemNo = 2;
+                            selectedItem = riskSubFactorDTO.getRiskSubFactorAttributes().size() - 1;
+
+                        // Select first attribute for Deflators and secondLastItem for Normal SubFactors
+                        Integer itemNo = 1;
+                        if (riskDeflator == true) {
+                            if ( riskSubFactorDTO.getRiskSubFactorAttributes().size() == 2)
+                                itemNo = 2;
+                            else
+                                itemNo = 3;
+                        }
+                        else
+                            itemNo = selectedItem;;
 
                         if (riskSubFactorAttributeDTO.getItemNo() == itemNo) {
                             riskSubFactorAttributeDTO.setIsSelected(true);
                             break;
                         }
                     }
-
                 }
             }
-
         }
-
         riskModelTemplateDTO.addRiskTypeDTO(projectImplRiskTypeDTO);
+        riskModelTemplateDTO.addRiskTypeDTO(postProjectImplRiskTypeDTO);
 
 
         // Rating Modifiers
@@ -148,12 +164,15 @@ public class Evaluate_InfraRoadHAM_BuildPhaseData {
         riskRatingModifierDTOSet = infraTrans_ratingModifierDTO.getRiskRatingModifierDTOs();
 
         for (RiskRatingModifierDTO riskRatingModifierDTO:riskRatingModifierDTOSet) {
-            for (RiskRatingModifierAttributeDTO riskRatingModifierAttributeDTO: riskRatingModifierDTO.getRiskRatingModifierAttributes()){
-                if (riskRatingModifierDTO.getItemNo()/2 == 0)
-                    riskRatingModifierAttributeDTO.setYesOrNoIndicator('Y');
-                else
-                    riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
-                }
+
+            for (RiskRatingModifierAttributeDTO riskRatingModifierAttributeDTO:
+                    riskRatingModifierDTO.getRiskRatingModifierAttributes()) {
+                //if (riskRatingModifierDTO.getItemNo()/2 == 0)
+                riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
+//                else
+//                    riskRatingModifierAttributeDTO.setYesOrNoIndicator('N');
+//                }
+            }
 
         }
 
@@ -167,38 +186,30 @@ public class Evaluate_InfraRoadHAM_BuildPhaseData {
 
         for (RiskParentalNotchUpConditionDTO riskParentalNotchUpConditionDTO: riskParentalNotchUpDTO.getRiskParentalConditions()){
 
-
-
             if (riskParentalNotchUpConditionDTO.getItemNo() == 1) {
-                riskParentalNotchUpConditionDTO.setValue("3");
-
+                riskParentalNotchUpConditionDTO.setValue("1");
             }
 
              if (riskParentalNotchUpConditionDTO.getItemNo() == 2) {
                  riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
-
              }
-
-            if (riskParentalNotchUpConditionDTO.getItemNo() == 3) {
+            //            3 - Is Parent's rating at GRADE 10
+            if (riskParentalNotchUpConditionDTO.getCategory() == 3) {
                 riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
-
             }
-            if (riskParentalNotchUpConditionDTO.getItemNo() == 4) {
-                riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
 
+            //            4 - Is Parent's Rating Better Than Borrower's Rating
+            if (riskParentalNotchUpConditionDTO.getCategory() == 4) {
+                riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
             }
 
 
         for (RiskSubFactorDTO riskSubFactorDTO: riskParentalNotchUpDTO.getRiskSubFactors()) {
-
-             for (RiskSubFactorAttributeDTO riskSubFactorAttributeDTO: riskSubFactorDTO.getRiskSubFactorAttributes()){
-                 if (riskSubFactorAttributeDTO.getItemNo() == 1)
-                     riskSubFactorAttributeDTO.setIsSelected(true);
-             }
-
+            for (RiskSubFactorAttributeDTO riskSubFactorAttributeDTO : riskSubFactorDTO.getRiskSubFactorAttributes()) {
+                if (riskSubFactorAttributeDTO.getItemNo() == 1)
+                    riskSubFactorAttributeDTO.setIsSelected(true);
+            }
         }
-
-
         }
 
 

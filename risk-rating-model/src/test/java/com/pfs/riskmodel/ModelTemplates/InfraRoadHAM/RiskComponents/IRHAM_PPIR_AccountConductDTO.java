@@ -102,7 +102,7 @@ public class IRHAM_PPIR_AccountConductDTO {
         // -> Three Attributes
         riskSubFactorAttributes = new ArrayList<>();
         riskSubFactorAttributes.add(new RiskAttribute(10D, "Decrease in the DP limit over last 12 months"));
-        riskSubFactorAttributes.add(new RiskAttribute(7D,"No increase  "));
+        riskSubFactorAttributes.add(new RiskAttribute(5D,"No increase  "));
         riskSubFactorAttributes.add(new RiskAttribute(0D,"Increase in the DP limit over last 12 months"));
 
         List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS2 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);

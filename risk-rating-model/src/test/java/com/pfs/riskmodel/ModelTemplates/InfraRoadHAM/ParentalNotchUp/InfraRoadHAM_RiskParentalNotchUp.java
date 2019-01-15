@@ -181,7 +181,7 @@ public class InfraRoadHAM_RiskParentalNotchUp {
         pastHistoryRiskSubFactorDTO.setId(null);
         pastHistoryRiskSubFactorDTO.setItemNo(4);
         pastHistoryRiskSubFactorDTO.setDescription("Stated Posture of Parent");
-        pastHistoryRiskSubFactorDTO.setWeightage(0.20);
+        pastHistoryRiskSubFactorDTO.setWeightage(0.19);
         pastHistoryRiskSubFactorDTO.setScore(0D);
         pastHistoryRiskSubFactorDTO.setScoreTypeCode("01");
         pastHistoryRiskSubFactorDTO.setScoreTypeDescription("Normal");
@@ -191,10 +191,10 @@ public class InfraRoadHAM_RiskParentalNotchUp {
         // 1.1.4       Risk Sub Factor Attributes
 
         riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(10D, "Legally enforceable provisions such as put options and cross-default provisions are provided by the parent"));
-        riskSubFactorAttributes.add(new RiskAttribute(8D,"Assurances such as Letters of Credit, maintenance of debt service reserve account and shortfall undertakings are available from the parent"));
-        riskSubFactorAttributes.add(new RiskAttribute(4D,"Parent has a track record of having provided support in the form of regular equity infusions and unsecured loans"));
-        riskSubFactorAttributes.add(new RiskAttribute(0D,"None of the above comforts are available"));
+        riskSubFactorAttributes.add(new RiskAttribute(4.00D,"Legally enforceable provisions such as put options and cross-default provisions are provided by the parent"));
+        riskSubFactorAttributes.add(new RiskAttribute(2.50D,"Assurances such as Letters of Credit, maintenance of debt service reserve account and shortfall undertakings are available from the parent"));
+        riskSubFactorAttributes.add(new RiskAttribute(1.25D,"Parent has a track record of having provided support in the form of regular equity infusions and unsecured loans"));
+        riskSubFactorAttributes.add(new RiskAttribute(0.00D,"None of the above comforts are available"));
 
 
         List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS4 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
@@ -251,7 +251,7 @@ public class InfraRoadHAM_RiskParentalNotchUp {
 
 
         List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS6 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
-        listingStatusRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS5);
+        listingStatusRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS6);
         riskParentalNotchUpDTO.addRiskSubFactorDTO(listingStatusRiskSubFactorDTO);
 
 
