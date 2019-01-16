@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 import java.util.Optional;
 
 /**
@@ -58,9 +59,22 @@ public class RiskModelPDFController {
         Check.notNull(riskModelTemplate.getId(), "Exception.notFound",
                 "RiskComponent", id.toString());
 
+        ModelAndView modelAndView = new ModelAndView("RiskModelPDFBuilder", "RiskModelTemplate",riskModelTemplate);
 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+        String dateAsString = sdf.format(riskModelTemplate.getRatingDate());
 
-        return new ModelAndView("RiskModelPDFBuilder", "RiskModelTemplate",riskModelTemplate);
+        //Set Document Name
+        String documentName = ( riskModelTemplate.getModelCategory().getValue() +
+                               riskModelTemplate.getProjectRiskLevel().getValue() +
+                               riskModelTemplate.getProjectName() +
+                                "_" + dateAsString);
+        //modelAndView.setViewName(documentName);
+
+        //modelAndView.set
+        return modelAndView;
+
+        //return new ModelAndView("RiskModelPDFBuilder", "RiskModelTemplate",riskModelTemplate);
 
 
 
@@ -93,8 +107,22 @@ public class RiskModelPDFController {
                 "RiskModel", id.toString());
 
 
+        ModelAndView modelAndView = new ModelAndView("RiskModelPDFBuilder", "RiskModelTemplate",riskModelTemplate);
 
-        return new ModelAndView("RiskModelPDFBuilderDebugMode", "RiskModelTemplate",riskModelTemplate);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+        String dateAsString = sdf.format(riskModelTemplate.getRatingDate());
+
+        //Set Document Name
+        String documentName = ( riskModelTemplate.getModelCategory().getValue() +
+                                riskModelTemplate.getProjectRiskLevel().getValue() +
+                                riskModelTemplate.getProjectName() +
+                                "_" + dateAsString);
+
+
+        return modelAndView;
+
+
+        //return new ModelAndView("RiskModelPDFBuilderDebugMode", "RiskModelTemplate",riskModelTemplate);
 
 
 

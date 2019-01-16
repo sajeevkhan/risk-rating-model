@@ -59,8 +59,8 @@ public class HC_ManagementRiskDTO {
         managementRiskFactorDTO.setScore(0D);
         managementRiskFactorDTO.setScoreTypeCode("01");
         managementRiskFactorDTO.setScoreTypeDescription("Normal");
-        managementRiskFactorDTO.setComputingMethodCode("05");
-        managementRiskFactorDTO.setComputingMethodDescription("Equals");
+        managementRiskFactorDTO.setComputingMethodCode("01");
+        managementRiskFactorDTO.setComputingMethodDescription("Weighted");
 
 
 
@@ -81,9 +81,9 @@ public class HC_ManagementRiskDTO {
         // -> Four Attributes
         riskSubFactorAttributes = new ArrayList<>();
         riskSubFactorAttributes.add(new RiskAttribute(10D, "Top management is regarded as having the highest degree of integrity with extremely robust corporate governance standards. A very high degree of compliance in its financial and regulatory related dealings and maintains well above minimum compliance standards. They hold themselves to a high level of stringent scrutiny through their audit/due diligence/ other related processes evaluated by companies of strong repute"));
-        riskSubFactorAttributes.add(new RiskAttribute(6D,"Management is perceived to be transparent & maintains high degree of compliance in its financial and regulatory disclosures."));
-        riskSubFactorAttributes.add(new RiskAttribute(3D,"Management is perceived to be transparent. Company is not known to have indulged in suspicious transactions. However, transparency and disclosures are not of a high order"));
-        riskSubFactorAttributes.add(new RiskAttribute(6D,"There is a level of discomfort with regard to information submitted/financials and other disclosures made by the company."));
+        riskSubFactorAttributes.add(new RiskAttribute(7D,"Management is perceived to be transparent & maintains high degree of compliance in its financial and regulatory disclosures."));
+        riskSubFactorAttributes.add(new RiskAttribute(4D,"Management is perceived to be transparent. Company is not known to have indulged in suspicious transactions. However, transparency and disclosures are not of a high order"));
+        riskSubFactorAttributes.add(new RiskAttribute(0D,"There is a level of discomfort with regard to information submitted/financials and other disclosures made by the company."));
 
 
         List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS1 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);

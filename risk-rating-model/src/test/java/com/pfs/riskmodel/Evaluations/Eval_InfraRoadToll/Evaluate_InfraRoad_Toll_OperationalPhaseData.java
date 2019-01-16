@@ -35,7 +35,7 @@ public class Evaluate_InfraRoad_Toll_OperationalPhaseData {
 
         riskModelTemplateDTO.setModelType(1); //Valuation - NOT TEMPLATE
 
-        riskModelTemplateDTO.setProjectRiskLevelCode("01");
+        riskModelTemplateDTO.setProjectRiskLevelCode("02");
         riskModelTemplateDTO.setProjectRiskLevelDescription("Infrastructure Road Toll Operational Phase");
 
         riskModelTemplateDTO.setProjectTypeCode("04");

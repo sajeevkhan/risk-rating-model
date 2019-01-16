@@ -91,6 +91,13 @@
 		</dependency>
 
 
+		<!-- https://mvnrepository.com/artifact/org.activiti/activiti-engine -->
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-engine</artifactId>
+			<version>7-201802-EA</version>
+		</dependency>
+
 
 	</dependencies>
 

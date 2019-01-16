@@ -1,5 +1,6 @@
-package com.pfs.riskmodel;
+package com.pfs.riskmodel.Evaluations.Eval_HoldingComp;
 
+import com.pfs.riskmodel.AbstractTest;
 import com.pfs.riskmodel.ModelTemplates.HoldingCompany.HoldingCompanyData;
 import com.pfs.riskmodel.dto.RiskModelTemplateDTO;
 import org.junit.Before;
@@ -13,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by sajeev on 18-Dec-18.
  */
-public  class HoldingCompany_TemplateControllerTest extends AbstractTest {
+public  class EVAL_HoldingCompany_TemplateControllerTest extends AbstractTest {
 
     @Override
     @Before
@@ -25,11 +26,11 @@ public  class HoldingCompany_TemplateControllerTest extends AbstractTest {
 
     @Test
     public  void createRiskModelTemplate() throws Exception {
-        String uri = "/api/riskModelTemplate";
+        String uri = "/api/riskModel";
 
 
 
-        HoldingCompanyData holdingCompanyData = new HoldingCompanyData();
+        EVAL_HoldingCompanyData holdingCompanyData = new EVAL_HoldingCompanyData();
 
         RiskModelTemplateDTO riskModelTemplateDTO = new RiskModelTemplateDTO();
 

@@ -35,7 +35,7 @@ public class Evaluate_Renewables_OperationalPhaseData {
 
         riskModelTemplateDTO.setModelType(1); //Valuation - NOT TEMPLATE
 
-        riskModelTemplateDTO.setProjectRiskLevelCode("01");
+        riskModelTemplateDTO.setProjectRiskLevelCode("02");
         riskModelTemplateDTO.setProjectRiskLevelDescription("Operational Phase");
 
         riskModelTemplateDTO.setProjectTypeCode("01");

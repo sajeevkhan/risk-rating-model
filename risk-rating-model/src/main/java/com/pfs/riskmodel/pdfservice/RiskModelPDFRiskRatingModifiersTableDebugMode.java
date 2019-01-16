@@ -85,7 +85,12 @@ public class RiskModelPDFRiskRatingModifiersTableDebugMode {
 
                 cell2 = new PdfPCell();
                 cell2.setBackgroundColor(BaseColor.ORANGE);
-                cell2.setPhrase(new Phrase("Count: " +riskRatingModifier.getCountOfDowngradeBy1or2Notches().toString() , valueFont));
+                if (riskRatingModifier.getCountOfDowngradeBy1or2Notches() != null) {
+                    cell2.setPhrase(new Phrase("Count: " + riskRatingModifier.getCountOfDowngradeBy1or2Notches().toString(), valueFont));
+                } else {
+                    cell2.setPhrase(new Phrase("Count: " + " ", valueFont));
+
+                }
 
                 //cell2.setColspan(2);
                 cell2.setHorizontalAlignment(Element.ALIGN_LEFT);

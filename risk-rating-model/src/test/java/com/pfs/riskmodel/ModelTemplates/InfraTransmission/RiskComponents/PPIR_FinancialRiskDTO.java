@@ -30,7 +30,7 @@ public class PPIR_FinancialRiskDTO {
         List<RiskFactor> riskFactorList = new ArrayList<>();
 
         riskComponentDTO.setId(null);
-        riskComponentDTO.setItemNo(2);
+        riskComponentDTO.setItemNo(3);
         riskComponentDTO.setComputingMethodCode("01");
         riskComponentDTO.setComputingMethodDescription("Weighted");
         riskComponentDTO.setDescription("Financial Risk");

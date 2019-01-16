@@ -2,6 +2,7 @@ package com.pfs.riskmodel.pdfservice;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -55,6 +56,29 @@ public abstract class AbstractITextPdfView extends AbstractView {
 
                 RiskModelTemplate riskModelTemplate = new RiskModelTemplate();
                 riskModelTemplate = (RiskModelTemplate) model.get("RiskModelTemplate");
+
+
+                SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+                String dateAsString = sdf.format(riskModelTemplate.getRatingDate());
+
+                String title =  riskModelTemplate.getProjectRiskLevel().getValue();
+                System.out.println("DOCUMENT Title: " + title);
+
+
+
+                String projectType = riskModelTemplate.getProjectType().getValue();
+                String riskLevel = riskModelTemplate.getProjectRiskLevel().getValue();
+                title = projectType + riskLevel + dateAsString;
+
+
+
+                response.setContentType("application/pdf");
+                response.addHeader("Content-Disposition", "inline; filename=" +title);
+
+                //Set Document Name
+                document.addTitle (title);
+                document.addAuthor("Risk Modeller by LeanThoughts Technologies");
+                document.addCreator("LeanThoughts Technologies");
 
                  PDFFooter event = new PDFFooter(riskModelTemplate.getProjectName(),
                         riskModelTemplate.getLoanAmountInCrores().toString(),
