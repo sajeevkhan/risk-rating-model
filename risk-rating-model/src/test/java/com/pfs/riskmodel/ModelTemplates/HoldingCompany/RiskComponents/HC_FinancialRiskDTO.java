@@ -66,8 +66,8 @@ public class HC_FinancialRiskDTO {
         financialRiskFactorDTO.setScore(0D);
         financialRiskFactorDTO.setScoreTypeCode("01");
         financialRiskFactorDTO.setScoreTypeDescription("Normal");
-        financialRiskFactorDTO.setComputingMethodCode("05");
-        financialRiskFactorDTO.setComputingMethodDescription("Equals");
+        financialRiskFactorDTO.setComputingMethodCode("01");
+        financialRiskFactorDTO.setComputingMethodDescription("Weighted");
 
 
 
@@ -77,7 +77,7 @@ public class HC_FinancialRiskDTO {
         RiskSubFactorDTO interestCovRatioRiskSubFactorDTO = new RiskSubFactorDTO();
         interestCovRatioRiskSubFactorDTO.setId(null);
         interestCovRatioRiskSubFactorDTO.setItemNo(1);
-        interestCovRatioRiskSubFactorDTO.setDescription("Interest Coverage Ratio");
+        interestCovRatioRiskSubFactorDTO.setDescription("Interest Coverage Ratio on a standalone basis (EBITDA/Interest)");
         interestCovRatioRiskSubFactorDTO.setWeightage(0.20);
         interestCovRatioRiskSubFactorDTO.setScore(0D);
         interestCovRatioRiskSubFactorDTO.setScoreTypeCode("01");
@@ -88,10 +88,10 @@ public class HC_FinancialRiskDTO {
         // -> Five Attributes
         riskSubFactorAttributes = new ArrayList<>();
         riskSubFactorAttributes.add(new RiskAttribute(0D, " 0 to Less Than 1.12"));
-        riskSubFactorAttributes.add(new RiskAttribute(2D,"From 1.12 to Less Than 2"));
-        riskSubFactorAttributes.add(new RiskAttribute(4D,"From 2 to Less Than 3"));
-        riskSubFactorAttributes.add(new RiskAttribute(6D,"From 3 to Less Than 5"));
-        riskSubFactorAttributes.add(new RiskAttribute(8D,"From 5 to 10"));
+        riskSubFactorAttributes.add(new RiskAttribute(2.5D,"From 1.12 to Less Than 2"));
+        riskSubFactorAttributes.add(new RiskAttribute(5.0D,"From 2 to Less Than 3"));
+        riskSubFactorAttributes.add(new RiskAttribute(7.5D,"From 3 to Less Than 5"));
+        riskSubFactorAttributes.add(new RiskAttribute(10D,"From 5 to 10"));
 
 
          List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS1 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
@@ -104,9 +104,9 @@ public class HC_FinancialRiskDTO {
         //  ArrayList<>()  Cash Flow Mismatch  20%
         RiskSubFactorDTO cashFlowMismatchRiskSubFactorDTO = new RiskSubFactorDTO();
         cashFlowMismatchRiskSubFactorDTO.setId(null);
-        cashFlowMismatchRiskSubFactorDTO.setItemNo(2);
-        cashFlowMismatchRiskSubFactorDTO.setDescription("Cash Flow Mismatch");
-        cashFlowMismatchRiskSubFactorDTO.setWeightage(2.00);
+        cashFlowMismatchRiskSubFactorDTO.setItemNo(3);
+        cashFlowMismatchRiskSubFactorDTO.setDescription("Cash Flow Mismatch (Average CF/Debt Repayment)");
+        cashFlowMismatchRiskSubFactorDTO.setWeightage(0.20);
         cashFlowMismatchRiskSubFactorDTO.setScore(0D);
         cashFlowMismatchRiskSubFactorDTO.setScoreTypeCode("01");
         cashFlowMismatchRiskSubFactorDTO.setScoreTypeDescription("Normal");
@@ -130,7 +130,7 @@ public class HC_FinancialRiskDTO {
         //  "Leverage 15%"
         RiskSubFactorDTO leverageRiskSubFactorDTO = new RiskSubFactorDTO();
         leverageRiskSubFactorDTO.setId(null);
-        leverageRiskSubFactorDTO.setItemNo(3);
+        leverageRiskSubFactorDTO.setItemNo(6);
         leverageRiskSubFactorDTO.setDescription("Leverage");
         leverageRiskSubFactorDTO.setWeightage(0.15);
         leverageRiskSubFactorDTO.setScore(0D);
@@ -157,7 +157,7 @@ public class HC_FinancialRiskDTO {
         //  "Investment Discipline 15%"
         RiskSubFactorDTO investmentDisciplineRiskSubFactorDTO = new RiskSubFactorDTO();
         investmentDisciplineRiskSubFactorDTO.setId(null);
-        investmentDisciplineRiskSubFactorDTO.setItemNo(4);
+        investmentDisciplineRiskSubFactorDTO.setItemNo(2);
         investmentDisciplineRiskSubFactorDTO.setDescription("Investment Discipline");
         investmentDisciplineRiskSubFactorDTO.setWeightage(0.15);
         investmentDisciplineRiskSubFactorDTO.setScore(0D);
@@ -167,12 +167,12 @@ public class HC_FinancialRiskDTO {
         //
         // 1.1.4      Risk Sub Factor Attributes
         // -> Five Attributes
-        riskSubFactorAttributes = new ArrayList<>(); //TODO - Check Scores
-        riskSubFactorAttributes.add(new RiskAttribute(10D, "Holdco is infusing 80% capital (contribution) in the form of pure equity in the SPVs by value and not by count"));
-        riskSubFactorAttributes.add(new RiskAttribute(7.5D,"Holdco is infusing 60%- 80% capital (contribution) in the form of pure equity in the SPVs by value and not by count"));
-        riskSubFactorAttributes.add(new RiskAttribute(5D,"Holdco is infusing 40%- 60% capital (contribution) in the form of pure equity in the SPVs by value and not by count"));
-        riskSubFactorAttributes.add(new RiskAttribute(2.5D,"Holdco is infusing 25%- 40% capital (contribution) in the form of pure equity in the SPVs by value and not by count"));
-        riskSubFactorAttributes.add(new RiskAttribute(0D,"Holdco is infusing less than 25% capital (contribution) in the form of pure equity in the SPVs by value and not by count"));
+        riskSubFactorAttributes = new ArrayList<>();
+        riskSubFactorAttributes.add(new RiskAttribute(10.00D,"Holdco is infusing 80% capital (contribution) in the form of pure equity in the SPVs by value and not by count"));
+        riskSubFactorAttributes.add(new RiskAttribute(07.50D,"Holdco is infusing 60%- 80% capital (contribution) in the form of pure equity in the SPVs by value and not by count"));
+        riskSubFactorAttributes.add(new RiskAttribute(05.00D,"Holdco is infusing 40%- 60% capital (contribution) in the form of pure equity in the SPVs by value and not by count"));
+        riskSubFactorAttributes.add(new RiskAttribute(02.50D,"Holdco is infusing 25%- 40% capital (contribution) in the form of pure equity in the SPVs by value and not by count"));
+        riskSubFactorAttributes.add(new RiskAttribute(00.00D,"Holdco is infusing less than 25% capital (contribution) in the form of pure equity in the SPVs by value and not by count"));
 
          List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS4 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
         investmentDisciplineRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS4);
@@ -210,7 +210,7 @@ public class HC_FinancialRiskDTO {
         //  "Past History of Cash Flow Upstreaming 15%
         RiskSubFactorDTO pastHistoryOfCashFlowUpRiskSubFactorDTO = new RiskSubFactorDTO();
         pastHistoryOfCashFlowUpRiskSubFactorDTO.setId(null);
-        pastHistoryOfCashFlowUpRiskSubFactorDTO.setItemNo(6);
+        pastHistoryOfCashFlowUpRiskSubFactorDTO.setItemNo(4);
         pastHistoryOfCashFlowUpRiskSubFactorDTO.setDescription("Past History of Cashflow Upstreaming");
         pastHistoryOfCashFlowUpRiskSubFactorDTO.setWeightage(0.15);
         pastHistoryOfCashFlowUpRiskSubFactorDTO.setScore(0D);

@@ -35,7 +35,7 @@ public class PPIR_ManagementRiskDTO {
         List<RiskFactor> riskFactorList = new ArrayList<>();
 
         riskComponentDTO.setId(null);
-        riskComponentDTO.setItemNo(3);
+        riskComponentDTO.setItemNo(2);
         riskComponentDTO.setComputingMethodCode("05");
         riskComponentDTO.setComputingMethodDescription("Equals");
         riskComponentDTO.setDescription("Management Risk");

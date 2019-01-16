@@ -59,6 +59,8 @@ public class CategoricModelValuator {
 
                 break;
             case 9:
+                HoldingCompany_Valuator holdingCompany_valuator = new HoldingCompany_Valuator();
+                riskModelTemplate = holdingCompany_valuator.valuate(riskModelTemplate);
                 break;
 
         }

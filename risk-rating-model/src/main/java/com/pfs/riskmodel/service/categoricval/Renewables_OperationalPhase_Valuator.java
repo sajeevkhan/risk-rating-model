@@ -78,8 +78,9 @@ public class Renewables_OperationalPhase_Valuator {
 
         // Prepare Summary
         List<RiskModelSummary> riskModelSummaryList =
-                commonComputation.getBuildPhaseSummary(projectScore, projectGrade.getCommonScaleGrade(),
-                        null,null,riskModelTemplate, 0);
+                commonComputation.getBuildPhaseSummary(null, null,
+                        projectScore, projectGrade.getCommonScaleGrade()
+                       ,riskModelTemplate, 0);
         riskModelTemplate.setRiskModelSummaries(riskModelSummaryList);
 
 

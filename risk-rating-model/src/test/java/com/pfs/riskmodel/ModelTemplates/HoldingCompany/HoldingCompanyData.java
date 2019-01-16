@@ -40,8 +40,8 @@ public class HoldingCompanyData {
         riskModelTemplateDTO.setProjectTypeCode("05");
         riskModelTemplateDTO.setProjectTypeDescription("Holding Company");
         riskModelTemplateDTO.setDescription("Holding Company Risk Rating");
-        riskModelTemplateDTO.setComputingMethodCode("05");
-        riskModelTemplateDTO.setComputingMethodDescription("Equals");
+        riskModelTemplateDTO.setComputingMethodCode("01");
+        riskModelTemplateDTO.setComputingMethodDescription("Weighted");
         riskModelTemplateDTO.setScore(0D);
 
         riskModelTemplateDTO.setLoanNumber(" ");

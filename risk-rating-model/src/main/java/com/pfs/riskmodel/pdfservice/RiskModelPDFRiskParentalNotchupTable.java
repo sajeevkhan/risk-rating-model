@@ -114,13 +114,13 @@ public class RiskModelPDFRiskParentalNotchupTable {
                 case 3: // Is Parent's rating at GRADE 10
                     if (riskParentalNotchUpCondition.getYesNoIndicatorValue() == 'Y')
                         value = "Yes";
-                    if (riskParentalNotchUpCondition.getYesNoIndicatorValue() == 'Y')
+                    if (riskParentalNotchUpCondition.getYesNoIndicatorValue() == 'N')
                         value = "No";
                     break;
                 case 4: //Is Parent's Rating Better Than Borrower's Rating
                     if (riskParentalNotchUpCondition.getYesNoIndicatorValue() == 'Y')
                         value = "Yes";
-                    if (riskParentalNotchUpCondition.getYesNoIndicatorValue() == 'Y')
+                    if (riskParentalNotchUpCondition.getYesNoIndicatorValue() == 'N')
                         value = "No";
                     break;
             }

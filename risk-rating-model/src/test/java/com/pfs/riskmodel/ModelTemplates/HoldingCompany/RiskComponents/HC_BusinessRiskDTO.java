@@ -60,8 +60,8 @@ public class HC_BusinessRiskDTO {
         businessRiskFactorDTO.setScore(0D);
         businessRiskFactorDTO.setScoreTypeCode("01");
         businessRiskFactorDTO.setScoreTypeDescription("Normal");
-        businessRiskFactorDTO.setComputingMethodCode("05");
-        businessRiskFactorDTO.setComputingMethodDescription("Equals");
+        businessRiskFactorDTO.setComputingMethodCode("01");
+        businessRiskFactorDTO.setComputingMethodDescription("Weighted");
 
         //
 
@@ -120,7 +120,7 @@ public class HC_BusinessRiskDTO {
         //          Asset Performance  - 20%
         RiskSubFactorDTO assetPerformanceRiskSubFactorDTO = new RiskSubFactorDTO();
         assetPerformanceRiskSubFactorDTO.setId(null);
-        assetPerformanceRiskSubFactorDTO.setItemNo(3);
+        assetPerformanceRiskSubFactorDTO.setItemNo(6);
         assetPerformanceRiskSubFactorDTO.setDescription("Asset Performance ");
         assetPerformanceRiskSubFactorDTO.setWeightage(0.20);
         assetPerformanceRiskSubFactorDTO.setScore(0D);
@@ -170,7 +170,7 @@ public class HC_BusinessRiskDTO {
         //         Sectoral Diversity  - 10%
         RiskSubFactorDTO sectoralDivRiskSubFactorDTO = new RiskSubFactorDTO();
         sectoralDivRiskSubFactorDTO.setId(null);
-        sectoralDivRiskSubFactorDTO.setItemNo(5);
+        sectoralDivRiskSubFactorDTO.setItemNo(3);
         sectoralDivRiskSubFactorDTO.setDescription("Sectoral Diversity ");
         sectoralDivRiskSubFactorDTO.setWeightage(0.10);
         sectoralDivRiskSubFactorDTO.setScore(0D);
@@ -195,8 +195,8 @@ public class HC_BusinessRiskDTO {
         //          Asset Credit Quality  - 30%
         RiskSubFactorDTO assetCreditQualRiskSubFactorDTO = new RiskSubFactorDTO();
         assetCreditQualRiskSubFactorDTO.setId(null);
-        assetCreditQualRiskSubFactorDTO.setItemNo(6);
-        assetCreditQualRiskSubFactorDTO.setDescription("Asset Credit Quality Diversity ");
+        assetCreditQualRiskSubFactorDTO.setItemNo(5);
+        assetCreditQualRiskSubFactorDTO.setDescription("Asset Credit Quality ");
         assetCreditQualRiskSubFactorDTO.setWeightage(0.30);
         assetCreditQualRiskSubFactorDTO.setScore(0D);
         assetCreditQualRiskSubFactorDTO.setScoreTypeCode("01");
