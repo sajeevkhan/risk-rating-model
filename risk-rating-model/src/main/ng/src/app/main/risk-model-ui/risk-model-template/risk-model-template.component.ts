@@ -14,7 +14,6 @@ export class RiskModelTemplateComponent implements OnInit {
     displayValues: FormGroup;
 
     constructor(private _formBuilder: FormBuilder) {
-        console.log('hello');
     }
 
     ngOnInit(): void {
@@ -73,5 +72,41 @@ export class RiskModelTemplateComponent implements OnInit {
             }
         });
         console.log(this.riskModelTemplate.riskParentalNotchUps);
+    }
+
+    evaluateTemplate(): void {
+
+    }
+
+    checkRiskComponentSelection(riskType: any): boolean {
+        let riskComponentSelections = 0;
+        riskType.riskComponents.map(riskComponent => {
+            if (this.checkRiskFactorSelection(riskComponent) === true) {
+                riskComponentSelections++;
+            }
+        });
+        return (riskComponentSelections === riskType.riskComponents.length);
+    }
+
+    checkRiskFactorSelection(riskComponent: any): boolean {
+        let riskFactorSelections = 0;
+        riskComponent.riskFactors.map(riskFactor => {
+            if (this.checkRiskSubFactorSelection(riskFactor) === true) {
+                riskFactorSelections++;
+            }
+        });
+        return (riskFactorSelections === riskComponent.riskFactors.length);
+    }
+
+    checkRiskSubFactorSelection(riskFactor: any): boolean {
+        let subFactorSelections = 0;
+        riskFactor.riskSubFactors.map(riskSubFactor => {
+            riskSubFactor.riskSubFactorAttributes.map(riskSubFactorAttribute => {
+                if (riskSubFactorAttribute.isSelected) {
+                    subFactorSelections++;
+                }
+            });
+        });
+        return (subFactorSelections === riskFactor.riskSubFactors.length);
     }
 }

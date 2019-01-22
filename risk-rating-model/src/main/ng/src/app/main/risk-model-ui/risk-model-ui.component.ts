@@ -13,7 +13,6 @@ export class RiskModelUIComponent implements OnInit {
     constructor(_riskModelService: RiskModelUIService) {
 
         _riskModelService.getRiskModelTemplate('03', '01').subscribe(response => {
-            console.log('hello...............', response);
             this.riskModelTemplate = response;
         });
 
@@ -24,5 +23,8 @@ export class RiskModelUIComponent implements OnInit {
     }
 
     ngOnInit(): void {
+    }
+
+    evaluateTemplate(): void {
     }
 }
