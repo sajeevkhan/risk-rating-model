@@ -90,12 +90,11 @@
 			<version>5.1.1</version>
 		</dependency>
 
-
-		<!-- https://mvnrepository.com/artifact/org.activiti/activiti-engine -->
+		<!-- https://mvnrepository.com/artifact/org.activiti/activiti-spring-boot-starter -->
 		<dependency>
 			<groupId>org.activiti</groupId>
-			<artifactId>activiti-engine</artifactId>
-			<version>7-201802-EA</version>
+			<artifactId>activiti-spring-boot-starter</artifactId>
+			<version>7.0.0.Beta1</version>
 		</dependency>
 
 

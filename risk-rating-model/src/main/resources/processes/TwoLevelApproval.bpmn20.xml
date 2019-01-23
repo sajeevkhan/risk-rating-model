@@ -1,0 +1,230 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef" xmlns:modeler="http://activiti.com/modeler" modeler:version="1.0ev" modeler:exportDateTime="20190120075032" modeler:modelId="1056274" modeler:modelVersion="1" modeler:modelLastUpdated="1547970622579">
+  <process id="TwoLevelApproval" name="TwoLevelApproval" isExecutable="true">
+    <documentation>Two Level Approval Process</documentation>
+    <startEvent id="start" name="Start">
+      <extensionElements>
+        <activiti:formProperty id="projectType" name="Project Type" type="string"/>
+        <activiti:formProperty id="riskLevel" name="Risk Level" type="string"/>
+        <activiti:formProperty id="id" name="Model Id" type="string"/>
+        <activiti:formProperty id="projectName" name="Project Name" type="string"/>
+        <modeler:editor-resource-id><![CDATA[sid-C4D83A3E-FA3B-47B2-ABAD-232A893FA186]]></modeler:editor-resource-id>
+      </extensionElements>
+    </startEvent>
+    <sequenceFlow id="sid-918270FE-E705-42E3-901B-9DA9D365C7D9" sourceRef="start" targetRef="approval">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-918270FE-E705-42E3-901B-9DA9D365C7D9]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="approval" name="Approval" activiti:assignee="kermitt" activiti:candidateGroups="approver">
+      <extensionElements>
+        <activiti:formProperty id="status" name="Status" type="enum"/>
+        <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
+        <modeler:initiator-can-complete><![CDATA[true]]></modeler:initiator-can-complete>
+        <modeler:editor-resource-id><![CDATA[sid-84F5F5B6-2002-49A1-A3C9-388D2FFF417A]]></modeler:editor-resource-id>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="decision" name="Decision">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-45A68061-3878-4E53-A2E8-C227A0147F51]]></modeler:editor-resource-id>
+      </extensionElements>
+    </exclusiveGateway>
+    <sequenceFlow id="sid-79D5588A-8BC9-489C-902E-0132BA469682" sourceRef="approval" targetRef="decision">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-79D5588A-8BC9-489C-902E-0132BA469682]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <endEvent id="sid-A6422C80-F534-496C-808D-E09D629BC6EC">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-A6422C80-F534-496C-808D-E09D629BC6EC]]></modeler:editor-resource-id>
+      </extensionElements>
+    </endEvent>
+    <sequenceFlow id="sid-486AF70A-74AB-4FA2-ACA4-1895E71496EC" sourceRef="Approval" targetRef="sid-A6422C80-F534-496C-808D-E09D629BC6EC">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-486AF70A-74AB-4FA2-ACA4-1895E71496EC]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="Approval" name="Approval Mail" activiti:type="mail">
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:string><![CDATA[sajeev.khan@gmail.com]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[no-reply@pfs-riskmodel.com]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:string><![CDATA[Your request is approved]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="html">
+          <activiti:string><![CDATA[Your request is approved]]></activiti:string>
+        </activiti:field>
+        <modeler:editor-resource-id><![CDATA[sid-0C36D3DC-4E09-4404-89C3-FC2483D4EAA3]]></modeler:editor-resource-id>
+      </extensionElements>
+    </serviceTask>
+    <exclusiveGateway id="sid-A509EDC6-F4D1-4D06-8A7A-03F45ED229C6">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-A509EDC6-F4D1-4D06-8A7A-03F45ED229C6]]></modeler:editor-resource-id>
+      </extensionElements>
+    </exclusiveGateway>
+    <serviceTask id="rejectMail" name="Rejection Mail" activiti:type="mail">
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:string><![CDATA[sajeev.khan@gmail.com]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[no-reply@pfs.com]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:string><![CDATA[Request is rejected]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:string><![CDATA[Rejected]]></activiti:string>
+        </activiti:field>
+        <modeler:editor-resource-id><![CDATA[sid-20CE7B40-648A-46D7-AC54-5C3631F0FD6A]]></modeler:editor-resource-id>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="sid-BBADBA4A-A97A-44E4-A1D4-BDE185ACF900" sourceRef="decision" targetRef="sid-A509EDC6-F4D1-4D06-8A7A-03F45ED229C6">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-BBADBA4A-A97A-44E4-A1D4-BDE185ACF900]]></modeler:editor-resource-id>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${status == "rejected"}]]></conditionExpression>
+    </sequenceFlow>
+    <endEvent id="sid-6339F103-C938-441D-A394-C65939594469">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-6339F103-C938-441D-A394-C65939594469]]></modeler:editor-resource-id>
+      </extensionElements>
+    </endEvent>
+    <sequenceFlow id="sid-C5D64AE1-D405-4150-8510-15E0BA177DCF" sourceRef="rejectMail" targetRef="sid-6339F103-C938-441D-A394-C65939594469">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-C5D64AE1-D405-4150-8510-15E0BA177DCF]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="sid-6742FA58-79BE-4300-99FB-06A956634951" activiti:type="mail">
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:string><![CDATA[sajeev.khan@gmail.com]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[no-reply@gmail.com]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:string><![CDATA[Please Resubmit]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:string><![CDATA[Resubmit]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="html">
+          <activiti:string><![CDATA[Resubmit Please]]></activiti:string>
+        </activiti:field>
+        <modeler:editor-resource-id><![CDATA[sid-6742FA58-79BE-4300-99FB-06A956634951]]></modeler:editor-resource-id>
+      </extensionElements>
+    </serviceTask>
+    <endEvent id="sid-E1FC582B-51B1-4987-89D7-9BFCADBB2FF8">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-E1FC582B-51B1-4987-89D7-9BFCADBB2FF8]]></modeler:editor-resource-id>
+      </extensionElements>
+    </endEvent>
+    <sequenceFlow id="sid-F2A03C84-68B0-406E-8576-5680F17D715C" sourceRef="sid-6742FA58-79BE-4300-99FB-06A956634951" targetRef="sid-E1FC582B-51B1-4987-89D7-9BFCADBB2FF8">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-F2A03C84-68B0-406E-8576-5680F17D715C]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="sid-5C33DB5F-8693-479B-9271-0D4768779655" name="Resubmit" sourceRef="sid-A509EDC6-F4D1-4D06-8A7A-03F45ED229C6" targetRef="sid-6742FA58-79BE-4300-99FB-06A956634951">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-5C33DB5F-8693-479B-9271-0D4768779655]]></modeler:editor-resource-id>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${status =="resubmit"}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-10DA7E0D-C221-438D-86B8-B0CE7B9B0346" name="Rejected" sourceRef="sid-A509EDC6-F4D1-4D06-8A7A-03F45ED229C6" targetRef="rejectMail">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-10DA7E0D-C221-438D-86B8-B0CE7B9B0346]]></modeler:editor-resource-id>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${status == "rejected"}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="approved" name="Approved" sourceRef="decision" targetRef="Approval">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-41EE1957-2AC1-4086-8BD6-E1D5FF655892]]></modeler:editor-resource-id>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[$(status == "approved"}]]></conditionExpression>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_TwoLevelApproval">
+    <bpmndi:BPMNPlane bpmnElement="TwoLevelApproval" id="BPMNPlane_TwoLevelApproval">
+      <bpmndi:BPMNShape bpmnElement="start" id="BPMNShape_start">
+        <omgdc:Bounds height="30.0" width="30.0" x="60.0" y="125.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="approval" id="BPMNShape_approval">
+        <omgdc:Bounds height="80.0" width="100.0" x="210.0" y="100.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="decision" id="BPMNShape_decision">
+        <omgdc:Bounds height="40.0" width="40.0" x="443.5" y="120.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-A6422C80-F534-496C-808D-E09D629BC6EC" id="BPMNShape_sid-A6422C80-F534-496C-808D-E09D629BC6EC">
+        <omgdc:Bounds height="28.0" width="28.0" x="940.0" y="251.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Approval" id="BPMNShape_Approval">
+        <omgdc:Bounds height="80.0" width="100.0" x="645.0" y="255.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-A509EDC6-F4D1-4D06-8A7A-03F45ED229C6" id="BPMNShape_sid-A509EDC6-F4D1-4D06-8A7A-03F45ED229C6">
+        <omgdc:Bounds height="40.0" width="40.0" x="528.5" y="120.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="rejectMail" id="BPMNShape_rejectMail">
+        <omgdc:Bounds height="80.0" width="100.0" x="570.0" y="0.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-6339F103-C938-441D-A394-C65939594469" id="BPMNShape_sid-6339F103-C938-441D-A394-C65939594469">
+        <omgdc:Bounds height="28.0" width="28.0" x="940.0" y="45.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-6742FA58-79BE-4300-99FB-06A956634951" id="BPMNShape_sid-6742FA58-79BE-4300-99FB-06A956634951">
+        <omgdc:Bounds height="80.0" width="100.0" x="870.0" y="120.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-E1FC582B-51B1-4987-89D7-9BFCADBB2FF8" id="BPMNShape_sid-E1FC582B-51B1-4987-89D7-9BFCADBB2FF8">
+        <omgdc:Bounds height="28.0" width="28.0" x="1015.0" y="146.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-10DA7E0D-C221-438D-86B8-B0CE7B9B0346" id="BPMNEdge_sid-10DA7E0D-C221-438D-86B8-B0CE7B9B0346">
+        <omgdi:waypoint x="568.1044776119403" y="139.6044776119403"/>
+        <omgdi:waypoint x="581.0" y="139.0"/>
+        <omgdi:waypoint x="604.2424242424242" y="80.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-F2A03C84-68B0-406E-8576-5680F17D715C" id="BPMNEdge_sid-F2A03C84-68B0-406E-8576-5680F17D715C">
+        <omgdi:waypoint x="970.0" y="160.0"/>
+        <omgdi:waypoint x="1015.0" y="160.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="approved" id="BPMNEdge_approved">
+        <omgdi:waypoint x="464.0" y="159.5"/>
+        <omgdi:waypoint x="464.0" y="185.0"/>
+        <omgdi:waypoint x="695.0" y="185.0"/>
+        <omgdi:waypoint x="695.0" y="255.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-918270FE-E705-42E3-901B-9DA9D365C7D9" id="BPMNEdge_sid-918270FE-E705-42E3-901B-9DA9D365C7D9">
+        <omgdi:waypoint x="90.0" y="140.0"/>
+        <omgdi:waypoint x="210.0" y="140.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-79D5588A-8BC9-489C-902E-0132BA469682" id="BPMNEdge_sid-79D5588A-8BC9-489C-902E-0132BA469682">
+        <omgdi:waypoint x="310.0" y="140.0"/>
+        <omgdi:waypoint x="443.5" y="140.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-486AF70A-74AB-4FA2-ACA4-1895E71496EC" id="BPMNEdge_sid-486AF70A-74AB-4FA2-ACA4-1895E71496EC">
+        <omgdi:waypoint x="745.0" y="295.0"/>
+        <omgdi:waypoint x="910.0" y="295.0"/>
+        <omgdi:waypoint x="910.0" y="265.0"/>
+        <omgdi:waypoint x="940.0" y="265.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-5C33DB5F-8693-479B-9271-0D4768779655" id="BPMNEdge_sid-5C33DB5F-8693-479B-9271-0D4768779655">
+        <omgdi:waypoint x="568.0" y="140.5"/>
+        <omgdi:waypoint x="659.25" y="140.5"/>
+        <omgdi:waypoint x="659.25" y="160.0"/>
+        <omgdi:waypoint x="870.0" y="160.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-C5D64AE1-D405-4150-8510-15E0BA177DCF" id="BPMNEdge_sid-C5D64AE1-D405-4150-8510-15E0BA177DCF">
+        <omgdi:waypoint x="670.0" y="40.0"/>
+        <omgdi:waypoint x="850.0" y="40.0"/>
+        <omgdi:waypoint x="850.0" y="59.0"/>
+        <omgdi:waypoint x="940.0" y="59.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-BBADBA4A-A97A-44E4-A1D4-BDE185ACF900" id="BPMNEdge_sid-BBADBA4A-A97A-44E4-A1D4-BDE185ACF900">
+        <omgdi:waypoint x="483.0" y="140.5"/>
+        <omgdi:waypoint x="529.0" y="140.5"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

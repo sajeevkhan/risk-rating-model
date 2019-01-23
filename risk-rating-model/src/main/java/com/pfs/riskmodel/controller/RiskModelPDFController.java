@@ -107,7 +107,7 @@ public class RiskModelPDFController {
                 "RiskModel", id.toString());
 
 
-        ModelAndView modelAndView = new ModelAndView("RiskModelPDFBuilder", "RiskModelTemplate",riskModelTemplate);
+        ModelAndView modelAndView = new ModelAndView("RiskModelPDFBuilderDebugMode", "RiskModelTemplate",riskModelTemplate);
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
         String dateAsString = sdf.format(riskModelTemplate.getRatingDate());

@@ -2,18 +2,18 @@ package com.pfs.riskmodel.config;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.resource.PathResourceResolver;
+import org.springframework.web.servlet.view.ResourceBundleViewResolver;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -22,7 +22,18 @@ import java.util.Locale;
  * Created by sajeev on 15-Dec-18.
  */
 @Configuration
+@EnableWebMvc
+@ComponentScan("com.pfs.riskmodel")
 public class WebConfig implements WebMvcConfigurer{
+
+    @Bean
+    public ViewResolver resourceBundleViewResolver() {
+        ResourceBundleViewResolver bean = new ResourceBundleViewResolver();
+        bean.setOrder(1);
+        bean.setBasename("views");
+        return bean;
+
+    }
 
     @Bean
     public LocaleResolver localeResolver(){
