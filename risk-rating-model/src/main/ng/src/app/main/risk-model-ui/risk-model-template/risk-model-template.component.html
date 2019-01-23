@@ -1,145 +1,165 @@
 <div id="risk-model-template" class="w-100-p p-16" fxLayout="column" fusePerfectScrollbar>
+    <mat-tab-group>
+        <mat-tab [label]="'Tab 1'">
+            <mat-card style="margin-bottom: 15px;">
+                <div fxLayout="row">
+                    <mat-form-field fxFlex>
+                        <input matInput placeholder="Project Name" [(ngModel)]="riskModelTemplate.projectName" readonly>
+                    </mat-form-field>
+                    <mat-form-field fxFlex>
+                        <input matInput placeholder="Loan Number" [(ngModel)]="riskModelTemplate.loanNumber" readonly>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row">
+                    <mat-form-field fxFlex>
+                        <input matInput placeholder="Project Type" [(ngModel)]="riskModelTemplate.projectTypeDescription"
+                            readonly>
+                    </mat-form-field>
+                    <mat-form-field fxFlex>
+                        <input matInput placeholder="Loan Amount in Crores" [(ngModel)]="riskModelTemplate.loanAmountInCrores"
+                            readonly>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row">
+                    <mat-form-field fxFlex>
+                        <input matInput placeholder="Risk Level Type" [(ngModel)]="riskModelTemplate.projectRiskLevelDescription"
+                            readonly>
+                    </mat-form-field>
+                    <mat-form-field fxFlex>
+                        <input matInput placeholder="Rating Date" [(ngModel)]="riskModelTemplate.ratingDate" readonly>
+                    </mat-form-field>
+                </div>
+            </mat-card>
+        </mat-tab>
 
-    <mat-card style="margin-bottom: 15px;">
-        <div fxLayout="row">
-            <mat-form-field fxFlex>
-                <input matInput placeholder="Project Name" [(ngModel)]="riskModelTemplate.projectName" readonly>
-            </mat-form-field>
-            <mat-form-field fxFlex>
-                <input matInput placeholder="Loan Number" [(ngModel)]="riskModelTemplate.loanNumber" readonly>
-            </mat-form-field>
-        </div>
-        <div fxLayout="row">
-            <mat-form-field fxFlex>
-                <input matInput placeholder="Project Type" [(ngModel)]="riskModelTemplate.projectTypeDescription"
-                    readonly>
-            </mat-form-field>
-            <mat-form-field fxFlex>
-                <input matInput placeholder="Loan Amount in Crores" [(ngModel)]="riskModelTemplate.loanAmountInCrores"
-                    readonly>
-            </mat-form-field>
-        </div>
-        <div fxLayout="row">
-            <mat-form-field fxFlex>
-                <input matInput placeholder="Risk Level Type" [(ngModel)]="riskModelTemplate.projectRiskLevelDescription"
-                    readonly>
-            </mat-form-field>
-            <mat-form-field fxFlex>
-                <input matInput placeholder="Rating Date" [(ngModel)]="riskModelTemplate.ratingDate" readonly>
-            </mat-form-field>
-        </div>
-    </mat-card>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                Tab 2
+            </ng-template>
 
-    <mat-card>
-        <!-- Risk Types Starts Here -->
-        <mat-tab-group>
-            <mat-tab [label]="riskType.description" *ngFor="let riskType of riskModelTemplate.riskTypes">
-
-                <!-- Risk Components Starts Here -->
+            <mat-card style="margin-bottom: 15px;">
+                <!-- Risk Types Starts Here -->
                 <mat-tab-group>
-                    <mat-tab [label]="riskComponent.description" *ngFor="let riskComponent of riskType.riskComponents">
+                    <mat-tab *ngFor="let riskType of riskModelTemplate.riskTypes">
+                        <ng-template mat-tab-label>
+                            <mat-icon *ngIf="checkRiskComponentSelection(riskType)">check</mat-icon>
+                            {{ riskType.description }}
+                        </ng-template>
 
-                        <!-- Risk Factors Starts Here -->
+                        <!-- Risk Components Starts Here -->
                         <mat-tab-group>
-                            <mat-tab [label]="riskFactor.description" *ngFor="let riskFactor of riskComponent.riskFactors">
+                            <mat-tab *ngFor="let riskComponent of riskType.riskComponents">
+                                <ng-template mat-tab-label>
+                                    <mat-icon *ngIf="checkRiskFactorSelection(riskComponent)">check</mat-icon>
+                                    {{ riskComponent.description }}
+                                </ng-template>
 
-                                <!-- Risk Sub Factors & Attributes Starts Here -->
-                                <mat-card *ngFor="let riskSubFactor of riskFactor.riskSubFactors">
-                                    <mat-card-header>
-                                        <mat-card-subtitle>
-                                            {{ riskSubFactor.description }}
-                                        </mat-card-subtitle>
-                                    </mat-card-header>
-                                    <mat-radio-group class="example-radio-group">
-                                        <table border="1">
-                                            <tr>
-                                                <th>Select</th>
-                                                <th>Parameter Selection</th>
-                                                <th>Score</th>
-                                            </tr>
-                                            <tr *ngFor="let riskSubFactorAttribute of riskSubFactor.riskSubFactorAttributes">
-                                                <td>
-                                                    <mat-radio-button class="example-radio-button" [value]="riskSubFactorAttribute.id"
-                                                        [checked]="riskSubFactorAttribute.isSelected" (change)="riskSubFactorSelectionChanged($event, riskSubFactor.riskSubFactorAttributes)">
-                                                    </mat-radio-button>
-                                                </td>
-                                                <td>{{ riskSubFactorAttribute.description }}</td>
-                                                <td>
-                                                    <span *ngIf="riskSubFactorAttribute.isSelected">{{
-                                                        riskSubFactorAttribute.score }}</span>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </mat-radio-group>
-                                </mat-card>
-                                <!-- Risk Sub Factors & Attributes Ends Here -->
+                                <!-- Risk Factors Starts Here -->
+                                <mat-tab-group>
+                                    <mat-tab *ngFor="let riskFactor of riskComponent.riskFactors">
+                                        <ng-template mat-tab-label>
+                                            <mat-icon *ngIf="checkRiskSubFactorSelection(riskFactor)">check</mat-icon>
+                                            {{ riskFactor.description }}
+                                        </ng-template>
+
+                                        <!-- Risk Sub Factors & Attributes Starts Here -->
+                                        <mat-card *ngFor="let riskSubFactor of riskFactor.riskSubFactors">
+                                            <mat-card-header>
+                                                <mat-card-subtitle>
+                                                    {{ riskSubFactor.description }}
+                                                </mat-card-subtitle>
+                                            </mat-card-header>
+                                            <mat-radio-group class="example-radio-group">
+                                                <table border="1">
+                                                    <tr>
+                                                        <th>Select</th>
+                                                        <th>Parameter Selection</th>
+                                                        <th>Score</th>
+                                                    </tr>
+                                                    <tr *ngFor="let riskSubFactorAttribute of riskSubFactor.riskSubFactorAttributes">
+                                                        <td>
+                                                            <mat-radio-button class="example-radio-button" [value]="riskSubFactorAttribute.id"
+                                                                [checked]="riskSubFactorAttribute.isSelected" (change)="riskSubFactorSelectionChanged($event, riskSubFactor.riskSubFactorAttributes)">
+                                                            </mat-radio-button>
+                                                        </td>
+                                                        <td>{{ riskSubFactorAttribute.description }}</td>
+                                                        <td>
+                                                            <span *ngIf="riskSubFactorAttribute.isSelected">{{
+                                                                riskSubFactorAttribute.score }}</span>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </mat-radio-group>
+                                        </mat-card>
+                                        <!-- Risk Sub Factors & Attributes Ends Here -->
+
+                                    </mat-tab>
+                                </mat-tab-group>
+                                <!-- Risk Factors Ends Here -->
 
                             </mat-tab>
                         </mat-tab-group>
-                        <!-- Risk Factors Ends Here -->
+                        <!-- Risk Components Ends Here -->
 
                     </mat-tab>
+
+                    <!-- Rating Modifiers Starts here -->
+                    <mat-tab [label]="'Rating Modifiers'" *ngIf="riskModelTemplate['riskRatingModifiers'] != undefined">
+                        <mat-card *ngFor="let riskRatingModifier of riskModelTemplate.riskRatingModifiers">
+                            <mat-card-header>
+                                <mat-card-subtitle>
+                                    {{ riskRatingModifier.description }}
+                                </mat-card-subtitle>
+                            </mat-card-header>
+                            <table border="1">
+                                <tr *ngFor="let riskRatingModifierAttribute of riskRatingModifier.riskRatingModifierAttributes">
+                                    <td>{{ riskRatingModifierAttribute.itemNo }}</td>
+                                    <td>{{ riskRatingModifierAttribute.description }}</td>
+                                    <td>
+                                        <mat-slide-toggle [checked]="riskRatingModifierAttribute.yesOrNoIndicator == 'Y'"
+                                            (change)="ratingModifierSelectionChanged($event, riskRatingModifierAttribute)"></mat-slide-toggle>
+                                    </td>
+                                </tr>
+                            </table>
+                        </mat-card>
+                    </mat-tab>
+                    <!-- Rating Modifiers Ends here -->
+
+                    <!-- Parental NotchUps Starts here -->
+                    <mat-tab [label]="'Parental Notchup'" *ngIf="riskModelTemplate['riskParentalNotchUps'] != undefined">
+                        <mat-card *ngFor="let riskSubFactor of riskModelTemplate['riskParentalNotchUps'][0].riskSubFactors">
+                            <mat-card-header>
+                                <mat-card-subtitle>
+                                    {{ riskSubFactor.description }}
+                                </mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-radio-group class="example-radio-group">
+                                <table border="1">
+                                    <tr>
+                                        <th>Select</th>
+                                        <th>Parameter Selection</th>
+                                        <th>Score</th>
+                                    </tr>
+                                    <tr *ngFor="let riskSubFactorAttribute of riskSubFactor.riskSubFactorAttributes">
+                                        <td>
+                                            <mat-radio-button class="example-radio-button" [value]="riskSubFactorAttribute.id"
+                                                [checked]="riskSubFactorAttribute.isSelected" (change)="parentalNotchUpRiskSubFactorSelectionChanged($event, riskSubFactor.riskSubFactorAttributes)">
+                                            </mat-radio-button>
+                                        </td>
+                                        <td>{{ riskSubFactorAttribute.description }}</td>
+                                        <td>
+                                            <span *ngIf="riskSubFactorAttribute.isSelected">{{
+                                                riskSubFactorAttribute.score }}</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </mat-radio-group>
+                        </mat-card>
+                    </mat-tab>
+                    <!-- Parental NotchUps Ends here -->
                 </mat-tab-group>
-                <!-- Risk Components Ends Here -->
-
-            </mat-tab>
-
-            <!-- Rating Modifiers Starts here -->
-            <mat-tab [label]="'Rating Modifiers'" *ngIf="riskModelTemplate['riskRatingModifiers'] != undefined">
-                <mat-card *ngFor="let riskRatingModifier of riskModelTemplate.riskRatingModifiers">
-                    <mat-card-header>
-                        <mat-card-subtitle>
-                            {{ riskRatingModifier.description }}
-                        </mat-card-subtitle>
-                    </mat-card-header>
-                    <table border="1">
-                        <tr *ngFor="let riskRatingModifierAttribute of riskRatingModifier.riskRatingModifierAttributes">
-                            <td>{{ riskRatingModifierAttribute.itemNo }}</td>
-                            <td>{{ riskRatingModifierAttribute.description }}</td>
-                            <td>
-                                <mat-slide-toggle [checked]="riskRatingModifierAttribute.yesOrNoIndicator == 'Y'"
-                                    (change)="ratingModifierSelectionChanged($event, riskRatingModifierAttribute)"></mat-slide-toggle>
-                            </td>
-                        </tr>
-                    </table>
-                </mat-card>
-            </mat-tab>
-            <!-- Rating Modifiers Ends here -->
-
-            <!-- Parental NotchUps Starts here -->
-            <mat-tab [label]="'Parental Notchup'" *ngIf="riskModelTemplate['riskParentalNotchUps'] != undefined">
-                <mat-card *ngFor="let riskSubFactor of riskModelTemplate['riskParentalNotchUps'][0].riskSubFactors">
-                    <mat-card-header>
-                        <mat-card-subtitle>
-                            {{ riskSubFactor.description }}
-                        </mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-radio-group class="example-radio-group">
-                        <table border="1">
-                            <tr>
-                                <th>Select</th>
-                                <th>Parameter Selection</th>
-                                <th>Score</th>
-                            </tr>
-                            <tr *ngFor="let riskSubFactorAttribute of riskSubFactor.riskSubFactorAttributes">
-                                <td>
-                                    <mat-radio-button class="example-radio-button" [value]="riskSubFactorAttribute.id"
-                                        [checked]="riskSubFactorAttribute.isSelected" (change)="parentalNotchUpRiskSubFactorSelectionChanged($event, riskSubFactor.riskSubFactorAttributes)">
-                                    </mat-radio-button>
-                                </td>
-                                <td>{{ riskSubFactorAttribute.description }}</td>
-                                <td>
-                                    <span *ngIf="riskSubFactorAttribute.isSelected">{{
-                                        riskSubFactorAttribute.score }}</span>
-                                </td>
-                            </tr>
-                        </table>
-                    </mat-radio-group>
-                </mat-card>
-            </mat-tab>
-            <!-- Parental NotchUps Ends here -->
-
-        </mat-tab-group>
-        <!-- Risk Types End Here-->
-    </mat-card>
+                <!-- Risk Types End Here-->
+            </mat-card>
+        </mat-tab>
+    </mat-tab-group>
 </div>
