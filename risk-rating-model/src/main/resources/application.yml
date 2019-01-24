@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: risk-rating-model
+  profiles:
+    active: localdev
+  jackson:
+    default-property-inclusion: non_null
+  data:
+    rest:
+      base-path: /api

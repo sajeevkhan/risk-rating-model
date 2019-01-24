@@ -9,9 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.Map;
+import java.io.ByteArrayOutputStream;
 
 /**
  * Created by sajeev on 01-Jan-19.
@@ -20,17 +18,18 @@ import java.util.Map;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class RiskModelPDFBuilderDebugMode extends AbstractITextPdfView  {
+public class RiskModelPDFBuilderDebugMode  {
 
 
-    @Override
-    protected void buildPdfDocument(Map<String, Object> model, Document doc,
-                                    PdfWriter writer, HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
+    public ByteArrayOutputStream buildPdfDocument(RiskModelTemplate riskModelTemplate) throws Exception {
 
+        Document doc = new Document();
 
-        RiskModelTemplate riskModelTemplate = (RiskModelTemplate) model.get("RiskModelTemplate");
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
+        PdfWriter.getInstance(doc,stream);
+
+        doc.open();
         doc.add(new Paragraph(" "));
         doc.add(new Paragraph(" "));
 
@@ -84,6 +83,10 @@ public class RiskModelPDFBuilderDebugMode extends AbstractITextPdfView  {
         RiskModelPDFRiskParentalNotchupTableDebugMode riskModelPDFRiskParentalNotchupTable =
                 new RiskModelPDFRiskParentalNotchupTableDebugMode();
         doc = riskModelPDFRiskParentalNotchupTable.buildParentalNotchup(doc,riskModelTemplate);
+
+        doc.close();
+
+        return stream;
 
     }
 
