@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { RiskModelUIService } from '../risk-model-ui.service';
 
 @Component({
     selector: 'app-risk-model-template',
@@ -13,7 +14,7 @@ export class RiskModelTemplateComponent implements OnInit {
 
     displayValues: FormGroup;
 
-    constructor(private _formBuilder: FormBuilder) {
+    constructor(private _formBuilder: FormBuilder, private _riskModelService: RiskModelUIService) {
     }
 
     ngOnInit(): void {
@@ -75,6 +76,9 @@ export class RiskModelTemplateComponent implements OnInit {
     }
 
     evaluateTemplate(): void {
+        this._riskModelService.evaluateTemplate(this.riskModelTemplate).subscribe(response => {
+            console.log(response);
+        });
 
     }
 

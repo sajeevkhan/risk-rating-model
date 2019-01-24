@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { RiskModelUIService } from './risk-model-ui.service';
+import { RiskModelTemplateComponent } from './risk-model-template/risk-model-template.component';
 
 @Component({
     selector: 'app-risk-model-ui',
@@ -9,6 +10,8 @@ import { RiskModelUIService } from './risk-model-ui.service';
 export class RiskModelUIComponent implements OnInit {
 
     riskModelTemplate: any = {};
+
+    @ViewChild(RiskModelTemplateComponent) riskModelTemplateComponent: RiskModelTemplateComponent;
 
     constructor(_riskModelService: RiskModelUIService) {
 
@@ -26,5 +29,6 @@ export class RiskModelUIComponent implements OnInit {
     }
 
     evaluateTemplate(): void {
+        this.riskModelTemplateComponent.evaluateTemplate();
     }
 }

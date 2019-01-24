@@ -17,11 +17,12 @@ import { fuseConfig } from 'app/fuse-config';
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { RiskModelUIModule } from './main/risk-model-ui/risk-model-ui.module';
+import { RiskModelLandingModule } from './main/risk-model-landing/risk-model-landing.module';
 
 const appRoutes: Routes = [
     {
         path      : '**',
-        redirectTo: 'sample'
+        redirectTo: 'riskModelList'
     }
 ];
 
@@ -53,7 +54,8 @@ const appRoutes: Routes = [
 
         // App modules
         LayoutModule,
-        RiskModelUIModule
+        RiskModelUIModule,
+        RiskModelLandingModule
     ],
     bootstrap   : [
         AppComponent

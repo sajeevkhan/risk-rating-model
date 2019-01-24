@@ -26,4 +26,12 @@ export class RiskModelUIService {
     getRiskModelTemplateById(templateId: string): Observable<any> {
         return this._httpClient.get<any>('http://localhost:8080/api/riskModelTemplate/id/' + templateId);
     }
+
+    /**
+     * evaluateTemplate()
+     * @param template: any
+     */
+    evaluateTemplate(template: any): Observable<any> {
+        return this._httpClient.post<any>('http://localhost:8080/api/riskModel', template);
+    }
 }
