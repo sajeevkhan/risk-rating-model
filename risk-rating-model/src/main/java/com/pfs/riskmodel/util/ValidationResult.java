@@ -17,6 +17,7 @@ public class ValidationResult {
     private boolean failed;
 
     private  boolean multipleValueFoundError;
-    private boolean notFound;
+    private  boolean notFound;
+    private  boolean workflowError;
 
 }

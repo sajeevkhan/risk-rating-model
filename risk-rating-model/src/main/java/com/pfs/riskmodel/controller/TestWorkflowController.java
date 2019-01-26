@@ -42,7 +42,7 @@ public class TestWorkflowController {
     @GetMapping("/start-process")
     public ResponseEntity startProcess() {
 
-        runtimeService.startProcessInstanceByKey("TwoLevelApproval");
+        runtimeService.startProcessInstanceByKey("RiskModelApproval_v1");
 
         String result = "Process started. Number of currently running"
                 + "process instances = "
@@ -52,19 +52,21 @@ public class TestWorkflowController {
     }
 
     @GetMapping("/start-workflow")
-    public ResponseEntity startWorkflow() {
+    public ResponseEntity startWorkflow(HttpServletRequest httpServletRequest) {
 
         //runtimeService.startProcessInstanceByKey("TwoLevelApproval");
 
         Map<String, Object> variables = new HashMap<>();
-        variables.put("id", "1");
+        variables.put("riskModelId", "1");
         variables.put("projectType", "Infra. Road HAM ");
         variables.put("riskLevel", "Build Phase");
         variables.put("projectName", "ABC Road Infra Company");
+        variables.put("senderUser", httpServletRequest.getUserPrincipal().getName());
+
 
         runtimeService = processEngine.getRuntimeService();
         ProcessInstance processInstance = runtimeService
-                .startProcessInstanceByKey("TwoLevelApproval", variables);
+                .startProcessInstanceByKey("RiskModelApproval_v1", variables);
 
 
 
@@ -96,16 +98,60 @@ public class TestWorkflowController {
 
          tasks = taskService.createTaskQuery().list();
 
+        Task task = taskService.createTaskQuery().processInstanceId("040a6b25-20bd-11e9-997b-dc5360927c19").singleResult();
 
-        Task task = tasks.get(0);
+
+        return ResponseEntity.ok(task.getId() + task.getDescription() + task.getAssignee());
+
+    }
+
+    @GetMapping("/executeTask")
+    public ResponseEntity executeTask(@RequestParam String processInstanceId, HttpServletRequest httpServletRequest) {
+
+        System.out.println(httpServletRequest.getRequestURI());
+        System.out.println(httpServletRequest.getRequestURL());
+        System.out.println(httpServletRequest.getPathInfo());
 
 
-        return ResponseEntity.ok(task);
+
+
+        TaskService taskService = processEngine.getTaskService();
+
+        Task task = taskService.createTaskQuery().processInstanceId(processInstanceId).singleResult();
+
+        task.setAssignee(httpServletRequest.getUserPrincipal().getName());
+
+
+        Map<String, Object> variables = new HashMap<>();
+        //variables.put("status", "approved");
+        variables.put("result", false);
+
+        taskService.complete(task.getId(),variables);
+
+
+        List<Task> tasksList = taskService
+                                        .createTaskQuery()
+                                        .processInstanceId(processInstanceId)
+                                        .orderByTaskName()
+                                        .asc()
+                                        .list();
+
+        tasksList = taskService.createTaskQuery().taskAssignee("kermitt").list();
+
+
+
+        for (Task task1 : tasksList) {
+
+            System.out.println("Task Name :" + task1.getName());
+            System.out.println("Task Description   :" + task1.getDescription() );
+        }
+
+        runtimeService.deleteProcessInstance(processInstanceId, "Deletion Reason");
+
+        return ResponseEntity.ok(task.getName());
 
     }
 
 
 
-
-
-}
+    }

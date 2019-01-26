@@ -41,6 +41,13 @@ public class RenewableProjectBuildPhaseData {
 
         riskModelTemplateDTO.setModelType(0); //Template
 
+        riskModelTemplateDTO.setPurposeCode("01");
+        riskModelTemplateDTO.setPurposeDescription("Project Assessment");
+        riskModelTemplateDTO.setProcessInstanceId(" ");
+        riskModelTemplateDTO.setWorkflowStatusCode("01");
+        riskModelTemplateDTO.setWorkflowStatusDescription("Created");
+
+
         riskModelTemplateDTO.setProjectRiskLevelCode("01");
         riskModelTemplateDTO.setProjectRiskLevelDescription("Renewables Build Phase");
 

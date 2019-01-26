@@ -36,6 +36,13 @@ public class Evaluate_InfraRoadHAM_OperationalPhaseData {
 
         riskModelTemplateDTO.setModelType(1); //Evaluation
 
+        riskModelTemplateDTO.setPurposeCode("01");
+        riskModelTemplateDTO.setPurposeDescription("Project Assessment");
+        riskModelTemplateDTO.setProcessInstanceId(" ");
+        riskModelTemplateDTO.setWorkflowStatusCode("01");
+        riskModelTemplateDTO.setWorkflowStatusDescription("Created");
+
+
         riskModelTemplateDTO.setProjectRiskLevelCode("02");
         riskModelTemplateDTO.setProjectRiskLevelDescription("Infrastructure Road HAM Operational Phase");
 

@@ -32,6 +32,12 @@ public class Initializer implements CommandLineRunner{
 
     private final RatingModifierComputingMethodRepository riskRatingComputingMethodRepository;
 
+    private final PurposeRepository purposeRepository;
+
+    private final WorkflowStatusRepository workflowStatusRepository;
+
+    private final WorkflowAssignmentRepository workflowAssignmentRepository;
+
     @Override
     public void run(String... strings) throws Exception {
 
@@ -113,11 +119,60 @@ public class Initializer implements CommandLineRunner{
             // Modifiers having impact on final ratings up to 2 notches
             RatingModifierComputationMethod m2 = new RatingModifierComputationMethod(null,"02", "Notch Down By Selection- OneorTwoBYOne, MoreThanThree By Two");
 
-
-
             riskRatingComputingMethodRepository.saveAll(Arrays.asList(m1,m2 ));
             log.info("-------------------------- Added Risk Rating Modifier Computing Method data");
         }
+
+        if(purposeRepository.count() == 0) {
+
+            Purpose p1 = new Purpose(null, "01", "Project Assessment");
+            Purpose p2 = new Purpose(null, "02", "Risk Assessment");
+            Purpose p3 = new Purpose(null, "03", "Monitoring");
+
+
+            purposeRepository.saveAll(Arrays.asList(p1,p2,p3 ));
+            log.info("-------------------------- Added Purposes data");
+        }
+
+
+        if(workflowStatusRepository.count() == 0) {
+
+            WorkflowStatus w1 = new WorkflowStatus(null, "01", "Created");
+            WorkflowStatus w2 = new WorkflowStatus(null, "02", "Sent for Approval");
+            WorkflowStatus w3 = new WorkflowStatus(null, "03", "Approved");
+            WorkflowStatus w4 = new WorkflowStatus(null, "04", "Rejected");
+
+
+            //workflowStatusRepository.saveAll(Arrays.asList(w1,w2,w3,w4 ));
+            workflowStatusRepository.saveAndFlush(w1);
+            workflowStatusRepository.saveAndFlush(w2);
+            workflowStatusRepository.saveAndFlush(w3);
+            workflowStatusRepository.saveAndFlush(w4);
+
+            log.info("-------------------------- Added Work Flow Statuses data");
+        }
+
+
+        if(workflowAssignmentRepository.count() == 0) {
+
+            Purpose p1 = purposeRepository.findByCode("01") ; //new Purpose(null, "01", "Project Assessment");
+            Purpose p2 = purposeRepository.findByCode("02") ; //new Purpose(null, "02", "Risk Assessment");
+            Purpose p3 = purposeRepository.findByCode("03") ; //new Purpose(null, "03", "Monitoring");
+
+//            WorkflowAssignment w1 = new WorkflowAssignment(null,p1,"SajeevG", "sajeev.khan@gmail.com");
+//            WorkflowAssignment w2 = new WorkflowAssignment(null,p2,"SajeevL", "sajeev@leanthoughts.com");
+//            WorkflowAssignment w3 = new WorkflowAssignment(null,p3,"SajeevM", "sajeev.khan@gmail.com");
+
+              WorkflowAssignment w1 = new WorkflowAssignment();
+              w1.setPurpose(p1);
+              w1.setApproverEmailId("sajeev.khan@gmail.com");
+              w1.setApproverUserName("SajeevG");
+
+            workflowAssignmentRepository.saveAll(Arrays.asList(w1  ));
+            log.info("-------------------------- Added Workflow Assignments data");
+        }
+
+
 
 
 

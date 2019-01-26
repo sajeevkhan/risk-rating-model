@@ -65,21 +65,32 @@ public class RiskModelTemplateController {
     IRiskModelTemplateService riskModelTemplateService;
 
     @Autowired
+    WorkflowStatusRepository workflowStatusRepository;
+
+    @Autowired
+    PurposeRepository purposeRepository;
+
+    @Autowired
     IRiskModelService riskModelService;
 
 
     //-----------------------------------------------------------------------------------------------------------------
     //                              RISK MODEL - VALUATIONS
+    //      action 1 - Save only
+    //      action 2 - Save and Send for Approval
+    //      action 3 - Save and Approve
+    //      action 4 - Save and Reject
     //-----------------------------------------------------------------------------------------------------------------
 
     @PostMapping("/riskModel")
     public ResponseEntity createRiskModel(@RequestBody RiskModelTemplateDTO riskModelTemplateDTO,
+                                          @RequestParam(value = "action",required = true) Integer action,
                                           HttpServletRequest request) {
 
         RiskModelTemplate riskModelTemplate = mapDTOToDomain(riskModelTemplateDTO);
 
 
-        Map<String, Object> result = riskModelService.createRiskModel(riskModelTemplate);
+        Map<String, Object> result = riskModelService.createRiskModel(riskModelTemplate,action, request);
         CheckServiceResult.checkResult(result);
 
 
@@ -90,6 +101,23 @@ public class RiskModelTemplateController {
     }
 
 
+    @PutMapping("/riskModel")
+    public ResponseEntity updateRiskModel(@RequestBody RiskModelTemplateDTO riskModelTemplateDTO,
+                                          @RequestParam(value = "action",required = true) Integer action,
+                                          HttpServletRequest request) {
+
+        RiskModelTemplate riskModelTemplate = mapDTOToDomain(riskModelTemplateDTO);
+
+
+        Map<String, Object> result = riskModelService.createRiskModel(riskModelTemplate,action, request);
+        CheckServiceResult.checkResult(result);
+
+
+        riskModelTemplate = (RiskModelTemplate) result.get("RiskModel");
+        RiskModelTemplateDTO riskModelTemplateDTOResponse = mapDomainToDTO(riskModelTemplate);
+
+        return ResponseEntity.ok(riskModelTemplateDTOResponse);
+    }
 
 
 
@@ -118,6 +146,26 @@ public class RiskModelTemplateController {
 
         return ResponseEntity.ok(riskModelTemplateDTOS);
     }
+
+
+    @GetMapping("/riskModel/loanNumber/{loanNumber}")
+    public ResponseEntity findByLoanNumber (@PathVariable("loanNumber") String loanNumber,
+                                            HttpServletRequest request){
+
+
+        List<RiskModelTemplateDTO> riskModelTemplateDTOS = new ArrayList<>();
+        List<RiskModelTemplate> riskModelTemplates = new ArrayList<>();
+
+        riskModelTemplates = riskModelTemplateRepository.findByLoanNumber(loanNumber);
+
+        riskModelTemplates.forEach(riskModelTemplate -> {
+            RiskModelTemplateDTO riskModelTemplateDTO = mapDomainToDTO(riskModelTemplate);
+            riskModelTemplateDTOS.add(riskModelTemplateDTO);
+        });
+
+        return ResponseEntity.ok(riskModelTemplateDTOS);
+    }
+
 
 
     @GetMapping("/riskModelTemplate/id/{id}")
@@ -204,6 +252,7 @@ public class RiskModelTemplateController {
 
 
 
+
     //-----------------------------------------------------------------------------------------------------------------
     //                              DTO-> DOMAIN -> DTO Mappers
     //-----------------------------------------------------------------------------------------------------------------
@@ -222,6 +271,12 @@ public class RiskModelTemplateController {
 
         DozerBeanMapper mapper = new DozerBeanMapper();
         riskModelTemplateDTO = mapper.map(riskModelTemplate, RiskModelTemplateDTO.class);
+
+        riskModelTemplateDTO.setPurposeCode(riskModelTemplate.getPurpose().getCode());
+        riskModelTemplateDTO.setPurposeDescription(riskModelTemplate.getPurpose().getDescription());
+
+        riskModelTemplateDTO.setWorkflowStatusCode(riskModelTemplate.getWorkflowStatus().getCode());
+        riskModelTemplateDTO.setWorkflowStatusDescription(riskModelTemplate.getWorkflowStatus().getDescription());
 
         riskModelTemplateDTO.setModelCategoryCode(riskModelTemplate.getModelCategory().getCode());
         riskModelTemplateDTO.setModelCategoryDescription(riskModelTemplate.getModelCategory().getValue());
@@ -282,6 +337,10 @@ public class RiskModelTemplateController {
 
         DozerBeanMapper mapper = new DozerBeanMapper();
         riskModelTemplate = mapper.map(riskModelTemplateDTO, RiskModelTemplate.class);
+
+        riskModelTemplate.setPurpose(purposeRepository.findByCode(riskModelTemplateDTO.getPurposeCode()));
+        riskModelTemplate.setWorkflowStatus(workflowStatusRepository.findByCode(riskModelTemplateDTO.getPurposeCode()));
+
 
         for (RiskType riskType: riskModelTemplate.getRiskTypes()) {
 

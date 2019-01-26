@@ -33,6 +33,13 @@ public class Evaluate_Transmission_OperationalPhaseData {
 
         riskModelTemplateDTO.setModelType(1); //Valuation - NOT TEMPLATE
 
+        riskModelTemplateDTO.setPurposeCode("01");
+        riskModelTemplateDTO.setPurposeDescription("Project Assessment");
+        riskModelTemplateDTO.setProcessInstanceId(" ");
+        riskModelTemplateDTO.setWorkflowStatusCode("01");
+        riskModelTemplateDTO.setWorkflowStatusDescription("Created");
+
+
         riskModelTemplateDTO.setProjectRiskLevelCode("02"); // Operational
         riskModelTemplateDTO.setProjectRiskLevelDescription("Infrastructure Transmission Operational Phase");
 

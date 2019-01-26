@@ -35,6 +35,13 @@ public class Evaluate_InfraRoadHAM_BuildPhaseData {
 
         riskModelTemplateDTO.setModelType(1); //Valuation - NOT TEMPLATE
 
+        riskModelTemplateDTO.setPurposeCode("01");
+        riskModelTemplateDTO.setPurposeDescription("Project Assessment");
+        riskModelTemplateDTO.setProcessInstanceId(" ");
+        riskModelTemplateDTO.setWorkflowStatusCode("01");
+        riskModelTemplateDTO.setWorkflowStatusDescription("Created");
+
+
         riskModelTemplateDTO.setProjectRiskLevelCode("01");
         riskModelTemplateDTO.setProjectRiskLevelDescription("Infrastructure Road HAM Build Phase");
 

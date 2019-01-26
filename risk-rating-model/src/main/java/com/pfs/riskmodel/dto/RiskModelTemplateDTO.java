@@ -23,6 +23,26 @@ public class RiskModelTemplateDTO {
     private String description;
 
 
+    /*
+        01 - Project Assessment
+        02 - Risk Assessment
+        03 - Monitoring
+     */
+    private String purposeCode;
+    private String purposeDescription;
+    private String processInstanceId;
+
+    /*
+        01 - Created
+        02 - Sent for Approval
+        03 - Approved
+        04 - Rejected
+     */
+    private String workflowStatusCode;
+    private String workflowStatusDescription;
+
+
+
     // 0 - Template
     // 1 - Project Valuation
     private Integer modelType;

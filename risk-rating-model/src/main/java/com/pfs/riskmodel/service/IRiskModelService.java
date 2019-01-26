@@ -2,6 +2,7 @@ package com.pfs.riskmodel.service;
 
 import com.pfs.riskmodel.domain.RiskModelTemplate;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -10,9 +11,8 @@ import java.util.Map;
 public interface IRiskModelService {
 
 
-    public Map<String, Object> createRiskModel(RiskModelTemplate riskModelTemplate);
-
-
-
+    public Map<String, Object> createRiskModel(RiskModelTemplate riskModelTemplate,
+                                               Integer action,
+                                               HttpServletRequest httpServletRequest);
 
 }

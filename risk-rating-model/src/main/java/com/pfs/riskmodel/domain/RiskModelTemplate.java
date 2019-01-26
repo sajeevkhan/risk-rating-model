@@ -7,6 +7,7 @@ import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 import java.util.Arrays;
 import java.util.Date;
@@ -46,6 +47,30 @@ public class RiskModelTemplate extends AuditModel  {
 
     @NotNull
     private String status;
+
+
+    @NotNull
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Purpose purpose;
+
+    @NotNull
+    private String purposeCode;
+
+    @NotNull
+    private String purposeDescription;
+
+    // Work flow Process Instance Id (Activiti)
+    @Nullable
+    private String processInstanceId;
+
+    @NotNull
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private WorkflowStatus workflowStatus;
+
+    @Nullable
+    private String workflowStatusCode;
+    @Nullable
+    private String workflowStatusDescription;
 
 
     @NotNull

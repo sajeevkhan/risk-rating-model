@@ -14,6 +14,14 @@ spring:
     hikari:
       connection-timeout: 60000
       maximum-pool-size: 20
+
   jpa:
     database-platform: org.hibernate.dialect.MySQL57InnoDBDialect
     generate-ddl: true
+  activiti:
+    mail-server-host: smtp.gmail.com
+    mail-server-port: 587
+    mail-server-user-name: pfsriskmodel@gmail.com
+    mail-server-password: SapSap@123
+    mail-server-default-from: pfsriskmodel@gmail.com
+    mail-server-use-tls: true

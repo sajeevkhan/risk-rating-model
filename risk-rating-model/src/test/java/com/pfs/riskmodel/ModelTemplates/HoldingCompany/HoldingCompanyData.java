@@ -30,6 +30,14 @@ public class HoldingCompanyData {
         riskModelTemplateDTO.setStatus("X");
         riskModelTemplateDTO.setVersion("v1");
 
+
+        riskModelTemplateDTO.setPurposeCode("01");
+        riskModelTemplateDTO.setPurposeDescription("Project Assessment");
+        riskModelTemplateDTO.setProcessInstanceId(" ");
+        riskModelTemplateDTO.setWorkflowStatusCode("01");
+        riskModelTemplateDTO.setWorkflowStatusDescription("Created");
+
+
         //  9 - HoldingCompany
         riskModelTemplateDTO.setModelCategoryCode(9);
         riskModelTemplateDTO.setModelType(0); //Template

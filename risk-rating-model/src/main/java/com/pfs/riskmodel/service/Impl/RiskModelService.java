@@ -11,6 +11,7 @@ import com.pfs.riskmodel.repository.RiskTypeRepository;
 import com.pfs.riskmodel.service.IRiskModelService;
 import com.pfs.riskmodel.service.IRiskModelTemplateService;
 import com.pfs.riskmodel.service.IRiskTypeService;
+import com.pfs.riskmodel.service.IWorkflowService;
 import com.pfs.riskmodel.service.modelvaluator.RiskModelEvaluator;
 import com.pfs.riskmodel.service.validator.RiskModelTemplateValidator;
 import com.pfs.riskmodel.util.ValidationResult;
@@ -19,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,15 +52,19 @@ public class RiskModelService implements IRiskModelService {
     @Autowired
     ProjectRiskLevelRepository projectRiskLevelRepository;
 
+    @Autowired
+    IWorkflowService iWorkflowService;
 
     @Override
-    public Map<String, Object> createRiskModel(RiskModelTemplate riskModelTemplate) {
+    public Map<String, Object> createRiskModel(RiskModelTemplate riskModelTemplate,
+                                               Integer action,
+                                               HttpServletRequest httpServletRequest) {
 
         Map<String, Object> result = new HashMap<>();
 
         ValidationResult validationResult =  riskModelTemplateValidator.validate(riskModelTemplate);
-        result.put("ValidationResult", validationResult);
         if (validationResult.isFailed()) {
+            result.put("ValidationResult", validationResult);
             return result;
         }
 
@@ -68,8 +74,22 @@ public class RiskModelService implements IRiskModelService {
         riskModelEvaluator.evaluateRiskModel(riskModelTemplate);
 
         riskModelTemplate =  riskModelTemplateRepository.save(riskModelTemplate);
-        result.put("RiskModel", riskModelTemplate);
 
+
+        //Process Action
+        Map <String, Object> workflowResult = new HashMap<>();
+        workflowResult = iWorkflowService.processWorkflowAction(riskModelTemplate,action,httpServletRequest);
+
+        ValidationResult workflowValidationResult  = (ValidationResult) workflowResult.get("ValidationResult");
+        if ( workflowValidationResult.isWorkflowError() == true) {
+            result.put("ValidationResult",workflowValidationResult);
+
+        }
+        else {
+            riskModelTemplate = (RiskModelTemplate) workflowResult.get("RiskModel");
+            riskModelTemplate = riskModelTemplateRepository.save(riskModelTemplate);
+            result.put("RiskModel", riskModelTemplate);
+        }
 
         Long createdRiskModelTemplateId = riskModelTemplate.getId();
 

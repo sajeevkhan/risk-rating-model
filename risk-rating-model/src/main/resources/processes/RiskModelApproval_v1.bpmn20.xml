@@ -1,0 +1,219 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef" xmlns:modeler="http://activiti.com/modeler" modeler:version="1.0ev" modeler:exportDateTime="20190126125237" modeler:modelId="1057096" modeler:modelVersion="1" modeler:modelLastUpdated="1548507143265">
+  <process id="RiskModelApproval_v1" name="RiskModelApproval_v1" isExecutable="true">
+    <documentation>Approval Risk Model</documentation>
+    <startEvent id="start" name="start">
+      <extensionElements>
+        <activiti:formProperty id="riskModelId" name="riskModelId" type="string"/>
+        <activiti:formProperty id="riskLevel" name="riskLevel" type="string"/>
+        <activiti:formProperty id="projectType" name="projectType" type="string"/>
+        <activiti:formProperty id="projectType" name="projectType" type="string"/>
+        <activiti:formProperty id="senderUser" name="senderUser" type="string"/>
+        <activiti:formProperty id="approverUser" name="approverUser" type="string"/>
+        <activiti:formProperty id="approverEmail" name="approverEmail" type="string"/>
+        <activiti:formProperty id="senderUserEmail" name="senderUserEmail" type="string"/>
+        <modeler:editor-resource-id><![CDATA[startEvent1]]></modeler:editor-resource-id>
+      </extensionElements>
+    </startEvent>
+    <userTask id="managerApproval" name="Manager Approval" activiti:assignee="${approverName}">
+      <extensionElements>
+        <activiti:formProperty id="result" name="result" type="boolean"/>
+
+        <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
+        <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
+        <modeler:editor-resource-id><![CDATA[sid-987094A5-4EF9-4549-9A18-34FB4E0FF74B]]></modeler:editor-resource-id>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="sid-C69FDB31-C1AF-4775-BE10-A96B0320F495">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-C69FDB31-C1AF-4775-BE10-A96B0320F495]]></modeler:editor-resource-id>
+      </extensionElements>
+    </exclusiveGateway>
+    <serviceTask id="rejectedMail" name="Rejection Mail" activiti:type="mail">
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${senderUserEmail}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[pfsriskmodel@gmail.com]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:expression><![CDATA[PFS Risk Model :  ${projectName} - ${riskLevel} - Approval was rejected]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="html">
+          <activiti:expression><![CDATA[Dear ${senderUser},
+          <br> <br>
+          Your approval request for the following risk model evaluation was rejected: <br> <br>
+              &#009 Project Name  :&#009 ${projectName} <br>
+              &#009 Phase         :&#009 ${riskLevel} <br>
+              &#009 Risk Model Id :&#009 ${riskModelId} <br>
+              &#009 Submitted By  :&#009 ${senderUser} <br> <br>
+           <br> <br>
+          Regards <br>
+          PFS Risk Model System
+         ]]></activiti:expression>
+        </activiti:field>
+        <modeler:editor-resource-id><![CDATA[sid-B515F8FA-9789-4D08-B6F2-65344F83C700]]></modeler:editor-resource-id>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="sid-BD63D96C-AF65-4A25-91DB-CCAAC7C72B53" sourceRef="managerApproval" targetRef="sid-C69FDB31-C1AF-4775-BE10-A96B0320F495">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-BD63D96C-AF65-4A25-91DB-CCAAC7C72B53]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <endEvent id="sid-F8558C03-D806-4C36-93FF-B91C8E8659AE">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-F8558C03-D806-4C36-93FF-B91C8E8659AE]]></modeler:editor-resource-id>
+      </extensionElements>
+    </endEvent>
+    <sequenceFlow id="sid-C31F8F43-4DF3-49A3-B975-DDE42EDAD638" sourceRef="rejectedMail" targetRef="sid-F8558C03-D806-4C36-93FF-B91C8E8659AE">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-C31F8F43-4DF3-49A3-B975-DDE42EDAD638]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="approvalMail" name="Approval Mail" activiti:type="mail">
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:string><![CDATA[sajeev.khan@gmail.com]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[pfsriskmodel@gmail.com]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:string><![CDATA[PFS Risk Model: Request for ${projectName} - ${riskLevel} was approved ]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="html">
+          <activiti:string><![CDATA[Dear ${senderUser},
+            <br> <br>
+            Your request for the following risk model evaluation was approved: <br> <br>
+                &#009 Project Name  :&#009 ${projectName} <br>
+                &#009 Phase         :&#009 ${riskLevel} <br>
+                &#009 Risk Model Id :&#009 ${riskModelId} <br>
+                &#009 Submitted By  :&#009 ${senderUser} <br> <br>
+             <br> <br>
+            Regards <br>
+            PFS Risk Model System
+         ]]></activiti:string>
+        </activiti:field>
+        <modeler:editor-resource-id><![CDATA[sid-ABD2EA7A-D6A1-463A-9F14-C3CCBDFEA7B5]]></modeler:editor-resource-id>
+      </extensionElements>
+    </serviceTask>
+    <endEvent id="sid-5C209FA0-E001-423C-96A7-12C13609ED9E">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-5C209FA0-E001-423C-96A7-12C13609ED9E]]></modeler:editor-resource-id>
+      </extensionElements>
+    </endEvent>
+    <sequenceFlow id="sid-7654FB10-EFCA-4697-927B-BD4AE72ABB1A" sourceRef="approvalMail" targetRef="sid-5C209FA0-E001-423C-96A7-12C13609ED9E">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-7654FB10-EFCA-4697-927B-BD4AE72ABB1A]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="rejected" name="Rejected" sourceRef="sid-C69FDB31-C1AF-4775-BE10-A96B0320F495" targetRef="rejectedMail">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-CFEB77BC-C845-4244-A824-C9B69D811CDC]]></modeler:editor-resource-id>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${ result == "FALSE" }]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="approved" name="Approved" sourceRef="sid-C69FDB31-C1AF-4775-BE10-A96B0320F495" targetRef="approvalMail">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-E8FD7257-E8CD-4438-B4CD-8909C1622DFC]]></modeler:editor-resource-id>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${ result== "TRUE"}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="approverMailNotification" name="Approver Mail Notification" activiti:type="mail">
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${approverEmail}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[pfsriskmodel@gmail.com]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:expression><![CDATA[PFS Risk Model Approval Request: ${projectName} - ${riskLevel}
+]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="html">
+          <activiti:expression><![CDATA[Dear ${approverName}, <br> <br>
+You are requested to approve the following risk model evaluation: <br> <br>
+    &#009 Project Name  :&#009 ${projectName} <br>
+    &#009 Phase         :&#009 ${riskLevel} <br>
+    &#009 Risk Model Id :&#009 ${riskModelId} <br>
+    &#009 Submitted By  :&#009 ${senderUser} <br> <br>
+
+Please log into the Risk Model Portal to process this request. <br> <br>
+
+Regards <br>
+PFS Risk Model System
+]]></activiti:expression>
+        </activiti:field>
+        <modeler:editor-resource-id><![CDATA[sid-7F083106-9DED-4ADB-AEC5-AF212EF1F12D]]></modeler:editor-resource-id>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="sid-5E790916-F81E-413C-8F35-2580BB8F2168" sourceRef="start" targetRef="approverMailNotification">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-5E790916-F81E-413C-8F35-2580BB8F2168]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="sid-515C0346-41D8-43CA-AC45-A5AD6621339B" sourceRef="approverMailNotification" targetRef="managerApproval">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-515C0346-41D8-43CA-AC45-A5AD6621339B]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_RiskModelApproval_v1">
+    <bpmndi:BPMNPlane bpmnElement="RiskModelApproval_v1" id="BPMNPlane_RiskModelApproval_v1">
+      <bpmndi:BPMNShape bpmnElement="start" id="BPMNShape_start">
+        <omgdc:Bounds height="30.0" width="30.0" x="45.0" y="163.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="managerApproval" id="BPMNShape_managerApproval">
+        <omgdc:Bounds height="80.0" width="100.0" x="300.0" y="138.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-C69FDB31-C1AF-4775-BE10-A96B0320F495" id="BPMNShape_sid-C69FDB31-C1AF-4775-BE10-A96B0320F495">
+        <omgdc:Bounds height="40.0" width="40.0" x="420.0" y="158.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="rejectedMail" id="BPMNShape_rejectedMail">
+        <omgdc:Bounds height="80.0" width="100.0" x="615.0" y="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-F8558C03-D806-4C36-93FF-B91C8E8659AE" id="BPMNShape_sid-F8558C03-D806-4C36-93FF-B91C8E8659AE">
+        <omgdc:Bounds height="28.0" width="28.0" x="742.0" y="56.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="approvalMail" id="BPMNShape_approvalMail">
+        <omgdc:Bounds height="80.0" width="100.0" x="585.0" y="188.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-5C209FA0-E001-423C-96A7-12C13609ED9E" id="BPMNShape_sid-5C209FA0-E001-423C-96A7-12C13609ED9E">
+        <omgdc:Bounds height="28.0" width="28.0" x="742.0" y="214.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="approverMailNotification" id="BPMNShape_approverMailNotification">
+        <omgdc:Bounds height="80.0" width="100.0" x="120.0" y="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-BD63D96C-AF65-4A25-91DB-CCAAC7C72B53" id="BPMNEdge_sid-BD63D96C-AF65-4A25-91DB-CCAAC7C72B53">
+        <omgdi:waypoint x="400.0" y="178.27624309392266"/>
+        <omgdi:waypoint x="420.3888888888889" y="178.38888888888889"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="approved" id="BPMNEdge_approved">
+        <omgdi:waypoint x="455.6454918032787" y="182.35450819672133"/>
+        <omgdi:waypoint x="585.0" y="215.27506426735218"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-5E790916-F81E-413C-8F35-2580BB8F2168" id="BPMNEdge_sid-5E790916-F81E-413C-8F35-2580BB8F2168">
+        <omgdi:waypoint x="70.70345955552808" y="167.49114880002696"/>
+        <omgdi:waypoint x="129.25925925925924" y="110.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-515C0346-41D8-43CA-AC45-A5AD6621339B" id="BPMNEdge_sid-515C0346-41D8-43CA-AC45-A5AD6621339B">
+        <omgdi:waypoint x="220.0" y="100.0"/>
+        <omgdi:waypoint x="300.0" y="148.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="rejected" id="BPMNEdge_rejected">
+        <omgdi:waypoint x="453.9834834834835" y="171.9834834834835"/>
+        <omgdi:waypoint x="615.0" y="94.16481069042317"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-7654FB10-EFCA-4697-927B-BD4AE72ABB1A" id="BPMNEdge_sid-7654FB10-EFCA-4697-927B-BD4AE72ABB1A">
+        <omgdi:waypoint x="685.0" y="228.0"/>
+        <omgdi:waypoint x="742.0" y="228.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-C31F8F43-4DF3-49A3-B975-DDE42EDAD638" id="BPMNEdge_sid-C31F8F43-4DF3-49A3-B975-DDE42EDAD638">
+        <omgdi:waypoint x="715.0" y="70.0"/>
+        <omgdi:waypoint x="742.0" y="70.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

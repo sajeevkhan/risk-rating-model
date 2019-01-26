@@ -1,7 +1,9 @@
 package com.pfs.riskmodel.service;
 
 import com.pfs.riskmodel.domain.RiskComponent;
+import com.pfs.riskmodel.domain.RiskModelTemplate;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -9,6 +11,8 @@ import java.util.Map;
  */
 public interface IWorkflowService {
 
-    public String startProcess(String assignee);
+    public Map<String, Object> processWorkflowAction(RiskModelTemplate riskModelTemplate,
+                                                     Integer action,
+                                                     HttpServletRequest httpServletRequest) ;
 
 }
