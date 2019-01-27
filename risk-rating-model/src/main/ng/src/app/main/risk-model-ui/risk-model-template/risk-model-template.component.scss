@@ -1,12 +1,59 @@
 .example-radio-group {
     display: inline-flex;
     flex-direction: column;
-  }
+}
   
-  .example-radio-button {
+.example-radio-button {
     margin: 5px;
-  }
+}
   
-  .example-selected-value {
+.example-selected-value {
     margin: 15px 0;
-  }
+}
+
+table {
+    width: 100%;
+
+    border-spacing: 0px;
+
+    .row-header {
+        height: 46px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #ececee;
+    }
+    
+    tr:nth-child(odd) {
+        background-color: #c5c6cb;
+    }
+
+    .column-header {
+        text-align: left;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .column-data {
+        padding: 5px 16px 5px 16px;
+    }
+}
+
+mat-card-subtitle {
+    font-size: 15px;
+    font-weight: bold;
+    color: darkblue !important;
+    margin-bottom: 8px !important;
+}
+
+.risk-type-tab-label {
+    color: blueviolet !important;
+}
+
+.risk-component-tab-label {
+    color: darkblue !important;
+}
+
+.risk-factor-tab-label {
+    color: darkgreen !important;
+}

@@ -7,7 +7,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RiskModelUIService {
 
-    constructor(private _httpClient: HttpClient) { }
+    constructor(private _httpClient: HttpClient) { 
+    }
 
     /**
      * getRiskModelTemplate()
@@ -15,7 +16,7 @@ export class RiskModelUIService {
      * @param projectRiskLevel: string
      */
     getRiskModelTemplate(projectType: string, projectRiskLevel: string): Observable<any> {
-        return this._httpClient.get<any>('http://localhost:8080/api/riskModelTemplate?projectType=' + projectType +
+        return this._httpClient.get<any>('api/riskModelTemplate?projectType=' + projectType +
             '&projectRiskLevel=' + projectRiskLevel);
     }
 
@@ -24,7 +25,7 @@ export class RiskModelUIService {
      * @param templateId: string
      */
     getRiskModelTemplateById(templateId: string): Observable<any> {
-        return this._httpClient.get<any>('http://localhost:8080/api/riskModelTemplate/id/' + templateId);
+        return this._httpClient.get<any>('api/riskModelTemplate/id/' + templateId);
     }
 
     /**
@@ -32,6 +33,6 @@ export class RiskModelUIService {
      * @param template: any
      */
     evaluateTemplate(template: any): Observable<any> {
-        return this._httpClient.post<any>('http://localhost:8080/api/riskModel', template);
+        return this._httpClient.post<any>('api/riskModel?action=1', template);
     }
 }

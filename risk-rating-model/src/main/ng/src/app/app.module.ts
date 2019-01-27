@@ -18,6 +18,7 @@ import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { RiskModelUIModule } from './main/risk-model-ui/risk-model-ui.module';
 import { RiskModelLandingModule } from './main/risk-model-landing/risk-model-landing.module';
+import { EnquirySearchModule } from './main/enquirySearch/enquirySearch.module';
 
 const appRoutes: Routes = [
     {
@@ -54,6 +55,7 @@ const appRoutes: Routes = [
 
         // App modules
         LayoutModule,
+        EnquirySearchModule,
         RiskModelUIModule,
         RiskModelLandingModule
     ],

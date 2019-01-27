@@ -77,9 +77,9 @@ export class RiskModelTemplateComponent implements OnInit {
 
     evaluateTemplate(): void {
         this._riskModelService.evaluateTemplate(this.riskModelTemplate).subscribe(response => {
+            this.riskModelTemplate = response;
             console.log(response);
         });
-
     }
 
     checkRiskComponentSelection(riskType: any): boolean {

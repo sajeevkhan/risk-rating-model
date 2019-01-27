@@ -14,7 +14,6 @@ spring:
     hikari:
       connection-timeout: 60000
       maximum-pool-size: 20
-
   jpa:
     database-platform: org.hibernate.dialect.MySQL57InnoDBDialect
     generate-ddl: true
@@ -25,3 +24,7 @@ spring:
     mail-server-password: SapSap@123
     mail-server-default-from: pfsriskmodel@gmail.com
     mail-server-use-tls: true
+lmsEnquiry:
+  baseUrl: http://localhost:8080/
+server:
+  port: 8090

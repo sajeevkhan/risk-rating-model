@@ -16,6 +16,7 @@ export class RiskModelUIComponent implements OnInit {
     constructor(_riskModelService: RiskModelUIService) {
 
         _riskModelService.getRiskModelTemplate('03', '01').subscribe(response => {
+            console.log(response);
             this.riskModelTemplate = response;
         });
 
