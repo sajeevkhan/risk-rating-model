@@ -24,6 +24,18 @@ public class InfraRoadHAM_Build_ModelControllerTest_WorkFlow_Full extends Abstra
 
 
     @Test
+    public void evaluate_INFRA_ROAD_HAM_START () throws Exception {
+
+        String content = new String();
+        //Create
+        content = create();
+        //Start Workflow
+        content = startWorkflow(content);
+//        //Approve Workflow
+//        content = approveWorkflow(content);
+    }
+
+    @Test
     public void evaluate_INFRA_ROAD_HAM_APPROVE () throws Exception {
 
         String content = new String();
@@ -34,7 +46,6 @@ public class InfraRoadHAM_Build_ModelControllerTest_WorkFlow_Full extends Abstra
         //Approve Workflow
         content = approveWorkflow(content);
     }
-
 
     @Test
     public void evaluate_INFRA_ROAD_HAM_REJECT () throws Exception {

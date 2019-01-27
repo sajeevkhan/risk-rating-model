@@ -15,7 +15,7 @@
         <modeler:editor-resource-id><![CDATA[startEvent1]]></modeler:editor-resource-id>
       </extensionElements>
     </startEvent>
-    <userTask id="managerApproval" name="Manager Approval" activiti:assignee="${approverName}">
+    <userTask id="managerApproval" name="Manager Approval" activiti:assignee="${approverUser}">
       <extensionElements>
         <activiti:formProperty id="result" name="result" type="boolean"/>
         <activiti:formProperty id="riskModelId1" name="riskModelId1" type="string"/>
@@ -79,7 +79,7 @@
     <serviceTask id="approvalMail" name="Approval Mail" activiti:type="mail">
       <extensionElements>
         <activiti:field name="to">
-          <activiti:string><![CDATA[sajeev@leanthoughts.com]]></activiti:string>
+          <activiti:expression><![CDATA[${senderUserEmail1}]]></activiti:expression>
         </activiti:field>
         <activiti:field name="from">
           <activiti:string><![CDATA[pfsriskmodel@gmail.com]]></activiti:string>
@@ -124,7 +124,7 @@
           <activiti:expression><![CDATA[PFS Risk Model Approval Request: ${projectName} - ${riskLevel}]]></activiti:expression>
         </activiti:field>
         <activiti:field name="html">
-          <activiti:expression><![CDATA[Dear ${approverName}, <br> <br>
+          <activiti:expression><![CDATA[Dear ${approverUser}, <br> <br>
 You are requested to approve the following risk model evaluation: <br> <br>
     &#009 Project Name  :&#009 ${projectName} <br>
     &#009 Phase         :&#009 ${riskLevel} <br>

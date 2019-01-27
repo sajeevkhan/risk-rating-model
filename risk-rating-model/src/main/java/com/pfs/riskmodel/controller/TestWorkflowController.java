@@ -88,7 +88,7 @@ public class TestWorkflowController {
     }
 
     @GetMapping("/tasks")
-    public ResponseEntity getTasks() {
+    public ResponseEntity getTasks(HttpServletRequest httpServletRequest) {
 
         TaskService taskService = processEngine.getTaskService();
         List<org.activiti.engine.task.Task> tasks = taskService.createTaskQuery()

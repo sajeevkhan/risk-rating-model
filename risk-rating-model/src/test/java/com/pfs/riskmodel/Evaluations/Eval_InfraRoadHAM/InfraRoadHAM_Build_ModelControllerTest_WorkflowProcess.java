@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by sajeev on 18-Dec-18.
  */
-public class InfraRoadHAM_Build_ModelControllerTest_Start_Workflow extends AbstractTest {
+public class InfraRoadHAM_Build_ModelControllerTest_WorkflowProcess extends AbstractTest {
 
     @Override
     @Before
@@ -25,33 +25,16 @@ public class InfraRoadHAM_Build_ModelControllerTest_Start_Workflow extends Abstr
 
     @Test
     public void evaluate_INFRA_ROAD_HAM () throws Exception {
+        String uri = "http://localhost:8080/api/riskModel/process?id=22&action=3";
 
-
-        String uriGet = "/api/riskModelTemplate/id/14";
-
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uriGet)
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put(uri)
                 .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+
+
 
         int status = mvcResult.getResponse().getStatus();
         assertEquals(200, status);
         String content = mvcResult.getResponse().getContentAsString();
-
-
-        System.out.println(content);
-
-
-        // START WORKFLOW
-        String uri = "/api/riskModel?action=2";
-
-
-        mvcResult = mvc.perform(MockMvcRequestBuilders.put(uri)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .content(content)).andReturn();
-
-
-        status = mvcResult.getResponse().getStatus();
-        assertEquals(200, status);
-        content = mvcResult.getResponse().getContentAsString();
 
         System.out.println("OUTPUT :   " +content);
 

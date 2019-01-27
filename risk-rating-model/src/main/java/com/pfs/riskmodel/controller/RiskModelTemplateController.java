@@ -108,10 +108,25 @@ public class RiskModelTemplateController {
 
         RiskModelTemplate riskModelTemplate = mapDTOToDomain(riskModelTemplateDTO);
 
-
         Map<String, Object> result = riskModelService.createRiskModel(riskModelTemplate,action, request);
         CheckServiceResult.checkResult(result);
 
+        riskModelTemplate = (RiskModelTemplate) result.get("RiskModel");
+        RiskModelTemplateDTO riskModelTemplateDTOResponse = mapDomainToDTO(riskModelTemplate);
+
+        return ResponseEntity.ok(riskModelTemplateDTOResponse);
+    }
+
+
+    @PutMapping("/riskModel/process")
+    public ResponseEntity updateRiskModel(@RequestParam(value = "id",required = true) Long id,
+                                          @RequestParam(value = "action",required = true) Integer action,
+                                          HttpServletRequest request) {
+
+        RiskModelTemplate riskModelTemplate= (RiskModelTemplate) riskModelTemplateRepository.findById(id).get();
+
+        Map<String, Object> result = riskModelService.createRiskModel(riskModelTemplate,action, request);
+        CheckServiceResult.checkResult(result);
 
         riskModelTemplate = (RiskModelTemplate) result.get("RiskModel");
         RiskModelTemplateDTO riskModelTemplateDTOResponse = mapDomainToDTO(riskModelTemplate);

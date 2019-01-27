@@ -26,7 +26,7 @@ public class InfraRoadHAM_Build_ModelControllerTest_Approve_Workflow extends Abs
     public void evaluate_INFRA_ROAD_HAM () throws Exception {
 
 
-        String uriGet = "/api/riskModelTemplate/id/26";
+        String uriGet = "/api/riskModelTemplate/id/24";
 
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uriGet)
                 .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
