@@ -1,18 +1,13 @@
 package com.pfs.riskmodel.service.categoricval;
 
 import com.pfs.riskmodel.businessconfig.*;
-import com.pfs.riskmodel.businessconfig.InfraRoad_Toll_BuildPhaseGrade;
 import com.pfs.riskmodel.domain.RiskModelSummary;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
-import com.pfs.riskmodel.domain.RiskRatingModifier;
 import com.pfs.riskmodel.domain.RiskType;
 import com.pfs.riskmodel.service.modelvaluator.CommonComputation;
-import com.pfs.riskmodel.service.modelvaluator.RiskParentalNotchUpEvaluator;
 import com.pfs.riskmodel.service.modelvaluator.Utils;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by sajeev on 31-Dec-18.
@@ -82,7 +77,7 @@ public class InfraRoadToll_OperationalPhase_Valuator {
 
         // Prepare Summary
         List<RiskModelSummary> riskModelSummaryList =
-                commonComputation.getBuildPhaseSummary( null,null,
+                commonComputation.getSummary( null,null,
                         projectScore,projectScoreGrade,
                         riskModelTemplate,0);
 

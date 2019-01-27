@@ -1,7 +1,6 @@
 package com.pfs.riskmodel.service.categoricval;
 
 import com.pfs.riskmodel.businessconfig.HoldingCompany_Grade;
-import com.pfs.riskmodel.businessconfig.InfraRoad_Toll_OperationalPhaseGrade;
 import com.pfs.riskmodel.businessconfig.ProjectGrade;
 import com.pfs.riskmodel.domain.RiskModelSummary;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
@@ -85,7 +84,7 @@ public class HoldingCompany_Valuator {
 
         // Prepare Summary
         List<RiskModelSummary> riskModelSummaryList =
-                commonComputation.getBuildPhaseSummary( null,
+                commonComputation.getSummary( null,
                                                         null,
                                                          postProjectIRScore,
                                                          postProjectIRGrade,

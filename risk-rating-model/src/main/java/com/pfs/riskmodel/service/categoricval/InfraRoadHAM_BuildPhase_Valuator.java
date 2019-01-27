@@ -4,17 +4,11 @@ import com.pfs.riskmodel.businessconfig.InfraRoad_HAM_BuildPhaseGrade;
 import com.pfs.riskmodel.businessconfig.ProjectGrade;
 import com.pfs.riskmodel.domain.RiskModelSummary;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
-import com.pfs.riskmodel.domain.RiskRatingModifier;
 import com.pfs.riskmodel.domain.RiskType;
 import com.pfs.riskmodel.service.modelvaluator.CommonComputation;
-import com.pfs.riskmodel.service.modelvaluator.RiskParentalNotchUpEvaluator;
 import com.pfs.riskmodel.service.modelvaluator.Utils;
-import org.springframework.lang.Nullable;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by sajeev on 31-Dec-18.
@@ -94,7 +88,7 @@ public class InfraRoadHAM_BuildPhase_Valuator {
 
         // Prepare Summary
         List<RiskModelSummary> riskModelSummaryList =
-                commonComputation.getBuildPhaseSummary(projectScore, projectIRGrade,postProjectIRScore,postProjectIRGrade,riskModelTemplate,1);
+                commonComputation.getSummary(projectScore, projectIRGrade,postProjectIRScore,postProjectIRGrade,riskModelTemplate,1);
 
         riskModelTemplate.setRiskModelSummaries(riskModelSummaryList);
         return riskModelTemplate;

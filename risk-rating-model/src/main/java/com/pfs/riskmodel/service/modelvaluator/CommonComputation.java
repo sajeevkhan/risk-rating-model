@@ -195,10 +195,11 @@ public class CommonComputation {
 
 
 
+    // Prepare Summary
     // mode = 1 for build phase
-    public List<RiskModelSummary> getBuildPhaseSummary( Double projectScore, String projectGrade,
-                                      Double postProjectScore, String postProjectGrade,
-                                      RiskModelTemplate riskModelTemplate , Integer mode ) {
+    public List<RiskModelSummary> getSummary(Double projectScore, String projectGrade,
+                                             Double postProjectScore, String postProjectGrade,
+                                             RiskModelTemplate riskModelTemplate , Integer mode ) {
 
         // Prepare Summary
         RiskModelSummary riskModelSummary = new RiskModelSummary();
@@ -210,60 +211,50 @@ public class CommonComputation {
             riskModelSummary = new RiskModelSummary();
             itemNo++;
             riskModelSummary.setItemNo(itemNo);
-            riskModelSummary.setName("Project Implementation Risk Score");
-            riskModelSummary.setValue(projectScore.toString());
-            riskModelSummaries.add(riskModelSummary);
-
-            riskModelSummary = new RiskModelSummary();
-            itemNo++;
-            riskModelSummary.setItemNo(itemNo);
-            riskModelSummary.setName(" Project Implementation Risk Grade");
-            riskModelSummary.setValue(projectGrade.toString());
+            riskModelSummary.setName("Project Implementation Risk");
+            riskModelSummary.setScore(projectScore.toString());
+            riskModelSummary.setGrade(projectGrade.toString());
             riskModelSummaries.add(riskModelSummary);
         }
 
             riskModelSummary = new RiskModelSummary();
             itemNo++;
             riskModelSummary.setItemNo(itemNo);
-            riskModelSummary.setName("Post Project Implementation Risk Score");
-            riskModelSummary.setValue(postProjectScore.toString());
+            riskModelSummary.setName("Post Project Implementation Risk");
+            riskModelSummary.setScore(postProjectScore.toString());
+            riskModelSummary.setGrade(postProjectGrade);
             riskModelSummaries.add(riskModelSummary);
 
             riskModelSummary = new RiskModelSummary();
             itemNo++;
             riskModelSummary.setItemNo(itemNo);
             riskModelSummary.setName(" Post Project Implementation Risk Grade");
-            riskModelSummary.setValue(postProjectGrade.toString());
+            riskModelSummary.setScore(postProjectGrade.toString());
             riskModelSummaries.add(riskModelSummary);
 
         riskModelSummary = new RiskModelSummary();itemNo++;
         riskModelSummary.setItemNo(itemNo);
-        riskModelSummary.setName("Overall Project Score");
-        riskModelSummary.setValue(riskModelTemplate.getScore().toString());
-        riskModelSummaries.add(riskModelSummary);
-
-        riskModelSummary = new RiskModelSummary();itemNo++;
-        riskModelSummary.setItemNo(itemNo);
-        riskModelSummary.setName("Overall Project Grade");
-        riskModelSummary.setValue(riskModelTemplate.getOverallProjectGrade());
+        riskModelSummary.setName("Overall Project Rating");
+        riskModelSummary.setScore(riskModelTemplate.getScore().toString());
+        riskModelSummary.setGrade(riskModelTemplate.getOverallProjectGrade());
         riskModelSummaries.add(riskModelSummary);
 
         riskModelSummary = new RiskModelSummary();itemNo++;
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName("Modified Project Grade");
-        riskModelSummary.setValue(riskModelTemplate.getModifiedProjectGrade());
+        riskModelSummary.setGrade(riskModelTemplate.getModifiedProjectGrade());
         riskModelSummaries.add(riskModelSummary);
 
         riskModelSummary = new RiskModelSummary();itemNo++;
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName("Grade after Parental Notchup");
-        riskModelSummary.setValue(riskModelTemplate.getFinalProjectGrade());
+        riskModelSummary.setGrade(riskModelTemplate.getFinalProjectGrade());
         riskModelSummaries.add(riskModelSummary);
 
         riskModelSummary = new RiskModelSummary();itemNo++;
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName("Final Project Grade");
-        riskModelSummary.setValue(riskModelTemplate.getFinalProjectGrade());
+        riskModelSummary.setGrade(riskModelTemplate.getFinalProjectGrade());
         riskModelSummaries.add(riskModelSummary);
 
 

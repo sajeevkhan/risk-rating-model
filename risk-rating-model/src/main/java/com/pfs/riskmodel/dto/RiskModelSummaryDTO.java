@@ -19,5 +19,7 @@ public class RiskModelSummaryDTO {
     protected Long id;
     private Integer itemNo;
     private String name;
-    private String Value;
+    private String score;
+    private String grade;
+
 }

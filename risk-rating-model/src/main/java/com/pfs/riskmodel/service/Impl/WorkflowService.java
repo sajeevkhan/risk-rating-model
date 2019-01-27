@@ -75,6 +75,9 @@ public class WorkflowService implements IWorkflowService {
 
         switch (action) {
             case 1:
+                if (httpServletRequest.getUserPrincipal() != null)
+                    riskModelTemplate.setCreatedBy(httpServletRequest.getUserPrincipal().getName());
+
                 validationResult = getWorkflowValidation(false,"Workflow.NotStarted",riskModelTemplate.getId().toString());
                 result.put("ValidationResult", validationResult);
                 riskModelTemplate.setWorkflowStatus( workflowStatusRepository.findByCode("01") );
@@ -175,6 +178,10 @@ public class WorkflowService implements IWorkflowService {
 
         variables = prepareVariables(riskModelTemplate,httpServletRequest);
 
+//        if (httpServletRequest.getUserPrincipal() != null) {
+//            riskModelTemplate.setReviewedBy(httpServletRequest.getUserPrincipal().getName());
+//        }
+
 
         runtimeService = processEngine.getRuntimeService();
         ProcessInstance processInstance = runtimeService
@@ -201,6 +208,11 @@ public class WorkflowService implements IWorkflowService {
 
         variables = prepareVariables1(riskModelTemplate,httpServletRequest);
         variables.put("result", true);
+
+        // Set Reviewer Name
+        if (httpServletRequest.getUserPrincipal() != null) {
+            riskModelTemplate.setReviewedBy(httpServletRequest.getUserPrincipal().getName());
+        }
 
         if (task == null) {
             validationResult =
@@ -232,6 +244,11 @@ public class WorkflowService implements IWorkflowService {
         Map<String, Object> variables = new HashMap<>();
         variables = prepareVariables(riskModelTemplate,httpServletRequest);
         variables.put("result", false);
+
+        // Set Reviewer Name
+        if (httpServletRequest.getUserPrincipal() != null) {
+            riskModelTemplate.setReviewedBy(httpServletRequest.getUserPrincipal().getName());
+        }
 
         if (task == null) {
             validationResult =

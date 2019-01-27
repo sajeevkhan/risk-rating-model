@@ -190,46 +190,46 @@ public class Renewables_OperationalPhase_Valuator_Backup {
         riskModelSummary = new RiskModelSummary();itemNo++;
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName("Project Implementation Risk Score");
-        riskModelSummary.setValue(projectScore.toString());
+        riskModelSummary.setScore(projectScore.toString());
         riskModelSummaries.add(riskModelSummary);
 
         riskModelSummary = new RiskModelSummary();itemNo++;
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName(" Project Implementation Risk Grade");
-        riskModelSummary.setValue(projectScoreGrade.toString());
+        riskModelSummary.setScore(projectScoreGrade.toString());
         riskModelSummaries.add(riskModelSummary);
 
 
         riskModelSummary = new RiskModelSummary();itemNo++;
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName("Overall Project Score");
-        riskModelSummary.setValue(overallProjectScore.toString());
+        riskModelSummary.setScore(overallProjectScore.toString());
         riskModelSummaries.add(riskModelSummary);
 
 
         riskModelSummary = new RiskModelSummary();itemNo++;
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName("Overall Project Grade");
-        riskModelSummary.setValue(overallProjectGrade.toString());
+        riskModelSummary.setScore(overallProjectGrade.toString());
         riskModelSummaries.add(riskModelSummary);
 
         riskModelSummary = new RiskModelSummary();itemNo++;
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName("Modified Project Grade");
-        riskModelSummary.setValue(modifiedProjectGrade.toString());
+        riskModelSummary.setScore(modifiedProjectGrade.toString());
         riskModelSummaries.add(riskModelSummary);
 
         riskModelSummary = new RiskModelSummary();itemNo++;
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName("Grade after Parental Notchup");
-        riskModelSummary.setValue(afterParentalNotchUpGrade.toString());
+        riskModelSummary.setScore(afterParentalNotchUpGrade.toString());
         riskModelSummaries.add(riskModelSummary);
 
 
         riskModelSummary = new RiskModelSummary();itemNo++;
         riskModelSummary.setItemNo(itemNo);
         riskModelSummary.setName("Final Project Grade");
-        riskModelSummary.setValue(finalProjectGrade.toString());
+        riskModelSummary.setScore(finalProjectGrade.toString());
         riskModelSummaries.add(riskModelSummary);
 
 

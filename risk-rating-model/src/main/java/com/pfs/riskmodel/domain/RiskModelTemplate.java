@@ -48,6 +48,12 @@ public class RiskModelTemplate extends AuditModel  {
     @NotNull
     private String status;
 
+    @Nullable
+    private String createdBy;
+
+    @Nullable
+    private String reviewedBy;
+
 
     @NotNull
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)

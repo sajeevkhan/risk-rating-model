@@ -29,7 +29,14 @@ public class RiskModelSummary extends AuditModel { //AggregateRoot<RiskSubFactor
     private String name;
 
     @Getter(AccessLevel.PUBLIC)
-    private String Value;
+    private String score;
+
+
+    @Getter(AccessLevel.PUBLIC)
+    private String grade;
+
+
+
 
 }
 

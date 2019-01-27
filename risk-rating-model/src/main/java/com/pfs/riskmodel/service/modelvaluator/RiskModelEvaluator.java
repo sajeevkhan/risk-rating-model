@@ -9,15 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import com.pfs.riskmodel.domain.*;
-import com.pfs.riskmodel.repository.ComputingMethodRepository;
-import com.pfs.riskmodel.repository.ScoreTypeRepository;
-import com.pfs.riskmodel.util.ValidationResult;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by sajeev on 17-Dec-18.
@@ -85,7 +78,7 @@ public class RiskModelEvaluator {
         System.out.println("  ----------------- Printing RISK MODEL Summary --------------");
 
         for (RiskModelSummary riskModelSummary: riskModelTemplate.getRiskModelSummaries()) {
-            System.out.println(riskModelSummary.getName() + " : " + riskModelSummary.getValue());
+            System.out.println(riskModelSummary.getName() + " : " + riskModelSummary.getScore());
 
         }
 

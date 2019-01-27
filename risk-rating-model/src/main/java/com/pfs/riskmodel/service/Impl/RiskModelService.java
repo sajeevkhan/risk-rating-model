@@ -4,10 +4,7 @@ import com.pfs.riskmodel.domain.ProjectRiskLevel;
 import com.pfs.riskmodel.domain.ProjectType;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
 import com.pfs.riskmodel.domain.RiskType;
-import com.pfs.riskmodel.repository.ProjectRiskLevelRepository;
-import com.pfs.riskmodel.repository.ProjectTypeRepository;
-import com.pfs.riskmodel.repository.RiskModelTemplateRepository;
-import com.pfs.riskmodel.repository.RiskTypeRepository;
+import com.pfs.riskmodel.repository.*;
 import com.pfs.riskmodel.service.IRiskModelService;
 import com.pfs.riskmodel.service.IRiskModelTemplateService;
 import com.pfs.riskmodel.service.IRiskTypeService;
@@ -55,6 +52,9 @@ public class RiskModelService implements IRiskModelService {
     @Autowired
     IWorkflowService iWorkflowService;
 
+    @Autowired
+    WorkflowStatusRepository workflowStatusRepository;
+
     @Override
     public Map<String, Object> createRiskModel(RiskModelTemplate riskModelTemplate,
                                                Integer action,
@@ -72,6 +72,12 @@ public class RiskModelService implements IRiskModelService {
         // Evaluate Risk Model
         RiskModelEvaluator riskModelEvaluator = new RiskModelEvaluator();
         riskModelEvaluator.evaluateRiskModel(riskModelTemplate);
+
+        if (httpServletRequest.getUserPrincipal() != null)
+            riskModelTemplate.setCreatedBy(httpServletRequest.getUserPrincipal().getName());
+        if (riskModelTemplate.getWorkflowStatus() == null) {
+            riskModelTemplate.setWorkflowStatus(workflowStatusRepository.findByCode("01"));
+        }
 
         riskModelTemplate =  riskModelTemplateRepository.save(riskModelTemplate);
 

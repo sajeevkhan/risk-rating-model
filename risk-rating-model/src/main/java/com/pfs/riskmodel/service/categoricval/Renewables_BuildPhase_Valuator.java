@@ -1,22 +1,14 @@
 package com.pfs.riskmodel.service.categoricval;
 
-import com.pfs.riskmodel.businessconfig.Infra_Transmission_BuildPhaseGrade;
 import com.pfs.riskmodel.businessconfig.Renewables_Grade;
 import com.pfs.riskmodel.businessconfig.ProjectGrade;
-import com.pfs.riskmodel.businessconfig.Renewables_Grade;
 import com.pfs.riskmodel.domain.RiskModelSummary;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
-import com.pfs.riskmodel.domain.RiskRatingModifier;
 import com.pfs.riskmodel.domain.RiskType;
 import com.pfs.riskmodel.service.modelvaluator.CommonComputation;
-import com.pfs.riskmodel.service.modelvaluator.RiskParentalNotchUpEvaluator;
 import com.pfs.riskmodel.service.modelvaluator.Utils;
-import org.springframework.lang.Nullable;
 
-import javax.swing.text.Document;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by sajeev on 31-Dec-18.
@@ -109,7 +101,7 @@ public class Renewables_BuildPhase_Valuator {
 
         // Prepare Summary
         List<RiskModelSummary> riskModelSummaryList =
-                commonComputation.getBuildPhaseSummary(projectScore, projectGrade.getCommonScaleGrade(),
+                commonComputation.getSummary(projectScore, projectGrade.getCommonScaleGrade(),
                                                        postProjectImplScore,postProjectImplScoreGrade,riskModelTemplate, 1);
         riskModelTemplate.setRiskModelSummaries(riskModelSummaryList);
 
