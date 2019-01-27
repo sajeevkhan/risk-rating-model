@@ -130,13 +130,36 @@ public class WorkflowService implements IWorkflowService {
 
         WorkflowAssignment workflowAssignment = getWorkFlowProcessor(riskModelTemplate.getPurpose());
 
-        variables.put("approverName", workflowAssignment.getApproverUserName());
+        variables.put("approverUser", workflowAssignment.getApproverUserName());
         variables.put("approverEmail", workflowAssignment.getApproverEmailId());
 
         return variables;
 
     }
 
+
+    private Map<String, Object> prepareVariables1(RiskModelTemplate riskModelTemplate, HttpServletRequest httpServletRequest) {
+
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("riskModelId1", riskModelTemplate.getId());
+        variables.put("projectType1", riskModelTemplate.getProjectType().getValue());
+        variables.put("riskLevel1", riskModelTemplate.getProjectRiskLevel().getValue());
+        variables.put("projectName1", riskModelTemplate.getProjectName());
+        if (httpServletRequest.getUserPrincipal() != null)
+            variables.put("senderUser1", httpServletRequest.getUserPrincipal().getName());
+        else
+            variables.put("senderUser1", "Tester User");
+        variables.put("senderUserEmail1", "sajeev@leanthoughts.com");
+
+
+        WorkflowAssignment workflowAssignment = getWorkFlowProcessor(riskModelTemplate.getPurpose());
+
+        variables.put("approverUser1", workflowAssignment.getApproverUserName());
+        variables.put("approverEmail1", workflowAssignment.getApproverEmailId());
+
+        return variables;
+
+    }
 
 
     // Trigger Workflow
@@ -155,7 +178,7 @@ public class WorkflowService implements IWorkflowService {
 
         runtimeService = processEngine.getRuntimeService();
         ProcessInstance processInstance = runtimeService
-                .startProcessInstanceByKey("RiskModelApproval_v1", variables);
+                .startProcessInstanceByKey("RiskModelApproval_v2", variables);
 
         riskModelTemplate.setProcessInstanceId(processInstance.getProcessInstanceId());
         riskModelTemplate.setWorkflowStatus( workflowStatusRepository.findByCode("02") );
@@ -176,7 +199,7 @@ public class WorkflowService implements IWorkflowService {
         Task task = taskService.createTaskQuery().processInstanceId(riskModelTemplate.getProcessInstanceId()).singleResult();
         Map<String, Object> variables = new HashMap<>();
 
-        variables = prepareVariables(riskModelTemplate,httpServletRequest);
+        variables = prepareVariables1(riskModelTemplate,httpServletRequest);
         variables.put("result", true);
 
         if (task == null) {
