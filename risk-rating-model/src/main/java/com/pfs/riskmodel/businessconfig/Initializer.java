@@ -168,7 +168,7 @@ public class Initializer implements CommandLineRunner{
               w1.setApproverEmailId("sajeev.khan@gmail.com");
               w1.setApproverUserName("SajeevG");
 
-            workflowAssignmentRepository.saveAll(Arrays.asList(w1  ));
+           // workflowAssignmentRepository.saveAll(Arrays.asList(w1  ));
             log.info("-------------------------- Added Workflow Assignments data");
         }
 
