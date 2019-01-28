@@ -1,6 +1,7 @@
 package com.pfs.riskmodel.controller;
 
 import com.pfs.riskmodel.config.ApiController;
+import com.pfs.riskmodel.domain.ProjectType;
 import com.pfs.riskmodel.domain.RiskType;
 import com.pfs.riskmodel.dto.RiskTypeDTO;
 import com.pfs.riskmodel.repository.RiskTypeRepository;
@@ -32,6 +33,8 @@ public class RiskTypeController {
 
     @Autowired
     IRiskTypeService riskTypeService;
+
+
 
 
     @GetMapping("/riskType/all")

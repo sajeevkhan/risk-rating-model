@@ -26,7 +26,7 @@ public  class EVAL_HoldingCompany_TemplateControllerTest extends AbstractTest {
 
     @Test
     public  void createRiskModelTemplate() throws Exception {
-        String uri = "/api/riskModel";
+        String uri = "/api/riskModel?action=1";
 
 
 

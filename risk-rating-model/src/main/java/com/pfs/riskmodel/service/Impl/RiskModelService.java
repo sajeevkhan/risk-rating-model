@@ -5,10 +5,7 @@ import com.pfs.riskmodel.domain.ProjectType;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
 import com.pfs.riskmodel.domain.RiskType;
 import com.pfs.riskmodel.repository.*;
-import com.pfs.riskmodel.service.IRiskModelService;
-import com.pfs.riskmodel.service.IRiskModelTemplateService;
-import com.pfs.riskmodel.service.IRiskTypeService;
-import com.pfs.riskmodel.service.IWorkflowService;
+import com.pfs.riskmodel.service.*;
 import com.pfs.riskmodel.service.modelvaluator.RiskModelEvaluator;
 import com.pfs.riskmodel.service.validator.RiskModelTemplateValidator;
 import com.pfs.riskmodel.util.ValidationResult;
@@ -55,6 +52,9 @@ public class RiskModelService implements IRiskModelService {
     @Autowired
     WorkflowStatusRepository workflowStatusRepository;
 
+    @Autowired
+    IChangeDocumentService changeDocumentService;
+
     @Override
     public Map<String, Object> createRiskModel(RiskModelTemplate riskModelTemplate,
                                                Integer action,
@@ -66,6 +66,11 @@ public class RiskModelService implements IRiskModelService {
         if (validationResult.isFailed()) {
             result.put("ValidationResult", validationResult);
             return result;
+        }
+
+        if (riskModelTemplate.getId() != null) {
+            //Compare Objects and Change Log
+            changeDocumentService.compareEntities(riskModelTemplate, riskModelTemplate.getId());
         }
 
 

@@ -51,7 +51,7 @@ public class RiskSubFactorAttributeControllerAPITest  extends AbstractTest {
     }
 
 
-    @Test
+//    @Test
     public void createRiskSubFactorAttribute() throws Exception {
         String uri = "/api/riskSubFactorAttribute";
         RiskSubFactorAttribute mockRiskSubFactorAttribute = new RiskSubFactorAttribute();

@@ -25,8 +25,7 @@ public class InfraRoadHAM_Operational_ModelControllerTest extends AbstractTest {
 
     @Test
     public void evaluate_INFRA_ROAD_HAM () throws Exception {
-        String uri = "/api/riskModel";
-
+        String uri = "/api/riskModel?action=1";
 
 
         RiskModelTemplateDTO riskModelTemplateDTO = new RiskModelTemplateDTO();

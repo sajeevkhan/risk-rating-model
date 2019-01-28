@@ -26,8 +26,7 @@ public class EVAL_TRANS_BUILD_ModelControllerTest extends AbstractTest {
 
     @Test
     public void evaluate_INFRA_TRANS () throws Exception {
-        String uri = "/api/riskModel";
-
+        String uri = "/api/riskModel?action=1";
 
 
         RiskModelTemplateDTO riskModelTemplateDTO = new RiskModelTemplateDTO();

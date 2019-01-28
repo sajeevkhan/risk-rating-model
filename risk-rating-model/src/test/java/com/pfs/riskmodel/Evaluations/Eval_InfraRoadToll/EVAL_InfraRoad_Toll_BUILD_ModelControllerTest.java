@@ -26,8 +26,7 @@ public class EVAL_InfraRoad_Toll_BUILD_ModelControllerTest extends AbstractTest 
 
     @Test
     public void evaluate_INFRA_ROAD_TOLL () throws Exception {
-        String uri = "/api/riskModel";
-
+        String uri = "/api/riskModel?action=1";
 
 
         RiskModelTemplateDTO riskModelTemplateDTO = new RiskModelTemplateDTO();

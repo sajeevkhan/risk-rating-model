@@ -31,7 +31,7 @@ public class RiskRatingModelApplicationIntegrationTests {
 	MockMvc mockMvc;
 
 
-	@Test
+	//@Test
 	public void contextLoads() throws Exception {
 
 

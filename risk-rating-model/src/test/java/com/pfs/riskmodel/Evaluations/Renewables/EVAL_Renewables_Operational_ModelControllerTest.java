@@ -26,8 +26,7 @@ public class EVAL_Renewables_Operational_ModelControllerTest extends AbstractTes
 
     @Test
     public void evaluate_REN_OP_PHASE () throws Exception {
-        String uri = "/api/riskModel";
-
+        String uri = "/api/riskModel?action=1";
 
 
         RiskModelTemplateDTO riskModelTemplateDTO = new RiskModelTemplateDTO();
