@@ -1,6 +1,6 @@
 package com.pfs.riskmodel.repository;
 
-import com.pfs.riskmodel.domain.Purpose;
+ import com.pfs.riskmodel.domain.RiskPurpose;
 import com.pfs.riskmodel.domain.WorkflowAssignment;
 import com.pfs.riskmodel.domain.WorkflowStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,5 +10,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface WorkflowAssignmentRepository extends JpaRepository<WorkflowAssignment, Long>{
 
-    WorkflowAssignment findByPurpose(Purpose purpose);
+    WorkflowAssignment findByPurpose(RiskPurpose purpose);
 }

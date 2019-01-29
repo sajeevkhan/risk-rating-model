@@ -1,11 +1,11 @@
 package com.pfs.riskmodel.service.Impl;
 
 import com.pfs.riskmodel.domain.ProjectRiskLevel;
-import com.pfs.riskmodel.domain.ProjectType;
+import com.pfs.riskmodel.domain.RiskProjectType;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
 import com.pfs.riskmodel.domain.RiskType;
 import com.pfs.riskmodel.repository.ProjectRiskLevelRepository;
-import com.pfs.riskmodel.repository.ProjectTypeRepository;
+import com.pfs.riskmodel.repository.RiskProjectTypeRepository;
 import com.pfs.riskmodel.repository.RiskModelTemplateRepository;
 import com.pfs.riskmodel.repository.RiskTypeRepository;
 import com.pfs.riskmodel.service.IRiskModelTemplateService;
@@ -43,7 +43,7 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
     RiskTypeRepository riskTypeRepository;
 
     @Autowired
-    ProjectTypeRepository projectTypeRepository;
+    RiskProjectTypeRepository riskProjectTypeRepository;
 
     @Autowired
     ProjectRiskLevelRepository projectRiskLevelRepository;
@@ -57,8 +57,8 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
 
 
 
-        ProjectType projectType =  projectTypeRepository.findByCode(projectTypeCode);
-        if (projectType == null  ) {
+        RiskProjectType riskProjectType =  riskProjectTypeRepository.findByCode(projectTypeCode);
+        if (riskProjectType == null  ) {
             validationResult.setAttributeName("ProjectType.Code");
             validationResult.setValue(null);
             validationResult.setFailed(true);
@@ -80,7 +80,7 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
         String status = "X";
         // Find Risk Model Tempalates - modelType = 1 ONLY
         List<RiskModelTemplate>  riskModelTemplates =
-                riskModelTemplateRepository.findByProjectTypeAndProjectRiskLevelAndModelTypeAndStatus(projectType,
+                riskModelTemplateRepository.findByRiskProjectTypeAndProjectRiskLevelAndModelTypeAndStatus(riskProjectType,
                                                                                           projectRiskLevel, 0,
                                                                                           status);
 
@@ -135,8 +135,8 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
 
 
         List<RiskModelTemplate> riskModelTemplatesActive =
-                riskModelTemplateRepository.findByProjectTypeAndProjectRiskLevelAndModelTypeAndStatus(
-                        riskModelTemplate.getProjectType(),
+                riskModelTemplateRepository.findByRiskProjectTypeAndProjectRiskLevelAndModelTypeAndStatus(
+                        riskModelTemplate.getRiskProjectType(),
                         riskModelTemplate.getProjectRiskLevel(),
                         0, //Find Template Models only
                         "X");
@@ -179,7 +179,7 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
         //Update Header Attribtues
         riskModelTemplateExisting.setStatus(riskModelTemplate.getStatus());
         riskModelTemplateExisting.setDescription(riskModelTemplate.getDescription());
-        riskModelTemplateExisting.setProjectType(riskModelTemplate.getProjectType());
+        riskModelTemplateExisting.setRiskProjectType(riskModelTemplate.getRiskProjectType());
         riskModelTemplateExisting.setProjectRiskLevel(riskModelTemplate.getProjectRiskLevel());
         riskModelTemplateExisting.setComputingMethod(riskModelTemplate.getComputingMethod());
         riskModelTemplateExisting.setScore(riskModelTemplate.getScore());

@@ -61,8 +61,8 @@ public class RiskModelTemplateDTO {
     "04", "Infrastrucutre Road Project - Toll "
      "05", "Holding Company"
 */
-     private String projectTypeCode;
-     private String projectTypeDescription;
+     private String riskProjectTypeCode;
+     private String riskProjectTypeDescription;
 
 
     /*

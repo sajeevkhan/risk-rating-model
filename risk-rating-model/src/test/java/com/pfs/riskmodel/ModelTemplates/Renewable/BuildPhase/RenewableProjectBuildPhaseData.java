@@ -1,7 +1,5 @@
 package com.pfs.riskmodel.ModelTemplates.Renewable.BuildPhase;
 
-import com.pfs.riskmodel.ModelTemplates.InfraTransmission.OperationalPhase.InfraTransmission_OperationalPhase_RiskModelSummary;
-import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskRatingModifiers.InfraTrans_RatingModifierDTO;
 import com.pfs.riskmodel.ModelTemplates.Renewable.ParentalNotchUp.Renewable_RiskParentalNotchUp;
 import com.pfs.riskmodel.ModelTemplates.Renewable.RiskRatingModifiers.Renewable_RatingModifierDTO;
 import com.pfs.riskmodel.ModelTemplates.Renewable.RiskTypes.RenewablePostProjectRiskTypes;
@@ -51,8 +49,8 @@ public class RenewableProjectBuildPhaseData {
         riskModelTemplateDTO.setProjectRiskLevelCode("01");
         riskModelTemplateDTO.setProjectRiskLevelDescription("Renewables Build Phase");
 
-        riskModelTemplateDTO.setProjectTypeCode("01");
-        riskModelTemplateDTO.setProjectTypeDescription("Renewables");
+        riskModelTemplateDTO.setRiskProjectTypeCode("01");
+        riskModelTemplateDTO.setRiskProjectTypeDescription("Renewables");
         riskModelTemplateDTO.setDescription("Renewables Build Phase");
         riskModelTemplateDTO.setComputingMethodCode("03");
         riskModelTemplateDTO.setComputingMethodDescription("Minimum");

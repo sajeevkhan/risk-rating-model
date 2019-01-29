@@ -44,8 +44,8 @@ public class EVAL_HoldingCompanyData {
         riskModelTemplateDTO.setProjectRiskLevelCode("01");
         riskModelTemplateDTO.setProjectRiskLevelDescription("Holding Company Risk Rating");
 
-        riskModelTemplateDTO.setProjectTypeCode("05");
-        riskModelTemplateDTO.setProjectTypeDescription("Holding Company");
+        riskModelTemplateDTO.setRiskProjectTypeCode("05");
+        riskModelTemplateDTO.setRiskProjectTypeDescription("Holding Company");
         riskModelTemplateDTO.setDescription("Holding Company Risk Rating");
         riskModelTemplateDTO.setComputingMethodCode("05");
         riskModelTemplateDTO.setComputingMethodDescription("Equals");

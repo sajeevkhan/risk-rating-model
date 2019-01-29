@@ -35,9 +35,6 @@ public class ChangeDocumentService implements IChangeDocumentService {
     RiskModelTemplateRepository riskModelTemplateRepository;
 
     @Autowired
-    PurposeRepository purposeRepository;
-
-    @Autowired
     RiskTypeRepository riskTypeRepository;
 
     @Override

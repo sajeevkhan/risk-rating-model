@@ -1,6 +1,5 @@
 package com.pfs.riskmodel.ModelTemplates.InfraTransmission.BuildPhase;
 
-import com.pfs.riskmodel.ModelTemplates.InfraRoadToll.BuildPhase.InfraRoadToll_BuildPhase_RiskModelSummary;
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskTypes.InfraTrans_PostProjectImplRiskTypes;
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskTypes.InfraTrans_ProjectImplRiskTypes;
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.ParentalNotchUp.InfraTrans_RiskParentalNotchUp;
@@ -44,8 +43,8 @@ public class InfraTransmissionBuildPhaseData {
         riskModelTemplateDTO.setProjectRiskLevelCode("01");
         riskModelTemplateDTO.setProjectRiskLevelDescription("Infrastructure Transmission Build Phase");
 
-        riskModelTemplateDTO.setProjectTypeCode("02");
-        riskModelTemplateDTO.setProjectTypeDescription("Infrastructure Transmission");
+        riskModelTemplateDTO.setRiskProjectTypeCode("02");
+        riskModelTemplateDTO.setRiskProjectTypeDescription("Infrastructure Transmission");
         riskModelTemplateDTO.setDescription("Infrastructure Transmission Build Phase");
         riskModelTemplateDTO.setComputingMethodCode("03");
         riskModelTemplateDTO.setComputingMethodDescription("Minimum"); //Minimum of PIR and PPIR

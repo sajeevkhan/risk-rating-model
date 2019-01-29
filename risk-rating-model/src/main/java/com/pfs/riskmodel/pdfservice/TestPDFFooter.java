@@ -26,12 +26,12 @@ class TestPDFFooter extends PdfPageEventHelper {
 
     Rectangle headerBox = new Rectangle(36, 54, 559, 788);
 
-    private String projectName;
-    private String loanAmount;
-    private Date ratingDate;
-    private String projectType;
-    private String riskLevelDescription;
-
+//    private String projectName;
+//    private String loanAmount;
+//    private Date ratingDate;
+//    private String projectType;
+//    private String riskLevelDescription;
+//
 
 
     private static Image getImage() throws Exception{

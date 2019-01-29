@@ -24,7 +24,7 @@ public class Initializer implements CommandLineRunner{
 
     private final ScoreTypeRepository scoreTypeRepository;
 
-    private final ProjectTypeRepository projectTypeRepository;
+    private final RiskProjectTypeRepository riskProjectTypeRepository;
 
     private final ProjectRiskLevelRepository projectRiskLevelRepository;
 
@@ -32,7 +32,7 @@ public class Initializer implements CommandLineRunner{
 
     private final RatingModifierComputingMethodRepository riskRatingComputingMethodRepository;
 
-    private final PurposeRepository purposeRepository;
+    private final RiskPurposeRepository purposeRepository;
 
     private final WorkflowStatusRepository workflowStatusRepository;
 
@@ -87,16 +87,16 @@ public class Initializer implements CommandLineRunner{
         }
 
 
-        if(projectTypeRepository.count() == 0) {
-            ProjectType  p1 = new ProjectType(null,"01", "Renewable Project");
-            ProjectType  p2 = new ProjectType(null,"02", "Infrastructure Transmission Project");
-            ProjectType  p3 = new ProjectType(null,"03", "Infrastructure Road Project – Hybrid Annuity");
-            ProjectType  p4 = new ProjectType(null,"04", "Infrastrucutre Road Project - Toll ");
-            ProjectType  p5 = new ProjectType(null,"05", "Holding Company");
+        if(riskProjectTypeRepository.count() == 0) {
+            RiskProjectType p1 = new RiskProjectType(null,"01", "Renewable Project");
+            RiskProjectType p2 = new RiskProjectType(null,"02", "Infrastructure Transmission Project");
+            RiskProjectType p3 = new RiskProjectType(null,"03", "Infrastructure Road Project – Hybrid Annuity");
+            RiskProjectType p4 = new RiskProjectType(null,"04", "Infrastrucutre Road Project - Toll ");
+            RiskProjectType p5 = new RiskProjectType(null,"05", "Holding Company");
 
 
 
-            projectTypeRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
+            riskProjectTypeRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
             log.info("-------------------------- Added project Type   data");
         }
 
@@ -125,9 +125,9 @@ public class Initializer implements CommandLineRunner{
 
         if(purposeRepository.count() == 0) {
 
-            Purpose p1 = new Purpose(null, "01", "Project Assessment");
-            Purpose p2 = new Purpose(null, "02", "Risk Assessment");
-            Purpose p3 = new Purpose(null, "03", "Monitoring");
+            RiskPurpose p1 = new RiskPurpose(null, "01", "Project Assessment");
+            RiskPurpose p2 = new RiskPurpose(null, "02", "Risk Assessment");
+            RiskPurpose p3 = new RiskPurpose(null, "03", "Monitoring");
 
 
             purposeRepository.saveAll(Arrays.asList(p1,p2,p3 ));
@@ -155,9 +155,9 @@ public class Initializer implements CommandLineRunner{
 
         if(workflowAssignmentRepository.count() == 0) {
 
-            Purpose p1 = purposeRepository.findByCode("01") ; //new Purpose(null, "01", "Project Assessment");
-            Purpose p2 = purposeRepository.findByCode("02") ; //new Purpose(null, "02", "Risk Assessment");
-            Purpose p3 = purposeRepository.findByCode("03") ; //new Purpose(null, "03", "Monitoring");
+            RiskPurpose p1 = purposeRepository.findByCode("01") ; //new Purpose(null, "01", "Project Assessment");
+            RiskPurpose p2 = purposeRepository.findByCode("02") ; //new Purpose(null, "02", "Risk Assessment");
+            RiskPurpose p3 = purposeRepository.findByCode("03") ; //new Purpose(null, "03", "Monitoring");
 
 //            WorkflowAssignment w1 = new WorkflowAssignment(null,p1,"SajeevG", "sajeev.khan@gmail.com");
 //            WorkflowAssignment w2 = new WorkflowAssignment(null,p2,"SajeevL", "sajeev@leanthoughts.com");

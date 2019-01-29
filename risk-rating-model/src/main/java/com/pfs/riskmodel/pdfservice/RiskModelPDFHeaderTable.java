@@ -72,7 +72,7 @@ public class RiskModelPDFHeaderTable {
         // Second Column - Project Type
         projectDetailsCell2 = new PdfPCell();
         projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
-        projectDetailsCell2.setPhrase(new Phrase(riskModelTemplate.getProjectType().getValue(),valueFont));
+        projectDetailsCell2.setPhrase(new Phrase(riskModelTemplate.getRiskProjectType().getValue(),valueFont));
 
         // Third Column - Loan Number Text
         projectDetailsCell3 = new PdfPCell();

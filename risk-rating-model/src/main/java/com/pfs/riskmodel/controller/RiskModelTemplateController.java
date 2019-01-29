@@ -6,7 +6,6 @@ import com.pfs.riskmodel.dto.*;
 import com.pfs.riskmodel.repository.*;
 import com.pfs.riskmodel.service.IRiskModelService;
 import com.pfs.riskmodel.service.IRiskModelTemplateService;
-import com.pfs.riskmodel.service.IRiskTypeService;
 import com.pfs.riskmodel.util.Check;
 import com.pfs.riskmodel.util.CheckServiceResult;
 import lombok.RequiredArgsConstructor;
@@ -15,10 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Id;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Created by sajeev on 15-Dec-18.
@@ -47,7 +44,7 @@ public class RiskModelTemplateController {
     ProjectRiskLevelRepository projectRiskLevelRepository;
 
     @Autowired
-    ProjectTypeRepository projectTypeRepository;
+    RiskProjectTypeRepository riskProjectTypeRepository;
 
     @Autowired
     ScoreTypeRepository scoreTypeRepository;
@@ -68,7 +65,7 @@ public class RiskModelTemplateController {
     WorkflowStatusRepository workflowStatusRepository;
 
     @Autowired
-    PurposeRepository purposeRepository;
+    RiskPurposeRepository purposeRepository;
 
     @Autowired
     IRiskModelService riskModelService;
@@ -222,6 +219,8 @@ public class RiskModelTemplateController {
         }
 
         riskModelTemplateDTO =  mapDomainToDTO(riskModelTemplate);
+
+        riskModelTemplateDTO =  mapRiskTemplateDomainToDTO(riskModelTemplateDTO);
         return ResponseEntity.ok(riskModelTemplateDTO);
     }
 
@@ -300,9 +299,9 @@ public class RiskModelTemplateController {
         riskModelTemplateDTO.setComputingMethodCode(computingMethodCode);
         riskModelTemplateDTO.setComputingMethodDescription(riskModelTemplate.getComputingMethod().getValue());
 
-        String projectTypeCode = riskModelTemplate.getProjectType().getCode();
-        riskModelTemplateDTO.setProjectTypeCode(projectTypeCode);
-        riskModelTemplateDTO.setProjectTypeDescription(riskModelTemplate.getProjectType().getValue());
+        String projectTypeCode = riskModelTemplate.getRiskProjectType().getCode();
+        riskModelTemplateDTO.setRiskProjectTypeCode(projectTypeCode);
+        riskModelTemplateDTO.setRiskProjectTypeDescription(riskModelTemplate.getRiskProjectType().getValue());
 
 
         String projectRiskLevelCode = riskModelTemplate.getProjectRiskLevel().getCode();
@@ -429,7 +428,7 @@ public class RiskModelTemplateController {
         riskModelTemplate.setModelCategory(modelCategoryRepository.findByCode(riskModelTemplateDTO.getModelCategoryCode()));
         riskModelTemplate.setComputingMethod(computingMethodRepository.findByCode(riskModelTemplateDTO.getComputingMethodCode()));
         riskModelTemplate.setProjectRiskLevel(projectRiskLevelRepository.findByCode(riskModelTemplateDTO.getProjectRiskLevelCode()));
-        riskModelTemplate.setProjectType(projectTypeRepository.findByCode(riskModelTemplateDTO.getProjectTypeCode()));
+        riskModelTemplate.setRiskProjectType(riskProjectTypeRepository.findByCode(riskModelTemplateDTO.getRiskProjectTypeCode()));
 
         riskModelTemplate = sortRiskModelTemplate(riskModelTemplate);
 
@@ -484,6 +483,60 @@ public class RiskModelTemplateController {
         riskModelTemplate.setRiskTypes(riskTypes);
 
         return riskModelTemplate;
+    }
+
+
+
+
+    /*
+   MAP Domain to DTO   */
+    private RiskModelTemplateDTO mapRiskTemplateDomainToDTO (RiskModelTemplateDTO riskModelTemplateDTO) {
+
+
+        riskModelTemplateDTO.setId(null);
+
+        for (RiskTypeDTO riskTypeDTO: riskModelTemplateDTO.getRiskTypes() ) {
+             riskTypeDTO.setId(null);
+            for (RiskComponentDTO riskComponentDTO : riskTypeDTO.getRiskComponents()) {
+                riskComponentDTO.setId(null);
+                for (RiskFactorDTO riskFactorDTO: riskComponentDTO.getRiskFactors()) {
+                    for (RiskSubFactorDTO riskSubFactorDTO: riskFactorDTO.getRiskSubFactors()) {
+                        riskSubFactorDTO.setId(null);
+                        for (RiskSubFactorAttributeDTO riskSubFactorAttributeDTO: riskSubFactorDTO.getRiskSubFactorAttributes()) {
+                            riskSubFactorAttributeDTO.setId(null);
+                        }
+                     }
+                }
+            }
+
+        }
+
+        for (RiskParentalNotchUpDTO riskParentalNotchUpDTO: riskModelTemplateDTO.getRiskParentalNotchUps()) {
+            riskParentalNotchUpDTO.setId(null);
+
+            for (RiskParentalNotchUpConditionDTO riskParentalNotchUpConditionDTO
+                                    : riskParentalNotchUpDTO.getRiskParentalConditions()) {
+                riskParentalNotchUpConditionDTO.setId(null);
+            }
+
+            for (RiskSubFactorDTO riskSubFactorDTO: riskParentalNotchUpDTO.getRiskSubFactors()) {
+                riskSubFactorDTO.setId(null);
+
+                for(RiskSubFactorAttributeDTO riskSubFactorAttributeDTO: riskSubFactorDTO.getRiskSubFactorAttributes()) {
+                    riskSubFactorAttributeDTO.setId(null);
+                }
+            }
+        }
+
+
+        for (RiskRatingModifierDTO riskRatingModifierDTO: riskModelTemplateDTO.getRiskRatingModifiers()) {
+            riskModelTemplateDTO.setId(null);
+
+
+        }
+
+        return riskModelTemplateDTO;
+
     }
 
 

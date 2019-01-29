@@ -1,7 +1,7 @@
 package com.pfs.riskmodel.service.Impl;
 
-import com.pfs.riskmodel.domain.Purpose;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
+import com.pfs.riskmodel.domain.RiskPurpose;
 import com.pfs.riskmodel.domain.WorkflowAssignment;
 import com.pfs.riskmodel.repository.WorkflowAssignmentRepository;
 import com.pfs.riskmodel.repository.WorkflowStatusRepository;
@@ -121,7 +121,7 @@ public class WorkflowService implements IWorkflowService {
 
         Map<String, Object> variables = new HashMap<>();
         variables.put("riskModelId", riskModelTemplate.getId());
-        variables.put("projectType", riskModelTemplate.getProjectType().getValue());
+        variables.put("projectType", riskModelTemplate.getRiskProjectType().getValue());
         variables.put("riskLevel", riskModelTemplate.getProjectRiskLevel().getValue());
         variables.put("projectName", riskModelTemplate.getProjectName());
         if (httpServletRequest.getUserPrincipal() != null)
@@ -145,7 +145,7 @@ public class WorkflowService implements IWorkflowService {
 
         Map<String, Object> variables = new HashMap<>();
         variables.put("riskModelId1", riskModelTemplate.getId());
-        variables.put("projectType1", riskModelTemplate.getProjectType().getValue());
+        variables.put("projectType1", riskModelTemplate.getRiskProjectType().getValue());
         variables.put("riskLevel1", riskModelTemplate.getProjectRiskLevel().getValue());
         variables.put("projectName1", riskModelTemplate.getProjectName());
         if (httpServletRequest.getUserPrincipal() != null)
@@ -270,7 +270,7 @@ public class WorkflowService implements IWorkflowService {
 
 
 
-    private WorkflowAssignment getWorkFlowProcessor (Purpose purpose) {
+    private WorkflowAssignment getWorkFlowProcessor (RiskPurpose purpose) {
         return workflowAssignmentRepository.findByPurpose(purpose);
     }
 

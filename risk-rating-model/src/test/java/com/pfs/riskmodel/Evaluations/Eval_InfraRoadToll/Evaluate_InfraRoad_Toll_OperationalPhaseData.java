@@ -4,9 +4,6 @@ import com.pfs.riskmodel.ModelTemplates.InfraRoadToll.RiskRatingModifier.InfraRo
 import com.pfs.riskmodel.ModelTemplates.InfraRoadToll.RiskTypes.InfraRoadToll_PostProjectImplRiskTypes;
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.BuildPhase.InfraTransmission_BuildPhase_RiskModelSummary;
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.ParentalNotchUp.InfraTrans_RiskParentalNotchUp;
-import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskRatingModifiers.InfraTrans_RatingModifierDTO;
-import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskTypes.InfraTrans_PostProjectImplRiskTypes;
-import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskTypes.InfraTrans_ProjectImplRiskTypes;
 import com.pfs.riskmodel.dto.*;
 
 import java.time.Instant;
@@ -45,8 +42,8 @@ public class Evaluate_InfraRoad_Toll_OperationalPhaseData {
         riskModelTemplateDTO.setProjectRiskLevelCode("02");
         riskModelTemplateDTO.setProjectRiskLevelDescription("Infrastructure Road Toll Operational Phase");
 
-        riskModelTemplateDTO.setProjectTypeCode("04");
-        riskModelTemplateDTO.setProjectTypeDescription("Infrastructure Road Toll");
+        riskModelTemplateDTO.setRiskProjectTypeCode("04");
+        riskModelTemplateDTO.setRiskProjectTypeDescription("Infrastructure Road Toll");
 
         riskModelTemplateDTO.setDescription("Infrastructure Toll Road  Operational Phase");
         riskModelTemplateDTO.setComputingMethodCode("03");

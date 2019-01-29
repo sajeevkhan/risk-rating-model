@@ -1,6 +1,5 @@
 package com.pfs.riskmodel.ModelTemplates.InfraRoadToll.BuildPhase;
 
-import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.OperationalPhase.InfraRoadHAM_OperationalPhase_RiskModelSummary;
 import com.pfs.riskmodel.ModelTemplates.InfraRoadToll.ParentalNotchUp.InfraRoadToll_RiskParentalNotchUp;
 import com.pfs.riskmodel.ModelTemplates.InfraRoadToll.RiskRatingModifier.InfraRoadToll_RatingModifierDTO;
 import com.pfs.riskmodel.ModelTemplates.InfraRoadToll.RiskTypes.InfraRoadToll_PostProjectImplRiskTypes;
@@ -43,8 +42,8 @@ public class InfraRoadToll_BuildPhaseData {
         riskModelTemplateDTO.setProjectRiskLevelCode("01");
         riskModelTemplateDTO.setProjectRiskLevelDescription("Infrastructure Road Toll Build Phase");
 
-        riskModelTemplateDTO.setProjectTypeCode("04");
-        riskModelTemplateDTO.setProjectTypeDescription("Infrastructure Road Toll");
+        riskModelTemplateDTO.setRiskProjectTypeCode("04");
+        riskModelTemplateDTO.setRiskProjectTypeDescription("Infrastructure Road Toll");
 
         riskModelTemplateDTO.setDescription("Infrastructure Road Toll Build Phase");
         riskModelTemplateDTO.setComputingMethodCode("03");

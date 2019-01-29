@@ -17,7 +17,7 @@ import javax.persistence.Id;
 @EqualsAndHashCode
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
-public class ProjectType extends AggregateRoot<ProjectType> {
+public class RiskProjectType extends AggregateRoot<RiskProjectType> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

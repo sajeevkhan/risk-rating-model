@@ -1,7 +1,7 @@
 package com.pfs.riskmodel.repository;
 
 import com.pfs.riskmodel.domain.ProjectRiskLevel;
-import com.pfs.riskmodel.domain.ProjectType;
+import com.pfs.riskmodel.domain.RiskProjectType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

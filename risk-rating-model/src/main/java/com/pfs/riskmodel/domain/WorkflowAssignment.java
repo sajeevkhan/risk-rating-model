@@ -30,7 +30,7 @@ public class WorkflowAssignment {
 
     @NotNull
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private Purpose purpose;
+    private RiskPurpose purpose;
 
     private String  approverUserName;
     private String  approverEmailId;

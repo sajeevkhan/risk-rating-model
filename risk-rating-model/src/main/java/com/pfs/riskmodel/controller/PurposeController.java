@@ -1,10 +1,8 @@
 package com.pfs.riskmodel.controller;
 
 import com.pfs.riskmodel.config.ApiController;
-import com.pfs.riskmodel.domain.ProjectType;
-import com.pfs.riskmodel.domain.Purpose;
-import com.pfs.riskmodel.repository.ProjectTypeRepository;
-import com.pfs.riskmodel.repository.PurposeRepository;
+ import com.pfs.riskmodel.domain.RiskPurpose;
+ import com.pfs.riskmodel.repository.RiskPurposeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,14 +20,14 @@ public class PurposeController {
 
 
     @Autowired
-    PurposeRepository purposeRepository;
+    RiskPurposeRepository purposeRepository;
 
 
 
     @GetMapping("/purposes")
     public ResponseEntity findAll (){
 
-        List<Purpose> purposes = new ArrayList<>();
+        List<RiskPurpose> purposes = new ArrayList<>();
         purposes= purposeRepository.findAll();
         return ResponseEntity.ok(purposes);
     }

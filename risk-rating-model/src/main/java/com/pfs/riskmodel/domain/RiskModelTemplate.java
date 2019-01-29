@@ -57,7 +57,7 @@ public class RiskModelTemplate extends AuditModel  {
 
     @NotNull
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private Purpose purpose;
+    private RiskPurpose purpose;
 
     @NotNull
     private String purposeCode;
@@ -93,7 +93,7 @@ public class RiskModelTemplate extends AuditModel  {
 */
     @NotNull
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private ProjectType projectType;
+    private RiskProjectType riskProjectType;
 
 
     /*

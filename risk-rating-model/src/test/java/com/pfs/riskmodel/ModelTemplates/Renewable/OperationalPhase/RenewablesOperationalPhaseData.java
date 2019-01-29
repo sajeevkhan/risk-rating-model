@@ -1,6 +1,5 @@
 package com.pfs.riskmodel.ModelTemplates.Renewable.OperationalPhase;
 
-import com.pfs.riskmodel.ModelTemplates.Renewable.BuildPhase.Renewable_BuildPhase_RiskModelSummary;
 import com.pfs.riskmodel.ModelTemplates.Renewable.ParentalNotchUp.Renewable_RiskParentalNotchUp;
 import com.pfs.riskmodel.ModelTemplates.Renewable.RiskRatingModifiers.Renewable_RatingModifierDTO;
 import com.pfs.riskmodel.ModelTemplates.Renewable.RiskTypes.RenewablesOperatonalRiskTypes;
@@ -43,8 +42,8 @@ public class RenewablesOperationalPhaseData {
         riskModelTemplateDTO.setProjectRiskLevelCode("02");
         riskModelTemplateDTO.setProjectRiskLevelDescription("Renewables Operational Phase");
 
-        riskModelTemplateDTO.setProjectTypeCode("01");
-        riskModelTemplateDTO.setProjectTypeDescription("Renewables");
+        riskModelTemplateDTO.setRiskProjectTypeCode("01");
+        riskModelTemplateDTO.setRiskProjectTypeDescription("Renewables");
         riskModelTemplateDTO.setDescription("Renewables Operational Phase");
         riskModelTemplateDTO.setComputingMethodCode("01");
         riskModelTemplateDTO.setComputingMethodDescription("Normal");

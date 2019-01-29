@@ -1,14 +1,11 @@
 package com.pfs.riskmodel.service.validator;
 
 import com.pfs.riskmodel.domain.*;
-import com.pfs.riskmodel.dto.RiskParentalNotchUpDTO;
 import com.pfs.riskmodel.repository.*;
 import com.pfs.riskmodel.util.ValidationResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
 
 /**
  * Created by sajeev on 17-Dec-18.
@@ -26,7 +23,7 @@ public class RiskModelTemplateValidator {
     ComputingMethodRepository computingMethodRepository;
 
     @Autowired
-    ProjectTypeRepository projectTypeRepository;
+    RiskProjectTypeRepository riskProjectTypeRepository;
 
     @Autowired
     ProjectRiskLevelRepository projectRiskLevelRepository;
@@ -117,15 +114,15 @@ public class RiskModelTemplateValidator {
             return validationResult;
         }
 
-        if (riskModelTemplate.getProjectType() == null) {
+        if (riskModelTemplate.getRiskProjectType() == null) {
             validationResult.setAttributeName("RiskModelTemplate.ProjectType");
             validationResult.setValue(null);
             validationResult.setFailed(true);
             return validationResult;
         }
         else {
-            ProjectType projectType = projectTypeRepository.findByCode(riskModelTemplate.getProjectType().getCode());
-            if (projectTypeRepository == null) {
+            RiskProjectType riskProjectType = riskProjectTypeRepository.findByCode(riskModelTemplate.getRiskProjectType().getCode());
+            if (riskProjectTypeRepository == null) {
                 validationResult.setAttributeName("RiskModelTemplate.ProjectType");
                 validationResult.setValue(null);
                 validationResult.setFailed(true);

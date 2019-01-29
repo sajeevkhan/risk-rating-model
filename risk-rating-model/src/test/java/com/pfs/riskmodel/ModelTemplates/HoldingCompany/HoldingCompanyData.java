@@ -3,7 +3,6 @@ package com.pfs.riskmodel.ModelTemplates.HoldingCompany;
 import com.pfs.riskmodel.ModelTemplates.HoldingCompany.ParentalNotchup.HC_RiskParentalNotchUp;
 import com.pfs.riskmodel.ModelTemplates.HoldingCompany.RiskRatingModifiers.HC_RatingModifierDTO;
 import com.pfs.riskmodel.ModelTemplates.HoldingCompany.RiskTypes.HoldingCompanyRiskTypes;
-import com.pfs.riskmodel.domain.RiskModelTemplate;
 import com.pfs.riskmodel.dto.*;
 
 import java.time.Instant;
@@ -45,8 +44,8 @@ public class HoldingCompanyData {
         riskModelTemplateDTO.setProjectRiskLevelCode("01");
         riskModelTemplateDTO.setProjectRiskLevelDescription("Holding Company Risk Rating");
 
-        riskModelTemplateDTO.setProjectTypeCode("05");
-        riskModelTemplateDTO.setProjectTypeDescription("Holding Company");
+        riskModelTemplateDTO.setRiskProjectTypeCode("05");
+        riskModelTemplateDTO.setRiskProjectTypeDescription("Holding Company");
         riskModelTemplateDTO.setDescription("Holding Company Risk Rating");
         riskModelTemplateDTO.setComputingMethodCode("01");
         riskModelTemplateDTO.setComputingMethodDescription("Weighted");

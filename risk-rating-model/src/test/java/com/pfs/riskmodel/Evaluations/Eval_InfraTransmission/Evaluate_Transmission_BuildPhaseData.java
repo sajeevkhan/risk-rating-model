@@ -1,7 +1,5 @@
 package com.pfs.riskmodel.Evaluations.Eval_InfraTransmission;
 
-import com.pfs.riskmodel.ModelTemplates.InfraRoadToll.RiskTypes.InfraRoadToll_PostProjectImplRiskTypes;
-import com.pfs.riskmodel.ModelTemplates.InfraRoadToll.RiskTypes.InfraRoadToll_ProjectImplRiskTypes;
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.BuildPhase.InfraTransmission_BuildPhase_RiskModelSummary;
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.ParentalNotchUp.InfraTrans_RiskParentalNotchUp;
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskRatingModifiers.InfraTrans_RatingModifierDTO;
@@ -45,8 +43,8 @@ public class Evaluate_Transmission_BuildPhaseData {
         riskModelTemplateDTO.setProjectRiskLevelCode("01"); // Build Phase
         riskModelTemplateDTO.setProjectRiskLevelDescription("Infrastructure Transmission Build Phase");
 
-        riskModelTemplateDTO.setProjectTypeCode("02");
-        riskModelTemplateDTO.setProjectTypeDescription("Infrastructure Transmission");
+        riskModelTemplateDTO.setRiskProjectTypeCode("02");
+        riskModelTemplateDTO.setRiskProjectTypeDescription("Infrastructure Transmission");
 
         riskModelTemplateDTO.setDescription("Infrastructure Transmission");
         riskModelTemplateDTO.setComputingMethodCode("03");

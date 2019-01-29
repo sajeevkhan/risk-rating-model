@@ -2,9 +2,7 @@ package com.pfs.riskmodel.controller;
 
 import com.pfs.riskmodel.config.ApiController;
 import com.pfs.riskmodel.domain.ProjectRiskLevel;
-import com.pfs.riskmodel.domain.ProjectType;
 import com.pfs.riskmodel.repository.ProjectRiskLevelRepository;
-import com.pfs.riskmodel.repository.ProjectTypeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

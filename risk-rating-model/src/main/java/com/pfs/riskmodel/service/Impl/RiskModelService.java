@@ -1,9 +1,6 @@
 package com.pfs.riskmodel.service.Impl;
 
-import com.pfs.riskmodel.domain.ProjectRiskLevel;
-import com.pfs.riskmodel.domain.ProjectType;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
-import com.pfs.riskmodel.domain.RiskType;
 import com.pfs.riskmodel.repository.*;
 import com.pfs.riskmodel.service.*;
 import com.pfs.riskmodel.service.modelvaluator.RiskModelEvaluator;
@@ -15,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +37,7 @@ public class RiskModelService implements IRiskModelService {
     RiskTypeRepository riskTypeRepository;
 
     @Autowired
-    ProjectTypeRepository projectTypeRepository;
+    RiskProjectTypeRepository riskProjectTypeRepository;
 
     @Autowired
     ProjectRiskLevelRepository projectRiskLevelRepository;
@@ -106,8 +102,8 @@ public class RiskModelService implements IRiskModelService {
 
 
         List<RiskModelTemplate> riskModelTemplatesActive =
-                riskModelTemplateRepository.findByProjectTypeAndProjectRiskLevelAndModelTypeAndStatus(
-                        riskModelTemplate.getProjectType(),
+                riskModelTemplateRepository.findByRiskProjectTypeAndProjectRiskLevelAndModelTypeAndStatus(
+                        riskModelTemplate.getRiskProjectType(),
                         riskModelTemplate.getProjectRiskLevel(),
                         1, //Find Valuations Models only
                         "X");

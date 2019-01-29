@@ -1,13 +1,8 @@
 package com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.OperationalPhase;
 
-import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.BuildPhase.InfraRoadHAM_BuildPhase_RiskModelSummary;
 import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.ParentalNotchUp.InfraRoadHAM_RiskParentalNotchUp;
 import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.RiskRatingModifier.InfraRoadHAM_RatingModifierDTO;
 import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.RiskTypes.InfraRoadHAM_PostProjectImplRiskTypes;
-import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.RiskTypes.InfraRoadHAM_ProjectImplRiskTypes;
-import com.pfs.riskmodel.ModelTemplates.InfraTransmission.ParentalNotchUp.InfraTrans_RiskParentalNotchUp;
-import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskRatingModifiers.InfraTrans_RatingModifierDTO;
-import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskTypes.InfraTrans_PostProjectImplRiskTypes;
 import com.pfs.riskmodel.dto.*;
 
 import java.time.Instant;
@@ -47,8 +42,8 @@ public class InfraRoadHAM_OperationalPhaseData {
         riskModelTemplateDTO.setProjectRiskLevelCode("02");
         riskModelTemplateDTO.setProjectRiskLevelDescription("Infrastructure Road HAM Operational Phase");
 
-        riskModelTemplateDTO.setProjectTypeCode("03");
-        riskModelTemplateDTO.setProjectTypeDescription("Infrastructure Road HAM");
+        riskModelTemplateDTO.setRiskProjectTypeCode("03");
+        riskModelTemplateDTO.setRiskProjectTypeDescription("Infrastructure Road HAM");
 
         riskModelTemplateDTO.setDescription("Infrastructure Road HAM Operational Phase");
         riskModelTemplateDTO.setComputingMethodCode("05");

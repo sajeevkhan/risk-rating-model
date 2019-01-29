@@ -4,7 +4,6 @@ import com.pfs.riskmodel.ModelTemplates.InfraTransmission.BuildPhase.InfraTransm
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.ParentalNotchUp.InfraTrans_RiskParentalNotchUp;
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskRatingModifiers.InfraTrans_RatingModifierDTO;
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskTypes.InfraTrans_PostProjectImplRiskTypes;
-import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskTypes.InfraTrans_ProjectImplRiskTypes;
 import com.pfs.riskmodel.dto.*;
 
 import java.time.Instant;
@@ -43,8 +42,8 @@ public class Evaluate_Transmission_OperationalPhaseData {
         riskModelTemplateDTO.setProjectRiskLevelCode("02"); // Operational
         riskModelTemplateDTO.setProjectRiskLevelDescription("Infrastructure Transmission Operational Phase");
 
-        riskModelTemplateDTO.setProjectTypeCode("02"); // Infra Transmission
-        riskModelTemplateDTO.setProjectTypeDescription("Infrastructure Transmission");
+        riskModelTemplateDTO.setRiskProjectTypeCode("02"); // Infra Transmission
+        riskModelTemplateDTO.setRiskProjectTypeDescription("Infrastructure Transmission");
 
         riskModelTemplateDTO.setDescription("Infrastructure Transmission Operational Phase");
         riskModelTemplateDTO.setComputingMethodCode("05");

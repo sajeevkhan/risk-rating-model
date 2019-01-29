@@ -5,11 +5,9 @@ import com.pfs.riskmodel.ModelTemplates.Renewable.ParentalNotchUp.Renewable_Risk
  import com.pfs.riskmodel.ModelTemplates.Renewable.RiskRatingModifiers.Renewable_RatingModifierDTO;
  import com.pfs.riskmodel.ModelTemplates.Renewable.RiskTypes.RenewablePostProjectRiskTypes;
 import com.pfs.riskmodel.ModelTemplates.Renewable.RiskTypes.RenewableProjectRiskTypes;
-import com.pfs.riskmodel.domain.RiskType;
-import com.pfs.riskmodel.dto.*;
-import com.pfs.riskmodel.ztemp.RiskTypes.RenewablesBuildPhasePostProjectImplementationRiskTypesData;
+ import com.pfs.riskmodel.dto.*;
 
-import java.time.Instant;
+ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,8 +44,8 @@ public class Evaluate_Renewables_BuildPhaseData {
         riskModelTemplateDTO.setProjectRiskLevelCode("01");
         riskModelTemplateDTO.setProjectRiskLevelDescription("Build Phase");
 
-        riskModelTemplateDTO.setProjectTypeCode("01");
-        riskModelTemplateDTO.setProjectTypeDescription("Renewables");
+        riskModelTemplateDTO.setRiskProjectTypeCode("01");
+        riskModelTemplateDTO.setRiskProjectTypeDescription("Renewables");
 
         riskModelTemplateDTO.setDescription("Renewables Build Phase");
         riskModelTemplateDTO.setComputingMethodCode("03");

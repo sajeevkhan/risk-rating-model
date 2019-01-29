@@ -2,12 +2,9 @@ package com.pfs.riskmodel.Evaluations.Eval_InfraRoadHAM;
 
 import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.ParentalNotchUp.InfraRoadHAM_RiskParentalNotchUp;
 import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.RiskTypes.InfraRoadHAM_PostProjectImplRiskTypes;
-import com.pfs.riskmodel.ModelTemplates.InfraTransmission.ParentalNotchUp.InfraTrans_RiskParentalNotchUp;
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskRatingModifiers.InfraTrans_RatingModifierDTO;
-import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskTypes.InfraTrans_PostProjectImplRiskTypes;
 import com.pfs.riskmodel.dto.*;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
@@ -46,8 +43,8 @@ public class Evaluate_InfraRoadHAM_OperationalPhaseData {
         riskModelTemplateDTO.setProjectRiskLevelCode("02");
         riskModelTemplateDTO.setProjectRiskLevelDescription("Infrastructure Road HAM Operational Phase");
 
-        riskModelTemplateDTO.setProjectTypeCode("03");
-        riskModelTemplateDTO.setProjectTypeDescription("Infrastructure Road HAM");
+        riskModelTemplateDTO.setRiskProjectTypeCode("03");
+        riskModelTemplateDTO.setRiskProjectTypeDescription("Infrastructure Road HAM");
 
         riskModelTemplateDTO.setDescription("Infrastructure Road HAM Operational Phase");
         riskModelTemplateDTO.setComputingMethodCode("05");

@@ -18,7 +18,7 @@ import javax.persistence.Id;
 @EqualsAndHashCode
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
-public class Purpose {
+public class RiskPurpose {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

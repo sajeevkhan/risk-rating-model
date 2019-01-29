@@ -41,8 +41,8 @@ public class InfraRoadHAM_BuildPhaseData {
         riskModelTemplateDTO.setProjectRiskLevelCode("01");
         riskModelTemplateDTO.setProjectRiskLevelDescription("Infrastructure Road HAM Build Phase");
 
-        riskModelTemplateDTO.setProjectTypeCode("03");
-        riskModelTemplateDTO.setProjectTypeDescription("Infrastructure Road HAM");
+        riskModelTemplateDTO.setRiskProjectTypeCode("03");
+        riskModelTemplateDTO.setRiskProjectTypeDescription("Infrastructure Road HAM");
 
         riskModelTemplateDTO.setDescription("Infrastructure Road HAM Build Phase");
         riskModelTemplateDTO.setComputingMethodCode("03");

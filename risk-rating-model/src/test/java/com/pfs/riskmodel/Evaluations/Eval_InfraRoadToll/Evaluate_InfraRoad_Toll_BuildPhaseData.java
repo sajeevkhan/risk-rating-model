@@ -43,8 +43,8 @@ public class Evaluate_InfraRoad_Toll_BuildPhaseData {
         riskModelTemplateDTO.setProjectRiskLevelCode("01");
         riskModelTemplateDTO.setProjectRiskLevelDescription("Infrastructure Road Toll Build Phase");
 
-        riskModelTemplateDTO.setProjectTypeCode("04");
-        riskModelTemplateDTO.setProjectTypeDescription("Infrastructure Road Toll");
+        riskModelTemplateDTO.setRiskProjectTypeCode("04");
+        riskModelTemplateDTO.setRiskProjectTypeDescription("Infrastructure Road Toll");
 
         riskModelTemplateDTO.setDescription("Infrastructure Toll Road  Build Phase");
         riskModelTemplateDTO.setComputingMethodCode("03");
