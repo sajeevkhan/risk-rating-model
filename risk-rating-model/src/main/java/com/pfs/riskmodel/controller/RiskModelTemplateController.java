@@ -520,6 +520,9 @@ public class RiskModelTemplateController {
                         for (RiskSubFactorAttributeDTO riskSubFactorAttributeDTO: riskSubFactorDTO.getRiskSubFactorAttributes()) {
                             riskSubFactorAttributeDTO.setItemNo(iRiskSubFactorAttrItemNo++);
                             riskSubFactorAttributeDTO.setId(null);
+
+
+
                         }
                      }
                 }
@@ -557,6 +560,12 @@ public class RiskModelTemplateController {
             riskRatingModifierDTO.setItemNo(iRiskRatingModifierItemNo++);
             riskRatingModifierDTO.setId(null);
 
+            Integer iRiskRatingModifierAttrItemNo = 0;
+            for (RiskRatingModifierAttributeDTO riskRatingModifierAttributeDTO: riskRatingModifierDTO.getRiskRatingModifierAttributes()) {
+                riskRatingModifierAttributeDTO.setId(null);
+                riskRatingModifierAttributeDTO.setItemNo(iRiskRatingModifierAttrItemNo);
+
+            }
 
         }
 
