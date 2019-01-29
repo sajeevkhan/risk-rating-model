@@ -2,9 +2,15 @@
     <!-- HEADER -->
     <div class="header accent below-fixed h-100" fxLayout="column" fxLayoutAlign="start">
         <div fxLayout="row" fxLayoutAlign="start" class="pl-16 pt-8" style="font-size: 25px;">
-            <span>{{ riskModelTemplate.projectName }} <br> {{riskModelTemplate.projectTypeDescription }}/ {{ riskModelTemplate.projectRiskLevelDescription }}</span>
+            <span>{{ riskModelTemplate.projectName }} <br> {{riskModelTemplate.riskProjectTypeDescription }}/ {{ riskModelTemplate.projectRiskLevelDescription }}</span>
         </div>
         <div fxLayout="row" fxLayoutAlign="end" class="pr-16">
+            <button mat-raised-button class="mr-8 mb-8" (click)="evaluateTemplate()">
+                Evaluate
+            </button>
+            <button mat-raised-button class="mr-8 mb-8" (click)="displayAsPDF()">
+                Display as PDF
+            </button>
             <button mat-raised-button class="mr-8 mb-8" (click)="evaluateTemplate()">
                 Evaluate
             </button>

@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RiskModelUIService {
 
-    constructor(private _httpClient: HttpClient) { 
+    constructor(private _httpClient: HttpClient) {
     }
 
     /**
@@ -34,5 +34,12 @@ export class RiskModelUIService {
      */
     evaluateTemplate(template: any): Observable<any> {
         return this._httpClient.post<any>('api/riskModel?action=1', template);
+    }
+
+    /**
+     * 
+     */
+    public getPurposes(): Observable<any> {
+        return this._httpClient.get<any>('api/purposes');
     }
 }

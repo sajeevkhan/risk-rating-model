@@ -4,20 +4,30 @@
             <mat-card style="margin-bottom: 15px;">
                 <div fxLayout="row">
                     <mat-form-field fxFlex>
-                        <input matInput placeholder="Project Name" [(ngModel)]="riskModelTemplate.projectName" readonly>
+                        <input matInput placeholder="Project Name" [(ngModel)]="riskModelTemplate.projectName">
                     </mat-form-field>
                     <mat-form-field fxFlex>
                         <input matInput placeholder="Loan Number" [(ngModel)]="riskModelTemplate.loanNumber" readonly>
                     </mat-form-field>
+                    <mat-form-field fxFlex>
+                        <input matInput placeholder="Risk Model Id" [(ngModel)]="riskModelTemplate.id" readonly>
+                    </mat-form-field>
                 </div>
                 <div fxLayout="row">
                     <mat-form-field fxFlex>
-                        <input matInput placeholder="Project Type" [(ngModel)]="riskModelTemplate.projectTypeDescription"
+                        <input matInput placeholder="Project Type" [(ngModel)]="riskModelTemplate.riskProjectTypeDescription"
                             readonly>
                     </mat-form-field>
                     <mat-form-field fxFlex>
                         <input matInput placeholder="Loan Amount in Crores" [(ngModel)]="riskModelTemplate.loanAmountInCrores"
                             readonly>
+                    </mat-form-field>
+                    <mat-form-field fxFlex>
+                        <mat-select placeholder="Purpose" [(ngModel)]="riskModelTemplate.purposeCode" required>
+                            <mat-option *ngFor="let purpose of purposes" [value]="purpose.code">
+                                {{ purpose.description }}
+                            </mat-option>
+                        </mat-select>
                     </mat-form-field>
                 </div>
                 <div fxLayout="row">
@@ -27,6 +37,10 @@
                     </mat-form-field>
                     <mat-form-field fxFlex>
                         <input matInput placeholder="Rating Date" [(ngModel)]="riskModelTemplate.ratingDate" readonly>
+                    </mat-form-field>
+                    <mat-form-field fxFlex>
+                        <input matInput placeholder="Workflow Status" [(ngModel)]="riskModelTemplate.workflowStatusDescription"
+                            readonly>
                     </mat-form-field>
                 </div>
             </mat-card>
@@ -113,7 +127,7 @@
                                                         </tr>
                                                         <tr *ngFor="let riskSubFactorAttribute of riskSubFactor.riskSubFactorAttributes">
                                                             <td class="column-data">
-                                                                <mat-radio-button class="example-radio-butt>on" [value]="riskSubFactorAttribute.id"
+                                                                <mat-radio-button class="example-radio-butt>on" [value]="riskSubFactorAttribute.itemNo"
                                                                     [checked]="riskSubFactorAttribute.isSelected"
                                                                     (change)="riskSubFactorSelectionChanged($event, riskSubFactor.riskSubFactorAttributes)">
                                                                 </mat-radio-button>
@@ -219,7 +233,7 @@
                                     </tr>
                                     <tr *ngFor="let riskSubFactorAttribute of riskSubFactor.riskSubFactorAttributes">
                                         <td class="column-data">
-                                            <mat-radio-button class="example-radio-button" [value]="riskSubFactorAttribute.id"
+                                            <mat-radio-button class="example-radio-button" [value]="riskSubFactorAttribute.itemNo"
                                                 [checked]="riskSubFactorAttribute.isSelected" (change)="parentalNotchUpRiskSubFactorSelectionChanged($event, riskSubFactor.riskSubFactorAttributes)">
                                             </mat-radio-button>
                                         </td>

@@ -49,10 +49,11 @@ export class EnquirySearchListComponent implements OnInit {
 
     /**
      * 
-     * @param enquiry 
+     * @param enquiry: EnquiryApplicationModel
      */
     onSelect(enquiry: EnquiryApplicationModel): void {
         this.selectedEnquiry = enquiry;
-        this._service.selectedLoanApplicationId = new BehaviorSubject(enquiry.enquiryNumber);
+        this._service.selectedLoanApplicaton = enquiry;
+        this._service.selectedLoanApplicationId = new BehaviorSubject(enquiry.loanContractId);
     }
 }

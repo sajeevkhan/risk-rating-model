@@ -1,0 +1,37 @@
+<div class="mat-table-container" style="width: 160%">
+
+    <!-- <mat-table class="enquiries-table" #table [dataSource]="dataSource" *fuseIfOnDom [@animateStagger]="{value:'50'}" fusePerfectScrollbar> -->
+    <mat-table class="evaluations-table" [dataSource]="dataSource" matSort fusePerfectScrollbar style="width: 100%;">
+
+        <!-- projectPhase Column -->
+        <ng-container matColumnDef="projectPhase">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Project Phase</mat-header-cell>
+            <mat-cell *matCellDef="let evaluation">
+                <p class="text-truncate">{{ evaluation.projectPhase }}</p>
+            </mat-cell>
+        </ng-container>
+
+        <!-- projectGrade Column -->
+        <ng-container matColumnDef="projectGrade">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Project Grade</mat-header-cell>
+            <mat-cell *matCellDef="let evaluation">
+                <p class="text-truncate">{{ evaluation.projectGrade }}</p>
+            </mat-cell>
+        </ng-container>
+
+        <!-- modifiedGrade Column -->
+        <ng-container matColumnDef="modifiedGrade">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Modified Grade</mat-header-cell>
+            <mat-cell *matCellDef="let evaluation">
+                <p class="text-truncate">{{ evaluation.modifiedGrade }}</p>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let evaluation; columns: displayedColumns;" matRipple (click)="onSelect(evaluation)"
+            [ngClass]="{'light-blue-50':evaluation === selectedEvaluation}" [@animate]="{value:'*',params:{y:'100%'}}">
+        </mat-row>
+
+    </mat-table>
+</div>

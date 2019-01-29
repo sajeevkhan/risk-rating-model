@@ -2,7 +2,7 @@
     <!-- HEADER -->
     <div class="header accent below-fixed h-100" fxLayout="column" fxLayoutAlign="start">
         <div fxLayout="row" fxLayoutAlign="start" class="pl-16 pt-8" style="font-size: 25px;">
-            Evaluations
+            Evaluations for {{ loanApplicaton.projectName }} / {{ loanApplicaton.loanContractId }} / {{ loanApplicaton.loanAmount | number:'0.2-2'}} Crores
         </div>
         <div fxLayout="row" fxLayoutAlign="end" class="pr-16">
             <button mat-raised-button class="mr-8 mb-8" (click)="newEvaluation()">
@@ -14,8 +14,7 @@
 
     <!-- CONTENT -->
     <div class="content p-16">
-        <div class="content-card mat-white-bg mat-elevation-z4" fusePerfectScrollbar style="width: 125%'">
-        </div>
+        <app-evaluation-list [evaluations]="evaluationList"></app-evaluation-list>
     </div>
     <!-- / CONTENT -->
 </div>

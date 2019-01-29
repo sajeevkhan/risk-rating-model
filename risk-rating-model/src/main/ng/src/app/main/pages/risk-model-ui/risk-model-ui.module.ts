@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { RiskModelTemplateComponent } from './risk-model-template/risk-model-template.component';
 import { MatExpansionModule, MatTabsModule, MatCardModule, MatRadioModule, MatSlideToggleModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule, MatSnackBarModule } from '@angular/material';
+import { LoanEnquiryService } from '../enquirySearch/enquiryApplication.service';
 
 const routes = [
     {
@@ -35,7 +36,8 @@ const routes = [
         RiskModelTemplateComponent
     ],
     providers: [
-        RiskModelUIService
+        RiskModelUIService,
+        LoanEnquiryService
     ]
 })
 export class RiskModelUIModule {

@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
 import { RiskModelUIService } from '../risk-model-ui.service';
 import { MatSnackBar } from '@angular/material';
+import { EnquiryApplicationModel } from 'app/main/model/enquiryApplication.model';
+import { LoanEnquiryService } from '../../enquirySearch/enquiryApplication.service';
 
 @Component({
     selector: 'app-risk-model-template',
@@ -13,17 +14,21 @@ export class RiskModelTemplateComponent implements OnInit {
     @Input()
     riskModelTemplate: any;
 
-    displayValues: FormGroup;
-
+    // The top most selected tab index.
     selectedIndex: number;
 
-    constructor(private _formBuilder: FormBuilder, private _riskModelService: RiskModelUIService, private _matSnackBar: MatSnackBar) {
+    selectedLoanApplication: EnquiryApplicationModel;
+
+    purposes: any;
+    
+    constructor(private _riskModelService: RiskModelUIService, private _matSnackBar: MatSnackBar) {
+        // Fetch purposes.
+        _riskModelService.getPurposes().subscribe(response => {
+            this.purposes = response;
+        });
     }
 
     ngOnInit(): void {
-        this.displayValues = this._formBuilder.group({
-            projectName: [this.riskModelTemplate.projectName || '']
-        });
     }
 
     /**
@@ -33,8 +38,9 @@ export class RiskModelTemplateComponent implements OnInit {
      */
     riskSubFactorSelectionChanged(event: any, riskSubFactorAttributes: any): void {
         // Change the isSelected value to true of the selected attribute only. Set others to false.
+        console.log(event);
         riskSubFactorAttributes.map(riskSubFactorAttribute => {
-            if (riskSubFactorAttribute.id === event.value) {
+            if (riskSubFactorAttribute.itemNo === event.value) {
                 riskSubFactorAttribute.isSelected = true;
             }
             else {
@@ -68,7 +74,7 @@ export class RiskModelTemplateComponent implements OnInit {
     parentalNotchUpRiskSubFactorSelectionChanged(event: any, riskSubFactorAttributes: any): void {
         // Change the isSelected value to true of the selected attribute only. Set others to false.
         riskSubFactorAttributes.map(riskSubFactorAttribute => {
-            if (riskSubFactorAttribute.id === event.value) {
+            if (riskSubFactorAttribute.itemNo === event.value) {
                 riskSubFactorAttribute.isSelected = true;
             }
             else {
@@ -82,6 +88,10 @@ export class RiskModelTemplateComponent implements OnInit {
      * 
      */
     evaluateTemplate(): void {
+        // Change modelType to 1 in case it is 0.
+        if (this.riskModelTemplate.modelType === 0) {
+            this.riskModelTemplate.modelType = 1;
+        }
         this._riskModelService.evaluateTemplate(this.riskModelTemplate).subscribe(response => {
             // Save the response.
             this.riskModelTemplate = response;

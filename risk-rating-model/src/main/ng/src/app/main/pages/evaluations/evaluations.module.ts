@@ -6,6 +6,8 @@ import { MatExpansionModule, MatInputModule, MatButtonModule, MatFormFieldModule
 import { EvaluationComponent } from './evaluations.component';
 import { EvaluationService } from './evaluations.service';
 import { NewEvaluationDialogComponent } from '../new-evaluation-dialog/new-evaluation-dialog.component';
+import { EvaluationListComponent } from './evaluation-list/evaluation-list.component';
+import { LoanEnquiryService } from '../enquirySearch/enquiryApplication.service';
 
 const routes = [
     {
@@ -32,10 +34,12 @@ const routes = [
     ],
     declarations: [
         EvaluationComponent,
-        NewEvaluationDialogComponent
+        NewEvaluationDialogComponent,
+        EvaluationListComponent
     ],
     providers: [
-        EvaluationService
+        EvaluationService,
+        LoanEnquiryService
     ],
     entryComponents: [
         NewEvaluationDialogComponent

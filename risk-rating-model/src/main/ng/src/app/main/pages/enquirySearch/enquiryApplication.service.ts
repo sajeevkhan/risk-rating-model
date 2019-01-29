@@ -1,17 +1,20 @@
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { EnquiryApplicationModel } from 'app/main/model/enquiryApplication.model';
 
 @Injectable()
 export class LoanEnquiryService {
 
     public enquirySearchList: BehaviorSubject<any>;
 
-    selectedLoanApplicationId: BehaviorSubject<string>;
+    selectedLoanApplicaton: EnquiryApplicationModel;
 
+    selectedLoanApplicationId: BehaviorSubject<string>;
+    
     /**
      * 
-     * @param _http 
+     * @param _http: HttpClient
      */
     constructor(private _http: HttpClient) {
     }
@@ -19,7 +22,7 @@ export class LoanEnquiryService {
     /**
      * searchLoanEnquiries()
      * Fetches a list of loan applications based on the request parameters.
-     * @param request
+     * @param request: any
      */
     public searchLoanEnquiries(request: any): Observable<any> {
         let str = '/api/loanApplications/search';
