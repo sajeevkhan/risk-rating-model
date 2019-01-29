@@ -555,7 +555,7 @@ public class RiskModelTemplateController {
         Integer iRiskRatingModifierItemNo = 0;
         for (RiskRatingModifierDTO riskRatingModifierDTO: riskModelTemplateDTO.getRiskRatingModifiers()) {
             riskRatingModifierDTO.setItemNo(iRiskRatingModifierItemNo++);
-            riskModelTemplateDTO.setId(null);
+            riskRatingModifierDTO.setId(null);
 
 
         }
