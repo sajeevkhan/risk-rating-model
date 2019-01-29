@@ -16,9 +16,10 @@ import { fuseConfig } from 'app/fuse-config';
 
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
-import { RiskModelUIModule } from './main/risk-model-ui/risk-model-ui.module';
 import { RiskModelLandingModule } from './main/risk-model-landing/risk-model-landing.module';
-import { EnquirySearchModule } from './main/enquirySearch/enquirySearch.module';
+import { RiskModelUIModule } from './main/pages/risk-model-ui/risk-model-ui.module';
+import { EnquirySearchModule } from './main/pages/enquirySearch/enquirySearch.module';
+import { EvaluationModule } from './main/pages/evaluations/evaluations.module';
 
 const appRoutes: Routes = [
     {
@@ -56,6 +57,7 @@ const appRoutes: Routes = [
         // App modules
         LayoutModule,
         EnquirySearchModule,
+        EvaluationModule,
         RiskModelUIModule,
         RiskModelLandingModule
     ],

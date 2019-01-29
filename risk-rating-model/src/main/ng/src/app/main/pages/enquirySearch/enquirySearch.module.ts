@@ -9,7 +9,7 @@ import { LoanEnquiryService } from './enquiryApplication.service';
 
 const routes = [
     {
-        path: 'enquiryList',
+        path: 'projects',
         component: EnquirySearchComponent
     }
 ];
