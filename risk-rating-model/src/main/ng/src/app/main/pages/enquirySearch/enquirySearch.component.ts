@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 import { LoanEnquiryService } from './enquiryApplication.service';
-import { EnquiryApplicationModel } from '../model/enquiryApplication.model';
+import { EnquiryApplicationModel } from 'app/main/model/enquiryApplication.model';
 
 @Component({
     selector: 'fuse-enquiry-search',
@@ -17,8 +16,6 @@ export class EnquirySearchComponent {
     enquirySearchForm: FormGroup;
 
     enquiryList: EnquiryApplicationModel[];
-
-    expandPanel = true;
 
     constructor(_formBuilder: FormBuilder, public _service: LoanEnquiryService, private _router: Router) {
 
@@ -48,7 +45,13 @@ export class EnquirySearchComponent {
                 enquiryApplications.push(new EnquiryApplicationModel(loanApplicationResourceModel));
             });
             this.enquiryList = enquiryApplications;
-            this.expandPanel = false;
         });
+    }
+
+    /**
+     * 
+     */
+    fetchEvaluations(): void {
+        this._router.navigate(['/evaluations', this._service.selectedLoanApplicationId.value]);
     }
 }

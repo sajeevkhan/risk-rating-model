@@ -9,7 +9,7 @@ import { MatExpansionModule, MatTabsModule, MatCardModule, MatRadioModule, MatSl
 
 const routes = [
     {
-        path: 'riskModelTemplate',
+        path: 'riskModelTemplate/:projectType/:riskLevel/:purpose',
         component: RiskModelUIComponent
     }
 ];

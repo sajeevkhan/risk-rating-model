@@ -22,7 +22,6 @@ export class LoanEnquiryService {
      * @param request
      */
     public searchLoanEnquiries(request: any): Observable<any> {
-        console.log(request);
         let str = '/api/loanApplications/search';
         str += '?projectName=' + request.partyName;
         return this._http.get<any>(str);

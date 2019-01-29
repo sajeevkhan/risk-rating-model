@@ -1,0 +1,48 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">New Evaluation</span>
+            <button mat-button class="mat-icon-button" (click)="_dialogRef.close({})">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>
+
+<div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
+    <form [formGroup]="newEvaluationForm" (ngSubmit)="fetchEvaluationTemplate()">
+        <div fxLayout="row">
+            <!-- <mat-icon class="mr-12 mt-12">important_devices</mat-icon> -->
+            <mat-form-field fxFlex>
+                <mat-select placeholder="Project Type" formControlName="projectType" required>
+                    <mat-option *ngFor="let projectType of projectTypes" [value]="projectType.code">
+                        {{ projectType.value }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row">
+            <mat-form-field fxFlex>
+                <mat-select placeholder="Risk Level" formControlName="riskLevel" required>
+                    <mat-option *ngFor="let riskLevel of riskLevels" [value]="riskLevel.code">
+                        {{ riskLevel.value }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row">
+            <mat-form-field fxFlex>
+                <mat-select placeholder="Purpose" formControlName="purpose" required>
+                    <mat-option *ngFor="let purpose of purposes" [value]="purpose.code">
+                        {{ purpose.description }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+            <button mat-raised-button type="submit" class="save-button mat-accent">
+                Submit
+            </button>
+        </div>
+    </form>
+</div>

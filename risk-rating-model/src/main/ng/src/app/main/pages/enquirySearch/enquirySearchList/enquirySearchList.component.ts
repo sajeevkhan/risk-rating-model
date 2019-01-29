@@ -53,6 +53,6 @@ export class EnquirySearchListComponent implements OnInit {
      */
     onSelect(enquiry: EnquiryApplicationModel): void {
         this.selectedEnquiry = enquiry;
-        this._service.selectedLoanApplicationId = new BehaviorSubject(enquiry.id);
+        this._service.selectedLoanApplicationId = new BehaviorSubject(enquiry.enquiryNumber);
     }
 }

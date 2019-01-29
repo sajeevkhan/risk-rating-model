@@ -1,0 +1,22 @@
+<div class="mat-table-container" style="width: 160%">
+
+    <mat-table class="evaluations-table" [dataSource]="dataSource" matSort fusePerfectScrollbar>
+
+        <!-- functionalStatus Column -->
+        <ng-container matColumnDef="functionalStatusDescription">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Functional Status</mat-header-cell>
+            <mat-cell *matCellDef="let evaluation">
+                <p class="text-truncate">{{ evaluation.functionalStatusDescription }}</p>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let evaluation; columns: displayedColumns;" class="evaluation" matRipple (click)="onSelect(evaluation)"
+            [ngClass]="{'light-blue-50':evaluation === selectedEvaluation}" [@animate]="{value:'*',params:{y:'100%'}}">
+        </mat-row>
+
+    </mat-table>
+
+    <!--mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]"></mat-paginator-->
+</div>

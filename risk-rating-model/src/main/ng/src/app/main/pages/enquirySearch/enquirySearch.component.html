@@ -1,26 +1,20 @@
-<div id="tickers" class="page-layout simple" fusePerfectScrollbar>
-
+<div class="page-layout simple right-sidebar inner-sidebar inner-scroll">
     <!-- HEADER -->
-    <div class="sub-header p-6 blue-grey-200-bg" fxLayout="row" fxLayoutAlign="space-between center">
-
-        <!-- BREADCRUMB -->
-        <div class="breadcrumb text-truncate h1 pl-24 pt-12 pb-12" fxLayout="row" fxLayoutAlign="start center"
-            *fuseIfOnDom [@animate]="{value:'*',params:{x:'50px'}}">
+    <div class="header accent below-fixed h-100" fxLayout="column" fxLayoutAlign="start">
+        <div fxLayout="row" fxLayoutAlign="start" class="pl-16 pt-8" style="font-size: 25px;">
             Search Projects
         </div>
-        <!-- / BREADCRUMB -->
-
-        <!-- TOOLBAR -->
-        <div class="toolbar" fxLayout="row" fxLayoutAlign="end">
+        <div fxLayout="row" fxLayoutAlign="end" class="pr-16">
+            <button mat-raised-button class="mr-8 mb-8" (click)="fetchEvaluations()">
+                Fetch Evaluations
+            </button>
         </div>
-        <!-- / TOOLBAR -->
-
     </div>
     <!-- / HEADER -->
 
     <!-- SEARCH PANEL -->
     <div id="loan-enquiry" class="w-100-p p-16" fxLayout="column" fusePerfectScrollbar>
-        <mat-expansion-panel [expanded]="expandPanel" hideToggle="false">
+        <mat-expansion-panel [expanded]="true" hideToggle="false">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     Project List
