@@ -495,14 +495,30 @@ public class RiskModelTemplateController {
 
         riskModelTemplateDTO.setId(null);
 
+        Integer iRiskTypeItemNo = 0;
         for (RiskTypeDTO riskTypeDTO: riskModelTemplateDTO.getRiskTypes() ) {
-             riskTypeDTO.setId(null);
+
+            riskTypeDTO.setItemNo(iRiskTypeItemNo++);
+            riskTypeDTO.setId(null);
+
+            Integer iRiskComponentItemNo = 0;
             for (RiskComponentDTO riskComponentDTO : riskTypeDTO.getRiskComponents()) {
+                riskComponentDTO.setItemNo(iRiskComponentItemNo++);
                 riskComponentDTO.setId(null);
+
+                Integer iRiskFactorItemNo = 0;
                 for (RiskFactorDTO riskFactorDTO: riskComponentDTO.getRiskFactors()) {
+                    riskFactorDTO.setId(null);
+                    riskFactorDTO.setItemNo(iRiskFactorItemNo++);
+
+                    Integer iRiskSubFactorItemNo = 0;
                     for (RiskSubFactorDTO riskSubFactorDTO: riskFactorDTO.getRiskSubFactors()) {
+                        riskFactorDTO.setItemNo(iRiskSubFactorItemNo++);
                         riskSubFactorDTO.setId(null);
+
+                        Integer iRiskSubFactorAttrItemNo = 0;
                         for (RiskSubFactorAttributeDTO riskSubFactorAttributeDTO: riskSubFactorDTO.getRiskSubFactorAttributes()) {
+                            riskSubFactorAttributeDTO.setItemNo(iRiskSubFactorAttrItemNo++);
                             riskSubFactorAttributeDTO.setId(null);
                         }
                      }
@@ -514,22 +530,31 @@ public class RiskModelTemplateController {
         for (RiskParentalNotchUpDTO riskParentalNotchUpDTO: riskModelTemplateDTO.getRiskParentalNotchUps()) {
             riskParentalNotchUpDTO.setId(null);
 
+            Integer iRiskParentalNotcuUpConditionItemNo = 0;
             for (RiskParentalNotchUpConditionDTO riskParentalNotchUpConditionDTO
                                     : riskParentalNotchUpDTO.getRiskParentalConditions()) {
+                riskParentalNotchUpConditionDTO.setItemNo(iRiskParentalNotcuUpConditionItemNo++);
                 riskParentalNotchUpConditionDTO.setId(null);
             }
 
+
+            Integer iRiskParentalNotcuUpSubFactorItemNo = 0;
             for (RiskSubFactorDTO riskSubFactorDTO: riskParentalNotchUpDTO.getRiskSubFactors()) {
                 riskSubFactorDTO.setId(null);
+                riskSubFactorDTO.setItemNo(iRiskParentalNotcuUpSubFactorItemNo++);
 
+                Integer iRiskParentalNotcuUpSubFactorAttrItemNo = 0;
                 for(RiskSubFactorAttributeDTO riskSubFactorAttributeDTO: riskSubFactorDTO.getRiskSubFactorAttributes()) {
+                    riskSubFactorAttributeDTO.setItemNo(iRiskParentalNotcuUpSubFactorAttrItemNo++);
                     riskSubFactorAttributeDTO.setId(null);
                 }
             }
         }
 
 
+        Integer iRiskRatingModifierItemNo = 0;
         for (RiskRatingModifierDTO riskRatingModifierDTO: riskModelTemplateDTO.getRiskRatingModifiers()) {
+            riskRatingModifierDTO.setItemNo(iRiskRatingModifierItemNo++);
             riskModelTemplateDTO.setId(null);
 
 
