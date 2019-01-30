@@ -10,16 +10,16 @@ import { EnquiryApplicationModel } from 'app/main/model/enquiryApplication.model
 })
 export class RiskModelTemplateComponent implements OnInit {
 
-    @Input() 
+    @Input()
     riskModelTemplate: any;
 
     // The top most selected tab index.
-    selectedIndex: number;
+    selectedIndex = 0;
 
     selectedLoanApplication: EnquiryApplicationModel;
 
     purposes: any;
-    
+
     constructor(private _riskModelService: RiskModelUIService, private _matSnackBar: MatSnackBar) {
         // Fetch purposes.
         _riskModelService.getPurposes().subscribe(response => {
@@ -28,6 +28,10 @@ export class RiskModelTemplateComponent implements OnInit {
     }
 
     ngOnInit(): void {
+    }
+
+    selectedIndexChange(val: number): void {
+        this.selectedIndex = val;
     }
 
     /**
