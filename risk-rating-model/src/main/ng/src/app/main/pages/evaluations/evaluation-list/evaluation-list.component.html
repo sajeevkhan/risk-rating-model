@@ -1,29 +1,69 @@
-<div class="mat-table-container" style="width: 160%">
+<div class="mat-table-container" style="width: 120%" fusePerfectScrollbar>
 
     <!-- <mat-table class="enquiries-table" #table [dataSource]="dataSource" *fuseIfOnDom [@animateStagger]="{value:'50'}" fusePerfectScrollbar> -->
-    <mat-table class="evaluations-table" [dataSource]="dataSource" matSort fusePerfectScrollbar style="width: 100%;">
+    <mat-table class="evaluations-table" [dataSource]="evaluations" matSort>
 
-        <!-- projectPhase Column -->
-        <ng-container matColumnDef="projectPhase">
+        <!-- ratingDate Column -->
+        <ng-container matColumnDef="ratingDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Rating Date</mat-header-cell>
+            <mat-cell *matCellDef="let evaluation">
+                <p class="text-truncate">{{ evaluation.ratingDate }}</p>
+            </mat-cell>
+        </ng-container>
+
+        <!-- workflowStatusDescription Column -->
+        <ng-container matColumnDef="workflowStatusDescription">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+            <mat-cell *matCellDef="let evaluation">
+                <p class="text-truncate">{{ evaluation.workflowStatusDescription }}</p>
+            </mat-cell>
+        </ng-container>
+
+        <!-- projectRiskLevelDescription Column -->
+        <ng-container matColumnDef="projectRiskLevelDescription">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Project Phase</mat-header-cell>
             <mat-cell *matCellDef="let evaluation">
-                <p class="text-truncate">{{ evaluation.projectPhase }}</p>
+                <p class="text-truncate">{{ evaluation.projectRiskLevelDescription }}</p>
             </mat-cell>
         </ng-container>
 
-        <!-- projectGrade Column -->
-        <ng-container matColumnDef="projectGrade">
+        <!-- purposeDescription Column -->
+        <ng-container matColumnDef="purposeDescription">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Purpose</mat-header-cell>
+            <mat-cell *matCellDef="let evaluation">
+                <p class="text-truncate">{{ evaluation.purposeDescription }}</p>
+            </mat-cell>
+        </ng-container>
+
+        <!-- overallProjectGrade Column -->
+        <ng-container matColumnDef="overallProjectGrade">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Project Grade</mat-header-cell>
             <mat-cell *matCellDef="let evaluation">
-                <p class="text-truncate">{{ evaluation.projectGrade }}</p>
+                <p class="text-truncate">{{ evaluation.overallProjectGrade }}</p>
             </mat-cell>
         </ng-container>
 
-        <!-- modifiedGrade Column -->
-        <ng-container matColumnDef="modifiedGrade">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Modified Grade</mat-header-cell>
+        <!-- modifiedProjectGrade Column -->
+        <ng-container matColumnDef="modifiedProjectGrade">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Modified Project Grade</mat-header-cell>
             <mat-cell *matCellDef="let evaluation">
-                <p class="text-truncate">{{ evaluation.modifiedGrade }}</p>
+                <p class="text-truncate">{{ evaluation.modifiedProjectGrade }}</p>
+            </mat-cell>
+        </ng-container>
+
+        <!-- afterParentalNotchUpGrade Column -->
+        <ng-container matColumnDef="afterParentalNotchUpGrade">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>After Parental Notchup</mat-header-cell>
+            <mat-cell *matCellDef="let evaluation">
+                <p class="text-truncate">{{ evaluation.afterParentalNotchUpGrade }}</p>
+            </mat-cell>
+        </ng-container>
+
+        <!-- finalProjectGrade Column -->
+        <ng-container matColumnDef="finalProjectGrade">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Final Project Grade</mat-header-cell>
+            <mat-cell *matCellDef="let evaluation">
+                <p class="text-truncate">{{ evaluation.finalProjectGrade }}</p>
             </mat-cell>
         </ng-container>
 

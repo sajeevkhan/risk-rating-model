@@ -1,19 +1,28 @@
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 
 @Injectable()
-export class EvaluationService {
+export class EvaluationService implements Resolve<any> {
 
     public evaluationList: BehaviorSubject<any>;
 
-    selectedEvaluation: BehaviorSubject<string>;
+    selectedEvaluation: BehaviorSubject<any>;
 
     /**
      * 
      * @param _http: HttpClient
      */
     constructor(private _http: HttpClient) {
+    }
+
+    /**
+     * 
+     * @param route: ActivatedRouteSnapshot
+     */
+    resolve(route: ActivatedRouteSnapshot): Observable<any> {
+        return this.fetchEvaluations(route.params['projectId']);
     }
 
     /**
@@ -43,5 +52,13 @@ export class EvaluationService {
      */
     public getPurposes(): Observable<any> {
         return this._http.get<any>('api/purposes');
+    }
+
+    /**
+     * fetchModelPDF()
+     * @param evaluation: any
+     */
+    public fetchModelPDF(evaluation: any): Observable<any> {
+        return this._http.get<any>('api/riskModelPDF?id=' + evaluation.id);
     }
 }

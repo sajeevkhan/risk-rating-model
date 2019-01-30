@@ -12,7 +12,10 @@ import { LoanEnquiryService } from '../enquirySearch/enquiryApplication.service'
 const routes = [
     {
         path: 'evaluations/:projectId',
-        component: EvaluationComponent
+        component: EvaluationComponent,
+        resolve: {
+            routeResolvedData: EvaluationService
+        }
     }
 ];
 

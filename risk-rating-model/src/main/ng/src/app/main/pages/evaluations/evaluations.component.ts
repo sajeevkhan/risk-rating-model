@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EvaluationService } from './evaluations.service';
@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material';
 import { NewEvaluationDialogComponent } from '../new-evaluation-dialog/new-evaluation-dialog.component';
 import { LoanEnquiryService } from '../enquirySearch/enquiryApplication.service';
 import { EnquiryApplicationModel } from 'app/main/model/enquiryApplication.model';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
     selector: 'fuse-evaluations',
@@ -15,30 +16,29 @@ import { EnquiryApplicationModel } from 'app/main/model/enquiryApplication.model
 })
 export class EvaluationComponent {
 
-    evaluationList: any;
-
     projectId: string;
 
     loanApplicaton: EnquiryApplicationModel;
 
-    constructor(public _service: EvaluationService, private _route: ActivatedRoute, private _router: Router,
-        private _dialog: MatDialog, private _loanEnquiryService: LoanEnquiryService) {
+    /**
+     * constructor()
+     * @param _service: EvaluationService
+     * @param _dialog: MatDialog
+     * @param _loanEnquiryService: LoanEnquiryService
+     */
+    constructor(public _service: EvaluationService, private _dialog: MatDialog, private _loanEnquiryService: LoanEnquiryService,
+        @Inject(DOCUMENT) private document: any) {
 
         //
         _service.selectedEvaluation = undefined;
 
         //
-        _route.params.subscribe(params => {
-            this.projectId = params['projectId'];
-            _service.fetchEvaluations(this.projectId).subscribe(response => {
-                this.evaluationList = response;
-                console.log(response);
-            });
-        });
-
         this.loanApplicaton = _loanEnquiryService.selectedLoanApplicaton;
     }
 
+    /**
+     * 
+     */
     newEvaluation(): void {
         // this._router.navigate(['/riskModelTemplate']);
         const dialogRef = this._dialog.open(NewEvaluationDialogComponent, {
@@ -48,5 +48,15 @@ export class EvaluationComponent {
             },
             width: '500px'
         });
+    }
+
+    /**
+     * displayAsPDF()
+     */
+    displayAsPDF(): void {
+        console.log(this.document);
+        // this._service.fetchModelPDF(this._service.selectedEvaluation.value).subscribe();
+        // this.document.location.href = 'api/riskModelPDF?id=' + this._service.selectedEvaluation.value.id;
+        (window as any).open('api/riskModelPDF?id=' + this._service.selectedEvaluation.value.id, '_blank');
     }
 }
