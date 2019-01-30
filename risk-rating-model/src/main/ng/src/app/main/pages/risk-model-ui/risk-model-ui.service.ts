@@ -37,6 +37,14 @@ export class RiskModelUIService {
     }
 
     /**
+     * approveTemplate()
+     * @param template: any
+     */
+    approveTemplate(template: any): Observable<any> {
+        return this._httpClient.post<any>('api/riskModel?action=2', template);
+    }
+
+    /**
      * 
      */
     public getPurposes(): Observable<any> {

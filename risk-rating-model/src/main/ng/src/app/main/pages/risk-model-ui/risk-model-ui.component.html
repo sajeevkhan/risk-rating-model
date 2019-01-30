@@ -5,14 +5,14 @@
             <span>{{ riskModelTemplate.projectName }} <br> {{riskModelTemplate.riskProjectTypeDescription }}/ {{ riskModelTemplate.projectRiskLevelDescription }}</span>
         </div>
         <div fxLayout="row" fxLayoutAlign="end" class="pr-16">
-            <button mat-raised-button class="mr-8 mb-8" (click)="evaluateTemplate()">
+            <button mat-raised-button class="mr-8 mb-8" (click)="sendTemplateForApproval()" [disabled]="!(riskModelTemplate.workflowStatusCode === '01' && validateTemplate())">
+                Send for Approval
+            </button>
+            <button mat-raised-button class="mr-8 mb-8" (click)="evaluateTemplate()" [disabled]="!validateTemplate()">
                 Evaluate
             </button>
-            <button mat-raised-button class="mr-8 mb-8" (click)="displayAsPDF()">
+            <button mat-raised-button class="mr-8 mb-8" (click)="displayAsPDF()" [disabled]="!riskModelTemplate.id">
                 Display as PDF
-            </button>
-            <button mat-raised-button class="mr-8 mb-8" (click)="evaluateTemplate()">
-                Evaluate
             </button>
         </div>
     </div>

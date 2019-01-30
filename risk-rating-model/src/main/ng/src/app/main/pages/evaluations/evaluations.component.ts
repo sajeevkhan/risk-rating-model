@@ -54,7 +54,6 @@ export class EvaluationComponent {
      * displayAsPDF()
      */
     displayAsPDF(): void {
-        console.log(this.document);
         // this._service.fetchModelPDF(this._service.selectedEvaluation.value).subscribe();
         // this.document.location.href = 'api/riskModelPDF?id=' + this._service.selectedEvaluation.value.id;
         (window as any).open('api/riskModelPDF?id=' + this._service.selectedEvaluation.value.id, '_blank');

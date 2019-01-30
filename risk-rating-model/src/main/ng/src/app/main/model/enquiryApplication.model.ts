@@ -19,7 +19,7 @@ export class EnquiryApplicationModel {
     /**
      * constructor()
      * Initialize the object.
-     * @param _enquiryApplication 
+     * @param _enquiryApplication: any
      */
     constructor(_enquiryApplication: any) {
         this.id = _enquiryApplication.loanApplication.id || '';

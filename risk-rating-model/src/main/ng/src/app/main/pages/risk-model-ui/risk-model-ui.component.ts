@@ -46,6 +46,11 @@ export class RiskModelUIComponent implements OnInit {
                     // Initialize purpose code.
                     response.purposeCode = this.purpose;
 
+                    // Remove spaces in response.riskParentalNotchUps[0].riskParentalConditions (value) attribute
+                    response.riskParentalNotchUps[0].riskParentalConditions.map(condition => {
+                        condition.value = '';
+                    });
+
                     // Initialize this.riskModelTemplate
                     this.riskModelTemplate = response;
                     console.log('this.riskModelTemplate', this.riskModelTemplate);
@@ -55,7 +60,7 @@ export class RiskModelUIComponent implements OnInit {
                 // Fetch riskModelId parameter from route parameters.
                 console.log('fetching existing risk model');
                 this.riskModelId = params['riskModelId'];
-                
+
                 // Fetch existing risk model and initialize this.riskModelTemplate
                 _riskModelService.getRiskModelTemplateById(this.riskModelId).subscribe(response => {
                     this.riskModelTemplate = response;
@@ -63,17 +68,66 @@ export class RiskModelUIComponent implements OnInit {
                 });
             }
         });
-
-        // _riskModelService.getRiskModelTemplateById('10').subscribe(response => {
-        //     this.riskModelTemplate = response;
-        //     console.log(response);
-        // });
     }
 
     ngOnInit(): void {
     }
 
+    /**
+     * evaluateTemplate()
+     */
     evaluateTemplate(): void {
         this.riskModelTemplateComponent.evaluateTemplate();
+    }
+
+    /**
+     * evaluateTemplate()
+     */
+    sendTemplateForApproval(): void {
+        this.riskModelTemplateComponent.sendTemplateForApproval();
+    }
+
+    /**
+     * displayAsPDF()
+     */
+    displayAsPDF(): void {
+        console.log(this.riskModelTemplate.projectName);
+        (window as any).open('api/riskModelPDF?id=' + this.riskModelTemplate.id, '_blank');
+    }
+
+    /**
+     * 
+     */
+    validateTemplate(): boolean {
+        let isTemplateValid = true;
+        if (this.riskModelTemplate === undefined) {
+            isTemplateValid = false;
+        }
+        this.riskModelTemplate.riskTypes.map(riskType => {
+            riskType.riskComponents.map(riskComponent => {
+                riskComponent.riskFactors.map(riskFactor => {
+                    if (this.checkRiskSubFactorSelection(riskFactor) === false) {
+                        isTemplateValid = false;
+                    }
+                });
+            });
+        });
+        return isTemplateValid;
+    }
+
+    /**
+     * 
+     * @param riskFactor: any
+     */
+    checkRiskSubFactorSelection(riskFactor: any): boolean {
+        let subFactorSelections = 0;
+        riskFactor.riskSubFactors.map(riskSubFactor => {
+            riskSubFactor.riskSubFactorAttributes.map(riskSubFactorAttribute => {
+                if (riskSubFactorAttribute.isSelected) {
+                    subFactorSelections++;
+                }
+            });
+        });
+        return (subFactorSelections === riskFactor.riskSubFactors.length);
     }
 }
