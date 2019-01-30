@@ -6,11 +6,14 @@
             loanApplicaton.loanAmount | number:'0.2-2'}} Crores
         </div>
         <div fxLayout="row" fxLayoutAlign="end" class="pr-16">
-            <button mat-raised-button class="mr-8 mb-8" (click)="displayAsPDF()" [disabled]="!_service.selectedEvaluation">
-                Display as PDF
-            </button>
             <button mat-raised-button class="mr-8 mb-8" (click)="newEvaluation()">
                 New Evaluation
+            </button>
+            <button mat-raised-button class="mr-8 mb-8" (click)="editEvaluation()" [disabled]="!_service.selectedEvaluation">
+                Edit Evaluation
+            </button>
+            <button mat-raised-button class="mr-8 mb-8" (click)="displayAsPDF()" [disabled]="!_service.selectedEvaluation">
+                Display as PDF
             </button>
         </div>
     </div>

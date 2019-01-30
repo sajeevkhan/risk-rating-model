@@ -68,7 +68,7 @@ export class NewEvaluationDialogComponent {
      */
     fetchEvaluationTemplate(): void {
         // Navigate to risk model template.
-        this._router.navigate(['riskModelTemplate/' + this.newEvaluationForm.value.projectType +
+        this._router.navigate(['riskModelTemplate/new/' + this.newEvaluationForm.value.projectType +
             '/' + this.newEvaluationForm.value.riskLevel + '/' + this.newEvaluationForm.value.purpose]);
         // Close the dialog.
         this._dialogRef.close();

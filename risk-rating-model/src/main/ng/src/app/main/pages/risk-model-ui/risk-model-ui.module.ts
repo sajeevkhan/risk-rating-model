@@ -10,7 +10,11 @@ import { LoanEnquiryService } from '../enquirySearch/enquiryApplication.service'
 
 const routes = [
     {
-        path: 'riskModelTemplate/:projectType/:riskLevel/:purpose',
+        path: 'riskModelTemplate/:mode/:projectType/:riskLevel/:purpose',
+        component: RiskModelUIComponent
+    },
+    {
+        path: 'riskModelTemplate/:mode/:riskModelId',
         component: RiskModelUIComponent
     }
 ];
