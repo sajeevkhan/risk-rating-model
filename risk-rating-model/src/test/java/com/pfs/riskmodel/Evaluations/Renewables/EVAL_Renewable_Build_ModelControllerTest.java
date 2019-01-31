@@ -24,7 +24,7 @@ public class EVAL_Renewable_Build_ModelControllerTest extends AbstractTest {
 
 
 
-    @Test
+    //@Test
     public void evaluate_BUILD_PHASE () throws Exception {
         String uri = "/api/riskModel?action=1";
 

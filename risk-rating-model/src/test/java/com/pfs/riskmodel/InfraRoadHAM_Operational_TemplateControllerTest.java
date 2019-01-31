@@ -23,7 +23,7 @@ public class InfraRoadHAM_Operational_TemplateControllerTest extends AbstractTes
 
 
 
-    @Test
+    //@Test
     public void createRiskModelTemplate() throws Exception {
         String uri = "/api/riskModelTemplate";
 

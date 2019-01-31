@@ -24,7 +24,7 @@ public class EVAL_InfraRoad_Toll_BUILD_ModelControllerTest extends AbstractTest 
 
 
 
-    @Test
+   // @Test
     public void evaluate_INFRA_ROAD_TOLL () throws Exception {
         String uri = "/api/riskModel?action=1";
 

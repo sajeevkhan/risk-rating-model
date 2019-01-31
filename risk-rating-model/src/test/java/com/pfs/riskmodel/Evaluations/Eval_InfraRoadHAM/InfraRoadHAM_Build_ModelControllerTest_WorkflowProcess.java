@@ -23,7 +23,7 @@ public class InfraRoadHAM_Build_ModelControllerTest_WorkflowProcess extends Abst
 
 
 
-    @Test
+   // @Test
     public void evaluate_INFRA_ROAD_HAM () throws Exception {
         String uri = "http://localhost:8080/api/riskModel/process?id=22&action=3";
 

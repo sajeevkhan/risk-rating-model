@@ -1,8 +1,7 @@
 package com.pfs.riskmodel.repository;
 
  import com.pfs.riskmodel.domain.RiskPurpose;
-import com.pfs.riskmodel.domain.ScoreType;
-import org.springframework.data.jpa.repository.JpaRepository;
+ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * Created by sajeev on 17-Dec-18.

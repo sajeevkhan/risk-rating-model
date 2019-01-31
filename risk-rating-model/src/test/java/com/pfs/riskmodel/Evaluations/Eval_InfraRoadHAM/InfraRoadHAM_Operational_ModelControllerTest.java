@@ -23,7 +23,7 @@ public class InfraRoadHAM_Operational_ModelControllerTest extends AbstractTest {
 
 
 
-    @Test
+   // @Test
     public void evaluate_INFRA_ROAD_HAM () throws Exception {
         String uri = "/api/riskModel?action=1";
 

@@ -23,7 +23,7 @@ public class EVAL_InfraRoad_Toll_Operational_ModelControllerTest extends Abstrac
 
 
 
-    @Test
+    //@Test
     public void evaluate_INFRA_ROAD_TOLL () throws Exception {
         String uri = "/api/riskModel?action=1";
 

@@ -23,11 +23,21 @@ public class RiskModelPDFBuilder {
 
     public ByteArrayOutputStream buildPdfDocument(RiskModelTemplate riskModelTemplate) throws Exception {
 
-        Document doc = new Document();
+        Document doc = new Document(PageSize.A4,36, 36, 70, 80);
+
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
-        PdfWriter.getInstance(doc,stream);
+        PdfWriter writer = PdfWriter.getInstance(doc,stream);
+
+
+        PDFFooter event = new PDFFooter( riskModelTemplate.getProjectName(),
+                riskModelTemplate.getLoanAmountInCrores().toString(),
+                riskModelTemplate.getRatingDate(),
+                riskModelTemplate.getRiskProjectType().getValue(),
+                riskModelTemplate.getProjectRiskLevel().getValue());
+
+        writer.setPageEvent(event);
 
         doc.open();
 

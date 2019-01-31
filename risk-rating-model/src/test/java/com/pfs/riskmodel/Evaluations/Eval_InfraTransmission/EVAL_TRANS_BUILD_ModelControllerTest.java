@@ -24,7 +24,7 @@ public class EVAL_TRANS_BUILD_ModelControllerTest extends AbstractTest {
 
 
 
-    @Test
+    //@Test
     public void evaluate_INFRA_TRANS () throws Exception {
         String uri = "/api/riskModel?action=1";
 

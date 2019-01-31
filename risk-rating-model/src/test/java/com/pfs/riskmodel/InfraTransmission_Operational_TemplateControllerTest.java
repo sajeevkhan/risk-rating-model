@@ -23,7 +23,7 @@ public class InfraTransmission_Operational_TemplateControllerTest extends Abstra
 
 
 
-    @Test
+   // @Test
     public void createRiskModelTemplate() throws Exception {
         String uri = "/api/riskModelTemplate";
 
