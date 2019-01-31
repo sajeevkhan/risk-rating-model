@@ -1,0 +1,31 @@
+<div class="page-layout simple right-sidebar inner-sidebar inner-scroll">
+    <!-- HEADER -->
+    <div class="header accent below-fixed h-100" fxLayout="column" fxLayoutAlign="start">
+        <div fxLayout="row" fxLayoutAlign="start" class="pl-16 pt-8" style="font-size: 25px;">
+            Inbox
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end" class="pr-16">
+            <button mat-raised-button class="mr-8 mb-8">
+                Approve
+            </button>
+            <button mat-raised-button class="mr-8 mb-8">
+                Reject
+            </button>
+            <button mat-raised-button class="mr-8 mb-8">
+                Review Model
+            </button>
+            <button mat-raised-button class="mr-8 mb-8">
+                Model as PDF
+            </button>
+        </div>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content p-16">
+        <div class="center">
+            <app-inbox-items></app-inbox-items>
+        </div>
+    </div>
+    <!-- / CONTENT -->
+</div>

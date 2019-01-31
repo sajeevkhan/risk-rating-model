@@ -20,11 +20,12 @@ import { RiskModelLandingModule } from './main/risk-model-landing/risk-model-lan
 import { RiskModelUIModule } from './main/pages/risk-model-ui/risk-model-ui.module';
 import { EnquirySearchModule } from './main/pages/enquirySearch/enquirySearch.module';
 import { EvaluationModule } from './main/pages/evaluations/evaluations.module';
+import { InboxModule } from './main/pages/inbox/inbox.module';
 
 const appRoutes: Routes = [
     {
         path      : '**',
-        redirectTo: 'riskModelList'
+        redirectTo: 'inbox'
     }
 ];
 
@@ -58,6 +59,7 @@ const appRoutes: Routes = [
         LayoutModule,
         EnquirySearchModule,
         EvaluationModule,
+        InboxModule,
         RiskModelUIModule,
         RiskModelLandingModule
     ],

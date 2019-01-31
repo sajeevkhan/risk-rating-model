@@ -110,7 +110,7 @@
                                             <div>{{ riskFactor.description }}</div>
                                         </ng-template>
 
-                                        <div fusePerfectScrollbar>
+                                        <div class="content" fusePerfectScrollbar>
                                             <!-- Risk Sub Factors & Attributes Starts Here -->
                                             <mat-card *ngFor="let riskSubFactor of riskFactor.riskSubFactors">
                                                 <mat-card-header>
@@ -122,7 +122,8 @@
                                                     <table>
                                                         <tr class="accent-100 row-header">
                                                             <th class="column-header" width="10%">Select</th>
-                                                            <th class="column-header" width="80%">Parameter Selection</th>
+                                                            <th class="column-header" width="80%">Parameter
+                                                                Selection</th>
                                                             <th class="column-header" width="10%">Score</th>
                                                         </tr>
                                                         <tr *ngFor="let riskSubFactorAttribute of riskSubFactor.riskSubFactorAttributes">
@@ -145,7 +146,6 @@
                                             </mat-card>
                                         </div>
                                         <!-- Risk Sub Factors & Attributes Ends Here -->
-
                                     </mat-tab>
                                 </mat-tab-group>
                                 <!-- Risk Factors Ends Here -->

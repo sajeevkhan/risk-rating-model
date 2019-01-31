@@ -7,7 +7,8 @@ export const locale = {
                 'TITLE': 'Sample',
                 'BADGE': '25'
             },
-            'PROJECTS': 'Projects'
+            'PROJECTS': 'Projects',
+            'INBOX': 'Inbox'
         }
     }
 };

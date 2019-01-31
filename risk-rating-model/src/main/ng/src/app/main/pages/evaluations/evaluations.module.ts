@@ -21,8 +21,8 @@ const routes = [
 
 @NgModule({
     imports: [
-        RouterModule.forChild(routes),
         CommonModule,
+        RouterModule.forChild(routes),
         FuseSharedModule,
         MatDialogModule,
         MatExpansionModule,

@@ -8,18 +8,26 @@ export const navigation: FuseNavigation[] = [
         type     : 'group',
         children : [
             {
-                id       : 'projects',
-                title    : 'Projects',
-                translate: 'NAV.PROJECTS',
+                id       : 'inbox',
+                title    : 'Inbox',
+                translate: 'NAV.INBOX',
                 type     : 'item',
                 icon     : 'email',
-                url      : '/projects'
+                url      : '/inbox'
                 /* badge    : {
                     title    : '25',
                     translate: 'NAV.SAMPLE.BADGE',
                     bg       : '#F44336',
                     fg       : '#FFFFFF'
                 } */
+            },
+            {
+                id       : 'projects',
+                title    : 'Projects',
+                translate: 'NAV.PROJECTS',
+                type     : 'item',
+                icon     : 'email',
+                url      : '/projects'
             }
         ]
     }

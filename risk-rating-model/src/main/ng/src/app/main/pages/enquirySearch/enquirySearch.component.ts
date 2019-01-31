@@ -49,6 +49,17 @@ export class EnquirySearchComponent {
     }
 
     /**
+     * searchEnquiries()
+     */
+    searchEnquiriesTest(): void {
+        const enquiryApplications = new Array<EnquiryApplicationModel>();
+        this._service.testEnquiries.map(loanApplicationResourceModel => {
+            enquiryApplications.push(new EnquiryApplicationModel(loanApplicationResourceModel));
+        });
+        this.enquiryList = enquiryApplications;
+    }
+
+    /**
      * 
      */
     fetchEvaluations(): void {
