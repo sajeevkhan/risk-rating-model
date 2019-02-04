@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * Created by sajeev on 26-Jan-19.
@@ -18,7 +19,7 @@ import javax.persistence.Id;
 @EqualsAndHashCode
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
-public class WorkflowStatus {
+public class WorkflowStatus implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

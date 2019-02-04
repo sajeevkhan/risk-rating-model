@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * Created by sajeev on 26-Jan-19.
@@ -16,7 +17,7 @@ import javax.validation.constraints.NotNull;
 @EqualsAndHashCode
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
-public class WorkflowAssignment {
+public class WorkflowAssignment implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

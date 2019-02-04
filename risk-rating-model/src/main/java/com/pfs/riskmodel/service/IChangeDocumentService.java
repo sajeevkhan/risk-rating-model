@@ -1,5 +1,6 @@
 package com.pfs.riskmodel.service;
 
+import com.pfs.riskmodel.domain.ChangeDocument;
 import com.pfs.riskmodel.domain.RiskComponent;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
 
@@ -10,6 +11,11 @@ import java.util.Map;
  */
 public interface IChangeDocumentService {
 
-    public boolean compareEntities (RiskModelTemplate riskModelTemplate, Long id);
+    public ChangeDocument createChangeDocument (RiskModelTemplate oldRiskModel,
+                                                RiskModelTemplate newRiskModel,
+                                                Integer action,
+                                                String userName);
 
+
+    public ChangeDocument saveChangeDocument (ChangeDocument changeDocument);
 }

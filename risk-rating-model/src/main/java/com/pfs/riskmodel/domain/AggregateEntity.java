@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 
 /**
  * Created by sajeev on 15-Dec-18.
@@ -22,7 +23,7 @@ import javax.persistence.MappedSuperclass;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter(AccessLevel.PUBLIC)
 @Setter(AccessLevel.PUBLIC)
-public abstract class AggregateEntity<A extends AbstractAggregateRoot<A>> extends AbstractAggregateRoot<A> {
+public abstract class AggregateEntity<A extends AbstractAggregateRoot<A>> extends AbstractAggregateRoot<A> implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

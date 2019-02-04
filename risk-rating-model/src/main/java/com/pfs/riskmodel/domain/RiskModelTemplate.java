@@ -9,6 +9,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -24,7 +28,9 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter(AccessLevel.PUBLIC)
 @Setter(AccessLevel.PUBLIC)
-public class RiskModelTemplate extends AuditModel  {
+
+
+public class RiskModelTemplate extends AuditModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -201,5 +207,27 @@ public class RiskModelTemplate extends AuditModel  {
         return riskModelSummary;
 
     }
+
+
+//    //@Override
+//    public RiskModelTemplate clone( RiskModelTemplate riskModelTemplate) throws CloneNotSupportedException {
+//        RiskModelTemplate clonedObject =  (RiskModelTemplate) super.clone();
+//
+//        clonedObject = riskModelTemplate;
+//
+//        return  clonedObject;
+//
+//    }
+
+    public RiskModelTemplate copy(RiskModelTemplate original) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("data.obj"));
+             ObjectInputStream in = new ObjectInputStream(new FileInputStream("data.obj"))) {
+            out.writeObject(original);
+            return (RiskModelTemplate) in.readObject();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }

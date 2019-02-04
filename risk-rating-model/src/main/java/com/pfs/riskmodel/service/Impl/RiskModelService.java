@@ -1,5 +1,6 @@
 package com.pfs.riskmodel.service.Impl;
 
+import com.pfs.riskmodel.domain.ChangeDocument;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
 import com.pfs.riskmodel.repository.*;
 import com.pfs.riskmodel.service.*;
@@ -58,16 +59,29 @@ public class RiskModelService implements IRiskModelService {
 
         Map<String, Object> result = new HashMap<>();
 
+        RiskModelTemplate existingRiskModel = new RiskModelTemplate();
+
+        if (riskModelTemplate.getId() != null) {
+            existingRiskModel = riskModelTemplateRepository.getOne(riskModelTemplate.getId());
+           // existingRiskModel = riskModelTemplate.copy(existingRiskModel);
+
+        }
+
+
         ValidationResult validationResult =  riskModelTemplateValidator.validate(riskModelTemplate);
         if (validationResult.isFailed()) {
             result.put("ValidationResult", validationResult);
             return result;
         }
 
-        if (riskModelTemplate.getId() != null) {
-            //Compare Objects and Change Log
-            changeDocumentService.compareEntities(riskModelTemplate, riskModelTemplate.getId());
+        String userName = new String();
+        if (httpServletRequest.getUserPrincipal() != null) {
+            userName = httpServletRequest.getUserPrincipal().getName();
+        } else {
+            userName = "Test User";
         }
+
+
 
 
         // Evaluate Risk Model
@@ -80,7 +94,18 @@ public class RiskModelService implements IRiskModelService {
             riskModelTemplate.setWorkflowStatus(workflowStatusRepository.findByCode("01"));
         }
 
+
+        // Create Change Document
+        ChangeDocument changeDocument = new ChangeDocument();
+        if (riskModelTemplate.getId() != null) {
+            changeDocument= changeDocumentService.createChangeDocument(existingRiskModel,
+                    riskModelTemplate ,
+                    action,userName);
+        }
+
         riskModelTemplate =  riskModelTemplateRepository.save(riskModelTemplate);
+
+        changeDocumentService.saveChangeDocument(changeDocument);
 
 
         //Process Action
@@ -115,6 +140,9 @@ public class RiskModelService implements IRiskModelService {
                 riskModelTemplateRepository.save(riskModelTemplateActive);
             }
         }
+
+
+
 
         return result;
 
