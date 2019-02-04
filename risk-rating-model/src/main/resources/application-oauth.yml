@@ -33,3 +33,7 @@ security:
       userAuthorizationUri: http://localhost:9999/auth/oauth/authorize
     resource:
       userInfoUri: http://localhost:9999/auth/api/me
+lmsEnquiry:
+  baseUrl: http://localhost:8080/
+server:
+  port: 8090
