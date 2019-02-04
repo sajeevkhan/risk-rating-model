@@ -28,3 +28,12 @@ lmsEnquiry:
   baseUrl: http://192.168.1.246:8080/
 server:
   port: 8090
+security:
+  oauth2:
+    client:
+      clientId: pfs-client
+      clientSecret: pfs-secret
+      accessTokenUri: http://localhost:9999/auth/oauth/token
+      userAuthorizationUri: http://localhost:9999/auth/oauth/authorize
+    resource:
+      userInfoUri: http://localhost:9999/auth/api/me
