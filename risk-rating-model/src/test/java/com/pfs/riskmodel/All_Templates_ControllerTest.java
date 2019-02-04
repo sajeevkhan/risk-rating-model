@@ -31,7 +31,7 @@ public  class All_Templates_ControllerTest extends AbstractTest {
 
 
 
-   // @Test
+    @Test
     public  void createAllTemplates() throws Exception {
 
         holdingCompanyTemplate();
