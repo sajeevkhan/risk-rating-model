@@ -20,8 +20,14 @@ public class RiskModelPDFComponentTable {
             InputStream imageStream = ClassLoader.getSystemResourceAsStream("images/Tick_Icon.png");
             System.out.println("IMAGE STREAM:" + imageStream);
 
-            Path path = Paths.get(ClassLoader.getSystemResource("images/Tick_Icon.png").toURI());
+//            Path path = Paths.get(ClassLoader.getSystemResource("images/Tick_Icon.png").toURI());
+//            Image img = Image.getInstance(path.toAbsolutePath().toString());
+
+
+            Path path = Paths.get(ClassLoader.getSystemResource("images/pfs-logo.jpg").toURI());
             Image img = Image.getInstance(path.toAbsolutePath().toString());
+
+
             img.scalePercent(50f);
             img.setAlignment(Element.ALIGN_CENTER);
             return img;
