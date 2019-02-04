@@ -97,14 +97,16 @@ public class RiskModelService implements IRiskModelService {
 
         // Create Change Document
         ChangeDocument changeDocument = new ChangeDocument();
-        if (riskModelTemplate.getId() != null) {
+        //if (riskModelTemplate.getId() != null) {
             changeDocument= changeDocumentService.createChangeDocument(existingRiskModel,
                     riskModelTemplate ,
                     action,userName);
-        }
+        //}
 
         riskModelTemplate =  riskModelTemplateRepository.save(riskModelTemplate);
 
+        if (changeDocument.getRiskModelTemplateId() == null)
+            changeDocument.setRiskModelTemplateId(riskModelTemplate.getId());
         changeDocumentService.saveChangeDocument(changeDocument);
 
 

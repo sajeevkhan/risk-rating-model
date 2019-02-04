@@ -55,7 +55,7 @@ public class ChangeDocumentService implements IChangeDocumentService {
 
         switch (action) {
             case 1:
-                if (oldRiskModel == null) {
+                if (oldRiskModel.getId() == null) {
                     changeDocument.setAction("New Valuation");
                     changeDocument = prepareCreateChangeDocument(newRiskModel,userName);
                 }
