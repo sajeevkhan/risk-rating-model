@@ -24,16 +24,17 @@ spring:
     mail-server-password: SapSap@123
     mail-server-default-from: pfsriskmodel@gmail.com
     mail-server-use-tls: true
-    
 security:
   oauth2:
     client:
-      clientId: pfs-client
-      clientSecret: pfs-secret
-      accessTokenUri: http://localhost:9999/auth/oauth/token
-      userAuthorizationUri: http://localhost:9999/auth/oauth/authorize
+      client-id: pfs-client
+      client-secret: pfs-secret
+      access-token-uri: http://localhost:9999/auth/oauth/token
+      user-authorization-uri: http://localhost:9999/auth/oauth/authorize
     resource:
-      userInfoUri: http://localhost:9999/auth/api/me
+      user-info-uri: http://localhost:9999/time
+      jwt:
+        keyValue: PfS$$$98567
 lmsEnquiry:
   baseUrl: http://192.168.1.246:8080/
 server:
