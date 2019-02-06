@@ -4,7 +4,14 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.pfs.riskmodel.domain.*;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.springframework.core.io.ClassPathResource;
 
+import javax.imageio.ImageIO;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,31 +21,33 @@ import java.nio.file.Paths;
  */
 public class RiskModelPDFComponentTable {
 
-    private static Image getImage() throws Exception {
+        private static Image getImage() throws Exception {
 
-        try {
-            InputStream imageStream = ClassLoader.getSystemResourceAsStream("images/Tick_Icon.png");
-            System.out.println("IMAGE STREAM:" + imageStream);
-
-//            Path path = Paths.get(ClassLoader.getSystemResource("images/Tick_Icon.png").toURI());
-//            Image img = Image.getInstance(path.toAbsolutePath().toString());
+            try {
+                InputStream imageStream = ClassLoader.getSystemResourceAsStream("images/Tick_Icon.png");
+                //System.out.println("IMAGE STREAM:" + imageStream);
 
 
-            Path path = Paths.get(ClassLoader.getSystemResource("images/pfs-logo.jpg").toURI());
-            Image img = Image.getInstance(path.toAbsolutePath().toString());
+                Path path = Paths.get(ClassLoader.getSystemResource("images/Tick_Icon.png").toURI());
+                Image img = Image.getInstance(path.toAbsolutePath().toString());
+
+//
+//                Path path = Paths.get(ClassLoader.getSystemResource("images/pfs-logo.jpg").toURI());
+//                Image img = Image.getInstance(path.toAbsolutePath().toString());
 
 
-            img.scalePercent(50f);
-            img.setAlignment(Element.ALIGN_CENTER);
-            return img;
+                img.scalePercent(50f);
+                img.setAlignment(Element.ALIGN_CENTER);
+                return img;
 
-        } catch (Exception ex) {
+            } catch (Exception ex) {
 
-            System.out.println("IMAGE TICK ICON NOT FOUND");
-            System.out.println(ex.getMessage());
-            return null;
+                System.out.println("IMAGE TICK ICON NOT FOUND");
+                System.out.println(ex.getMessage());
+                return null;
+            }
         }
-    }
+
 
 
     public Document buildRiskComponentTable(Document doc,
@@ -149,7 +158,7 @@ public class RiskModelPDFComponentTable {
                     projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
                     projectDetailsCell2.setHorizontalAlignment(Element.ALIGN_CENTER);
 
-                    System.out.println("Risk Sub Factor Attribtue ---    :    " + riskSubFactorAttribute.getDescription());
+                    //System.out.println("Risk Sub Factor Attribtue ---    :    " + riskSubFactorAttribute.getDescription());
                     if (riskSubFactorAttribute.getIsSelected())
                         projectDetailsCell2.setPhrase(new Phrase(riskSubFactorAttribute.getScore().toString(), selectedValueFont));
                     else

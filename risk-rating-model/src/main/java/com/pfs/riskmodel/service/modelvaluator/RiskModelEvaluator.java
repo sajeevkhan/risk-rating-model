@@ -78,7 +78,8 @@ public class RiskModelEvaluator {
         System.out.println("  ----------------- Printing RISK MODEL Summary --------------");
 
         for (RiskModelSummary riskModelSummary: riskModelTemplate.getRiskModelSummaries()) {
-            System.out.println(riskModelSummary.getName() + " : " + riskModelSummary.getScore());
+            System.out.println(riskModelSummary.getName() + " SCORE: " + riskModelSummary.getScore() + "  GRADE: " + riskModelSummary.getGrade());
+
 
         }
 

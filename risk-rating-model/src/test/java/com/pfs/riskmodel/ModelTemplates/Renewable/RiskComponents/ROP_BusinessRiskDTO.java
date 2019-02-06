@@ -119,7 +119,7 @@ public class ROP_BusinessRiskDTO {
                 "\n" +
                 "OR" +
                 "\n Over dues not more than 30 days but less than 15 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)"));
-        riskSubFactorAttributes.add(new RiskAttribute(10D,"Listed off taker & long term investment credit rating not below BBB+ (quantum ≥ 50% of project capacity): Off taker is Group Captive/Open access consumers " +
+        riskSubFactorAttributes.add(new RiskAttribute(10D,"Listed off taker & long term investment credit rating not below BBB+ (quantum >= 50% of project capacity): Off taker is Group Captive/Open access consumers " +
                 "\n" +
                 "OR" +
                 "\nOver dues not more than 15 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)"));

@@ -106,7 +106,7 @@ public class Renewable_RiskParentalNotchUp {
         riskParentalNotchUpConditionDTO.setCategory(4);  //4 - Is Parent's Rating Better Than Borrower's Rating
         riskParentalNotchUpConditionDTO.setDescription("The parent’s rating is better than the borrower’s rating");
         riskParentalNotchUpConditionDTO.setValueType('0');
-        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
+        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('N');
         riskParentalNotchUpConditionDTO.setValue(" ");
         riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('0');
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);

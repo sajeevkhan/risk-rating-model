@@ -95,7 +95,7 @@ public class ROP_FinancialRiskDTO {
         RiskSubFactorDTO minimumDSCRBuildPhaseDTO = new RiskSubFactorDTO();
         minimumDSCRBuildPhaseDTO.setId(null);
         minimumDSCRBuildPhaseDTO.setItemNo(2);
-        minimumDSCRBuildPhaseDTO.setDescription("Minimum DSCR - Build Phase (Ratio) ");
+        minimumDSCRBuildPhaseDTO.setDescription("Minimum DSCR (Ratio) ");
         minimumDSCRBuildPhaseDTO.setWeightage(0.2353);
         minimumDSCRBuildPhaseDTO.setScore(0D);
         minimumDSCRBuildPhaseDTO.setScoreTypeCode("01");
@@ -221,8 +221,8 @@ public class ROP_FinancialRiskDTO {
         riskSubFactorAttributes.add(new RiskAttribute(1.00D, "Payment structure and liquidity maintained (cash surplus to service debt) is sufficient for cumulative lean months payment"));
         riskSubFactorAttributes.add(new RiskAttribute(0.90D,"Liquidity maintained (cash surplus to service debt) is sufficient only for 2-3 months of cumulative lean months payment; whereas payment is adversely structure"));
         riskSubFactorAttributes.add(new RiskAttribute(0.75D,"Large bullet payment with no firm policy on maintaining liquidity buffer. Back-ended payment, however no current payment issues envisaged"));
-        riskSubFactorAttributes.add(new RiskAttribute(0.25D,"Monthly payment however no liquidity buffer maintained for lean season"));
         riskSubFactorAttributes.add(new RiskAttribute(0.50D,"Bullet payment and no sufficient liquidity buffer"));
+        riskSubFactorAttributes.add(new RiskAttribute(0.25D,"Monthly payment however no liquidity buffer maintained for lean season"));
 
         List<RiskSubFactorAttributeDTO>  riskSubFactorAttributeDTOS6 =   riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
         repaymentStructureDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS6);

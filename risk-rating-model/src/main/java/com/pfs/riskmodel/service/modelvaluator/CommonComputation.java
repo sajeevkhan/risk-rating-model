@@ -225,12 +225,12 @@ public class CommonComputation {
             riskModelSummary.setGrade(postProjectGrade);
             riskModelSummaries.add(riskModelSummary);
 
-            riskModelSummary = new RiskModelSummary();
-            itemNo++;
-            riskModelSummary.setItemNo(itemNo);
-            riskModelSummary.setName(" Post Project Implementation Risk Grade");
-            riskModelSummary.setScore(postProjectGrade.toString());
-            riskModelSummaries.add(riskModelSummary);
+//            riskModelSummary = new RiskModelSummary();
+//            itemNo++;
+//            riskModelSummary.setItemNo(itemNo);
+//            riskModelSummary.setName(" Post Project Implementation Risk Grade");
+//            riskModelSummary.setScore(postProjectGrade.toString());
+//            riskModelSummaries.add(riskModelSummary);
 
         riskModelSummary = new RiskModelSummary();itemNo++;
         riskModelSummary.setItemNo(itemNo);

@@ -129,9 +129,9 @@ public class ChangeDocumentService implements IChangeDocumentService {
         changeDocument.setChangeDocumentItems(changeDocumentItems);
 
 
-        for (ChangeDocumentItem changeDocumentItem: changeDocumentItems) {
-            System.out.println(changeDocumentItem.toString());
-        }
+//        for (ChangeDocumentItem changeDocumentItem: changeDocumentItems) {
+//            System.out.println(changeDocumentItem.toString());
+//        }
 
         return changeDocument;
     }
@@ -140,14 +140,14 @@ public class ChangeDocumentService implements IChangeDocumentService {
     private List<ChangeDocumentItem> prepareChangeDocumentItems(Diff diff, List<ChangeDocumentItem> changeDocumentItems) {
 
         //List<ChangeDocumentItem> changeDocumentItems = new ArrayList<>();
-
-        for (Change change: diff.getChanges()) {
-
-            System.out.println(change.getAffectedGlobalId());
-            System.out.println(change.getAffectedObject());
-            System.out.println(change.getCommitMetadata());
-
-        }
+//
+//        for (Change change: diff.getChanges()) {
+//
+//            System.out.println(change.getAffectedGlobalId());
+//            System.out.println(change.getAffectedObject());
+//            System.out.println(change.getCommitMetadata());
+//
+//        }
 
         int i = changeDocumentItems.size() + 1;
         for (ValueChange change: diff.getChangesByType(ValueChange.class)) {
@@ -181,7 +181,7 @@ public class ChangeDocumentService implements IChangeDocumentService {
     private Map<String, String>    getObjectDetails(String className, Object object ) {
 
         Object objectParsed = new Object();
-        System.out.println(className);
+        //System.out.println(className);
 
         Map<String, String> result = new HashMap<>();
 
@@ -221,7 +221,7 @@ public class ChangeDocumentService implements IChangeDocumentService {
 
         } catch ( Exception ex) {
 
-            System.out.println(className);
+            //System.out.println(className);
         }
              return null;
     }

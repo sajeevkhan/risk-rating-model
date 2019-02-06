@@ -24,7 +24,7 @@ public class RPP_BusinessRiskComponentDTO {
         businessRiskComponentDTO.setId(null);
         businessRiskComponentDTO.setItemNo(1);
         businessRiskComponentDTO.setDescription("Business Risk");
-        businessRiskComponentDTO.setWeightage(0.280D);
+        businessRiskComponentDTO.setWeightage(0.320D);
         businessRiskComponentDTO.setComputingMethodCode("01");
         businessRiskComponentDTO.setComputingMethodDescription("Weighted");
         businessRiskComponentDTO.setScoreTypeCode("01");
@@ -40,7 +40,7 @@ public class RPP_BusinessRiskComponentDTO {
         RiskFactorDTO marketPositionRiskFactorDTO = new RiskFactorDTO();
         marketPositionRiskFactorDTO.setId(null);
         marketPositionRiskFactorDTO.setItemNo(1);
-        marketPositionRiskFactorDTO.setDescription("Market Position Risk Factor");
+        marketPositionRiskFactorDTO.setDescription("Market Position");
         marketPositionRiskFactorDTO.setWeightage(0.70);
         marketPositionRiskFactorDTO.setComputingMethodCode("01");
         marketPositionRiskFactorDTO.setComputingMethodDescription("Weighted");
@@ -191,7 +191,7 @@ public class RPP_BusinessRiskComponentDTO {
         riskSubFactorAttributeDTO6.setId(null);
         riskSubFactorAttributeDTO6.setItemNo(6);
         riskSubFactorAttributeDTO6.setDescription(
-                "Listed off taker & long term investment credit rating not below BBB+ (quantum ≥ 50% of project capacity): Off taker is Group Captive/Open access consumers" +
+                "Listed off taker & long term investment credit rating not below BBB+ (quantum >= 50% of project capacity): Off taker is Group Captive/Open access consumers" +
                 "\n" +
                 "OR\n" +
                 "Over dues not more than 15 days (Off taker is SEB/NTPC/SECI/Other Govt. nominated agency)");
@@ -353,7 +353,7 @@ public class RPP_BusinessRiskComponentDTO {
         RiskFactorDTO operatingEfficiencyRiskFactorDTO = new RiskFactorDTO();
         operatingEfficiencyRiskFactorDTO.setId(null);
         operatingEfficiencyRiskFactorDTO.setItemNo(2);
-        operatingEfficiencyRiskFactorDTO.setDescription("Operating Efficiency Risk Factor");
+        operatingEfficiencyRiskFactorDTO.setDescription("Operating Efficiency");
         operatingEfficiencyRiskFactorDTO.setWeightage(0.30);
         operatingEfficiencyRiskFactorDTO.setComputingMethodCode("01");
         operatingEfficiencyRiskFactorDTO.setComputingMethodDescription("Weighted");

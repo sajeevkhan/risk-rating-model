@@ -22,7 +22,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         //  1                       Financial Risk
         RiskComponentDTO financialRiskComponentDTO = new RiskComponentDTO();
         financialRiskComponentDTO.setId(null);
-        financialRiskComponentDTO.setItemNo(3);
+        financialRiskComponentDTO.setItemNo(4);
         financialRiskComponentDTO.setDescription("Financial Risk");
         financialRiskComponentDTO.setWeightage(0.32D);
         financialRiskComponentDTO.setComputingMethodCode("05");
@@ -420,15 +420,15 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         RiskSubFactorDTO internalRateOfReturnRiskSubFactorDTO = new RiskSubFactorDTO();
         internalRateOfReturnRiskSubFactorDTO.setId(null);
         internalRateOfReturnRiskSubFactorDTO.setItemNo(6);
-        internalRateOfReturnRiskSubFactorDTO.setDescription("Internal Rate of Return - Build Phase");
+        internalRateOfReturnRiskSubFactorDTO.setDescription("Project Internal Rate of Return - Build Phase");
         internalRateOfReturnRiskSubFactorDTO.setWeightage(0.20D);
         internalRateOfReturnRiskSubFactorDTO.setScore(0D);
         internalRateOfReturnRiskSubFactorDTO.setScoreTypeCode("01");
         internalRateOfReturnRiskSubFactorDTO.setScoreTypeDescription("Normal");
 
 
-        //                       Risk Component 1 - Risk Factor 1 - Risk SubFactor 1 ->Risk Sub Factor Attributes
-        //                       Financial Risk -> Financial Risk Factor - >Internal Rate of Return - Build Phase -> Attributes
+        //      Risk Component 1 - Risk Factor 1 - Risk SubFactor 1 ->Risk Sub Factor Attributes
+        //      Financial Risk -> Financial Risk Factor - >Internal Rate of Return - Build Phase -> Attributes
         // 1.1.6 -> Six Attributes
 
         riskSubFactorAttributeDTO1 = new RiskSubFactorAttributeDTO();
@@ -527,20 +527,21 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         riskSubFactorAttributeDTO3.setScore(0.75);
         riskSubFactorAttributeDTO3.setWeightage(00D);riskSubFactorAttributeDTO3.setIsSelected(false);
 
-        riskSubFactorAttributeDTO4 = new RiskSubFactorAttributeDTO();
+
+        riskSubFactorAttributeDTO4= new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO4.setId(null);
         riskSubFactorAttributeDTO4.setItemNo(4);
-        riskSubFactorAttributeDTO4.setDescription("Monthly payment however no liquidity buffer maintained for lean season");
-        riskSubFactorAttributeDTO4.setScore(0.25);
+        riskSubFactorAttributeDTO4.setDescription("Bullet payment and no sufficient liquidity buffer");
+        riskSubFactorAttributeDTO4.setScore(0.50);
         riskSubFactorAttributeDTO4.setWeightage(00D);riskSubFactorAttributeDTO4.setIsSelected(false);
-
 
         riskSubFactorAttributeDTO5 = new RiskSubFactorAttributeDTO();
         riskSubFactorAttributeDTO5.setId(null);
         riskSubFactorAttributeDTO5.setItemNo(5);
-        riskSubFactorAttributeDTO5.setDescription("Bullet payment and no sufficient liquidity buffer");
-        riskSubFactorAttributeDTO5.setScore(0.50);
+        riskSubFactorAttributeDTO5.setDescription("Monthly payment however no liquidity buffer maintained for lean season");
+        riskSubFactorAttributeDTO5.setScore(0.25);
         riskSubFactorAttributeDTO5.setWeightage(00D);riskSubFactorAttributeDTO5.setIsSelected(false);
+
 
         // Collect Risk Sub Factor Attributes
         repaymentStructureSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO1);
@@ -548,7 +549,6 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         repaymentStructureSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO3);
         repaymentStructureSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO4);
         repaymentStructureSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO5);
-        repaymentStructureSubFactorDTO.addRiskSubFactorAttribute(riskSubFactorAttributeDTO6);
 
 
         //Collect RiskFactor

@@ -189,7 +189,7 @@ public class RiskModelPDFComponentTableDebugMode {
                     projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
                     projectDetailsCell2.setHorizontalAlignment(Element.ALIGN_CENTER);
 
-                    System.out.println("Risk Sub Factor Attribtue ---    :    " + riskSubFactorAttribute.getDescription());
+                    //System.out.println("Risk Sub Factor Attribtue ---    :    " + riskSubFactorAttribute.getDescription());
                     if (riskSubFactorAttribute.getIsSelected())
                         projectDetailsCell2.setPhrase(new Phrase(riskSubFactorAttribute.getScore().toString(), selectedValueFont));
                     else

@@ -110,7 +110,7 @@ public class RiskModelPDFRiskParentalNotchupTable {
                           value  = "Long Term";
                     if (riskParentalNotchUpCondition.getNatureOfRatingOfParentFirm() == '1')
                         value  = "Short Term";
-
+                    break;
                 case 3: // Is Parent's rating at GRADE 10
                     if (riskParentalNotchUpCondition.getYesNoIndicatorValue() == 'Y')
                         value = "Yes";
