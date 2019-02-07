@@ -77,16 +77,16 @@ public class InfraRoadHAM_RiskParentalNotchUp {
         riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('0');
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 
-        riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
-        riskParentalNotchUpConditionDTO.setId(null);
-        riskParentalNotchUpConditionDTO.setItemNo(4);
-        riskParentalNotchUpConditionDTO.setCategory(3);
-        riskParentalNotchUpConditionDTO.setDescription("The notch-up score as a percentage of maximum possible score is higher than 35%.)");
-        riskParentalNotchUpConditionDTO.setValueType('0');
-        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
-        riskParentalNotchUpConditionDTO.setValue(" ");
-        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('0');
-        riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
+//        riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
+//        riskParentalNotchUpConditionDTO.setId(null);
+//        riskParentalNotchUpConditionDTO.setItemNo(4);
+//        riskParentalNotchUpConditionDTO.setCategory(5);
+//        riskParentalNotchUpConditionDTO.setDescription("The notch-up score as a percentage of maximum possible score is higher than 35%.)");
+//        riskParentalNotchUpConditionDTO.setValueType('0');
+//        riskParentalNotchUpConditionDTO.setYesNoIndicatorValue('Y');
+//        riskParentalNotchUpConditionDTO.setValue(" ");
+//        riskParentalNotchUpConditionDTO.setNatureOfRatingOfParentFirm('0');
+//        riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 
          riskParentalNotchUpDTO.setRiskParentalConditions(riskParentalNotchUpConditionDTOS);
 

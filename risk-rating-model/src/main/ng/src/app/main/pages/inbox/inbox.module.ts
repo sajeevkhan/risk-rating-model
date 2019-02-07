@@ -7,6 +7,9 @@ import { MatButtonModule, MatTableModule } from '@angular/material';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { InboxItemsComponent } from './inbox-items/inbox-items.component';
 
+import {  MatSnackBar, MatSnackBarModule } from '@angular/material';
+
+
 const routes = [
     {
         path: 'inbox',
@@ -17,13 +20,15 @@ const routes = [
     }
 ];
 
+
 @NgModule({
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
         FuseSharedModule,
         MatButtonModule,
-        MatTableModule
+        MatTableModule,
+        MatSnackBarModule
     ],
     declarations: [
         InboxComponent,

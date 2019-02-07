@@ -83,7 +83,7 @@ public class IRHAM_PPIR_BusinessRisk {
         RiskSubFactorDTO concessionRiskSubFactorDTO = new RiskSubFactorDTO();
         concessionRiskSubFactorDTO.setId(null);
         concessionRiskSubFactorDTO.setItemNo(2);
-        concessionRiskSubFactorDTO.setDescription("Concession Risk");
+        concessionRiskSubFactorDTO.setDescription("Concession Agreement");
         concessionRiskSubFactorDTO.setWeightage(0.30);
         concessionRiskSubFactorDTO.setScore(0D);
         concessionRiskSubFactorDTO.setScoreTypeCode("01");

@@ -88,7 +88,7 @@ public class IRHAM_PPIR_FinancialRiskDTO {
         RiskSubFactorDTO debtEquityRatioRiskSubFactorDTO = new RiskSubFactorDTO();
         debtEquityRatioRiskSubFactorDTO.setId(null);
         debtEquityRatioRiskSubFactorDTO.setItemNo(2);
-        debtEquityRatioRiskSubFactorDTO.setDescription("Debt / Equity ratio - Build Phase (Ratio) without NHAI/Authority grant");
+        debtEquityRatioRiskSubFactorDTO.setDescription("Debt / Equity ratio - without NHAI/Authority grant");
         debtEquityRatioRiskSubFactorDTO.setWeightage(0.30);
         debtEquityRatioRiskSubFactorDTO.setScore(0D);
         debtEquityRatioRiskSubFactorDTO.setScoreTypeCode("01");

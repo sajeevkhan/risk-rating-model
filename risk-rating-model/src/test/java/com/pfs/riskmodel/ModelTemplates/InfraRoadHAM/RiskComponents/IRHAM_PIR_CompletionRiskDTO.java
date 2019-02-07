@@ -160,7 +160,7 @@ public class IRHAM_PIR_CompletionRiskDTO {
         RiskSubFactorDTO landAcqusitionRiskSubFactorDTO = new RiskSubFactorDTO();
         landAcqusitionRiskSubFactorDTO.setId(null);
         landAcqusitionRiskSubFactorDTO.setItemNo(2);
-        landAcqusitionRiskSubFactorDTO.setDescription("Land Acquisition/ Right of Way (RoW)");
+        landAcqusitionRiskSubFactorDTO.setDescription("Land Acquisition/Right of Way (Limit beyond CPs specified in CA)");
         landAcqusitionRiskSubFactorDTO.setWeightage(0.58);  // Does not matter
         landAcqusitionRiskSubFactorDTO.setScore(0D);
         landAcqusitionRiskSubFactorDTO.setScoreTypeCode("01");
@@ -170,11 +170,14 @@ public class IRHAM_PIR_CompletionRiskDTO {
         // 1.2.2       Risk Sub Factor Attributes
         // -> Four Attributes
         riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(0D, "100% of the remaining land is yet to be acquired by competent authority and >50% & <60% of total length (in km) of the project can be constructed."));
-        riskSubFactorAttributes.add(new RiskAttribute(3D, "75% of the remaining land is yet to be acquired by competent authority and >60% & <75% of total length (in km) of the project can be constructed."));
-        riskSubFactorAttributes.add(new RiskAttribute(7D, "50% of the remaining land is yet to be acquired by competent authority and >75% & <100% of total length (in km) of the project can be constructed"));
-        riskSubFactorAttributes.add(new RiskAttribute(10D, "Entire remaining land has been acquired and 100% of total length (in km) of the project can be constructed"));
-
+        riskSubFactorAttributes.add(new RiskAttribute(0D,
+                "100% of the remaining land is yet to be  acquired by competent authority OR >0% & <50% of total length (in Kms) of the project can be constructed."));
+        riskSubFactorAttributes.add(new RiskAttribute(3D,
+                "75% of the remaining land is yet  to be acquired by competent authority OR >=50% & <75% of total length (in Kms) of the project can be constructed."));
+        riskSubFactorAttributes.add(new RiskAttribute(7D,
+                "50% of the remaining land is yet to be acquired by competent authority OR >=75% & <100% of total length (in Kms) of the project can be constructed"));
+        riskSubFactorAttributes.add(new RiskAttribute(10D,
+                "Entire remaining land has been acquired and  100% of total length (in Kms) of the project can be constructed"));
         List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS4 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
         landAcqusitionRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS4);
         keyCompletionRiskFactorDTO.addRiskSubFactorDTO(landAcqusitionRiskSubFactorDTO);

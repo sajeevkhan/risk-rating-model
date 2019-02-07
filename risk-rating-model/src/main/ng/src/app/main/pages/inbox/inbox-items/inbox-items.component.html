@@ -53,9 +53,11 @@
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-        <mat-row *matRowDef="let evaluation; columns: displayedColumns;" matRipple (click)="onSelect(evaluation)"
-            [ngClass]="{'light-blue-50':evaluation === selectedEvaluation}" [@animate]="{value:'*',params:{y:'100%'}}">
+        <mat-row *matRowDef="let item; columns: displayedColumns;" matRipple (click)="onSelect(item)"
+            [ngClass]="{'light-blue-50':item === selectedItem}" [@animate]="{value:'*',params:{y:'100%'}}">
         </mat-row>
+
+
 
     </mat-table>
 </div>

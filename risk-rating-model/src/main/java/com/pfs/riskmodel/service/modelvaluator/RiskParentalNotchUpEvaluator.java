@@ -167,6 +167,18 @@ public class RiskParentalNotchUpEvaluator {
                          return false;
                      }
                     break;
+                case 5: // Is Parent's rating at GRADE 10
+                    if (riskParentalNotchUpCondition.getYesNoIndicatorValue() == 'N') {
+                        isNotchupCriteriaApplicable = true;
+                        riskParentalNotchUp.setIsParentalNotchUpApplicable(true);
+                    }
+                    else {
+                        isNotchupCriteriaApplicable = false;
+                        riskParentalNotchUp.setIsParentalNotchUpApplicable(false);
+                        return false;
+                    }
+                    break;
+
             }
 
             if (isNotchupCriteriaApplicable == false)

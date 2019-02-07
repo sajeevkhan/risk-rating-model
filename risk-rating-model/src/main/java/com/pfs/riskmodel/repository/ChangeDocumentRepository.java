@@ -14,6 +14,7 @@ import java.util.List;
  * Created by sajeev on 17-Dec-18.
  */
 @RepositoryRestResource
+
 public interface ChangeDocumentRepository extends JpaRepository<ChangeDocument, Long> {
 
     List<ChangeDocument> findByLoanNumber(String loanNumber);

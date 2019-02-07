@@ -88,7 +88,7 @@ public class InfraRoadHAM_BuildPhase_Valuator {
 
         // Prepare Summary
         List<RiskModelSummary> riskModelSummaryList =
-                commonComputation.getSummary(projectScore, projectIRGrade,postProjectIRScore,postProjectIRGrade,riskModelTemplate,1);
+                commonComputation.getSummary(projectIRScore, projectIRGrade,postProjectIRScore,postProjectIRGrade,riskModelTemplate,1);
 
         riskModelTemplate.setRiskModelSummaries(riskModelSummaryList);
         return riskModelTemplate;
