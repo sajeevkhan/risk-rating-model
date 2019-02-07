@@ -107,6 +107,7 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
             validationResult.setValue(null);
             validationResult.setFailed(true);
             validationResult.setNotFound(true);
+            validationResult.setObject("RiskModelTemplate");
             result.put("ValidationResult", validationResult);
             return  result;
         }

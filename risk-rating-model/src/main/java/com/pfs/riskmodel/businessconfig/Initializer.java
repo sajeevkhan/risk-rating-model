@@ -160,9 +160,9 @@ public class Initializer implements CommandLineRunner{
             RiskPurpose p2 = new RiskPurpose(null, "02", "Risk Assessment");
             RiskPurpose p3 = new RiskPurpose(null, "03", "Monitoring");
 
-            WorkflowAssignment w1 = new WorkflowAssignment(null,p1,"SajeevG", "sajeev.khan@gmail.com");
-            WorkflowAssignment w2 = new WorkflowAssignment(null,p2,"SajeevL", "sajeev@leanthoughts.com");
-            WorkflowAssignment w3 = new WorkflowAssignment(null,p3,"SajeevM", "sajeev.khan@gmail.com");
+            WorkflowAssignment w1 = new WorkflowAssignment(null,p1,"admin", "sajeev.khan@gmail.com");
+            WorkflowAssignment w2 = new WorkflowAssignment(null,p2,"admin", "sajeev@leanthoughts.com");
+            WorkflowAssignment w3 = new WorkflowAssignment(null,p3,"admin", "sajeev.khan@gmail.com");
 
 //
 //              w1.setPurpose(p1);
