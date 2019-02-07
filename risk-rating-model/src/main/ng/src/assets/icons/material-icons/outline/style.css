@@ -3072,3 +3072,278 @@ i, .icomoon-liga, .material-icons {
 .icon-zoom_out:before {
   content: "\ecf4";
 }
+
+
+/*---TAB VIEW--*/
+        .SubTabs{
+            background-color:#ffffff;
+        }
+        .mat-tab-header{
+            border-bottom:0px !important;
+        }
+        .mat-tab-label-container .mat-ink-bar{background-color:#ffffff !important;}
+        
+        #mat-tab-label-3-0, #mat-tab-label-3-1, #mat-tab-label-3-2, #mat-tab-label-3-3{
+            
+            color:#ffffff;
+            height:40px !important;
+        }
+        #mat-tab-label-3-1, #mat-tab-label-4-1, #mat-tab-label-4-2{
+           
+        }
+        #mat-tab-label-3-2, #mat-tab-label-4-3{
+            border-top-right-radius: 5px;
+            -moz-border-top-right-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            -khtml-border-top-right-radius: 5px;
+        }
+        #mat-tab-label-4-0, #mat-tab-label-4-1, #mat-tab-label-4-2, #mat-tab-label-4-3{
+           
+            color:#ffffff;
+            height:40px !important;
+        }
+        #mat-tab-label-4-0{
+            
+            width: 269.64px;
+        }
+        #mat-tab-label-5-0{
+            
+            width: 269.64px;
+            color:#ffffff;
+            height:40px !important;
+        }
+        #mat-tab-label-6-0, #mat-tab-label-5-0, #mat-tab-label-7-0, #mat-tab-label-8-0{
+            border-bottom-right-radius: 5px;
+            -moz-border-bottom-right-radius: 5px;
+            -webkit-border-bottom-right-radius: 5px;
+            -khtml-border-bottom-right-radius: 5px;
+            height:40px;
+        }
+       
+        .mat-tab-label-active{
+           
+            font-weight:bold;
+            border:0px solid #ffffff!important;
+            color:#e67817 !important;
+        }
+        #risk-model-template .mat-card{
+            padding:0px !important;
+        }
+        #risk-model-template .mat-card {
+            background: transparent !important;
+            color: white;
+            margin-bottom:20px;
+        }
+        #risk-model-template .mat-radio-outer-circle{
+            border-color:#77bd4d;
+        }
+        body.theme-blue-gray-dark .mat-card:not([class*='mat-elevation-z']) {
+            box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px 0px rgba(0, 0, 0, 0.12) !important;
+        }
+        .tableRow{
+            padding:15px !important;
+            color:#010101 !important;
+        }
+        #risk-model-template .example-radio-group {
+            display: block !important;
+            flex-direction: column;
+        }
+        .condition{margin-bottom:15px;}
+		
+		body, html, input,{
+            font-family: Open Sans,sans-serif !important;
+        }
+        /*-- FOR Enquiry search start---*/
+        .mat-expansion-panel-content{
+            background-color:rgba(255, 255, 255, .4) !important;
+            background:rgba(255, 255, 255, .4) !important;
+        }
+        .hidden{display:none;}
+        .inputTopspace{
+            padding:16px 16px 0px 0;
+        }
+        body.theme-default .mat-expansion-panel{background-color:transparent !important;}
+        .mat-expansion-panel-content{background-color:transparent !important;}
+        .mat-expansion-panel-body {
+            padding: 0!important;
+        }
+        .inputMat{
+            font-size:20px;
+            color:#010101 !important;
+        }
+        .mat-header-cell {
+            font-size: 13px !important;
+            font-weight: bold  !important;
+            font-family: Open Sans  !important;
+            padding-right:10px;
+        }
+        .paddingTopLeft16{
+            padding-top:16px;
+            padding-left:16px;
+            padding-right:16px;
+        }
+        .mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab{
+            font-family: Open Sans  !important;
+        }
+        .mat-header-row {
+            border-bottom:4px solid #cccccc;
+        }
+        body.theme-blue-gray-dark .mat-expansion-panel:not([class*='mat-elevation-z']) {
+            box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12) !important;
+        }
+        /*-- FOR Enquiry search end---*/
+        /*-- FOR Enquiry search EDIT start---*/
+        body.theme-blue-gray-dark .mat-input-element {
+            padding-left: 10px;
+        }
+        body.theme-blue-gray-dark .mat-expansion-panel {
+            background: transparent !important;
+            color: white;
+        }
+        .mat-sort-header-button{
+            text-align:left;
+            color:#ffffff !important;
+        }
+        .text-truncate{
+            Padding-right:10px !important;
+            color:#010101 !important;
+            font-family: Open Sans  !important;
+            font-size:12px;
+        }
+        .mat-row:nth-child(even){
+            background-color:#cccccc;
+            border-bottom:1px solid #cccccc;
+        }
+        .mat-row:nth-child(odd){
+            background-color:#ffffff;
+            border-bottom:1px solid #cccccc;
+        }
+        .mat-row:hover{
+            background-color:#999999;
+        }
+		#risk-model-template table tr:nth-child(odd) {
+			background-color: #ffffff !important;
+			border-bottom:1px solid #cccccc;
+		}
+		
+		#risk-model-template table tr:nth-child(even) {
+			background-color: #cccccc!important;
+			border-bottom:1px solid #cccccc;
+		}
+		
+		
+
+        .light-orange-50{
+            background-color:#e67817 !important;
+			color:#ffffff !important;
+        }
+		
+		.light-orange-50 .text-truncate{
+			color:#ffffff !important;
+		}
+        *{
+            font-family: Open Sans  !important;
+        }
+        /*--.mat-header-row{background-color:#1e2129 !important;}
+        .mat-sort-header-button{color: #f1a30b !important;}--*/
+        .mat-table {
+            font-family: Open Sans, sans-serif !important;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -khtml-border-radius: 5px;
+            border-radius: 5px;
+        }
+        .mat-form-field-wrapper{padding-bottom:0px !important;}
+        .mat-form-field-wrapper{margin-right:15px !important;}
+        body.theme-blue-gray-dark .mat-input-element {
+            padding-left: 10px;
+            color: #fff !important;
+			caret-color: #e67817 !important;
+        }
+        .dialogStyle  .mat-form-field-appearance-legacy .mat-form-field-underline{
+            height:0px !important;
+        }
+        .dialogStyle .mat-form-field-appearance-legacy .mat-form-field-underline {
+            bottom: 0em !important;
+        }
+        .dialogStyle .mat-form-field{
+            margin-bottom:10px;
+        }
+        .toolTop{
+            background-color:#424242;
+            border-bottom:4px solid #e67817;
+        }
+        .new-evaluation-dialog{
+            border:1px solid #e67817;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -khtml-border-radius: 5px;
+            border-radius: 5px;
+        }
+        .mat-dialog-container {
+            box-shadow: 0 0px 0px 0px rgba(0,0,0,.2), 0 0px 0px 0px rgba(0,0,0,.14), 0 0px 0px 0px rgba(0,0,0,.12) !important;
+            background: #424242;
+            color: #fff;
+        }
+        #risk-model-template .mat-form-field-appearance-legacy .mat-form-field-underline {
+            height: 0 !important;
+        }
+        #risk-model-template .mat-form-field-appearance-legacy .mat-form-field-underline {
+            bottom: 0em !important;
+        }
+        #risk-model-template .mat-input-element{
+            padding:0px !important
+        }
+        .bottomSpace{
+            margin-bottom:15px !important;
+        }
+        .SubTabs{
+            margin-top:15px;
+        }
+		
+		#risk-model-template .mainHeader{
+			background-color:#e67817 !important;
+			 -moz-border-top-left-radius: 5px;
+            -webkit-border-top-left-radius: 5px;
+            -khtml-border-top-left-radius: 5px;
+            border-top-left-radius: 5px;
+			
+			-moz-border-top-right-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            -khtml-border-top-right-radius: 5px;
+            border-top-right-radius: 5px;
+			color:#ffffff !important;
+			
+		}
+		.nav-group .active{
+			background-color:#e67817;
+			
+		}
+		
+		button.mat-primary{
+			background-color:#77bd4d !important;
+		}
+		
+		#loan-enquiry .mat-form-field-appearance-standard .mat-form-field-underline {
+            height: 0 !important;
+        }
+        #loan-enquiry .mat-form-field-appearance-standard .mat-form-field-underline {
+            bottom: 0em !important;
+        }
+        #loan-enquiry .mat-input-element{
+            padding:0px !important
+        }
+		
+		/*body.theme-blue-gray-dark .mat-input-element{color:#e67817 !important;}*/
+		
+		body.theme-blue-gray-dark .mat-form-field.mat-focused .mat-form-field-label{color:#e67817 !important;}
+		body.theme-blue-gray-dark .mat-form-field.mat-focused .mat-form-field-ripple {background-color: #e67817 !important;}
+	.mat-active .mat-option-text{
+		color:#ffffff !important;
+	}
+	
+	/* .mat-primary .mat-option .mat-selected {
+    color: #ffffff !important;
+
+}*/
+        /*-- FOR Enquiry search EDIT start---*/

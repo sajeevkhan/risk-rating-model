@@ -1,72 +1,99 @@
-<div class="page-layout simple right-sidebar inner-sidebar inner-scroll">
+
+
+<div class="page-layout simple right-sidebar inner-sidebar inner-scroll" >
+
+	
     <!-- HEADER -->
-    <div class="header accent below-fixed h-100" fxLayout="column" fxLayoutAlign="start">
-        <div fxLayout="row" fxLayoutAlign="start" class="pl-16 pt-8" style="font-size: 25px;">
-            Search Projects
+    <div class="accent below-fixed" fxLayout="column" fxLayoutAlign="start" style="min-height: 150px;">
+	
+	<div class="paddingTopLeft16" style="min-height: 61px;">
+        <div fxLayout="row" fxFlex="50" class="headerMain" style="font-size:25px;" fxLayoutAlign="start center">
+         Search Projects 
         </div>
-        <div fxLayout="row" fxLayoutAlign="end" class="pr-16">
+        <div fxLayout="row" fxFlex="50" fxLayoutAlign="end stretch">
             <button mat-raised-button class="mr-8 mb-8" (click)="fetchEvaluations()">
                 Fetch Evaluations
             </button>
         </div>
-    </div>
-    <!-- / HEADER -->
+		
+		</div>
+		
+		 <!-- SEARCH PANEL -->
+    <div id="loan-enquiry" class="w-100-p paddingTopLeft16" style="min-height:85px;"  fxLayout="column" fusePerfectScrollbar>
 
-    <!-- SEARCH PANEL -->
-    <div id="loan-enquiry" class="w-100-p p-16" fxLayout="column" fusePerfectScrollbar>
+	
         <mat-expansion-panel [expanded]="true" hideToggle="false">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Project List
-                </mat-panel-title>
-                <!--mat-panel-description>
-                    Use the search form to filter data.
-                </mat-panel-description-->
-            </mat-expansion-panel-header>
+           
             <form [formGroup]="enquirySearchForm">
-                <div fxLayout="row">
-                    <mat-form-field fxFlex="33">
-                        <input matInput placeholder="Name of the Project" formControlName="projectName">
-                    </mat-form-field>
-                    <mat-form-field fxFlex="34">
+                <div fxLayout="row" fxLayoutAlign="start center">
+				
+				
+                    <!--mat-form-field fxFlex="25" class="inputTopspace">
+						<input matInput placeholder="Name of the Project" style="color:green;" class="inputMat" formControlName="projectName">
+					</mat-form-field-->
+					
+					
+					
+					 <mat-form-field fxFlex="60"  appearance="standard">
+    <mat-label>Name of the Project</mat-label>
+    <input matInput placeholder="Name of the Project" style="color:green;" class="inputMat" formControlName="projectName">
+    
+    
+  </mat-form-field>
+					
+					
+					
+                    <!--mat-form-field fxFlex="25" class="inputTopspace">
                         <input matInput placeholder="Enquiry Number From" formControlName="enquiryNoFrom">
-                    </mat-form-field>
-                    <mat-form-field fxFlex="33">
+                    </mat-form-field-->
+					
+					 <mat-form-field fxFlex="20"  appearance="standard">
+    <mat-label>Loan Number From</mat-label>
+     <input matInput placeholder="Loan Number From" formControlName="enquiryNoFrom">
+    
+    
+  </mat-form-field>
+					
+					
+					
+					
+                    <!--mat-form-field fxFlex="25" class="inputTopspace">
                         <input matInput placeholder="Enquiry Number To" formControlName="enquiryNoTo">
-                    </mat-form-field>
-                </div>
-                <!-- <div fxLayout="row">
-                    <mat-form-field fxFlex="25">
-                        <input matInput placeholder="Project Location (State)" formControlName="projectLocation">
-                    </mat-form-field>
-                    <mat-form-field fxFlex="25">
-                        <input matInput placeholder="Loan Class" formControlName="loanClass">
-                    </mat-form-field>
-                    <mat-form-field fxFlex="25">
-                        <input matInput placeholder="Project Type" formControlName="projectType">
-                    </mat-form-field>
-                </div>
-                <div fxLayout="row">
-                    <mat-form-field fxFlex="25">
-                        <input matInput placeholder="Financing Type" formControlName="financingType">
-                    </mat-form-field>
-                    <mat-form-field fxFlex="25">
-                        <input matInput placeholder="Type of Assistance" formControlName="assistanceType">
-                    </mat-form-field>
-                </div> -->
-                <div class="pt-12" fxLayout="row" fxLayoutAlign="left center">
-                    <button class="mr-8" mat-raised-button type="button" color="accent" (click)="searchEnquiries()">
+					</mat-form-field-->
+					
+					 <mat-form-field fxFlex="20"  appearance="standard">
+    <mat-label>Loan Number To</mat-label>
+     <input matInput="" placeholder="Loan Number To" formControlName="enquiryNoFrom">
+    
+    
+  </mat-form-field>
+					
+					
+					<div  fxLayout="row" fxLayoutAlign="end start" style="width:250px;">
+                    <button class="mr-8 mb-8" mat-raised-button type="button" color="primary" (click)="searchEnquiries()">
                         Search
                     </button>
-                    <button class="mr-8" mat-raised-button type="button" color="accent" (click)="searchEnquiriesTest()">
+                    <button class="mr-8 mb-8" mat-raised-button type="button" color="primary" (click)="searchEnquiriesTest()">
                         Search Test
                     </button>
                 </div>
+				
+                </div>
+               
+                
+				
+				
             </form>
         </mat-expansion-panel>
     </div>
 
     <!-- / SEARCH PANEL -->
+		
+		
+    </div>
+    <!-- / HEADER -->
+
+   
 
 
     <!-- CONTENT -->

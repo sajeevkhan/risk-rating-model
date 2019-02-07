@@ -1,10 +1,21 @@
 <div class="page-layout simple right-sidebar inner-sidebar inner-scroll">
     <!-- HEADER -->
-    <div class="header accent below-fixed h-100" fxLayout="column" fxLayoutAlign="start">
-        <div fxLayout="row" fxLayoutAlign="start" class="pl-16 pt-8" style="font-size: 25px;">
+	
+	
+	 <div class="header accent below-fixed h-100" fxLayout="column" fxLayoutAlign="start">
+	
+	
+	
+	
+	
+	
+	<div class="paddingTopLeft16">
+	
+    
+        <div fxLayout="row" fxLayoutAlign="start" fxFlex="60" class="pl-16 pt-8" style="font-size: 20px;">
             <span>{{ riskModelTemplate.projectName }} <br> {{riskModelTemplate.riskProjectTypeDescription }}/ {{ riskModelTemplate.projectRiskLevelDescription }}</span>
         </div>
-        <div fxLayout="row" fxLayoutAlign="end" class="pr-16">
+        <div fxLayout="row" fxLayoutAlign="end center"  fxFlex="40" class="pr-16">
             <button mat-raised-button class="mr-8 mb-8" (click)="sendTemplateForApproval()" [disabled]="!(riskModelTemplate.workflowStatusCode === '01' && validateTemplate())">
                 Send for Approval
             </button>
@@ -14,8 +25,10 @@
             <button mat-raised-button class="mr-8 mb-8" (click)="displayAsPDF()" [disabled]="!riskModelTemplate.id">
                 Display as PDF
             </button>
-        </div>
+      
     </div>
+	</div>
+	</div>
     <!-- / HEADER -->
 
     <!-- Content -->

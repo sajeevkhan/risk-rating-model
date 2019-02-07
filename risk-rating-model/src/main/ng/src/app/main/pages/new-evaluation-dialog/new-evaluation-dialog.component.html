@@ -1,7 +1,7 @@
 <div class="dialog-content-wrapper">
-    <mat-toolbar matDialogTitle class="mat-accent m-0">
+    <mat-toolbar matDialogTitle class="toolTop m-0">
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-            <span class="title dialog-title">New Evaluation</span>
+            <span class="title dialog-title">Select Evaluation Type</span>
             <button mat-button class="mat-icon-button" (click)="_dialogRef.close({})">
                 <mat-icon>close</mat-icon>
             </button>
@@ -9,17 +9,21 @@
     </mat-toolbar>
 </div>
 
-<div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
+<div mat-dialog-content class="p-24 m-0 dialogStyle" fusePerfectScrollbar>
     <form [formGroup]="newEvaluationForm" (ngSubmit)="fetchEvaluationTemplate()">
         <div fxLayout="row">
             <!-- <mat-icon class="mr-12 mt-12">important_devices</mat-icon> -->
-            <mat-form-field fxFlex>
+            <mat-form-field fxFlex="100">
                 <mat-select placeholder="Project Type" formControlName="projectType" required>
                     <mat-option *ngFor="let projectType of projectTypes" [value]="projectType.code">
                         {{ projectType.value }}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
+			
+			
+			
+  
         </div>
         <div fxLayout="row">
             <mat-form-field fxFlex>
@@ -40,7 +44,7 @@
             </mat-form-field>
         </div>
         <div>
-            <button mat-raised-button type="submit" class="save-button mat-accent" [disabled]="!newEvaluationForm.valid">
+            <button mat-raised-button type="submit" class="mr-8 mb-8 mat-raised-button mat-primary" [disabled]="!newEvaluationForm.valid">
                 Submit
             </button>
         </div>

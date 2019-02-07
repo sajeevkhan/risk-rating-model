@@ -26,7 +26,7 @@ export const navigation: FuseNavigation[] = [
                 title    : 'Projects',
                 translate: 'NAV.PROJECTS',
                 type     : 'item',
-                icon     : 'email',
+                icon     : 'business',
                 url      : '/projects'
             }
         ]

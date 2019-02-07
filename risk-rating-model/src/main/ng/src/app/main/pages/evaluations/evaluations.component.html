@@ -1,11 +1,14 @@
 <div class="page-layout simple right-sidebar inner-sidebar inner-scroll">
     <!-- HEADER -->
     <div class="header accent below-fixed h-100" fxLayout="column" fxLayoutAlign="start">
-        <div fxLayout="row" fxLayoutAlign="start" class="pl-16 pt-8" style="font-size: 25px;">
+	
+	
+	<div class="paddingTopLeft16">
+        <div fxLayout="row" fxLayoutAlign="start" fxFlex="60" class="pl-16 pt-8" style="font-size: 20px;">
             Evaluations for {{ loanApplicaton.projectName }} / {{ loanApplicaton.loanContractId }} / {{
             loanApplicaton.loanAmount | number:'0.2-2'}} Crores
         </div>
-        <div fxLayout="row" fxLayoutAlign="end" class="pr-16">
+        <div fxLayout="row" fxLayoutAlign="end center"  fxFlex="40" class="pr-16">
             <button mat-raised-button class="mr-8 mb-8" (click)="newEvaluation()">
                 New Evaluation
             </button>
@@ -16,6 +19,7 @@
                 Display as PDF
             </button>
         </div>
+		</div>
     </div>
     <!-- / HEADER -->
 
