@@ -42,6 +42,8 @@ public class WorkflowController {
         TaskService taskService = processEngine.getTaskService();
         String userName = httpServletRequest.getUserPrincipal().getName();
 
+        System.out.println("USER NAME: " + httpServletRequest.getUserPrincipal().getName());
+
         List<Task>  tasks = taskService.createTaskQuery()
                                         .taskAssignee(userName)
                                         .includeProcessVariables()

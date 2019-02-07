@@ -163,8 +163,15 @@ public class ChangeDocumentService implements IChangeDocumentService {
             changeDocumentItem.setEntityName(object.getClass().getName().toString());
             changeDocumentItem.setEntityDescription(result.get("description"));
             changeDocumentItem.setAttributeName(change.getPropertyName());
-            changeDocumentItem.setNewValue(change.getRight().toString());
-            changeDocumentItem.setOldValue(change.getLeft().toString());
+            if (change.getRight() != null)
+                changeDocumentItem.setNewValue(change.getRight().toString());
+            else
+                changeDocumentItem.setNewValue(null);
+            if (change.getLeft() != null)
+                changeDocumentItem.setOldValue(change.getLeft().toString());
+            else
+                changeDocumentItem.setOldValue(null);
+
             changeDocumentItem.setTableKey(result.get("id"));
 
             changeDocumentItems.add(changeDocumentItem);

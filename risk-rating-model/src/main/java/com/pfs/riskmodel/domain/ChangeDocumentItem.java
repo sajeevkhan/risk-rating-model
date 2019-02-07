@@ -27,10 +27,12 @@ public class ChangeDocumentItem extends AuditModel  {
 
     private String entityName;
 
+    @Column(columnDefinition = "LONGTEXT")
     private String attributeName;
 
     private String tableKey;
 
+    @Column(columnDefinition = "LONGTEXT")
     private String entityDescription;
 
     private String oldValue;
