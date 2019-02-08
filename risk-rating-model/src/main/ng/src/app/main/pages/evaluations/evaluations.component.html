@@ -3,20 +3,20 @@
     <div class="header accent below-fixed h-100" fxLayout="column" fxLayoutAlign="start">
 	
 	
-	<div class="paddingTopLeft16">
-        <div fxLayout="row" fxLayoutAlign="start" fxFlex="60" class="pl-16 pt-8" style="font-size: 20px;">
+	<div class="paddingTopLeft16" style="padding-bottom:16px; border-bottom:1px solid #e0e0e0;">
+        <div fxLayout="row" fxLayoutAlign="start" fxFlex="50" class="pl-16 pt-8" style="font-size: 20px;">
             Evaluations for {{ loanApplicaton.projectName }} / {{ loanApplicaton.loanContractId }} / {{
             loanApplicaton.loanAmount | number:'0.2-2'}} Crores
         </div>
-        <div fxLayout="row" fxLayoutAlign="end center"  fxFlex="40" class="pr-16">
-            <button mat-raised-button class="mr-8 mb-8" (click)="newEvaluation()">
-                New Evaluation
+        <div fxLayout="row" fxLayoutAlign="end center"  fxFlex="50" class="pr-16">
+            <button mat-raised-button class="mr-8" (click)="newEvaluation()">
+                 <mat-icon matSuffix class="mr-8">note_add</mat-icon>New Evaluation
             </button>
-            <button mat-raised-button class="mr-8 mb-8" (click)="editEvaluation()" [disabled]="!_service.selectedEvaluation">
-                Edit Evaluation
+            <button mat-raised-button class="mr-8" (click)="editEvaluation()" [disabled]="!_service.selectedEvaluation">
+                 <mat-icon matSuffix class="mr-8">edit</mat-icon>Edit Evaluation
             </button>
-            <button mat-raised-button class="mr-8 mb-8" (click)="displayAsPDF()" [disabled]="!_service.selectedEvaluation">
-                Display as PDF
+            <button mat-raised-button class="mr-8" (click)="displayAsPDF()" [disabled]="!_service.selectedEvaluation">
+                  <mat-icon matSuffix class="mr-8">picture_as_pdf</mat-icon>Display as PDF
             </button>
         </div>
 		</div>

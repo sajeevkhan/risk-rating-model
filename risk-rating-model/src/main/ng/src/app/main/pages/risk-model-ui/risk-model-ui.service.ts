@@ -33,6 +33,7 @@ export class RiskModelUIService {
      * @param template: any
      */
     evaluateTemplate(template: any): Observable<any> {
+
         return this._httpClient.post<any>('api/riskModel?action=1', template);
     }
 

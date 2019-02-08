@@ -23,5 +23,7 @@ public interface ChangeDocumentRepository extends JpaRepository<ChangeDocument, 
 
     List<ChangeDocument> findByLoanNumberAndDate(String loanNumber, Date date);
 
+    List<ChangeDocument> findByRiskModelTemplateId(Long id);
+
 
 }

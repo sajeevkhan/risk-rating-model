@@ -5,6 +5,7 @@
                 <div fxLayout="row" class="bottomSpace">
                     <mat-form-field fxFlex="40" > 
                         <input matInput placeholder="Project Name" [(ngModel)]="riskModelTemplate.projectName">
+						<mat-icon matSuffix class="mr-8">edit</mat-icon> 
                     </mat-form-field>
 					
 					
@@ -255,7 +256,7 @@
                             <div>Parental Notchup</div>
                         </ng-template>
 
-                        <mat-card>
+                        <mat-card class="fieldItems">
                             <!--mat-card-header>
                                 <mat-card-title>Parental Notchup Criteria</mat-card-title>
                             </mat-card-header-->
@@ -265,20 +266,20 @@
 								
 								
                                     <input *ngIf="parentalCondition.category === 0" matInput placeholder="{{parentalCondition.description}}"
-                                        [(ngModel)]="parentalCondition.value" required>
+                                        [(ngModel)]="parentalCondition.value" required><mat-icon matSuffix class="mr-8">edit</mat-icon>
                                     <input *ngIf="parentalCondition.category === 1" matInput placeholder="{{parentalCondition.description}}"
                                         [(ngModel)]="parentalCondition.value" required>
-                                    <mat-select fxFlex="45" *ngIf="parentalCondition.category === 2" placeholder="{{parentalCondition.description}}"
+                                    <mat-select fxFlex="100" *ngIf="parentalCondition.category === 2" placeholder="{{parentalCondition.description}}"
                                         [(ngModel)]="parentalCondition.natureOfRatingOfParentFirm" required>
                                         <mat-option value="0">Short Term</mat-option>
                                         <mat-option value="1">Long Term</mat-option>
                                     </mat-select>
-                                    <mat-select fxFlex="45" *ngIf="parentalCondition.category === 3" placeholder="{{parentalCondition.description}}"
+                                    <mat-select fxFlex="100" *ngIf="parentalCondition.category === 3" placeholder="{{parentalCondition.description}}"
                                         [(ngModel)]="parentalCondition.yesNoIndicatorValue" required>
                                         <mat-option value="Y">Yes</mat-option>
                                         <mat-option value="N">No</mat-option>
                                     </mat-select>
-                                    <mat-select fxFlex="45" *ngIf="parentalCondition.category === 4" placeholder="{{parentalCondition.description}}"
+                                    <mat-select fxFlex="100" *ngIf="parentalCondition.category === 4" placeholder="{{parentalCondition.description}}"
                                         [(ngModel)]="parentalCondition.yesNoIndicatorValue" required>
                                         <mat-option value="Y">Yes</mat-option>
                                         <mat-option value="N">No</mat-option>

@@ -6,13 +6,13 @@
     <!-- HEADER -->
     <div class="accent below-fixed" fxLayout="column" fxLayoutAlign="start" style="min-height: 150px;">
 	
-	<div class="paddingTopLeft16" style="min-height: 61px;">
+	<div class="paddingTopLeft16" style="min-height: 61px; padding-bottom:16px;border-bottom:1px solid #e0e0e0;">
         <div fxLayout="row" fxFlex="50" class="headerMain" style="font-size:25px;" fxLayoutAlign="start center">
          Search Projects 
         </div>
-        <div fxLayout="row" fxFlex="50" fxLayoutAlign="end stretch">
-            <button mat-raised-button class="mr-8 mb-8" (click)="fetchEvaluations()">
-                Fetch Evaluations
+        <div fxLayout="row" fxFlex="50" fxLayoutAlign="end center">
+            <button mat-raised-button class="mr-8" style="padding-bottom:5px;" (click)="fetchEvaluations()">
+               <mat-icon matSuffix class="mr-8" >list</mat-icon> Fetch Evaluations
             </button>
         </div>
 		
@@ -34,10 +34,10 @@
 					
 					
 					
-					 <mat-form-field fxFlex="60"  appearance="standard">
+					 <mat-form-field fxFlex="50"  appearance="standard" floatLabel="always">
     <mat-label>Name of the Project</mat-label>
-    <input matInput placeholder="Name of the Project" style="color:green;" class="inputMat" formControlName="projectName">
-    
+    <input matInput placeholder="Project Name" style="color:green;" class="inputMat" formControlName="projectName">
+    <mat-icon matSuffix class="mr-8">edit</mat-icon>
     
   </mat-form-field>
 					
@@ -47,10 +47,10 @@
                         <input matInput placeholder="Enquiry Number From" formControlName="enquiryNoFrom">
                     </mat-form-field-->
 					
-					 <mat-form-field fxFlex="20"  appearance="standard">
-    <mat-label>Loan Number From</mat-label>
-     <input matInput placeholder="Loan Number From" formControlName="enquiryNoFrom">
-    
+					 <mat-form-field fxFlex="25"  appearance="standard" floatLabel="always">
+    <mat-label>Loan Number From </mat-label>
+     <input matInput placeholder="Loan Number" formControlName="enquiryNoFrom">
+    <mat-icon matSuffix class="mr-8">edit</mat-icon>
     
   </mat-form-field>
 					
@@ -61,20 +61,21 @@
                         <input matInput placeholder="Enquiry Number To" formControlName="enquiryNoTo">
 					</mat-form-field-->
 					
-					 <mat-form-field fxFlex="20"  appearance="standard">
+					 <mat-form-field fxFlex="25"  appearance="standard" floatLabel="always">
     <mat-label>Loan Number To</mat-label>
-     <input matInput="" placeholder="Loan Number To" formControlName="enquiryNoFrom">
+	<mat-icon matSuffix class="mr-8">edit</mat-icon>
+     <input matInput="" placeholder="Loan Number" formControlName="enquiryNoFrom">
     
     
   </mat-form-field>
 					
 					
-					<div  fxLayout="row" fxLayoutAlign="end start" style="width:250px;">
-                    <button class="mr-8 mb-8" mat-raised-button type="button" color="primary" (click)="searchEnquiries()">
-                        Search
+					<div  fxLayout="row" fxLayoutAlign="end end" style="width:250px;">
+                    <button class="mr-8" mat-raised-button type="button" color="primary" (click)="searchEnquiries()">
+                       <mat-icon matSuffix class="mr-8">search</mat-icon> Search 
                     </button>
-                    <button class="mr-8 mb-8" mat-raised-button type="button" color="primary" (click)="searchEnquiriesTest()">
-                        Search Test
+                    <button class="mr-8" mat-raised-button type="button" color="primary" (click)="searchEnquiriesTest()">
+                       <mat-icon matSuffix class="mr-8">search</mat-icon>  Search Test
                     </button>
                 </div>
 				

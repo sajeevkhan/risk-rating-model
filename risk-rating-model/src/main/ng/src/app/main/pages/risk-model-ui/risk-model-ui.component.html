@@ -9,21 +9,21 @@
 	
 	
 	
-	<div class="paddingTopLeft16">
+	<div class="paddingTopLeft16" style="padding-bottom:16px; border-bottom:1px solid #e0e0e0;">
 	
     
-        <div fxLayout="row" fxLayoutAlign="start" fxFlex="60" class="pl-16 pt-8" style="font-size: 20px;">
+        <div fxLayout="row" fxLayoutAlign="start" fxFlex="55" class="pl-16 pt-8" style="font-size: 20px;">
             <span>{{ riskModelTemplate.projectName }} <br> {{riskModelTemplate.riskProjectTypeDescription }}/ {{ riskModelTemplate.projectRiskLevelDescription }}</span>
         </div>
-        <div fxLayout="row" fxLayoutAlign="end center"  fxFlex="40" class="pr-16">
-            <button mat-raised-button class="mr-8 mb-8" (click)="sendTemplateForApproval()" [disabled]="!(riskModelTemplate.workflowStatusCode === '01' && validateTemplate())">
-                Send for Approval
+        <div fxLayout="row" fxLayoutAlign="end end"  fxFlex="45">
+            <button mat-raised-button class="mr-8" (click)="sendTemplateForApproval()" [disabled]="!(riskModelTemplate.workflowStatusCode === '01' && validateTemplate())">
+                <mat-icon matSuffix class="mr-8">send</mat-icon>Send for Approval 
             </button>
-            <button mat-raised-button class="mr-8 mb-8" (click)="evaluateTemplate()" [disabled]="!validateTemplate()">
-                Evaluate
+            <button mat-raised-button class="mr-8" (click)="evaluateTemplate()" [disabled]="!validateTemplate()">
+                <mat-icon matSuffix class="mr-8 material-icons">done_all</mat-icon>Evaluate
             </button>
-            <button mat-raised-button class="mr-8 mb-8" (click)="displayAsPDF()" [disabled]="!riskModelTemplate.id">
-                Display as PDF
+            <button mat-raised-button class="mr-8 " (click)="displayAsPDF()" [disabled]="!riskModelTemplate.id">
+                 <mat-icon matSuffix class="mr-8 material-icons">picture_as_pdf</mat-icon>Display as PDF
             </button>
       
     </div>

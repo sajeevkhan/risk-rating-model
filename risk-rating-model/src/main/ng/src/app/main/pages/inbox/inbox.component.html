@@ -6,16 +6,16 @@
         </div>
         <div fxLayout="row" fxLayoutAlign="end" class="pr-16">
             <button mat-raised-button class="mr-8 mb-8" (click)="approveEvaluation()">
-                Approve
+               <mat-icon matSuffix class="mr-8">check</mat-icon>Approve
             </button>
             <button mat-raised-button class="mr-8 mb-8" (click)="rejectEvaluation()">
-                Reject
+               <mat-icon matSuffix class="mr-8">clear</mat-icon>Reject
             </button>
             <button mat-raised-button class="mr-8 mb-8" (click)="reviewEvaluation()">
-                Review Model
+               <mat-icon matSuffix class="mr-8">rate_review</mat-icon> Review Model
             </button>
             <button mat-raised-button class="mr-8 mb-8" (click)="displayAsPDF()">
-                Display PDF
+                <mat-icon matSuffix class="mr-8">picture_as_pdf</mat-icon>Display PDF
             </button>
         </div>
     </div>

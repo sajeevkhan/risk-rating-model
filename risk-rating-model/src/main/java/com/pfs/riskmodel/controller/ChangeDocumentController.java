@@ -35,6 +35,15 @@ public class ChangeDocumentController {
     }
 
 
+    @GetMapping("/changedocument/riskModel")
+    public ResponseEntity getChangeDocumentForLoan(@RequestParam("id") Long id, HttpServletRequest request) {
+
+        List<ChangeDocument> changeDocuments = changeDocumentRepository.findByRiskModelTemplateId(id);
+
+        return  ResponseEntity.ok(changeDocuments);
+    }
+
+
     @GetMapping("/changedocument/dateRange")
     public ResponseEntity getChangeDocumentForLoanDateRange(@RequestParam("loanNumber") String loanNumber,
                                                             @RequestParam("dateFrom") String dateFromString,
