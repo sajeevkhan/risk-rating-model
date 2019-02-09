@@ -23,7 +23,10 @@ public class LoanApplicationController {
         SearchResource resource = new SearchResource();
         if (!projectName.equals("undefined"))
             resource.setPartyName(projectName);
-        ResponseEntity<List<LoanApplicationResource>> resources = lmsEnquiryClient.searchEnquiries(resource,"Basic YWRtaW46YWRtaW4");
+        ResponseEntity<List<LoanApplicationResource>> resources = lmsEnquiryClient.searchEnquiries(resource);
+
+        // ResponseEntity<List<LoanApplicationResource>> resources = lmsEnquiryClient.searchEnquiries(resource,"Basic YWRtaW46YWRtaW4");
+
         return ResponseEntity.ok(resources);
     }
 }

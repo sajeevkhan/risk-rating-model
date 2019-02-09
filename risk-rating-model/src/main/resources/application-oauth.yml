@@ -27,25 +27,14 @@ spring:
 security:
   oauth2:
     client:
-      clientId: pfs-client
-      clientSecret: pfs-secret
-      accessTokenUri: http://localhost:9999/auth/oauth/token
-      userAuthorizationUri: http://localhost:9999/auth/oauth/authorize
+      client-id: pfs-client
+      client-secret: pfs-secret
+      access-token-uri: http://localhost:9999/auth/oauth/token
+      user-authorization-uri: http://localhost:9999/auth/oauth/authorize
     resource:
-      userInfoUri: http://localhost:9999/auth/api/me
-
-#security:
-#  oauth2:
-#    client:
-#      client-id: pfs-client
-#      client-secret: pfs-secret
-#      access-token-uri: http://localhost:9999/auth/oauth/token
-#      user-authorization-uri: http://localhost:9999/auth/oauth/authorize
-#    resource:
-#      user-info-uri: http://localhost:9999/time
-#      jwt:
-#        keyValue: PfS$$$98567
-
+      user-info-uri: http://localhost:9999/time
+      jwt:
+        keyValue: PfS$$$98567
 lmsEnquiry:
   baseUrl: http://localhost:8080/
 server:
