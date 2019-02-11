@@ -19,7 +19,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http
-                .antMatcher("/**").authorizeRequests().antMatchers( "/login**","/webjars/**", "/error**").permitAll().anyRequest()
-                .authenticated();
+                .antMatcher("/**").authorizeRequests().antMatchers( "/api/riskModel", "/login**", "/webjars/**", "/error**").permitAll()
+                .and()
+                .authorizeRequests().anyRequest().authenticated()
+                .and()
+                .csrf().disable().headers().frameOptions().disable();
     }
 }
