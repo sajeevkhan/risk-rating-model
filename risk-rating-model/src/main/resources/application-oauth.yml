@@ -32,9 +32,7 @@ security:
       access-token-uri: http://localhost:9999/auth/oauth/token
       user-authorization-uri: http://localhost:9999/auth/oauth/authorize
     resource:
-      user-info-uri: http://localhost:9999/time
-      jwt:
-        keyValue: PfS$$$98567
+      userInfoUri: http://localhost:9999/auth/api/me
 lmsEnquiry:
   baseUrl: http://localhost:8080/
 server:
