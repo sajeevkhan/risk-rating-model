@@ -10,7 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Slf4j
 @Configuration
-@Profile("oauth")
+//@Profile({ "oauth", "pfs-local-dev" })
+@Profile("pfs-local-dev")
 @EnableOAuth2Sso
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -19,7 +20,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http
-                .antMatcher("/**").authorizeRequests().antMatchers( "/api/riskModel", "/login**", "/webjars/**", "/error**").permitAll()
+                .antMatcher("/**").authorizeRequests()
+                .antMatchers( "/api/riskModel", "/login**", "/webjars/**", "/error**").permitAll()
                 .and()
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
