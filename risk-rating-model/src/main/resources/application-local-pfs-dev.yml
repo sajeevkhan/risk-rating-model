@@ -32,7 +32,7 @@ security:
       access-token-uri: http://192.168.1.246:9999/auth/oauth/token
       user-authorization-uri: http://192.168.1.246:9999/auth/oauth/authorize
     resource:
-      user-info-uri: http://192.168.1.246:9999/time
+      userInfoUri: http://192.168.1.246:9999/auth/api/me
 lmsEnquiry:
   baseUrl: http://192.168.1.246:8080/
 server:
