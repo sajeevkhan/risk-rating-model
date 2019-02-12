@@ -35,12 +35,12 @@ export class InboxComponent implements OnInit {
      * rejectEvalaution()
      */
     rejectEvaluation(): void {
-        console.log ("REJECT SELECTED INBOX ITEM : " + this._inboxService.selectedItem.value.riskModelId);
-        var id = this._inboxService.selectedItem.value.riskModelId;
+        console.log ('REJECT SELECTED INBOX ITEM : ' + this._inboxService.selectedItem.value.riskModelId);
+        const id = this._inboxService.selectedItem.value.riskModelId;
 
         this._inboxService.rejectEvaluation(id).subscribe(response => {
             // Refresh the Inbox //TODO
-            //this.riskModelTemplate = response;
+            // this.riskModelTemplate = response;
 
             this._matSnackBar.open( 'Risk model is rejected and email notification was sent to requestor', 'Ok', { duration: 7000 });
         });
@@ -50,16 +50,20 @@ export class InboxComponent implements OnInit {
      * approveEvaluation()
      */
     approveEvaluation(): void {
-        console.log ("APPROVE SELECTED INBOX ITEM : " + this._inboxService.selectedItem.value.riskModelId);
-        var id = this._inboxService.selectedItem.value.riskModelId;
+        console.log ('APPROVE SELECTED INBOX ITEM : ' + this._inboxService.selectedItem.value.riskModelId);
+        const id = this._inboxService.selectedItem.value.riskModelId;
         
         this._inboxService.approveEvaluation(id).subscribe(response => {
             // Refresh the Inbox //TODO 
-            //this.riskModelTemplate = response;
+            // this.riskModelTemplate = response;
              
             this._matSnackBar.open( 'Risk model is approved and email notification was sent to requestor', 'Ok', { duration: 7000 });
         });
     }
 
- 
+    /**
+     * 
+     */
+    displayAsPDF(): void {
+    }
 }
