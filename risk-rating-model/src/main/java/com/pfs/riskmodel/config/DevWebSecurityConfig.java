@@ -16,7 +16,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Slf4j
 @Configuration
-@Profile("!oauth")
+@Profile("!pfs-local-dev")
 @EnableWebSecurity
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class DevWebSecurityConfig extends WebSecurityConfigurerAdapter {
