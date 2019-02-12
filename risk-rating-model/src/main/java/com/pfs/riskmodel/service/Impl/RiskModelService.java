@@ -2,6 +2,7 @@ package com.pfs.riskmodel.service.Impl;
 
 import com.pfs.riskmodel.domain.ChangeDocument;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
+import com.pfs.riskmodel.domain.WorkflowAssignment;
 import com.pfs.riskmodel.repository.*;
 import com.pfs.riskmodel.service.*;
 import com.pfs.riskmodel.service.modelvaluator.RiskModelEvaluator;
@@ -50,6 +51,9 @@ public class RiskModelService implements IRiskModelService {
     WorkflowStatusRepository workflowStatusRepository;
 
     @Autowired
+    WorkflowAssignmentRepository workflowAssignmentRepository;
+
+    @Autowired
     IChangeDocumentService changeDocumentService;
 
     @Override
@@ -60,6 +64,14 @@ public class RiskModelService implements IRiskModelService {
         Map<String, Object> result = new HashMap<>();
 
         RiskModelTemplate existingRiskModel = new RiskModelTemplate();
+
+
+        //Determine Approver
+        WorkflowAssignment workflowAssignment = workflowAssignmentRepository.findByPurpose(riskModelTemplate.getPurpose());
+        if (workflowAssignment != null){
+            riskModelTemplate.setReviewedBy(workflowAssignment.getApproverUserName());
+        }
+
 
         if (riskModelTemplate.getId() != null) {
             existingRiskModel = riskModelTemplateRepository.getOne(riskModelTemplate.getId());

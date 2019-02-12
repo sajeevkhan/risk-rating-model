@@ -89,7 +89,7 @@ public class PPIR_FinancialRiskDTO {
         RiskSubFactorDTO debtEquityRatioRiskSubFactorDTO = new RiskSubFactorDTO();
         debtEquityRatioRiskSubFactorDTO.setId(null);
         debtEquityRatioRiskSubFactorDTO.setItemNo(2);
-        debtEquityRatioRiskSubFactorDTO.setDescription("Debt / Equity ratio - Build Phase (Ratio) without NHAI/Authority grant");
+        debtEquityRatioRiskSubFactorDTO.setDescription("Debt / Equity ratio - Build Phase ");
         debtEquityRatioRiskSubFactorDTO.setWeightage(0.30);
         debtEquityRatioRiskSubFactorDTO.setScore(0D);
         debtEquityRatioRiskSubFactorDTO.setScoreTypeCode("01");
@@ -99,10 +99,10 @@ public class PPIR_FinancialRiskDTO {
         // 1.1.2       Risk Sub Factor Attributes
         // -> Four Attributes
         riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(0D, "Less than 2.33"));
-        riskSubFactorAttributes.add(new RiskAttribute(3D,"Equal to or above 2.33 but less than 3"));
-        riskSubFactorAttributes.add(new RiskAttribute(7D,"Equal to 3 but less than or equal to 4"));
-        riskSubFactorAttributes.add(new RiskAttribute(10D,"More than 4"));
+        riskSubFactorAttributes.add(new RiskAttribute(10D, "Less than 2.33"));
+        riskSubFactorAttributes.add(new RiskAttribute(7D,"Equal to or above 2.33 but less than 3"));
+        riskSubFactorAttributes.add(new RiskAttribute(3D,"Equal to 3 but less than or equal to 4"));
+        riskSubFactorAttributes.add(new RiskAttribute(0D,"More than 4"));
 
         List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS2 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);
         debtEquityRatioRiskSubFactorDTO.setRiskSubFactorAttributes(riskSubFactorAttributeDTOS2);

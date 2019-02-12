@@ -1,6 +1,7 @@
 package com.pfs.riskmodel.service.categoricval;
 
 import com.pfs.riskmodel.businessconfig.InfraRoad_Toll_BuildPhaseGrade;
+import com.pfs.riskmodel.businessconfig.InfraRoad_Toll_OperationalPhaseGrade;
 import com.pfs.riskmodel.businessconfig.ProjectGrade;
 import com.pfs.riskmodel.domain.RiskModelSummary;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
@@ -17,6 +18,7 @@ public class InfraRoadToll_BuildPhase_Valuator {
 
 
     List<ProjectGrade> projectGradeList = InfraRoad_Toll_BuildPhaseGrade.projectGradeList;
+    List<ProjectGrade> operationalProjectGradeList = InfraRoad_Toll_OperationalPhaseGrade.projectGradeList;
 
 
     public RiskModelTemplate valuate (RiskModelTemplate riskModelTemplate) {
@@ -45,8 +47,9 @@ public class InfraRoadToll_BuildPhase_Valuator {
         for (RiskType riskType : riskModelTemplate.getRiskTypes()) {
             if (riskType.getDescription().contains("Post")) {
 
+                  // PPIR Grade = Operational Phase Grade
                   projectGrade =
-                        Utils.fetchGrade(projectGradeList,riskType.getScore());
+                        Utils.fetchGrade(operationalProjectGradeList,riskType.getScore());
 
                 postProjectImplScore = riskType.getScore();
                 postProjectImplScoreGrade = projectGrade.getCommonScaleGrade();

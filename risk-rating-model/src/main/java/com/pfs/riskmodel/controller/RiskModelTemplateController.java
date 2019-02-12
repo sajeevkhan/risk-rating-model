@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
 import java.util.*;
 
 /**
@@ -184,6 +185,9 @@ public class RiskModelTemplateController {
     public ResponseEntity findOne (
                              @PathVariable("id") Long id,
                              HttpServletRequest request) {
+
+        System.out.println("LOCALDATE --------- : " +LocalDate.now());
+
 
         RiskModelTemplate riskModelTemplate = new RiskModelTemplate();
         RiskModelTemplateDTO riskModelTemplateDTO = new RiskModelTemplateDTO();

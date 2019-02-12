@@ -18,6 +18,8 @@ public class Renewables_BuildPhase_Valuator {
 
 
     List<ProjectGrade> projectGradeList = Renewables_Grade.projectGradeList;
+    //List<ProjectGrade> projectGradeList = Renewables_Grade.projectGradeList;
+
 
     public RiskModelTemplate valuate (RiskModelTemplate riskModelTemplate) {
 
