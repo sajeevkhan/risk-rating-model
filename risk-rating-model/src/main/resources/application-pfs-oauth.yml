@@ -29,11 +29,11 @@ security:
     client:
       client-id: pfs-client
       client-secret: pfs-secret
-      access-token-uri: http://192.168.1.246:9999/auth/oauth/token
-      user-authorization-uri: http://192.168.1.246:9999/auth/oauth/authorize
+      access-token-uri: http://localhost:9999/auth/oauth/token
+      user-authorization-uri: http://localhost:9999/auth/oauth/authorize
     resource:
-      userInfoUri: http://192.168.1.246:9999/auth/api/me
+      userInfoUri: http://localhost:9999/auth/api/me
 lmsEnquiry:
-  baseUrl: http://192.168.1.246:8080/
+  baseUrl: http://localhost:8080/
 server:
   port: 8090
