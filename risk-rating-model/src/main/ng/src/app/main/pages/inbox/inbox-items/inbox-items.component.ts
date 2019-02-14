@@ -40,8 +40,21 @@ export class InboxItemsComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    /**
+     * onSelect()
+     * @param inboxItem: any
+     */
     onSelect(inboxItem: any): void {
         this.selectedItem = inboxItem;
         this._service.selectedItem = new BehaviorSubject(inboxItem);
+    }
+
+    /**
+     * refreshInboxItems()
+     */
+    refreshInboxItems(): void {
+        this._service.fetchTasks().subscribe(data => {
+            this.inboxItems = data;
+        });
     }
 }
