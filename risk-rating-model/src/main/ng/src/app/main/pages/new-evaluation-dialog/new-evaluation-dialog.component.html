@@ -27,7 +27,7 @@
         </div>
         <div fxLayout="row">
             <mat-form-field fxFlex>
-                <mat-select placeholder="Risk Level" formControlName="riskLevel" required>
+                <mat-select placeholder="Project Status" formControlName="riskLevel" required>
                     <mat-option *ngFor="let riskLevel of riskLevels" [value]="riskLevel.code">
                         {{ riskLevel.value }}
                     </mat-option>
