@@ -14,7 +14,6 @@ export class InboxItemsComponent implements OnInit {
 
     inboxItems: any;
     
-    inboxItem: any;
     selectedItem: any;
 
     displayedColumns = [

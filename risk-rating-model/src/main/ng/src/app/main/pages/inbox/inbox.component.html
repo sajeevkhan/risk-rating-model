@@ -5,16 +5,16 @@
             Inbox
         </div>
         <div fxLayout="row" fxLayoutAlign="end" class="pr-16">
-            <button mat-raised-button class="mr-8 mb-8" (click)="approveEvaluation()">
-               <mat-icon matSuffix class="mr-8">check</mat-icon>Approve
+            <button mat-raised-button class="mr-8 mb-8" (click)="approveEvaluation()" [disabled]="!inboxItemsComponent.selectedItem">
+                <mat-icon matSuffix class="mr-8">check</mat-icon>Approve
             </button>
-            <button mat-raised-button class="mr-8 mb-8" (click)="rejectEvaluation()">
-               <mat-icon matSuffix class="mr-8">clear</mat-icon>Reject
+            <button mat-raised-button class="mr-8 mb-8" (click)="rejectEvaluation()" [disabled]="!inboxItemsComponent.selectedItem">
+                <mat-icon matSuffix class="mr-8">clear</mat-icon>Reject
             </button>
-            <button mat-raised-button class="mr-8 mb-8" (click)="reviewEvaluation()">
-               <mat-icon matSuffix class="mr-8">rate_review</mat-icon> Review Model
+            <button mat-raised-button class="mr-8 mb-8" (click)="reviewEvaluation()" [disabled]="!inboxItemsComponent.selectedItem">
+                <mat-icon matSuffix class="mr-8">rate_review</mat-icon> Review Model
             </button>
-            <button mat-raised-button class="mr-8 mb-8" (click)="displayAsPDF()">
+            <button mat-raised-button class="mr-8 mb-8" (click)="displayAsPDF()" [disabled]="!inboxItemsComponent.selectedItem">
                 <mat-icon matSuffix class="mr-8">picture_as_pdf</mat-icon>Display PDF
             </button>
         </div>
