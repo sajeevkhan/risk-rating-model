@@ -7,6 +7,7 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+import { AppService } from 'app/app.service';
 
 @Component({
     selector     : 'navbar-vertical-style-1',
@@ -23,6 +24,8 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
     private _fusePerfectScrollbar: FusePerfectScrollbarDirective;
     private _unsubscribeAll: Subject<any>;
 
+    userDetails: any;
+    
     /**
      * Constructor
      *
@@ -35,11 +38,23 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
         private _fuseConfigService: FuseConfigService,
         private _fuseNavigationService: FuseNavigationService,
         private _fuseSidebarService: FuseSidebarService,
-        private _router: Router
+        private _router: Router,
+        private _appService: AppService
     )
     {
         // Set the private defaults
         this._unsubscribeAll = new Subject();
+
+        // Fetch user details
+        if (_appService.userDetails === undefined) {
+            _appService.fetchUserDetails().subscribe(data => {
+                this.userDetails = data;
+                console.log('userDetails', this.userDetails);
+            });
+        }
+        else {
+            this.userDetails = _appService.userDetails;
+        }
     }
 
     // -----------------------------------------------------------------------------------------------------

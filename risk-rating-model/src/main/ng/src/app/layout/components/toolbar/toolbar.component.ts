@@ -8,6 +8,7 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 import { navigation } from 'app/navigation/navigation';
+import { AppService } from 'app/app.service';
 
 @Component({
     selector     : 'toolbar',
@@ -29,6 +30,8 @@ export class ToolbarComponent implements OnInit, OnDestroy
     // Private
     private _unsubscribeAll: Subject<any>;
 
+    userDetails: any;
+
     /**
      * Constructor
      *
@@ -39,7 +42,8 @@ export class ToolbarComponent implements OnInit, OnDestroy
     constructor(
         private _fuseConfigService: FuseConfigService,
         private _fuseSidebarService: FuseSidebarService,
-        private _translateService: TranslateService
+        private _translateService: TranslateService,
+        private _appService: AppService
     )
     {
         // Set the defaults
@@ -88,6 +92,17 @@ export class ToolbarComponent implements OnInit, OnDestroy
 
         // Set the private defaults
         this._unsubscribeAll = new Subject();
+
+        // Fetch user details
+        if (_appService.userDetails === undefined) {
+            _appService.fetchUserDetails().subscribe(data => {
+                this.userDetails = data;
+                console.log('userDetails', this.userDetails);
+            });
+        }
+        else {
+            this.userDetails = _appService.userDetails;
+        }
     }
 
     // -----------------------------------------------------------------------------------------------------

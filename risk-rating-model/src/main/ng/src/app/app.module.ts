@@ -21,6 +21,7 @@ import { RiskModelUIModule } from './main/pages/risk-model-ui/risk-model-ui.modu
 import { EnquirySearchModule } from './main/pages/enquirySearch/enquirySearch.module';
 import { EvaluationModule } from './main/pages/evaluations/evaluations.module';
 import { InboxModule } from './main/pages/inbox/inbox.module';
+import { AppService } from './app.service';
 
 const appRoutes: Routes = [
     {
@@ -65,6 +66,9 @@ const appRoutes: Routes = [
     ],
     bootstrap   : [
         AppComponent
+    ],
+    providers: [
+        AppService
     ]
 })
 export class AppModule
