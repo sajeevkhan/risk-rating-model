@@ -8,7 +8,7 @@ import { Resolve } from '@angular/router';
 })
 export class AppService {
 
-    userDetails: any;
+    userDetails: any = new Object({});
 
     /**
      * constructor()
