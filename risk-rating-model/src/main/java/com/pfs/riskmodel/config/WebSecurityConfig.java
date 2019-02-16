@@ -10,8 +10,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Slf4j
 @Configuration
-//@Profile({ "oauth", "pfs-local-dev" })
-@Profile("pfsdevoauth")
+//@Profile({ "oauth","pfsdevoauth"})
+//@Profile("pfsdevoauth")
+@Profile("oauth")
+
+
 @EnableOAuth2Sso
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 

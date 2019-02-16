@@ -1,5 +1,6 @@
 package com.pfs.riskmodel.service.Impl;
 
+import com.pfs.riskmodel.client.LMSEnquiryClient;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
 import com.pfs.riskmodel.domain.RiskPurpose;
 import com.pfs.riskmodel.domain.WorkflowAssignment;
@@ -34,7 +35,9 @@ import java.util.Map;
 public class WorkflowService implements IWorkflowService {
 
 
-     @Autowired
+    private final LMSEnquiryClient lmsEnquiryClient;
+
+    @Autowired
      private RuntimeService runtimeService;
 
 
@@ -124,10 +127,16 @@ public class WorkflowService implements IWorkflowService {
         variables.put("projectType", riskModelTemplate.getRiskProjectType().getValue());
         variables.put("riskLevel", riskModelTemplate.getProjectRiskLevel().getValue());
         variables.put("projectName", riskModelTemplate.getProjectName());
+
         if (httpServletRequest.getUserPrincipal() != null)
             variables.put("senderUser", httpServletRequest.getUserPrincipal().getName());
         else
             variables.put("senderUser", "Tester User");
+
+       // httpServletRequest.get
+
+        //lmsEnquiryClient.getUser()
+
         variables.put("senderUserEmail", "sajeev@leanthoughts.com");
 
 

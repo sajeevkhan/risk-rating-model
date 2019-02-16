@@ -16,8 +16,8 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Slf4j
 @Configuration
-@Profile("!pfsdevoauth")
-//@Profile({ "!oauth", "!pfs-local-dev" })
+//@Profile({"!pfsdevoauth", "!oauth"})
+@Profile({ "!oauth" })
 
 @EnableWebSecurity
 //@EnableGlobalMethodSecurity(prePostEnabled = true)

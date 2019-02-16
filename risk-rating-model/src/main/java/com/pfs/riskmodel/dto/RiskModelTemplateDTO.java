@@ -22,6 +22,9 @@ public class RiskModelTemplateDTO {
     private String status;
     private String description;
 
+    private String createdBy;
+    private String reviewedBy;
+
 
     /*
         01 - Project Assessment
