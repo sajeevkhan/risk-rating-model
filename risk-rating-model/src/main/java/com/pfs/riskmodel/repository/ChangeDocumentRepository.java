@@ -21,9 +21,19 @@ public interface ChangeDocumentRepository extends JpaRepository<ChangeDocument, 
 
     List<ChangeDocument> findByLoanNumberAndDateBetween(String loanNumber, Date dateFrom, Date dateTo);
 
-    List<ChangeDocument> findByLoanNumberAndDate(String loanNumber, Date date);
 
     List<ChangeDocument> findByRiskModelTemplateId(Long id);
+
+    List<ChangeDocument> findByRiskModelTemplateIdAAndLoanNumberAndDateBetween(Long id, String loanNumber, Date dateFrom, Date dateTo);
+
+    List<ChangeDocument> findByRiskModelTemplateIdAndDateBetween(Long id, Date dateFrom, Date dateTo);
+
+    List<ChangeDocument> findByLoanNumberAndDate(String loanNumber, Date date);
+
+    List<ChangeDocument> findByRiskModelTemplateIdAndDate(Long id, Date date);
+
+
+    List<ChangeDocument> findByRiskModelTemplateIdAndLoanNumberAndDate(Long id, String loaNumber, Date date);
 
 
 }
