@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation, OnChanges } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { delay, filter, take, takeUntil } from 'rxjs/operators';
@@ -10,13 +10,12 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { AppService } from 'app/app.service';
 
 @Component({
-    selector     : 'navbar-vertical-style-1',
-    templateUrl  : './style-1.component.html',
-    styleUrls    : ['./style-1.component.scss'],
+    selector: 'navbar-vertical-style-1',
+    templateUrl: './style-1.component.html',
+    styleUrls: ['./style-1.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
-{
+export class NavbarVerticalStyle1Component implements OnChanges, OnInit, OnDestroy {
     fuseConfig: any;
     navigation: any;
 
@@ -25,7 +24,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
     private _unsubscribeAll: Subject<any>;
 
     userDetails: any;
-    
+
     /**
      * Constructor
      *
@@ -40,21 +39,9 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
         private _fuseSidebarService: FuseSidebarService,
         private _router: Router,
         private _appService: AppService
-    )
-    {
+    ) {
         // Set the private defaults
         this._unsubscribeAll = new Subject();
-
-        // Fetch user details
-        if (_appService.userDetails === undefined) {
-            _appService.fetchUserDetails().subscribe(data => {
-                this.userDetails = data;
-                console.log('userDetails', this.userDetails);
-            });
-        }
-        else {
-            this.userDetails = _appService.userDetails;
-        }
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -63,10 +50,8 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
 
     // Directive
     @ViewChild(FusePerfectScrollbarDirective)
-    set directive(theDirective: FusePerfectScrollbarDirective)
-    {
-        if ( !theDirective )
-        {
+    set directive(theDirective: FusePerfectScrollbarDirective) {
+        if (!theDirective) {
             return;
         }
 
@@ -89,19 +74,18 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
                 take(1)
             )
             .subscribe(() => {
-                    setTimeout(() => {
-                        const activeNavItem: any = document.querySelector('navbar .nav-link.active');
+                setTimeout(() => {
+                    const activeNavItem: any = document.querySelector('navbar .nav-link.active');
 
-                        if ( activeNavItem )
-                        {
-                            const activeItemOffsetTop       = activeNavItem.offsetTop,
-                                  activeItemOffsetParentTop = activeNavItem.offsetParent.offsetTop,
-                                  scrollDistance            = activeItemOffsetTop - activeItemOffsetParentTop - (48 * 3) - 168;
+                    if (activeNavItem) {
+                        const activeItemOffsetTop = activeNavItem.offsetTop,
+                            activeItemOffsetParentTop = activeNavItem.offsetParent.offsetTop,
+                            scrollDistance = activeItemOffsetTop - activeItemOffsetParentTop - (48 * 3) - 168;
 
-                            this._fusePerfectScrollbar.scrollToTop(scrollDistance);
-                        }
-                    });
-                }
+                        this._fusePerfectScrollbar.scrollToTop(scrollDistance);
+                    }
+                });
+            }
             );
     }
 
@@ -112,19 +96,17 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
     /**
      * On init
      */
-    ngOnInit(): void
-    {
+    ngOnInit(): void {
         this._router.events
             .pipe(
                 filter((event) => event instanceof NavigationEnd),
                 takeUntil(this._unsubscribeAll)
             )
             .subscribe(() => {
-                    if ( this._fuseSidebarService.getSidebar('navbar') )
-                    {
-                        this._fuseSidebarService.getSidebar('navbar').close();
-                    }
+                if (this._fuseSidebarService.getSidebar('navbar')) {
+                    this._fuseSidebarService.getSidebar('navbar').close();
                 }
+            }
             );
 
         // Subscribe to the config changes
@@ -143,13 +125,23 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
             .subscribe(() => {
                 this.navigation = this._fuseNavigationService.getCurrentNavigation();
             });
+
+        // Fetch user details
+        if (this._appService.userDetails.firstName === undefined) {
+            this._appService.fetchUserDetails().subscribe(data => {
+                this.userDetails = data;
+                console.log('userDetails', this.userDetails);
+            });
+        }
+        else {
+            this.userDetails = this._appService.userDetails;
+        }
     }
 
     /**
      * On destroy
      */
-    ngOnDestroy(): void
-    {
+    ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
@@ -162,16 +154,14 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
     /**
      * Toggle sidebar opened status
      */
-    toggleSidebarOpened(): void
-    {
+    toggleSidebarOpened(): void {
         this._fuseSidebarService.getSidebar('navbar').toggleOpen();
     }
 
     /**
      * Toggle sidebar folded status
      */
-    toggleSidebarFolded(): void
-    {
+    toggleSidebarFolded(): void {
         this._fuseSidebarService.getSidebar('navbar').toggleFold();
     }
 }
