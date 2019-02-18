@@ -152,7 +152,7 @@ public class ChangeDocumentController {
         Date dateFrom       = format.parse ( dateFromString);
         Date dateTo       = format.parse ( dateToString);
 
-        List<ChangeDocument> changeDocuments = changeDocumentRepository.findByRiskModelTemplateIdAAndLoanNumberAndDateBetween
+        List<ChangeDocument> changeDocuments = changeDocumentRepository.findByRiskModelTemplateIdAndLoanNumberAndDateBetween
                                                                 (riskModelId,loanNumber, dateFrom, dateTo );
        return changeDocuments;
     }

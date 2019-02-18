@@ -24,7 +24,8 @@ public interface ChangeDocumentRepository extends JpaRepository<ChangeDocument, 
 
     List<ChangeDocument> findByRiskModelTemplateId(Long id);
 
-    List<ChangeDocument> findByRiskModelTemplateIdAAndLoanNumberAndDateBetween(Long id, String loanNumber, Date dateFrom, Date dateTo);
+    List<ChangeDocument> findByRiskModelTemplateIdAndLoanNumberAndDateBetween(Long id, String loanNumber, Date dateFrom, Date dateTo);
+
 
     List<ChangeDocument> findByRiskModelTemplateIdAndDateBetween(Long id, Date dateFrom, Date dateTo);
 
