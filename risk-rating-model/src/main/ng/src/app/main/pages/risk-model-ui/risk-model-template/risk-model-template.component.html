@@ -150,7 +150,7 @@
                                                             <th class="column-header" width="10%">Select</th>
                                                             <th class="column-header" width="80%">Parameter
                                                                 Selection</th>
-                                                            <th class="column-header" width="10%">Score</th>
+                                                            <th class="column-header" width="10%"><span *ngIf="_appService.userDetails.riskDepartment === '02'">Score</span></th>
                                                         </tr>
                                                         <tr *ngFor="let riskSubFactorAttribute of riskSubFactor.riskSubFactorAttributes">
                                                             <td class="column-data tableRow">
@@ -163,7 +163,7 @@
                                                                 riskSubFactorAttribute.description
                                                                 }}</td>
                                                             <td class="column-data tableRow">
-                                                                <span *ngIf="riskSubFactorAttribute.isSelected">{{
+                                                                <span *ngIf="riskSubFactorAttribute.isSelected && _appService.userDetails.riskDepartment === '02'">{{
                                                                     riskSubFactorAttribute.score }}</span>
                                                             </td>
                                                         </tr>

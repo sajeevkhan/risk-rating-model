@@ -16,4 +16,5 @@ public class User {
     private boolean status;
     private String userName;
     private String sapBPNumber;
+    private String riskDepartment;
 }

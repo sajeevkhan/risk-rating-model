@@ -24,6 +24,7 @@ public class DevWelcomeController {
         user.setEmail("admin@gmail.com");
         user.setFirstName("PFS");
         user.setLastName("Admin");
+        user.setRiskDepartment("03");
         return ResponseEntity.ok(user);
     }
 }

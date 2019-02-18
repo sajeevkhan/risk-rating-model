@@ -5,11 +5,13 @@ import com.pfs.riskmodel.config.ApiController;
 import com.pfs.riskmodel.resource.User;
 import com.pfs.riskmodel.service.IWelcomeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @ApiController
 @RequiredArgsConstructor
+@Profile("!localdev")
 public class WelcomeController {
 
     private final LMSEnquiryClient lmsEnquiryClient;
