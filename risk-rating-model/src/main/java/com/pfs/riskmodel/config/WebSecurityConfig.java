@@ -12,7 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 //@Profile({ "oauth","pfsdevoauth"})
 //@Profile("pfsdevoauth")
-@Profile("oauth")
+@Profile("pfsdevoauth")
 
 
 @EnableOAuth2Sso
