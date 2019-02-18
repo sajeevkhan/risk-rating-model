@@ -20,10 +20,6 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-			
-			
-			
-  
         </div>
         <div fxLayout="row">
             <mat-form-field fxFlex>
@@ -36,7 +32,7 @@
         </div>
         <div fxLayout="row">
             <mat-form-field fxFlex>
-                <mat-select placeholder="Purpose" formControlName="purpose" required>
+                <mat-select placeholder="Risk Department" formControlName="purpose" required>
                     <mat-option *ngFor="let purpose of purposes" [value]="purpose.code">
                         {{ purpose.description }}
                     </mat-option>

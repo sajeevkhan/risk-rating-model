@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RiskModelUIService } from '../risk-model-ui.service';
 import { MatSnackBar } from '@angular/material';
 import { EnquiryApplicationModel } from 'app/main/model/enquiryApplication.model';
+import { AppService } from 'app/app.service';
 
 @Component({
     selector: 'app-risk-model-template',
@@ -20,7 +21,9 @@ export class RiskModelTemplateComponent implements OnInit {
 
     purposes: any;
 
-    constructor(private _riskModelService: RiskModelUIService, private _matSnackBar: MatSnackBar) {
+    constructor(private _appService: AppService, private _riskModelService: RiskModelUIService, private _matSnackBar: MatSnackBar) {
+        console.log('_appService', _appService.userDetails);
+
         // Fetch purposes.
         _riskModelService.getPurposes().subscribe(response => {
             this.purposes = response;
