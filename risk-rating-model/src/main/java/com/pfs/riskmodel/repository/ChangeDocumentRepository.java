@@ -1,14 +1,12 @@
 package com.pfs.riskmodel.repository;
 
 import com.pfs.riskmodel.domain.ChangeDocument;
-import com.pfs.riskmodel.domain.ProjectRiskLevel;
-import com.pfs.riskmodel.domain.RiskModelTemplate;
-import com.pfs.riskmodel.domain.RiskProjectType;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by sajeev on 17-Dec-18.
@@ -17,24 +15,24 @@ import java.util.List;
 
 public interface ChangeDocumentRepository extends JpaRepository<ChangeDocument, Long> {
 
-    List<ChangeDocument> findByLoanNumber(String loanNumber);
+    Page<ChangeDocument> findByLoanNumber(String loanNumber, Pageable pageable);
 
-    List<ChangeDocument> findByLoanNumberAndDateBetween(String loanNumber, Date dateFrom, Date dateTo);
-
-
-    List<ChangeDocument> findByRiskModelTemplateId(Long id);
-
-    List<ChangeDocument> findByRiskModelTemplateIdAndLoanNumberAndDateBetween(Long id, String loanNumber, Date dateFrom, Date dateTo);
+    Page<ChangeDocument> findByLoanNumberAndDateBetween(String loanNumber, Date dateFrom, Date dateTo, Pageable pageable);
 
 
-    List<ChangeDocument> findByRiskModelTemplateIdAndDateBetween(Long id, Date dateFrom, Date dateTo);
+    Page<ChangeDocument> findByRiskModelTemplateId(Long id, Pageable pageable);
 
-    List<ChangeDocument> findByLoanNumberAndDate(String loanNumber, Date date);
-
-    List<ChangeDocument> findByRiskModelTemplateIdAndDate(Long id, Date date);
+    Page<ChangeDocument> findByRiskModelTemplateIdAndLoanNumberAndDateBetween(Long id, String loanNumber, Date dateFrom, Date dateTo, Pageable pageable);
 
 
-    List<ChangeDocument> findByRiskModelTemplateIdAndLoanNumberAndDate(Long id, String loaNumber, Date date);
+    Page<ChangeDocument> findByRiskModelTemplateIdAndDateBetween(Long id, Date dateFrom, Date dateTo, Pageable pageable);
+
+    Page<ChangeDocument> findByLoanNumberAndDate(String loanNumber, Date date, Pageable pageable);
+
+    Page<ChangeDocument> findByRiskModelTemplateIdAndDate(Long id, Date date, Pageable pageable);
+
+
+    Page<ChangeDocument> findByRiskModelTemplateIdAndLoanNumberAndDate(Long id, String loaNumber, Date date, Pageable pageable);
 
 
 }

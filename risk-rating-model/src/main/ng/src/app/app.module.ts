@@ -22,6 +22,7 @@ import { EnquirySearchModule } from './main/pages/enquirySearch/enquirySearch.mo
 import { EvaluationModule } from './main/pages/evaluations/evaluations.module';
 import { InboxModule } from './main/pages/inbox/inbox.module';
 import { AppService } from './app.service';
+import { ChangeDocumentModule } from './main/pages/change-document/change-document.module';
 
 const appRoutes: Routes = [
     {
@@ -58,11 +59,12 @@ const appRoutes: Routes = [
 
         // App modules
         LayoutModule,
+        ChangeDocumentModule,
         EnquirySearchModule,
         EvaluationModule,
         InboxModule,
         RiskModelUIModule,
-        RiskModelLandingModule
+        RiskModelLandingModule,
     ],
     bootstrap   : [
         AppComponent
