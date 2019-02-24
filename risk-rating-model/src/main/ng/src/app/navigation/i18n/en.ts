@@ -8,7 +8,9 @@ export const locale = {
                 'BADGE': '25'
             },
             'PROJECTS': 'Projects',
-            'INBOX': 'Inbox'
+            'INBOX': 'Inbox',
+            'REPORTS': 'Reports',
+            'CHANGEHISTORY': 'Change History'
         }
     }
 };

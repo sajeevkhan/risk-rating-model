@@ -5,6 +5,8 @@ import com.pfs.riskmodel.domain.ChangeDocument;
 import com.pfs.riskmodel.repository.ChangeDocumentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by sajeev on 15-Dec-18.
@@ -27,70 +27,70 @@ public class ChangeDocumentController {
     @Autowired
     private ChangeDocumentRepository changeDocumentRepository;
 
+    @Autowired
+    private HttpServletRequest request;
+
 
     @GetMapping("/changedocuments")
-    public ResponseEntity getChangeDocuments(@RequestParam("riskModelId") Long riskModelId,
-                                             @RequestParam("loanNumber") String loanNumber,
-                                             @RequestParam("dateFrom") String dateFromString,
-                                             @RequestParam("dateTo") String dateToString,
-                                             HttpServletRequest request) throws Exception{
+    public ResponseEntity getChangeDocuments(@RequestParam(value = "riskModelId", required = false) Long riskModelId,
+                                             @RequestParam(value = "loanNumber", required = false) String loanNumber,
+                                             @RequestParam(value = "dateFrom", required = false) String dateFromString,
+                                             @RequestParam(value = "dateTo", required = false) String dateToString,
+                                             Pageable pageable) throws Exception{
 
-        List<ChangeDocument> changeDocuments = new ArrayList<>();
 
         if (riskModelId != null && loanNumber != null && dateFromString != null && dateToString != null)
-            changeDocuments = this.getChangeDocumentForRiskModelLoanDateRange(riskModelId,loanNumber,dateFromString,dateToString,request);
+            return ResponseEntity.ok(this.getChangeDocumentForRiskModelLoanDateRange(riskModelId,loanNumber,dateFromString,dateToString, pageable));
 
         if (riskModelId != null && loanNumber == null && dateFromString == null && dateToString == null) {
-            changeDocuments = this.getChangeDocumentForRiskModel(riskModelId,request);
+            return ResponseEntity.ok(this.getChangeDocumentForRiskModel(riskModelId, pageable));
         }
 
         if (riskModelId == null && loanNumber != null && dateFromString == null && dateToString == null){
-            changeDocuments = this.getChangeDocumentForLoan(loanNumber,request);
+            return ResponseEntity.ok(this.getChangeDocumentForLoan(loanNumber,pageable));
         }
         if (riskModelId != null && loanNumber == null && dateFromString != null && dateToString != null) {
-            changeDocuments = this.getChangeDocumentForRiskModelDateRange(riskModelId,dateFromString,dateToString,request);
+            return ResponseEntity.ok(this.getChangeDocumentForRiskModelDateRange(riskModelId,dateFromString,dateToString,pageable));
         }
         if (riskModelId != null && loanNumber != null && dateFromString != null && dateToString != null) {
-            changeDocuments = this.getChangeDocumentForLoanDateRange(loanNumber,dateFromString,dateToString,request);
+            return ResponseEntity.ok(this.getChangeDocumentForLoanDateRange(loanNumber,dateFromString,dateToString,pageable));
         }
 
         if (riskModelId != null && loanNumber != null && dateFromString != null && dateToString != null) {
-            changeDocuments = this.getChangeDocumentForLoanDateRange(loanNumber,dateFromString,dateToString,request);
+            return ResponseEntity.ok(this.getChangeDocumentForLoanDateRange(loanNumber,dateFromString,dateToString,pageable));
         }
 
         if (riskModelId != null && loanNumber == null && dateFromString != null && dateToString == null) {
-            changeDocuments = this.getChangeDocumentForRiskModelDate(riskModelId,dateFromString,request);
+            return ResponseEntity.ok(this.getChangeDocumentForRiskModelDate(riskModelId,dateFromString,pageable));
         }
         if (riskModelId == null && loanNumber != null && dateFromString != null && dateToString == null) {
-            changeDocuments = this.getChangeDocumentForLoanDate(loanNumber,dateFromString,request);
+            return ResponseEntity.ok(this.getChangeDocumentForLoanDate(loanNumber,dateFromString, pageable));
         }
         if (riskModelId != null && loanNumber != null && dateFromString != null && dateToString == null) {
-            changeDocuments = this.getChangeDocumentForRiskModelLoanDate(riskModelId,loanNumber,dateFromString,request);
+            return ResponseEntity.ok(this.getChangeDocumentForRiskModelLoanDate(riskModelId,loanNumber,dateFromString,pageable));
         }
 
-        return ResponseEntity.ok(changeDocuments);
+        return ResponseEntity.noContent().build();
 
     }
 
 
-    private List<ChangeDocument> getChangeDocumentForRiskModel(Long id, HttpServletRequest request) {
+    private Page<ChangeDocument> getChangeDocumentForRiskModel(Long id,  Pageable pageable) {
 
-        List<ChangeDocument> changeDocuments = changeDocumentRepository.findByRiskModelTemplateId(id);
-        return changeDocuments;
+        return changeDocumentRepository.findByRiskModelTemplateId(id,pageable);
     }
 
-    private List<ChangeDocument> getChangeDocumentForLoan(String loanNumber, HttpServletRequest request) {
+    private Page<ChangeDocument> getChangeDocumentForLoan(String loanNumber, Pageable pageable) {
 
-        List<ChangeDocument> changeDocuments = changeDocumentRepository.findByLoanNumber(loanNumber);
-        return changeDocuments;
+        return changeDocumentRepository.findByLoanNumber(loanNumber, pageable);
     }
 
 
 
-    private List<ChangeDocument> getChangeDocumentForLoanDateRange(String loanNumber,
+    private Page<ChangeDocument> getChangeDocumentForLoanDateRange(String loanNumber,
                                                                    String dateFromString,
                                                                    String dateToString,
-                                                                   HttpServletRequest request) throws ParseException {
+                                                                   Pageable pageable) throws ParseException {
 
         //http://localhost:8090/api/changedocument?loanNumber=10003001&dateFrom=2019-02-03&dateTo=2019-02-03
 
@@ -99,77 +99,70 @@ public class ChangeDocumentController {
 
         Date dateFrom = format.parse(dateFromString);
         Date dateTo = format.parse(dateToString);
-        List<ChangeDocument> changeDocuments = changeDocumentRepository.findByLoanNumberAndDateBetween(loanNumber, dateFrom, dateTo);
-        return changeDocuments;
+        return changeDocumentRepository.findByLoanNumberAndDateBetween(loanNumber, dateFrom, dateTo,pageable);
     }
 
 
 
-     private List<ChangeDocument> getChangeDocumentForLoanDate(String loanNumber,
+     private Page<ChangeDocument> getChangeDocumentForLoanDate(String loanNumber,
                                                                     String date,
-                                                                    HttpServletRequest request) throws ParseException {
+                                                                    Pageable pageable) throws ParseException {
 
         //http://localhost:8090/api/changedocument?loanNumber=10003001&dateFrom=2019-02-03&dateTo=2019-02-03
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date dateOn       = format.parse ( date);
-        List<ChangeDocument> changeDocuments = changeDocumentRepository.findByLoanNumberAndDate(loanNumber, dateOn );
-        return changeDocuments;
+        return changeDocumentRepository.findByLoanNumberAndDate(loanNumber, dateOn, pageable);
     }
 
 
-    private List<ChangeDocument> getChangeDocumentForRiskModelDate(Long riskModelId,
+    private Page<ChangeDocument> getChangeDocumentForRiskModelDate(Long riskModelId,
                                                               String date,
-                                                              HttpServletRequest request) throws ParseException {
+                                                              Pageable pageable) throws ParseException {
 
         //http://localhost:8090/api/changedocument?loanNumber=10003001&dateFrom=2019-02-03&dateTo=2019-02-03
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date dateOn       = format.parse ( date);
-        List<ChangeDocument> changeDocuments = changeDocumentRepository.findByRiskModelTemplateIdAndDate(riskModelId, dateOn );
-
-        return changeDocuments;
+        return changeDocumentRepository.findByRiskModelTemplateIdAndDate(riskModelId, dateOn, pageable);
     }
-    private List<ChangeDocument> getChangeDocumentForRiskModelLoanDate(Long riskModelId, String loanNumber,
+
+    private Page<ChangeDocument> getChangeDocumentForRiskModelLoanDate(Long riskModelId, String loanNumber,
                                                                    String date,
-                                                                   HttpServletRequest request) throws ParseException {
+                                                                   Pageable pageable) throws ParseException {
 
         //http://localhost:8090/api/changedocument?loanNumber=10003001&dateFrom=2019-02-03&dateTo=2019-02-03
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date dateOn       = format.parse ( date);
-        List<ChangeDocument> changeDocuments = changeDocumentRepository.findByRiskModelTemplateIdAndLoanNumberAndDate(
-                riskModelId, loanNumber, dateOn );
+        return changeDocumentRepository.findByRiskModelTemplateIdAndLoanNumberAndDate(
+                riskModelId, loanNumber, dateOn, pageable);
 
-        return changeDocuments;
     }
 
 
-    private List<ChangeDocument> getChangeDocumentForRiskModelLoanDateRange(Long riskModelId,
+    private Page<ChangeDocument> getChangeDocumentForRiskModelLoanDateRange(Long riskModelId,
                                                             String loanNumber,
                                                             String dateFromString,
-                                                            String dateToString,
-                                                            HttpServletRequest request) throws ParseException {
+                                                            String dateToString, Pageable pageable) throws ParseException {
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date dateFrom       = format.parse ( dateFromString);
         Date dateTo       = format.parse ( dateToString);
 
-        List<ChangeDocument> changeDocuments = changeDocumentRepository.findByRiskModelTemplateIdAndLoanNumberAndDateBetween
-                                                                (riskModelId,loanNumber, dateFrom, dateTo );
-       return changeDocuments;
+        return changeDocumentRepository.findByRiskModelTemplateIdAndLoanNumberAndDateBetween
+                                                                (riskModelId,loanNumber, dateFrom, dateTo, pageable);
     }
 
-    private List<ChangeDocument> getChangeDocumentForRiskModelDateRange(Long riskModelId,
+    private Page<ChangeDocument> getChangeDocumentForRiskModelDateRange(Long riskModelId,
                                                                      String dateFromString,
                                                                      String dateToString,
-                                                                     HttpServletRequest request) throws ParseException {
+                                                                     Pageable pageable) throws ParseException {
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date dateFrom       = format.parse ( dateFromString);
         Date dateTo       = format.parse ( dateToString);
 
-        List<ChangeDocument> changeDocuments = changeDocumentRepository.findByRiskModelTemplateIdAndDateBetween(
-                                                    riskModelId, dateFrom  ,  dateTo);
+        return changeDocumentRepository.findByRiskModelTemplateIdAndDateBetween(
+                                                    riskModelId, dateFrom  ,  dateTo, pageable);
 
-       return changeDocuments;
     }
 
 
