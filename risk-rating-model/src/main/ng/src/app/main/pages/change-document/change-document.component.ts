@@ -18,8 +18,8 @@ export class ChangeDocumentComponent implements OnInit {
         this.changeDocumentsForm = _formBuilder.group({
             loanNumber: new FormControl(),
             riskModelId: new FormControl(),
-            dateFrom: new FormControl(),
-            dateTo: new FormControl()
+            dateFrom: new FormControl({disabled: true}),
+            dateTo: new FormControl({disabled: true})
         });
     }
 

@@ -39,15 +39,15 @@
                         </mat-form-field>
 
                         <mat-form-field>
-                            <input matInput [matDatepicker]="dateFrom" placeholder="Date From" formControlName="dateFrom"
-                                [disabled]="(!changeDocumentsForm.value.riskModelId && !changeDocumentsForm.value.loanNumber)">
+                            <input matInput [matDatepicker]="dateFrom" placeholder="Date From" formControlName="dateFrom">
+                                <!-- [disabled]="(!changeDocumentsForm.value.riskModelId && !changeDocumentsForm.value.loanNumber)"> -->
                             <mat-datepicker-toggle matSuffix [for]="dateFrom"></mat-datepicker-toggle>
                             <mat-datepicker #dateFrom></mat-datepicker>
                         </mat-form-field>
 
                         <mat-form-field>
-                            <input matInput [matDatepicker]="dateTo" placeholder="Date To" formControlName="dateTo"
-                                [disabled]="(!changeDocumentsForm.value.riskModelId && !changeDocumentsForm.value.loanNumber)">
+                            <input matInput [matDatepicker]="dateTo" placeholder="Date To" formControlName="dateTo">
+                                <!-- [disabled]="(!changeDocumentsForm.value.riskModelId && !changeDocumentsForm.value.loanNumber)"> -->
                             <mat-datepicker-toggle matSuffix [for]="dateTo"></mat-datepicker-toggle>
                             <mat-datepicker #dateTo></mat-datepicker>
                         </mat-form-field>

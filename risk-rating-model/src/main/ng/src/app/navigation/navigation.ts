@@ -2,18 +2,18 @@ import { FuseNavigation } from '@fuse/types';
 
 export const navigation: FuseNavigation[] = [
     {
-        id       : 'applications',
-        title    : 'Applications',
+        id: 'applications',
+        title: 'Applications',
         translate: 'NAV.APPLICATIONS',
-        type     : 'group',
-        children : [
+        type: 'group',
+        children: [
             {
-                id       : 'inbox',
-                title    : 'Inbox',
+                id: 'inbox',
+                title: 'Inbox',
                 translate: 'NAV.INBOX',
-                type     : 'item',
-                icon     : 'email',
-                url      : '/inbox'
+                type: 'item',
+                icon: 'email',
+                url: '/inbox'
                 /* badge    : {
                     title    : '25',
                     translate: 'NAV.SAMPLE.BADGE',
@@ -22,13 +22,31 @@ export const navigation: FuseNavigation[] = [
                 } */
             },
             {
-                id       : 'projects',
-                title    : 'Projects',
+                id: 'projects',
+                title: 'Projects',
                 translate: 'NAV.PROJECTS',
-                type     : 'item',
-                icon     : 'business',
-                url      : '/projects'
+                type: 'item',
+                icon: 'business',
+                url: '/projects'
+            },
+            {
+                id: 'reports',
+                title: 'Reports',
+                translate: 'NAV.REPORTS',
+                type: 'collapsable',
+                icon: 'email',
+                children: [
+                    {
+                        id: 'changeHistory',
+                        title: 'Change History',
+                        translate: 'NAV.CHANGEHISTORY',
+                        type: 'item',
+                        icon: 'email',
+                        url: '/changeDocuments'
+                    },
+                ]
             }
+
         ]
     }
 ];
