@@ -181,6 +181,26 @@ public class RiskModelTemplateController {
 
 
 
+    @GetMapping("/riskModel/loanEnquiryId/{loanEnquiryId}")
+    public ResponseEntity findByLoanEnquiryId (@PathVariable("loanEnquiryId") String loanEnquiryId,
+                                            HttpServletRequest request){
+
+
+        List<RiskModelTemplateDTO> riskModelTemplateDTOS = new ArrayList<>();
+        List<RiskModelTemplate> riskModelTemplates = new ArrayList<>();
+
+        riskModelTemplates = riskModelTemplateRepository.findByLoanEnquiryId(loanEnquiryId);
+
+        riskModelTemplates.forEach(riskModelTemplate -> {
+            RiskModelTemplateDTO riskModelTemplateDTO = mapDomainToDTO(riskModelTemplate);
+            riskModelTemplateDTOS.add(riskModelTemplateDTO);
+        });
+
+        return ResponseEntity.ok(riskModelTemplateDTOS);
+    }
+
+
+
     @GetMapping("/riskModelTemplate/id/{id}")
     public ResponseEntity findOne (
                              @PathVariable("id") Long id,
