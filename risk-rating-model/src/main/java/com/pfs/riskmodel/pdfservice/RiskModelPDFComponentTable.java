@@ -158,11 +158,19 @@ public class RiskModelPDFComponentTable {
                     projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
                     projectDetailsCell2.setHorizontalAlignment(Element.ALIGN_CENTER);
 
-                    //System.out.println("Risk Sub Factor Attribtue ---    :    " + riskSubFactorAttribute.getDescription());
-                    if (riskSubFactorAttribute.getIsSelected())
-                        projectDetailsCell2.setPhrase(new Phrase(riskSubFactorAttribute.getScore().toString(), selectedValueFont));
-                    else
-                        projectDetailsCell2.setPhrase(new Phrase(riskSubFactorAttribute.getScore().toString(), valueFont));
+
+                    //Score against each parameter (ranging between 0 to 10) should not be visible to the users of the Dept 1 and Dept 3.
+                    if (riskModelTemplate.getPurpose().getCode().equals("02")) {
+                        if (riskSubFactorAttribute.getIsSelected())
+                            projectDetailsCell2.setPhrase(new Phrase(riskSubFactorAttribute.getScore().toString(), selectedValueFont));
+                        else
+                            projectDetailsCell2.setPhrase(new Phrase(riskSubFactorAttribute.getScore().toString(), valueFont));
+                    }
+                    else {
+                        projectDetailsCell2.setPhrase(new Phrase(" ", valueFont));
+                        projectDetailsCell2.setBackgroundColor(BaseColor.GRAY.brighter());
+
+                    }
 
                     // Third Column - Score Label
                     PdfPCell projectDetailsCell3 = new PdfPCell();

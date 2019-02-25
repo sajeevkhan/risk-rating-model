@@ -4,6 +4,8 @@ import com.pfs.riskmodel.domain.ChangeDocument;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
 import com.pfs.riskmodel.domain.WorkflowAssignment;
 import com.pfs.riskmodel.repository.*;
+import com.pfs.riskmodel.resource.EmailId;
+import com.pfs.riskmodel.resource.User;
 import com.pfs.riskmodel.service.*;
 import com.pfs.riskmodel.service.modelvaluator.RiskModelEvaluator;
 import com.pfs.riskmodel.service.validator.RiskModelTemplateValidator;
@@ -56,6 +58,9 @@ public class RiskModelService implements IRiskModelService {
     @Autowired
     IChangeDocumentService changeDocumentService;
 
+    @Autowired
+    IWelcomeService welcomeService;
+
     @Override
     public Map<String, Object> createRiskModel(RiskModelTemplate riskModelTemplate,
                                                Integer action,
@@ -69,8 +74,22 @@ public class RiskModelService implements IRiskModelService {
         //Determine Approver
         WorkflowAssignment workflowAssignment = workflowAssignmentRepository.findByPurpose(riskModelTemplate.getPurpose());
         if (workflowAssignment != null){
-            riskModelTemplate.setReviewedBy(workflowAssignment.getApproverUserName());
+            User approver = new User();
+            EmailId emailId = new EmailId(workflowAssignment.getApproverEmailId());
+            welcomeService.getUser();
+            approver = welcomeService.getUserByEmail(emailId);
+            if (approver != null)
+                riskModelTemplate.setReviewedBy(approver.getFirstName() + " " + approver.getLastName());
         }
+
+        //Set Created By
+        if (httpServletRequest.getUserPrincipal()!= null){
+            User user = welcomeService.getUser();
+            if (user != null)
+                riskModelTemplate.setCreatedBy(user.getFirstName() + " " + user.getLastName());
+        }
+
+
 
 
         if (riskModelTemplate.getId() != null) {
@@ -100,8 +119,8 @@ public class RiskModelService implements IRiskModelService {
         RiskModelEvaluator riskModelEvaluator = new RiskModelEvaluator();
         riskModelEvaluator.evaluateRiskModel(riskModelTemplate);
 
-        if (httpServletRequest.getUserPrincipal() != null)
-            riskModelTemplate.setCreatedBy(httpServletRequest.getUserPrincipal().getName());
+//        if (httpServletRequest.getUserPrincipal() != null)
+//            riskModelTemplate.setCreatedBy(httpServletRequest.getUserPrincipal().getName());
         if (riskModelTemplate.getWorkflowStatus() == null) {
             riskModelTemplate.setWorkflowStatus(workflowStatusRepository.findByCode("01"));
         }
@@ -113,7 +132,7 @@ public class RiskModelService implements IRiskModelService {
             changeDocument= changeDocumentService.createChangeDocument(existingRiskModel,
                     riskModelTemplate ,
                     action,userName);
-        //}
+
 
         riskModelTemplate =  riskModelTemplateRepository.save(riskModelTemplate);
 

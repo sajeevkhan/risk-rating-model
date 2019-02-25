@@ -21,7 +21,9 @@ public class InfraRoadHAM_Operational_ModelControllerTest extends AbstractTest {
         super.setUp();
     }
 
-
+    @Test
+    public  void test() throws Exception {
+    }
 
    // @Test
     public void evaluate_INFRA_ROAD_HAM () throws Exception {

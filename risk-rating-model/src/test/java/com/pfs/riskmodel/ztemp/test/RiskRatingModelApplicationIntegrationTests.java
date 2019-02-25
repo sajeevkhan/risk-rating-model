@@ -30,8 +30,13 @@ public class RiskRatingModelApplicationIntegrationTests {
 	@Autowired
 	MockMvc mockMvc;
 
+	@Test
+	public void test() throws Exception {
+	}
 
-	//@Test
+
+
+		//@Test
 	public void contextLoads() throws Exception {
 
 

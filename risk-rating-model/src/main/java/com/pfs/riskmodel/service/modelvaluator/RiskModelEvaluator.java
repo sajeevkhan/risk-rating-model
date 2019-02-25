@@ -74,15 +74,15 @@ public class RiskModelEvaluator {
 
 
 
-        System.out.println("  ----------------- Insisde RISK MODEL VALUATOR --------------");
-        System.out.println("  ----------------- Printing RISK MODEL Summary --------------");
-
-        for (RiskModelSummary riskModelSummary: riskModelTemplate.getRiskModelSummaries()) {
-            System.out.println(riskModelSummary.getName() + " SCORE: " + riskModelSummary.getScore() + "  GRADE: " + riskModelSummary.getGrade());
-
-
-        }
-
+//        System.out.println("  ----------------- Insisde RISK MODEL VALUATOR --------------");
+//        System.out.println("  ----------------- Printing RISK MODEL Summary --------------");
+//
+//        for (RiskModelSummary riskModelSummary: riskModelTemplate.getRiskModelSummaries()) {
+//            System.out.println(riskModelSummary.getName() + " SCORE: " + riskModelSummary.getScore() + "  GRADE: " + riskModelSummary.getGrade());
+//
+//
+//        }
+//
 
         return  riskModelTemplate;
     }

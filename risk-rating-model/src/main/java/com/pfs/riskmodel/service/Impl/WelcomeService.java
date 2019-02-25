@@ -1,8 +1,10 @@
 package com.pfs.riskmodel.service.Impl;
 
 import com.pfs.riskmodel.client.LMSEnquiryClient;
+import com.pfs.riskmodel.resource.EmailId;
 import com.pfs.riskmodel.resource.User;
 import com.pfs.riskmodel.service.IWelcomeService;
+import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -10,6 +12,7 @@ import org.springframework.security.oauth2.provider.authentication.OAuth2Authent
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.ws.http.HTTPException;
 
 @Service
 public class WelcomeService implements IWelcomeService {
@@ -25,6 +28,25 @@ public class WelcomeService implements IWelcomeService {
         ResponseEntity<User> user = lmsEnquiryClient.getUser(getAuthorizationBearer());
         return user.getBody();
     }
+
+    @Override
+    public User getUserByEmail(EmailId emailId) {
+        ResponseEntity<User> user;
+
+        try {
+            user = lmsEnquiryClient.getUserByEmail(emailId, getAuthorizationBearer());
+        } catch ( HTTPException httpException) {
+            System.out.println("HTTP Exception -> Get User By Email:" + httpException.getMessage() );
+            return null;
+        } catch (FeignException feignException) {
+            System.out.println("Feign Exception -> Get User By Email:" + feignException.getMessage() );
+            return null;
+        }
+       return user.getBody();
+
+       // return null;
+    }
+
 
     private String getAuthorizationBearer() {
         OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) ((OAuth2Authentication) request.getUserPrincipal()).getDetails();

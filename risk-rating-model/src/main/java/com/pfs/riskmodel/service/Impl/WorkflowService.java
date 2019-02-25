@@ -6,6 +6,7 @@ import com.pfs.riskmodel.domain.RiskPurpose;
 import com.pfs.riskmodel.domain.WorkflowAssignment;
 import com.pfs.riskmodel.repository.WorkflowAssignmentRepository;
 import com.pfs.riskmodel.repository.WorkflowStatusRepository;
+import com.pfs.riskmodel.resource.User;
 import com.pfs.riskmodel.service.IWorkflowService;
 import com.pfs.riskmodel.util.ValidationResult;
 import lombok.RequiredArgsConstructor;
@@ -56,6 +57,9 @@ public class WorkflowService implements IWorkflowService {
     @Autowired
     private WorkflowStatusRepository workflowStatusRepository;
 
+    @Autowired
+    private WelcomeService welcomeService;
+
 
 
     @Override
@@ -78,9 +82,11 @@ public class WorkflowService implements IWorkflowService {
 
         switch (action) {
             case 1:
-                if (httpServletRequest.getUserPrincipal() != null)
-                    riskModelTemplate.setCreatedBy(httpServletRequest.getUserPrincipal().getName());
-
+                if (httpServletRequest.getUserPrincipal() != null) {
+                    User user = welcomeService.getUser();
+                    if (user != null)
+                    riskModelTemplate.setCreatedBy(user.getFirstName() + " " + user.getLastName());
+                }
                 validationResult = getWorkflowValidation(false,"Workflow.NotStarted",riskModelTemplate.getId().toString());
                 result.put("ValidationResult", validationResult);
                 riskModelTemplate.setWorkflowStatus( workflowStatusRepository.findByCode("01") );
@@ -133,11 +139,9 @@ public class WorkflowService implements IWorkflowService {
         else
             variables.put("senderUser", "Tester User");
 
-       // httpServletRequest.get
-
-        //lmsEnquiryClient.getUser()
-
-        variables.put("senderUserEmail", "sajeev@leanthoughts.com");
+        // Get User Name from WelcomeService
+        if (welcomeService.getUser() != null)
+            variables.put("senderUserEmail", welcomeService.getUser().getEmail());
 
 
         WorkflowAssignment workflowAssignment = getWorkFlowProcessor(riskModelTemplate.getPurpose());
@@ -161,7 +165,7 @@ public class WorkflowService implements IWorkflowService {
             variables.put("senderUser1", httpServletRequest.getUserPrincipal().getName());
         else
             variables.put("senderUser1", "Tester User");
-        variables.put("senderUserEmail1", "sajeev@leanthoughts.com");
+        variables.put("senderUserEmail1", welcomeService.getUser().getEmail());
 
 
         WorkflowAssignment workflowAssignment = getWorkFlowProcessor(riskModelTemplate.getPurpose());

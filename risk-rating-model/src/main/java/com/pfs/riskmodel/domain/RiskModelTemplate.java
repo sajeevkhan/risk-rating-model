@@ -124,8 +124,12 @@ public class RiskModelTemplate extends AuditModel {
     private ComputingMethod computingMethod;
 
 
-    @NotNull
+    @Nullable
     private String loanNumber;
+
+    @Nullable
+    private String loanEnquiryId;
+
 
     @NotNull
     private String projectName;

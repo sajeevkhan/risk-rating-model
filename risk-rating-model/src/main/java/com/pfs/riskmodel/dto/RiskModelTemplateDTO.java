@@ -87,7 +87,7 @@ public class RiskModelTemplateDTO {
      private String computingMethodCode;
      private String computingMethodDescription;
 
-
+     private String loanEnquiryId;
      private String loanNumber;
      private String projectName;
      private Double loanAmountInCrores;

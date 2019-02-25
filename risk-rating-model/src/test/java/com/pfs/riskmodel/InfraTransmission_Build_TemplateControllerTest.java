@@ -22,6 +22,9 @@ public class InfraTransmission_Build_TemplateControllerTest extends AbstractTest
     }
 
 
+    @Test
+    public void test () throws Exception {
+    }
 
     //@Test
     public void createRiskModelTemplate() throws Exception {

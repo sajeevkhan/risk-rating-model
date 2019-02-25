@@ -22,6 +22,9 @@ public class InfraRoadToll_Operational_TemplateControllerTest extends AbstractTe
     }
 
 
+    @Test
+    public void test () throws Exception {
+    }
 
    // @Test
     public void createRiskModelTemplate() throws Exception {

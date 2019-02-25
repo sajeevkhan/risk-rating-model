@@ -23,6 +23,9 @@ public class EVAL_TRANS_BUILD_ModelControllerTest extends AbstractTest {
     }
 
 
+    @Test
+    public void test () throws Exception {
+    }
 
     //@Test
     public void evaluate_INFRA_TRANS () throws Exception {

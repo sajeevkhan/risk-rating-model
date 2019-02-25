@@ -22,9 +22,11 @@ public  class EVAL_HoldingCompany_TemplateControllerTest extends AbstractTest {
         super.setUp();
     }
 
+    @Test
+    public  void test() throws Exception {
+    }
 
-
-    //@Test
+        //@Test
     public  void createRiskModelTemplate() throws Exception {
         String uri = "/api/riskModel?action=1";
 

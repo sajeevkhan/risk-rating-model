@@ -22,6 +22,9 @@ public class InfraRoadHAM_Operational_TemplateControllerTest extends AbstractTes
     }
 
 
+    @Test
+    public void test () throws Exception {
+    }
 
     //@Test
     public void createRiskModelTemplate() throws Exception {

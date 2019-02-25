@@ -21,7 +21,9 @@ public class InfraRoadHAM_Build_ModelControllerTest_WorkFlow_Full extends Abstra
         super.setUp();
     }
 
-
+    @Test
+    public  void test() throws Exception {
+    }
 
     //@Test
     public void evaluate_INFRA_ROAD_HAM_START () throws Exception {

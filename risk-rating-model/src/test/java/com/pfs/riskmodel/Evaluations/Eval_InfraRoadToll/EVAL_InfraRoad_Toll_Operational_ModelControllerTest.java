@@ -22,6 +22,9 @@ public class EVAL_InfraRoad_Toll_Operational_ModelControllerTest extends Abstrac
     }
 
 
+    @Test
+    public void test () throws Exception {
+    }
 
     //@Test
     public void evaluate_INFRA_ROAD_TOLL () throws Exception {

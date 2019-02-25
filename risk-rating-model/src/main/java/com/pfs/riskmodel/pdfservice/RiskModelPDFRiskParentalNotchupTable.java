@@ -181,13 +181,18 @@ public class RiskModelPDFRiskParentalNotchupTable {
                 cell2.setBackgroundColor(BaseColor.WHITE);
                 cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
 
-                if (riskSubFactorAttribute.getIsSelected()) {
-                    valueFont.setStyle(Font.BOLD);
-                    cell2.setPhrase(new Phrase(riskSubFactorAttribute.getScore().toString(), valueFont));
-                }
-                else
-                    cell2.setPhrase(new Phrase(riskSubFactorAttribute.getScore().toString(), valueFont));
+                if (riskModelTemplate.getPurpose().getCode().equals("02")) {
 
+                    if (riskSubFactorAttribute.getIsSelected()) {
+                        valueFont.setStyle(Font.BOLD);
+                        cell2.setPhrase(new Phrase(riskSubFactorAttribute.getScore().toString(), valueFont));
+                    } else
+                        cell2.setPhrase(new Phrase(riskSubFactorAttribute.getScore().toString(), valueFont));
+                }
+                else {
+                    cell2.setPhrase(new Phrase(" ", valueFont));
+                    cell2.setBackgroundColor(BaseColor.GRAY.brighter());
+                }
                 // Third Column - Score Label
                 PdfPCell cell3 = new PdfPCell();
                 cell3.setBackgroundColor(BaseColor.WHITE);

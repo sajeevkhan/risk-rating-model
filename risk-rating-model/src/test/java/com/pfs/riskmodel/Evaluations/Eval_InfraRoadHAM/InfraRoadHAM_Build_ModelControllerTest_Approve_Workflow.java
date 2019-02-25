@@ -19,7 +19,9 @@ public class InfraRoadHAM_Build_ModelControllerTest_Approve_Workflow extends Abs
     public void setUp() {
         super.setUp();
     }
-
+    @Test
+    public  void test() throws Exception {
+    }
 
 
    // @Test

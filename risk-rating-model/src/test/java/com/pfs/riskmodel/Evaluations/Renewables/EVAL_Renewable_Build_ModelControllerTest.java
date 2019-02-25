@@ -23,6 +23,9 @@ public class EVAL_Renewable_Build_ModelControllerTest extends AbstractTest {
     }
 
 
+    @Test
+    public void test () throws Exception {
+    }
 
     //@Test
     public void evaluate_BUILD_PHASE () throws Exception {
