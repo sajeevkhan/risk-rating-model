@@ -152,24 +152,26 @@ public class Initializer implements CommandLineRunner{
             log.info("-------------------------- Added Work Flow Statuses data");
         }
 
+        workflowAssignmentRepository.deleteAll();
+        workflowAssignmentRepository.flush();
 
         if(workflowAssignmentRepository.count() == 0) {
 
 
-            RiskPurpose p1 = new RiskPurpose(null, "01", "Project Assessment");
-            RiskPurpose p2 = new RiskPurpose(null, "02", "Risk Assessment");
+            RiskPurpose p1 = new RiskPurpose(null, "01", "Project");
+            RiskPurpose p2 = new RiskPurpose(null, "02", "Risk");
             RiskPurpose p3 = new RiskPurpose(null, "03", "Monitoring");
 
-            WorkflowAssignment w1 = new WorkflowAssignment(null,p1,"admin", "sajeev.khan@gmail.com");
-            WorkflowAssignment w2 = new WorkflowAssignment(null,p2,"admin", "sajeev@leanthoughts.com");
-            WorkflowAssignment w3 = new WorkflowAssignment(null,p3,"admin", "sajeev.khan@gmail.com");
+            WorkflowAssignment w1 = new WorkflowAssignment(null,p1,"Neeraj Yadav", "neerajyadav@ptcfinancial.com");
+            WorkflowAssignment w2 = new WorkflowAssignment(null,p2,"Neeraj Yadav", "neerajyadav@ptcfinancial.com");
+            WorkflowAssignment w3 = new WorkflowAssignment(null,p3,"Neeraj Yadav", "neerajyadav@ptcfinancial.com");
 
 //
 //              w1.setPurpose(p1);
 //              w1.setApproverEmailId("sajeev.khan@gmail.com");
 //              w1.setApproverUserName("SajeevG");
 
-           workflowAssignmentRepository.saveAll(Arrays.asList(w1  ));
+            workflowAssignmentRepository.saveAll(Arrays.asList(w1  ));
             workflowAssignmentRepository.saveAll(Arrays.asList(w2  ));
             workflowAssignmentRepository.saveAll(Arrays.asList(w3  ));
 
