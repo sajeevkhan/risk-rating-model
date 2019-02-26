@@ -10,7 +10,7 @@
             <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
 			
             <mat-cell *matCellDef="let enquiry">
-                <div class="text-truncate">{{ enquiry.functionalStatusDescription }}</div>
+                <span class="text-truncate">{{ enquiry.functionalStatusDescription }}</span>
             </mat-cell>
         </ng-container>
 
@@ -18,7 +18,7 @@
         <ng-container matColumnDef="createdOn">
             <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="10">Enquiry Date</mat-header-cell>
             <mat-cell *matCellDef="let enquiry" fxFlex="10">
-                <div class="text-truncate">{{ enquiry.createdOn | date: 'dd/MM/yyyy' }}</div>
+                <span class="text-truncate">{{ enquiry.createdOn | date: 'dd/MM/yyyy' }}</span>
             </mat-cell>
         </ng-container>
 
@@ -26,7 +26,7 @@
         <ng-container matColumnDef="enquiryNumber">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="hidden">Enquiry No.</mat-header-cell>
             <mat-cell *matCellDef="let enquiry" class="hidden">
-                <div class="text-truncate">{{ enquiry.enquiryNumber }}</div>
+                <span class="text-truncate">{{ enquiry.enquiryNumber }}</span>
             </mat-cell>
         </ng-container>
 
@@ -34,7 +34,7 @@
         <ng-container matColumnDef="loanContractId">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="hidden">Loan Contract</mat-header-cell>
             <mat-cell *matCellDef="let enquiry" class="hidden">
-                <div class="text-truncate">{{ enquiry.loanContractId }}</div>
+                <span class="text-truncate">{{ enquiry.loanContractId }}</span>
             </mat-cell>
         </ng-container>
 
@@ -42,7 +42,7 @@
         <ng-container matColumnDef="busPartnerNumber">
             <mat-header-cell *matHeaderCellDef mat-sort-header>BP Code</mat-header-cell>
             <mat-cell *matCellDef="let enquiry">
-                <div class="text-truncate">{{ enquiry.busPartnerNumber }}</div>
+                <span class="text-truncate">{{ enquiry.busPartnerNumber }}</span>
             </mat-cell>
         </ng-container>
 
@@ -50,7 +50,7 @@
         <ng-container matColumnDef="projectName">
             <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="15">Project Name</mat-header-cell>
             <mat-cell *matCellDef="let enquiry" fxFlex="15">
-                <div class="text-truncate">{{ enquiry.projectName }}</div>
+                <span class="text-truncate">{{ enquiry.projectName }}</span>
             </mat-cell>
         </ng-container>
 
@@ -58,7 +58,7 @@
         <ng-container matColumnDef="projectLocationState">
             <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="12">Project Location</mat-header-cell>
             <mat-cell *matCellDef="let enquiry" fxFlex="12">
-                <div class="text-truncate">{{ enquiry.projectLocationState }}</div>
+                <span class="text-truncate">{{ enquiry.projectLocationState }}</span>
             </mat-cell>
         </ng-container>
 
@@ -66,7 +66,7 @@
         <ng-container matColumnDef="projectTypeDescription">
             <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="12" class="hidden">Project Type</mat-header-cell>
             <mat-cell *matCellDef="let enquiry" fxFlex="12" class="hidden">
-                <div class="text-truncate">{{ enquiry.projectTypeDescription }}</div>
+                <span class="text-truncate">{{ enquiry.projectTypeDescription }}</span>
             </mat-cell>
         </ng-container>
 
@@ -74,7 +74,7 @@
         <ng-container matColumnDef="loanClassDescription">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="hidden">Loan Class</mat-header-cell>
             <mat-cell *matCellDef="let enquiry" class="hidden">
-                <div class="text-truncate">{{ enquiry.loanClassDescription }}</div>
+                <span class="text-truncate">{{ enquiry.loanClassDescription }}</span>
             </mat-cell>
         </ng-container>
 
@@ -82,7 +82,7 @@
         <ng-container matColumnDef="projectCapacity">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="hidden">Project Capacity</mat-header-cell>
             <mat-cell *matCellDef="let enquiry" class="hidden">
-                <div class="text-truncate">{{ enquiry.projectCapacity }}</div>
+                <span class="text-truncate">{{ enquiry.projectCapacity }}</span>
             </mat-cell>
         </ng-container>
 
@@ -90,7 +90,7 @@
         <ng-container matColumnDef="assistanceTypeDescription">
             <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="12">Assistance Type</mat-header-cell>
             <mat-cell *matCellDef="let enquiry" fxFlex="12">
-                <div class="text-truncate">{{ enquiry.assistanceTypeDescription }}</div>
+                <span class="text-truncate">{{ enquiry.assistanceTypeDescription }}</span>
             </mat-cell>
         </ng-container>
 
@@ -98,7 +98,7 @@
         <ng-container matColumnDef="projectCost">
             <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="12">Project Cost(Cr)</mat-header-cell>
             <mat-cell *matCellDef="let enquiry" fxFlex="12">
-                <div class="text-truncate">{{ enquiry.projectCost }}</div>
+                <span class="text-truncate">{{ enquiry.projectCost }}</span>
             </mat-cell>
         </ng-container>
 
@@ -106,7 +106,7 @@
         <ng-container matColumnDef="loanAmount">
             <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="15">Loan Amount(Cr)</mat-header-cell>
             <mat-cell *matCellDef="let enquiry"fxFlex="15">
-                <div class="text-truncate">{{ enquiry.loanAmount }}</div>
+                <span class="text-truncate">{{ enquiry.loanAmount }}</span>
             </mat-cell>
         </ng-container>
 

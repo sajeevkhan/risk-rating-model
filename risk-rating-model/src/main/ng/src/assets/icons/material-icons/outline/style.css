@@ -3141,9 +3141,14 @@ i, .icomoon-liga, .material-icons {
             box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px 0px rgba(0, 0, 0, 0.12) !important;
         }
         .tableRow{
-            padding:15px !important;
+           
             color:#010101 !important;
         }
+		
+		#risk-model-template .row-header{
+			
+			height:29px;
+		}
         #risk-model-template .example-radio-group {
             display: block !important;
             flex-direction: column;
@@ -3342,8 +3347,18 @@ i, .icomoon-liga, .material-icons {
 			color:#ffffff !important;
 			
 		}
+		
+		#risk-model-template .tableRow{
+			padding:5px 10px !important;
+			
+		}
 		.nav-group .active{
 			background-color:#e67817;
+			
+		}
+		
+		.sep{
+		color:#e67817;	
 			
 		}
 		
@@ -3381,3 +3396,27 @@ i, .icomoon-liga, .material-icons {
  display:none;
 }
         /*-- FOR Enquiry search EDIT start---*/
+		
+		mat-footer-row, mat-row {
+    min-height: 27px !important;
+}
+mat-header-row {
+    min-height: 30px !important;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+    bottom: 0 !important;
+}
+
+.headerMain{
+	
+	font-size:15px;
+}
+.plr-16{
+	padding:0 16px;
+}
+
+.mat-form-field-infix{
+	font-size:14px;
+	
+}

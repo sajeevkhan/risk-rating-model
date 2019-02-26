@@ -1,24 +1,44 @@
 <div class="page-layout simple right-sidebar inner-sidebar inner-scroll">
     <!-- HEADER -->
-    <div class="header accent below-fixed h-100" fxLayout="column" fxLayoutAlign="start">
-        <div fxLayout="row" fxLayoutAlign="start" class="pl-16 pt-8" style="font-size: 25px;">
-            Inbox
-        </div>
-        <div fxLayout="row" fxLayoutAlign="end" class="pr-16">
-            <button mat-raised-button class="mr-8 mb-8" (click)="approveEvaluation()" [disabled]="!inboxItemsComponent.selectedItem">
+    <div class="header accent below-fixed" fxLayout="column" fxLayoutAlign="start">
+	 <div class="paddingTopLeft16" style="min-height: 61px; padding-bottom:16px;border-bottom:1px solid #e0e0e0;">
+          <div fxLayout="row" fxFlex="30" class="headerMain"  fxLayoutAlign="start center">
+               Inbox
+            </div>
+        <div fxLayout="row" fxLayoutAlign="end center" fxFlex="70" class="pr-16">
+            <button mat-raised-button class="mr-8"  (click)="approveEvaluation()" [disabled]="!inboxItemsComponent.selectedItem">
                 <mat-icon matSuffix class="mr-8">check</mat-icon>Approve
             </button>
-            <button mat-raised-button class="mr-8 mb-8" (click)="rejectEvaluation()" [disabled]="!inboxItemsComponent.selectedItem">
+            <button mat-raised-button class="mr-8"  (click)="rejectEvaluation()" [disabled]="!inboxItemsComponent.selectedItem">
                 <mat-icon matSuffix class="mr-8">clear</mat-icon>Reject
             </button>
-            <button mat-raised-button class="mr-8 mb-8" (click)="reviewEvaluation()" [disabled]="!inboxItemsComponent.selectedItem">
+            <button mat-raised-button class="mr-8"  (click)="reviewEvaluation()" [disabled]="!inboxItemsComponent.selectedItem">
                 <mat-icon matSuffix class="mr-8">rate_review</mat-icon> Review Model
             </button>
-            <button mat-raised-button class="mr-8 mb-8" (click)="displayAsPDF()" [disabled]="!inboxItemsComponent.selectedItem">
+            <button mat-raised-button class="mr-8"  (click)="displayAsPDF()" [disabled]="!inboxItemsComponent.selectedItem">
                 <mat-icon matSuffix class="mr-8">picture_as_pdf</mat-icon>Display PDF
             </button>
         </div>
+		</div>
     </div>
+	
+	
+	
+	<!--div class="paddingTopLeft16" style="min-height: 61px; padding-bottom:16px;border-bottom:1px solid #e0e0e0;">
+            <div fxLayout="row" fxFlex="50" class="headerMain" style="font-size:25px;" fxLayoutAlign="start center">
+                Search Projects
+            </div>
+            <div fxLayout="row" fxFlex="50" fxLayoutAlign="end center">
+                <button mat-raised-button class="mr-8" style="padding-bottom:5px;" (click)="fetchEvaluations()">
+                    <mat-icon matSuffix class="mr-8">list</mat-icon> Fetch Evaluations
+                </button>
+            </div>
+
+        </div-->
+		
+		
+		
+		
     <!-- / HEADER -->
 
     <!-- CONTENT -->

@@ -7,7 +7,7 @@
         <ng-container matColumnDef="dateAsString">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
             <mat-cell *matCellDef="let item">
-                <p class="text-truncate">{{ item.dateAsString }}</p>
+                <span class="text-truncate">{{ item.dateAsString }}</span>
             </mat-cell>
         </ng-container>
 
@@ -15,7 +15,7 @@
         <ng-container matColumnDef="projectType">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Project Type</mat-header-cell>
             <mat-cell *matCellDef="let item">
-                <p class="text-truncate">{{ item.projectType }}</p>
+                <span class="text-truncate">{{ item.projectType }}</span>
             </mat-cell>
         </ng-container>
 
@@ -23,7 +23,7 @@
         <ng-container matColumnDef="riskLevel">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Phase</mat-header-cell>
             <mat-cell *matCellDef="let item">
-                <p class="text-truncate">{{ item.riskLevel }}</p>
+                <span class="text-truncate">{{ item.riskLevel }}</span>
             </mat-cell>
         </ng-container>
 
@@ -31,7 +31,7 @@
         <ng-container matColumnDef="projectName">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Project Name</mat-header-cell>
             <mat-cell *matCellDef="let item">
-                <p class="text-truncate">{{ item.projectName }}</p>
+                <span class="text-truncate">{{ item.projectName }}</span>
             </mat-cell>
         </ng-container>
 
@@ -39,7 +39,7 @@
         <ng-container matColumnDef="riskModelId">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Risk Model Id</mat-header-cell>
             <mat-cell *matCellDef="let item">
-                <p class="text-truncate">{{ item.riskModelId }}</p>
+                <span class="text-truncate">{{ item.riskModelId }}</span>
             </mat-cell>
         </ng-container>
 
@@ -47,7 +47,7 @@
         <ng-container matColumnDef="requestedBy">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Requested By</mat-header-cell>
             <mat-cell *matCellDef="let item">
-                <p class="text-truncate">{{ item.requestedBy | uppercase }}</p>
+                <span class="text-truncate">{{ item.requestedBy | uppercase }}</span>
             </mat-cell>
         </ng-container>
 

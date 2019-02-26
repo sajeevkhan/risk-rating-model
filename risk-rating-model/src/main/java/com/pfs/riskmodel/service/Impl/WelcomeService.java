@@ -36,10 +36,10 @@ public class WelcomeService implements IWelcomeService {
         try {
             user = lmsEnquiryClient.getUserByEmail(emailId, getAuthorizationBearer());
         } catch ( HTTPException httpException) {
-            System.out.println("HTTP Exception -> Get User By Email:" + httpException.getMessage() );
+            System.out.println("HTTP Exception -> Get User By Email:" +emailId.getEmailId() + ": " + httpException.getMessage() );
             return null;
         } catch (FeignException feignException) {
-            System.out.println("Feign Exception -> Get User By Email:" + feignException.getMessage() );
+            System.out.println("Feign Exception -> Get User By Email:" + emailId.getEmailId() +": " +  feignException.getMessage() );
             return null;
         }
        return user.getBody();
