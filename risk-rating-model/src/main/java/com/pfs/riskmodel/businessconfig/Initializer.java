@@ -157,8 +157,8 @@ public class Initializer implements CommandLineRunner{
             log.info("-------------------------- Added Work Flow Statuses data");
         }
 
-        workflowAssignmentRepository.deleteAll();
-        workflowAssignmentRepository.flush();
+//        workflowAssignmentRepository.deleteAll();
+//        workflowAssignmentRepository.flush();
 
 
         String[] profiles = environment.getActiveProfiles();
