@@ -4,7 +4,9 @@ import com.pfs.riskmodel.domain.*;
 import com.pfs.riskmodel.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -37,6 +39,9 @@ public class Initializer implements CommandLineRunner{
     private final WorkflowStatusRepository workflowStatusRepository;
 
     private final WorkflowAssignmentRepository workflowAssignmentRepository;
+
+    @Autowired
+    private Environment environment;
 
     @Override
     public void run(String... strings) throws Exception {
@@ -155,6 +160,13 @@ public class Initializer implements CommandLineRunner{
         workflowAssignmentRepository.deleteAll();
         workflowAssignmentRepository.flush();
 
+
+        String[] profiles = environment.getActiveProfiles();
+        String activeProfile = profiles[0];
+
+
+
+
         if(workflowAssignmentRepository.count() == 0) {
 
 
@@ -162,10 +174,23 @@ public class Initializer implements CommandLineRunner{
             RiskPurpose p2 = new RiskPurpose(null, "02", "Risk");
             RiskPurpose p3 = new RiskPurpose(null, "03", "Monitoring");
 
-            WorkflowAssignment w1 = new WorkflowAssignment(null,p1,"Neeraj Yadav", "neerajyadav@ptcfinancial.com");
-            WorkflowAssignment w2 = new WorkflowAssignment(null,p2,"Neeraj Yadav", "neerajyadav@ptcfinancial.com");
-            WorkflowAssignment w3 = new WorkflowAssignment(null,p3,"Neeraj Yadav", "neerajyadav@ptcfinancial.com");
+            WorkflowAssignment w1 = new WorkflowAssignment();
+            WorkflowAssignment w2 = new WorkflowAssignment();;
+            WorkflowAssignment w3 = new WorkflowAssignment();;
 
+
+
+            if (activeProfile.equals("oauth")) {
+                w1 = new WorkflowAssignment(null, p1, "Sajeev Project", "sajeev.khan@gmail.com");
+                w2 = new WorkflowAssignment(null, p2, "Sajeev Risk", "sajeev.khan@gmail.com");
+                w3 = new WorkflowAssignment(null, p3, "Sajeev Monitoring", "sajeev.khan@gmail.com");
+
+            } else {
+                w1 = new WorkflowAssignment(null, p1, "Neeraj Yadav", "neerajyadav@ptcfinancial.com");
+                w2 = new WorkflowAssignment(null, p2, "Neeraj Yadav", "neerajyadav@ptcfinancial.com");
+                w3 = new WorkflowAssignment(null, p3, "Neeraj Yadav", "neerajyadav@ptcfinancial.com");
+
+            }
 //
 //              w1.setPurpose(p1);
 //              w1.setApproverEmailId("sajeev.khan@gmail.com");

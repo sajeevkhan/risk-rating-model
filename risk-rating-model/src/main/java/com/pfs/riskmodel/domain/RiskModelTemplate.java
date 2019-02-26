@@ -30,6 +30,7 @@ import java.util.Set;
 @Setter(AccessLevel.PUBLIC)
 
 
+
 public class RiskModelTemplate extends AuditModel {
 
     @Id
