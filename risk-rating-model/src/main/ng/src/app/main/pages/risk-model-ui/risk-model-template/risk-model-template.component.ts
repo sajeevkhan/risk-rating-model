@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { RiskModelUIService } from '../risk-model-ui.service';
 import { MatSnackBar } from '@angular/material';
 import { EnquiryApplicationModel } from 'app/main/model/enquiryApplication.model';
@@ -11,7 +11,7 @@ import { AppService } from 'app/app.service';
 })
 export class RiskModelTemplateComponent implements OnInit {
 
-    @Input()
+    @Input() 
     riskModelTemplate: any;
 
     // The top most selected tab index.
@@ -103,6 +103,8 @@ export class RiskModelTemplateComponent implements OnInit {
         this._riskModelService.evaluateTemplate(this.riskModelTemplate).subscribe(response => {
             // Save the response.
             this.riskModelTemplate = response;
+            // Broadcast the changes
+            this._riskModelService.riskModelTemplate.next(response);
             // Make the first tab as active and display an alert to the user.
             this.selectedIndex = 0;
             this._matSnackBar.open('Evaluated and saved', 'Ok', { duration: 7000 });
@@ -117,6 +119,8 @@ export class RiskModelTemplateComponent implements OnInit {
         this._riskModelService.approveTemplate(this.riskModelTemplate).subscribe(response => {
             // Save the response.
             this.riskModelTemplate = response;
+            // Broadcast the changes
+            this._riskModelService.riskModelTemplate.next(response);
             // Make the first tab as active and display an alert to the user.
             this.selectedIndex = 0;
             this._matSnackBar.open('Evaluated, saved & sent for approval', 'Ok', { duration: 7000 });

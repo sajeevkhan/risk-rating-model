@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { RiskModelUIService } from './risk-model-ui.service';
 import { RiskModelTemplateComponent } from './risk-model-template/risk-model-template.component';
 import { ActivatedRoute } from '@angular/router';
@@ -11,7 +11,9 @@ import { LoanEnquiryService } from '../enquirySearch/enquiryApplication.service'
 })
 export class RiskModelUIComponent implements OnInit {
 
-    riskModelTemplate: any = {};
+    _riskModelTemplate: any = {};
+
+    disablePDFButton = true;
 
     mode: string;
     projectType: string;
@@ -51,9 +53,9 @@ export class RiskModelUIComponent implements OnInit {
                         condition.value = '';
                     });
 
-                    // Initialize this.riskModelTemplate
-                    this.riskModelTemplate = response;
-                    console.log('this.riskModelTemplate', this.riskModelTemplate);
+                    // Initialize this._riskModelTemplate
+                    this._riskModelTemplate = response;
+                    console.log('this._riskModelTemplate', this._riskModelTemplate);
                 });
             }
             else {
@@ -61,16 +63,26 @@ export class RiskModelUIComponent implements OnInit {
                 console.log('fetching existing risk model');
                 this.riskModelId = params['riskModelId'];
 
-                // Fetch existing risk model and initialize this.riskModelTemplate
+                // Fetch existing risk model and initialize this._riskModelTemplate
                 _riskModelService.getRiskModelTemplateById(this.riskModelId).subscribe(response => {
-                    this.riskModelTemplate = response;
-                    console.log('this.riskModelTemplate', this.riskModelTemplate);
+                    this._riskModelTemplate = response;
+                    // Enable the PDF button.
+                    this.disablePDFButton = (this._riskModelTemplate.id === undefined || this._riskModelTemplate === null)? true: false;
+                    console.log('this._riskModelTemplate', this._riskModelTemplate);
                 });
             }
         });
+
+        _riskModelService.riskModelTemplate.subscribe((riskModelTemplate: any) => {
+            // Enable or disable the PDF button.
+            this.disablePDFButton = (riskModelTemplate.id === undefined || riskModelTemplate === null)? true: false;
+            // Save the id as it is required to generate the PDF.
+            this._riskModelTemplate.id = riskModelTemplate.id;
+        })
     }
 
     ngOnInit(): void {
+        this.disablePDFButton = true;
     }
 
     /**
@@ -91,8 +103,8 @@ export class RiskModelUIComponent implements OnInit {
      * displayAsPDF()
      */
     displayAsPDF(): void {
-        console.log(this.riskModelTemplate.projectName);
-        (window as any).open('api/riskModelPDF?id=' + this.riskModelTemplate.id, '_blank');
+        console.log(this._riskModelTemplate.projectName);
+        (window as any).open('api/riskModelPDF?id=' + this._riskModelTemplate.id, '_blank');
     }
 
     /**
@@ -100,10 +112,10 @@ export class RiskModelUIComponent implements OnInit {
      */
     validateTemplate(): boolean {
         let isTemplateValid = true;
-        if (this.riskModelTemplate === undefined) {
+        if (this._riskModelTemplate === undefined) {
             isTemplateValid = false;
         }
-        this.riskModelTemplate.riskTypes.map(riskType => {
+        this._riskModelTemplate.riskTypes.map(riskType => {
             riskType.riskComponents.map(riskComponent => {
                 riskComponent.riskFactors.map(riskFactor => {
                     if (this.checkRiskSubFactorSelection(riskFactor) === false) {

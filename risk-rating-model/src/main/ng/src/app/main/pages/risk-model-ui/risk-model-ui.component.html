@@ -13,16 +13,16 @@
 
 
             <div fxLayout="row" fxLayoutAlign="start" fxFlex="55" class="pl-16 pt-8 headerMain">
-                <span>{{ riskModelTemplate.projectName }} <span class="sep">[</span> {{riskModelTemplate.riskProjectTypeDescription }}/ {{ riskModelTemplate.projectRiskLevelDescription }} <span class="sep">]</span></span>
+                <span>{{ _riskModelTemplate.projectName }} <span class="sep">[</span> {{_riskModelTemplate.riskProjectTypeDescription }}/ {{ _riskModelTemplate.projectRiskLevelDescription }} <span class="sep">]</span></span>
             </div>
             <div fxLayout="row" fxLayoutAlign="end center"  fxFlex="45">
-                <button mat-raised-button class="mr-8" (click)="sendTemplateForApproval()" [disabled]="!(riskModelTemplate.workflowStatusCode === '01' && validateTemplate())">
+                <button mat-raised-button class="mr-8" (click)="sendTemplateForApproval()" [disabled]="!(_riskModelTemplate.workflowStatusCode === '01' && validateTemplate())">
                     <mat-icon matSuffix class="mr-8">send</mat-icon>Send for Approval
                 </button>
                 <button mat-raised-button class="mr-8" (click)="evaluateTemplate()" [disabled]="!validateTemplate()">
                     <mat-icon matSuffix class="mr-8 material-icons">done_all</mat-icon>Evaluate
                 </button>
-                <button mat-raised-button class="mr-8 " (click)="displayAsPDF()" [disabled]="!riskModelTemplate.id">
+                <button mat-raised-button class="mr-8 " (click)="displayAsPDF()" [disabled]="disablePDFButton">
                     <mat-icon matSuffix class="mr-8 material-icons">picture_as_pdf</mat-icon>Display as PDF
                 </button>
 
@@ -34,7 +34,7 @@
     <!-- Content -->
     <div class="content plr-16">
         <div class="center">
-            <app-risk-model-template [riskModelTemplate]="riskModelTemplate"></app-risk-model-template>
+            <app-risk-model-template [riskModelTemplate]="_riskModelTemplate"></app-risk-model-template>
         </div>
     </div>
     <!-- /Content -->
