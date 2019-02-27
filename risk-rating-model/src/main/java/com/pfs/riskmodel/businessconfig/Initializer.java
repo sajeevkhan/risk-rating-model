@@ -4,7 +4,9 @@ import com.pfs.riskmodel.domain.*;
 import com.pfs.riskmodel.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -37,6 +39,9 @@ public class Initializer implements CommandLineRunner{
     private final WorkflowStatusRepository workflowStatusRepository;
 
     private final WorkflowAssignmentRepository workflowAssignmentRepository;
+
+    @Autowired
+    private Environment environment;
 
     @Override
     public void run(String... strings) throws Exception {
@@ -152,24 +157,46 @@ public class Initializer implements CommandLineRunner{
             log.info("-------------------------- Added Work Flow Statuses data");
         }
 
+//        workflowAssignmentRepository.deleteAll();
+//        workflowAssignmentRepository.flush();
+
+
+        String[] profiles = environment.getActiveProfiles();
+        String activeProfile = profiles[0];
+
+
+
 
         if(workflowAssignmentRepository.count() == 0) {
 
 
-            RiskPurpose p1 = new RiskPurpose(null, "01", "Project Assessment");
-            RiskPurpose p2 = new RiskPurpose(null, "02", "Risk Assessment");
+            RiskPurpose p1 = new RiskPurpose(null, "01", "Project");
+            RiskPurpose p2 = new RiskPurpose(null, "02", "Risk");
             RiskPurpose p3 = new RiskPurpose(null, "03", "Monitoring");
 
-            WorkflowAssignment w1 = new WorkflowAssignment(null,p1,"admin", "sajeev.khan@gmail.com");
-            WorkflowAssignment w2 = new WorkflowAssignment(null,p2,"admin", "sajeev@leanthoughts.com");
-            WorkflowAssignment w3 = new WorkflowAssignment(null,p3,"admin", "sajeev.khan@gmail.com");
+            WorkflowAssignment w1 = new WorkflowAssignment();
+            WorkflowAssignment w2 = new WorkflowAssignment();;
+            WorkflowAssignment w3 = new WorkflowAssignment();;
 
+
+
+            if (activeProfile.equals("oauth")) {
+                w1 = new WorkflowAssignment(null, p1, "Sajeev Project", "sajeev.khan@gmail.com");
+                w2 = new WorkflowAssignment(null, p2, "Sajeev Risk", "sajeev.khan@gmail.com");
+                w3 = new WorkflowAssignment(null, p3, "Sajeev Monitoring", "sajeev.khan@gmail.com");
+
+            } else {
+                w1 = new WorkflowAssignment(null, p1, "Neeraj Yadav", "neerajyadav@ptcfinancial.com");
+                w2 = new WorkflowAssignment(null, p2, "Neeraj Yadav", "neerajyadav@ptcfinancial.com");
+                w3 = new WorkflowAssignment(null, p3, "Neeraj Yadav", "neerajyadav@ptcfinancial.com");
+
+            }
 //
 //              w1.setPurpose(p1);
 //              w1.setApproverEmailId("sajeev.khan@gmail.com");
 //              w1.setApproverUserName("SajeevG");
 
-           workflowAssignmentRepository.saveAll(Arrays.asList(w1  ));
+            workflowAssignmentRepository.saveAll(Arrays.asList(w1  ));
             workflowAssignmentRepository.saveAll(Arrays.asList(w2  ));
             workflowAssignmentRepository.saveAll(Arrays.asList(w3  ));
 
