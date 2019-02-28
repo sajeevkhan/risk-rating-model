@@ -29,6 +29,7 @@ export const navigation: FuseNavigation[] = [
                 icon: 'business',
                 url: '/projects'
             },
+            
             {
                 id: 'reports',
                 title: 'Reports',
