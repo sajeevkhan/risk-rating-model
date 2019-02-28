@@ -37,6 +37,7 @@ public class RiskRatingModelApplicationTests {
 
 	@Test
 	public void test () throws Exception {
+		System.out.println("RiskRatingModelApplicationTests");
 
 	}
 //
