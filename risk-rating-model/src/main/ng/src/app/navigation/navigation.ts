@@ -34,14 +34,14 @@ export const navigation: FuseNavigation[] = [
                 title: 'Reports',
                 translate: 'NAV.REPORTS',
                 type: 'collapsable',
-                icon: 'email',
+                icon: 'view_list',
                 children: [
                     {
                         id: 'changeHistory',
                         title: 'Change History',
                         translate: 'NAV.CHANGEHISTORY',
                         type: 'item',
-                        icon: 'email',
+                        icon: 'view_list',
                         url: '/changeDocuments'
                     },
                 ]

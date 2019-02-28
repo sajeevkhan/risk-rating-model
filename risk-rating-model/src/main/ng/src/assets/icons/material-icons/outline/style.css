@@ -3119,7 +3119,7 @@ i, .icomoon-liga, .material-icons {
             -khtml-border-bottom-right-radius: 5px;
             height:40px;
         }
-       
+       .mat-tab-label{height:34px !important;}
         .mat-tab-label-active{
            
             font-weight:bold;
@@ -3327,7 +3327,7 @@ i, .icomoon-liga, .material-icons {
             padding:0px !important
         }
         .bottomSpace{
-            margin-bottom:15px !important;
+            margin-bottom:10px !important;
         }
         .SubTabs{
             margin-top:15px;
@@ -3349,7 +3349,9 @@ i, .icomoon-liga, .material-icons {
 		}
 		
 		#risk-model-template .tableRow{
-			padding:5px 10px !important;
+			padding:3px 16px !important;
+			font-size:12px;
+			height:27px;
 			
 		}
 		.nav-group .active{

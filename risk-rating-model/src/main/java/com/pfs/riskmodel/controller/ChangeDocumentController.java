@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by sajeev on 15-Dec-18.
@@ -77,7 +78,9 @@ public class ChangeDocumentController {
 
     private Page<ChangeDocument> getChangeDocumentForRiskModel(Long id,  Pageable pageable) {
 
-        return changeDocumentRepository.findByRiskModelTemplateId(id,pageable);
+        Page<ChangeDocument> changeDocuments = changeDocumentRepository.findByRiskModelTemplateId(id,pageable);
+
+        return changeDocuments;
     }
 
     private Page<ChangeDocument> getChangeDocumentForLoan(String loanNumber, Pageable pageable) {
@@ -160,8 +163,14 @@ public class ChangeDocumentController {
         Date dateFrom       = format.parse ( dateFromString);
         Date dateTo       = format.parse ( dateToString);
 
-        return changeDocumentRepository.findByRiskModelTemplateIdAndDateBetween(
+
+        List<ChangeDocument>  changeDocumentList = changeDocumentRepository.
+                                                    findByRiskModelTemplateIdAndDateBetween(riskModelId, dateFrom  ,  dateTo);
+
+        Page<ChangeDocument> changeDocuments = changeDocumentRepository.findByRiskModelTemplateIdAndDateBetween(
                                                     riskModelId, dateFrom  ,  dateTo, pageable);
+
+        return changeDocuments;
 
     }
 
