@@ -20,6 +20,9 @@ public class RiskRatingModifierAttributeDTO {
 
      private Character yesOrNoIndicator;
 
+     private boolean applicableForMonitoring;
+
+
      @Override
      public boolean equals(Object o) {
           if (this == o) return true;

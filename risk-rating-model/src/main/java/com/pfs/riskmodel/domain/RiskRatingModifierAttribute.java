@@ -1,6 +1,7 @@
 package com.pfs.riskmodel.domain;
 
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -28,7 +29,6 @@ public class RiskRatingModifierAttribute extends AuditModel  {
     private Integer itemNo;
 
     @NotNull
-
     @Column(columnDefinition = "LONGTEXT")
     private String description;
 
@@ -39,6 +39,8 @@ public class RiskRatingModifierAttribute extends AuditModel  {
     private Character yesOrNoIndicator;
 
 
+    @Nullable
+    private boolean applicableForMonitoring;
 
 
 
