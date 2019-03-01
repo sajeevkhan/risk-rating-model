@@ -11,9 +11,15 @@ import { AppService } from 'app/app.service';
 })
 export class RiskModelTemplateComponent implements OnInit {
 
-    @Input() 
+    @Input()
     riskModelTemplate: any;
 
+    applyRatingModifiers: boolean;
+    applyParentalNotchUp: boolean;
+    
+    ratingSources: any;
+    creditRatings: any;
+    
     // The top most selected tab index.
     selectedIndex = 0;
 
@@ -27,6 +33,11 @@ export class RiskModelTemplateComponent implements OnInit {
         // Fetch purposes.
         _riskModelService.getPurposes().subscribe(response => {
             this.purposes = response;
+        });
+
+        // Fetch rating sources.
+        _riskModelService.getRatingSources().subscribe(response => {
+            this.ratingSources = response;
         });
     }
 
@@ -157,6 +168,22 @@ export class RiskModelTemplateComponent implements OnInit {
 
     /**
      * 
+     * @param riskSubFactors: any
+     */
+    checkParentalNotchUpSelection(riskSubFactors: any): boolean {
+        let parentalNotchUpSelections = 0;
+        riskSubFactors.map(riskSubFactor => {
+            riskSubFactor.riskSubFactorAttributes.map(riskSubFactorAttribute => {
+                if (riskSubFactorAttribute.isSelected) {
+                    parentalNotchUpSelections++;
+                }
+            });
+        });
+        return (parentalNotchUpSelections === riskSubFactors.length);
+    }
+
+    /**
+     * 
      * @param riskFactor: any
      */
     checkRiskSubFactorSelection(riskFactor: any): boolean {
@@ -169,5 +196,18 @@ export class RiskModelTemplateComponent implements OnInit {
             });
         });
         return (subFactorSelections === riskFactor.riskSubFactors.length);
+    }
+
+    /**
+     * fetchObligatorRatingGrades()
+     */
+    fetchObligatorRatingGrades() {
+        let ratingSource = this.riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[0].value;
+        let natureOfRatingOfParentFirm = this.riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[1].natureOfRatingOfParentFirm;
+        if (ratingSource !== '') {
+            this._riskModelService.getCreditRatings(ratingSource, natureOfRatingOfParentFirm).subscribe(response => {
+                this.creditRatings = response;
+            });
+        }
     }
 }

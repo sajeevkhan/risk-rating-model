@@ -53,4 +53,20 @@ export class RiskModelUIService {
     public getPurposes(): Observable<any> {
         return this._httpClient.get<any>('api/purposes');
     }
+
+    /**
+     * getRatingSources()
+     */
+    public getRatingSources(): Observable<any> {
+        return this._httpClient.get<any>('api/ratingSources');
+    }
+
+    /**
+     * getCreditRatings()
+     * @param ratingSource: string 
+     * @param natureOfRatingOfParentFirm: number
+     */
+    public getCreditRatings(ratingSource: string, natureOfRatingOfParentFirm: number): Observable<any> {
+        return this._httpClient.get<any>('api/creditRatings?ratingSource=' + ratingSource + '&natureOfRatingOfParentFirm=' + natureOfRatingOfParentFirm);
+    }
 }
