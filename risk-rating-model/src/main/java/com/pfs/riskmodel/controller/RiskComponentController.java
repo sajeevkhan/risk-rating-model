@@ -32,26 +32,26 @@ public class RiskComponentController {
 
 
     @Autowired
-    RiskComponentRepository riskComponentRepository;
+    private final RiskComponentRepository riskComponentRepository;
 
 
 
     @Autowired
-    RiskSubFactorRepository riskSubFactorRepository;
+    private final RiskSubFactorRepository riskSubFactorRepository;
 
     @Autowired
-    RiskFactorRepository riskFactorRepository;
-
-
-    @Autowired
-    ComputingMethodRepository computingMethodRepository;
-
-    @Autowired
-    ScoreTypeRepository scoreTypeRepository;
+    private final RiskFactorRepository riskFactorRepository;
 
 
     @Autowired
-    IRiskComponentService riskComponentService;
+    private final ComputingMethodRepository computingMethodRepository;
+
+    @Autowired
+    private final ScoreTypeRepository scoreTypeRepository;
+
+
+    @Autowired
+    private final IRiskComponentService riskComponentService;
 
 
     @GetMapping("/riskComponent/all")

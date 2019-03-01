@@ -22,22 +22,23 @@ import java.util.Arrays;
 
 public class Initializer implements CommandLineRunner{
 
+    @Autowired
     private final ComputingMethodRepository computingMethodRepository;
-
+    @Autowired
     private final ScoreTypeRepository scoreTypeRepository;
-
+    @Autowired
     private final RiskProjectTypeRepository riskProjectTypeRepository;
-
+    @Autowired
     private final ProjectRiskLevelRepository projectRiskLevelRepository;
-
+    @Autowired
     private final ModelCategoryRepository modelCategoryRepository;
-
+    @Autowired
     private final RatingModifierComputingMethodRepository riskRatingComputingMethodRepository;
-
+    @Autowired
     private final RiskPurposeRepository purposeRepository;
-
+    @Autowired
     private final WorkflowStatusRepository workflowStatusRepository;
-
+    @Autowired
     private final WorkflowAssignmentRepository workflowAssignmentRepository;
 
     @Autowired
@@ -177,6 +178,7 @@ public class Initializer implements CommandLineRunner{
             WorkflowAssignment w1 = new WorkflowAssignment();
             WorkflowAssignment w2 = new WorkflowAssignment();;
             WorkflowAssignment w3 = new WorkflowAssignment();;
+
 
 
 

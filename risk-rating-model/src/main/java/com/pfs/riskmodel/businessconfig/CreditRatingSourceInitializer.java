@@ -23,8 +23,8 @@ import java.util.Arrays;
 
 public class CreditRatingSourceInitializer implements CommandLineRunner{
 
-    @Autowired
-    private CreditRatingMapRepository creditRatingMapRepository;
+    //@Autowired
+    //private CreditRatingMapRepository creditRatingMapRepository;
 
     @Autowired
     private CreditRatingSourceRepository creditRatingSourceRepository;
@@ -52,6 +52,9 @@ public class CreditRatingSourceInitializer implements CommandLineRunner{
         }
 
     }
+
+
+
 
 
 

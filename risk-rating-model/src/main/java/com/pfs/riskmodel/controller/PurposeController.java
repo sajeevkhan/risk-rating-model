@@ -20,7 +20,7 @@ public class PurposeController {
 
 
     @Autowired
-    RiskPurposeRepository purposeRepository;
+    private final RiskPurposeRepository purposeRepository;
 
 
 

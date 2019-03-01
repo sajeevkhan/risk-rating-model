@@ -11,6 +11,8 @@ import org.javers.core.diff.Change;
 import org.javers.core.diff.Diff;
 import org.javers.core.diff.changetype.ValueChange;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -85,6 +87,62 @@ public class ChangeDocumentService implements IChangeDocumentService {
     public ChangeDocument saveChangeDocument(ChangeDocument changeDocument) {
         changeDocument = changeDocumentRepository.save(changeDocument);
         return changeDocument;
+    }
+
+    @Override
+    public Page<ChangeDocument> findByLoanNumber(String loanNumber, Pageable pageable) {
+        return changeDocumentRepository.findByLoanNumber(loanNumber, pageable);
+    }
+
+    @Override
+    public Page<ChangeDocument> findByLoanNumberAndDateBetween(String loanNumber, Date dateFrom, Date dateTo, Pageable pageable) {
+        return changeDocumentRepository.findByLoanNumberAndDateBetween(loanNumber, dateFrom, dateTo,pageable);
+    }
+
+    @Override
+    public Page<ChangeDocument> findByRiskModelTemplateId(Long id, Pageable pageable) {
+        Page<ChangeDocument> changeDocuments = changeDocumentRepository.findByRiskModelTemplateId(id,pageable);
+        return changeDocuments;
+
+    }
+
+    @Override
+    public Page<ChangeDocument> findByRiskModelTemplateIdAndLoanNumberAndDateBetween(Long id, String loanNumber, Date dateFrom, Date dateTo, Pageable pageable) {
+        return changeDocumentRepository.findByRiskModelTemplateIdAndLoanNumberAndDateBetween
+                (id,loanNumber, dateFrom, dateTo, pageable);
+
+    }
+
+    @Override
+    public Page<ChangeDocument> findByRiskModelTemplateIdAndDateBetween(Long id, Date dateFrom, Date dateTo, Pageable pageable) {
+        Page<ChangeDocument> changeDocuments = changeDocumentRepository.findByRiskModelTemplateIdAndDateBetween(
+                id, dateFrom  ,  dateTo, pageable);
+
+        return changeDocuments;
+
+    }
+
+    @Override
+    public List<ChangeDocument> findByRiskModelTemplateIdAndDateBetween(Long id, Date dateFrom, Date dateTo) {
+        return null;
+    }
+
+    @Override
+    public Page<ChangeDocument> findByLoanNumberAndDate(String loanNumber, Date date, Pageable pageable) {
+        return changeDocumentRepository.findByLoanNumberAndDate(loanNumber, date, pageable);
+
+    }
+
+    @Override
+    public Page<ChangeDocument> findByRiskModelTemplateIdAndDate(Long id, Date date, Pageable pageable) {
+        return changeDocumentRepository.findByRiskModelTemplateIdAndDate(id, date, pageable);
+
+    }
+
+    @Override
+    public Page<ChangeDocument> findByRiskModelTemplateIdAndLoanNumberAndDate(Long id, String loaNumber, Date date, Pageable pageable) {
+        return changeDocumentRepository.findByRiskModelTemplateIdAndLoanNumberAndDate(
+                id, loaNumber, date, pageable);
     }
 
     private ChangeDocument prepareCreateChangeDocument(RiskModelTemplate riskModelTemplate, String userName) {

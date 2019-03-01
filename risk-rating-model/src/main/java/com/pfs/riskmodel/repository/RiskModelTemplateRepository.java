@@ -6,12 +6,17 @@ import com.pfs.riskmodel.domain.RiskModelTemplate;
 import com.pfs.riskmodel.domain.RiskProjectType;
 import com.pfs.riskmodel.domain.RiskType;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Created by sajeev on 17-Dec-18.
  */
+
+@Repository
+@RepositoryRestResource
 public interface RiskModelTemplateRepository extends JpaRepository<RiskModelTemplate, Long> {
 
     List<RiskModelTemplate>

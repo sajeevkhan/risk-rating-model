@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Profile("localdev")
 public class DevWelcomeController {
 
-    private final LMSEnquiryClient lmsEnquiryClient;
+   private final LMSEnquiryClient lmsEnquiryClient;
 
-    private final IWelcomeService welcomeService;
+   private final IWelcomeService welcomeService;
 
     @GetMapping("/welcome")
     public ResponseEntity<User> welcome() {

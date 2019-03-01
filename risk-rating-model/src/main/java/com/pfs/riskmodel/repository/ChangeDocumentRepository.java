@@ -13,9 +13,9 @@ import java.util.List;
 /**
  * Created by sajeev on 17-Dec-18.
  */
+
 @Repository
-
-
+@RepositoryRestResource
 public interface ChangeDocumentRepository extends JpaRepository<ChangeDocument, Long> {
 
     Page<ChangeDocument> findByLoanNumber(String loanNumber, Pageable pageable);

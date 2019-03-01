@@ -3,6 +3,7 @@ package com.pfs.riskmodel.controller;
 import com.pfs.riskmodel.config.ApiController;
 import com.pfs.riskmodel.domain.ChangeDocument;
 import com.pfs.riskmodel.repository.ChangeDocumentRepository;
+import com.pfs.riskmodel.service.IChangeDocumentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,10 +27,10 @@ public class ChangeDocumentController {
 
 
     @Autowired
-    private ChangeDocumentRepository changeDocumentRepository;
+    private IChangeDocumentService changeDocumentService;
 
-    @Autowired
-    private HttpServletRequest request;
+//    @Autowired
+//    private HttpServletRequest request;
 
 
     @GetMapping("/changedocuments")
@@ -78,14 +79,14 @@ public class ChangeDocumentController {
 
     private Page<ChangeDocument> getChangeDocumentForRiskModel(Long id,  Pageable pageable) {
 
-        Page<ChangeDocument> changeDocuments = changeDocumentRepository.findByRiskModelTemplateId(id,pageable);
+        Page<ChangeDocument> changeDocuments = changeDocumentService.findByRiskModelTemplateId(id,pageable);
 
         return changeDocuments;
     }
 
     private Page<ChangeDocument> getChangeDocumentForLoan(String loanNumber, Pageable pageable) {
 
-        return changeDocumentRepository.findByLoanNumber(loanNumber, pageable);
+        return changeDocumentService.findByLoanNumber(loanNumber, pageable);
     }
 
 
@@ -102,7 +103,7 @@ public class ChangeDocumentController {
 
         Date dateFrom = format.parse(dateFromString);
         Date dateTo = format.parse(dateToString);
-        return changeDocumentRepository.findByLoanNumberAndDateBetween(loanNumber, dateFrom, dateTo,pageable);
+        return changeDocumentService.findByLoanNumberAndDateBetween(loanNumber, dateFrom, dateTo,pageable);
     }
 
 
@@ -114,7 +115,7 @@ public class ChangeDocumentController {
         //http://localhost:8090/api/changedocument?loanNumber=10003001&dateFrom=2019-02-03&dateTo=2019-02-03
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date dateOn       = format.parse ( date);
-        return changeDocumentRepository.findByLoanNumberAndDate(loanNumber, dateOn, pageable);
+        return changeDocumentService.findByLoanNumberAndDate(loanNumber, dateOn, pageable);
     }
 
 
@@ -125,7 +126,7 @@ public class ChangeDocumentController {
         //http://localhost:8090/api/changedocument?loanNumber=10003001&dateFrom=2019-02-03&dateTo=2019-02-03
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date dateOn       = format.parse ( date);
-        return changeDocumentRepository.findByRiskModelTemplateIdAndDate(riskModelId, dateOn, pageable);
+        return changeDocumentService.findByRiskModelTemplateIdAndDate(riskModelId, dateOn, pageable);
     }
 
     private Page<ChangeDocument> getChangeDocumentForRiskModelLoanDate(Long riskModelId, String loanNumber,
@@ -135,7 +136,7 @@ public class ChangeDocumentController {
         //http://localhost:8090/api/changedocument?loanNumber=10003001&dateFrom=2019-02-03&dateTo=2019-02-03
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date dateOn       = format.parse ( date);
-        return changeDocumentRepository.findByRiskModelTemplateIdAndLoanNumberAndDate(
+        return changeDocumentService.findByRiskModelTemplateIdAndLoanNumberAndDate(
                 riskModelId, loanNumber, dateOn, pageable);
 
     }
@@ -150,7 +151,7 @@ public class ChangeDocumentController {
         Date dateFrom       = format.parse ( dateFromString);
         Date dateTo       = format.parse ( dateToString);
 
-        return changeDocumentRepository.findByRiskModelTemplateIdAndLoanNumberAndDateBetween
+        return changeDocumentService.findByRiskModelTemplateIdAndLoanNumberAndDateBetween
                                                                 (riskModelId,loanNumber, dateFrom, dateTo, pageable);
     }
 
@@ -164,10 +165,10 @@ public class ChangeDocumentController {
         Date dateTo       = format.parse ( dateToString);
 
 
-        List<ChangeDocument>  changeDocumentList = changeDocumentRepository.
+        List<ChangeDocument>  changeDocumentList = changeDocumentService.
                                                     findByRiskModelTemplateIdAndDateBetween(riskModelId, dateFrom  ,  dateTo);
 
-        Page<ChangeDocument> changeDocuments = changeDocumentRepository.findByRiskModelTemplateIdAndDateBetween(
+        Page<ChangeDocument> changeDocuments = changeDocumentService.findByRiskModelTemplateIdAndDateBetween(
                                                     riskModelId, dateFrom  ,  dateTo, pageable);
 
         return changeDocuments;

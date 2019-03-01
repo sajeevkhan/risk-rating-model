@@ -32,20 +32,20 @@ public class RiskFactorController {
 
 
     @Autowired
-    RiskFactorRepository riskFactorRepository;
+   private final RiskFactorRepository riskFactorRepository;
 
     @Autowired
-    RiskSubFactorRepository riskSubFactorRepository;
+    private final RiskSubFactorRepository riskSubFactorRepository;
 
     @Autowired
-    ComputingMethodRepository computingMethodRepository;
+    private final ComputingMethodRepository computingMethodRepository;
 
     @Autowired
-    ScoreTypeRepository scoreTypeRepository;
+    private final ScoreTypeRepository scoreTypeRepository;
 
 
     @Autowired
-    IRiskFactorService riskFactorService;
+    private final IRiskFactorService riskFactorService;
 
     @GetMapping("/riskFactor/all")
     public ResponseEntity findAll (){
