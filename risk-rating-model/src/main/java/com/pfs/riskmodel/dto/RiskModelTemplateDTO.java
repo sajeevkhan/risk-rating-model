@@ -102,6 +102,11 @@ public class RiskModelTemplateDTO {
 
 
 
+    private Boolean applyRatingModifiers;
+    private Boolean applyParentalNotchup;
+
+
+
 
     // Risk Types
     private List<RiskTypeDTO> riskTypes;

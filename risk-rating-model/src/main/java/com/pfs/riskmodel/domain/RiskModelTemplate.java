@@ -86,6 +86,14 @@ public class RiskModelTemplate extends AuditModel {
     private String workflowStatusDescription;
 
 
+    @Nullable
+    private Boolean applyRatingModifiers;
+
+
+    @Nullable
+    private Boolean applyParentalNotchup;
+
+
     @NotNull
     @Size(max = 250)
     private String description;
