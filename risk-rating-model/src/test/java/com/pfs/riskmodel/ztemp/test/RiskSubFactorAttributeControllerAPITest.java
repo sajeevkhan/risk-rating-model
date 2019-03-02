@@ -25,8 +25,7 @@ public class RiskSubFactorAttributeControllerAPITest  extends AbstractTest {
         super.setUp();
     }
 
-
-      //  @Test
+    @Test
     public void getRiskSubFactorAttributes() throws Exception {
 
     }

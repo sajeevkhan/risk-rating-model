@@ -1,15 +1,17 @@
 package com.pfs.riskmodel.pdfservice;
 
 import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.ColumnText;
-import com.itextpdf.text.pdf.PdfContentByte;
-import com.itextpdf.text.pdf.PdfPageEventHelper;
-import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.*;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 
+import java.net.URI;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
-
+import org.springframework.context.ResourceLoaderAware;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 /**
  * Created by sajeev on 01-Jan-19.
  */
@@ -27,13 +29,38 @@ class PDFFooter extends PdfPageEventHelper {
     private String projectType;
     private String riskLevelDescription;
 
+    private ResourceLoader resourceLoader;
+
+    public void setResourceLoader(ResourceLoader resourceLoader) {
+        this.resourceLoader = resourceLoader;
+    }
+
+
+//    private  Image getLogo() throws Exception {
+//
+//
+//    }
 
 
     private static Image getImage() throws Exception{
 
         Path path = Paths.get(ClassLoader.getSystemResource("images/pfs-logo.jpg").toURI());
+
+        System.out.println("PDF HEADER -----------------------------------------------------------PATH ");
+        System.out.println("Path :  " + path.toString());
+        System.out.println("Path.AbsolutePath :  " + path.toAbsolutePath().toString());
+
         Image img = Image.getInstance(path.toAbsolutePath().toString());
+        System.out.println("Image " + img);
+
+        if (img == null) {
+
+            Image image =  Image.getInstance("/opt/risk-rating-model/risk-rating-model/src/main/resources/images/pfs-logo.jpg");
+            return image;
+
+        }else{
         return img;
+        }
     }
 
 
