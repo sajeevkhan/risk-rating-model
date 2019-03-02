@@ -19,7 +19,7 @@ export class RiskModelTemplateComponent implements OnInit {
     
     ratingSources: any;
     creditRatings: any;
-    
+
     // The top most selected tab index.
     selectedIndex = 0;
 
@@ -207,6 +207,20 @@ export class RiskModelTemplateComponent implements OnInit {
         if (ratingSource !== '') {
             this._riskModelService.getCreditRatings(ratingSource, natureOfRatingOfParentFirm).subscribe(response => {
                 this.creditRatings = response;
+            });
+        }
+    }
+
+    /**
+     * fetchCreditRatingGrade()
+     */
+    fetchCreditRatingGrade() {
+        let ratingSource = this.riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[0].value;
+        let natureOfRatingOfParentFirm = this.riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[1].natureOfRatingOfParentFirm;
+        let creditRating = this.riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[2].value;
+        if (ratingSource !== '' && creditRating !== '') {
+            this._riskModelService.getCreditRatingGrade(ratingSource, natureOfRatingOfParentFirm, creditRating).subscribe(response => {
+                this.riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[3].value = response;
             });
         }
     }

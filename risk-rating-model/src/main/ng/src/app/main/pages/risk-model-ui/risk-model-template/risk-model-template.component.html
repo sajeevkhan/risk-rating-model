@@ -235,6 +235,7 @@
                             </mat-card-header-->
 
                             <div fxLayout="row" class="condition">
+                                <!-- Source of rating of parent firm -->
                                 <mat-form-field fxFlex="50">
                                     <mat-select placeholder="{{ riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[0].description }}"
                                         [(ngModel)]="riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[0].value"
@@ -244,6 +245,8 @@
                                     </mat-select>
                                     <mat-icon matSuffix class="mr-8">edit</mat-icon>
                                 </mat-form-field>
+
+                                <!-- Nature of rating of parent firm -->
                                 <mat-form-field fxFlex="50">
                                     <mat-select placeholder="{{ riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[1].description }}"
                                         [(ngModel)]="riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[1].natureOfRatingOfParentFirm"
@@ -256,19 +259,50 @@
                             </div>
 
                             <div fxLayout="row" class="condition">
+                                <!-- Obligator rating grade of parent firm -->
                                 <mat-form-field fxFlex="50">
                                     <mat-select placeholder="{{ riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[2].description }}"
                                         [(ngModel)]="riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[2].value"
-                                        required>
+                                        (selectionChange)="fetchCreditRatingGrade()" required>
                                         <mat-option *ngFor="let creditRating of creditRatings" [value]="creditRating.creditRating">{{
                                             creditRating.creditRating }}</mat-option>
+                                    </mat-select>
+                                    <mat-icon matSuffix class="mr-8">edit</mat-icon>
+                                </mat-form-field>
+
+                                <!-- Borrower rating grade of the parent firm -->
+                                <mat-form-field fxFlex="50">
+                                    <input matInput placeholder="{{ riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[3].description }}"
+                                        [(ngModel)]="riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[3].value"
+                                        required>
+                                    <mat-icon matSuffix class="mr-8">edit</mat-icon>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxLayout="row" class="condition">
+                                <mat-form-field fxFlex="50">
+                                    <mat-select fxFlex="100" placeholder="{{ riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[4].description }}"
+                                        [(ngModel)]="riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[4].yesNoIndicatorValue"
+                                        required>
+                                        <mat-option value="Y">Yes</mat-option>
+                                        <mat-option value="N">No</mat-option>
+                                    </mat-select>
+                                    <mat-icon matSuffix class="mr-8">edit</mat-icon>
+                                </mat-form-field>
+
+                                <mat-form-field fxFlex="50">
+                                    <mat-select fxFlex="100" placeholder="{{ riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[5].description }}"
+                                        [(ngModel)]="riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[5].yesNoIndicatorValue"
+                                        required>
+                                        <mat-option value="Y">Yes</mat-option>
+                                        <mat-option value="N">No</mat-option>
                                     </mat-select>
                                     <mat-icon matSuffix class="mr-8">edit</mat-icon>
                                 </mat-form-field>
                             </div>
 
                             <!-- The entire div below to be deleted or commented -->
-                            <div fxLayout="row" class="condition" *ngFor="let parentalCondition of riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions">
+                            <!-- <div fxLayout="row" class="condition" *ngFor="let parentalCondition of riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions">
                                 <mat-form-field fxFlex>
                                     <input *ngIf="parentalCondition.category === 0" matInput placeholder="{{parentalCondition.description}}"
                                         [(ngModel)]="parentalCondition.value" required>
@@ -291,7 +325,7 @@
                                     </mat-select>
                                     <mat-icon matSuffix class="mr-8">edit</mat-icon>
                                 </mat-form-field>
-                            </div>
+                            </div> -->
                         </mat-card>
 
                         <mat-card *ngFor="let riskSubFactor of riskModelTemplate['riskParentalNotchUps'][0].riskSubFactors">
