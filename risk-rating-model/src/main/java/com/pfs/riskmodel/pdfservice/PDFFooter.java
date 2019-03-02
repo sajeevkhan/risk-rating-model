@@ -2,6 +2,7 @@ package com.pfs.riskmodel.pdfservice;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 
@@ -44,7 +45,12 @@ class PDFFooter extends PdfPageEventHelper {
 
     private static Image getImage() throws Exception{
 
-        Path path = Paths.get(ClassLoader.getSystemResource("images/pfs-logo.jpg").toURI());
+
+        try {
+            Path path = Paths.get(ClassLoader.getSystemResource("images/pfs-logo.jpg").toURI());
+            System.out.println("ClassLoader.getSystemResource(\"images/pfs-logo.jpg\").toURI()    : " + ClassLoader.getSystemResource("images/pfs-logo.jpg").toURI());
+            System.out.println("LOG FILE PATH: " + path);
+
 
         System.out.println("PDF HEADER -----------------------------------------------------------PATH ");
         System.out.println("Path :  " + path.toString());
@@ -60,6 +66,13 @@ class PDFFooter extends PdfPageEventHelper {
 
         }else{
         return img;
+        }
+
+        }
+        catch (NullPointerException ex ) {
+            System.out.println("Image Path Null Pointer Exception: " );
+            Image image =  Image.getInstance("/opt/risk-rating-model/risk-rating-model/src/main/resources/images/pfs-logo.jpg");
+            return image;
         }
     }
 
