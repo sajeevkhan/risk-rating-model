@@ -5,7 +5,7 @@ import { RiskModelUIComponent } from './risk-model-ui.component';
 import { RouterModule } from '@angular/router';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { RiskModelTemplateComponent } from './risk-model-template/risk-model-template.component';
-import { MatExpansionModule, MatTabsModule, MatCardModule, MatRadioModule, MatSlideToggleModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule, MatSnackBarModule } from '@angular/material';
+import { MatExpansionModule, MatTabsModule, MatCardModule, MatRadioModule, MatSlideToggleModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule, MatSnackBarModule, MatCheckboxModule } from '@angular/material';
 import { LoanEnquiryService } from '../enquirySearch/enquiryApplication.service';
 import { AppService } from 'app/app.service';
 
@@ -27,6 +27,7 @@ const routes = [
         FuseSharedModule,
         MatButtonModule,
         MatCardModule,
+        MatCheckboxModule,
         MatExpansionModule,
         MatIconModule,
         MatInputModule,
