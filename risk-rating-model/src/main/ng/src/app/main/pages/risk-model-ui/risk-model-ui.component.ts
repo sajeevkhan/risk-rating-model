@@ -127,10 +127,11 @@ export class RiskModelUIComponent implements OnInit {
             });
         });
         // Check validity of parentalNotchups.
-        if (this.checkRiskSubFactorSelection(this._riskModelTemplate.riskParentalNotchUps[0]) === false) {
-            isTemplateValid = false;
+        if (this._riskModelTemplate.applyParentalNotchup) {
+            if (this.checkRiskSubFactorSelection(this._riskModelTemplate.riskParentalNotchUps[0]) === false) {
+                isTemplateValid = false;
+            }
         }
-
         return isTemplateValid;
     }
 

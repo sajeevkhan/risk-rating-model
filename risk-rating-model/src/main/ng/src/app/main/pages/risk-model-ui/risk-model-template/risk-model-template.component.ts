@@ -14,9 +14,6 @@ export class RiskModelTemplateComponent implements OnInit {
     @Input()
     riskModelTemplate: any;
 
-    applyRatingModifiers: boolean;
-    applyParentalNotchUp: boolean;
-    
     ratingSources: any;
     creditRatings: any;
 
