@@ -193,6 +193,7 @@
                     <!-- Rating Modifiers Starts here -->
                     <mat-tab *ngIf="riskModelTemplate['riskRatingModifiers'] != undefined" [disabled]="!riskModelTemplate.applyRatingModifiers">
                         <ng-template mat-tab-label>
+                            <mat-icon class="pr-32" *ngIf="riskRatingModifierAttributeSelected === true && riskModelTemplate.applyRatingModifiers === true">check</mat-icon>
                             <div>Rating Modifiers</div>
                         </ng-template>
 

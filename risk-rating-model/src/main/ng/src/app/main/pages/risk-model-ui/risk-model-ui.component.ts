@@ -126,16 +126,23 @@ export class RiskModelUIComponent implements OnInit {
                 });
             });
         });
-        // Check validity of parentalNotchups.
-        if (this.checkRiskSubFactorSelection(this._riskModelTemplate.riskParentalNotchUps[0]) === false) {
-            isTemplateValid = false;
+        // Check validity of ratingModifiers.
+        if (this._riskModelTemplate.applyRatingModifiers) {
+            if (this.checkRatingModifiers(this._riskModelTemplate.riskRatingModifiers) === false) {
+                isTemplateValid = false;
+            }
         }
-
+        // Check validity of parentalNotchups.
+        if (this._riskModelTemplate.applyParentalNotchup) {
+            if (this.checkRiskSubFactorSelection(this._riskModelTemplate.riskParentalNotchUps[0]) === false) {
+                isTemplateValid = false;
+            }
+        }
         return isTemplateValid;
     }
 
     /**
-     * 
+     * checkRiskSubFactorSelection()
      * @param riskFactor: any
      */
     checkRiskSubFactorSelection(riskFactor: any): boolean {
@@ -148,5 +155,21 @@ export class RiskModelUIComponent implements OnInit {
             });
         });
         return (subFactorSelections === riskFactor.riskSubFactors.length);
+    }
+
+    /**
+     * checkRatingModifiers()
+     * @param riskRatingModifiers: any
+     */
+    checkRatingModifiers(riskRatingModifiers: any): boolean {
+        let ratingModifiersSelection = 0;
+        riskRatingModifiers.map(riskRatingModifier => {
+            riskRatingModifier.riskRatingModifierAttributes.map(riskRatingAttribute => {
+                if (riskRatingAttribute.yesOrNoIndicator === 'Y') {
+                    ratingModifiersSelection++;
+                }
+            });
+        });
+        return (ratingModifiersSelection > 0);
     }
 }

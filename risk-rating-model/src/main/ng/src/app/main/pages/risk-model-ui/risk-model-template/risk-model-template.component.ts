@@ -14,11 +14,10 @@ export class RiskModelTemplateComponent implements OnInit {
     @Input()
     riskModelTemplate: any;
 
-    applyRatingModifiers: boolean;
-    applyParentalNotchUp: boolean;
-    
     ratingSources: any;
     creditRatings: any;
+
+    riskRatingModifierAttributeSelected: boolean = false;
 
     // The top most selected tab index.
     selectedIndex = 0;
@@ -76,6 +75,7 @@ export class RiskModelTemplateComponent implements OnInit {
         // Change the yesOrNoIndicator attribute of riskRatingModifierAttribute
         if (event.checked === true) {
             riskRatingModifierAttribute.yesOrNoIndicator = 'Y';
+            this.riskRatingModifierAttributeSelected = true;
         }
         else {
             riskRatingModifierAttribute.yesOrNoIndicator = 'N';
