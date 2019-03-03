@@ -67,7 +67,7 @@ export class RiskModelUIComponent implements OnInit {
                 _riskModelService.getRiskModelTemplateById(this.riskModelId).subscribe(response => {
                     this._riskModelTemplate = response;
                     // Enable the PDF button.
-                    this.disablePDFButton = (this._riskModelTemplate.id === undefined || this._riskModelTemplate === null)? true: false;
+                    this.disablePDFButton = (this._riskModelTemplate.id === undefined || this._riskModelTemplate === null) ? true : false;
                     console.log('this._riskModelTemplate', this._riskModelTemplate);
                 });
             }
@@ -75,7 +75,7 @@ export class RiskModelUIComponent implements OnInit {
 
         _riskModelService.riskModelTemplate.subscribe((riskModelTemplate: any) => {
             // Enable or disable the PDF button.
-            this.disablePDFButton = (riskModelTemplate.id === undefined || riskModelTemplate === null)? true: false;
+            this.disablePDFButton = (riskModelTemplate.id === undefined || riskModelTemplate === null) ? true : false;
             // Save the id as it is required to generate the PDF.
             this._riskModelTemplate.id = riskModelTemplate.id;
         })
@@ -108,13 +108,15 @@ export class RiskModelUIComponent implements OnInit {
     }
 
     /**
-     * 
+     * validateTemplate()
      */
     validateTemplate(): boolean {
         let isTemplateValid = true;
+        // Check the validity of riskModelTemplate itself. (Not required I guess, need to delete it)        
         if (this._riskModelTemplate === undefined) {
             isTemplateValid = false;
         }
+        // Check validity of each riskTypes and riskFactors.
         this._riskModelTemplate.riskTypes.map(riskType => {
             riskType.riskComponents.map(riskComponent => {
                 riskComponent.riskFactors.map(riskFactor => {
@@ -124,6 +126,12 @@ export class RiskModelUIComponent implements OnInit {
                 });
             });
         });
+        // Check validity of parentalNotchups.
+        if (this._riskModelTemplate.applyParentalNotchup) {
+            if (this.checkRiskSubFactorSelection(this._riskModelTemplate.riskParentalNotchUps[0]) === false) {
+                isTemplateValid = false;
+            }
+        }
         return isTemplateValid;
     }
 
