@@ -28,7 +28,12 @@ public class CommonComputation {
         Boolean ratingModifiersInAction = false;
 
         // If Rating Modifiers are not applicable, then return the grade
-        if (riskModelTemplate.getApplyRatingModifiers() == false) {
+        try {
+            if (riskModelTemplate.getApplyRatingModifiers() == false) {
+                return projectGradeObject;
+            }
+        }
+        catch (NullPointerException ex) {
             return projectGradeObject;
         }
 
@@ -97,8 +102,14 @@ public class CommonComputation {
                                                   ProjectGrade modifiedProjectGrade,
                                                   Integer totalItemsInGradeTable) {
 
-        // If Parental Notchup is not applicable, return the original grade itself
-        if (riskModelTemplate.getApplyParentalNotchup() == false) {
+
+        try {
+
+            // If Parental Notchup is not applicable, return the original grade itself
+            if (riskModelTemplate.getApplyParentalNotchup() == false) {
+                return modifiedProjectGrade;
+            }
+        } catch (NullPointerException ex) {
             return modifiedProjectGrade;
         }
 
