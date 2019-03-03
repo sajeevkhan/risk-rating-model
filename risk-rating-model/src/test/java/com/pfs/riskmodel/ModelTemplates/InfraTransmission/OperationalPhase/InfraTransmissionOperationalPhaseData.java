@@ -78,6 +78,7 @@ public class InfraTransmissionOperationalPhaseData {
 
         riskModelTemplateDTO.setRiskRatingModifiers(riskRatingModifierDTOSet);
 
+
         //  Parental Notch Up
         ParentalNotchupTemplate parentalNotchupTemplate = new ParentalNotchupTemplate();
         RiskParentalNotchUpDTO riskParentalNotchUpDTO = parentalNotchupTemplate.getParentalNotchUp();

@@ -51,6 +51,8 @@ public  class All_Templates_ControllerTest extends AbstractTest {
     }
 
 
+
+
     private void holdingCompanyTemplate() throws  Exception {
         String uri = "/api/riskModelTemplate";
         HoldingCompanyData holdingCompanyData = new HoldingCompanyData();

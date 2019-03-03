@@ -74,7 +74,6 @@ public class RenewablesOperationalPhaseData {
 
         riskModelTemplateDTO.setRiskRatingModifiers(riskRatingModifierDTOSet);
 
-
         // Parental NotchUP
         //  Parental Notch Up
         ParentalNotchupTemplate parentalNotchupTemplate = new ParentalNotchupTemplate();

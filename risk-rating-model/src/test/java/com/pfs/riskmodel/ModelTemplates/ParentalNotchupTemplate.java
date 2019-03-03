@@ -85,6 +85,7 @@ public class ParentalNotchupTemplate {
         riskParentalNotchUpConditionDTOS.add(riskParentalNotchUpConditionDTO);
 
 
+
         riskParentalNotchUpConditionDTO = new RiskParentalNotchUpConditionDTO();
         riskParentalNotchUpConditionDTO.setId(null);
         riskParentalNotchUpConditionDTO.setItemNo(4);

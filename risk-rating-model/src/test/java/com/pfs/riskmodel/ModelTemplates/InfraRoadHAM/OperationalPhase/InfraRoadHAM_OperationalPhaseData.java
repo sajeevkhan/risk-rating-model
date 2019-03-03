@@ -79,6 +79,7 @@ public class InfraRoadHAM_OperationalPhaseData {
 
         riskModelTemplateDTO.setRiskRatingModifiers(riskRatingModifierDTOSet);
 
+
         //  Parental Notch Up
         ParentalNotchupTemplate parentalNotchupTemplate = new ParentalNotchupTemplate();
         RiskParentalNotchUpDTO riskParentalNotchUpDTO = parentalNotchupTemplate.getParentalNotchUp();
