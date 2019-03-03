@@ -3,6 +3,7 @@ package com.pfs.riskmodel.ModelTemplates.InfraRoadToll.OperationalPhase;
 import com.pfs.riskmodel.ModelTemplates.InfraRoadToll.ParentalNotchUp.InfraRoadToll_RiskParentalNotchUp;
 import com.pfs.riskmodel.ModelTemplates.InfraRoadToll.RiskRatingModifier.InfraRoadToll_RatingModifierDTO;
 import com.pfs.riskmodel.ModelTemplates.InfraRoadToll.RiskTypes.InfraRoadToll_PostProjectImplRiskTypes;
+import com.pfs.riskmodel.ModelTemplates.ParentalNotchupTemplate;
 import com.pfs.riskmodel.dto.*;
 
 import java.time.Instant;
@@ -78,10 +79,9 @@ public class InfraRoadToll_OperationalPhaseData {
 
         riskModelTemplateDTO.setRiskRatingModifiers(riskRatingModifierDTOSet);
 
-        // Parental Notchup
-        RiskParentalNotchUpDTO riskParentalNotchUpDTO = new RiskParentalNotchUpDTO();
-        InfraRoadToll_RiskParentalNotchUp infraRoadToll_riskParentalNotchUp = new InfraRoadToll_RiskParentalNotchUp();
-        riskParentalNotchUpDTO = infraRoadToll_riskParentalNotchUp.getInfraRoadToll_ParentalNotchup();
+        //  Parental Notch Up
+        ParentalNotchupTemplate parentalNotchupTemplate = new ParentalNotchupTemplate();
+        RiskParentalNotchUpDTO riskParentalNotchUpDTO = parentalNotchupTemplate.getParentalNotchUp();
 
         List<RiskParentalNotchUpDTO> riskParentalNotchUpDTOSet = new ArrayList<>();
         riskParentalNotchUpDTOSet.add(riskParentalNotchUpDTO);

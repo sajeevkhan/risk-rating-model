@@ -3,6 +3,7 @@ package com.pfs.riskmodel.ModelTemplates.HoldingCompany;
 import com.pfs.riskmodel.ModelTemplates.HoldingCompany.ParentalNotchup.HC_RiskParentalNotchUp;
 import com.pfs.riskmodel.ModelTemplates.HoldingCompany.RiskRatingModifiers.HC_RatingModifierDTO;
 import com.pfs.riskmodel.ModelTemplates.HoldingCompany.RiskTypes.HoldingCompanyRiskTypes;
+import com.pfs.riskmodel.ModelTemplates.ParentalNotchupTemplate;
 import com.pfs.riskmodel.dto.*;
 
 import java.time.Instant;
@@ -63,9 +64,10 @@ public class HoldingCompanyData {
 
 
         //Final Holding Company Rating
+
         //  Parental Notch Up
-        HC_RiskParentalNotchUp hc_riskParentalNotchUp = new HC_RiskParentalNotchUp();
-        RiskParentalNotchUpDTO riskParentalNotchUpDTO = hc_riskParentalNotchUp.getParentalNotchUp();
+        ParentalNotchupTemplate parentalNotchupTemplate = new ParentalNotchupTemplate();
+        RiskParentalNotchUpDTO riskParentalNotchUpDTO = parentalNotchupTemplate.getParentalNotchUp();
 
         List<RiskParentalNotchUpDTO> riskParentalNotchUpDTOs = new ArrayList<>();
         riskParentalNotchUpDTOs.add(riskParentalNotchUpDTO);

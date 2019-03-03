@@ -4,6 +4,7 @@ import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskTypes.InfraTrans_P
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskTypes.InfraTrans_ProjectImplRiskTypes;
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.ParentalNotchUp.InfraTrans_RiskParentalNotchUp;
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskRatingModifiers.InfraTrans_RatingModifierDTO;
+import com.pfs.riskmodel.ModelTemplates.ParentalNotchupTemplate;
 import com.pfs.riskmodel.dto.*;
 
 import java.time.Instant;
@@ -84,10 +85,9 @@ public class InfraTransmissionBuildPhaseData {
 
         riskModelTemplateDTO.setRiskRatingModifiers(riskRatingModifierDTOSet);
 
-        // Parental Notchup
-        RiskParentalNotchUpDTO riskParentalNotchUpDTO = new RiskParentalNotchUpDTO();
-        InfraTrans_RiskParentalNotchUp infraTrans_riskParentalNotchUp = new InfraTrans_RiskParentalNotchUp();
-        riskParentalNotchUpDTO = infraTrans_riskParentalNotchUp.getInfraTransmissonParentalNotchup();
+        //  Parental Notch Up
+        ParentalNotchupTemplate parentalNotchupTemplate = new ParentalNotchupTemplate();
+        RiskParentalNotchUpDTO riskParentalNotchUpDTO = parentalNotchupTemplate.getParentalNotchUp();
 
         List<RiskParentalNotchUpDTO> riskParentalNotchUpDTOSet = new ArrayList<>();
         riskParentalNotchUpDTOSet.add(riskParentalNotchUpDTO);
