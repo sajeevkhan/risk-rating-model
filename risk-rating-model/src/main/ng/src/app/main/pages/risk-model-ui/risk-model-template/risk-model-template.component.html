@@ -1,4 +1,4 @@
-<div id="risk-model-template" class="w-100-p tabView" fxLayout="column" fusePerfectScrollbar>
+<div id="risk-model-template" class="tabView" style="width:99%;" fxLayout="column" fusePerfectScrollbar>
     <div fxLayout="row" fxLayoutAlign="end center" fxFlex="100">
         <mat-checkbox [(ngModel)]="riskModelTemplate.applyRatingModifiers">Apply Rating Modifiers</mat-checkbox>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -7,7 +7,7 @@
     <mat-tab-group [selectedIndex]="selectedIndex" (selectedIndexChange)="selectedIndexChange($event)">
         <mat-tab>
             <ng-template mat-tab-label>
-                <mat-icon class="pr-32">star_rate</mat-icon>
+                <mat-icon class="pr-32">notes</mat-icon>
                 Project & Risk Rating Results
             </ng-template>
 
@@ -111,7 +111,7 @@
 
         <mat-tab class="tabTwo">
             <ng-template mat-tab-label>
-                <mat-icon class="pr-32">star_rate</mat-icon> Evaluation
+                <mat-icon class="pr-32">exposure</mat-icon> Evaluation
             </ng-template>
 
             <mat-card style="margin-bottom: 15px;">
@@ -119,7 +119,7 @@
                 <mat-tab-group>
                     <mat-tab *ngFor="let riskType of riskModelTemplate.riskTypes">
                         <ng-template mat-tab-label>
-                            <mat-icon class="pr-32" *ngIf="checkRiskComponentSelection(riskType)">check</mat-icon>
+                            <mat-icon class="pr-32" *ngIf="checkRiskComponentSelection(riskType)">check_circle</mat-icon>
                             <div>{{ riskType.description }}</div>
                         </ng-template>
 
@@ -127,7 +127,7 @@
                         <mat-tab-group>
                             <mat-tab *ngFor="let riskComponent of riskType.riskComponents">
                                 <ng-template mat-tab-label>
-                                    <mat-icon class="pr-32" *ngIf="checkRiskFactorSelection(riskComponent)">check</mat-icon>
+                                    <mat-icon class="pr-32" *ngIf="checkRiskFactorSelection(riskComponent)">check_circle</mat-icon>
                                     <div>{{ riskComponent.description }}</div>
                                 </ng-template>
 
@@ -135,7 +135,7 @@
                                 <mat-tab-group>
                                     <mat-tab *ngFor="let riskFactor of riskComponent.riskFactors">
                                         <ng-template mat-tab-label>
-                                            <mat-icon class="pr-32" *ngIf="checkRiskSubFactorSelection(riskFactor)">check</mat-icon>
+                                            <mat-icon class="pr-32" *ngIf="checkRiskSubFactorSelection(riskFactor)">check_circle</mat-icon>
                                             <div>{{ riskFactor.description }}</div>
                                         </ng-template>
 
@@ -155,13 +155,13 @@
 
                                                         </tr>
                                                         <tr class="accent-100 row-header">
-                                                            <th class="column-header" width="10%" valign="middle" align="center">Select</th>
+                                                            <th class="column-header" width="10%">Select</th>
                                                             <th class="column-header" width="80%">Parameter
                                                                 Selection</th>
                                                             <th class="column-header" width="10%"><span *ngIf="_appService.userDetails.riskDepartment === '02'">Score</span></th>
                                                         </tr>
                                                         <tr *ngFor="let riskSubFactorAttribute of riskSubFactor.riskSubFactorAttributes">
-                                                            <td class="column-data tableRow" valign="middle" align="center">
+                                                            <td class="column-data tableRow">
                                                                 <mat-radio-button class="example-radio-butt>on" [value]="riskSubFactorAttribute.itemNo"
                                                                     [checked]="riskSubFactorAttribute.isSelected"
                                                                     (change)="riskSubFactorSelectionChanged($event, riskSubFactor.riskSubFactorAttributes)">
@@ -193,7 +193,7 @@
                     <!-- Rating Modifiers Starts here -->
                     <mat-tab *ngIf="riskModelTemplate['riskRatingModifiers'] != undefined" [disabled]="!riskModelTemplate.applyRatingModifiers">
                         <ng-template mat-tab-label>
-                            <mat-icon class="pr-32" *ngIf="riskRatingModifierAttributeSelected === true && riskModelTemplate.applyRatingModifiers === true">check</mat-icon>
+                            <mat-icon class="pr-32" *ngIf="riskRatingModifierAttributeSelected === true && riskModelTemplate.applyRatingModifiers === true">check_circle</mat-icon>
                             <div>Rating Modifiers</div>
                         </ng-template>
 
@@ -226,11 +226,11 @@
                     <mat-tab *ngIf="riskModelTemplate['riskParentalNotchUps'] != undefined" [disabled]="!riskModelTemplate.applyParentalNotchup">
 
                         <ng-template mat-tab-label>
-                            <mat-icon class="pr-32" *ngIf="checkParentalNotchUpSelection(riskModelTemplate['riskParentalNotchUps'][0].riskSubFactors)">check</mat-icon>
+                            <mat-icon class="pr-32" *ngIf="checkParentalNotchUpSelection(riskModelTemplate['riskParentalNotchUps'][0].riskSubFactors)">check_circle</mat-icon>
                             <div>Parental Notchup</div>
                         </ng-template>
 
-                        <mat-card class="fieldItems">
+                        <mat-card class="fieldItems fieldContainer" style="padding:16px !important; margin-top:5px !important;"> 
                             <!--mat-card-header>
                                 <mat-card-title>Parental Notchup Criteria</mat-card-title>
                             </mat-card-header-->
@@ -244,7 +244,7 @@
                                         <mat-option *ngFor="let ratingSource of ratingSources" [value]="ratingSource.code">{{
                                             ratingSource.value }}</mat-option>
                                     </mat-select>
-                                    <mat-icon matSuffix class="mr-8">edit</mat-icon>
+                                   
                                 </mat-form-field>
 
                                 <!-- Nature of rating of parent firm -->
@@ -255,7 +255,7 @@
                                         <mat-option value="0">Short Term</mat-option>
                                         <mat-option value="1">Long Term</mat-option>
                                     </mat-select>
-                                    <mat-icon matSuffix class="mr-8">edit</mat-icon>
+                                   
                                 </mat-form-field>
                             </div>
 
@@ -268,7 +268,7 @@
                                         <mat-option *ngFor="let creditRating of creditRatings" [value]="creditRating.creditRating">{{
                                             creditRating.creditRating }}</mat-option>
                                     </mat-select>
-                                    <mat-icon matSuffix class="mr-8">edit</mat-icon>
+                                   
                                 </mat-form-field>
 
                                 <!-- Borrower rating grade of the parent firm -->
@@ -276,7 +276,7 @@
                                     <input matInput placeholder="{{ riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[3].description }}"
                                         [(ngModel)]="riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[3].value"
                                         required>
-                                    <mat-icon matSuffix class="mr-8">edit</mat-icon>
+                                     <mat-icon matSuffix class="mr-8">edit</mat-icon>
                                 </mat-form-field>
                             </div>
 
@@ -288,7 +288,7 @@
                                         <mat-option value="Y">Yes</mat-option>
                                         <mat-option value="N">No</mat-option>
                                     </mat-select>
-                                    <mat-icon matSuffix class="mr-8">edit</mat-icon>
+                                    
                                 </mat-form-field>
 
                                 <mat-form-field fxFlex="50">
@@ -298,7 +298,7 @@
                                         <mat-option value="Y">Yes</mat-option>
                                         <mat-option value="N">No</mat-option>
                                     </mat-select>
-                                    <mat-icon matSuffix class="mr-8">edit</mat-icon>
+                                    
                                 </mat-form-field>
                             </div>
 
@@ -343,12 +343,12 @@
 
                                     </tr>
                                     <tr class="accent-100 row-header">
-                                        <th class="column-header" valign="middle" align="center">Select</th>
+                                        <th class="column-header" width="10%">Select</th>
                                         <th class="column-header">Parameter Selection</th>
                                         <th class="column-header" *ngIf="_appService.userDetails.riskDepartment === '02'">Score</th>
                                     </tr>
                                     <tr *ngFor="let riskSubFactorAttribute of riskSubFactor.riskSubFactorAttributes">
-                                        <td class="column-data tableRow" valign="middle" align="center">
+                                        <td class="column-data tableRow">
                                             <mat-radio-button class="example-radio-button" [value]="riskSubFactorAttribute.itemNo"
                                                 [checked]="riskSubFactorAttribute.isSelected" (change)="parentalNotchUpRiskSubFactorSelectionChanged($event, riskSubFactor.riskSubFactorAttributes)">
                                             </mat-radio-button>

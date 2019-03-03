@@ -46,6 +46,7 @@ public class RiskParentalNotchUpCondition extends AuditModel { //AggregateRoot<R
         3 - Is Parent's rating at GRADE 10
         4 - Is Parent's Rating Better Than Borrower's Rating
         5 - The notch-up score as a percentage of maximum possible score is higher than 35%.
+        6 - "Borrower Rating Grade of the Parent Firm
      */
     @Column
     private Integer category;

@@ -27,6 +27,12 @@ public class CommonComputation {
         Integer modifiedProjectGradeAsNumber = 0;
         Boolean ratingModifiersInAction = false;
 
+        // If Rating Modifiers are not applicable, then return the grade
+        if (riskModelTemplate.getApplyRatingModifiers() == false) {
+            return projectGradeObject;
+        }
+
+
         // APPLY RISK RATING MODIFIERS
         for (RiskRatingModifier riskRatingModifier: riskModelTemplate.getRiskRatingModifiers()) {
 
@@ -67,6 +73,7 @@ public class CommonComputation {
                 riskModelTemplate.setModifiedProjectGrade(modifiedProjectGrade.getCommonScaleGrade());
                 riskModelTemplate.setAfterParentalNotchUpGrade(modifiedProjectGrade.getCommonScaleGrade());
                 riskModelTemplate.setFinalProjectGrade(modifiedProjectGrade.getCommonScaleGrade());
+                return modifiedProjectGrade;
                 //riskModelTemplate.setOverallProjectGrade(modifiedProjectGrade.getCommonScaleGrade());
             }
         }
@@ -79,7 +86,7 @@ public class CommonComputation {
             return projectGradeObject;
         }
 
-        return null;
+        //return null;
     }
 
 
@@ -89,6 +96,11 @@ public class CommonComputation {
                                                   List<ProjectGrade> projectGradeList,
                                                   ProjectGrade modifiedProjectGrade,
                                                   Integer totalItemsInGradeTable) {
+
+        // If Parental Notchup is not applicable, return the original grade itself
+        if (riskModelTemplate.getApplyParentalNotchup() == false) {
+            return modifiedProjectGrade;
+        }
 
         ProjectGrade afterParentalNotchUpGrade = new ProjectGrade();
 

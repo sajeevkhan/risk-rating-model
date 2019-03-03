@@ -1,8 +1,8 @@
-<div class="navbar-top" [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
+<div class="navbar-top" style="background-image: url(assets/images/logos/logo_pfs.jpg); background-repeat:no-repeat;background-size:25%;    background-position: 85px 10px;" [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
 
-    <div class="logo">
-        <img class="logo-icon" src="assets/images/logos/logo_pfs.jpg">
-        <span class="logo-text secondary-text">PFS</span>
+    <div class="logo" >
+        <!--img class="logo-icon" style="width:50px; height:50px; display:block;" src="assets/images/logos/logo_pfs.jpg"-->
+        <span class="logo-text secondary-text">PTC Financial Services </span>
     </div>
 
     <div class="buttons">
@@ -15,7 +15,7 @@
         <button mat-icon-button class="toggle-sidebar-opened"
                 (click)="toggleSidebarOpened()" fxHide.gt-md>
             <mat-icon class="secondary-text">arrow_back</mat-icon>
-        </button>
+        </button> 
 
     </div>
 
@@ -35,7 +35,7 @@
 
     </div>
 
-    <div class="navbar-content">
+    <div class="navbar-content" style="background-image: url(assets/images/logos/pfs-navbg.png); background-repeat:no-repeat;background-size:100%;    background-position: bottom center;">
         <fuse-navigation class="material2" layout="vertical"></fuse-navigation>
     </div>
 

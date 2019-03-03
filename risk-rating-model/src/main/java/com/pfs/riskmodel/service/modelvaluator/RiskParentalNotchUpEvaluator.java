@@ -136,10 +136,9 @@ public class RiskParentalNotchUpEvaluator {
 
             switch (riskParentalNotchUpCondition.getCategory()) {
 
-                case 0:  //Rating of Parent Entity - Convert String to Integer
-
-                    if ( (riskParentalNotchUpCondition.getValue() != "") && (riskParentalNotchUpCondition.getValue() != " ") )
-                     parentsRating = Integer.parseInt(riskParentalNotchUpCondition.getValue()) ;
+                case 6:  //Rating of Parent Entity - Convert String to Integer
+                        if ((riskParentalNotchUpCondition.getValue() != "") && (riskParentalNotchUpCondition.getValue() != " "))
+                            parentsRating = Integer.parseInt(riskParentalNotchUpCondition.getValue());
 
                     break;
                 case 1:  //Source of Rating of Parent Firm
