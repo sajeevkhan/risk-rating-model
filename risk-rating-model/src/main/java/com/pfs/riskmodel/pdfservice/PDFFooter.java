@@ -1,9 +1,11 @@
 package com.pfs.riskmodel.pdfservice;
 
+import com.google.common.io.ByteStreams;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 
 import java.net.URI;
@@ -68,11 +70,16 @@ class PDFFooter extends PdfPageEventHelper {
         }
         catch (NullPointerException ex ) {
             System.out.println("Image Path Null Pointer Exception: " );
+
+            FileSystemResource logo = new FileSystemResource("/opt/risk-rating-model/risk-rating-model/src/main/resources/images/pfs-logo.jpg");
+            Image image = Image.getInstance(ByteStreams.toByteArray(logo.getInputStream()));
+            return image;
+
 //            Image image =  Image.getInstance("/opt/risk-rating-model/risk-rating-model/src/main/resources/images/pfs-logo.jpg");
 //            return image;
         }
 
-        return null;
+        //return null;
     }
 
 
