@@ -262,17 +262,23 @@ public class CommonComputation {
         riskModelSummary.setGrade(riskModelTemplate.getOverallProjectGrade());
         riskModelSummaries.add(riskModelSummary);
 
-        riskModelSummary = new RiskModelSummary();itemNo++;
-        riskModelSummary.setItemNo(itemNo);
-        riskModelSummary.setName("Modified Project Grade");
-        riskModelSummary.setGrade(riskModelTemplate.getModifiedProjectGrade());
-        riskModelSummaries.add(riskModelSummary);
+        if (riskModelTemplate.getApplyRatingModifiers() == true) {
+            riskModelSummary = new RiskModelSummary();
+            itemNo++;
+            riskModelSummary.setItemNo(itemNo);
+            riskModelSummary.setName("Modified Project Grade");
+            riskModelSummary.setGrade(riskModelTemplate.getModifiedProjectGrade());
+            riskModelSummaries.add(riskModelSummary);
+        }
+        if (riskModelTemplate.getApplyParentalNotchup() == true) {
 
-        riskModelSummary = new RiskModelSummary();itemNo++;
-        riskModelSummary.setItemNo(itemNo);
-        riskModelSummary.setName("Grade after Parental Notchup");
-        riskModelSummary.setGrade(riskModelTemplate.getFinalProjectGrade());
-        riskModelSummaries.add(riskModelSummary);
+            riskModelSummary = new RiskModelSummary();
+            itemNo++;
+            riskModelSummary.setItemNo(itemNo);
+            riskModelSummary.setName("Grade after Parental Notchup");
+            riskModelSummary.setGrade(riskModelTemplate.getFinalProjectGrade());
+            riskModelSummaries.add(riskModelSummary);
+        }
 
         riskModelSummary = new RiskModelSummary();itemNo++;
         riskModelSummary.setItemNo(itemNo);
