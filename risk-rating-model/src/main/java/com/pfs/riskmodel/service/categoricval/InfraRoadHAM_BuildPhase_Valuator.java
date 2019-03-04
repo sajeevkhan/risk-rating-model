@@ -84,16 +84,17 @@ public class InfraRoadHAM_BuildPhase_Valuator {
             riskModelTemplate.setAfterParentalNotchUpGrade(modifiedProjectGrade.getCommonScaleGrade());
         }
         else {  // Evaluate Parental Notchup
+            if (riskModelTemplate.getApplyParentalNotchup() != null) {
 
-            if (riskModelTemplate.getApplyParentalNotchup() == true) {
-                afterParentalNotchupGrade = commonComputation.evaluateParentalNotchup(
-                        riskModelTemplate, projectGradeList,
-                        modifiedProjectGrade,
-                        projectGradeList.size());
+                if (riskModelTemplate.getApplyParentalNotchup() == true) {
+                    afterParentalNotchupGrade = commonComputation.evaluateParentalNotchup(
+                            riskModelTemplate, projectGradeList,
+                            modifiedProjectGrade,
+                            projectGradeList.size());
+                }
             }
-        }
 
-        // Prepare Summary
+        }        // Prepare Summary
         List<RiskModelSummary> riskModelSummaryList =
                 commonComputation.getSummary(projectIRScore, projectIRGrade,postProjectIRScore,postProjectIRGrade,riskModelTemplate,1);
 

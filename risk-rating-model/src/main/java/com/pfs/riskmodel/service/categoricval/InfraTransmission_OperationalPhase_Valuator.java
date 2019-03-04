@@ -71,15 +71,16 @@ public class InfraTransmission_OperationalPhase_Valuator {
             riskModelTemplate.setAfterParentalNotchUpGrade(modifiedProjectGrade.getCommonScaleGrade());
         }
         else {  // Evaluate Parental Notchup
+            if (riskModelTemplate.getApplyParentalNotchup() != null) {
 
-            if (riskModelTemplate.getApplyParentalNotchup() == true) {
-                afterParentalNotchupGrade = commonComputation.evaluateParentalNotchup(
-                        riskModelTemplate, projectGradeList,
-                        modifiedProjectGrade,
-                        projectGradeList.size());
+                if (riskModelTemplate.getApplyParentalNotchup() == true) {
+                    afterParentalNotchupGrade = commonComputation.evaluateParentalNotchup(
+                            riskModelTemplate, projectGradeList,
+                            modifiedProjectGrade,
+                            projectGradeList.size());
+                }
             }
         }
-
         // Prepare Summary
         List<RiskModelSummary> riskModelSummaryList =
                 commonComputation.getSummary(null,

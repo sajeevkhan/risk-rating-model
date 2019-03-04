@@ -62,12 +62,13 @@ public class Renewables_OperationalPhase_Valuator {
             riskModelTemplate.setAfterParentalNotchUpGrade(modifiedProjectGrade.getCommonScaleGrade());
         }
         else {  // Evaluate Parental Notchup
-            if (riskModelTemplate.getApplyParentalNotchup() == true) {
-
-                afterParentalNotchupGrade = commonComputation.evaluateParentalNotchup(
-                        riskModelTemplate, projectGradeList,
-                        modifiedProjectGrade,
-                        projectGradeList.size());
+            if (riskModelTemplate.getApplyParentalNotchup() != null) {
+                if (riskModelTemplate.getApplyParentalNotchup() == true) {
+                    afterParentalNotchupGrade = commonComputation.evaluateParentalNotchup(
+                            riskModelTemplate, projectGradeList,
+                            modifiedProjectGrade,
+                            projectGradeList.size());
+                }
             }
         }
 
