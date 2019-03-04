@@ -81,6 +81,8 @@ public class HoldingCompany_Valuator {
         }
 
 
+        riskModelTemplate.setFinalProjectGrade(overallProjectGradeObject.getCommonScaleGrade());
+
 
         // Prepare Summary
         List<RiskModelSummary> riskModelSummaryList =

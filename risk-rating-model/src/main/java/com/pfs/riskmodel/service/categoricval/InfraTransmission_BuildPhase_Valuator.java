@@ -78,6 +78,7 @@ public class InfraTransmission_BuildPhase_Valuator {
         riskModelTemplate.setOverallProjectGrade(overallProjectGradeObject.getCommonScaleGrade());
 
 
+        riskModelTemplate.setFinalProjectGrade(overallProjectGradeObject.getCommonScaleGrade());
 
         // Compute Modified Project Grade
         CommonComputation commonComputation = new CommonComputation();
@@ -93,17 +94,18 @@ public class InfraTransmission_BuildPhase_Valuator {
             riskModelTemplate.setAfterParentalNotchUpGrade(modifiedProjectGrade.getCommonScaleGrade());
         }
         else {  // Evaluate Parental Notchup
-
-            afterParentalNotchupGrade = commonComputation.evaluateParentalNotchup(
-                    riskModelTemplate, projectGradeList,
-                    modifiedProjectGrade,
-                    projectGradeList.size() );
+            if (riskModelTemplate.getApplyParentalNotchup() == true) {
+                afterParentalNotchupGrade = commonComputation.evaluateParentalNotchup(
+                        riskModelTemplate, projectGradeList,
+                        modifiedProjectGrade,
+                        projectGradeList.size());
+            }
         }
 
         // Prepare Summary
         List<RiskModelSummary> riskModelSummaryList =
                 commonComputation.getSummary(projectScore,
-                                                       projectScoreGrade,
+                                                    projectImplScoreGrade,
                                                        postProjectImplScore,
                                                        postProjectImplScoreGrade,
                                                        riskModelTemplate,1);

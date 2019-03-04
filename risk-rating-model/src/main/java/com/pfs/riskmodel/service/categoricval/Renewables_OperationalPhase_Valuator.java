@@ -44,6 +44,8 @@ public class Renewables_OperationalPhase_Valuator {
           riskModelTemplate.setScore(projectScore);
           riskModelTemplate.setOverallProjectGrade(projectGrade.getCommonScaleGrade());
 
+        riskModelTemplate.setFinalProjectGrade(projectGrade.getCommonScaleGrade());
+
 
         // Compute Modified Project Grade
         CommonComputation commonComputation = new CommonComputation();
@@ -60,11 +62,13 @@ public class Renewables_OperationalPhase_Valuator {
             riskModelTemplate.setAfterParentalNotchUpGrade(modifiedProjectGrade.getCommonScaleGrade());
         }
         else {  // Evaluate Parental Notchup
+            if (riskModelTemplate.getApplyParentalNotchup() == true) {
 
-            afterParentalNotchupGrade = commonComputation.evaluateParentalNotchup(
-                                                                                riskModelTemplate, projectGradeList,
-                                                                                modifiedProjectGrade,
-                                                                                projectGradeList.size() );
+                afterParentalNotchupGrade = commonComputation.evaluateParentalNotchup(
+                        riskModelTemplate, projectGradeList,
+                        modifiedProjectGrade,
+                        projectGradeList.size());
+            }
         }
 
 

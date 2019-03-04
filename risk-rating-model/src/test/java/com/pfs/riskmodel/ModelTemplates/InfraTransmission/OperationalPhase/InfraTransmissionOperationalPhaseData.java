@@ -62,6 +62,9 @@ public class InfraTransmissionOperationalPhaseData {
         riskModelTemplateDTO.setAfterParentalNotchUpGrade(" ");
         riskModelTemplateDTO.setFinalProjectGrade(" ");
 
+        riskModelTemplateDTO.setApplyParentalNotchup(false);
+        riskModelTemplateDTO.setApplyParentalNotchup(false);
+
 
         // RiskType
         //Project Risk Rating of Infrastructure Tranmission Operational Phase = Post Project Implementation Score

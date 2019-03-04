@@ -53,6 +53,8 @@ public class InfraRoadToll_OperationalPhase_Valuator {
                      Utils.fetchGrade(projectGradeList,overallProjectScore);
         riskModelTemplate.setOverallProjectGrade(projectGrade.getCommonScaleGrade());
 
+        riskModelTemplate.setFinalProjectGrade(overallProjectGradeObject.getCommonScaleGrade());
+
 
         // Compute Modified Project Grade
         CommonComputation commonComputation = new CommonComputation();
@@ -68,11 +70,13 @@ public class InfraRoadToll_OperationalPhase_Valuator {
             riskModelTemplate.setAfterParentalNotchUpGrade(modifiedProjectGrade.getCommonScaleGrade());
         }
         else {  // Evaluate Parental Notchup
+            if (riskModelTemplate.getApplyParentalNotchup() == true) {
 
-            afterParentalNotchupGrade = commonComputation.evaluateParentalNotchup(
-                    riskModelTemplate, projectGradeList,
-                    modifiedProjectGrade,
-                    projectGradeList.size() );
+                afterParentalNotchupGrade = commonComputation.evaluateParentalNotchup(
+                        riskModelTemplate, projectGradeList,
+                        modifiedProjectGrade,
+                        projectGradeList.size());
+            }
         }
 
         // Prepare Summary
