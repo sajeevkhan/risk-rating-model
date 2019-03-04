@@ -63,7 +63,7 @@
                     </mat-form-field>
 
                     <mat-form-field fxFlex="25">
-                        <input matInput placeholder="Rating Date" [(ngModel)]="riskModelTemplate.ratingDate" readonly>
+                        <input matInput placeholder="Rating Date" [ngModel]="riskModelTemplate.ratingDate | date: 'dd/MM/yyyy'" (ngModelChange)="riskModelTemplate.ratingDate = $event" readonly>
                     </mat-form-field>
 
                     <mat-form-field fxFlex="25">
