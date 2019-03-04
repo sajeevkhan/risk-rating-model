@@ -37,10 +37,6 @@ class PDFFooter extends PdfPageEventHelper {
     }
 
 
-//    private  Image getLogo() throws Exception {
-//
-//
-//    }
 
 
     private static Image getImage() throws Exception{
@@ -58,22 +54,25 @@ class PDFFooter extends PdfPageEventHelper {
 
         Image img = Image.getInstance(path.toAbsolutePath().toString());
         System.out.println("Image " + img);
-
-        if (img == null) {
-
-            Image image =  Image.getInstance("/opt/risk-rating-model/risk-rating-model/src/main/resources/images/pfs-logo.jpg");
-            return image;
-
-        }else{
         return img;
-        }
+//
+//            if (img == null) {
+//
+//                Image image =  Image.getInstance("/opt/risk-rating-model/risk-rating-model/src/main/resources/images/pfs-logo.jpg");
+//                return image;
+//
+//            }else{
+//            return img;
+//            }
 
         }
         catch (NullPointerException ex ) {
             System.out.println("Image Path Null Pointer Exception: " );
-            Image image =  Image.getInstance("/opt/risk-rating-model/risk-rating-model/src/main/resources/images/pfs-logo.jpg");
-            return image;
+//            Image image =  Image.getInstance("/opt/risk-rating-model/risk-rating-model/src/main/resources/images/pfs-logo.jpg");
+//            return image;
         }
+
+        return null;
     }
 
 
