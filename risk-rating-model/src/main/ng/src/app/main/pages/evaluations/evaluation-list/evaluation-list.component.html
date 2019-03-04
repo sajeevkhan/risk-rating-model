@@ -7,7 +7,7 @@
         <ng-container matColumnDef="ratingDate">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Rating Date</mat-header-cell>
             <mat-cell *matCellDef="let evaluation">
-                <span class="text-truncate">{{ evaluation.ratingDate }}</span>
+                <span class="text-truncate">{{ evaluation.ratingDate | date: 'dd/MM/yyyy' }}</span>
             </mat-cell>
         </ng-container>
 
