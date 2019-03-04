@@ -1,14 +1,12 @@
-<div class="mat-table-container" >
+<div class="mat-table-container">
 
     <!-- <mat-table class="enquiries-table" #table [dataSource]="dataSource" *fuseIfOnDom [@animateStagger]="{value:'50'}" fusePerfectScrollbar> -->
     <mat-table class="enquiries-table" [dataSource]="dataSource" matSort fusePerfectScrollbar>
 
-	
-	
         <!-- functionalStatus Column -->
         <ng-container matColumnDef="functionalStatusDescription">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
-			
+
             <mat-cell *matCellDef="let enquiry">
                 <span class="text-truncate">{{ enquiry.functionalStatusDescription }}</span>
             </mat-cell>
@@ -105,7 +103,7 @@
         <!-- projectCost Column -->
         <ng-container matColumnDef="loanAmount">
             <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="15">Loan Amount(Cr)</mat-header-cell>
-            <mat-cell *matCellDef="let enquiry"fxFlex="15">
+            <mat-cell *matCellDef="let enquiry" fxFlex="15">
                 <span class="text-truncate">{{ enquiry.loanAmount }}</span>
             </mat-cell>
         </ng-container>
@@ -115,11 +113,7 @@
         <mat-row *matRowDef="let enquiry; columns: displayedColumns;" class="enquiry" matRipple (click)="onSelect(enquiry)"
             [ngClass]="{'light-orange-50':enquiry === selectedEnquiry}" [@animate]="{value:'*',params:{y:'100%'}}">
         </mat-row>
-		
-		
-		
-
     </mat-table>
 
-    <!--mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]"></mat-paginator-->
+    <mat-paginator [pageSizeOptions]="pageSizeOptions" showFirstLastButtons></mat-paginator>
 </div>

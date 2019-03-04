@@ -1,9 +1,10 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatSort } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { BehaviorSubject } from 'rxjs';
 import { LoanEnquiryService } from '../enquiryApplication.service';
 import { EnquiryApplicationModel } from 'app/main/model/enquiryApplication.model';
+import { DataSource } from '@angular/cdk/table';
 
 @Component({
     selector: 'fuse-enquiry-search-list',
@@ -14,13 +15,19 @@ import { EnquiryApplicationModel } from 'app/main/model/enquiryApplication.model
 export class EnquirySearchListComponent implements OnInit {
 
     dataSource: MatTableDataSource<any>;
+
     @ViewChild(MatSort) sort: MatSort;
+
+    @ViewChild(MatPaginator) paginator: MatPaginator;
 
     @Input()
     set enquiryList(enquiryList: EnquiryApplicationModel[]) {
         this.dataSource = new MatTableDataSource(enquiryList);
         this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
     }
+
+    pageSizeOptions: number[] = [5, 10, 25, 50, 100];
 
     displayedColumns = [
         'functionalStatusDescription', 'createdOn', 'enquiryNumber', 'loanContractId', 'busPartnerNumber', 'projectName', 

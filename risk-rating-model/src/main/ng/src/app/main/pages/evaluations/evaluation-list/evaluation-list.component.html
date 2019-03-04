@@ -1,7 +1,7 @@
 <div class="mat-table-container"  fusePerfectScrollbar>
 
     <!-- <mat-table class="enquiries-table" #table [dataSource]="dataSource" *fuseIfOnDom [@animateStagger]="{value:'50'}" fusePerfectScrollbar> -->
-    <mat-table class="evaluations-table" [dataSource]="evaluations" matSort>
+    <mat-table class="evaluations-table" [dataSource]="dataSource" matSort>
 
         <!-- ratingDate Column -->
         <ng-container matColumnDef="ratingDate">
@@ -74,4 +74,6 @@
         </mat-row>
 
     </mat-table>
+
+    <mat-paginator [pageSizeOptions]="pageSizeOptions" showFirstLastButtons></mat-paginator>
 </div>
