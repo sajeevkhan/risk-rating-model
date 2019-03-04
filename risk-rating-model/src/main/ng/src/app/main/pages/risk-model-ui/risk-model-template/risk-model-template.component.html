@@ -44,7 +44,7 @@
                     </mat-form-field>
 
                     <mat-form-field fxFlex="25">
-                        <mat-select placeholder="Purpose" [(ngModel)]="riskModelTemplate.purposeCode" required>
+                        <mat-select placeholder="Department" [(ngModel)]="riskModelTemplate.purposeCode" required>
                             <mat-option *ngFor="let purpose of purposes" [value]="purpose.code">
                                 {{ purpose.description }}
                             </mat-option>
@@ -63,7 +63,7 @@
                     </mat-form-field>
 
                     <mat-form-field fxFlex="25">
-                        <input matInput placeholder="Rating Date" [(ngModel)]="riskModelTemplate.ratingDate" readonly>
+                        <input matInput placeholder="Rating Date" [ngModel]="riskModelTemplate.ratingDate | date: 'dd/MM/yyyy'" (ngModelChange)="riskModelTemplate.ratingDate = $event" readonly>
                     </mat-form-field>
 
                     <mat-form-field fxFlex="25">
