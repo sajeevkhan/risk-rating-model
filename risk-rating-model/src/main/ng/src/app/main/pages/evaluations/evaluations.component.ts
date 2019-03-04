@@ -6,7 +6,7 @@ import { NewEvaluationDialogComponent } from '../new-evaluation-dialog/new-evalu
 import { LoanEnquiryService } from '../enquirySearch/enquiryApplication.service';
 import { EnquiryApplicationModel } from 'app/main/model/enquiryApplication.model';
 import { DOCUMENT } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'fuse-evaluations',
@@ -20,6 +20,8 @@ export class EvaluationComponent {
 
     loanApplicaton: EnquiryApplicationModel;
 
+    evaluations: any;
+
     /**
      * constructor()
      * @param _service: EvaluationService
@@ -27,13 +29,19 @@ export class EvaluationComponent {
      * @param _loanEnquiryService: LoanEnquiryService
      */
     constructor(public _service: EvaluationService, private _dialog: MatDialog, private _loanEnquiryService: LoanEnquiryService,
-        @Inject(DOCUMENT) private document: any, private _router: Router) {
+        @Inject(DOCUMENT) private document: any, private _router: Router, private _route: ActivatedRoute) {
 
         //
         _service.selectedEvaluation = undefined;
 
         //
         this.loanApplicaton = _loanEnquiryService.selectedLoanApplicaton;
+
+        // Fetch evaluations from route resolved data.
+        _route.data.subscribe((data) => {
+            this.evaluations = data.routeResolvedData;
+            console.log('parent', this.evaluations);
+        });
     }
 
     /**
