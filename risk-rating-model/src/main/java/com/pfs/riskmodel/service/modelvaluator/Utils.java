@@ -66,8 +66,22 @@ public class Utils {
 
     public static ProjectGrade getProjectGradeByGradeAsNumber(List<ProjectGrade> projectGrades, Integer gradeAsNumber) {
 
-        if (gradeAsNumber < 0)
-            gradeAsNumber = gradeAsNumber * -1;
+//        if (gradeAsNumber < 0)
+//            gradeAsNumber = gradeAsNumber * -1;
+
+        ProjectGrade lowestGrade = getLowestGrade(projectGrades);
+        ProjectGrade highestGrade = getHighestGrade(projectGrades);
+
+        // Check if GradeAsNumber is lower than lowest Grade
+        if (gradeAsNumber >= lowestGrade.getGradeAsNumber()) {
+            return lowestGrade;
+        }
+
+        //Check if GradeAsNumber is higher than highest Grade
+        if (gradeAsNumber <= highestGrade.getGradeAsNumber()) {
+            return highestGrade;
+        }
+
 
         for (ProjectGrade projectGrade: projectGrades) {
             if (projectGrade.getGradeAsNumber() == gradeAsNumber) {
@@ -92,5 +106,12 @@ public class Utils {
         return projectGradeList.get(projectGradeList.size()-1);
 
     }
+
+    public static ProjectGrade getLowestGrade(List<ProjectGrade> projectGradeList) {
+        return projectGradeList.get(0);
+
+    }
+
+
 
 }

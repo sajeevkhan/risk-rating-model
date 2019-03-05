@@ -58,7 +58,7 @@ public class Renewables_OperationalPhase_Valuator {
         if ( modifiedProjectGrade.getGradeAsNumber() >= 7 ) {
             riskModelTemplate.getRiskParentalNotchUps().get(0).setIsParentalNotchUpApplicable(false);
             riskModelTemplate.setFinalProjectGrade(modifiedProjectGrade.getCommonScaleGrade());
-            riskModelTemplate.setOverallProjectGrade(modifiedProjectGrade.getCommonScaleGrade());
+            //riskModelTemplate.setOverallProjectGrade(modifiedProjectGrade.getCommonScaleGrade());
             riskModelTemplate.setAfterParentalNotchUpGrade(modifiedProjectGrade.getCommonScaleGrade());
         }
         else {  // Evaluate Parental Notchup
