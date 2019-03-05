@@ -26,6 +26,8 @@ export class RiskModelTemplateComponent implements OnInit {
 
     purposes: any;
 
+    savingTemplate: boolean;
+
     constructor(private _appService: AppService, private _riskModelService: RiskModelUIService, private _matSnackBar: MatSnackBar) {
         console.log('_appService', _appService.userDetails);
 
@@ -105,11 +107,11 @@ export class RiskModelTemplateComponent implements OnInit {
      * 
      */
     evaluateTemplate(): void {
+        this.savingTemplate = true;
         // Change modelType to 1 in case it is 0.
         if (this.riskModelTemplate.modelType === 0) {
             this.riskModelTemplate.modelType = 1;
         }
-
         // 
         this._riskModelService.evaluateTemplate(this.riskModelTemplate).subscribe(response => {
             // Save the response.
@@ -119,6 +121,7 @@ export class RiskModelTemplateComponent implements OnInit {
             // Make the first tab as active and display an alert to the user.
             this.selectedIndex = 0;
             this._matSnackBar.open('Evaluated and saved', 'Ok', { duration: 7000 });
+            this.savingTemplate = false;
         });
     }
 
@@ -126,6 +129,7 @@ export class RiskModelTemplateComponent implements OnInit {
      * sendTemplateForApproval()
      */
     sendTemplateForApproval(): void {
+        this.savingTemplate = true;
         // 
         this._riskModelService.approveTemplate(this.riskModelTemplate).subscribe(response => {
             // Save the response.
@@ -135,6 +139,7 @@ export class RiskModelTemplateComponent implements OnInit {
             // Make the first tab as active and display an alert to the user.
             this.selectedIndex = 0;
             this._matSnackBar.open('Evaluated, saved & sent for approval', 'Ok', { duration: 7000 });
+            this.savingTemplate = false;
         });
     }
 

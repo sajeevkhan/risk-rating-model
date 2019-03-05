@@ -1,3 +1,10 @@
+<!-- <button mat-raised-button class="mr-8" (click)="savingTemplate = !savingTemplate">
+    <mat-icon matSuffix class="mr-8">send</mat-icon>Show spinner
+</button> -->
+
+<mat-spinner class="example-margin" [color]="'primary-50'" *ngIf="savingTemplate" [diameter]="70">
+</mat-spinner>
+
 <div id="risk-model-template" class="tabView" style="width:99%;" fxLayout="column" fusePerfectScrollbar>
     <div fxLayout="row" fxLayoutAlign="end center" fxFlex="100">
         <mat-checkbox [(ngModel)]="riskModelTemplate.applyRatingModifiers">Apply Rating Modifiers</mat-checkbox>

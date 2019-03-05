@@ -57,3 +57,11 @@ mat-card-subtitle {
 .risk-factor-tab-label {
     color: darkgreen !important;
 }
+
+.example-margin {
+    position: fixed;
+    top: 35%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -35%);
+}
