@@ -613,8 +613,17 @@ export class LoanEnquiryService {
      * @param request: any
      */
     public searchLoanEnquiries(request: any): Observable<any> {
-        let str = '/api/loanApplications/search';
-        str += '?projectName=' + request.partyName;
+        console.log(request);
+        let str = '/api/loanApplications/search?';
+        if (request.projectName) {
+            str+= 'projectName=' + request.projectName + '&';
+        }
+        if (request.loanNumberFrom) {
+            str+= 'loanNumberFrom=' + request.loanNumberFrom + '&';
+        }
+        if (request.loanNumberTo) {
+            str+= 'loanNumberTo=' + request.loanNumberTo;
+        }
         return this._http.get<any>(str);
     }
 

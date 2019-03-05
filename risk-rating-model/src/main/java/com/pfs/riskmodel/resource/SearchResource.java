@@ -14,6 +14,8 @@ public class SearchResource {
     private Integer financingType;
     private Integer enquiryNoFrom;
     private Integer enquiryNoTo;
+    private Integer loanNumberFrom;
+    private Integer loanNumberTo;
     private String projectLocationState;
     private Integer projectType;
     private String assistanceType;

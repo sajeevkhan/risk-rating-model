@@ -35,7 +35,7 @@ export class ChangeDocumentComponent implements OnInit {
     searchChangeDocuments(): void {
         console.log(this.changeDocumentsForm.value);
         const formValue = this.changeDocumentsForm.value;
-        this._service.fetchChangeDocuments(formValue.loanNumber, formValue.riskModelId, formValue.dateFrom, formValue.dateTo, 0, 5).subscribe(data => {
+        this._service.fetchChangeDocuments(formValue.loanNumber, formValue.riskModelId, formValue.dateFrom, formValue.dateTo, 0, 10).subscribe(data => {
             this.changeDocuments = data.content;
             this.page = data.pageable;
             this.page.totalElements = data.totalElements;

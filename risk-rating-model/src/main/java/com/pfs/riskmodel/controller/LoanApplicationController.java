@@ -22,11 +22,18 @@ public class LoanApplicationController {
     private final LMSEnquiryClient lmsEnquiryClient;
 
     @GetMapping("/loanApplications/search")
-    public ResponseEntity searchLoanApplications(@RequestParam("projectName") String projectName, HttpServletRequest request) {
+    public ResponseEntity searchLoanApplications(@RequestParam(value = "projectName", required = false) String projectName,
+                                                 @RequestParam(value = "loanNumberFrom", required = false) Integer loanNumberFrom,
+                                                 @RequestParam(value = "loanNumberTo", required = false) Integer loanNumberTo,
+                                                 HttpServletRequest request) {
         SearchResource resource = new SearchResource();
-        if (!projectName.equals("undefined"))
+        if (projectName != null)
             resource.setPartyName(projectName);
-        ResponseEntity<List<LoanApplicationResource>> resources = lmsEnquiryClient.searchEnquiries(resource,getAuthorizationBearer(request.getUserPrincipal()));
+        if (loanNumberFrom != null)
+            resource.setLoanNumberFrom(loanNumberFrom);
+        if (loanNumberTo != null)
+            resource.setLoanNumberTo(loanNumberTo);
+        ResponseEntity<List<LoanApplicationResource>> resources = lmsEnquiryClient.searchEnquiries(resource, getAuthorizationBearer(request.getUserPrincipal()));
 
         // ResponseEntity<List<LoanApplicationResource>> resources = lmsEnquiryClient.searchEnquiries(resource,"Basic YWRtaW46YWRtaW4");
 

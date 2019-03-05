@@ -20,16 +20,9 @@ export class EnquirySearchComponent {
     constructor(_formBuilder: FormBuilder, public _service: LoanEnquiryService, private _router: Router) {
 
         this.enquirySearchForm = _formBuilder.group({
-            enquiryNoFrom: [],
-            enquiryNoTo: [],
-            enquiryDateFrom: [],
-            enquiryDateTo: [],
+            loanNumberFrom: [],
+            loanNumberTo: [],
             projectName: [],
-            projectLocation: [],
-            loanClass: [],
-            projectType: [],
-            financingType: [],
-            assistanceType: []
         });
 
         _service.selectedLoanApplicationId = undefined;

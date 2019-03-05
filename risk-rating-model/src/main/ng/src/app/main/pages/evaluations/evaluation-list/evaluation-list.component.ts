@@ -23,7 +23,7 @@ export class EvaluationListComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
     }
 
-    pageSizeOptions: number[] = [5, 10, 25, 50, 100];
+    pageSizeOptions: number[] = [10, 25, 50, 100];
 
     selectedEvaluation: any;
 

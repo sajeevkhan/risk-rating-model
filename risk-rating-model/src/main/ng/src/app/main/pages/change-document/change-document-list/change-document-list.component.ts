@@ -34,7 +34,7 @@ export class ChangeDocumentListComponent implements OnInit {
         'date', 'riskModelTemplateId', 'userName', 'loanNumber', 'action'
     ];
 
-    pageSizeOptions: number[] = [5, 10, 25, 50, 100];
+    pageSizeOptions: number[] = [10, 25, 50, 100];
 
     itemColumns: string[] = [
         'itemNo', 'entityDescription', 'entityName', 'attributeName', 'tableKey', 'oldValue', 'newValue'

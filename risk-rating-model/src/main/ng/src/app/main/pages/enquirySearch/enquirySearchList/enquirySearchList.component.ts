@@ -27,7 +27,7 @@ export class EnquirySearchListComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
     }
 
-    pageSizeOptions: number[] = [5, 10, 25, 50, 100];
+    pageSizeOptions: number[] = [10, 25, 50, 100];
 
     displayedColumns = [
         'functionalStatusDescription', 'createdOn', 'enquiryNumber', 'loanContractId', 'busPartnerNumber', 'projectName', 
