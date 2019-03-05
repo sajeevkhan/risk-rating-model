@@ -11,7 +11,7 @@ import { LoanEnquiryService } from '../enquirySearch/enquiryApplication.service'
 
 const routes = [
     {
-        path: 'evaluations/:projectId',
+        path: 'evaluations/:loanOrEnquiry/:documentNumber',
         component: EvaluationComponent,
         resolve: {
             routeResolvedData: EvaluationService

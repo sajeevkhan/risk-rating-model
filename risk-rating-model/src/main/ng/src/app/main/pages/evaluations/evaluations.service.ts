@@ -22,15 +22,28 @@ export class EvaluationService implements Resolve<any> {
      * @param route: ActivatedRouteSnapshot
      */
     resolve(route: ActivatedRouteSnapshot): Observable<any> {
-        return this.fetchEvaluations(route.params['projectId']);
+        if (route.params['loanOrEnquiry'] === 'enquiry') {
+            return this.fetchEvaluationsByEnquiryNumber(route.params['documentNumber']);
+        }
+        else {
+            return this.fetchEvaluationsByLoanNumber(route.params['documentNumber']);
+        }
     }
 
     /**
      * 
      * @param loanNumber: string
      */
-    public fetchEvaluations(loanNumber: string): Observable<any> {
+    public fetchEvaluationsByLoanNumber(loanNumber: string): Observable<any> {
         return this._http.get<any>('/api/riskModel/loanNumber/' + loanNumber);
+    }
+
+    /**
+     * 
+     * @param enquiryNumber: string
+     */
+    public fetchEvaluationsByEnquiryNumber(enquiryNumber: string): Observable<any> {
+        return this._http.get<any>('/api/riskModel/loanEnquiryId/' + enquiryNumber);
     }
 
     /**

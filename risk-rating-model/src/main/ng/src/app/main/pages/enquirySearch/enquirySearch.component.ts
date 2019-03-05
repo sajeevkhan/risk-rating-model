@@ -56,6 +56,12 @@ export class EnquirySearchComponent {
      * 
      */
     fetchEvaluations(): void {
-        this._router.navigate(['/evaluations', this._service.selectedLoanApplicationId.value]);
+        console.log('enquiry', this._service.selectedLoanApplicaton);
+        if (this._service.selectedLoanApplicaton.loanContractId === null) {
+            this._router.navigate(['/evaluations', 'enquiry', this._service.selectedLoanApplicaton.enquiryNumber]);
+        }
+        else {
+            this._router.navigate(['/evaluations', 'loan', this._service.selectedLoanApplicationId.value]);
+        }
     }
 }
