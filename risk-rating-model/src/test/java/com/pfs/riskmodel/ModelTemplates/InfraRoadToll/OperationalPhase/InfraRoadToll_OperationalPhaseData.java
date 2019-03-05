@@ -62,6 +62,9 @@ public class InfraRoadToll_OperationalPhaseData {
         riskModelTemplateDTO.setAfterParentalNotchUpGrade(" ");
         riskModelTemplateDTO.setFinalProjectGrade(" ");
 
+        riskModelTemplateDTO.setApplyParentalNotchup(false);
+        riskModelTemplateDTO.setApplyParentalNotchup(false);
+
 
 
         // RiskType

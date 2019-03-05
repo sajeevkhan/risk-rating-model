@@ -58,6 +58,8 @@ public class InfraRoadHAM_OperationalPhase_Valuator {
              riskModelTemplate.setOverallProjectGrade(projectGrade.getCommonScaleGrade());
              riskModelTemplate.setScore(postProjectIRScore);
 
+        riskModelTemplate.setFinalProjectGrade(overallProjectGradeObject.getCommonScaleGrade());
+
         // Compute Modified Project Grade
         CommonComputation commonComputation = new CommonComputation();
         modifiedProjectGrade = commonComputation.applyRatingModifier(riskModelTemplate,
@@ -72,14 +74,17 @@ public class InfraRoadHAM_OperationalPhase_Valuator {
             riskModelTemplate.setAfterParentalNotchUpGrade(modifiedProjectGrade.getCommonScaleGrade());
         }
         else {  // Evaluate Parental Notchup
+            if (riskModelTemplate.getApplyParentalNotchup() != null) {
 
-            afterParentalNotchupGrade = commonComputation.evaluateParentalNotchup(
-                    riskModelTemplate, projectGradeList,
-                    modifiedProjectGrade,
-                    projectGradeList.size() );
+                if (riskModelTemplate.getApplyParentalNotchup() == true) {
+
+                    afterParentalNotchupGrade = commonComputation.evaluateParentalNotchup(
+                            riskModelTemplate, projectGradeList,
+                            modifiedProjectGrade,
+                            projectGradeList.size());
+                }
+            }
         }
-
-
 
         // Prepare Summary
         List<RiskModelSummary> riskModelSummaryList =

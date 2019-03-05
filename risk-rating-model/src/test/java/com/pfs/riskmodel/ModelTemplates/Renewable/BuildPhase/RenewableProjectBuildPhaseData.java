@@ -69,6 +69,9 @@ public class RenewableProjectBuildPhaseData {
         riskModelTemplateDTO.setFinalProjectGrade(" ");
 
 
+        riskModelTemplateDTO.setApplyParentalNotchup(false);
+        riskModelTemplateDTO.setApplyParentalNotchup(false);
+
         RiskTypeDTO projectImplRiskTypeDTO = RenewableProjectRiskTypes.buildRiskTypes();
         RiskTypeDTO postProjectImplRiskTypeDTO = RenewablePostProjectRiskTypes.buildRiskTypes();
 

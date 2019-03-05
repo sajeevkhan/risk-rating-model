@@ -62,6 +62,9 @@ public class InfraRoadHAM_BuildPhaseData {
         riskModelTemplateDTO.setAfterParentalNotchUpGrade(" ");
         riskModelTemplateDTO.setFinalProjectGrade(" ");
 
+        riskModelTemplateDTO.setApplyParentalNotchup(false);
+        riskModelTemplateDTO.setApplyParentalNotchup(false);
+
 
         // RiskType
         //Project Risk Rating of Infrastructure Tranmission Operational Phase = Minimum of PIR and PPIR  Scores

@@ -73,13 +73,19 @@ public class HoldingCompany_Valuator {
             riskModelTemplate.setAfterParentalNotchUpGrade(modifiedProjectGrade.getCommonScaleGrade());
         }
         else {  // Evaluate Parental Notchup
+            if (riskModelTemplate.getApplyParentalNotchup() != null) {
 
-            afterParentalNotchupGrade = commonComputation.evaluateParentalNotchup(
-                    riskModelTemplate, projectGradeList,
-                    modifiedProjectGrade,
-                    projectGradeList.size() );
+                if (riskModelTemplate.getApplyParentalNotchup() == true) {
+                    afterParentalNotchupGrade = commonComputation.evaluateParentalNotchup(
+                            riskModelTemplate, projectGradeList,
+                            modifiedProjectGrade,
+                            projectGradeList.size());
+                }
+            }
         }
 
+
+        riskModelTemplate.setFinalProjectGrade(overallProjectGradeObject.getCommonScaleGrade());
 
 
         // Prepare Summary

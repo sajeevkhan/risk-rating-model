@@ -67,6 +67,9 @@ public class RenewablesOperationalPhaseData {
         riskModelTemplateDTO.setAfterParentalNotchUpGrade(" ");
         riskModelTemplateDTO.setFinalProjectGrade(" ");
 
+        riskModelTemplateDTO.setApplyParentalNotchup(false);
+        riskModelTemplateDTO.setApplyParentalNotchup(false);
+
         // Rating Modifiers
         List<RiskRatingModifierDTO> riskRatingModifierDTOSet = new ArrayList<>();
         Renewable_RatingModifierDTO renewable_ratingModifierDTO = new Renewable_RatingModifierDTO();

@@ -62,6 +62,9 @@ public class HoldingCompanyData {
         riskModelTemplateDTO.setAfterParentalNotchUpGrade(" ");
         riskModelTemplateDTO.setFinalProjectGrade(" ");
 
+        riskModelTemplateDTO.setApplyParentalNotchup(false);
+        riskModelTemplateDTO.setApplyParentalNotchup(false);
+
 
 
         //Final Holding Company Rating
