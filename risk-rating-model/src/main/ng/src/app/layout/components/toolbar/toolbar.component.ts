@@ -175,4 +175,8 @@ export class ToolbarComponent implements OnInit, OnDestroy
         // Use the selected language for translations
         this._translateService.use(lang.id);
     }
+
+    logout(): void {
+        window.location.href = '/logout';
+    }
 }
