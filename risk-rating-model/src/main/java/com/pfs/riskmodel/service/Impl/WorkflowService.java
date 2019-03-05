@@ -79,19 +79,41 @@ public class WorkflowService implements IWorkflowService {
             }
         }
 
+        User user = welcomeService.getUser();
 
         switch (action) {
             case 1:
                 if (httpServletRequest.getUserPrincipal() != null) {
-                    User user = welcomeService.getUser();
+                    //User user = welcomeService.getUser();
                     if (user != null)
                     riskModelTemplate.setCreatedBy(user.getFirstName() + " " + user.getLastName());
                 }
                 validationResult = getWorkflowValidation(false,"Workflow.NotStarted",riskModelTemplate.getId().toString());
                 result.put("ValidationResult", validationResult);
+
                 riskModelTemplate.setWorkflowStatus( workflowStatusRepository.findByCode("01") );
-                 result.put("RiskModel", riskModelTemplate);
-                 return result;
+                if (riskModelTemplate.getWorkflowStatus() == null) {
+                    riskModelTemplate.setWorkflowStatus(workflowStatusRepository.findByCode("01"));
+                }
+                /*
+                    Set the Status based on the Modifier
+                    If Modified by Creator or Reviewer
+                */
+                else {
+                if (riskModelTemplate.getWorkflowStatus().getCode().equals("01") ||
+                        riskModelTemplate.getWorkflowStatus().getCode().equals("02") ) {
+                    String userFullName = user.getFirstName() + " " + user.getLastName();
+                    if (userFullName.equals(riskModelTemplate.getCreatedBy())) {
+                        riskModelTemplate.setWorkflowStatus(workflowStatusRepository.findByCode("05"));
+                    }
+                    if (userFullName.equals(riskModelTemplate.getReviewedBy())) {
+                        riskModelTemplate.setWorkflowStatus(workflowStatusRepository.findByCode("06"));
+                    }
+                }
+            }
+
+                result.put("RiskModel", riskModelTemplate);
+                return result;
             case 2:
                 result = startApprovalProcess(riskModelTemplate,httpServletRequest);
                 break;

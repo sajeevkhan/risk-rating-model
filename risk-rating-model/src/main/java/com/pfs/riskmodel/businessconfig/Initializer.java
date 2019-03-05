@@ -141,7 +141,7 @@ public class Initializer implements CommandLineRunner{
         }
 
 
-        if(workflowStatusRepository.count() == 0) {
+        if(workflowStatusRepository.count() == 0 ) {
 
             WorkflowStatus w1 = new WorkflowStatus(null, "01", "Created");
             WorkflowStatus w2 = new WorkflowStatus(null, "02", "Sent for Approval");
@@ -156,6 +156,15 @@ public class Initializer implements CommandLineRunner{
             workflowStatusRepository.saveAndFlush(w4);
 
             log.info("-------------------------- Added Work Flow Statuses data");
+        }
+
+
+        if(workflowStatusRepository.count() <= 4 ) {
+            WorkflowStatus w5 = new WorkflowStatus(null, "05", "Modified by Creator");
+            WorkflowStatus w6 = new WorkflowStatus(null, "06", "Modified by Approver");
+            workflowStatusRepository.saveAndFlush(w5);
+            workflowStatusRepository.saveAndFlush(w6);
+            log.info("-------------------------- Added Additional Work Flow Statuses data");
         }
 
 //        workflowAssignmentRepository.deleteAll();

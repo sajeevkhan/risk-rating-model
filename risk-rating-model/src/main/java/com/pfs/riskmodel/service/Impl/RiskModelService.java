@@ -70,6 +70,8 @@ public class RiskModelService implements IRiskModelService {
 
         RiskModelTemplate existingRiskModel = new RiskModelTemplate();
 
+        User user = welcomeService.getUser();
+        String userFullName = user.getFirstName() + " " + user.getLastName();
 
         //Determine Approver
         WorkflowAssignment workflowAssignment = workflowAssignmentRepository.findByPurpose(riskModelTemplate.getPurpose());
@@ -84,7 +86,7 @@ public class RiskModelService implements IRiskModelService {
 
         //Set Created By
         if (httpServletRequest.getUserPrincipal()!= null){
-            User user = welcomeService.getUser();
+            //   User user = welcomeService.getUser();
             if (user != null)
                 riskModelTemplate.setCreatedBy(user.getFirstName() + " " + user.getLastName());
         }
@@ -119,11 +121,10 @@ public class RiskModelService implements IRiskModelService {
         RiskModelEvaluator riskModelEvaluator = new RiskModelEvaluator();
         riskModelEvaluator.evaluateRiskModel(riskModelTemplate);
 
-//        if (httpServletRequest.getUserPrincipal() != null)
-//            riskModelTemplate.setCreatedBy(httpServletRequest.getUserPrincipal().getName());
         if (riskModelTemplate.getWorkflowStatus() == null) {
             riskModelTemplate.setWorkflowStatus(workflowStatusRepository.findByCode("01"));
         }
+
 
 
         // Create Change Document

@@ -30,6 +30,8 @@ public class WorkflowStatus implements Serializable {
         02 - Sent for Approval
         03 - Approved
         04 - Rejected
+        05 - Modified by Creator
+        06 - Modified by Approver
      */
     private String code;
     private String description;

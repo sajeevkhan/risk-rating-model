@@ -44,7 +44,7 @@
           <activiti:string><![CDATA[pfsriskmodel@gmail.com]]></activiti:string>
         </activiti:field>
         <activiti:field name="subject">
-          <activiti:expression><![CDATA[Risk Model Evaluation:  ${projectName} - ${riskLevel} - Approval was rejected]]></activiti:expression>
+          <activiti:expression><![CDATA[Risk Model Evaluation:  ${projectName} - ${riskLevel} : Approval was rejected]]></activiti:expression>
         </activiti:field>
         <activiti:field name="html">
           <activiti:expression><![CDATA[Hello ${senderUser},
