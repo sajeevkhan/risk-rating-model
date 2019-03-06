@@ -62,13 +62,13 @@ public class RiskModelTemplateValidator {
             return validationResult;
         }
 
-
-         if (riskModelTemplate.getLoanNumber() == null) {
-            validationResult.setAttributeName("RiskModelTemplate.LoanNumber");
-            validationResult.setValue(null);
-            validationResult.setFailed(true);
-            return validationResult;
-        }
+//
+//         if (riskModelTemplate.getLoanNumber() == null) {
+//            validationResult.setAttributeName("RiskModelTemplate.LoanNumber");
+//            validationResult.setValue(null);
+//            validationResult.setFailed(true);
+//            return validationResult;
+//        }
 
         if (riskModelTemplate.getLoanAmountInCrores() == null) {
             validationResult.setAttributeName("RiskModelTemplate.LoanAmount");

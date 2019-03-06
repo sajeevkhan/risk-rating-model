@@ -137,10 +137,10 @@ public class InfraRoadHAM_RiskParentalNotchUp {
         // 1.1.2       Risk Sub Factor Attributes
         // -> Four Attributes
         riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(4.0D, "The subsidiary is currently profitable and is projected to remain profitable in the next 2 years"));
-        riskSubFactorAttributes.add(new RiskAttribute(2.5D,"The subsidiary is currently loss making, but is projected to become profitable by the end of next 2 years"));
-        riskSubFactorAttributes.add(new RiskAttribute(1.25D,"The subsidiary is currently profitable, but is projected to make losses in either of the next 2 years "));
-        riskSubFactorAttributes.add(new RiskAttribute(0D,"The subsidiary is currently loss making and is projected to remain loss making at the end of next 2 years "));
+        riskSubFactorAttributes.add(new RiskAttribute(4.0D, "The borrower is currently profitable and is projected to remain profitable in the next 2 years"));
+        riskSubFactorAttributes.add(new RiskAttribute(2.5D,"The borrower is currently loss making, but is projected to become profitable by the end of next 2 years"));
+        riskSubFactorAttributes.add(new RiskAttribute(1.25D,"The borrower is currently profitable, but is projected to make losses in either of the next 2 years "));
+        riskSubFactorAttributes.add(new RiskAttribute(0D,"The borrower is currently loss making and is projected to remain loss making at the end of next 2 years "));
 
 
         List<RiskSubFactorAttributeDTO> riskSubFactorAttributeDTOS2 = riskSubFactorAttributesBuilder.buildRiskSubFactorAttributes(riskSubFactorAttributes);

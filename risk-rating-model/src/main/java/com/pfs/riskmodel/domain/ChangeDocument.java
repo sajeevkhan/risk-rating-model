@@ -43,8 +43,11 @@ public class ChangeDocument extends AuditModel  {
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private ProjectRiskLevel projectRiskLevel;
 
-    @NotNull
+    @Nullable
     private String loanNumber;
+
+    @Nullable
+    private String loanEnquiryId;
 
 
     @NotNull

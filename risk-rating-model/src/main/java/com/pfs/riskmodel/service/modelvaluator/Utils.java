@@ -42,6 +42,16 @@ public class Utils {
 
         ProjectGrade projectGrade = new ProjectGrade();
 
+        ProjectGrade lowestGrade = getLowestGrade(projectGrades);
+        ProjectGrade highestGrade = getHighestGrade(projectGrades);
+
+        if (score < lowestGrade.getFromScore()) {
+            return lowestGrade;
+        }
+        if (score > highestGrade.getToScore()) {
+            return highestGrade;
+        }
+
         for (ProjectGrade projectGrade1: projectGrades) {
             if ( score >= projectGrade1.getFromScore() & score <= projectGrade1.getToScore() ) {
                 return projectGrade1;
