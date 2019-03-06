@@ -3,6 +3,14 @@
     <!-- <mat-table class="enquiries-table" #table [dataSource]="dataSource" *fuseIfOnDom [@animateStagger]="{value:'50'}" fusePerfectScrollbar> -->
     <mat-table class="evaluations-table" [dataSource]="dataSource" matSort>
 
+        <!-- id Column -->
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+            <mat-cell *matCellDef="let evaluation">
+                <span class="text-truncate">{{ evaluation.id }}</span>
+            </mat-cell>
+        </ng-container>
+
         <!-- ratingDate Column -->
         <ng-container matColumnDef="ratingDate">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Rating Date</mat-header-cell>

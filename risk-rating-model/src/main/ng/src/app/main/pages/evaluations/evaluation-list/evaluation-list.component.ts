@@ -28,7 +28,7 @@ export class EvaluationListComponent implements OnInit {
     selectedEvaluation: any;
 
     displayedColumns = [
-        'ratingDate', 'workflowStatusDescription', 'projectRiskLevelDescription', 'purposeDescription', 'overallProjectGrade', 
+        'id', 'ratingDate', 'workflowStatusDescription', 'projectRiskLevelDescription', 'purposeDescription', 'overallProjectGrade', 
         'modifiedProjectGrade', 'afterParentalNotchUpGrade', 'finalProjectGrade'
     ];
 
