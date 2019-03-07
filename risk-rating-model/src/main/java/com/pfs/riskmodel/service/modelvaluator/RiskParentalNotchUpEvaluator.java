@@ -106,8 +106,20 @@ public class RiskParentalNotchUpEvaluator {
      */
      private Integer calculateNumberOfNotches() {
 
+         Double numberOfNotches = 0D;
 
-         Double numberOfNotches = notchupScoreAsAPctOfMaxScore * ( parentsRating - borrowersRating );
+         try {
+             numberOfNotches = notchupScoreAsAPctOfMaxScore * (parentsRating - borrowersRating);
+         }
+         catch (Exception ex) {
+
+             System.out.println(" notchupScoreAsAPctOfMaxScore : " + notchupScoreAsAPctOfMaxScore);
+             System.out.println(" parentsRating : " + parentsRating);
+             System.out.println(" borrowersRating : " + borrowersRating);
+
+
+         }
+
          Utils.round(numberOfNotches);
 
          int number = (int) Math.round(numberOfNotches);
@@ -115,6 +127,8 @@ public class RiskParentalNotchUpEvaluator {
              number = number * -1;
 
          return number;
+
+
      }
 
 
@@ -198,6 +212,8 @@ public class RiskParentalNotchUpEvaluator {
             }
         } catch (NullPointerException ex) {
 
+            System.out.println("PARENTS RATING   --------> : "  + parentsRating );
+            System.out.println("BORROWER's RATING   --------> : "  + borrowersRating );
             System.out.println("NULL POINTER EXCEPTION WHILE CHECKING IF PARENTS RATING IS BETTER THAN BORROWER's RATING");
             System.out.println(ex.getMessage());
         }
