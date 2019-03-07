@@ -1,10 +1,13 @@
 package com.pfs.riskmodel.pdfservice;
 
+import com.google.common.io.ByteStreams;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.pfs.riskmodel.domain.*;
+import org.springframework.core.io.FileSystemResource;
 
+import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -13,16 +16,47 @@ import java.nio.file.Paths;
  */
 public class RiskModelPDFRiskParentalNotchupTable {
 
-    private Image getImg() throws  Exception{
-    Path path = Paths.get(ClassLoader.getSystemResource("images/Tick_Icon.png").toURI());
-    Image img = Image.getInstance(path.toAbsolutePath().toString());
-        img.scalePercent(50f);
-        img.setAlignment(Element.ALIGN_CENTER);
+//    private Image getImg() throws  Exception{
+//    Path path = Paths.get(ClassLoader.getSystemResource("images/Tick_Icon.png").toURI());
+//    Image img = Image.getInstance(path.toAbsolutePath().toString());
+//        img.scalePercent(50f);
+//        img.setAlignment(Element.ALIGN_CENTER);
+//
+//
+//        return img;
+//}
 
 
-        return img;
-}
+    private static Image getImg() throws Exception {
 
+        try {
+            InputStream imageStream = ClassLoader.getSystemResourceAsStream("images/Tick_Icon.png");
+            //System.out.println("IMAGE STREAM:" + imageStream);
+
+
+            Path path = Paths.get(ClassLoader.getSystemResource("images/Tick_Icon.png").toURI());
+            Image img = Image.getInstance(path.toAbsolutePath().toString());
+
+//
+//                Path path = Paths.get(ClassLoader.getSystemResource("images/pfs-logo.jpg").toURI());
+//                Image img = Image.getInstance(path.toAbsolutePath().toString());
+
+
+            img.scalePercent(50f);
+            img.setAlignment(Element.ALIGN_CENTER);
+            return img;
+
+        } catch (Exception ex) {
+
+            FileSystemResource logo = new FileSystemResource("/opt/risk-rating-model/risk-rating-model/src/main/resources/images/Tick_Icon.png");
+            Image image = Image.getInstance(ByteStreams.toByteArray(logo.getInputStream()));
+            return image;
+
+//                System.out.println("IMAGE TICK ICON NOT FOUND");
+//                System.out.println(ex.getMessage());
+//                return null;
+        }
+    }
 
     public Document buildParentalNotchup(  Document doc, RiskModelTemplate riskModelTemplate) throws Exception {
 
