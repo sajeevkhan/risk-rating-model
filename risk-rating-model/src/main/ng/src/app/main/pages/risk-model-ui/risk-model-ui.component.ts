@@ -99,6 +99,7 @@ export class RiskModelUIComponent implements OnInit {
         this.riskModelTemplateComponent.sendTemplateForApproval();
     }
 
+    
     /**
      * displayAsPDF()
      */
