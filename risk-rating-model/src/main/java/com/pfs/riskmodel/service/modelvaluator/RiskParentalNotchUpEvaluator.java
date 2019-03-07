@@ -137,8 +137,11 @@ public class RiskParentalNotchUpEvaluator {
             switch (riskParentalNotchUpCondition.getCategory()) {
 
                 case 6:  //Rating of Parent Entity - Convert String to Integer
-                        if ((riskParentalNotchUpCondition.getValue() != "") && (riskParentalNotchUpCondition.getValue() != " "))
+                        if ((riskParentalNotchUpCondition.getValue() != "") && (riskParentalNotchUpCondition.getValue() != " ")) {
+
+                            System.out.println("-------> Parents Rating for : " + riskParentalNotchUpCondition.getValue());
                             parentsRating = Integer.parseInt(riskParentalNotchUpCondition.getValue());
+                        }
 
                     break;
                 case 1:  //Source of Rating of Parent Firm
@@ -184,15 +187,21 @@ public class RiskParentalNotchUpEvaluator {
                 break;
         }
 
-        // Check if parent's rating is greater than borrower's rating
-        if (parentsRating < borrowersRating) {
-            isNotchupCriteriaApplicable = true;
-            riskParentalNotchUp.setIsParentalNotchUpApplicable(true);
+        try {
+            // Check if parent's rating is greater than borrower's rating
+            if (parentsRating < borrowersRating) {
+                isNotchupCriteriaApplicable = true;
+                riskParentalNotchUp.setIsParentalNotchUpApplicable(true);
+            } else {
+                riskParentalNotchUp.setIsParentalNotchUpApplicable(false);
+                return false;
+            }
+        } catch (NullPointerException ex) {
+
+            System.out.println("NULL POINTER EXCEPTION WHILE CHECKING IF PARENTS RATING IS BETTER THAN BORROWER's RATING");
+            System.out.println(ex.getMessage());
         }
-        else {
-            riskParentalNotchUp.setIsParentalNotchUpApplicable(false);
-            return false;
-        }
+
         // Check - Notch-up score as a percentage of maximum possible score is higher than 35%.
         if (notchupScoreAsAPctOfMaxScore > 0.35) {
             isNotchupCriteriaApplicable = true;
