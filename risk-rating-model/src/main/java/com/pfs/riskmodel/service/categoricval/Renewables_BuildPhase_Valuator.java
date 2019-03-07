@@ -94,7 +94,7 @@ public class Renewables_BuildPhase_Valuator {
             riskModelTemplate.setFinalProjectGrade(modifiedProjectGrade.getCommonScaleGrade());
             riskModelTemplate.setAfterParentalNotchUpGrade(modifiedProjectGrade.getCommonScaleGrade());
         }
-        
+
         else {  // Evaluate Parental Notchup
             if (riskModelTemplate.getApplyParentalNotchup() != null) {
 

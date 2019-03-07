@@ -122,7 +122,7 @@ public class CommonComputation {
                 riskParentalNotchUpEvaluator.evaluateParentalNotchup(
                         riskModelTemplate.getRiskParentalNotchUps().get(0),
                         riskModelTemplate.getProjectRiskLevel().getCode(),
-                        riskModelTemplate.getModifiedProjectGradeAsNumber());
+                        modifiedProjectGrade.getGradeAsNumber());
 
         Integer modifiedProjectGradeAsNumber = modifiedProjectGrade.getGradeAsNumber();
         ProjectGrade afterParentalNotchUpGradeObject = new ProjectGrade();
