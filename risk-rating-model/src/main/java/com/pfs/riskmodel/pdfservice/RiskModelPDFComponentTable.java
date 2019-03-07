@@ -46,6 +46,8 @@ public class RiskModelPDFComponentTable {
 
                 FileSystemResource logo = new FileSystemResource("/opt/risk-rating-model/risk-rating-model/src/main/resources/images/Tick_Icon.png");
                 Image image = Image.getInstance(ByteStreams.toByteArray(logo.getInputStream()));
+                image.scalePercent(50f);
+                image.setAlignment(Element.ALIGN_CENTER);
                 return image;
 
 //                System.out.println("IMAGE TICK ICON NOT FOUND");
