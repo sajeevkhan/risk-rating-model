@@ -103,12 +103,15 @@ public class WorkflowService implements IWorkflowService {
                 if (riskModelTemplate.getWorkflowStatus().getCode().equals("01") ||
                         riskModelTemplate.getWorkflowStatus().getCode().equals("02") ) {
                     String userFullName = user.getFirstName() + " " + user.getLastName();
-                    if (userFullName.equals(riskModelTemplate.getCreatedBy())) {
-                        riskModelTemplate.setWorkflowStatus(workflowStatusRepository.findByCode("05"));
-                    }
-                    if (userFullName.equals(riskModelTemplate.getReviewedBy())) {
-                        riskModelTemplate.setWorkflowStatus(workflowStatusRepository.findByCode("06"));
-                    }
+//                    if (userFullName.equals(riskModelTemplate.getCreatedBy())) {
+//                        riskModelTemplate.setWorkflowStatus(workflowStatusRepository.findByCode("05"));
+//                    }
+//                    else
+//                        {
+//                            if (userFullName.equals(riskModelTemplate.getReviewedBy())) {
+//                                riskModelTemplate.setWorkflowStatus(workflowStatusRepository.findByCode("06"));
+//                            }
+//                        }
                 }
             }
 
