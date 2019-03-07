@@ -3471,3 +3471,5 @@ navbar navbar-vertical-style-1 .navbar-top .logo .logo-text{font-size16px;}
 .mat-form-field.mat-form-field-type-mat-select .mat-form-field-infix {
     display: contents !important;
 }
+
+.mat-form-field.mat-form-field-type-mat-select .mat-form-field-infix .mat-select-trigger{height:41px !important;}
