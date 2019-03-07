@@ -54,6 +54,7 @@ public class Renewables_OperationalPhase_Valuator {
                                                                      projectGradeList,
                                                                     4.25);
 
+
         // Check if Parental Notchup needs to be evaluated or not
         if ( modifiedProjectGrade.getGradeAsNumber() >= 7 ) {
             riskModelTemplate.getRiskParentalNotchUps().get(0).setIsParentalNotchUpApplicable(false);

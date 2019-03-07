@@ -122,6 +122,7 @@ public class Renewables_OperationalPhase_Valuator_Backup {
                         riskModelTemplate.getModifiedProjectGradeAsNumber());
 
 
+
         if (riskModelTemplate.getRiskParentalNotchUps().get(0).getIsParentalNotchUpApplicable() == true) {
 
             // Apply after Parental Notchup
