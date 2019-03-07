@@ -1,5 +1,6 @@
 package com.pfs.riskmodel.pdfservice;
 
+import com.google.common.io.ByteStreams;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -7,6 +8,7 @@ import com.pfs.riskmodel.domain.*;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
 
 import javax.imageio.ImageIO;
 import java.io.BufferedInputStream;
@@ -42,9 +44,13 @@ public class RiskModelPDFComponentTable {
 
             } catch (Exception ex) {
 
-                System.out.println("IMAGE TICK ICON NOT FOUND");
-                System.out.println(ex.getMessage());
-                return null;
+                FileSystemResource logo = new FileSystemResource("/opt/risk-rating-model/risk-rating-model/src/main/resources/images/Tick_Icon.png");
+                Image image = Image.getInstance(ByteStreams.toByteArray(logo.getInputStream()));
+                return image;
+
+//                System.out.println("IMAGE TICK ICON NOT FOUND");
+//                System.out.println(ex.getMessage());
+//                return null;
             }
         }
 
