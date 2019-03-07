@@ -197,9 +197,9 @@ public class Initializer implements CommandLineRunner{
                 w3 = new WorkflowAssignment(null, p3, "Sajeev Monitoring", "sajeev.khan@gmail.com");
 
             } else {
-                w1 = new WorkflowAssignment(null, p1, "Neeraj Yadav", "neerajyadav@ptcfinancial.com");
-                w2 = new WorkflowAssignment(null, p2, "Neeraj Yadav", "neerajyadav@ptcfinancial.com");
-                w3 = new WorkflowAssignment(null, p3, "Neeraj Yadav", "neerajyadav@ptcfinancial.com");
+                w1 = new WorkflowAssignment(null, p1, "neerajyadav@ptcfinancial.com", "neerajyadav@ptcfinancial.com");
+                w2 = new WorkflowAssignment(null, p2, "neerajyadav@ptcfinancial.com", "neerajyadav@ptcfinancial.com");
+                w3 = new WorkflowAssignment(null, p3, "neerajyadav@ptcfinancial.com", "neerajyadav@ptcfinancial.com");
 
             }
 //
