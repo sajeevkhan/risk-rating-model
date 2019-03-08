@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { InboxService } from '../inbox.service';
 import { ActivatedRoute } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
@@ -12,6 +12,9 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class InboxItemsComponent implements OnInit {
 
+    @Input()
+    savingTemplate: boolean;
+    
     inboxItems: any;
     
     selectedItem: any;
