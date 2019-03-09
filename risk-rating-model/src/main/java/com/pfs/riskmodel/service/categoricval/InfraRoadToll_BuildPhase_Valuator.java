@@ -72,9 +72,14 @@ public class InfraRoadToll_BuildPhase_Valuator {
         overallProjectScore = projectScore;
         riskModelTemplate.setScore(overallProjectScore);
 
-        //  Build Phase Grade
-        ProjectGrade overallProjectGradeObject =
-                Utils.fetchGrade(projectGradeList,overallProjectScore);
+        //  Overall ProjectGrade
+        ProjectGrade overallProjectGradeObject = new ProjectGrade();
+        if (projectImplScore < postProjectImplScore ) {
+            overallProjectGradeObject = Utils.fetchGrade(projectGradeList, overallProjectScore);
+        }else {
+            overallProjectGradeObject = Utils.fetchGrade(operationalProjectGradeList, overallProjectScore);
+        }
+
         overallProjectGrade = overallProjectGradeObject.getCommonScaleGrade();
         riskModelTemplate.setOverallProjectGrade(overallProjectGrade);
 

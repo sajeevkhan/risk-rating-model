@@ -112,7 +112,7 @@ public class RiskModelPDFComponentTable {
         for (RiskFactor riskFactor : riskComponent.getRiskFactors()) {
 
             Integer riskFactorSectionNumber = riskFactor.getItemNo();
-            if (riskComponent.getRiskFactors().size() > 1) {
+            if (riskComponent.getRiskFactors().size() >= 1) {
                 // First Row - Risk Factor  Description
                 // First Column - Risk Type Description
                 projectDetailsCell1 = new PdfPCell();
@@ -139,7 +139,7 @@ public class RiskModelPDFComponentTable {
 
                 String sectionNumber = " ";
 
-                if (riskComponent.getRiskFactors().size() > 1) {
+                if (riskComponent.getRiskFactors().size() >= 1) {
                     sectionNumber = riskComponent.getItemNo().toString() + "." +
                             riskFactor.getItemNo().toString() + "." +
                             riskSubFactor.getItemNo().toString();

@@ -63,8 +63,14 @@ public class InfraRoadHAM_BuildPhase_Valuator {
         riskModelTemplate.setScore(overallProjectScore);
 
 
-        //  Build Phase Grade
-        ProjectGrade overallProjectGradeObject = Utils.fetchGrade(projectGradeList,overallProjectScore);
+        //  Overall ProjectGrade
+        ProjectGrade overallProjectGradeObject = new ProjectGrade();
+        if (projectIRScore < postProjectIRScore ) {
+            overallProjectGradeObject = Utils.fetchGrade(projectGradeList, overallProjectScore);
+        }else {
+            overallProjectGradeObject = Utils.fetchGrade(operationalProjectGradeList, overallProjectScore);
+        }
+
         overallProjectGrade = overallProjectGradeObject.getCommonScaleGrade();
         riskModelTemplate.setOverallProjectGrade(overallProjectGrade);
 

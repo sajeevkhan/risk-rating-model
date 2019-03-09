@@ -113,43 +113,55 @@ public class RiskModelPDFHeaderRatingOverviewTable {
         projectDetailsTable.completeRow();
 
 
+
+        // Modified Rating  Row -
+        // First Column - Modified Rating Label
+        if (riskModelTemplate.getApplyRatingModifiers() != null) {
+            if (riskModelTemplate.getApplyRatingModifiers() == true) {
+                projectDetailsCell1 = new PdfPCell();
+                projectDetailsCell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
+                projectDetailsCell1.setPhrase(new Phrase("Modified Rating", valueFont));
+
+                // Second Column - Score Label
+                projectDetailsCell2 = new PdfPCell();
+                projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
+                projectDetailsCell2.setPhrase(new Phrase(riskModelTemplate.getModifiedProjectGrade(), valueFont));
+
+                projectDetailsCell2.setColspan(2);
+
+                projectDetailsTable.addCell(projectDetailsCell1);
+                projectDetailsTable.addCell(projectDetailsCell2);
+                projectDetailsTable.completeRow();
+            }
+        }
+
+
         // Modified Rating  Row -
         // First Column - Modified Rating Label
         projectDetailsCell1 = new PdfPCell();
         projectDetailsCell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
-        projectDetailsCell1.setPhrase(new Phrase("Modified Rating",valueFont));
+        if (riskModelTemplate.getApplyParentalNotchup() != null) {
+            if (riskModelTemplate.getApplyParentalNotchup() == true)
+                projectDetailsCell1.setPhrase(new Phrase("Final Rating  (Post Parental Notchup)", valueFont));
+            else
+                projectDetailsCell1.setPhrase(new Phrase("Final Rating", valueFont));
 
-        // Second Column - Score Label
-        projectDetailsCell2 = new PdfPCell();
-        projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
-        projectDetailsCell2.setPhrase(new Phrase( riskModelTemplate.getModifiedProjectGrade(),valueFont));
+            // Second Column - Score Label
+            projectDetailsCell2 = new PdfPCell();
+            projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
+            if (riskModelTemplate.getApplyParentalNotchup() == true) {
+                projectDetailsCell2.setPhrase(new Phrase(riskModelTemplate.getAfterParentalNotchUpGrade(), valueFont));
+            } else {
+                projectDetailsCell2.setPhrase(new Phrase(riskModelTemplate.getFinalProjectGrade(), valueFont));
+            }
 
-        projectDetailsCell2.setColspan(2);
+            projectDetailsCell2.setColspan(2);
 
-        projectDetailsTable.addCell(projectDetailsCell1);
-        projectDetailsTable.addCell(projectDetailsCell2);
-        projectDetailsTable.completeRow();
+            projectDetailsTable.addCell(projectDetailsCell1);
+            projectDetailsTable.addCell(projectDetailsCell2);
+            projectDetailsTable.completeRow();
 
-
-
-        // Modified Rating  Row -
-        // First Column - Modified Rating Label
-        projectDetailsCell1 = new PdfPCell();
-        projectDetailsCell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
-        projectDetailsCell1.setPhrase(new Phrase("Overall Rating  (Post Parental Notchup)",valueFont));
-
-        // Second Column - Score Label
-        projectDetailsCell2 = new PdfPCell();
-        projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
-        projectDetailsCell2.setPhrase(new Phrase( riskModelTemplate.getAfterParentalNotchUpGrade(),valueFont));
-
-        projectDetailsCell2.setColspan(2);
-
-        projectDetailsTable.addCell(projectDetailsCell1);
-        projectDetailsTable.addCell(projectDetailsCell2);
-        projectDetailsTable.completeRow();
-
-
+        }
         doc.add(projectDetailsTable);
 
         return doc;

@@ -75,7 +75,16 @@ public class Renewables_BuildPhase_Valuator {
         riskModelTemplate.setScore(overallProjectScore);
 
         //  Build Phase Grade
-        ProjectGrade overallProjectGradeObject = Utils.fetchGrade(projectGradeList,overallProjectScore);
+        //  Overall ProjectGrade
+        ProjectGrade overallProjectGradeObject = new ProjectGrade();
+        if (projectImplScore < postProjectImplScore ) {
+            overallProjectGradeObject = Utils.fetchGrade(projectGradeList, overallProjectScore);
+        }else {
+            overallProjectGradeObject = Utils.fetchGrade(projectGradeList, overallProjectScore);
+        }
+
+
+
         overallProjectGrade = overallProjectGradeObject.getCommonScaleGrade();
         riskModelTemplate.setOverallProjectGrade(overallProjectGrade);
 

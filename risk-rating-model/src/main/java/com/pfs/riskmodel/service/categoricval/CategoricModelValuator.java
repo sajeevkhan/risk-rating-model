@@ -79,6 +79,9 @@ public class CategoricModelValuator {
         switch (riskModelTemplate.getModelCategory().getCode()) {
             case 1:
             case 2:
+                Renewables_AccountConduct_Redistribution renewables_accountConduct_redistribution =
+                        new Renewables_AccountConduct_Redistribution();
+                riskModelTemplate = renewables_accountConduct_redistribution.executeAccountConductWeightageReDistrobution(riskModelTemplate);
                 return riskModelTemplate;
             case 3:
             case 4:
