@@ -519,34 +519,37 @@ public class RiskModelTemplateController {
 
         riskModelTemplateDTO.setId(null);
 
-        Integer iRiskTypeItemNo = 0;
+        Integer iRiskTypeItemNo = 1;
         for (RiskTypeDTO riskTypeDTO: riskModelTemplateDTO.getRiskTypes() ) {
 
-            riskTypeDTO.setItemNo(iRiskTypeItemNo++);
+            riskTypeDTO.setItemNo(iRiskTypeItemNo);
+            iRiskTypeItemNo += 1;
             riskTypeDTO.setId(null);
 
-            Integer iRiskComponentItemNo = 0;
+            Integer iRiskComponentItemNo = 1;
             for (RiskComponentDTO riskComponentDTO : riskTypeDTO.getRiskComponents()) {
-                riskComponentDTO.setItemNo(iRiskComponentItemNo++);
+                riskComponentDTO.setItemNo(iRiskComponentItemNo);
                 riskComponentDTO.setId(null);
+                iRiskComponentItemNo += 1;
 
-                Integer iRiskFactorItemNo = 0;
+                Integer iRiskFactorItemNo = 1;
                 for (RiskFactorDTO riskFactorDTO: riskComponentDTO.getRiskFactors()) {
                     riskFactorDTO.setId(null);
-                    riskFactorDTO.setItemNo(iRiskFactorItemNo++);
+                    riskFactorDTO.setItemNo(iRiskFactorItemNo);
+                    iRiskFactorItemNo +=1;
 
-                    Integer iRiskSubFactorItemNo = 0;
+                    Integer iRiskSubFactorItemNo = 1;
                     for (RiskSubFactorDTO riskSubFactorDTO: riskFactorDTO.getRiskSubFactors()) {
-                        riskFactorDTO.setItemNo(iRiskSubFactorItemNo++);
+                        riskSubFactorDTO.setItemNo(iRiskSubFactorItemNo);
                         riskSubFactorDTO.setId(null);
+                        iRiskSubFactorItemNo += 1;
 
-                        Integer iRiskSubFactorAttrItemNo = 0;
+                        Integer iRiskSubFactorAttrItemNo = 1;
                         for (RiskSubFactorAttributeDTO riskSubFactorAttributeDTO: riskSubFactorDTO.getRiskSubFactorAttributes()) {
-                            riskSubFactorAttributeDTO.setItemNo(iRiskSubFactorAttrItemNo++);
+
+                            riskSubFactorAttributeDTO.setItemNo(iRiskSubFactorAttrItemNo);
                             riskSubFactorAttributeDTO.setId(null);
-
-
-
+                            iRiskSubFactorAttrItemNo += 1;
                         }
                      }
                 }
@@ -557,38 +560,45 @@ public class RiskModelTemplateController {
         for (RiskParentalNotchUpDTO riskParentalNotchUpDTO: riskModelTemplateDTO.getRiskParentalNotchUps()) {
             riskParentalNotchUpDTO.setId(null);
 
-            Integer iRiskParentalNotcuUpConditionItemNo = 0;
+            Integer iRiskParentalNotcuUpConditionItemNo = 1;
             for (RiskParentalNotchUpConditionDTO riskParentalNotchUpConditionDTO
                                     : riskParentalNotchUpDTO.getRiskParentalConditions()) {
-                riskParentalNotchUpConditionDTO.setItemNo(iRiskParentalNotcuUpConditionItemNo++);
+
+                riskParentalNotchUpConditionDTO.setItemNo(iRiskParentalNotcuUpConditionItemNo);
                 riskParentalNotchUpConditionDTO.setId(null);
+                iRiskParentalNotcuUpConditionItemNo  += 1;
             }
 
 
-            Integer iRiskParentalNotcuUpSubFactorItemNo = 0;
+            Integer iRiskParentalNotcuUpSubFactorItemNo = 1;
             for (RiskSubFactorDTO riskSubFactorDTO: riskParentalNotchUpDTO.getRiskSubFactors()) {
                 riskSubFactorDTO.setId(null);
-                riskSubFactorDTO.setItemNo(iRiskParentalNotcuUpSubFactorItemNo++);
+                riskSubFactorDTO.setItemNo(iRiskParentalNotcuUpSubFactorItemNo);
+                iRiskParentalNotcuUpSubFactorItemNo += 1;
 
-                Integer iRiskParentalNotcuUpSubFactorAttrItemNo = 0;
+                Integer iRiskParentalNotcuUpSubFactorAttrItemNo = 1;
                 for(RiskSubFactorAttributeDTO riskSubFactorAttributeDTO: riskSubFactorDTO.getRiskSubFactorAttributes()) {
-                    riskSubFactorAttributeDTO.setItemNo(iRiskParentalNotcuUpSubFactorAttrItemNo++);
+
+                   riskSubFactorAttributeDTO.setItemNo(iRiskParentalNotcuUpSubFactorAttrItemNo);
                     riskSubFactorAttributeDTO.setId(null);
+                    iRiskParentalNotcuUpSubFactorAttrItemNo += 1;
                 }
             }
         }
 
 
-        Integer iRiskRatingModifierItemNo = 0;
+        Integer iRiskRatingModifierItemNo = 1;
         for (RiskRatingModifierDTO riskRatingModifierDTO: riskModelTemplateDTO.getRiskRatingModifiers()) {
-            riskRatingModifierDTO.setItemNo(iRiskRatingModifierItemNo++);
-            riskRatingModifierDTO.setId(null);
 
-            Integer iRiskRatingModifierAttrItemNo = 0;
+            riskRatingModifierDTO.setItemNo(iRiskRatingModifierItemNo);
+            riskRatingModifierDTO.setId(null);
+            iRiskRatingModifierItemNo += 1;
+
+            Integer iRiskRatingModifierAttrItemNo = 1;
             for (RiskRatingModifierAttributeDTO riskRatingModifierAttributeDTO: riskRatingModifierDTO.getRiskRatingModifierAttributes()) {
                 riskRatingModifierAttributeDTO.setId(null);
                 riskRatingModifierAttributeDTO.setItemNo(iRiskRatingModifierAttrItemNo);
-
+                iRiskRatingModifierAttrItemNo += 1;
             }
 
         }
