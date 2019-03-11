@@ -15,6 +15,8 @@ export class RiskModelUIComponent implements OnInit {
 
     disablePDFButton = true;
 
+    disableSendForApprovalButton = false;
+    
     mode: string;
     projectType: string;
     riskLevel: string;

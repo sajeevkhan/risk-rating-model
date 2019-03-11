@@ -2,7 +2,7 @@
     <!-- HEADER -->
 
 
-        <div class="header accent below-fixed" style="min-height:72px;" fxLayout="column" fxLayoutAlign="start">
+    <div class="header accent below-fixed" style="min-height:72px;" fxLayout="column" fxLayoutAlign="start">
 
 
 
@@ -10,10 +10,12 @@
 
 
             <div fxLayout="row" fxLayoutAlign="start" fxFlex="55" class="pl-16 pt-8 headerMain">
-                <span>{{ _riskModelTemplate.projectName }} <span class="sep">[</span> {{_riskModelTemplate.riskProjectTypeDescription }}/ {{ _riskModelTemplate.projectRiskLevelDescription }} <span class="sep">]</span></span>
+                <span>{{ _riskModelTemplate.projectName }} <span class="sep">[</span>
+                    {{_riskModelTemplate.riskProjectTypeDescription }}/ {{
+                    _riskModelTemplate.projectRiskLevelDescription }} <span class="sep">]</span></span>
             </div>
-            <div fxLayout="row" fxLayoutAlign="end center"  fxFlex="45">
-                <button mat-raised-button class="mr-8" (click)="sendTemplateForApproval()" [disabled]="!(_riskModelTemplate.workflowStatusCode === '01' && validateTemplate())">
+            <div fxLayout="row" fxLayoutAlign="end center" fxFlex="45">
+                <button mat-raised-button class="mr-8" (click)="sendTemplateForApproval()" [disabled]="disableSendForApprovalButton || (!(_riskModelTemplate.workflowStatusCode === '01' && validateTemplate()))">
                     <mat-icon matSuffix class="mr-8">send</mat-icon>Send for Approval
                 </button>
                 <button mat-raised-button class="mr-8" (click)="evaluateTemplate()" [disabled]="!validateTemplate()">
@@ -28,10 +30,10 @@
     </div>
     <!-- / HEADER -->
 
-    <!-- Content --> 
+    <!-- Content -->
     <div class="content" style="padding:0 0 0px 16px;">
         <div class="center">
-            <app-risk-model-template [riskModelTemplate]="_riskModelTemplate"></app-risk-model-template>
+            <app-risk-model-template [riskModelTemplate]="_riskModelTemplate" [disableSendForApprovalButton]="disableSendForApprovalButton"></app-risk-model-template>
         </div>
     </div>
     <!-- /Content -->

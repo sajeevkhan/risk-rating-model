@@ -14,6 +14,9 @@ export class RiskModelTemplateComponent implements OnInit {
     @Input()
     riskModelTemplate: any;
 
+    @Input()
+    disableSendForApprovalButton: boolean;
+
     ratingSources: any;
     creditRatings: any;
 
@@ -140,6 +143,7 @@ export class RiskModelTemplateComponent implements OnInit {
             this.selectedIndex = 0;
             this._matSnackBar.open('Evaluated, saved & sent for approval', 'Ok', { duration: 7000 });
             this.savingTemplate = false;
+            this.disableSendForApprovalButton = true;
         });
     }
 
