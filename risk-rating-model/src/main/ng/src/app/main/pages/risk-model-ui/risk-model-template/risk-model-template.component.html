@@ -70,7 +70,8 @@
                     </mat-form-field>
 
                     <mat-form-field fxFlex="25">
-                        <input matInput placeholder="Rating Date" [ngModel]="riskModelTemplate.ratingDate | date: 'dd/MM/yyyy'" (ngModelChange)="riskModelTemplate.ratingDate = $event" readonly>
+                        <input matInput placeholder="Rating Date" [ngModel]="riskModelTemplate.ratingDate | date: 'dd/MM/yyyy'"
+                            (ngModelChange)="riskModelTemplate.ratingDate = $event" readonly>
                     </mat-form-field>
 
                     <mat-form-field fxFlex="25">
@@ -216,14 +217,16 @@
                                         {{ riskRatingModifier.description }}
                                     </th>
                                 </tr>
-                                <tr class="row-header" *ngFor="let riskRatingModifierAttribute of riskRatingModifier.riskRatingModifierAttributes">
-                                    <!-- <td class="column-data tableRow">{{ riskRatingModifierAttribute.itemNo }}</td> -->
-                                    <td class="column-data tableRow">{{ riskRatingModifierAttribute.description }}</td>
-                                    <td class="column-data tableRow">
-                                        <mat-slide-toggle [checked]="riskRatingModifierAttribute.yesOrNoIndicator == 'Y'"
-                                            (change)="ratingModifierSelectionChanged($event, riskRatingModifierAttribute)"></mat-slide-toggle>
-                                    </td>
-                                </tr>
+                                <ng-container *ngFor="let riskRatingModifierAttribute of riskRatingModifier.riskRatingModifierAttributes">
+                                    <tr class="row-header" *ngIf="_appService.userDetails.riskDepartment == '03' && riskRatingModifierAttribute.applicableForMonitoring == true">
+                                        <!-- <td class="column-data tableRow">{{ riskRatingModifierAttribute.itemNo }}</td> -->
+                                        <td class="column-data tableRow">{{ riskRatingModifierAttribute.description }}</td>
+                                        <td class="column-data tableRow">
+                                            <mat-slide-toggle [checked]="riskRatingModifierAttribute.yesOrNoIndicator == 'Y'"
+                                                (change)="ratingModifierSelectionChanged($event, riskRatingModifierAttribute)"></mat-slide-toggle>
+                                        </td>
+                                    </tr>
+                                </ng-container>
                             </table>
                         </mat-card>
                     </mat-tab>
@@ -237,7 +240,7 @@
                             <div>Parental Notchup</div>
                         </ng-template>
 
-                        <mat-card class="fieldItems fieldContainer" style="padding:16px !important; margin-top:5px !important;"> 
+                        <mat-card class="fieldItems fieldContainer" style="padding:16px !important; margin-top:5px !important;">
                             <!--mat-card-header>
                                 <mat-card-title>Parental Notchup Criteria</mat-card-title>
                             </mat-card-header-->
@@ -251,7 +254,7 @@
                                         <mat-option *ngFor="let ratingSource of ratingSources" [value]="ratingSource.code">{{
                                             ratingSource.value }}</mat-option>
                                     </mat-select>
-                                   
+
                                 </mat-form-field>
 
                                 <!-- Nature of rating of parent firm -->
@@ -262,7 +265,7 @@
                                         <mat-option value="0">Short Term</mat-option>
                                         <mat-option value="1">Long Term</mat-option>
                                     </mat-select>
-                                   
+
                                 </mat-form-field>
                             </div>
 
@@ -275,7 +278,7 @@
                                         <mat-option *ngFor="let creditRating of creditRatings" [value]="creditRating.creditRating">{{
                                             creditRating.creditRating }}</mat-option>
                                     </mat-select>
-                                   
+
                                 </mat-form-field>
 
                                 <!-- Borrower rating grade of the parent firm -->
@@ -283,7 +286,7 @@
                                     <input matInput placeholder="{{ riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[3].description }}"
                                         [(ngModel)]="riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[3].value"
                                         required>
-                                     <mat-icon matSuffix class="mr-8">edit</mat-icon>
+                                    <mat-icon matSuffix class="mr-8">edit</mat-icon>
                                 </mat-form-field>
                             </div>
 
@@ -295,7 +298,7 @@
                                         <mat-option value="Y">Yes</mat-option>
                                         <mat-option value="N">No</mat-option>
                                     </mat-select>
-                                    
+
                                 </mat-form-field>
 
                                 <mat-form-field fxFlex="50">
@@ -305,7 +308,7 @@
                                         <mat-option value="Y">Yes</mat-option>
                                         <mat-option value="N">No</mat-option>
                                     </mat-select>
-                                    
+
                                 </mat-form-field>
                             </div>
 
