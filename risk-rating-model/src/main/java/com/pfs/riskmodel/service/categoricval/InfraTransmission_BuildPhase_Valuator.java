@@ -88,9 +88,9 @@ public class InfraTransmission_BuildPhase_Valuator {
         // Compute Modified Project Grade
         CommonComputation commonComputation = new CommonComputation();
         modifiedProjectGrade = commonComputation.applyRatingModifier(riskModelTemplate,
-                projectGrade,
+                overallProjectGradeObject,
                 projectGradeList,
-                6.25);
+                5.00);
 
         // Check if Parental Notchup needs to be evaluated or not
         if ( modifiedProjectGrade.getGradeAsNumber() >= 7 ) {

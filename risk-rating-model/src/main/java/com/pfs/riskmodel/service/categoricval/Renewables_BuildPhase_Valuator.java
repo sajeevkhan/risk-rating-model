@@ -93,7 +93,7 @@ public class Renewables_BuildPhase_Valuator {
         // Compute Modified Project Grade
         CommonComputation commonComputation = new CommonComputation();
         modifiedProjectGrade = commonComputation.applyRatingModifier(riskModelTemplate,
-                projectGrade,
+                overallProjectGradeObject,
                 projectGradeList,
                 4.25);
 

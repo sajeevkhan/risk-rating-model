@@ -33,15 +33,15 @@ public class RiskModelPDFRiskRatingModifiersTable {
 
         Paragraph ratingModHeaderPara = new Paragraph();
 
-        if (riskModelTemplate.getApplyParentalNotchup() != null) {
-            if (riskModelTemplate.getApplyParentalNotchup() == true)
+//        if (riskModelTemplate.getApplyParentalNotchup() != null) {
+//            if (riskModelTemplate.getApplyParentalNotchup() == true)
             ratingModHeaderPara = new Paragraph("Rating Modifiers", paraFont);
-            else {
-                ratingModHeaderPara = new Paragraph("Rating Modifiers - NOT APPLICABLE", paraFont);
-            }
-        } else {
-            ratingModHeaderPara = new Paragraph("Rating Modifiers - NOT APPLICABLE", paraFont);
-        }
+//            else {
+//                ratingModHeaderPara = new Paragraph("Rating Modifiers - NOT APPLICABLE", paraFont);
+//            }
+//        } else {
+//            ratingModHeaderPara = new Paragraph("Rating Modifiers - NOT APPLICABLE", paraFont);
+//        }
 
 
         ratingModHeaderPara.setAlignment(Element.ALIGN_CENTER);

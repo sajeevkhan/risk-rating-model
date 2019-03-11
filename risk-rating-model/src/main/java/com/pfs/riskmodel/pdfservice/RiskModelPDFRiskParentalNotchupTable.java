@@ -82,16 +82,17 @@ public class RiskModelPDFRiskParentalNotchupTable {
         valueFont.setColor(BaseColor.BLACK);
         valueFont.setSize(8);
         Paragraph riskParaHeader = new Paragraph();
-
-        if (riskModelTemplate.getApplyParentalNotchup() != null) {
-            if (riskModelTemplate.getApplyParentalNotchup() == true)
+//
+//        if (riskModelTemplate.getApplyParentalNotchup() != null) {
+//            if (riskModelTemplate.getApplyParentalNotchup() == true)
             riskParaHeader = new Paragraph("Parental Notchup", paraFont);
-            else {
-                riskParaHeader = new Paragraph("Parental Notchup - NOT APPLICABLE", paraFont);
-            }
-        } else {
-            riskParaHeader = new Paragraph("Parental Notchup - NOT APPLICABLE", paraFont);
-        }
+//            else {
+//                riskParaHeader = new Paragraph("Parental Notchup - NOT APPLICABLE", paraFont);
+//            }
+//        } else {
+//            riskParaHeader = new Paragraph("Parental Notchup - NOT APPLICABLE", paraFont);
+//        }
+
         riskParaHeader.setAlignment(Element.ALIGN_CENTER);
 
         doc.add(new Paragraph( " "));

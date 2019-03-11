@@ -79,7 +79,7 @@ public class InfraRoadHAM_BuildPhase_Valuator {
         // Compute Modified Project Grade
         CommonComputation commonComputation = new CommonComputation();
         modifiedProjectGrade = commonComputation.applyRatingModifier(riskModelTemplate,
-                projectGrade,
+                overallProjectGradeObject,
                 projectGradeList,
                 6.25);
 

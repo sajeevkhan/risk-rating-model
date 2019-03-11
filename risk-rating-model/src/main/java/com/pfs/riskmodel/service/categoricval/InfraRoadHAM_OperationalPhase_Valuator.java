@@ -46,6 +46,7 @@ public class InfraRoadHAM_OperationalPhase_Valuator {
                 projectGrade = Utils.fetchGrade(projectGradeList,riskType.getScore());
                 postProjectIRScore = riskType.getScore();
                 postProjectIRGrade = projectGrade.getCommonScaleGrade();
+                riskType.setGrade(projectGrade.getCommonScaleGrade());
             }
         }
 
@@ -65,7 +66,7 @@ public class InfraRoadHAM_OperationalPhase_Valuator {
         modifiedProjectGrade = commonComputation.applyRatingModifier(riskModelTemplate,
                 projectGrade,
                 projectGradeList,
-                5.00);
+                4.25);
 
         // Check if Parental Notchup needs to be evaluated or not
         if ( modifiedProjectGrade.getGradeAsNumber() >= 7 ) {

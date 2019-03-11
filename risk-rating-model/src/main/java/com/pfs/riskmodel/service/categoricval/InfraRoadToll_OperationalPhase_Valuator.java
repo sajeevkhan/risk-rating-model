@@ -61,7 +61,7 @@ public class InfraRoadToll_OperationalPhase_Valuator {
         modifiedProjectGrade = commonComputation.applyRatingModifier(riskModelTemplate,
                 projectGrade,
                 projectGradeList,
-                6.25);
+                4.25);
 
         // Check if Parental Notchup needs to be evaluated or not
         if ( modifiedProjectGrade.getGradeAsNumber() >= 7 ) {

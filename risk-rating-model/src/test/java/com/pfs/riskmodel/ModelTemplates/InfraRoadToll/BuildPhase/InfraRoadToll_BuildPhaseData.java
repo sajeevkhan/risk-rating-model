@@ -77,7 +77,7 @@ public class InfraRoadToll_BuildPhaseData {
         InfraRoadToll_ProjectImplRiskTypes projectImplRiskTypes = new InfraRoadToll_ProjectImplRiskTypes();
         RiskTypeDTO projectImplRiskTypeDTO = projectImplRiskTypes.buildProjectImplRiskTypes();
 
-
+        riskModelTemplateDTO.addRiskTypeDTO(projectImplRiskTypeDTO);
         riskModelTemplateDTO.addRiskTypeDTO(postProjectImplRiskTypeDTO);
 
         // Rating Modifiers

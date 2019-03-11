@@ -48,14 +48,18 @@ public class CommonComputation {
                         modifiedProjectGrade = Utils.getProjectGradeByGradeAsNumber(projectGradeList,7);
                         //modifiedProjectGrade.setCommonScaleGrade("GRADE 7");
                         ratingModifiersInAction = true;
-                        break;
+                        continue;
+                    }else{
+                        modifiedProjectGrade = projectGradeObject;
                     }
+                } else {
+                    modifiedProjectGrade = projectGradeObject;
                 }
 
             if (riskRatingModifier.getNumberOfNotchesDown() != 0) {
 
                 // Add the "Number of Notch downs" to the overall project grade number
-                modifiedProjectGradeAsNumber = projectGradeObject.getGradeAsNumber() + riskRatingModifier.getNumberOfNotchesDown();
+                modifiedProjectGradeAsNumber = modifiedProjectGrade.getGradeAsNumber() + riskRatingModifier.getNumberOfNotchesDown();
                 // Find the the Modified Grade
                 modifiedProjectGrade = Utils.getProjectGradeByGradeAsNumber(projectGradeList, modifiedProjectGradeAsNumber);
                 ratingModifiersInAction = true;

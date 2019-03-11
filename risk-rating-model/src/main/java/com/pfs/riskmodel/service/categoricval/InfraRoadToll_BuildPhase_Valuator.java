@@ -88,9 +88,9 @@ public class InfraRoadToll_BuildPhase_Valuator {
         // Compute Modified Project Grade
         CommonComputation commonComputation = new CommonComputation();
         modifiedProjectGrade = commonComputation.applyRatingModifier(riskModelTemplate,
-                projectGrade,
+                overallProjectGradeObject,
                 projectGradeList,
-                6.25);
+                5.0);
 
         // Check if Parental Notchup needs to be evaluated or not
         if ( modifiedProjectGrade.getGradeAsNumber() >= 7 ) {
@@ -112,7 +112,7 @@ public class InfraRoadToll_BuildPhase_Valuator {
         }
         // Prepare Summary
         List<RiskModelSummary> riskModelSummaryList =
-                commonComputation.getSummary( projectScore, projectImplScoreGrade,
+                commonComputation.getSummary( projectImplScore, projectImplScoreGrade,
                                                         postProjectImplScore,postProjectImplScoreGrade,
                                                         riskModelTemplate,1);
 
