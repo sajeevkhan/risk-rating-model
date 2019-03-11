@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EvaluationService } from '../evaluations/evaluations.service';
 import { Router } from '@angular/router';
+import { AppService } from 'app/app.service';
 
 @Component({
     selector: 'app-new-evaluation-dialog-componenet',
@@ -35,7 +36,7 @@ export class NewEvaluationDialogComponent {
      * @param _router: Router
      */
     constructor(public _dialogRef: MatDialogRef<NewEvaluationDialogComponent>, @Inject(MAT_DIALOG_DATA) _data: any,
-        _formBuilder: FormBuilder, _service: EvaluationService, private _router: Router) {
+        _formBuilder: FormBuilder, _service: EvaluationService, private _router: Router, private _appService: AppService) {
 
         // Initialize the form.
         this.newEvaluationForm = _formBuilder.group({
@@ -55,8 +56,9 @@ export class NewEvaluationDialogComponent {
         });
 
         // Fetch purposes.
-        _service.getPurposes().subscribe(response => {
-            this.purposes = response;
+        _service.getPurposes().subscribe((response: Array<any>) => {
+            this.purposes = response.filter(item => item.code === _appService.userDetails.riskDepartment);
+            this.newEvaluationForm.get('purpose').setValue(_appService.userDetails.riskDepartment);
         });
 
         // Retrieve projectId from the dialog data.

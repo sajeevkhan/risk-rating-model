@@ -32,7 +32,7 @@
         </div>
         <div fxLayout="row">
             <mat-form-field fxFlex>
-                <mat-select placeholder="Department" formControlName="purpose" required>
+                <mat-select placeholder="Department" formControlName="purpose">
                     <mat-option *ngFor="let purpose of purposes" [value]="purpose.code">
                         {{ purpose.description }}
                     </mat-option>
