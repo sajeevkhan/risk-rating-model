@@ -20,7 +20,9 @@ export class ChangeDocumentListComponent implements OnInit {
     }
 
     @Input()
-    page: any;
+    page: any = {
+        totalElements: 0
+    };
 
     /**
      * Capture changes in the search parameters
@@ -43,7 +45,8 @@ export class ChangeDocumentListComponent implements OnInit {
     selectedDocument: any;
     selectedItem: any;
 
-    constructor(private _service: ChangeDocumentService) { }
+    constructor(private _service: ChangeDocumentService) { 
+    }
 
     /**
      * ngOnInit()

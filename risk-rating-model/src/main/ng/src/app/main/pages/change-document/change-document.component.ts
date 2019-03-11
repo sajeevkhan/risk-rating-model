@@ -12,14 +12,16 @@ export class ChangeDocumentComponent implements OnInit {
     changeDocumentsForm: FormGroup;
 
     changeDocuments: any;
-    page: any;
+    page: any = {
+        totalElements: 0
+    };
 
-    constructor(_formBuilder: FormBuilder, private _service: ChangeDocumentService) { 
+    constructor(_formBuilder: FormBuilder, private _service: ChangeDocumentService) {
         this.changeDocumentsForm = _formBuilder.group({
             loanNumber: new FormControl(),
             riskModelId: new FormControl(),
-            dateFrom: new FormControl({disabled: true}),
-            dateTo: new FormControl({disabled: true})
+            dateFrom: new FormControl(null),
+            dateTo: new FormControl(null)
         });
     }
 
@@ -33,12 +35,13 @@ export class ChangeDocumentComponent implements OnInit {
      * searchChangeDocuments()
      */
     searchChangeDocuments(): void {
-        console.log(this.changeDocumentsForm.value);
         const formValue = this.changeDocumentsForm.value;
         this._service.fetchChangeDocuments(formValue.loanNumber, formValue.riskModelId, formValue.dateFrom, formValue.dateTo, 0, 10).subscribe(data => {
-            this.changeDocuments = data.content;
-            this.page = data.pageable;
-            this.page.totalElements = data.totalElements;
+            if (data !== null) {
+                this.changeDocuments = data.content;
+                this.page = data.pageable;
+                this.page.totalElements = data.totalElements;
+            }
         });
     }
 }
