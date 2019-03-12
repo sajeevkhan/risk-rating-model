@@ -218,7 +218,7 @@
                                     </th>
                                 </tr>
                                 <ng-container *ngFor="let riskRatingModifierAttribute of riskRatingModifier.riskRatingModifierAttributes">
-                                    <tr class="row-header" *ngIf="_appService.userDetails.riskDepartment == '03' && riskRatingModifierAttribute.applicableForMonitoring == true">
+                                    <tr class="row-header" *ngIf="(_appService.userDetails.riskDepartment == '01' || _appService.userDetails.riskDepartment == '02') || (_appService.userDetails.riskDepartment == '03' && riskRatingModifierAttribute.applicableForMonitoring == true)">
                                         <!-- <td class="column-data tableRow">{{ riskRatingModifierAttribute.itemNo }}</td> -->
                                         <td class="column-data tableRow">{{ riskRatingModifierAttribute.description }}</td>
                                         <td class="column-data tableRow">
