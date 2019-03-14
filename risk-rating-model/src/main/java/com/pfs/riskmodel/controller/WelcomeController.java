@@ -1,6 +1,5 @@
 package com.pfs.riskmodel.controller;
 
-import com.pfs.riskmodel.client.LMSEnquiryClient;
 import com.pfs.riskmodel.config.ApiController;
 import com.pfs.riskmodel.resource.User;
 import com.pfs.riskmodel.service.IWelcomeService;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 @Profile("!localdev")
 public class WelcomeController {
-
-    private final LMSEnquiryClient lmsEnquiryClient;
 
     private final IWelcomeService welcomeService;
 

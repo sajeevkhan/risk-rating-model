@@ -3,12 +3,15 @@ package com.pfs.riskmodel.controller;
 import com.pfs.riskmodel.client.LMSEnquiryClient;
 import com.pfs.riskmodel.config.ApiController;
 import com.pfs.riskmodel.resource.LoanApplicationResource;
+import com.pfs.riskmodel.resource.ProcessorResource;
 import com.pfs.riskmodel.resource.SearchResource;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,6 +41,12 @@ public class LoanApplicationController {
         // ResponseEntity<List<LoanApplicationResource>> resources = lmsEnquiryClient.searchEnquiries(resource,"Basic YWRtaW46YWRtaW4");
 
         return ResponseEntity.ok(resources);
+    }
+
+    @PutMapping("/loanEnquiry/assignProcessors")
+    public ResponseEntity updateProcessors(@RequestBody ProcessorResource processorResource, HttpServletRequest request) {
+        ResponseEntity<LoanApplicationResource> loanAppication = lmsEnquiryClient.updateProcessors(processorResource, getAuthorizationBearer(request.getUserPrincipal()));
+        return ResponseEntity.ok(loanAppication.getBody());
     }
 
     public String getAuthorizationBearer(Principal user) {

@@ -1,0 +1,39 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="toolTop m-0">
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">Select Evaluation Type</span>
+            <button mat-button class="mat-icon-button" (click)="_dialogRef.close({})">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>
+
+<div mat-dialog-content class="p-24 m-0 dialogStyle" fusePerfectScrollbar>
+    <form [formGroup]="assignProcessorsForm" (ngSubmit)="updateLoanApplication()">
+        <div fxLayout="row">
+            <!-- <mat-icon class="mr-12 mt-12">important_devices</mat-icon> -->
+            <mat-form-field fxFlex="100">
+                <mat-select placeholder="Project Department Initiator" formControlName="projectDepartmentInitiator" required>
+                    <mat-option *ngFor="let user of projectUsers" [value]="user.userName">
+                        {{ user.firstName }} {{ user.lastName }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row">
+            <mat-form-field fxFlex>
+                <mat-select placeholder="Monitoring Department Initiator" formControlName="monitoringDepartmentInitiator" required>
+                    <mat-option *ngFor="let user of monitoringUsers" [value]="user.userName">
+                        {{ user.firstName }} {{ user.lastName }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+            <button mat-raised-button type="submit" class="mr-8 mb-8 mat-raised-button">
+                <mat-icon matSuffix class="mr-8">play_arrow</mat-icon>Save
+            </button>
+        </div>
+    </form>
+</div>

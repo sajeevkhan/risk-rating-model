@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FuseSharedModule } from '@fuse/shared.module';
-import { MatExpansionModule, MatInputModule, MatButtonModule, MatFormFieldModule, MatTableModule,MatIconModule, MatSortModule, MatPaginatorModule } from '@angular/material';
+import { MatExpansionModule, MatInputModule, MatButtonModule, MatFormFieldModule, MatTableModule,MatIconModule, MatSortModule, MatPaginatorModule, MatToolbarModule, MatSelectModule } from '@angular/material';
 import { EnquirySearchListComponent } from './enquirySearchList/enquirySearchList.component';
 import { EnquirySearchComponent } from './enquirySearch.component';
 import { LoanEnquiryService } from './enquiryApplication.service';
+import { AssignProcessorsDialogComponent } from './assign-processors-dialog/assign-processors-dialog.component';
 
 const routes = [
     {
@@ -25,12 +26,15 @@ const routes = [
         MatFormFieldModule,
         MatPaginatorModule,
         MatTableModule,
-		MatIconModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatSelectModule,
         MatSortModule
     ],
     declarations: [
         EnquirySearchComponent,
-        EnquirySearchListComponent
+        EnquirySearchListComponent,
+        AssignProcessorsDialogComponent
     ],
     providers: [
         LoanEnquiryService
@@ -38,6 +42,9 @@ const routes = [
     exports: [
         EnquirySearchComponent,
         EnquirySearchListComponent
+    ],
+    entryComponents: [
+        AssignProcessorsDialogComponent
     ]
 })
 export class EnquirySearchModule { 

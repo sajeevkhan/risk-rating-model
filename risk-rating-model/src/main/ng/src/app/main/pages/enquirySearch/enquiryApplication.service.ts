@@ -627,4 +627,33 @@ export class LoanEnquiryService {
         return this._http.get<any>(str);
     }
 
+    /**
+     * getProjectDepartmentUsers()
+     */
+    public getProjectDepartmentUsers(): Observable<any> {
+        return this._http.get('api/users/department/01');
+    }
+
+    /**
+     * getMonitoringDepartmentUsers()
+     */
+    public getMonitoringDepartmentUsers(): Observable<any> {
+        return this._http.get('api/users/department/03');
+    }
+
+    /**
+     * updateProcessors()
+     * @param loanApplication 
+     * @param processors 
+     */
+    public updateProcessors(loanApplication: any, processors: any): Observable<any> {
+        const processorResource = {
+            enquiryNo: {
+                id: loanApplication.selectedEnquiry.enquiryNumber
+            },
+            projectDepartmentInitiator: processors.projectDepartmentInitiator,
+            monitoringDepartmentInitiator: processors.monitoringDepartmentInitiator
+        }
+        return this._http.put<any>('api/loanEnquiry/assignProcessors', processorResource);
+    }
 }

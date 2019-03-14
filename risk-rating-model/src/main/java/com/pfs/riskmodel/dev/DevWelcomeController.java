@@ -25,6 +25,7 @@ public class DevWelcomeController {
         user.setFirstName("PFS");
         user.setLastName("Admin");
         user.setRiskDepartment("03");
+        user.setDepartmentHead(true);
         return ResponseEntity.ok(user);
     }
 }
