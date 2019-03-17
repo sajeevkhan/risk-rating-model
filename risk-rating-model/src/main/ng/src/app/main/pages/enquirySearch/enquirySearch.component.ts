@@ -25,7 +25,7 @@ export class EnquirySearchComponent implements OnChanges {
     }
 
     constructor(_formBuilder: FormBuilder, private _dialog: MatDialog, public _service: LoanEnquiryService, 
-        private _appService: AppService, private _router: Router, private _matSnackBar: MatSnackBar) {
+        public _appService: AppService, private _router: Router, private _matSnackBar: MatSnackBar) {
 
         this.enquirySearchForm = _formBuilder.group({
             loanNumberFrom: [],

@@ -21,7 +21,7 @@ export class AssignProcessorsDialogComponent {
     projectUsers: Array<any> = [];
     monitoringUsers: Array<any> = [];
 
-    constructor(private _dialogRef: MatDialogRef<AssignProcessorsDialogComponent>, @Inject(MAT_DIALOG_DATA) private _data: any,
+    constructor(public _dialogRef: MatDialogRef<AssignProcessorsDialogComponent>, @Inject(MAT_DIALOG_DATA) private _data: any,
         _formBuilder: FormBuilder, private _service: LoanEnquiryService, private _appService: AppService) {
 
         // Initialize the form.
