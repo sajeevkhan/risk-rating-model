@@ -69,4 +69,18 @@ export class InboxComponent implements OnInit {
     displayAsPDF(): void {
         this.inboxItemsComponent.refreshInboxItems();
     }
+
+    disableButtons(): boolean {
+        if (this.inboxItemsComponent.selectedItem === undefined) {
+            return true;
+        }
+        else if (this.inboxItemsComponent.selectedItem.workflowStatusCode === '01' ||
+            this.inboxItemsComponent.selectedItem.workflowStatusCode === '03' ||
+            this.inboxItemsComponent.selectedItem.workflowStatusCode === '04' ||
+            this.inboxItemsComponent.selectedItem.workflowStatusCode === '06' ||
+            this.inboxItemsComponent.selectedItem.workflowStatusCode === '08') {
+
+            return true;
+        }
+    }
 }

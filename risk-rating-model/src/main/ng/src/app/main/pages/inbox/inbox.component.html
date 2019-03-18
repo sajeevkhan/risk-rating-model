@@ -6,10 +6,10 @@
                Inbox
             </div>
         <div fxLayout="row" fxLayoutAlign="end center" fxFlex="70" class="pr-16">
-            <button mat-raised-button class="mr-8"  (click)="approveEvaluation()" [disabled]="!inboxItemsComponent.selectedItem">
+            <button mat-raised-button class="mr-8"  (click)="approveEvaluation()" [disabled]="disableButtons()">
                 <mat-icon matSuffix class="mr-8">check</mat-icon>Approve
             </button>
-            <button mat-raised-button class="mr-8"  (click)="rejectEvaluation()" [disabled]="!inboxItemsComponent.selectedItem">
+            <button mat-raised-button class="mr-8"  (click)="rejectEvaluation()" [disabled]="disableButtons()">
                 <mat-icon matSuffix class="mr-8">clear</mat-icon>Reject
             </button>
             <button mat-raised-button class="mr-8"  (click)="reviewEvaluation()" [disabled]="!inboxItemsComponent.selectedItem">
