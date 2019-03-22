@@ -377,7 +377,8 @@ public class RiskModelTemplateController {
         riskModelTemplate = mapper.map(riskModelTemplateDTO, RiskModelTemplate.class);
 
         riskModelTemplate.setPurpose(purposeRepository.findByCode(riskModelTemplateDTO.getPurposeCode()));
-        riskModelTemplate.setWorkflowStatus(workflowStatusRepository.findByCode(riskModelTemplateDTO.getPurposeCode()));
+        riskModelTemplate.setWorkflowStatus(workflowStatusRepository.findByCode(riskModelTemplateDTO.getWorkflowStatusCode()));
+
 
 
         for (RiskType riskType: riskModelTemplate.getRiskTypes()) {

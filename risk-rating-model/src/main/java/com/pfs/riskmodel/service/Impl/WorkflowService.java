@@ -6,6 +6,7 @@ import com.pfs.riskmodel.domain.RiskPurpose;
 import com.pfs.riskmodel.domain.WorkflowAssignment;
 import com.pfs.riskmodel.repository.WorkflowAssignmentRepository;
 import com.pfs.riskmodel.repository.WorkflowStatusRepository;
+import com.pfs.riskmodel.resource.EmailId;
 import com.pfs.riskmodel.resource.User;
 import com.pfs.riskmodel.service.IWorkflowService;
 import com.pfs.riskmodel.util.ValidationResult;
@@ -18,6 +19,7 @@ import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -86,39 +88,36 @@ public class WorkflowService implements IWorkflowService {
                 if (httpServletRequest.getUserPrincipal() != null) {
                     //User user = welcomeService.getUser();
                     if (user != null)
-                    riskModelTemplate.setCreatedBy(user.getFirstName() + " " + user.getLastName());
+                        riskModelTemplate.setCreatedBy(user.getFirstName() + " " + user.getLastName());
                 }
-                validationResult = getWorkflowValidation(false,"Workflow.NotStarted",riskModelTemplate.getId().toString());
+                validationResult = getWorkflowValidation(false, "Workflow.NotStarted", riskModelTemplate.getId().toString());
                 result.put("ValidationResult", validationResult);
 
-                riskModelTemplate.setWorkflowStatus( workflowStatusRepository.findByCode("01") );
                 if (riskModelTemplate.getWorkflowStatus() == null) {
                     riskModelTemplate.setWorkflowStatus(workflowStatusRepository.findByCode("01"));
+                    riskModelTemplate.setWorkflowStatusCode("01");
                 }
                 /*
                     Set the Status based on the Modifier
                     If Modified by Creator or Reviewer
                 */
                 else {
-                if (riskModelTemplate.getWorkflowStatus().getCode().equals("01") ||
-                        riskModelTemplate.getWorkflowStatus().getCode().equals("02") ) {
-                    String userFullName = user.getFirstName() + " " + user.getLastName();
-//                    if (userFullName.equals(riskModelTemplate.getCreatedBy())) {
-//                        riskModelTemplate.setWorkflowStatus(workflowStatusRepository.findByCode("05"));
-//                    }
-//                    else
-//                        {
-//                            if (userFullName.equals(riskModelTemplate.getReviewedBy())) {
-//                                riskModelTemplate.setWorkflowStatus(workflowStatusRepository.findByCode("06"));
-//                            }
-//                        }
+                    if (riskModelTemplate.getWorkflowStatus().getCode().equals("01") ||
+                            riskModelTemplate.getWorkflowStatus().getCode().equals("02")) {
+                        String userFullName = user.getFirstName() + " " + user.getLastName();
+
+                    }
                 }
-            }
 
                 result.put("RiskModel", riskModelTemplate);
                 return result;
             case 2:
-                result = startApprovalProcess(riskModelTemplate,httpServletRequest);
+                if (riskModelTemplate.getWorkflowStatus().getCode().equals("01") || riskModelTemplate.getCurrentWorkFlowLevel() == null){
+                    riskModelTemplate.setCurrentWorkFlowLevel(1);
+                    result = startApprovalProcess(riskModelTemplate, httpServletRequest);
+                }
+                else
+                    result = approveTask(riskModelTemplate,httpServletRequest);
                 break;
             case 3:
                 result = approveTask(riskModelTemplate,httpServletRequest);
@@ -151,57 +150,6 @@ public class WorkflowService implements IWorkflowService {
     }
 
 
-    private Map<String, Object> prepareVariables(RiskModelTemplate riskModelTemplate, HttpServletRequest httpServletRequest) {
-
-        Map<String, Object> variables = new HashMap<>();
-        variables.put("riskModelId", riskModelTemplate.getId());
-        variables.put("projectType", riskModelTemplate.getRiskProjectType().getValue());
-        variables.put("riskLevel", riskModelTemplate.getProjectRiskLevel().getValue());
-        variables.put("projectName", riskModelTemplate.getProjectName());
-
-        if (httpServletRequest.getUserPrincipal() != null)
-            variables.put("senderUser", httpServletRequest.getUserPrincipal().getName());
-        else
-            variables.put("senderUser", "Tester User");
-
-        // Get User Name from WelcomeService
-        if (welcomeService.getUser() != null)
-            variables.put("senderUserEmail", welcomeService.getUser().getEmail());
-
-
-        WorkflowAssignment workflowAssignment = getWorkFlowProcessor(riskModelTemplate.getPurpose());
-
-        variables.put("approverUser", workflowAssignment.getApproverUserName());
-        variables.put("approverEmail", workflowAssignment.getApproverEmailId());
-
-        return variables;
-
-    }
-
-
-    private Map<String, Object> prepareVariables1(RiskModelTemplate riskModelTemplate, HttpServletRequest httpServletRequest) {
-
-        Map<String, Object> variables = new HashMap<>();
-        variables.put("riskModelId1", riskModelTemplate.getId());
-        variables.put("projectType1", riskModelTemplate.getRiskProjectType().getValue());
-        variables.put("riskLevel1", riskModelTemplate.getProjectRiskLevel().getValue());
-        variables.put("projectName1", riskModelTemplate.getProjectName());
-        if (httpServletRequest.getUserPrincipal() != null)
-            variables.put("senderUser1", httpServletRequest.getUserPrincipal().getName());
-        else
-            variables.put("senderUser1", "Tester User");
-        variables.put("senderUserEmail1", welcomeService.getUser().getEmail());
-
-
-        WorkflowAssignment workflowAssignment = getWorkFlowProcessor(riskModelTemplate.getPurpose());
-
-        variables.put("approverUser1", workflowAssignment.getApproverUserName());
-        variables.put("approverEmail1", workflowAssignment.getApproverEmailId());
-
-        return variables;
-
-    }
-
 
     // Trigger Workflow
     private Map<String, Object> startApprovalProcess(RiskModelTemplate riskModelTemplate, HttpServletRequest httpServletRequest) {
@@ -213,20 +161,17 @@ public class WorkflowService implements IWorkflowService {
         validationResult.setWorkflowError(false);
 
         Map<String, Object> variables = new HashMap<>();
-
         variables = prepareVariables(riskModelTemplate,httpServletRequest);
-
-//        if (httpServletRequest.getUserPrincipal() != null) {
-//            riskModelTemplate.setReviewedBy(httpServletRequest.getUserPrincipal().getName());
-//        }
-
+        riskModelTemplate.setCurrentWorkFlowLevel(1);
 
         runtimeService = processEngine.getRuntimeService();
         ProcessInstance processInstance = runtimeService
-                .startProcessInstanceByKey("RiskModelApproval_v2", variables);
+                .startProcessInstanceByKey("RiskModel_v3.2", variables);
 
         riskModelTemplate.setProcessInstanceId(processInstance.getProcessInstanceId());
+        // Set Status as - "Sent for 1st Level Approval"
         riskModelTemplate.setWorkflowStatus( workflowStatusRepository.findByCode("02") );
+        riskModelTemplate.setWorkflowStatusCode(workflowStatusRepository.findByCode("02").getCode());
 
         output.put("RiskModel", riskModelTemplate);
         output.put("ValidationResult", validationResult);
@@ -244,8 +189,45 @@ public class WorkflowService implements IWorkflowService {
         Task task = taskService.createTaskQuery().processInstanceId(riskModelTemplate.getProcessInstanceId()).singleResult();
         Map<String, Object> variables = new HashMap<>();
 
+
+
         variables = prepareVariables1(riskModelTemplate,httpServletRequest);
-        variables.put("result", true);
+
+
+        switch (riskModelTemplate.getWorkflowStatus().getCode()) {
+            case "02": //Sent for First Level Approval
+                riskModelTemplate.setCurrentWorkFlowLevel(1);
+                variables.put("rejectedInFirstLevel", " ");
+                variables.put("firstLevelApproval", true);
+                break;
+            case "03": //First Level Approval Completed
+            case "05": //Sent for Second Level Approval
+                riskModelTemplate.setCurrentWorkFlowLevel(2);
+                variables.put("rejectedInSecondLevel", " ");
+                variables.put("secondLevelApproval", true);
+                break;
+            case "06": //Second Level Approval Completed
+            case "07": //Sent for Third Level Approval
+                variables.put("rejectedInThirdLevel", " ");
+                riskModelTemplate.setCurrentWorkFlowLevel(3);
+                variables.put("thirdLevelApproval", true);
+                break;
+            case "04":
+                if (riskModelTemplate.getCurrentWorkFlowLevel() == 1) {
+                    variables.put("rejectedInFirstLevel", " ");
+                    variables.put("firstLevelApproval", true);
+                }
+                if (riskModelTemplate.getCurrentWorkFlowLevel() == 2) {
+                    variables.put("rejectedInSecondLevel", " ");
+                    variables.put("secondLevelApproval", true);
+                }
+                if (riskModelTemplate.getCurrentWorkFlowLevel() == 3) {
+                    variables.put("rejectedInThirdLevel", " ");
+                    variables.put("thirdLevelApproval", true);
+                }
+                break;
+        }
+
 
         // Set Reviewer Name
         if (httpServletRequest.getUserPrincipal() != null) {
@@ -263,12 +245,56 @@ public class WorkflowService implements IWorkflowService {
             output.put("ValidationResult", validationResult);
         }
 
+        System.out.println("--------------- Workflow Task Execution  Started @ : " + DateTime.now());
         taskService.complete(task.getId(),variables);
-        riskModelTemplate.setWorkflowStatus( workflowStatusRepository.findByCode("03") );
+        System.out.println("--------------- Workflow Task Execution Finished @ : " + DateTime.now());
+
+
+        // Set the New Status After Approval
+        switch (riskModelTemplate.getWorkflowStatus().getCode()) {
+            case "02": //Sent for 1st Level Approval
+                riskModelTemplate.setWorkflowStatus( workflowStatusRepository.findByCode("03") ); //First Level Approval Completed
+                riskModelTemplate.setCurrentWorkFlowLevel(2);
+                riskModelTemplate.setWorkflowStatusCode("03");
+                break;
+            case "03"://Sent for Second Level Approval
+            case "05": //Sent for Second Level Approval
+                riskModelTemplate.setCurrentWorkFlowLevel(3);
+                riskModelTemplate.setWorkflowStatus( workflowStatusRepository.findByCode("06") ); //Second Level Approval Completed
+                riskModelTemplate.setWorkflowStatusCode("06");
+                break;
+            case "06"://Sent for Third Level Approval
+            case "07": //Sent for Third Level Approval
+                riskModelTemplate.setWorkflowStatus( workflowStatusRepository.findByCode("08") ); //Third Level Approval Completed
+                riskModelTemplate.setWorkflowStatusCode("08");
+                break;
+            case "04":
+                if (riskModelTemplate.getCurrentWorkFlowLevel() == 1) {
+                    riskModelTemplate.setWorkflowStatus( workflowStatusRepository.findByCode("03") ); //First Level Approval Completed
+                    riskModelTemplate.setCurrentWorkFlowLevel(2);
+                    riskModelTemplate.setWorkflowStatusCode("03");
+                    break;
+                }
+                if (riskModelTemplate.getCurrentWorkFlowLevel() == 2) {
+                    riskModelTemplate.setWorkflowStatus( workflowStatusRepository.findByCode("06") ); //Second Level Approval Completed
+                    riskModelTemplate.setWorkflowStatusCode("06");
+                    riskModelTemplate.setCurrentWorkFlowLevel(3);
+                    break;
+                }
+                if (riskModelTemplate.getCurrentWorkFlowLevel() == 3) {
+                    riskModelTemplate.setWorkflowStatus( workflowStatusRepository.findByCode("08") ); //Third Level Approval Completed
+                    riskModelTemplate.setWorkflowStatusCode("08");
+                    break;
+                }
+
+        }
+
 
         output.put("RiskModel", riskModelTemplate);
         return output;
     }
+
+
 
 
     // Process Task - Reject
@@ -281,7 +307,22 @@ public class WorkflowService implements IWorkflowService {
         Task task = taskService.createTaskQuery().processInstanceId(riskModelTemplate.getProcessInstanceId()).singleResult();
         Map<String, Object> variables = new HashMap<>();
         variables = prepareVariables(riskModelTemplate,httpServletRequest);
-        variables.put("result", false);
+
+        switch (riskModelTemplate.getWorkflowStatus().getCode()) {
+            case "02": // Sent for First Level Approval
+                variables.put("firstLevelApproval", false);
+                variables.put("rejectedInFirstLevel", "X");
+                break;
+            case "03":
+            case "05": // Sent for Second Level Approval
+                variables.put("rejectedInSecondLevel", "X");
+                variables.put("secondLevelApproval", false);
+                break;
+            case "06":
+            case "07": // Sent for Third Level Approval
+                variables.put("rejectedInThirdLevel", "X");
+                variables.put("thirdLevelApproval", false);
+        }
 
         // Set Reviewer Name
         if (httpServletRequest.getUserPrincipal() != null) {
@@ -299,8 +340,26 @@ public class WorkflowService implements IWorkflowService {
             output.put("ValidationResult", validationResult);
         }
 
+        System.out.println("--------------- Workflow Task Execution Started @ " + DateTime.now());
         taskService.complete(task.getId(),variables);
+        System.out.println("--------------- Workflow Task Execution Finished @ " + DateTime.now());
+
         riskModelTemplate.setWorkflowStatus( workflowStatusRepository.findByCode("04") );
+        riskModelTemplate.setWorkflowStatusCode("04");
+
+        // In case of reject, set the currentWorkflowLevel to one level below
+
+        switch (riskModelTemplate.getCurrentWorkFlowLevel()) {
+            case 1:
+                riskModelTemplate.setCurrentWorkFlowLevel(null);
+                break;
+            case 2:
+                riskModelTemplate.setCurrentWorkFlowLevel(1);
+                break;
+            case 3:
+                riskModelTemplate.setCurrentWorkFlowLevel(1);
+                break;
+        }
 
         output.put("RiskModel", riskModelTemplate);
         return output;
@@ -322,23 +381,96 @@ public class WorkflowService implements IWorkflowService {
     }
 
 
-    private String processInfo() {
-//
-//  List<Task> tasks = taskService.createTaskQuery().orderByTaskCreateTime().asc().list();
-//
-//        StringBuilder stringBuilder = new StringBuilder();
-//
-//        stringBuilder.append("Number of process definitions : "
-//                + repositoryService.createProcessDefinitionQuery().count() + "--> Tasks >> ");
-//
-//        for (org.activiti.engine.task.Task task : tasks) {
-//            stringBuilder
-//                    .append(task + " | Assignee: " + task.getAssignee() + " | Description: " + task.getDescription());
-//        }
-//
-//        return stringBuilder.toString();
+    private Map<String, Object> prepareVariables(RiskModelTemplate riskModelTemplate, HttpServletRequest httpServletRequest) {
 
-        return  null;
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("riskModelId", riskModelTemplate.getId());
+        variables.put("projectType", riskModelTemplate.getRiskProjectType().getValue());
+        variables.put("riskLevel", riskModelTemplate.getProjectRiskLevel().getValue());
+        variables.put("projectName", riskModelTemplate.getProjectName());
+
+
+        WorkflowAssignment workflowAssignment = getWorkFlowProcessor(riskModelTemplate.getPurpose());
+
+        variables.put("fromEmailId", "pfsriskmodel@gmail.com");
+        variables.put("initiatorName",riskModelTemplate.getCreatedBy());
+        variables.put("initiatorEmailId",riskModelTemplate.getCreatedByUserId());
+        variables.put("firstLevelApproval", false);
+        variables.put("secondLevelApproval", false);
+        variables.put("thirdLevelApproval", false);
+
+        variables.put("rejectedInFirstLevel", " ");
+        variables.put("rejectedInSecondLevel", " " );
+        variables.put("rejectedInThirdLevel", " ");
+
+        variables.put("firstLevelApproverName", workflowAssignment.getFirstLevelApproverName());
+        variables.put("firstLevelApproverEmailId", workflowAssignment.getFirstLevelApproverEmailId());
+        variables.put("secondLevelApproverName", workflowAssignment.getSecondLevelApproverName());
+        variables.put("secondLevelApproverEmailId", workflowAssignment.getSecondLevelApproverEmailId());
+        variables.put("thirdLevelApproverName", workflowAssignment.getThirdLevelApproverName());
+        variables.put("thirdLevelApproverEmailId", workflowAssignment.getThirdLevelApproverEmailId());
+
+        return variables;
+
     }
 
+
+    private Map<String, Object> prepareVariables1(RiskModelTemplate riskModelTemplate, HttpServletRequest httpServletRequest) {
+
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("riskModelId", riskModelTemplate.getId());
+        variables.put("projectType", riskModelTemplate.getRiskProjectType().getValue());
+        variables.put("riskLevel", riskModelTemplate.getProjectRiskLevel().getValue());
+        variables.put("projectName", riskModelTemplate.getProjectName());
+
+        WorkflowAssignment workflowAssignment = getWorkFlowProcessor(riskModelTemplate.getPurpose());
+
+        variables.put("fromEmailId", "pfsriskmodel@gmail.com");
+        variables.put("initiatorName",riskModelTemplate.getCreatedBy());
+        variables.put("initiatorEmailId",riskModelTemplate.getCreatedByUserId());
+
+        variables.put("firstLevelApproval", false);
+        variables.put("secondLevelApproval", false);
+        variables.put("thirdLevelApproval", false);
+
+        variables.put("rejectedInFirstLevel", " ");
+        variables.put("rejectedInSecondLevel", " " );
+        variables.put("rejectedInThirdLevel", " ");
+
+        variables.put("firstLevelApproverName", workflowAssignment.getFirstLevelApproverName());
+        variables.put("firstLevelApproverEmailId", workflowAssignment.getFirstLevelApproverEmailId());
+        variables.put("secondLevelApproverName", workflowAssignment.getSecondLevelApproverName());
+        variables.put("secondLevelApproverEmailId", workflowAssignment.getSecondLevelApproverEmailId());
+        variables.put("thirdLevelApproverName", workflowAssignment.getThirdLevelApproverName());
+        variables.put("thirdLevelApproverEmailId", workflowAssignment.getThirdLevelApproverEmailId());
+
+        return variables;
+
+    }
+
+
 }
+
+
+/*
+fromEmailId
+initiatorName
+initiatorEmailId
+firstLevelApproval
+secondLevelApproval
+thirdLevelApproval
+firstLevelApproverName
+secondLevelApproverName
+thirdLevelApproverName
+firstLevelApproverEmailId
+secondLevelApproverEmailId
+thirdLevelApproverEmailId
+projectType
+projectName
+riskLevel
+riskModelId
+loanNumber
+
+
+
+ */

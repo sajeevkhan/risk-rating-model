@@ -17,7 +17,7 @@ import java.io.Serializable;
 @Setter
 @ToString
 @EqualsAndHashCode
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 public class WorkflowStatus implements Serializable {
 

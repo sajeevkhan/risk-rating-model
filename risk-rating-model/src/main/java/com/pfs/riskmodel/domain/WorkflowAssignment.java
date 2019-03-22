@@ -30,10 +30,15 @@ public class WorkflowAssignment implements Serializable {
      */
 
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private RiskPurpose purpose;
 
-    private String  approverUserName;
-    private String  approverEmailId;
+
+    private String firstLevelApproverName;
+    private String firstLevelApproverEmailId;
+    private String secondLevelApproverName;
+    private String secondLevelApproverEmailId;
+    private String thirdLevelApproverName;
+    private String thirdLevelApproverEmailId;
 
 }

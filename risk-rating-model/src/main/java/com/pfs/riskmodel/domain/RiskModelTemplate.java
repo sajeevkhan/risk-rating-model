@@ -6,6 +6,7 @@ import org.hibernate.annotations.IndexColumn;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
@@ -59,7 +60,23 @@ public class RiskModelTemplate extends AuditModel {
     private String createdBy;
 
     @Nullable
+    private String createdByUserId;
+
+    @Nullable
     private String reviewedBy;
+
+    @Nullable
+    private String firstLevelApprover;
+
+    @Nullable
+    private String secondLevelApprover;
+
+    @Nullable
+    private String thirdLevelApprover;
+
+    @Nullable //1-First Level, 2 - Second Level, 3 - Third Level
+    private Integer currentWorkFlowLevel;
+
 
 
     @NotNull

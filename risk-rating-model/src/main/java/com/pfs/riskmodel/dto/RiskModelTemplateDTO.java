@@ -23,7 +23,15 @@ public class RiskModelTemplateDTO {
     private String description;
 
     private String createdBy;
+    private String createdByUserId;
     private String reviewedBy;
+
+    private String firstLevelApprover;
+    private String secondLevelApprover;
+    private String thirdLevelApprover;
+
+    private Integer currentWorkFlowLevel;
+
 
 
     /*

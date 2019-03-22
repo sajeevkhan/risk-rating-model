@@ -15,6 +15,8 @@ export class EnquiryApplicationModel {
     projectLocationState: string;
     projectName: string;
     projectType: string;
+    projectDepartmentInitiator: string;
+    monitoringDepartmentInitiator: string;
 
     /**
      * constructor()
@@ -37,7 +39,11 @@ export class EnquiryApplicationModel {
         this.projectLocationState = _enquiryApplication.loanApplication.projectLocationState;
         this.projectName = _enquiryApplication.loanApplication.projectName;
         this.projectType = _enquiryApplication.loanApplication.projectType;
+        this.projectDepartmentInitiator = _enquiryApplication.loanApplication.projectDepartmentInitiator;
+        this.monitoringDepartmentInitiator = _enquiryApplication.loanApplication.monitoringDepartmentInitiator;
+
     }
+    
 
     /**
      * loanClassDescription()

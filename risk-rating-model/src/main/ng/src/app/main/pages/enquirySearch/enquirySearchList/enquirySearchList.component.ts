@@ -30,7 +30,8 @@ export class EnquirySearchListComponent implements OnInit {
     pageSizeOptions: number[] = [10, 25, 50, 100];
 
     displayedColumns = [
-        'functionalStatusDescription', 'createdOn', 'enquiryNumber', 'loanContractId', 'busPartnerNumber', 'projectName', 
+        'functionalStatusDescription', 'createdOn', 'enquiryNumber', 'loanContractId', 'busPartnerNumber',
+        'projectDepartmentInitiator', 'monitoringDepartmentInitiator', 'projectName', 
         'projectLocationState', 'projectTypeDescription', 'loanClassDescription', 'projectCapacity', 'assistanceTypeDescription', 
         'projectCost', 'loanAmount'
     ];

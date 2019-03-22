@@ -5,8 +5,10 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.pfs.riskmodel.domain.RiskComponent;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
 import com.pfs.riskmodel.domain.RiskType;
+import com.pfs.riskmodel.domain.WorkflowAssignment;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.activiti.engine.task.Task;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
@@ -21,7 +23,10 @@ import java.io.ByteArrayOutputStream;
 public class RiskModelPDFBuilder {
 
 
-    public ByteArrayOutputStream buildPdfDocument(RiskModelTemplate riskModelTemplate) throws Exception {
+    public ByteArrayOutputStream buildPdfDocument(RiskModelTemplate riskModelTemplate,
+                                                  WorkflowAssignment workflowAssignment,
+                                                  Task task
+                                                 ) throws Exception {
 
         Document doc = new Document(PageSize.A4,36, 36, 70, 80);
 
@@ -44,10 +49,11 @@ public class RiskModelPDFBuilder {
         doc.add(new Paragraph(" "));
         doc.add(new Paragraph(" "));
 
+        doc.addTitle(riskModelTemplate.getProjectName() + " " + riskModelTemplate.getProjectRiskLevel().getValue());
 
         // Header Table with Loan Details
         RiskModelPDFHeaderTable riskModelPDFHeaderTable = new RiskModelPDFHeaderTable();
-        doc = riskModelPDFHeaderTable.buildHeader(doc, riskModelTemplate);
+        doc = riskModelPDFHeaderTable.buildHeader(doc, riskModelTemplate, workflowAssignment, task);
 
         // Rating Overview Table
         RiskModelPDFHeaderRatingOverviewTable riskModelPDFHeaderRatingOverviewTable = new RiskModelPDFHeaderRatingOverviewTable();

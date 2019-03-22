@@ -10,6 +10,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * Created by sajeev on 17-Dec-18.
@@ -40,6 +41,9 @@ public class Initializer implements CommandLineRunner{
     private final WorkflowStatusRepository workflowStatusRepository;
     @Autowired
     private final WorkflowAssignmentRepository workflowAssignmentRepository;
+
+    @Autowired
+    private final RiskPurposeRepository riskPurposeRepository;
 
     @Autowired
     private Environment environment;
@@ -140,76 +144,104 @@ public class Initializer implements CommandLineRunner{
             log.info("-------------------------- Added Purposes data");
         }
 
+        WorkflowStatus w1 = new WorkflowStatus();
 
-        if(workflowStatusRepository.count() == 0 ) {
+        HashMap<String, String> workflowStatus = new HashMap<>();
+        workflowStatus.put("01","Created");
+        workflowStatus.put("02","Sent for 1st Level Approval");
+        workflowStatus.put("03", "First Level Approval Completed");
+        workflowStatus.put( "04", "Rejected");
+        workflowStatus.put( "05", "Sent for 2nd Level Approval");
+        workflowStatus.put( "06", "Second Level Approval Completed");
+        workflowStatus.put( "07", "Sent for Third Level Approval");
+        workflowStatus.put( "08", "Third Level Approval Completed");
 
-            WorkflowStatus w1 = new WorkflowStatus(null, "01", "Created");
-            WorkflowStatus w2 = new WorkflowStatus(null, "02", "Sent for Approval");
-            WorkflowStatus w3 = new WorkflowStatus(null, "03", "Approved");
-            WorkflowStatus w4 = new WorkflowStatus(null, "04", "Rejected");
+            Integer codeAsInt = 1;
+            for (Integer i=0; i<=7; i++) {
+
+                String code = "0" + codeAsInt.toString();
+
+                if (workflowStatusRepository.findByCode(code) == null)
+                    w1 = new WorkflowStatus(null,code , workflowStatus.get(code));
+                else {
+                    w1 = workflowStatusRepository.findByCode(code);
+                    w1.setDescription(workflowStatus.get(code));
+                }
+
+                workflowStatusRepository.save(w1);
+                codeAsInt ++;
+
+                log.info("-------------------------- Added Work Flow Status: " + w1.toString());
+            }
 
 
-            //workflowStatusRepository.saveAll(Arrays.asList(w1,w2,w3,w4 ));
-            workflowStatusRepository.saveAndFlush(w1);
-            workflowStatusRepository.saveAndFlush(w2);
-            workflowStatusRepository.saveAndFlush(w3);
-            workflowStatusRepository.saveAndFlush(w4);
-
-            log.info("-------------------------- Added Work Flow Statuses data");
-        }
-
-
-        if(workflowStatusRepository.count() <= 4 ) {
-            WorkflowStatus w5 = new WorkflowStatus(null, "05", "Modified by Creator");
-            WorkflowStatus w6 = new WorkflowStatus(null, "06", "Modified by Approver");
-            workflowStatusRepository.saveAndFlush(w5);
-            workflowStatusRepository.saveAndFlush(w6);
-            log.info("-------------------------- Added Additional Work Flow Statuses data");
-        }
-
-//        workflowAssignmentRepository.deleteAll();
-//        workflowAssignmentRepository.flush();
 
 
         String[] profiles = environment.getActiveProfiles();
         String activeProfile = profiles[0];
 
 
+        //if(workflowAssignmentRepository.count() == 0) {
 
+            RiskPurpose p1 = riskPurposeRepository.findByCode("01");
+            if (p1 == null)
+                p1 = new RiskPurpose(null, "01", "Project");
 
-        if(workflowAssignmentRepository.count() == 0) {
-
-
-            RiskPurpose p1 = new RiskPurpose(null, "01", "Project");
-            RiskPurpose p2 = new RiskPurpose(null, "02", "Risk");
-            RiskPurpose p3 = new RiskPurpose(null, "03", "Monitoring");
-
-            WorkflowAssignment w1 = new WorkflowAssignment();
-            WorkflowAssignment w2 = new WorkflowAssignment();;
-            WorkflowAssignment w3 = new WorkflowAssignment();;
-
-
-
-
-            if (activeProfile.equals("oauth")) {
-                w1 = new WorkflowAssignment(null, p1, "Sajeev Project", "sajeev.khan@gmail.com");
-                w2 = new WorkflowAssignment(null, p2, "Sajeev Risk", "sajeev.khan@gmail.com");
-                w3 = new WorkflowAssignment(null, p3, "Sajeev Monitoring", "sajeev.khan@gmail.com");
-
-            } else {
-                w1 = new WorkflowAssignment(null, p1, "neerajyadav@ptcfinancial.com", "neerajyadav@ptcfinancial.com");
-                w2 = new WorkflowAssignment(null, p2, "neerajyadav@ptcfinancial.com", "neerajyadav@ptcfinancial.com");
-                w3 = new WorkflowAssignment(null, p3, "neerajyadav@ptcfinancial.com", "neerajyadav@ptcfinancial.com");
-
+            RiskPurpose p2 = riskPurposeRepository.findByCode("02");
+            if (p2 == null) {
+                p2 = new RiskPurpose(null, "02", "Risk");
             }
-//
-//              w1.setPurpose(p1);
-//              w1.setApproverEmailId("sajeev.khan@gmail.com");
-//              w1.setApproverUserName("SajeevG");
+            RiskPurpose p3 = riskPurposeRepository.findByCode("03");
+            if (p3 == null) {
+                p3 = new RiskPurpose(null, "03", "Monitoring");
+            }
 
-            workflowAssignmentRepository.saveAll(Arrays.asList(w1  ));
-            workflowAssignmentRepository.saveAll(Arrays.asList(w2  ));
-            workflowAssignmentRepository.saveAll(Arrays.asList(w3  ));
+            WorkflowAssignment wa1 = new WorkflowAssignment();
+            WorkflowAssignment wa2 = new WorkflowAssignment();;
+            WorkflowAssignment wa3 = new WorkflowAssignment();;
+
+
+            wa1 = workflowAssignmentRepository.findByPurpose(p1);
+            if (wa1 == null) {
+                wa1 = new WorkflowAssignment(null, p1, "Project FunctionalHead", "pfsprojecthead@gmail.com",
+                        "Risk Officer", "pfsriskofficer@gmail.com",
+                        "Risk FunctionalHead", "pfsriskhead@gmail.com");
+
+            }else {
+                wa1.setFirstLevelApproverEmailId("pfsprojecthead@gmail.com");
+                wa1.setFirstLevelApproverName("Project FunctionalHead");
+                wa1.setSecondLevelApproverEmailId("pfsriskofficer@gmail.com");
+                wa1.setSecondLevelApproverName("Risk Officer");
+                wa1.setThirdLevelApproverEmailId("pfsriskhead@gmail.com");
+                wa1.setThirdLevelApproverName("Risk FunctionalHead");
+            }
+
+            workflowAssignmentRepository.save(wa1);
+
+            wa2 = workflowAssignmentRepository.findByPurpose(p2);
+            if (wa2 == null) {
+                wa2 = new WorkflowAssignment(null, p2, "Monitoring FunctionalHead", "pfsprojecthead@gmail.com",
+                        "Risk Officer", "pfsriskofficer@gmail.com",
+                        "Risk FunctionalHead", "pfsriskhead@gmail.com");
+
+            }else {
+                wa2.setFirstLevelApproverEmailId("pfsprojecthead@gmail.com");
+                wa2.setFirstLevelApproverName("Monitoring FunctionalHead");
+                wa2.setSecondLevelApproverEmailId("pfsriskofficer@gmail.com");
+                wa2.setSecondLevelApproverName("Risk Officer");
+                wa2.setThirdLevelApproverEmailId("pfsriskhead@gmail.com");
+                wa2.setThirdLevelApproverName("Risk FunctionalHead");
+            }
+
+            workflowAssignmentRepository.save(wa2);
+
+            wa3 = workflowAssignmentRepository.findByPurpose(p2);
+            if (wa3 == null) {
+                wa3 = new WorkflowAssignment(null,p3,"","","","","","");
+            } else{
+                wa3 = new WorkflowAssignment(null, p3, "","","","","","");
+            }
+           // workflowAssignmentRepository.save(wa3);
 
 
             log.info("-------------------------- Added Workflow Assignments data");
@@ -219,5 +251,5 @@ public class Initializer implements CommandLineRunner{
 
 
 
-    }
+   // }
 }

@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.UUID;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Setter
 @ToString
@@ -204,10 +205,79 @@ public class LoanApplication {
 
     private String projectName;
 
-    @JsonCreator
-    public LoanApplication(LocalDate loanEnquiryDate, Long loanEnquiryId, String loanContractId, UUID loanApplicant, String loanClass, String projectType, String financingType, String assistanceType, Double projectCapacity, String projectCapacityUnit, @Size(max = 100) String projectLocationState, @Size(max = 100) String projectDistrict, Integer tenorYear, Integer tenorMonth, Double projectCost, Double projectDebtAmount, Double equity, String projectAmountCurrency, Double expectedSubDebt, Double pfsDebtAmount, Double pfsSubDebtAmount, @Size(max = 100) String loanPurpose, @Size(max = 100) String leadFIName, Double leadFILoanAmount, Double expectedInterestRate, LocalDate scheduledCOD, @Size(max = 100) String promoterName, Double promoterNetWorthAmount, Double promoterPATAmount, @Size(max = 100) String promoterAreaOfBusinessNature, String rating, String promoterKeyDirector, String keyPromoter, Integer technicalStatus, Integer finalDecisionStatus, @Size(max = 100) String rejectionReason, LocalDate decisionDate, String userBPNumber, String groupCompany, String productCode, String busPartnerNumber, String projectName) {
 
+    private String projectDepartmentInitiator;
+
+    private String monitoringDepartmentInitiator;
+
+
+    @JsonCreator
+    public LoanApplication(@JsonProperty("id") UUID id,
+                           @JsonProperty("version") Long version,
+                           @JsonProperty("createdOn") LocalDate createdOn,
+                           @JsonProperty("createdAt") LocalTime createdAt,
+                           @JsonProperty("createdByUserName") String createdByUserName,
+                           @JsonProperty("changedOn") LocalDate changedOn,
+                           @JsonProperty("changedAt") LocalTime changedAt,
+                           @JsonProperty("changedByUserName") String changedByUserName,
+                           @JsonProperty("enquiryNo") EnquiryNo enquiryNo,
+                           @JsonProperty("loanEnquiryDate") LocalDate loanEnquiryDate,
+                           @JsonProperty("loanEnquiryId") Long loanEnquiryId,
+                           @JsonProperty("loanContractId") String loanContractId,
+                           @JsonProperty("loanApplicant") UUID loanApplicant,
+                           @JsonProperty("loanClass") String loanClass,
+                           @JsonProperty("projectType") String projectType,
+                           @JsonProperty("financingType") String financingType,
+                           @JsonProperty("assistanceType") String assistanceType,
+                           @JsonProperty("projectCapacity") Double projectCapacity,
+                           @JsonProperty("projectCapacityUnit") String projectCapacityUnit,
+                           @JsonProperty("projectLocationState") String projectLocationState,
+                           @JsonProperty("projectDistrict") String projectDistrict,
+                           @JsonProperty("tenorYear") Integer tenorYear,
+                           @JsonProperty("tenorMonth") Integer tenorMonth,
+                           @JsonProperty("projectCost") Double projectCost,
+                           @JsonProperty("projectDebtAmount") Double projectDebtAmount,
+                           @JsonProperty("equity") Double equity,
+                           @JsonProperty("projectAmountCurrency") String projectAmountCurrency,
+                           @JsonProperty("expectedSubDebt") Double expectedSubDebt,
+                           @JsonProperty("pfsDebtAmount") Double pfsDebtAmount,
+                           @JsonProperty("pfsSubDebtAmount") Double pfsSubDebtAmount,
+                           @JsonProperty("loanPurpose") String loanPurpose,
+                           @JsonProperty("leadFIName") String leadFIName,
+                           @JsonProperty("leadFILoanAmount") Double leadFILoanAmount,
+                           @JsonProperty("expectedInterestRate") Double expectedInterestRate,
+                           @JsonProperty("scheduledCOD") LocalDate scheduledCOD,
+                           @JsonProperty("promoterName") String promoterName,
+                           @JsonProperty("promoterNetWorthAmount") Double promoterNetWorthAmount,
+                           @JsonProperty("promoterPATAmount") Double promoterPATAmount,
+                           @JsonProperty("promoterAreaOfBusinessNature") String promoterAreaOfBusinessNature,
+                           @JsonProperty("rating") String rating,
+                           @JsonProperty("promoterKeyDirector") String promoterKeyDirector,
+                           @JsonProperty("keyPromoter") String keyPromoter,
+                           @JsonProperty("technicalStatus") Integer technicalStatus,
+                           @JsonProperty("functionalStatus") Integer functionalStatus,
+                           @JsonProperty("finalDecisionStatus") Integer finalDecisionStatus,
+                           @JsonProperty("rejectionReason") String rejectionReason,
+                           @JsonProperty("rejectionDate") LocalDateTime rejectionDate,
+                           @JsonProperty("decisionDate") LocalDate decisionDate,
+                           @JsonProperty("userBPNumber") String userBPNumber,
+                           @JsonProperty("groupCompany") String groupCompany,
+                           @JsonProperty("productCode") String productCode,
+                  //         @JsonProperty("busPartnerNumber") String busPartnerNumber,
+                           @JsonProperty("projectName") String projectName,
+                           @JsonProperty("projectDepartmentInitiator") String projectDepartmentInitiator ,
+                           @JsonProperty("monitoringDepartmentInitiator") String monitoringDepartmentInitiator ) {
+        this.id = id;
+        this.version = version;
+        this.createdOn = createdOn;
+        this.createdAt = createdAt;
+        this.createdByUserName = createdByUserName;
+        this.changedOn = changedOn;
+        this.changedAt = changedAt;
+        this.changedByUserName = changedByUserName;
+        this.enquiryNo = enquiryNo;
         this.loanEnquiryDate = loanEnquiryDate;
+        this.loanEnquiryId = loanEnquiryId;
         this.loanContractId = loanContractId;
         this.loanApplicant = loanApplicant;
         this.loanClass = loanClass;
@@ -240,196 +310,506 @@ public class LoanApplication {
         this.promoterKeyDirector = promoterKeyDirector;
         this.keyPromoter = keyPromoter;
         this.technicalStatus = technicalStatus;
-        this.functionalStatus = 01;
+        this.functionalStatus = functionalStatus;
         this.finalDecisionStatus = finalDecisionStatus;
         this.rejectionReason = rejectionReason;
+        this.rejectionDate = rejectionDate;
         this.decisionDate = decisionDate;
         this.userBPNumber = userBPNumber;
         this.groupCompany = groupCompany;
         this.productCode = productCode;
-        this.busPartnerNumber = busPartnerNumber;
+       // this.busPartnerNumber = busPartnerNumber;
         this.projectName = projectName;
-        this.enquiryNo = new EnquiryNo();
-        this.loanEnquiryId = this.enquiryNo.getId();
+        this.projectDepartmentInitiator  = projectDepartmentInitiator;
+        this.monitoringDepartmentInitiator = monitoringDepartmentInitiator;
     }
+//
+//
+//    public LoanApplication(LocalDate loanEnquiryDate, Long loanEnquiryId, String loanContractId, UUID loanApplicant, String loanClass, String projectType, String financingType, String assistanceType, Double projectCapacity, String projectCapacityUnit, @Size(max = 100) String projectLocationState, @Size(max = 100) String projectDistrict, Integer tenorYear, Integer tenorMonth, Double projectCost, Double projectDebtAmount, Double equity, String projectAmountCurrency, Double expectedSubDebt, Double pfsDebtAmount, Double pfsSubDebtAmount, @Size(max = 100) String loanPurpose, @Size(max = 100) String leadFIName, Double leadFILoanAmount, Double expectedInterestRate, LocalDate scheduledCOD, @Size(max = 100) String promoterName, Double promoterNetWorthAmount, Double promoterPATAmount, @Size(max = 100) String promoterAreaOfBusinessNature, String rating, String promoterKeyDirector, String keyPromoter, Integer technicalStatus, Integer finalDecisionStatus, @Size(max = 100) String rejectionReason, LocalDate decisionDate, String userBPNumber, String groupCompany, String productCode, String busPartnerNumber, String projectName) {
+//
+//        this.loanEnquiryDate = loanEnquiryDate;
+//        this.loanContractId = loanContractId;
+//        this.loanApplicant = loanApplicant;
+//        this.loanClass = loanClass;
+//        this.projectType = projectType;
+//        this.financingType = financingType;
+//        this.assistanceType = assistanceType;
+//        this.projectCapacity = projectCapacity;
+//        this.projectCapacityUnit = projectCapacityUnit;
+//        this.projectLocationState = projectLocationState;
+//        this.projectDistrict = projectDistrict;
+//        this.tenorYear = tenorYear;
+//        this.tenorMonth = tenorMonth;
+//        this.projectCost = projectCost;
+//        this.projectDebtAmount = projectDebtAmount;
+//        this.equity = equity;
+//        this.projectAmountCurrency = projectAmountCurrency;
+//        this.expectedSubDebt = expectedSubDebt;
+//        this.pfsDebtAmount = pfsDebtAmount;
+//        this.pfsSubDebtAmount = pfsSubDebtAmount;
+//        this.loanPurpose = loanPurpose;
+//        this.leadFIName = leadFIName;
+//        this.leadFILoanAmount = leadFILoanAmount;
+//        this.expectedInterestRate = expectedInterestRate;
+//        this.scheduledCOD = scheduledCOD;
+//        this.promoterName = promoterName;
+//        this.promoterNetWorthAmount = promoterNetWorthAmount;
+//        this.promoterPATAmount = promoterPATAmount;
+//        this.promoterAreaOfBusinessNature = promoterAreaOfBusinessNature;
+//        this.rating = rating;
+//        this.promoterKeyDirector = promoterKeyDirector;
+//        this.keyPromoter = keyPromoter;
+//        this.technicalStatus = technicalStatus;
+//        this.functionalStatus = 01;
+//        this.finalDecisionStatus = finalDecisionStatus;
+//        this.rejectionReason = rejectionReason;
+//        this.decisionDate = decisionDate;
+//        this.userBPNumber = userBPNumber;
+//        this.groupCompany = groupCompany;
+//        this.productCode = productCode;
+//        this.busPartnerNumber = busPartnerNumber;
+//        this.projectName = projectName;
+//        this.enquiryNo = new EnquiryNo();
+//        this.loanEnquiryId = this.enquiryNo.getId();
+//    }
 
     public EnquiryNo getEnquiryNo() {
         return this.enquiryNo;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
+    public LocalDate getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(LocalDate createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public LocalTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getCreatedByUserName() {
+        return createdByUserName;
+    }
+
+    public void setCreatedByUserName(String createdByUserName) {
+        this.createdByUserName = createdByUserName;
+    }
+
+    public LocalDate getChangedOn() {
+        return changedOn;
+    }
+
+    public void setChangedOn(LocalDate changedOn) {
+        this.changedOn = changedOn;
+    }
+
+    public LocalTime getChangedAt() {
+        return changedAt;
+    }
+
+    public void setChangedAt(LocalTime changedAt) {
+        this.changedAt = changedAt;
+    }
+
+    public String getChangedByUserName() {
+        return changedByUserName;
+    }
+
+    public void setChangedByUserName(String changedByUserName) {
+        this.changedByUserName = changedByUserName;
+    }
+
+    public void setEnquiryNo(EnquiryNo enquiryNo) {
+        this.enquiryNo = enquiryNo;
+    }
+
     public LocalDate getLoanEnquiryDate() {
-        return this.loanEnquiryDate;
+        return loanEnquiryDate;
+    }
+
+    public void setLoanEnquiryDate(LocalDate loanEnquiryDate) {
+        this.loanEnquiryDate = loanEnquiryDate;
     }
 
     public Long getLoanEnquiryId() {
-        return this.loanEnquiryId;
+        return loanEnquiryId;
+    }
+
+    public void setLoanEnquiryId(Long loanEnquiryId) {
+        this.loanEnquiryId = loanEnquiryId;
     }
 
     public String getLoanContractId() {
-        return this.loanContractId;
+        return loanContractId;
+    }
+
+    public void setLoanContractId(String loanContractId) {
+        this.loanContractId = loanContractId;
     }
 
     public UUID getLoanApplicant() {
-        return this.loanApplicant;
+        return loanApplicant;
+    }
+
+    public void setLoanApplicant(UUID loanApplicant) {
+        this.loanApplicant = loanApplicant;
     }
 
     public String getLoanClass() {
-        return this.loanClass;
+        return loanClass;
+    }
+
+    public void setLoanClass(String loanClass) {
+        this.loanClass = loanClass;
     }
 
     public String getProjectType() {
-        return this.projectType;
+        return projectType;
+    }
+
+    public void setProjectType(String projectType) {
+        this.projectType = projectType;
     }
 
     public String getFinancingType() {
-        return this.financingType;
+        return financingType;
+    }
+
+    public void setFinancingType(String financingType) {
+        this.financingType = financingType;
     }
 
     public String getAssistanceType() {
-        return this.assistanceType;
+        return assistanceType;
+    }
+
+    public void setAssistanceType(String assistanceType) {
+        this.assistanceType = assistanceType;
     }
 
     public Double getProjectCapacity() {
-        return this.projectCapacity;
+        return projectCapacity;
+    }
+
+    public void setProjectCapacity(Double projectCapacity) {
+        this.projectCapacity = projectCapacity;
     }
 
     public String getProjectCapacityUnit() {
-        return this.projectCapacityUnit;
+        return projectCapacityUnit;
     }
 
-    public @Size(max = 100) String getProjectLocationState() {
-        return this.projectLocationState;
+    public void setProjectCapacityUnit(String projectCapacityUnit) {
+        this.projectCapacityUnit = projectCapacityUnit;
     }
 
-    public @Size(max = 100) String getProjectDistrict() {
-        return this.projectDistrict;
+    public String getProjectLocationState() {
+        return projectLocationState;
+    }
+
+    public void setProjectLocationState(String projectLocationState) {
+        this.projectLocationState = projectLocationState;
+    }
+
+    public String getProjectDistrict() {
+        return projectDistrict;
+    }
+
+    public void setProjectDistrict(String projectDistrict) {
+        this.projectDistrict = projectDistrict;
     }
 
     public Integer getTenorYear() {
-        return this.tenorYear;
+        return tenorYear;
+    }
+
+    public void setTenorYear(Integer tenorYear) {
+        this.tenorYear = tenorYear;
     }
 
     public Integer getTenorMonth() {
-        return this.tenorMonth;
+        return tenorMonth;
+    }
+
+    public void setTenorMonth(Integer tenorMonth) {
+        this.tenorMonth = tenorMonth;
     }
 
     public Double getProjectCost() {
-        return this.projectCost;
+        return projectCost;
+    }
+
+    public void setProjectCost(Double projectCost) {
+        this.projectCost = projectCost;
     }
 
     public Double getProjectDebtAmount() {
-        return this.projectDebtAmount;
+        return projectDebtAmount;
+    }
+
+    public void setProjectDebtAmount(Double projectDebtAmount) {
+        this.projectDebtAmount = projectDebtAmount;
     }
 
     public Double getEquity() {
-        return this.equity;
+        return equity;
+    }
+
+    public void setEquity(Double equity) {
+        this.equity = equity;
     }
 
     public String getProjectAmountCurrency() {
-        return this.projectAmountCurrency;
+        return projectAmountCurrency;
+    }
+
+    public void setProjectAmountCurrency(String projectAmountCurrency) {
+        this.projectAmountCurrency = projectAmountCurrency;
     }
 
     public Double getExpectedSubDebt() {
-        return this.expectedSubDebt;
+        return expectedSubDebt;
+    }
+
+    public void setExpectedSubDebt(Double expectedSubDebt) {
+        this.expectedSubDebt = expectedSubDebt;
     }
 
     public Double getPfsDebtAmount() {
-        return this.pfsDebtAmount;
+        return pfsDebtAmount;
+    }
+
+    public void setPfsDebtAmount(Double pfsDebtAmount) {
+        this.pfsDebtAmount = pfsDebtAmount;
     }
 
     public Double getPfsSubDebtAmount() {
-        return this.pfsSubDebtAmount;
+        return pfsSubDebtAmount;
     }
 
-    public @Size(max = 100) String getLoanPurpose() {
-        return this.loanPurpose;
+    public void setPfsSubDebtAmount(Double pfsSubDebtAmount) {
+        this.pfsSubDebtAmount = pfsSubDebtAmount;
     }
 
-    public @Size(max = 100) String getLeadFIName() {
-        return this.leadFIName;
+    public String getLoanPurpose() {
+        return loanPurpose;
+    }
+
+    public void setLoanPurpose(String loanPurpose) {
+        this.loanPurpose = loanPurpose;
+    }
+
+    public String getLeadFIName() {
+        return leadFIName;
+    }
+
+    public void setLeadFIName(String leadFIName) {
+        this.leadFIName = leadFIName;
     }
 
     public Double getLeadFILoanAmount() {
-        return this.leadFILoanAmount;
+        return leadFILoanAmount;
+    }
+
+    public void setLeadFILoanAmount(Double leadFILoanAmount) {
+        this.leadFILoanAmount = leadFILoanAmount;
     }
 
     public Double getExpectedInterestRate() {
-        return this.expectedInterestRate;
+        return expectedInterestRate;
+    }
+
+    public void setExpectedInterestRate(Double expectedInterestRate) {
+        this.expectedInterestRate = expectedInterestRate;
     }
 
     public LocalDate getScheduledCOD() {
-        return this.scheduledCOD;
+        return scheduledCOD;
     }
 
-    public @Size(max = 100) String getPromoterName() {
-        return this.promoterName;
+    public void setScheduledCOD(LocalDate scheduledCOD) {
+        this.scheduledCOD = scheduledCOD;
+    }
+
+    public String getPromoterName() {
+        return promoterName;
+    }
+
+    public void setPromoterName(String promoterName) {
+        this.promoterName = promoterName;
     }
 
     public Double getPromoterNetWorthAmount() {
-        return this.promoterNetWorthAmount;
+        return promoterNetWorthAmount;
+    }
+
+    public void setPromoterNetWorthAmount(Double promoterNetWorthAmount) {
+        this.promoterNetWorthAmount = promoterNetWorthAmount;
     }
 
     public Double getPromoterPATAmount() {
-        return this.promoterPATAmount;
+        return promoterPATAmount;
     }
 
-    public @Size(max = 100) String getPromoterAreaOfBusinessNature() {
-        return this.promoterAreaOfBusinessNature;
+    public void setPromoterPATAmount(Double promoterPATAmount) {
+        this.promoterPATAmount = promoterPATAmount;
+    }
+
+    public String getPromoterAreaOfBusinessNature() {
+        return promoterAreaOfBusinessNature;
+    }
+
+    public void setPromoterAreaOfBusinessNature(String promoterAreaOfBusinessNature) {
+        this.promoterAreaOfBusinessNature = promoterAreaOfBusinessNature;
     }
 
     public String getRating() {
-        return this.rating;
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
     public String getPromoterKeyDirector() {
-        return this.promoterKeyDirector;
+        return promoterKeyDirector;
+    }
+
+    public void setPromoterKeyDirector(String promoterKeyDirector) {
+        this.promoterKeyDirector = promoterKeyDirector;
     }
 
     public String getKeyPromoter() {
-        return this.keyPromoter;
+        return keyPromoter;
+    }
+
+    public void setKeyPromoter(String keyPromoter) {
+        this.keyPromoter = keyPromoter;
     }
 
     public Integer getTechnicalStatus() {
-        return this.technicalStatus;
+        return technicalStatus;
+    }
+
+    public void setTechnicalStatus(Integer technicalStatus) {
+        this.technicalStatus = technicalStatus;
     }
 
     public Integer getFunctionalStatus() {
-        return this.functionalStatus;
+        return functionalStatus;
+    }
+
+    public void setFunctionalStatus(Integer functionalStatus) {
+        this.functionalStatus = functionalStatus;
     }
 
     public Integer getFinalDecisionStatus() {
-        return this.finalDecisionStatus;
+        return finalDecisionStatus;
+    }
+
+    public void setFinalDecisionStatus(Integer finalDecisionStatus) {
+        this.finalDecisionStatus = finalDecisionStatus;
+    }
+
+    public String getRejectionReason() {
+        return rejectionReason;
+    }
+
+    public void setRejectionReason(String rejectionReason) {
+        this.rejectionReason = rejectionReason;
     }
 
     public LocalDateTime getRejectionDate() {
         return rejectionDate;
     }
 
+    public void setRejectionDate(LocalDateTime rejectionDate) {
+        this.rejectionDate = rejectionDate;
+    }
+
+    public LocalDate getDecisionDate() {
+        return decisionDate;
+    }
+
+    public void setDecisionDate(LocalDate decisionDate) {
+        this.decisionDate = decisionDate;
+    }
+
     public String getUserBPNumber() {
         return userBPNumber;
     }
 
+    public void setUserBPNumber(String userBPNumber) {
+        this.userBPNumber = userBPNumber;
+    }
+
     public String getGroupCompany() {
-        return this.groupCompany;
+        return groupCompany;
+    }
+
+    public void setGroupCompany(String groupCompany) {
+        this.groupCompany = groupCompany;
     }
 
     public String getProductCode() {
-        return this.productCode;
+        return productCode;
     }
 
-    public String getbusPartnerNumber() {
-        return this.busPartnerNumber;
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
     }
 
-    public @Size(max = 100) String getRejectionReason() {
-        return this.rejectionReason;
+    public String getBusPartnerNumber() {
+        return busPartnerNumber;
     }
 
-    public LocalDate getDecisionDate() {
-        return this.decisionDate;
+    public void setBusPartnerNumber(String busPartnerNumber) {
+        this.busPartnerNumber = busPartnerNumber;
     }
 
     public String getProjectName() {
         return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public String getProjectDepartmentInitiator() {
+        return projectDepartmentInitiator;
+    }
+
+    public void setProjectDepartmentInitiator(String projectDepartmentInitiator) {
+        this.projectDepartmentInitiator = projectDepartmentInitiator;
+    }
+
+    public String getMonitoringDepartmentInitiator() {
+        return monitoringDepartmentInitiator;
+    }
+
+    public void setMonitoringDepartmentInitiator(String monitoringDepartmentInitiator) {
+        this.monitoringDepartmentInitiator = monitoringDepartmentInitiator;
     }
 }

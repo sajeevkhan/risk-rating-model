@@ -5,44 +5,70 @@
 
         <!-- functionalStatus Column -->
         <ng-container matColumnDef="functionalStatusDescription">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="10">Status</mat-header-cell>
 
-            <mat-cell *matCellDef="let enquiry">
+            <mat-cell *matCellDef="let enquiry" fxFlex="10">
                 <span class="text-truncate">{{ enquiry.functionalStatusDescription }}</span>
             </mat-cell>
         </ng-container>
 
         <!-- createdOn Column -->
         <ng-container matColumnDef="createdOn">
-            <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="10">Enquiry Date</mat-header-cell>
-            <mat-cell *matCellDef="let enquiry" fxFlex="10">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="hidden">Enquiry Date</mat-header-cell>
+            <mat-cell *matCellDef="let enquiry" class="hidden">
                 <span class="text-truncate">{{ enquiry.createdOn | date: 'dd/MM/yyyy' }}</span>
             </mat-cell>
         </ng-container>
 
+        <!--&lt;!&ndash; enquiryNo Column &ndash;&gt;-->
+        <!--<ng-container matColumnDef="enquiryNumber">-->
+            <!--<mat-header-cell *matHeaderCellDef mat-sort-header class="hidden">Enquiry No.</mat-header-cell>-->
+            <!--<mat-cell *matCellDef="let enquiry" class="hidden">-->
+                <!--<span class="text-truncate">{{ enquiry.enquiryNumber }}</span>-->
+            <!--</mat-cell>-->
+        <!--</ng-container>-->
+
         <!-- enquiryNo Column -->
         <ng-container matColumnDef="enquiryNumber">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="hidden">Enquiry No.</mat-header-cell>
-            <mat-cell *matCellDef="let enquiry" class="hidden">
+            <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="10">Enquiry No.</mat-header-cell>
+            <mat-cell *matCellDef="let enquiry" fxFlex="10">
                 <span class="text-truncate">{{ enquiry.enquiryNumber }}</span>
             </mat-cell>
         </ng-container>
 
+
         <!-- loanContractId Column -->
         <ng-container matColumnDef="loanContractId">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="hidden">Loan Contract</mat-header-cell>
-            <mat-cell *matCellDef="let enquiry" class="hidden">
+            <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="10">Loan Contract</mat-header-cell>
+            <mat-cell *matCellDef="let enquiry" fxFlex="10">
                 <span class="text-truncate">{{ enquiry.loanContractId }}</span>
             </mat-cell>
         </ng-container>
 
         <!-- busPartnerNumber Column -->
         <ng-container matColumnDef="busPartnerNumber">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>BP Code</mat-header-cell>
-            <mat-cell *matCellDef="let enquiry">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="hidden">BP Code</mat-header-cell>
+            <mat-cell *matCellDef="let enquiry" class="hidden">
                 <span class="text-truncate">{{ enquiry.busPartnerNumber }}</span>
             </mat-cell>
         </ng-container>
+
+        <!-- Project Officer Column -->
+        <ng-container matColumnDef="projectDepartmentInitiator">
+            <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="15">Project Officer</mat-header-cell>
+            <mat-cell *matCellDef="let enquiry" fxFlex="15">
+                <span class="text-truncate">{{ enquiry.projectDepartmentInitiator }}</span>
+            </mat-cell>
+        </ng-container>
+
+        <!-- Monitoring Officer Column -->
+        <ng-container matColumnDef="monitoringDepartmentInitiator">
+            <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="15">Monitoring Officer</mat-header-cell>
+            <mat-cell *matCellDef="let enquiry" fxFlex="15">
+                <span class="text-truncate">{{ enquiry.monitoringDepartmentInitiator }}</span>
+            </mat-cell>
+        </ng-container>
+
 
         <!-- projectName Column -->
         <ng-container matColumnDef="projectName">

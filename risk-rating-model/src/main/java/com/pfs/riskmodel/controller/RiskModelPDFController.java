@@ -2,10 +2,16 @@ package com.pfs.riskmodel.controller;
 
 import com.pfs.riskmodel.config.ApiController;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
+import com.pfs.riskmodel.domain.WorkflowAssignment;
 import com.pfs.riskmodel.pdfservice.RiskModelPDFBuilder;
 import com.pfs.riskmodel.pdfservice.RiskModelPDFBuilderDebugMode;
 import com.pfs.riskmodel.repository.RiskModelTemplateRepository;
+import com.pfs.riskmodel.repository.WorkflowAssignmentRepository;
 import lombok.RequiredArgsConstructor;
+import org.activiti.engine.ProcessEngine;
+import org.activiti.engine.TaskService;
+import org.activiti.engine.task.Task;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +33,10 @@ public class RiskModelPDFController {
 
     private final RiskModelPDFBuilderDebugMode riskModelPDFBuilderDebugMode;
 
+    private final WorkflowAssignmentRepository workflowAssignmentRepository;
+
+    @Autowired
+    ProcessEngine processEngine;
     /**
      * Handle request to download a RISK MODEL Evaluation as a PDF Document
      */
@@ -34,7 +44,12 @@ public class RiskModelPDFController {
     @GetMapping(value = "/riskModelPDF")
     public ResponseEntity getPdf(@RequestParam(value = "id", required = true) Long id) throws Exception {
         RiskModelTemplate riskModelTemplate = riskModelTemplateRepository.getOne(id);
-        ByteArrayOutputStream stream = riskModelPDFBuilder.buildPdfDocument(riskModelTemplate);
+        WorkflowAssignment workflowAssignment = workflowAssignmentRepository.findByPurpose(riskModelTemplate.getPurpose());
+
+        TaskService taskService = processEngine.getTaskService();
+        Task task = taskService.createTaskQuery().includeProcessVariables().processInstanceId(riskModelTemplate.getProcessInstanceId()).singleResult();
+
+        ByteArrayOutputStream stream = riskModelPDFBuilder.buildPdfDocument(riskModelTemplate,workflowAssignment, task);
         return streamToResponseEntity(stream, riskModelTemplate);
     }
 
@@ -44,9 +59,15 @@ public class RiskModelPDFController {
         httpRequest.getUserPrincipal().toString();
 
         RiskModelTemplate riskModelTemplate = riskModelTemplateRepository.getOne(id);
-        ByteArrayOutputStream stream = riskModelPDFBuilderDebugMode.buildPdfDocument(riskModelTemplate);
+        WorkflowAssignment workflowAssignment = workflowAssignmentRepository.findByPurpose(riskModelTemplate.getPurpose());
+
+        TaskService taskService = processEngine.getTaskService();
+        Task task = taskService.createTaskQuery().includeProcessVariables().processInstanceId(riskModelTemplate.getProcessInstanceId()).singleResult();
+
+        ByteArrayOutputStream stream = riskModelPDFBuilderDebugMode.buildPdfDocument(riskModelTemplate , workflowAssignment,task);
         return streamToResponseEntity(stream,riskModelTemplate);
     }
+
 
     public ResponseEntity streamToResponseEntity(ByteArrayOutputStream stream, RiskModelTemplate riskModelTemplate){
         HttpHeaders responseHeader = new HttpHeaders();

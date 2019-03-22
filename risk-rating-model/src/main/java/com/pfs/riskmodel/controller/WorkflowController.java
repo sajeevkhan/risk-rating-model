@@ -80,7 +80,7 @@ public class WorkflowController {
         workflowTaskDTO.setProjectType(variables.get("projectType").toString());
         workflowTaskDTO.setRiskLevel(variables.get("riskLevel").toString());
         workflowTaskDTO.setRiskModelId(variables.get("riskModelId").toString());
-        workflowTaskDTO.setRequestedBy(variables.get("senderUser").toString());
+        workflowTaskDTO.setRequestedBy(variables.get("initiatorName").toString());
 
         return workflowTaskDTO;
 

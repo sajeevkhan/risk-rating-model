@@ -73,31 +73,48 @@ public class RiskModelService implements IRiskModelService {
         User user = welcomeService.getUser();
         String userFullName = user.getFirstName() + " " + user.getLastName();
 
-        //Determine Approver
+        if (riskModelTemplate.getCreatedBy() == null)
+            riskModelTemplate.setCreatedBy(user.getFirstName() + user.getLastName());
+
+        if (riskModelTemplate.getCreatedByUserId() == null)
+            riskModelTemplate.setCreatedByUserId(user.getEmail());
+
+
+        //Determine Approvers
         WorkflowAssignment workflowAssignment = workflowAssignmentRepository.findByPurpose(riskModelTemplate.getPurpose());
         if (workflowAssignment != null){
-            User approver = new User();
-            EmailId emailId = new EmailId(workflowAssignment.getApproverEmailId());
-            welcomeService.getUser();
-            approver = welcomeService.getUserByEmail(emailId);
-            if (approver != null)
-                riskModelTemplate.setReviewedBy(approver.getFirstName() + " " + approver.getLastName());
+
+            EmailId firstLevelApproverEmail = new EmailId(workflowAssignment.getFirstLevelApproverEmailId());
+            EmailId secondLevelApproverEmail = new EmailId(workflowAssignment.getSecondLevelApproverEmailId());
+            EmailId thirdLevelApproverEmail = new EmailId(workflowAssignment.getThirdLevelApproverEmailId());
+
+            User firstLevelApprover = welcomeService.getUserByEmail(firstLevelApproverEmail);
+            User secondLevelApprover = welcomeService.getUserByEmail(secondLevelApproverEmail);
+            User thirdLevelApprover = welcomeService.getUserByEmail(thirdLevelApproverEmail);
+
+
+            if (firstLevelApprover != null)
+                riskModelTemplate.setFirstLevelApprover(firstLevelApprover.getFirstName() + " " + firstLevelApprover.getLastName());
+            if (secondLevelApprover != null)
+                riskModelTemplate.setSecondLevelApprover(secondLevelApprover.getFirstName() + " " + secondLevelApprover.getLastName());
+            if (thirdLevelApprover != null)
+                riskModelTemplate.setThirdLevelApprover(thirdLevelApprover.getFirstName() + " " + thirdLevelApprover.getLastName());
         }
 
         //Set Created By
-        if (httpServletRequest.getUserPrincipal()!= null){
-            //   User user = welcomeService.getUser();
-            if (user != null)
-                riskModelTemplate.setCreatedBy(user.getFirstName() + " " + user.getLastName());
+        if (riskModelTemplate.getCreatedBy() == null) {
+            if (httpServletRequest.getUserPrincipal() != null) {
+                //   User user = welcomeService.getUser();
+                if (user != null)
+                    riskModelTemplate.setCreatedBy(user.getFirstName() + " " + user.getLastName());
+            }
         }
-
-
 
 
         if (riskModelTemplate.getId() != null) {
             existingRiskModel = riskModelTemplateRepository.getOne(riskModelTemplate.getId());
+            riskModelTemplate.setCurrentWorkFlowLevel(existingRiskModel.getCurrentWorkFlowLevel());
            // existingRiskModel = riskModelTemplate.copy(existingRiskModel);
-
         }
 
 
@@ -123,6 +140,7 @@ public class RiskModelService implements IRiskModelService {
 
         if (riskModelTemplate.getWorkflowStatus() == null) {
             riskModelTemplate.setWorkflowStatus(workflowStatusRepository.findByCode("01"));
+            riskModelTemplate.setWorkflowStatusCode("01");
         }
 
 

@@ -42,7 +42,10 @@ export class LoanEnquiryService {
               'rating': '',
               'promoterKeyDirector': '',
               'functionalStatus': 1,
-              'projectName': 'ABC Wind Mill Project '
+              'projectName': 'ABC Wind Mill Project ',
+              'projectDepartmentInitiator': 'Project Officer', 
+               'monitoringDepartmentInitiator': 'Monitoring Officer'
+               
            },
            'partner': {
               'id': 'd5a00aae-20fd-41cf-bede-496c0c93d5d8',
@@ -108,7 +111,9 @@ export class LoanEnquiryService {
               'rating': '99',
               'promoterKeyDirector': 'Denny',
               'functionalStatus': 9,
-              'projectName': 'XYZ Biomass Project'
+              'projectName': 'XYZ Biomass Project',
+               'projectDepartmentInitiator': 'Project Officer',
+               'monitoringDepartmentInitiator': 'Monitoring Officer'
            },
            'partner': {
               'id': 'd5a00aae-20fd-41cf-bede-496c0c93d5d8',
@@ -165,7 +170,9 @@ export class LoanEnquiryService {
               'rating': '999999999999999999999999999999999',
               'promoterKeyDirector': 'Denny',
               'functionalStatus': 1,
-              'projectName': 'AM Infra Toll Road & Co'
+              'projectName': 'AM Infra Toll Road & Co',
+               'projectDepartmentInitiator': 'Project Officer',
+               'monitoringDepartmentInitiator': 'Monitoring Officer'
            },
            'partner': {
               'id': 'd5a00aae-20fd-41cf-bede-496c0c93d5d8',
@@ -231,7 +238,9 @@ export class LoanEnquiryService {
               'rating': 'AAA',
               'promoterKeyDirector': 'LTP key',
               'functionalStatus': 1,
-              'projectName': 'LTP Solar Plants '
+              'projectName': 'LTP Solar Plants ',
+               'projectDepartmentInitiator': 'Project Officer',
+               'monitoringDepartmentInitiator': 'Monitoring Officer'
            },
            'partner': {
               'id': '511400eb-46fc-4ed3-9be4-4c4ed3be3a85',
@@ -298,7 +307,9 @@ export class LoanEnquiryService {
               'userBPNumber': '50000284',
               'productCode': '301',
               'busPartnerNumber': '10000872',
-              'projectName': 'NL Hydro Power'
+              'projectName': 'NL Hydro Power',
+               'projectDepartmentInitiator': 'Project Officer',
+               'monitoringDepartmentInitiator': 'Monitoring Officer'
            },
            'partner': {
               'id': '9273d432-9367-48d0-9334-91afd0ec7c5c',
@@ -367,7 +378,9 @@ export class LoanEnquiryService {
               'userBPNumber': '50000284',
               'productCode': '301',
               'busPartnerNumber': '10000871',
-              'projectName': 'Radiant Energy'
+              'projectName': 'Radiant Energy',
+               'projectDepartmentInitiator': 'Project Officer',
+               'monitoringDepartmentInitiator': 'Monitoring Officer'
            },
            'partner': {
               'id': 'e8e0ed63-14d1-4f9f-b227-b1185b9128a2',
@@ -436,7 +449,9 @@ export class LoanEnquiryService {
               'userBPNumber': '50000284',
               'productCode': '303',
               'busPartnerNumber': '10000874',
-              'projectName': 'Wind Power Mill & Co'
+              'projectName': 'Wind Power Mill & Co',
+               'projectDepartmentInitiator': 'Project Officer',
+               'monitoringDepartmentInitiator': 'Monitoring Officer'
            },
            'partner': {
               'id': '511400eb-46fc-4ed3-9be4-4c4ed3be3a85',
@@ -504,7 +519,9 @@ export class LoanEnquiryService {
               'userBPNumber': '50000284',
               'productCode': '301',
               'busPartnerNumber': '10000876',
-              'projectName': 'Venture Transmission Infra'
+              'projectName': 'Venture Transmission Infra',
+               'projectDepartmentInitiator': 'Project Officer',
+               'monitoringDepartmentInitiator': 'Monitoring Officer'
            },
            'partner': {
               'id': 'dc46e694-83f8-49b0-901b-f693911b2952',
@@ -570,7 +587,9 @@ export class LoanEnquiryService {
               'functionalStatus': 2,
               'userBPNumber': '50000284',
               'productCode': '301',
-              'projectName': 'Sonic Transmssion'
+              'projectName': 'Sonic Transmssion',
+               'projectDepartmentInitiator': 'Project Officer',
+               'monitoringDepartmentInitiator': 'Monitoring Officer'
            },
            'partner': {
               'id': 'e8e0ed63-14d1-4f9f-b227-b1185b9128a2',

@@ -21,36 +21,41 @@
             <mat-card style="margin-bottom: 15px;" class="SubTabs">
                 <div fxLayout="row" class="bottomSpace">
 
-                    <mat-form-field fxFlex="25">
+                    <mat-form-field fxFlex="20">
                         <input matInput placeholder="Project Name" [(ngModel)]="riskModelTemplate.projectName">
                         <mat-icon matSuffix class="mr-8">edit</mat-icon>
                     </mat-form-field>
 
-                    <mat-form-field fxFlex="25">
+                    <mat-form-field fxFlex="20">
                         <input matInput placeholder="Loan Number" [(ngModel)]="riskModelTemplate.loanNumber" readonly>
                     </mat-form-field>
 
-                    <mat-form-field fxFlex="25">
+                    <mat-form-field fxFlex="20">
                         <input matInput placeholder="Risk Model Id" [(ngModel)]="riskModelTemplate.id" readonly>
                     </mat-form-field>
 
-                    <mat-form-field fxFlex="25">
-                        <input matInput placeholder="Created By" [(ngModel)]="riskModelTemplate.createdBy" readonly>
+                    <mat-form-field fxFlex="20">
+                    <input matInput placeholder="First Level Approver" [(ngModel)]="riskModelTemplate.firstLevelApprover" readonly>
                     </mat-form-field>
+
+                    <mat-form-field fxFlex="20">
+                        <input matInput placeholder="Latest Reviewer" [(ngModel)]="riskModelTemplate.reviewedBy" readonly>
+                    </mat-form-field>
+
                 </div>
 
                 <div fxLayout="row" class="bottomSpace">
-                    <mat-form-field fxFlex="25">
+                    <mat-form-field fxFlex="20">
                         <input matInput placeholder="Project Type" [(ngModel)]="riskModelTemplate.riskProjectTypeDescription"
                             readonly>
                     </mat-form-field>
 
-                    <mat-form-field fxFlex="25">
+                    <mat-form-field fxFlex="20">
                         <input matInput placeholder="Loan Amount in Crores" [(ngModel)]="riskModelTemplate.loanAmountInCrores"
                             readonly>
                     </mat-form-field>
 
-                    <mat-form-field fxFlex="25">
+                    <mat-form-field fxFlex="20">
                         <mat-select placeholder="Department" [(ngModel)]="riskModelTemplate.purposeCode" required>
                             <mat-option *ngFor="let purpose of purposes" [value]="purpose.code">
                                 {{ purpose.description }}
@@ -58,26 +63,35 @@
                         </mat-select>
                     </mat-form-field>
 
-                    <mat-form-field fxFlex="25">
-                        <input matInput placeholder="Reviewed By" [(ngModel)]="riskModelTemplate.reviewedBy" readonly>
+                    <mat-form-field fxFlex="20">
+                        <input matInput placeholder="Second Level Approver" [(ngModel)]="riskModelTemplate.secondLevelApprover" readonly>
                     </mat-form-field>
+
+                    <mat-form-field fxFlex="20">
+                        <input matInput placeholder="Workflow Status" [(ngModel)]="riskModelTemplate.workflowStatusDescription" readonly>
+                    </mat-form-field>
+
                 </div>
 
                 <div fxLayout="row" class="bottomSpace">
-                    <mat-form-field fxFlex="25">
-                        <input matInput placeholder="Risk Level Type" [(ngModel)]="riskModelTemplate.projectRiskLevelDescription"
+                    <mat-form-field fxFlex="20">
+                        <input matInput placeholder="Phase" [(ngModel)]="riskModelTemplate.projectRiskLevelDescription"
                             readonly>
                     </mat-form-field>
 
-                    <mat-form-field fxFlex="25">
+                    <mat-form-field fxFlex="20">
                         <input matInput placeholder="Rating Date" [ngModel]="riskModelTemplate.ratingDate | date: 'dd/MM/yyyy'"
                             (ngModelChange)="riskModelTemplate.ratingDate = $event" readonly>
                     </mat-form-field>
 
-                    <mat-form-field fxFlex="25">
-                        <input matInput placeholder="Workflow Status" [(ngModel)]="riskModelTemplate.workflowStatusDescription"
-                            readonly>
+                    <mat-form-field fxFlex="20">
+                        <input matInput placeholder="Initiated By" [(ngModel)]="riskModelTemplate.createdBy" readonly>
                     </mat-form-field>
+
+                    <mat-form-field fxFlex="20">
+                        <input matInput placeholder="Third Level Approver" [(ngModel)]="riskModelTemplate.thirdLevelApprover" readonly>
+                    </mat-form-field>
+
                 </div>
             </mat-card>
 
