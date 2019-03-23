@@ -24,6 +24,7 @@ public class RenewablesOperatonalRiskTypes {
         riskTypeDTO.setDescription("Operational Phase Risk");
         riskTypeDTO.setScore(0D);
         riskTypeDTO.setGrade(" ");
+        riskTypeDTO.setIsAccountConductRiskComponentPresent(true);
 
 
         List<RiskComponentDTO> riskComponentDTOs = new ArrayList<>();

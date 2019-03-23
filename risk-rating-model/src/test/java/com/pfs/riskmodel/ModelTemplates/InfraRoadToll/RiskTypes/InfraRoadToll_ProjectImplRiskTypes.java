@@ -25,6 +25,7 @@ public class InfraRoadToll_ProjectImplRiskTypes {
         riskTypeDTO.setDescription("Project Implementation Risk");
         riskTypeDTO.setScore(0D);
         riskTypeDTO.setGrade(" ");
+        riskTypeDTO.setIsAccountConductRiskComponentPresent(false);
 
 
         List<RiskComponentDTO> riskComponentDTOs = new ArrayList<>();

@@ -42,6 +42,7 @@ public class RenewablePostProjectRiskTypes {
         managementRiskComponent = RPP_ManagementRiskRiskComponentDTO.managementRiskComponentDTO();
 
         //  Risk Component 5 : Account Conduct Risk - 13%
+        riskTypeDTO.setIsAccountConductRiskComponentPresent(true);
         ROP_BP_AccountConductRiskDTO accountConductRiskDTO = new ROP_BP_AccountConductRiskDTO();
         RiskComponentDTO accountConductRiskComponentDTO = new RiskComponentDTO();
         accountConductRiskComponentDTO = accountConductRiskDTO.getAccountConductRiskDTO();

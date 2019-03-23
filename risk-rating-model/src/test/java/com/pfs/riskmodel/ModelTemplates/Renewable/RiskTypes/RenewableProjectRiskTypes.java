@@ -23,6 +23,7 @@ public class RenewableProjectRiskTypes {
         riskTypeDTO.setDescription("Project Implementation Risk");
         riskTypeDTO.setScore(0D);
         riskTypeDTO.setGrade(" ");
+        riskTypeDTO.setIsAccountConductRiskComponentPresent(false);
 
 
 

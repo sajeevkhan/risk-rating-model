@@ -20,6 +20,7 @@ public class InfraRoadHAM_PostProjectImplRiskTypes {
         riskTypeDTO.setDescription("Post Project Implementation Risk");
         riskTypeDTO.setScore(0D);
         riskTypeDTO.setGrade(" ");
+        riskTypeDTO.setIsAccountConductRiskComponentPresent(true);
 
 
 

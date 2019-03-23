@@ -26,6 +26,7 @@ public class HoldingCompanyRiskTypes {
         riskTypeDTO.setDescription("Holding Company Risk");
         riskTypeDTO.setScore(0D);
         riskTypeDTO.setGrade(" ");
+        riskTypeDTO.setIsAccountConductRiskComponentPresent(false);
 
 
 

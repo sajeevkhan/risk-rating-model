@@ -40,6 +40,9 @@ public class RiskType extends AuditModel  {
     @Nullable
     private String grade;
 
+    @Nullable
+    private Boolean isAccountConductRiskNotApplicable;
+
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
     @JoinColumn(name="riskType__id",referencedColumnName = "id")
