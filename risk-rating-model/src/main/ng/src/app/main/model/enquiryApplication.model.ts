@@ -39,8 +39,8 @@ export class EnquiryApplicationModel {
         this.projectLocationState = _enquiryApplication.loanApplication.projectLocationState;
         this.projectName = _enquiryApplication.loanApplication.projectName;
         this.projectType = _enquiryApplication.loanApplication.projectType;
-        this.projectDepartmentInitiator = _enquiryApplication.loanApplication.projectDepartmentInitiator;
-        this.monitoringDepartmentInitiator = _enquiryApplication.loanApplication.monitoringDepartmentInitiator;
+        this.projectDepartmentInitiator = _enquiryApplication.loanApplication.projectDepartmentInitiator || '';
+        this.monitoringDepartmentInitiator = _enquiryApplication.loanApplication.monitoringDepartmentInitiator || '';
 
     }
     
