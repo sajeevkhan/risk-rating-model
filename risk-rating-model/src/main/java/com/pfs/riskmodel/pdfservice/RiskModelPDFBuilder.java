@@ -85,6 +85,10 @@ public class RiskModelPDFBuilder {
             // Component, Factors, Sub Factors and Attribtues
             for (RiskComponent riskComponent: riskType.getRiskComponents()){
 
+                // Skip Component if it not applicable: E.g. Account Conduct Risk
+                if (riskComponent.getIsApplicable() == false)
+                    continue;
+
                 RiskModelPDFComponentTable riskModelPDFComponentTable = new RiskModelPDFComponentTable();
                 riskModelPDFComponentTable.buildRiskComponentTable(doc,riskModelTemplate,riskComponent);
             }

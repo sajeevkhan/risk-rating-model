@@ -18,7 +18,7 @@ public class CheckServiceResult {
         if (validationResult.isFailed()) {
 
             Check.raiseError( validationResult.getObject(), "Validation.Error",
-                                validationResult.getAttributeName(), validationResult.getValue()   );
+                                validationResult.getAttributeName(), validationResult.getValue(), validationResult.getMessage()   );
 
 
         }
@@ -27,14 +27,18 @@ public class CheckServiceResult {
 
             if (validationResult.getAttributeName() == "Workflow.NotStarted") {
                 Check.raiseError(validationResult.getObject(), "Workflow.NotStarted",
-                        validationResult.getAttributeName(), validationResult.getValue());
+                        validationResult.getAttributeName(), validationResult.getValue(), validationResult.getMessage());
+
+            }
+            if (validationResult.getAttributeName() == "Workflow.Error") {
+                Check.raiseError(validationResult.getObject(), "Workflow.Error",
+                        validationResult.getAttributeName(), validationResult.getValue(), validationResult.getMessage());
 
             }
 
-
             if (validationResult.getAttributeName() == "Workflow.Completed") {
                 Check.raiseError(validationResult.getObject(), "Workflow.Completed",
-                        validationResult.getAttributeName(), validationResult.getValue());
+                        validationResult.getAttributeName(), validationResult.getValue(), validationResult.getMessage());
 
             }
 

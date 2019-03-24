@@ -20,4 +20,7 @@ public class ValidationResult {
     private  boolean notFound;
     private  boolean workflowError;
 
+    private String message;
+
+
 }

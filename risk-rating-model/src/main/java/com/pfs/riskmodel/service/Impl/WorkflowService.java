@@ -75,7 +75,7 @@ public class WorkflowService implements IWorkflowService {
         if (action != 1) {
             validationResult = checkWorkflow(riskModelTemplate);
             if (riskModelTemplate.getProcessInstanceId() == null) {
-                validationResult = getWorkflowValidation(true,"Workflow.NotStarted",riskModelTemplate.getId().toString());
+                validationResult = getWorkflowValidation(true,"Workflow.NotStarted",riskModelTemplate.getId().toString(),"Workflow Poress Instance in NULL for Risk Model");
                 result.put("ValidationResult", validationResult);
                 return result;
             }
@@ -90,7 +90,7 @@ public class WorkflowService implements IWorkflowService {
                     if (user != null)
                         riskModelTemplate.setCreatedBy(user.getFirstName() + " " + user.getLastName());
                 }
-                validationResult = getWorkflowValidation(false, "Workflow.NotStarted", riskModelTemplate.getId().toString());
+                validationResult = getWorkflowValidation(false, "Workflow.NotStarted", riskModelTemplate.getId().toString()," ");
                 result.put("ValidationResult", validationResult);
 
                 if (riskModelTemplate.getWorkflowStatus() == null) {
@@ -163,12 +163,24 @@ public class WorkflowService implements IWorkflowService {
         Map<String, Object> variables = new HashMap<>();
         variables = prepareVariables(riskModelTemplate,httpServletRequest);
         riskModelTemplate.setCurrentWorkFlowLevel(1);
+        try {
+
 
         runtimeService = processEngine.getRuntimeService();
         ProcessInstance processInstance = runtimeService
                 .startProcessInstanceByKey("RiskModel_v3.2", variables);
 
         riskModelTemplate.setProcessInstanceId(processInstance.getProcessInstanceId());
+
+        } catch (Exception ex) {
+            validationResult =
+                    getWorkflowValidation(true,"Workflow.Error",riskModelTemplate.getId().toString(), ex.getMessage());
+            output.put("ValidationResult", validationResult);
+            return output;
+
+        }
+
+
         // Set Status as - "Sent for 1st Level Approval"
         riskModelTemplate.setWorkflowStatus( workflowStatusRepository.findByCode("02") );
         riskModelTemplate.setWorkflowStatusCode(workflowStatusRepository.findByCode("02").getCode());
@@ -236,18 +248,28 @@ public class WorkflowService implements IWorkflowService {
 
         if (task == null) {
             validationResult =
-                    getWorkflowValidation(true,"Workflow.Completed",riskModelTemplate.getId().toString());
+                    getWorkflowValidation(true,"Workflow.Completed",riskModelTemplate.getId().toString(), "Workflow Task is NULL for RiskModel");
             output.put("ValidationResult", validationResult);
             return output;
         }else {
             validationResult =
-                    getWorkflowValidation(false,"Workflow.Completed",riskModelTemplate.getId().toString());
+                    getWorkflowValidation(false,"Workflow.Completed",riskModelTemplate.getId().toString(), " ");
             output.put("ValidationResult", validationResult);
         }
 
         System.out.println("--------------- Workflow Task Execution  Started @ : " + DateTime.now());
-        taskService.complete(task.getId(),variables);
-        System.out.println("--------------- Workflow Task Execution Finished @ : " + DateTime.now());
+
+        try {
+            taskService.complete(task.getId(), variables);
+        }
+         catch (Exception ex) {
+            validationResult =
+                    getWorkflowValidation(true,"Workflow.Error",riskModelTemplate.getId().toString(), ex.getMessage());
+            output.put("ValidationResult", validationResult);
+            return output;
+
+         }
+         System.out.println("--------------- Workflow Task Execution Finished @ : " + DateTime.now());
 
 
         // Set the New Status After Approval
@@ -331,17 +353,25 @@ public class WorkflowService implements IWorkflowService {
 
         if (task == null) {
             validationResult =
-                    getWorkflowValidation(true,"Workflow.Completed",riskModelTemplate.getId().toString());
+                    getWorkflowValidation(true,"Workflow.Completed",riskModelTemplate.getId().toString(), "Workflow Task is Nul");
             output.put("ValidationResult", validationResult);
             return output;
         }else {
             validationResult =
-                    getWorkflowValidation(false,"Workflow.Completed",riskModelTemplate.getId().toString());
+                    getWorkflowValidation(false,"Workflow.Completed",riskModelTemplate.getId().toString(), " ");
             output.put("ValidationResult", validationResult);
         }
 
         System.out.println("--------------- Workflow Task Execution Started @ " + DateTime.now());
-        taskService.complete(task.getId(),variables);
+          try{
+                    taskService.complete(task.getId(),variables);
+
+                } catch (Exception ex) {
+                    validationResult =
+                            getWorkflowValidation(true,"Workflow.Error",riskModelTemplate.getId().toString(), ex.getMessage());
+                    output.put("ValidationResult", validationResult);
+                    return output;
+          }
         System.out.println("--------------- Workflow Task Execution Finished @ " + DateTime.now());
 
         riskModelTemplate.setWorkflowStatus( workflowStatusRepository.findByCode("04") );
@@ -371,12 +401,13 @@ public class WorkflowService implements IWorkflowService {
         return workflowAssignmentRepository.findByPurpose(purpose);
     }
 
-    private ValidationResult getWorkflowValidation(Boolean error , String attribute, String id) {
+    private ValidationResult getWorkflowValidation(Boolean error , String attribute, String id, String message) {
         ValidationResult validationResult = new ValidationResult();
         validationResult.setAttributeName(attribute);
         validationResult.setValue(id);
         validationResult.setFailed(false);
         validationResult.setWorkflowError(error);
+        validationResult.setMessage(message);
         return validationResult;
     }
 
