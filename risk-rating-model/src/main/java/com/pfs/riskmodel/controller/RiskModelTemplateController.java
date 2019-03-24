@@ -254,6 +254,20 @@ public class RiskModelTemplateController {
     @PostMapping("/riskModelTemplate")
     public ResponseEntity create(@RequestBody RiskModelTemplateDTO riskModelTemplateDTO, HttpServletRequest request) {
 
+
+        Boolean isAccountConductRiskApplicable = false;
+
+        for (RiskTypeDTO  riskTypeDTO : riskModelTemplateDTO.getRiskTypes() ) {
+            for (RiskComponentDTO riskComponentDTO: riskTypeDTO.getRiskComponents()) {
+                if (riskComponentDTO.getDescription().contains("Account Conduct") == true) {
+                    isAccountConductRiskApplicable = true;
+                    break;
+                }
+            }
+            if (isAccountConductRiskApplicable == true)
+            riskTypeDTO.setIsAccountConductRiskComponentPresent(true);
+        }
+
         RiskModelTemplate riskModelTemplate = mapDTOToDomain(riskModelTemplateDTO);
 
         Map<String, Object> result = riskModelTemplateService.createRiskModelTemplate(riskModelTemplate);
