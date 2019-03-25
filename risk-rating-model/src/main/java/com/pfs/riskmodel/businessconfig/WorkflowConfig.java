@@ -51,8 +51,6 @@ public class WorkflowConfig implements CommandLineRunner{
     @Override
     public void run(String... strings) throws Exception {
 
-
-
             RiskPurpose p1 = riskPurposeRepository.findByCode("01");
             if (p1 == null)
                 p1 = new RiskPurpose(null, "01", "Project");
