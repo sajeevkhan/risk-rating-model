@@ -91,7 +91,7 @@ public class WorkflowConfig implements CommandLineRunner{
                 System.out.println("Workflow Assignment wa1: " + wa1.toString());
 
             if (wa1 == null) {
-                 
+
                 wa1 = new WorkflowAssignment(null, p1, "Sitesh Kumar Sinha", "sksinha@ptcfinancial.com",
                         "Neeraj Yadav", "neerajyadav@ptcfinancial.com",
                         "Devesh Singh", "devesh@ptcfinancial.com");
