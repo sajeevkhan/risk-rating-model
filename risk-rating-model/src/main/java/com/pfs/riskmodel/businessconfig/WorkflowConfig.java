@@ -51,14 +51,18 @@ public class WorkflowConfig implements CommandLineRunner{
     @Override
     public void run(String... strings) throws Exception {
 
+//        if (workflowAssignmentRepository.count() != 0)
+//            return;
+
+
             RiskPurpose p1 = riskPurposeRepository.findByCode("01");
             if (p1 == null)
                 p1 = new RiskPurpose(null, "01", "Project");
 
-            RiskPurpose p2 = riskPurposeRepository.findByCode("02");
-            if (p2 == null) {
-                p2 = new RiskPurpose(null, "02", "Risk");
-            }
+//            RiskPurpose p2 = riskPurposeRepository.findByCode("02");
+//            if (p2 == null) {
+//                p2 = new RiskPurpose(null, "02", "Risk");
+//            }
             RiskPurpose p3 = riskPurposeRepository.findByCode("03");
             if (p3 == null) {
                 p3 = new RiskPurpose(null, "03", "Monitoring");
@@ -90,9 +94,9 @@ public class WorkflowConfig implements CommandLineRunner{
 
             workflowAssignmentRepository.save(wa1);
 
-            wa2 = workflowAssignmentRepository.findByPurpose(p2);
+            wa2 = workflowAssignmentRepository.findByPurpose(p3);
             if (wa2 == null) {
-                wa2 = new WorkflowAssignment(null, p2, "Sanjay Rustagi", "sksinha@ptcfinancial.com",
+                wa2 = new WorkflowAssignment(null, p3, "Sanjay Rustagi", "sksinha@ptcfinancial.com",
                         "Neeraj Yadav", "neerajyadav@ptcfinancial.com",
                         "Devesh Singh", "devesh@ptcfinancial.com");
 
