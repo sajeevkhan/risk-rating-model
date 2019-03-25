@@ -30,7 +30,7 @@ public class WorkflowAssignment implements Serializable {
      */
 
     @NotNull
-    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @OneToOne(  fetch = FetchType.EAGER)
     private RiskPurpose purpose;
 
 
