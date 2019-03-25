@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { RiskModelUIService } from '../risk-model-ui.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatCheckboxChange } from '@angular/material';
 import { EnquiryApplicationModel } from 'app/main/model/enquiryApplication.model';
 import { AppService } from 'app/app.service';
 
@@ -10,6 +10,8 @@ import { AppService } from 'app/app.service';
     styleUrls: ['./risk-model-template.component.scss']
 })
 export class RiskModelTemplateComponent implements OnInit {
+
+    accountConductNotApplicable: boolean;
 
     @Input()
     riskModelTemplate: any;
@@ -50,6 +52,21 @@ export class RiskModelTemplateComponent implements OnInit {
 
     selectedIndexChange(val: number): void {
         this.selectedIndex = val;
+    }
+
+    /**
+     * applyAccountConductToTemplate()
+     * @param event 
+     */
+    applyAccountConductToTemplate(event: any): void {
+        if (event.checked === true) {
+            this.riskModelTemplate.riskTypes[0].riskComponents.map(riskComponent => {
+                if (riskComponent.description === 'Account Conduct') {
+                    riskComponent.isApplicable = false;
+                }
+            });
+        }
+        console.log(this.riskModelTemplate);
     }
 
     /**
