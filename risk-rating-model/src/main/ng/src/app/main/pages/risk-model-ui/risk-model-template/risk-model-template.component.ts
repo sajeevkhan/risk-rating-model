@@ -59,13 +59,11 @@ export class RiskModelTemplateComponent implements OnInit {
      * @param event 
      */
     applyAccountConductToTemplate(event: any): void {
-        if (event.checked === true) {
-            this.riskModelTemplate.riskTypes[0].riskComponents.map(riskComponent => {
-                if (riskComponent.description === 'Account Conduct') {
-                    riskComponent.isApplicable = false;
-                }
-            });
-        }
+        this.riskModelTemplate.riskTypes[0].riskComponents.map(riskComponent => {
+            if (riskComponent.description === 'Account Conduct') {
+                riskComponent.isApplicable = !event.checked;
+            }
+        });
         console.log(this.riskModelTemplate);
     }
 
@@ -171,11 +169,26 @@ export class RiskModelTemplateComponent implements OnInit {
     checkRiskComponentSelection(riskType: any): boolean {
         let riskComponentSelections = 0;
         riskType.riskComponents.map(riskComponent => {
-            if (this.checkRiskFactorSelection(riskComponent) === true) {
-                riskComponentSelections++;
+            if (riskComponent.description === 'Account Conduct') {
+                if (riskComponent.isApplicable) {
+                    if (this.checkRiskFactorSelection(riskComponent) === true) {
+                        riskComponentSelections++;
+                    }
+                }
+            }
+            else {
+                if (this.checkRiskFactorSelection(riskComponent) === true) {
+                    riskComponentSelections++;
+                }
             }
         });
-        return (riskComponentSelections === riskType.riskComponents.length);
+        if (this.accountConductNotApplicable) {
+            // Account Conduct tab should not be validated.
+            return (riskComponentSelections === riskType.riskComponents.length - 1);
+        }
+        else {
+            return (riskComponentSelections === riskType.riskComponents.length);
+        }
     }
 
     /**
