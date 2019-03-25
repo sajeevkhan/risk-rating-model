@@ -80,11 +80,35 @@ export class RiskModelUIComponent implements OnInit {
             this.disablePDFButton = (riskModelTemplate.id === undefined || riskModelTemplate === null) ? true : false;
             // Save the id as it is required to generate the PDF.
             this._riskModelTemplate.id = riskModelTemplate.id;
+            // Save the workFlowStatus to enable/disable sendForApproval button.
+            this._riskModelTemplate.workflowStatusCode = riskModelTemplate.workflowStatusCode;
         })
     }
 
     ngOnInit(): void {
         this.disablePDFButton = true;
+    }
+
+    /**
+     * disableApprovalButton()
+     */
+    disableApprovalButton(): boolean {
+        let disableButton = true;
+
+        if (this.disableSendForApprovalButton) {
+            disableButton = true;
+        }
+        else if (this._riskModelTemplate.id === undefined) {
+            disableButton = true;
+        }
+        else if (this._riskModelTemplate.workflowStatusCode !== '01') {
+            disableButton = true;
+        }
+        else if (this._riskModelTemplate.workflowStatusCode === '01' && this.validateTemplate()) {
+            disableButton = false;
+        }
+        
+        return disableButton;
     }
 
     /**
