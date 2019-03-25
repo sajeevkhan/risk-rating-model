@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { LoanEnquiryService } from './enquiryApplication.service';
 import { EnquiryApplicationModel } from 'app/main/model/enquiryApplication.model';
 import { AppService } from 'app/app.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { AssignProcessorsDialogComponent } from './assign-processors-dialog/assign-processors-dialog.component';
 
 @Component({
@@ -24,8 +24,8 @@ export class EnquirySearchComponent implements OnChanges {
         console.log('changes', changes);
     }
 
-    constructor(_formBuilder: FormBuilder, private _dialog: MatDialog, public _service: LoanEnquiryService, 
-        public _appService: AppService, private _router: Router) {
+    constructor(_formBuilder: FormBuilder, private _dialog: MatDialog, public _service: LoanEnquiryService,
+        public _appService: AppService, private _router: Router, private _matSnackBar: MatSnackBar) {
 
         this.enquirySearchForm = _formBuilder.group({
             loanNumberFrom: [],
@@ -64,11 +64,17 @@ export class EnquirySearchComponent implements OnChanges {
      * 
      */
     fetchEvaluations(): void {
-        if (this._service.selectedLoanApplicaton.loanContractId === null) {
-            this._router.navigate(['/evaluations', 'enquiry', this._service.selectedLoanApplicaton.enquiryNumber]);
+        if (this._service.selectedLoanApplicaton.monitoringDepartmentInitiator === '' && this._service.selectedLoanApplicaton.projectDepartmentInitiator === '') {
+            this._matSnackBar.open('Project Officer and Monitoring Officer is not assigned to the Loan. Please request your department ' +
+                'head to assign the officers', 'Ok', { duration: 7000 });
         }
         else {
-            this._router.navigate(['/evaluations', 'loan', this._service.selectedLoanApplicationId.value]);
+            if (this._service.selectedLoanApplicaton.loanContractId === null) {
+                this._router.navigate(['/evaluations', 'enquiry', this._service.selectedLoanApplicaton.enquiryNumber]);
+            }
+            else {
+                this._router.navigate(['/evaluations', 'loan', this._service.selectedLoanApplicationId.value]);
+            }
         }
     }
 
