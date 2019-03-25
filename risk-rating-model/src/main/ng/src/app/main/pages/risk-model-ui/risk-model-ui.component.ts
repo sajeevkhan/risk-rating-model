@@ -16,7 +16,7 @@ export class RiskModelUIComponent implements OnInit {
     disablePDFButton = true;
 
     disableSendForApprovalButton = false;
-    
+
     mode: string;
     projectType: string;
     riskLevel: string;
@@ -101,7 +101,7 @@ export class RiskModelUIComponent implements OnInit {
         this.riskModelTemplateComponent.sendTemplateForApproval();
     }
 
-    
+
     /**
      * displayAsPDF()
      */
@@ -122,11 +122,23 @@ export class RiskModelUIComponent implements OnInit {
         // Check validity of each riskTypes and riskFactors.
         this._riskModelTemplate.riskTypes.map(riskType => {
             riskType.riskComponents.map(riskComponent => {
-                riskComponent.riskFactors.map(riskFactor => {
-                    if (this.checkRiskSubFactorSelection(riskFactor) === false) {
-                        isTemplateValid = false;
+                // Check if risk component is 'Account Conduct' and isApplicable is true.
+                if (riskComponent.description === 'Account Conduct') { // Check above comment.
+                    if (riskComponent.isApplicable === true) { // Check above comment.
+                        riskComponent.riskFactors.map(riskFactor => {
+                            if (this.checkRiskSubFactorSelection(riskFactor) === false) {
+                                isTemplateValid = false;
+                            }
+                        });
                     }
-                });
+                }
+                else { // If risk component is not 'Account Conduct'.
+                    riskComponent.riskFactors.map(riskFactor => {
+                        if (this.checkRiskSubFactorSelection(riskFactor) === false) {
+                            isTemplateValid = false;
+                        }
+                    });
+                }
             });
         });
         // Check validity of ratingModifiers.
