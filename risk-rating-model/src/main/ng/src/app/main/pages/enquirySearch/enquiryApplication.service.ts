@@ -638,10 +638,10 @@ export class LoanEnquiryService {
             str+= 'projectName=' + request.projectName + '&';
         }
         if (request.loanNumberFrom) {
-            str+= 'loanNumberFrom=' + request.loanNumberFrom + '&';
+            str+= 'enquiryNumberFrom=' + request.loanNumberFrom + '&';
         }
         if (request.loanNumberTo) {
-            str+= 'loanNumberTo=' + request.loanNumberTo;
+            str+= 'enquiryNumberTo=' + request.loanNumberTo;
         }
         return this._http.get<any>(str);
     }
