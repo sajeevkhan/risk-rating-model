@@ -51,8 +51,8 @@ public class WorkflowConfig implements CommandLineRunner{
     @Override
     public void run(String... strings) throws Exception {
 
-//        if (workflowAssignmentRepository.count() != 0)
-//            return;
+        if (workflowAssignmentRepository.count() != 0)
+            return;
 
 
             RiskPurpose p1 = riskPurposeRepository.findByCode("01");
