@@ -1,11 +1,11 @@
-import { Component, OnChanges, SimpleChanges, Input } from '@angular/core';
+import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { Router } from '@angular/router';
 import { LoanEnquiryService } from './enquiryApplication.service';
 import { EnquiryApplicationModel } from 'app/main/model/enquiryApplication.model';
 import { AppService } from 'app/app.service';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { AssignProcessorsDialogComponent } from './assign-processors-dialog/assign-processors-dialog.component';
 
 @Component({
@@ -25,7 +25,7 @@ export class EnquirySearchComponent implements OnChanges {
     }
 
     constructor(_formBuilder: FormBuilder, private _dialog: MatDialog, public _service: LoanEnquiryService, 
-        public _appService: AppService, private _router: Router, private _matSnackBar: MatSnackBar) {
+        public _appService: AppService, private _router: Router) {
 
         this.enquirySearchForm = _formBuilder.group({
             loanNumberFrom: [],
@@ -85,9 +85,8 @@ export class EnquirySearchComponent implements OnChanges {
             width: '500px'
         });
         dialogRef.afterClosed().subscribe(() => {
-            this._matSnackBar.open('Loan application update with processors.', 'OK', {
-                duration: 5000
-            });
+            // Refresh list here.
+            this.searchEnquiries();
         });
     }
 }
