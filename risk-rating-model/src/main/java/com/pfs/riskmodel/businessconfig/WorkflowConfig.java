@@ -63,17 +63,10 @@ public class WorkflowConfig implements CommandLineRunner{
             if (p3 == null) {
                 p3 = new RiskPurpose(null, "03", "Monitoring");
             }
-            RiskPurpose p4 = riskPurposeRepository.findByCode("04");
-            if (p4 == null) {
-                p4 = new RiskPurpose(null, "04", "IT Department");
-            }
-
-//            riskPurposeRepository.save(p1);
-//            riskPurposeRepository.save(p2);
-//            riskPurposeRepository.save(p3);
-//            riskPurposeRepository.save(p4);
-
-
+//            RiskPurpose p4 = riskPurposeRepository.findByCode("04");
+//            if (p4 == null) {
+//                p4 = new RiskPurpose(null, "04", "IT Department");
+//            }
 
         WorkflowAssignment wa1 = new WorkflowAssignment();
             WorkflowAssignment wa2 = new WorkflowAssignment();;
@@ -114,22 +107,7 @@ public class WorkflowConfig implements CommandLineRunner{
 
             workflowAssignmentRepository.save(wa2);
 
-//            wa3 = workflowAssignmentRepository.findByPurpose(p4);
-//                if (wa3 == null) {
-//                    wa3 = new WorkflowAssignment(null, p4, "Sanjay Rustagi", "sksinha@ptcfinancial.com",
-//                            "Neeraj Yadav", "neerajyadav@ptcfinancial.com",
-//                            "Devesh Singh", "devesh@ptcfinancial.com");
-//
-//                }else {
-//            wa3.setFirstLevelApproverEmailId("sksinha@ptcfinancial.com");
-//            wa3.setFirstLevelApproverName("Sanjay Rustagi");
-//            wa3.setSecondLevelApproverEmailId("neerajyadav@ptcfinancial.com");
-//            wa3.setSecondLevelApproverName("Neeraj Yadav");
-//            wa3.setThirdLevelApproverEmailId("devesh@ptcfinancial.com");
-////            wa3.setThirdLevelApproverName("Devesh Singh");
-//        }
 
-        //   workflowAssignmentRepository.save(wa3);
 
 
             log.info("-------------------------PFS SPECIFIC- Added Workflow Assignments data");
@@ -139,5 +117,4 @@ public class WorkflowConfig implements CommandLineRunner{
 
 
 
-   // }
 }
