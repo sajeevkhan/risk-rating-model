@@ -15,7 +15,7 @@
                     _riskModelTemplate.projectRiskLevelDescription }} <span class="sep">]</span></span>
             </div>
             <div fxLayout="row" fxLayoutAlign="end center" fxFlex="45">
-                <button mat-raised-button class="mr-8" (click)="sendTemplateForApproval()" [disabled]="disableSendForApprovalButton || (!((_riskModelTemplate.workflowStatusCode === '01' || _riskModelTemplate.workflowStatusCode === '03' || _riskModelTemplate.workflowStatusCode === '04' || _riskModelTemplate.workflowStatusCode === '06' || _riskModelTemplate.workflowStatusCode === '08') && validateTemplate()))">
+                <button mat-raised-button class="mr-8" (click)="sendTemplateForApproval()" [disabled]="disableSendForApprovalButton || !(_riskModelTemplate.workflowStatusCode === '01' && validateTemplate())">
                     <mat-icon matSuffix class="mr-8">send</mat-icon>Send for Approval
                 </button>
                 <button mat-raised-button class="mr-8" (click)="evaluateTemplate()" [disabled]="!validateTemplate()">
