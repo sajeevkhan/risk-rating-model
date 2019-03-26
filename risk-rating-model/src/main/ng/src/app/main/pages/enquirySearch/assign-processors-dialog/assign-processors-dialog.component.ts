@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppService } from 'app/app.service';
 import { LoanEnquiryService } from '../enquiryApplication.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-assign-processors-dialog-componenet',
@@ -33,11 +34,17 @@ export class AssignProcessorsDialogComponent {
         // Get Project department users.
         _service.getProjectDepartmentUsers().subscribe(response => {
             this.projectUsers = response;
+        },
+        error => {
+            this.handleError(error);
         });
 
         // Get Monitoring department users.
         _service.getMonitoringDepartmentUsers().subscribe(response => {
             this.monitoringUsers = response;
+        },
+        error => {
+            this.handleError(error);
         });
     }
 
@@ -51,7 +58,14 @@ export class AssignProcessorsDialogComponent {
                     duration: 5000
                 });
                 this._dialogRef.close();
+            },
+            error => {
+                this.handleError(error);
             });
         }
+    }
+
+    private handleError(error: HttpErrorResponse) {
+        this._matSnackBar.open(error.message, 'Ok', { duration: 7000 });
     }
 }

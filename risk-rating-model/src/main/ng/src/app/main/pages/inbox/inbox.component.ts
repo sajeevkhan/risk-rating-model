@@ -3,6 +3,7 @@ import { InboxService } from './inbox.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material';
 import { Router } from '@angular/router';
 import { InboxItemsComponent } from './inbox-items/inbox-items.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -36,7 +37,9 @@ export class InboxComponent implements OnInit {
      */
     rejectEvaluation(): void {
         console.log('REJECT SELECTED INBOX ITEM : ' + this._inboxService.selectedItem.value.riskModelId);
+
         this.savingTemplate = true;
+        
         const id = this._inboxService.selectedItem.value.riskModelId;
 
         this._inboxService.rejectEvaluation(id).subscribe(response => {
@@ -44,6 +47,9 @@ export class InboxComponent implements OnInit {
             this.inboxItemsComponent.refreshInboxItems();
             this._matSnackBar.open('Risk model is rejected and email notification was sent to requestor', 'Ok', { duration: 7000 });
             this.savingTemplate = false;
+        },
+        error => {
+            this.handleError(error);
         });
     }
 
@@ -52,7 +58,9 @@ export class InboxComponent implements OnInit {
      */
     approveEvaluation(): void {
         console.log('APPROVE SELECTED INBOX ITEM : ' + this._inboxService.selectedItem.value.riskModelId);
-        this.savingTemplate = true
+
+        this.savingTemplate = true;
+        
         const id = this._inboxService.selectedItem.value.riskModelId;
 
         this._inboxService.approveEvaluation(id).subscribe(response => {
@@ -60,6 +68,9 @@ export class InboxComponent implements OnInit {
             this.inboxItemsComponent.refreshInboxItems();
             this._matSnackBar.open('Risk model is approved and email notification was sent to requestor', 'Ok', { duration: 7000 });
             this.savingTemplate = false;
+        },
+        error => {
+            this.handleError(error);
         });
     }
 
@@ -82,5 +93,10 @@ export class InboxComponent implements OnInit {
 
             return true;
         }
+    }
+
+    private handleError(error: HttpErrorResponse) {
+        this.savingTemplate = false;
+        this._matSnackBar.open(error.message, 'Ok', { duration: 7000 });
     }
 }

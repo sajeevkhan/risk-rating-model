@@ -3,6 +3,7 @@ import { RiskModelUIService } from '../risk-model-ui.service';
 import { MatSnackBar, MatCheckboxChange } from '@angular/material';
 import { EnquiryApplicationModel } from 'app/main/model/enquiryApplication.model';
 import { AppService } from 'app/app.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-risk-model-template',
@@ -126,6 +127,7 @@ export class RiskModelTemplateComponent implements OnInit {
      */
     evaluateTemplate(): void {
         this.savingTemplate = true;
+
         // Change modelType to 1 in case it is 0.
         if (this.riskModelTemplate.modelType === 0) {
             this.riskModelTemplate.modelType = 1;
@@ -140,6 +142,9 @@ export class RiskModelTemplateComponent implements OnInit {
             this.selectedIndex = 0;
             this._matSnackBar.open('Evaluated and saved', 'Ok', { duration: 7000 });
             this.savingTemplate = false;
+        },
+        error => {
+            this.handleError(error);
         });
     }
 
@@ -148,7 +153,7 @@ export class RiskModelTemplateComponent implements OnInit {
      */
     sendTemplateForApproval(): void {
         this.savingTemplate = true;
-        // 
+
         this._riskModelService.approveTemplate(this.riskModelTemplate).subscribe(response => {
             // Save the response.
             this.riskModelTemplate = response;
@@ -159,6 +164,9 @@ export class RiskModelTemplateComponent implements OnInit {
             this._matSnackBar.open('Evaluated, saved & sent for approval', 'Ok', { duration: 7000 });
             this.savingTemplate = false;
             this.disableSendForApprovalButton = true;
+        },
+        error => {
+            this.handleError(error);
         });
     }
 
@@ -262,5 +270,10 @@ export class RiskModelTemplateComponent implements OnInit {
                 this.riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[3].value = response;
             });
         }
+    }
+
+    private handleError(error: HttpErrorResponse) {
+        this.savingTemplate = false;
+        this._matSnackBar.open(error.message, 'Ok', { duration: 7000 });
     }
 }

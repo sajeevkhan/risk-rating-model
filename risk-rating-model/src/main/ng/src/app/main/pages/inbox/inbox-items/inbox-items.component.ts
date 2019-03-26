@@ -3,6 +3,7 @@ import { InboxService } from '../inbox.service';
 import { ActivatedRoute } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { BehaviorSubject } from 'rxjs';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
     selector: 'app-inbox-items',
@@ -28,7 +29,7 @@ export class InboxItemsComponent implements OnInit {
      * @param _service: InboxService
      * @param _route: ActivatedRoute
      */
-    constructor(private _service: InboxService, _route: ActivatedRoute) {
+    constructor(private _service: InboxService, _route: ActivatedRoute, private _matSnackBar: MatSnackBar) {
         // Fetch evaluations from route resolved data.
         _route.data.subscribe((data) => {
             this.inboxItems = data.routeResolvedData;
@@ -57,6 +58,9 @@ export class InboxItemsComponent implements OnInit {
     refreshInboxItems(): void {
         this._service.fetchTasks().subscribe(data => {
             this.inboxItems = data;
+        },
+        error => {
+            this._matSnackBar.open(error.message, 'Ok', { duration: 7000 });
         });
     }
 }

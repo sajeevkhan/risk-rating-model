@@ -7,6 +7,7 @@ import { EnquiryApplicationModel } from 'app/main/model/enquiryApplication.model
 import { AppService } from 'app/app.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { AssignProcessorsDialogComponent } from './assign-processors-dialog/assign-processors-dialog.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'fuse-enquiry-search',
@@ -46,6 +47,9 @@ export class EnquirySearchComponent implements OnChanges {
                 enquiryApplications.push(new EnquiryApplicationModel(loanApplicationResourceModel));
             });
             this.enquiryList = enquiryApplications;
+        },
+        error => {
+            this.handleError(error);
         });
     }
 
@@ -93,6 +97,11 @@ export class EnquirySearchComponent implements OnChanges {
         dialogRef.afterClosed().subscribe(() => {
             // Refresh list here.
             this.searchEnquiries();
+            this._service.selectedLoanApplicaton = undefined;
         });
+    }
+
+    private handleError(error: HttpErrorResponse) {
+        this._matSnackBar.open(error.message, 'Ok', { duration: 7000 });
     }
 }

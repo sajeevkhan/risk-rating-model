@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { EvaluationService } from './evaluations.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { NewEvaluationDialogComponent } from '../new-evaluation-dialog/new-evaluation-dialog.component';
 import { LoanEnquiryService } from '../enquirySearch/enquiryApplication.service';
 import { EnquiryApplicationModel } from 'app/main/model/enquiryApplication.model';
@@ -29,7 +29,7 @@ export class EvaluationComponent {
      * @param _loanEnquiryService: LoanEnquiryService
      */
     constructor(public _service: EvaluationService, private _dialog: MatDialog, private _loanEnquiryService: LoanEnquiryService,
-        @Inject(DOCUMENT) private document: any, private _router: Router, private _route: ActivatedRoute) {
+        @Inject(DOCUMENT) private document: any, private _router: Router, private _route: ActivatedRoute, private _matSnackBar: MatSnackBar) {
 
         //
         _service.selectedEvaluation = undefined;
@@ -41,6 +41,9 @@ export class EvaluationComponent {
         _route.data.subscribe((data) => {
             this.evaluations = data.routeResolvedData;
             console.log('parent', this.evaluations);
+        },
+        error => {
+            this._matSnackBar.open(error.message, 'Ok', { duration: 7000 });
         });
     }
 
