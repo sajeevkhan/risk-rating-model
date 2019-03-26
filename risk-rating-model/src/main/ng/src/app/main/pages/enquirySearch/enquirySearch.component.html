@@ -9,7 +9,7 @@
                 Search Projects
             </div>
             <div fxLayout="row" fxFlex="50" fxLayoutAlign="end center">
-                <button mat-raised-button class="mr-8" style="padding-bottom:5px;" (click)="fetchEvaluations()">
+                <button mat-raised-button class="mr-8" style="padding-bottom:5px;" (click)="fetchEvaluations()" [disabled]="!_service.selectedLoanApplicaton">
                     <mat-icon matSuffix class="mr-8">list</mat-icon> Fetch Evaluations
                 </button>
                 <button mat-raised-button class="mr-8" style="padding-bottom:5px;" (click)="assignProcessors()" [disabled]="!(_service.selectedLoanApplicaton && _appService.userDetails.departmentHead)">
