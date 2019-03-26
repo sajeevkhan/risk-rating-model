@@ -5,8 +5,8 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { NewEvaluationDialogComponent } from '../new-evaluation-dialog/new-evaluation-dialog.component';
 import { LoanEnquiryService } from '../enquirySearch/enquiryApplication.service';
 import { EnquiryApplicationModel } from 'app/main/model/enquiryApplication.model';
-import { DOCUMENT } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AppService } from 'app/app.service';
 
 @Component({
     selector: 'fuse-evaluations',
@@ -28,8 +28,8 @@ export class EvaluationComponent {
      * @param _dialog: MatDialog
      * @param _loanEnquiryService: LoanEnquiryService
      */
-    constructor(public _service: EvaluationService, private _dialog: MatDialog, private _loanEnquiryService: LoanEnquiryService,
-        @Inject(DOCUMENT) private document: any, private _router: Router, private _route: ActivatedRoute, private _matSnackBar: MatSnackBar) {
+    constructor(public _service: EvaluationService, private _dialog: MatDialog, _loanEnquiryService: LoanEnquiryService,
+        private _router: Router, _route: ActivatedRoute, private _matSnackBar: MatSnackBar, public _appService: AppService) {
 
         //
         _service.selectedEvaluation = undefined;
@@ -40,7 +40,6 @@ export class EvaluationComponent {
         // Fetch evaluations from route resolved data.
         _route.data.subscribe((data) => {
             this.evaluations = data.routeResolvedData;
-            console.log('parent', this.evaluations);
         },
         error => {
             this._matSnackBar.open(error.message, 'Ok', { duration: 7000 });

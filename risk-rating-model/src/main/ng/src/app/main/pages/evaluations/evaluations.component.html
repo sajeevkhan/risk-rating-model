@@ -9,7 +9,7 @@
             loanApplicaton.loanAmount | number:'0.2-2'}} Crores
         </div>
         <div fxLayout="row" fxLayoutAlign="end center"  fxFlex="50" class="pr-16">
-            <button mat-raised-button class="mr-8" (click)="newEvaluation()">
+            <button mat-raised-button class="mr-8" (click)="newEvaluation()" [disabled]="_appService.userDetails.departmentHead">
                  <mat-icon matSuffix class="mr-8">note_add</mat-icon>New Evaluation
             </button>
             <button mat-raised-button class="mr-8" (click)="editEvaluation()" [disabled]="!_service.selectedEvaluation">
