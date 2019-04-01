@@ -1,8 +1,10 @@
 package com.pfs.riskmodel.resource;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class SignupResource {
 
     private String firstName;

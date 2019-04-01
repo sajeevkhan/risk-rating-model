@@ -38,6 +38,7 @@ export class ChangePasswordDialogComponent {
             'firstName': this._appService.userDetails.firstName,
             'lastName': this._appService.userDetails.lastName,
             'email': this._appService.userDetails.email,
+            'mobile': '',
             'password': this.changePasswordForm.value.newPassword
         }
         this._matSnackBar.open('Attempting to change password.', 'Ok', { duration: 10000 });
