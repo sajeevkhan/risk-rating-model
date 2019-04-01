@@ -9,6 +9,8 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 import { navigation } from 'app/navigation/navigation';
 import { AppService } from 'app/app.service';
+import { MatDialog } from '@angular/material';
+import { ChangePasswordDialogComponent } from 'app/main/pages/change-password-dialog/change-password-dialog.component';
 
 @Component({
     selector     : 'toolbar',
@@ -43,7 +45,8 @@ export class ToolbarComponent implements OnInit, OnDestroy
         private _fuseConfigService: FuseConfigService,
         private _fuseSidebarService: FuseSidebarService,
         private _translateService: TranslateService,
-        private _appService: AppService
+        private _appService: AppService,
+        private _dialog: MatDialog
     )
     {
         // Set the defaults
@@ -176,6 +179,19 @@ export class ToolbarComponent implements OnInit, OnDestroy
         this._translateService.use(lang.id);
     }
 
+    /**
+     * displayChangePasswordDialog()
+     */
+    displayChangePasswordDialog() {
+        const dialogRef = this._dialog.open(ChangePasswordDialogComponent, {
+            panelClass: 'new-evaluation-dialog',
+            width: '500px'
+        });
+    }
+
+    /**
+     * logout()
+     */
     logout(): void {
         window.location.href = '/logout';
     }

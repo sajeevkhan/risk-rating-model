@@ -28,5 +28,8 @@ public interface LMSEnquiryClient {
     @RequestMapping(value = "/api/loanEnquiry/assignProcessors", method = RequestMethod.PUT)
     ResponseEntity<LoanApplicationResource> updateProcessors(@RequestBody ProcessorResource processorResource, @RequestHeader("Authorization") String authorization);
 
+    @PutMapping("/api/password/modify")
+    ResponseEntity modifyPassword(@RequestBody SignupResource signupResource, @RequestHeader("Authorization") String authorization);
+
     // ResponseEntity<List<LoanApplicationResource>> searchEnquiries(@RequestBody SearchResource searchResource, @RequestHeader("Authorization") String authorization);
 }
