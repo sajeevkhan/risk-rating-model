@@ -113,13 +113,27 @@ public class Initializer implements CommandLineRunner{
 
         if(projectRiskLevelRepository.count() == 0) {
             ProjectRiskLevel p1 = new ProjectRiskLevel(null,"01", "Build Phase ");
-            ProjectRiskLevel  p2 = new ProjectRiskLevel(null,"02", "Operational Risk Phase");
+            ProjectRiskLevel  p2 = new ProjectRiskLevel(null,"02", "Operational Phase");
 
 
 
             projectRiskLevelRepository.saveAll(Arrays.asList(p1,p2 ));
             log.info("-------------------------- Added project Risk Level (Phases) data");
         }
+
+        ProjectRiskLevel p1 = projectRiskLevelRepository.findByCode("01");
+        if (p1 !=null){
+            p1.setValue("Build Phase");
+            projectRiskLevelRepository.save(p1);
+        }
+
+        ProjectRiskLevel p2 = projectRiskLevelRepository.findByCode("02");
+        if (p2 !=null){
+            p2.setValue("Operational Phase");
+            projectRiskLevelRepository.save(p2);
+        }
+
+
 
 
         if(riskRatingComputingMethodRepository.count() == 0) {

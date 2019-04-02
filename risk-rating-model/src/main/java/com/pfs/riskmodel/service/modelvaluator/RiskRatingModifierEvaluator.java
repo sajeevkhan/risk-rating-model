@@ -38,11 +38,10 @@ public class RiskRatingModifierEvaluator {
              }
 
 
-
-            /* Modifier Type 1 is used for Notch Down
-                 In case One or Two modifiers are true for an entity,
+            /* Modifier Type 1 is used for Notch Down - Change done as per issue reported on April 2nd 2019
+                 In case 3 or 4 modifiers are true for an entity,
                         then the lender may downgrade the final ratings of the entity by one notch.
-                 In case Three or Four modifiers are true,
+                 In case 5 or 6 modifiers are true,
                         the final rating may be downgraded by two notches.
              */
              if (riskRatingModifier.getModifierType() == 1) {
@@ -55,12 +54,16 @@ public class RiskRatingModifierEvaluator {
         }
 
         riskRatingModifier.setCountOfDowngradeBy1or2Notches(numberOfNotchesDownItems);
+        /*
+           - Change done as per issue reported on April 2nd 2019
+            In the Rating modifiers (SET II section) , as captured in excle file,
+            if any 3/4 statements are YES, the notch should go down by 1 and
+            if 5/6 statements are YES, the notch should go down by 2.
+             */
 
-        if (numberOfNotchesDownItems == 1 || numberOfNotchesDownItems == 2)
-            numberOfNotchesDown = 1;
         if (numberOfNotchesDownItems == 3 || numberOfNotchesDownItems == 4)
-            numberOfNotchesDown = 2;
-        if (numberOfNotchesDownItems > 4) //TODO CHECK WITH PFS
+            numberOfNotchesDown = 1;
+        if (numberOfNotchesDownItems == 5 || numberOfNotchesDownItems == 6)
             numberOfNotchesDown = 2;
 
 

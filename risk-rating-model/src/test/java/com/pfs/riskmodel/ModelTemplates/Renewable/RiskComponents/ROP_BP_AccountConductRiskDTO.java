@@ -45,7 +45,7 @@ public class ROP_BP_AccountConductRiskDTO {
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.13D);
 
-        riskComponentDTO.setIsApplicable(true);
+        riskComponentDTO.setIsApplicable(false);
 
         /*
          --------------------------    Risk Factor 1

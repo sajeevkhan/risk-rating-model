@@ -41,7 +41,7 @@ public class PPIR_AccountConductDTO {
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.13D);
 
-        riskComponentDTO.setIsApplicable(true);
+        riskComponentDTO.setIsApplicable(false);
 
 
         // Account Conduct Factor

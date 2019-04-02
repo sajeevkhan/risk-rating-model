@@ -41,7 +41,7 @@ public class IRToll_PPIR_AccountConductDTO {
         riskComponentDTO.setScore(0D);
         riskComponentDTO.setWeightage(0.10D);
 
-        riskComponentDTO.setIsApplicable(true);
+        riskComponentDTO.setIsApplicable(false);
 
         // Account Conduct Factor
         // No Concrete Risk Factors - Therefore a dummy Risk Factor called "Account Conduct Risk Factor" is added

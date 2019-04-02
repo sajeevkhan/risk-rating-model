@@ -25,34 +25,34 @@ public class RenewablePostProjectRiskTypes {
 
 
 
-        //  Risk Component 1 : Business Risk - 28%
+        //  Risk Component 1 : Business Risk - 32%
         RiskComponentDTO businessRiskComponent = new RiskComponentDTO();
         businessRiskComponent = RPP_BusinessRiskComponentDTO.getBusinessRiskComponentDTO();
 
-        //  Risk Component 2 : Industry Risk - 14%
+        //  Risk Component 2 : Industry Risk - 16%
         RiskComponentDTO industryRiskComponent = new RiskComponentDTO();
         industryRiskComponent = RPP_IndustryRiskRiskComponentDTO.getIndustryRiskComponentDTO();
 
-        //  Risk Component 3 : Financial Risk - 28%
+        //  Risk Component 3 : Financial Risk - 32%
         RiskComponentDTO financialRiskComponent = new RiskComponentDTO();
         financialRiskComponent = RPP_FinancialRiskRiskComponentDTO.getFinancialRiskComponentDTO();
 
-        //  Risk Component 4 : Management Risk - 17%
+        //  Risk Component 4 : Management Risk - 20%
         RiskComponentDTO managementRiskComponent = new RiskComponentDTO();
         managementRiskComponent = RPP_ManagementRiskRiskComponentDTO.managementRiskComponentDTO();
 
-        //  Risk Component 5 : Account Conduct Risk - 13%
-        riskTypeDTO.setIsAccountConductRiskComponentPresent(true);
-        ROP_BP_AccountConductRiskDTO accountConductRiskDTO = new ROP_BP_AccountConductRiskDTO();
-        RiskComponentDTO accountConductRiskComponentDTO = new RiskComponentDTO();
-        accountConductRiskComponentDTO = accountConductRiskDTO.getAccountConductRiskDTO();
+//        //  Risk Component 5 : Account Conduct Risk - 13%
+//        riskTypeDTO.setIsAccountConductRiskComponentPresent(true);
+//        ROP_BP_AccountConductRiskDTO accountConductRiskDTO = new ROP_BP_AccountConductRiskDTO();
+//        RiskComponentDTO accountConductRiskComponentDTO = new RiskComponentDTO();
+//        accountConductRiskComponentDTO = accountConductRiskDTO.getAccountConductRiskDTO();
 
 
         riskTypeDTO.addRiskComponentDTO(businessRiskComponent);
         riskTypeDTO.addRiskComponentDTO(industryRiskComponent);
         riskTypeDTO.addRiskComponentDTO(financialRiskComponent);
         riskTypeDTO.addRiskComponentDTO(managementRiskComponent);
-        riskTypeDTO.addRiskComponentDTO(accountConductRiskComponentDTO);
+//        riskTypeDTO.addRiskComponentDTO(accountConductRiskComponentDTO);
 
 
         return  riskTypeDTO;

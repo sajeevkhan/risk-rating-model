@@ -85,11 +85,6 @@ public class WorkflowService implements IWorkflowService {
 
         switch (action) {
             case 1:
-                if (httpServletRequest.getUserPrincipal() != null) {
-                    //User user = welcomeService.getUser();
-                    if (user != null)
-                        riskModelTemplate.setCreatedBy(user.getFirstName() + " " + user.getLastName());
-                }
                 validationResult = getWorkflowValidation(false, "Workflow.NotStarted", riskModelTemplate.getId().toString()," ");
                 result.put("ValidationResult", validationResult);
 

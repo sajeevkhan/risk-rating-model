@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Getter(AccessLevel.PUBLIC)
 @Setter(AccessLevel.PUBLIC)
-public class RiskSubFactorAttribute extends AuditModel { //AggregateRoot<RiskSubFactorAttribute>  {
+public class RiskSubFactorAttribute extends AuditModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,10 +41,6 @@ public class RiskSubFactorAttribute extends AuditModel { //AggregateRoot<RiskSub
     @Getter
     private Boolean isSelected;
 
-//    @NotNull
-//    //@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    @JoinColumn(name="riskSubFactor__id",referencedColumnName = "id")
-//    RiskSubFactor riskSubFactor;
 
     @Override
     public boolean equals(Object o) {
