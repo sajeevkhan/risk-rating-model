@@ -24,7 +24,7 @@ public  class RPP_FinancialRiskRiskComponentDTO {
         financialRiskComponentDTO.setId(null);
         financialRiskComponentDTO.setItemNo(4);
         financialRiskComponentDTO.setDescription("Financial Risk");
-        financialRiskComponentDTO.setWeightage(0.32D);
+        financialRiskComponentDTO.setWeightage(0.28D);
         financialRiskComponentDTO.setComputingMethodCode("05");
         financialRiskComponentDTO.setComputingMethodDescription("Equals");
         financialRiskComponentDTO.setScoreTypeCode("01");

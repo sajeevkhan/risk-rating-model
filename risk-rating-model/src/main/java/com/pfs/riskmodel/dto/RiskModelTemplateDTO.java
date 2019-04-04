@@ -26,6 +26,8 @@ public class RiskModelTemplateDTO {
     private String createdByUserId;
     private String reviewedBy;
 
+    private String currentProcessorUserId;
+
     private String firstLevelApprover;
     private String secondLevelApprover;
     private String thirdLevelApprover;

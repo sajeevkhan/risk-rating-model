@@ -204,12 +204,14 @@ public class WorkflowService implements IWorkflowService {
         switch (riskModelTemplate.getWorkflowStatus().getCode()) {
             case "02": //Sent for First Level Approval
                 riskModelTemplate.setCurrentWorkFlowLevel(1);
+                riskModelTemplate.setCurrentProcessorUserId(riskModelTemplate.getFirstLevelApprover());
                 variables.put("rejectedInFirstLevel", " ");
                 variables.put("firstLevelApproval", true);
                 break;
             case "03": //First Level Approval Completed
             case "05": //Sent for Second Level Approval
                 riskModelTemplate.setCurrentWorkFlowLevel(2);
+                riskModelTemplate.setCurrentProcessorUserId(riskModelTemplate.getSecondLevelApprover());
                 variables.put("rejectedInSecondLevel", " ");
                 variables.put("secondLevelApproval", true);
                 break;
@@ -217,20 +219,26 @@ public class WorkflowService implements IWorkflowService {
             case "07": //Sent for Third Level Approval
                 variables.put("rejectedInThirdLevel", " ");
                 riskModelTemplate.setCurrentWorkFlowLevel(3);
+                riskModelTemplate.setCurrentProcessorUserId(riskModelTemplate.getThirdLevelApprover());
                 variables.put("thirdLevelApproval", true);
                 break;
             case "04":
                 if (riskModelTemplate.getCurrentWorkFlowLevel() == 1) {
                     variables.put("rejectedInFirstLevel", " ");
                     variables.put("firstLevelApproval", true);
+                    riskModelTemplate.setCurrentProcessorUserId(riskModelTemplate.getFirstLevelApprover());
                 }
                 if (riskModelTemplate.getCurrentWorkFlowLevel() == 2) {
                     variables.put("rejectedInSecondLevel", " ");
                     variables.put("secondLevelApproval", true);
+                    riskModelTemplate.setCurrentProcessorUserId(riskModelTemplate.getSecondLevelApprover());
+
                 }
                 if (riskModelTemplate.getCurrentWorkFlowLevel() == 3) {
                     variables.put("rejectedInThirdLevel", " ");
                     variables.put("thirdLevelApproval", true);
+                    riskModelTemplate.setCurrentProcessorUserId(riskModelTemplate.getThirdLevelApprover());
+
                 }
                 break;
         }
@@ -329,16 +337,22 @@ public class WorkflowService implements IWorkflowService {
             case "02": // Sent for First Level Approval
                 variables.put("firstLevelApproval", false);
                 variables.put("rejectedInFirstLevel", "X");
+                riskModelTemplate.setCurrentProcessorUserId(riskModelTemplate.getCreatedByUserId());
+
                 break;
             case "03":
             case "05": // Sent for Second Level Approval
                 variables.put("rejectedInSecondLevel", "X");
                 variables.put("secondLevelApproval", false);
+                riskModelTemplate.setCurrentProcessorUserId(riskModelTemplate.getFirstLevelApprover());
+
                 break;
             case "06":
             case "07": // Sent for Third Level Approval
                 variables.put("rejectedInThirdLevel", "X");
                 variables.put("thirdLevelApproval", false);
+                riskModelTemplate.setCurrentProcessorUserId(riskModelTemplate.getSecondLevelApprover());
+
         }
 
         // Set Reviewer Name

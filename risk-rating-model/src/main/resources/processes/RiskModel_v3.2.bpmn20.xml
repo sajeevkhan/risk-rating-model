@@ -103,7 +103,7 @@ PFS Risk Model System]]></activiti:expression>
           <activiti:expression><![CDATA[PFS Risk Model Approval Request: ${projectName} - ${riskLevel}]]></activiti:expression>
         </activiti:field>
         <activiti:field name="html">
-          <activiti:expression><![CDATA[Dear ${firstLevelApproverName}, <br> <br>
+          <activiti:expression><![CDATA[Dear ${secondLevelApproverName}, <br> <br>
 You are requested to approve the following risk model evaluation: <br> <br>
       Project Name  :  ${projectName} <br>
       Phase         :  ${riskLevel} <br>

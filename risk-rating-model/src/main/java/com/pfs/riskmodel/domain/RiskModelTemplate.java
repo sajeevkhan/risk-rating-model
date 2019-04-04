@@ -63,6 +63,9 @@ public class RiskModelTemplate extends AuditModel {
     private String createdByUserId;
 
     @Nullable
+    private String currentProcessorUserId;
+
+    @Nullable
     private String reviewedBy;
 
     @Nullable

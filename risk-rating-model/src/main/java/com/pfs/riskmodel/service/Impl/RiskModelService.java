@@ -101,6 +101,10 @@ public class RiskModelService implements IRiskModelService {
                 riskModelTemplate.setThirdLevelApprover(thirdLevelApprover.getFirstName() + " " + thirdLevelApprover.getLastName());
         }
 
+        if (riskModelTemplate.getCurrentProcessorUserId() == null) {
+            riskModelTemplate.setCurrentProcessorUserId(user.getEmail());
+        }
+
         //Set Created By
         if (riskModelTemplate.getCreatedBy() == null) {
             if (httpServletRequest.getUserPrincipal() != null) {
@@ -193,6 +197,10 @@ public class RiskModelService implements IRiskModelService {
             }
         }
 
+
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("-----------------> Current Processor:" + riskModelTemplate.getCurrentProcessorUserId());
+        System.out.println("-------------------------------------------------------------------------------------");
 
 
 

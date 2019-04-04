@@ -24,7 +24,7 @@ public class RPP_BusinessRiskComponentDTO {
         businessRiskComponentDTO.setId(null);
         businessRiskComponentDTO.setItemNo(1);
         businessRiskComponentDTO.setDescription("Business Risk");
-        businessRiskComponentDTO.setWeightage(0.320D);
+        businessRiskComponentDTO.setWeightage(0.280D);
         businessRiskComponentDTO.setComputingMethodCode("01");
         businessRiskComponentDTO.setComputingMethodDescription("Weighted");
         businessRiskComponentDTO.setScoreTypeCode("01");

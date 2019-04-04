@@ -25,7 +25,7 @@ public  class RPP_IndustryRiskRiskComponentDTO {
         industryRiskComponentDTO.setId(null);
         industryRiskComponentDTO.setItemNo(3);
         industryRiskComponentDTO.setDescription("Industry Risk");
-        industryRiskComponentDTO.setWeightage(0.16);
+        industryRiskComponentDTO.setWeightage(0.14);
         industryRiskComponentDTO.setComputingMethodCode("05");
         industryRiskComponentDTO.setComputingMethodDescription("Equals");
         industryRiskComponentDTO.setScoreTypeCode("01");
