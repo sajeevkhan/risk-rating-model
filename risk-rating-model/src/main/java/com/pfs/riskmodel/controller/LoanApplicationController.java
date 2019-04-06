@@ -33,9 +33,9 @@ public class LoanApplicationController {
         if (projectName != null)
             resource.setPartyName(projectName);
         if (loanNumberFrom != null)
-            resource.setEnquiryNoFrom(loanNumberFrom);
+            resource.setLoanNumberFrom(loanNumberFrom);
         if (loanNumberTo != null)
-            resource.setEnquiryNoTo(loanNumberTo);
+            resource.setLoanNumberTo(loanNumberTo);
         ResponseEntity<List<LoanApplicationResource>> resources = lmsEnquiryClient.searchEnquiries(resource, getAuthorizationBearer(request.getUserPrincipal()));
 
         // ResponseEntity<List<LoanApplicationResource>> resources = lmsEnquiryClient.searchEnquiries(resource,"Basic YWRtaW46YWRtaW4");
