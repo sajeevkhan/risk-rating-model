@@ -78,7 +78,8 @@ export class RiskModelUIService {
      * @param creditRating: string
      */
     public getCreditRatingGrade(ratingSource: string, natureOfRatingOfParentFirm: number, creditRating: string) {
-        return this._httpClient.get<any>('api/creditRatingGrade?ratingSource=' + ratingSource + '&natureOfRatingOfParentFirm=' +
-            natureOfRatingOfParentFirm + '&creditRating=' + creditRating);
+        const uri = 'api/creditRatingGrade?ratingSource=' + ratingSource + '&natureOfRatingOfParentFirm=' +
+            natureOfRatingOfParentFirm + '&creditRating=' + encodeURIComponent(creditRating);
+        return this._httpClient.get<any>(uri);
     }
 }
