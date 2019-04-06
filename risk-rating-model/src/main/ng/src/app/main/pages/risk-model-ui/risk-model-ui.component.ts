@@ -141,7 +141,7 @@ export class RiskModelUIComponent implements OnInit {
     validateTemplate(): boolean {
         let isTemplateValid = true;
         // Check if user.email is the same as the currentProcessorUserId
-        if (this._riskModelTemplate.currentProcessorUserId !== this._appService.userDetails.email) {
+        if (this._riskModelTemplate.currentProcessorUserId !== null && this._riskModelTemplate.currentProcessorUserId !== this._appService.userDetails.email) {
             isTemplateValid = false;
         }
         else {
