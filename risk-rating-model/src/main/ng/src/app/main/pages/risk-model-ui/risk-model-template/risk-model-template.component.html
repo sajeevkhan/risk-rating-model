@@ -26,7 +26,7 @@
                 <div fxLayout="row" class="bottomSpace">
 
                     <mat-form-field fxFlex="20">
-                        <input matInput placeholder="Project Name" [(ngModel)]="riskModelTemplate.projectName">
+                        <input matInput placeholder="Project Name" [(ngModel)]="riskModelTemplate.projectName" readonly>
                         <mat-icon matSuffix class="mr-8">edit</mat-icon>
                     </mat-form-field>
 
@@ -62,7 +62,7 @@
                     </mat-form-field>
 
                     <mat-form-field fxFlex="20">
-                        <mat-select placeholder="Department" [(ngModel)]="riskModelTemplate.purposeCode" required>
+                        <mat-select placeholder="Department" [(ngModel)]="riskModelTemplate.purposeCode" [disabled]="true">
                             <mat-option *ngFor="let purpose of purposes" [value]="purpose.code">
                                 {{ purpose.description }}
                             </mat-option>
@@ -338,7 +338,7 @@
                                     <input matInput
                                         placeholder="{{ riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[3].description }}"
                                         [(ngModel)]="riskModelTemplate['riskParentalNotchUps'][0].riskParentalConditions[3].value"
-                                        required>
+                                        readonly>
                                     <mat-icon matSuffix class="mr-8">edit</mat-icon>
                                 </mat-form-field>
                             </div>
