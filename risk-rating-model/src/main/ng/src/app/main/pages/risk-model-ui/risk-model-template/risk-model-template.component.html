@@ -11,7 +11,7 @@
             [(ngModel)]="accountConductNotApplicable" (change)="applyAccountConductToTemplate($event)">Account Conduct Not
             Applicable</mat-checkbox>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <mat-checkbox [(ngModel)]="riskModelTemplate.applyRatingModifiers">Apply Rating Modifiers</mat-checkbox>
+        <mat-checkbox [(ngModel)]="riskModelTemplate.applyRatingModifiers" (change)="applyRatingModifiers($event)">Apply Rating Modifiers</mat-checkbox>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <mat-checkbox [(ngModel)]="riskModelTemplate.applyParentalNotchup">Apply Parental Notchup</mat-checkbox>
     </div>

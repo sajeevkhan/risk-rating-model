@@ -272,6 +272,16 @@ export class RiskModelTemplateComponent implements OnInit {
         }
     }
 
+    applyRatingModifiers(event: MatCheckboxChange): void {
+        if (event.checked === false) {
+            this.riskModelTemplate['riskRatingModifiers'].map(riskRatingModifier => {
+                riskRatingModifier.riskRatingModifierAttributes.map(riskRatingModifierAttribute => {
+                    riskRatingModifierAttribute.yesOrNoIndicator = 'N';
+                });
+            });
+        }
+    }
+
     private handleError(error: HttpErrorResponse) {
         this.savingTemplate = false;
         this._matSnackBar.open(error.message, 'Ok', { duration: 7000 });
