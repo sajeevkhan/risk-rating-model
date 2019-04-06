@@ -3,6 +3,7 @@ import { RiskModelUIService } from './risk-model-ui.service';
 import { RiskModelTemplateComponent } from './risk-model-template/risk-model-template.component';
 import { ActivatedRoute } from '@angular/router';
 import { LoanEnquiryService } from '../enquirySearch/enquiryApplication.service';
+import { AppService } from 'app/app.service';
 
 @Component({
     selector: 'app-risk-model-ui',
@@ -25,7 +26,7 @@ export class RiskModelUIComponent implements OnInit {
 
     @ViewChild(RiskModelTemplateComponent) riskModelTemplateComponent: RiskModelTemplateComponent;
 
-    constructor(_riskModelService: RiskModelUIService, _loanEnquiryService: LoanEnquiryService, _route: ActivatedRoute) {
+    constructor(_riskModelService: RiskModelUIService, _loanEnquiryService: LoanEnquiryService, _route: ActivatedRoute, private _appService: AppService) {
 
         _route.params.subscribe(params => {
             // Fetch mode parameter from route parameters.
@@ -107,7 +108,7 @@ export class RiskModelUIComponent implements OnInit {
         else if (this._riskModelTemplate.workflowStatusCode === '01' && this.validateTemplate()) {
             disableButton = false;
         }
-        
+
         return disableButton;
     }
 
@@ -139,42 +140,48 @@ export class RiskModelUIComponent implements OnInit {
      */
     validateTemplate(): boolean {
         let isTemplateValid = true;
-        // Check the validity of riskModelTemplate itself. (Not required I guess, need to delete it)        
-        if (this._riskModelTemplate === undefined) {
+        // Check if user.email is the same as the currentProcessorUserId
+        if (this._riskModelTemplate.currentProcessorUserId !== this._appService.userDetails.email) {
             isTemplateValid = false;
         }
-        // Check validity of each riskTypes and riskFactors.
-        this._riskModelTemplate.riskTypes.map(riskType => {
-            riskType.riskComponents.map(riskComponent => {
-                // Check if risk component is 'Account Conduct' and isApplicable is true.
-                if (riskComponent.description === 'Account Conduct') { // Check above comment.
-                    if (riskComponent.isApplicable === true) { // Check above comment.
+        else {
+            // Check the validity of riskModelTemplate itself. (Not required I guess, need to delete it)        
+            if (this._riskModelTemplate === undefined) {
+                isTemplateValid = false;
+            }
+            // Check validity of each riskTypes and riskFactors.
+            this._riskModelTemplate.riskTypes.map(riskType => {
+                riskType.riskComponents.map(riskComponent => {
+                    // Check if risk component is 'Account Conduct' and isApplicable is true.
+                    if (riskComponent.description === 'Account Conduct') { // Check above comment.
+                        if (riskComponent.isApplicable === true) { // Check above comment.
+                            riskComponent.riskFactors.map(riskFactor => {
+                                if (this.checkRiskSubFactorSelection(riskFactor) === false) {
+                                    isTemplateValid = false;
+                                }
+                            });
+                        }
+                    }
+                    else { // If risk component is not 'Account Conduct'.
                         riskComponent.riskFactors.map(riskFactor => {
                             if (this.checkRiskSubFactorSelection(riskFactor) === false) {
                                 isTemplateValid = false;
                             }
                         });
                     }
-                }
-                else { // If risk component is not 'Account Conduct'.
-                    riskComponent.riskFactors.map(riskFactor => {
-                        if (this.checkRiskSubFactorSelection(riskFactor) === false) {
-                            isTemplateValid = false;
-                        }
-                    });
-                }
+                });
             });
-        });
-        // Check validity of ratingModifiers.
-        if (this._riskModelTemplate.applyRatingModifiers) {
-            if (this.checkRatingModifiers(this._riskModelTemplate.riskRatingModifiers) === false) {
-                isTemplateValid = false;
+            // Check validity of ratingModifiers.
+            if (this._riskModelTemplate.applyRatingModifiers) {
+                if (this.checkRatingModifiers(this._riskModelTemplate.riskRatingModifiers) === false) {
+                    isTemplateValid = false;
+                }
             }
-        }
-        // Check validity of parentalNotchups.
-        if (this._riskModelTemplate.applyParentalNotchup) {
-            if (this.checkRiskSubFactorSelection(this._riskModelTemplate.riskParentalNotchUps[0]) === false) {
-                isTemplateValid = false;
+            // Check validity of parentalNotchups.
+            if (this._riskModelTemplate.applyParentalNotchup) {
+                if (this.checkRiskSubFactorSelection(this._riskModelTemplate.riskParentalNotchUps[0]) === false) {
+                    isTemplateValid = false;
+                }
             }
         }
         return isTemplateValid;

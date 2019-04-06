@@ -25,7 +25,7 @@ export class EnquirySearchComponent implements OnChanges {
         console.log('changes', changes);
     }
 
-    constructor(_formBuilder: FormBuilder, private _dialog: MatDialog, public _service: LoanEnquiryService,
+    constructor(_formBuilder: FormBuilder, private _dialog: MatDialog, private _service: LoanEnquiryService,
         public _appService: AppService, private _router: Router, private _matSnackBar: MatSnackBar) {
 
         this.enquirySearchForm = _formBuilder.group({
@@ -35,6 +35,7 @@ export class EnquirySearchComponent implements OnChanges {
         });
 
         _service.selectedLoanApplicationId = undefined;
+        _service.selectedLoanApplicaton = undefined;
     }
 
     /**
