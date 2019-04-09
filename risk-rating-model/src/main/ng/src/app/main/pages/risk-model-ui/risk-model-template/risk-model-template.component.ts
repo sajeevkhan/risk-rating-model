@@ -71,6 +71,13 @@ export class RiskModelTemplateComponent implements OnInit, OnChanges {
                 riskComponent.isApplicable = event.checked;
             }
         });
+        if (this.riskModelTemplate.riskTypes[1] !== undefined) {
+            this.riskModelTemplate.riskTypes[1].riskComponents.map(riskComponent => {
+                if (riskComponent.description === 'Account Conduct') {
+                    riskComponent.isApplicable = event.checked;
+                }
+            });
+        }
         console.log(this.riskModelTemplate);
     }
 
@@ -149,9 +156,9 @@ export class RiskModelTemplateComponent implements OnInit, OnChanges {
             this._matSnackBar.open('Evaluated and saved', 'Ok', { duration: 7000 });
             this.savingTemplate = false;
         },
-        error => {
-            this.handleError(error);
-        });
+            error => {
+                this.handleError(error);
+            });
     }
 
     /**
@@ -171,9 +178,9 @@ export class RiskModelTemplateComponent implements OnInit, OnChanges {
             this.savingTemplate = false;
             this.disableSendForApprovalButton = true;
         },
-        error => {
-            this.handleError(error);
-        });
+            error => {
+                this.handleError(error);
+            });
     }
 
     /**
