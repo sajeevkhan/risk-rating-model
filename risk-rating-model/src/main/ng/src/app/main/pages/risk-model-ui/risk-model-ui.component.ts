@@ -171,12 +171,15 @@ export class RiskModelUIComponent implements OnInit {
                     }
                 });
             });
+            
+            // Commented as validity of ratingModifiers need not be checked as per issue risk-rating-model/issues/68
             // Check validity of ratingModifiers.
-            if (this._riskModelTemplate.applyRatingModifiers) {
-                if (this.checkRatingModifiers(this._riskModelTemplate.riskRatingModifiers) === false) {
-                    isTemplateValid = false;
-                }
-            }
+            // if (this._riskModelTemplate.applyRatingModifiers) {
+            //     if (this.checkRatingModifiers(this._riskModelTemplate.riskRatingModifiers) === false) {
+            //         isTemplateValid = false;
+            //     }
+            // }
+
             // Check validity of parentalNotchups.
             if (this._riskModelTemplate.applyParentalNotchup) {
                 if (this.checkRiskSubFactorSelection(this._riskModelTemplate.riskParentalNotchUps[0]) === false) {
