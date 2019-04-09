@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { RiskModelUIService } from '../risk-model-ui.service';
 import { MatSnackBar, MatCheckboxChange } from '@angular/material';
 import { EnquiryApplicationModel } from 'app/main/model/enquiryApplication.model';
@@ -10,7 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
     templateUrl: './risk-model-template.component.html',
     styleUrls: ['./risk-model-template.component.scss']
 })
-export class RiskModelTemplateComponent implements OnInit {
+export class RiskModelTemplateComponent implements OnInit, OnChanges {
 
     accountConductApplicable: boolean;
 
@@ -19,6 +19,8 @@ export class RiskModelTemplateComponent implements OnInit {
 
     @Input()
     disableSendForApprovalButton: boolean;
+
+    department: string;
 
     ratingSources: any;
     creditRatings: any;
@@ -49,6 +51,10 @@ export class RiskModelTemplateComponent implements OnInit {
     }
 
     ngOnInit(): void {
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        this.department = this.getDepartment();
     }
 
     selectedIndexChange(val: number): void {
@@ -272,6 +278,10 @@ export class RiskModelTemplateComponent implements OnInit {
         }
     }
 
+    /**
+     * applyRatingModifiers()
+     * @param event 
+     */
     applyRatingModifiers(event: MatCheckboxChange): void {
         if (event.checked === false) {
             this.riskModelTemplate['riskRatingModifiers'].map(riskRatingModifier => {
@@ -280,6 +290,20 @@ export class RiskModelTemplateComponent implements OnInit {
                 });
             });
         }
+    }
+
+    /**
+     * getDepartment()
+     */
+    getDepartment(): string {
+        let department = '';
+        this.purposes.map(purpose => {
+            console.log(purpose.code, this.riskModelTemplate.purposeCode);
+            if (purpose.code === this.riskModelTemplate.purposeCode) {
+                department = purpose.description;
+            }
+        });
+        return department;
     }
 
     private handleError(error: HttpErrorResponse) {
