@@ -12,7 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class RiskModelTemplateComponent implements OnInit {
 
-    accountConductNotApplicable: boolean;
+    accountConductApplicable: boolean;
 
     @Input()
     riskModelTemplate: any;
@@ -62,7 +62,7 @@ export class RiskModelTemplateComponent implements OnInit {
     applyAccountConductToTemplate(event: any): void {
         this.riskModelTemplate.riskTypes[0].riskComponents.map(riskComponent => {
             if (riskComponent.description === 'Account Conduct') {
-                riskComponent.isApplicable = !event.checked;
+                riskComponent.isApplicable = event.checked;
             }
         });
         console.log(this.riskModelTemplate);
@@ -190,7 +190,7 @@ export class RiskModelTemplateComponent implements OnInit {
                 }
             }
         });
-        if (this.accountConductNotApplicable) {
+        if (!this.accountConductApplicable) {
             // Account Conduct tab should not be validated.
             return (riskComponentSelections === riskType.riskComponents.length - 1);
         }

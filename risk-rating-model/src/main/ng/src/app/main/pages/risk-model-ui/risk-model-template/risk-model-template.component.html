@@ -7,11 +7,13 @@
 
 <div id="risk-model-template" class="tabView" style="width:99%;" fxLayout="column" fusePerfectScrollbar>
     <div fxLayout="row" fxLayoutAlign="end center" fxFlex="100">
-        <mat-checkbox *ngIf="riskModelTemplate.riskTypes[0].isAccountConductRiskComponentPresent"
-            [(ngModel)]="accountConductNotApplicable" (change)="applyAccountConductToTemplate($event)">Account Conduct Not
-            Applicable</mat-checkbox>
+        <mat-checkbox
+            *ngIf="riskModelTemplate.riskTypes[0].isAccountConductRiskComponentPresent || (riskModelTemplate.riskTypes[1] && riskModelTemplate.riskTypes[1].isAccountConductRiskComponentPresent)"
+            [(ngModel)]="accountConductApplicable" (change)="applyAccountConductToTemplate($event)">Account Conduct
+            Risk Applicable</mat-checkbox>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <mat-checkbox [(ngModel)]="riskModelTemplate.applyRatingModifiers" (change)="applyRatingModifiers($event)">Apply Rating Modifiers</mat-checkbox>
+        <mat-checkbox [(ngModel)]="riskModelTemplate.applyRatingModifiers" (change)="applyRatingModifiers($event)">Apply
+            Rating Modifiers</mat-checkbox>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <mat-checkbox [(ngModel)]="riskModelTemplate.applyParentalNotchup">Apply Parental Notchup</mat-checkbox>
     </div>
@@ -62,7 +64,8 @@
                     </mat-form-field>
 
                     <mat-form-field fxFlex="20">
-                        <mat-select placeholder="Department" [(ngModel)]="riskModelTemplate.purposeCode" [disabled]="true">
+                        <mat-select placeholder="Department" [(ngModel)]="riskModelTemplate.purposeCode"
+                            [disabled]="true">
                             <mat-option *ngFor="let purpose of purposes" [value]="purpose.code">
                                 {{ purpose.description }}
                             </mat-option>
@@ -160,7 +163,7 @@
                         <!-- Risk Components Starts Here -->
                         <mat-tab-group>
                             <mat-tab *ngFor="let riskComponent of riskType.riskComponents"
-                                [disabled]="accountConductNotApplicable && riskComponent.description == 'Account Conduct'">
+                                [disabled]="!accountConductApplicable && riskComponent.description == 'Account Conduct'">
 
                                 <ng-template mat-tab-label>
                                     <mat-icon class="pr-32" *ngIf="checkRiskFactorSelection(riskComponent)">check_circle
