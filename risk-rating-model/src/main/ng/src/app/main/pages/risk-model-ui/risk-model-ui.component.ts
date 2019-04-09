@@ -109,6 +109,13 @@ export class RiskModelUIComponent implements OnInit {
             disableButton = false;
         }
 
+
+        // Added by Sajeev - If CurrentProcessor is the Creator and the Status is Rejected
+        if (this._riskModelTemplate.createdByUserId == this._riskModelTemplate.currentProcessorUserId &&
+                                                                this._riskModelTemplate.workflowStatusCode == "04"){
+            disableButton = false;
+        }
+
         return disableButton;
     }
 
@@ -136,10 +143,28 @@ export class RiskModelUIComponent implements OnInit {
     }
 
     /**
+     * displayAsPDFDebugMode()
+     */
+    displayAsPDFDebugMode(): void {
+        console.log(this._riskModelTemplate.projectName);
+        (window as any).open('api/riskModelPDFDebugMode?id=' + this._riskModelTemplate.id, '_blank');
+    }
+
+    /**
      * validateTemplate()
      */
     validateTemplate(): boolean {
         let isTemplateValid = true;
+
+        // If the creaetdByUserId is the same as currentProcessUser Id and Workflow Status = "Rejected" 
+        if (this._riskModelTemplate.createdByUserId == this._riskModelTemplate.currentProcessorUserId && 
+            this._riskModelTemplate.workflowStatusCode == "04"){
+            isTemplateValid = true;
+            return isTemplateValid;
+        }
+
+
+
         // Check if user.email is the same as the currentProcessorUserId
         if (this._riskModelTemplate.currentProcessorUserId !== null && this._riskModelTemplate.currentProcessorUserId !== this._appService.userDetails.email) {
             isTemplateValid = false;

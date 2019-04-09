@@ -187,6 +187,15 @@ public class RiskModelTemplate extends AuditModel {
     @Nullable
     private String finalProjectGrade;
 
+    @Nullable
+    private Boolean subInvestementGradeAfterRatingModifier;
+
+    @Nullable
+    private String numberOfNotchesDownAfterRatingModifier;
+
+    @Nullable
+    private String numberOfNotchesUpAfterParentalNotchup;
+
 
     @Nullable
     @IndexColumn (name = "INDEX_COL1")

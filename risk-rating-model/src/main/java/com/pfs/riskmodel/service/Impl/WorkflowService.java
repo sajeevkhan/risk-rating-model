@@ -155,6 +155,9 @@ public class WorkflowService implements IWorkflowService {
 
         validationResult.setWorkflowError(false);
 
+        WorkflowAssignment workflowAssignment = getWorkFlowProcessor(riskModelTemplate.getPurpose());
+
+
         Map<String, Object> variables = new HashMap<>();
         variables = prepareVariables(riskModelTemplate,httpServletRequest);
         riskModelTemplate.setCurrentWorkFlowLevel(1);
@@ -180,6 +183,7 @@ public class WorkflowService implements IWorkflowService {
         riskModelTemplate.setWorkflowStatus( workflowStatusRepository.findByCode("02") );
         riskModelTemplate.setWorkflowStatusCode(workflowStatusRepository.findByCode("02").getCode());
 
+        riskModelTemplate.setCurrentProcessorUserId(workflowAssignment.getFirstLevelApproverEmailId());
         output.put("RiskModel", riskModelTemplate);
         output.put("ValidationResult", validationResult);
         return output;
@@ -191,6 +195,8 @@ public class WorkflowService implements IWorkflowService {
 
         Map<String,Object> output =  new HashMap<>();
         ValidationResult validationResult = new ValidationResult();
+
+        WorkflowAssignment workflowAssignment = getWorkFlowProcessor(riskModelTemplate.getPurpose());
 
         TaskService taskService = processEngine.getTaskService();
         Task task = taskService.createTaskQuery().processInstanceId(riskModelTemplate.getProcessInstanceId()).singleResult();
@@ -204,14 +210,14 @@ public class WorkflowService implements IWorkflowService {
         switch (riskModelTemplate.getWorkflowStatus().getCode()) {
             case "02": //Sent for First Level Approval
                 riskModelTemplate.setCurrentWorkFlowLevel(1);
-                riskModelTemplate.setCurrentProcessorUserId(riskModelTemplate.getFirstLevelApprover());
+                riskModelTemplate.setCurrentProcessorUserId(workflowAssignment.getSecondLevelApproverEmailId());
                 variables.put("rejectedInFirstLevel", " ");
                 variables.put("firstLevelApproval", true);
                 break;
             case "03": //First Level Approval Completed
             case "05": //Sent for Second Level Approval
                 riskModelTemplate.setCurrentWorkFlowLevel(2);
-                riskModelTemplate.setCurrentProcessorUserId(riskModelTemplate.getSecondLevelApprover());
+                riskModelTemplate.setCurrentProcessorUserId(workflowAssignment.getThirdLevelApproverEmailId());
                 variables.put("rejectedInSecondLevel", " ");
                 variables.put("secondLevelApproval", true);
                 break;
@@ -219,25 +225,25 @@ public class WorkflowService implements IWorkflowService {
             case "07": //Sent for Third Level Approval
                 variables.put("rejectedInThirdLevel", " ");
                 riskModelTemplate.setCurrentWorkFlowLevel(3);
-                riskModelTemplate.setCurrentProcessorUserId(riskModelTemplate.getThirdLevelApprover());
+                riskModelTemplate.setCurrentProcessorUserId(riskModelTemplate.getCreatedByUserId());
                 variables.put("thirdLevelApproval", true);
                 break;
             case "04":
                 if (riskModelTemplate.getCurrentWorkFlowLevel() == 1) {
                     variables.put("rejectedInFirstLevel", " ");
                     variables.put("firstLevelApproval", true);
-                    riskModelTemplate.setCurrentProcessorUserId(riskModelTemplate.getFirstLevelApprover());
+                    riskModelTemplate.setCurrentProcessorUserId(workflowAssignment.getSecondLevelApproverEmailId());
                 }
                 if (riskModelTemplate.getCurrentWorkFlowLevel() == 2) {
                     variables.put("rejectedInSecondLevel", " ");
                     variables.put("secondLevelApproval", true);
-                    riskModelTemplate.setCurrentProcessorUserId(riskModelTemplate.getSecondLevelApprover());
+                    riskModelTemplate.setCurrentProcessorUserId(workflowAssignment.getThirdLevelApproverEmailId());
 
                 }
                 if (riskModelTemplate.getCurrentWorkFlowLevel() == 3) {
                     variables.put("rejectedInThirdLevel", " ");
                     variables.put("thirdLevelApproval", true);
-                    riskModelTemplate.setCurrentProcessorUserId(riskModelTemplate.getThirdLevelApprover());
+                    riskModelTemplate.setCurrentProcessorUserId(workflowAssignment.getFirstLevelApproverEmailId());
 
                 }
                 break;
@@ -333,25 +339,29 @@ public class WorkflowService implements IWorkflowService {
         Map<String, Object> variables = new HashMap<>();
         variables = prepareVariables(riskModelTemplate,httpServletRequest);
 
+
+        WorkflowAssignment workflowAssignment = getWorkFlowProcessor(riskModelTemplate.getPurpose());
+
+
         switch (riskModelTemplate.getWorkflowStatus().getCode()) {
             case "02": // Sent for First Level Approval
                 variables.put("firstLevelApproval", false);
                 variables.put("rejectedInFirstLevel", "X");
                 riskModelTemplate.setCurrentProcessorUserId(riskModelTemplate.getCreatedByUserId());
-
+                //riskModelTemplate.setWorkflowStatusCode("01");
                 break;
             case "03":
             case "05": // Sent for Second Level Approval
                 variables.put("rejectedInSecondLevel", "X");
                 variables.put("secondLevelApproval", false);
-                riskModelTemplate.setCurrentProcessorUserId(riskModelTemplate.getFirstLevelApprover());
+                riskModelTemplate.setCurrentProcessorUserId(workflowAssignment.getFirstLevelApproverEmailId());
 
                 break;
             case "06":
             case "07": // Sent for Third Level Approval
                 variables.put("rejectedInThirdLevel", "X");
                 variables.put("thirdLevelApproval", false);
-                riskModelTemplate.setCurrentProcessorUserId(riskModelTemplate.getSecondLevelApprover());
+                riskModelTemplate.setCurrentProcessorUserId(workflowAssignment.getFirstLevelApproverEmailId());
 
         }
 
@@ -362,7 +372,7 @@ public class WorkflowService implements IWorkflowService {
 
         if (task == null) {
             validationResult =
-                    getWorkflowValidation(true,"Workflow.Completed",riskModelTemplate.getId().toString(), "Workflow Task is Nul");
+                    getWorkflowValidation(true,"Workflow.Completed",riskModelTemplate.getId().toString(), "Workflow Task is Null");
             output.put("ValidationResult", validationResult);
             return output;
         }else {

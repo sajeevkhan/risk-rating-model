@@ -35,10 +35,10 @@ public class RenewablePostProjectRiskTypes {
         industryRiskComponent = RPP_IndustryRiskRiskComponentDTO.getIndustryRiskComponentDTO();
         industryRiskComponent.setWeightage(0.14D);
 
-        //  Risk Component 3 : Financial Risk - 24%
+        //  Risk Component 3 : Financial Risk - 28%
         RiskComponentDTO financialRiskComponent = new RiskComponentDTO();
         financialRiskComponent = RPP_FinancialRiskRiskComponentDTO.getFinancialRiskComponentDTO();
-        financialRiskComponent.setWeightage(0.24D);
+        financialRiskComponent.setWeightage(0.28D);
 
 
         //  Risk Component 4 : Management Risk - 17%

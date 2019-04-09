@@ -26,6 +26,11 @@ public class RiskTypeEvaluator {
         // Risk Types - ONLY WEIGHTED METHOD is Implemented
         riskTypeScore = computeWeighted(riskType.getRiskComponents());
 
+        String riskTypeCalculation = getCalculation(riskType.getRiskComponents());
+        riskTypeCalculation = riskTypeCalculation + " = " + riskTypeScore;
+        riskType.setRiskTypeCalculation(riskTypeCalculation);
+
+
         riskType.setScore(riskTypeScore);
         return riskType;
     }
@@ -45,7 +50,40 @@ public class RiskTypeEvaluator {
         return score;
     }
 
+    private String getCalculation (List<RiskComponent> riskComponents) {
 
+        String riskTypeCalculation = "Calculation : ";
+
+        int i = 0; int j = riskComponents.size();
+
+        for (RiskComponent riskComponent: riskComponents ) {
+            i++;
+            // Single Entry
+            if (i == 1 && i == j) {
+                riskTypeCalculation = riskTypeCalculation + " " + riskComponent.getScore().toString() + " * " + riskComponent.getWeightage().toString()  ;
+                continue;
+            }
+            // First Entry
+            if (i == 1 ) {
+                riskTypeCalculation = riskTypeCalculation + " " + riskComponent.getScore().toString() + " * " + riskComponent.getWeightage().toString() + " + ";
+                continue;
+            }
+            //Middle Entires
+            if (i!= 1 && i < j && i!=j) {
+                riskTypeCalculation = riskTypeCalculation + " " + riskComponent.getScore().toString() + " * " + riskComponent.getWeightage().toString() + " + ";;
+                continue;
+            }
+            // Last Entry
+            if (i == j && j != 1) {
+                riskTypeCalculation = riskTypeCalculation + " " + riskComponent.getScore().toString() + " * " + riskComponent.getWeightage().toString();
+                continue;
+            }
+
+        }
+
+        return riskTypeCalculation;
+
+    }
 
 
 

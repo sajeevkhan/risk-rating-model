@@ -1,6 +1,7 @@
 package com.pfs.riskmodel.domain;
 
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -68,6 +69,8 @@ public class RiskFactor extends AuditModel  {
     @NotNull
     private Double weightage;
 
+    @Nullable
+    private String riskFactorCalculation;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
     @JoinColumn(name="riskFactor__id",referencedColumnName = "id")

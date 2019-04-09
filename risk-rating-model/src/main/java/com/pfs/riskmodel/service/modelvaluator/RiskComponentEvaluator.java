@@ -18,7 +18,11 @@ public class RiskComponentEvaluator {
 
     public RiskComponent evaluateRiskComponent(RiskComponent riskComponent) {
 
+
        String computingMethodCode =  riskComponent.getComputingMethod().getCode();
+
+       String riskComponentCalculation = "Calculation : ";
+       int i = 0; int j = getMainRiskFactorCount(riskComponent.getRiskFactors());
 
         //String scoreTypeCode = riskFactor.getScoreType().getCode();
 
@@ -30,6 +34,34 @@ public class RiskComponentEvaluator {
        switch (computingMethodCode) {
            case "01": // Weighted
                riskComponentScore = computeWeighted(riskComponent.getRiskFactors());
+               for (RiskFactor riskFactor: riskComponent.getRiskFactors()) {
+                   if (riskFactor.getScoreTypeCode().equals("01")) {
+
+                       i++;
+                       // Single Entry
+                       if (i == 1 && i == j) {
+                           riskComponentCalculation = riskComponentCalculation + " " + riskFactor.getScore().toString() + " * " + riskFactor.getWeightage().toString();
+                           continue;
+                       }
+                       // First Entry
+                       if (i == 1) {
+                           riskComponentCalculation = riskComponentCalculation + " " + riskFactor.getScore().toString() + " * " + riskFactor.getWeightage().toString() + " + ";
+                           continue;
+                       }
+                       //Middle Entires
+                       if (i != 1 && i < j && i != j) {
+                           riskComponentCalculation = riskComponentCalculation + " " + riskFactor.getScore().toString() + " * " + riskFactor.getWeightage().toString() + " + ";
+                           ;
+                           continue;
+                       }
+                       // Last Entry
+                       if (i == j && j != 1) {
+                           riskComponentCalculation = riskComponentCalculation + " " + riskFactor.getScore().toString() + " * " + riskFactor.getWeightage().toString();
+                           continue;
+                       }
+                   }
+
+               }
                 break;
            case "02": // Sum
                riskComponentScore = computeSum(riskComponent.getRiskFactors());
@@ -55,6 +87,10 @@ public class RiskComponentEvaluator {
             if (riskFactor.getScoreType().getCode().equals("02") || riskFactor.getScoreType().getCode().equals("03")) {
 
                 riskComponentScore = riskComponentScore * riskFactor.getScore();
+
+                riskComponentCalculation = "( " + riskComponentCalculation + " ) " +   " * " + riskFactor.getScore().toString();
+
+
             }
         }
 
@@ -63,6 +99,9 @@ public class RiskComponentEvaluator {
 
         if (riskComponent.getIsApplicable() == false)
             riskComponent.setScore(0D);
+
+        riskComponentCalculation = riskComponentCalculation + " = " + riskComponent.getScore().toString();
+        riskComponent.setRiskComponentCalculation(riskComponentCalculation);
 
         return riskComponent;
     }
@@ -131,7 +170,18 @@ public class RiskComponentEvaluator {
     }
 
 
+    private Integer getMainRiskFactorCount(List<RiskFactor> riskFactors) {
 
+        Integer count = 0;
+
+        for (RiskFactor riskFactor: riskFactors) {
+            if (riskFactor.getScoreTypeCode().equals("01"))
+                count++;
+        }
+
+        return count;
+
+    }
 
 
 }

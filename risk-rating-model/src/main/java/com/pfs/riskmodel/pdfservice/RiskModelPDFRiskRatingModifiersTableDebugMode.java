@@ -11,7 +11,6 @@ import com.pfs.riskmodel.domain.RiskRatingModifierAttribute;
  * Created by sajeev on 03-Jan-19.
  */
 public class RiskModelPDFRiskRatingModifiersTableDebugMode {
-
     public Document buildRatingModifiers(  Document doc, RiskModelTemplate riskModelTemplate) throws Exception {
 
 
@@ -33,8 +32,19 @@ public class RiskModelPDFRiskRatingModifiersTableDebugMode {
         valueFont.setColor(BaseColor.BLACK);
         valueFont.setSize(8);
 
+        Paragraph ratingModHeaderPara = new Paragraph();
 
-        Paragraph ratingModHeaderPara = new Paragraph("Rating Modifiers", paraFont);
+//        if (riskModelTemplate.getApplyParentalNotchup() != null) {
+//            if (riskModelTemplate.getApplyParentalNotchup() == true)
+        ratingModHeaderPara = new Paragraph("Rating Modifiers", paraFont);
+//            else {
+//                ratingModHeaderPara = new Paragraph("Rating Modifiers - NOT APPLICABLE", paraFont);
+//            }
+//        } else {
+//            ratingModHeaderPara = new Paragraph("Rating Modifiers - NOT APPLICABLE", paraFont);
+//        }
+
+
         ratingModHeaderPara.setAlignment(Element.ALIGN_CENTER);
         doc.add(new Paragraph(" "));
         doc.add(ratingModHeaderPara);
@@ -50,59 +60,15 @@ public class RiskModelPDFRiskRatingModifiersTableDebugMode {
 
         for (RiskRatingModifier riskRatingModifier: riskModelTemplate.getRiskRatingModifiers()) {
 
-            // First Row -  Rating Modifier Description and Applicable Attribute
+            // First Row -  Rating Modifier Description
             PdfPCell cell1 = new PdfPCell();
             cell1.setBackgroundColor(BaseColor.BLUE.darker().darker().darker().darker());
             cell1.setPhrase(new Phrase(riskRatingModifier.getDescription(), headerfont));
-            cell1.setColspan(2);
+            cell1.setColspan(3);
             cell1.setHorizontalAlignment(Element.ALIGN_LEFT);
 
-            PdfPCell cell2 = new PdfPCell();
-            cell2.setBackgroundColor(BaseColor.ORANGE);
-            if (riskRatingModifier.getIsApplicable() != null ){
-                if (riskRatingModifier.getIsApplicable() == true) {
-                    cell2.setPhrase(new Phrase("Applicable", valueFont));
-            }
-            } else
-                cell2.setPhrase(new Phrase("Not Applicable", valueFont));
-
-            //cell2.setColspan(2);
-            cell2.setHorizontalAlignment(Element.ALIGN_LEFT);
-
             ratingModifiersTable.addCell(cell1);
-            ratingModifiersTable.addCell(cell2);
             ratingModifiersTable.completeRow();
-
-            if (riskRatingModifier.getModifierType() == 1) {
-
-                // Second Row -  Rating Modifier Description and Applicable Attribute
-                cell1 = new PdfPCell();
-                cell1.setBackgroundColor(BaseColor.ORANGE);
-                cell1.setPhrase(new Phrase( "Number of notches to downgrade : " +
-                                                 riskRatingModifier.getNumberOfNotchesDown().toString(), valueFont));
-                cell1.setColspan(2);
-                cell1.setHorizontalAlignment(Element.ALIGN_LEFT);
-
-                cell2 = new PdfPCell();
-                cell2.setBackgroundColor(BaseColor.ORANGE);
-                if (riskRatingModifier.getCountOfDowngradeBy1or2Notches() != null) {
-                    cell2.setPhrase(new Phrase("Count: " + riskRatingModifier.getCountOfDowngradeBy1or2Notches().toString(), valueFont));
-                } else {
-                    cell2.setPhrase(new Phrase("Count: " + " ", valueFont));
-
-                }
-
-                //cell2.setColspan(2);
-                cell2.setHorizontalAlignment(Element.ALIGN_LEFT);
-
-                ratingModifiersTable.addCell(cell1);
-                ratingModifiersTable.addCell(cell2);
-                ratingModifiersTable.completeRow();
-
-            }
-
-
-
 
 
             for (RiskRatingModifierAttribute riskRatingModifierAttribute : riskRatingModifier.getRiskRatingModifierAttributes()) {
@@ -115,7 +81,7 @@ public class RiskModelPDFRiskRatingModifiersTableDebugMode {
 
 
                 // Second Column - Rating Modifier Attribute Description
-                cell2 = new PdfPCell();
+                PdfPCell cell2 = new PdfPCell();
                 cell2.setBackgroundColor(BaseColor.WHITE);
                 cell2.setPhrase(new Phrase(riskRatingModifierAttribute.getDescription(), valueFont));
 

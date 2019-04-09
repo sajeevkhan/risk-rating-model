@@ -20,17 +20,62 @@ public class RiskFactorEvaluator {
        String computingMethodCode =  riskFactor.getComputingMethod().getCode();
       //String scoreTypeCode = riskFactor.getScoreType().getCode();
 
+       String riskFactorCalculation = " ";
+
+
        // Initialize Risk Factor Score
        Double riskFactorScore = riskFactor.getScore();
        riskFactorScore = 0D;
 
+        int i = 0; int j = getMainRiskFactorCount(riskFactor.getRiskSubFactors());
 
        switch (computingMethodCode) {
            case "01": // Weighted
                 riskFactorScore = computeWeighted(riskFactor.getRiskSubFactors());
+
+
+                for (RiskSubFactor riskSubFactor: riskFactor.getRiskSubFactors()) {
+                    if (riskSubFactor.getScoreTypeCode().equals("01")) {
+                        i++;
+                        // Single Entry
+                        if (i == 1 && i == j) {
+                            riskFactorCalculation = riskFactorCalculation + " " + riskSubFactor.getScore().toString() + " * " + riskSubFactor.getWeightage().toString();
+                            continue;
+                        }
+                        // First Entry
+                        if (i == 1) {
+                            riskFactorCalculation = riskFactorCalculation + " " + riskSubFactor.getScore().toString() + " * " + riskSubFactor.getWeightage().toString() + " + ";
+                            continue;
+                        }
+                        //Middle Entires
+                        if (i != 1 && i < j && i != j) {
+                            riskFactorCalculation = riskFactorCalculation + " " + riskSubFactor.getScore().toString() + " * " + riskSubFactor.getWeightage().toString() + " + ";
+                            ;
+                            continue;
+                        }
+                        // Last Entry
+                        if (i == j && j != 1) {
+                            riskFactorCalculation = riskFactorCalculation + " " + riskSubFactor.getScore().toString() + " * " + riskSubFactor.getWeightage().toString();
+                            continue;
+                        }
+                    }
+
+                }
                 break;
            case "02": // Sum
                 riskFactorScore = computeSum(riskFactor.getRiskSubFactors());
+
+
+               for (RiskSubFactor riskSubFactor: riskFactor.getRiskSubFactors()) {
+                   if (i == 1)
+                        riskFactorCalculation = riskFactorCalculation + " " + riskSubFactor.getScore().toString() + " + " ;
+                   if (i!= 1 && i < j && i!=j)
+                       riskFactorCalculation = riskFactorCalculation + " " + riskSubFactor.getScore().toString() + " + " ;
+                   if (i == j && j != 1)
+                       riskFactorCalculation =  riskFactorCalculation + " " + riskSubFactor.getScore().toString()  ;
+
+                   i++;
+               }
                 break;
            case "03": // Minimum
                riskFactorScore = computeMaxOrMin(riskFactor.getRiskSubFactors(), 0);
@@ -55,11 +100,18 @@ public class RiskFactorEvaluator {
 
            if (riskSubFactor.getScoreType().getCode().equals("02") || riskSubFactor.getScoreType().getCode().equals("03")) {
                riskFactorScore = riskFactorScore * riskSubFactor.getScore();
+
+               riskFactorCalculation = "( " + riskFactorCalculation + " ) " +   " * " + riskSubFactor.getScore().toString();
            }
        }
         riskFactorScore = Utils.round(riskFactorScore);
 
+        riskFactorCalculation = "Calculation :" + riskFactorCalculation + " = " + riskFactorScore.toString();
+
+
        riskFactor.setScore(riskFactorScore);
+       riskFactor.setRiskFactorCalculation(riskFactorCalculation);
+
        return riskFactor;
     }
 
@@ -130,5 +182,17 @@ public class RiskFactorEvaluator {
 
 
 
+    private Integer getMainRiskFactorCount(List<RiskSubFactor> riskSubFactors) {
+
+        Integer count = 0;
+
+        for (RiskSubFactor riskSubFactor: riskSubFactors) {
+            if (riskSubFactor.getScoreTypeCode().equals("01"))
+                count++;
+        }
+
+        return count;
+
+    }
 
 }

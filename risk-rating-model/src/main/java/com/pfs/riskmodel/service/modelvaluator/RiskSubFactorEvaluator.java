@@ -12,6 +12,7 @@ public class RiskSubFactorEvaluator {
 
     public RiskSubFactor evaluateRiskSubFactor(RiskSubFactor riskSubFactor) {
 
+        String riskSubFactorCalculation = "Value  =  ";
 
         // Get Score Type Code
         String scoreTypeCode      = riskSubFactor.getScoreType().getCode();
@@ -30,6 +31,10 @@ public class RiskSubFactorEvaluator {
 
 
         riskSubFactor.setScore(riskSubFactorScore);
+
+        riskSubFactorCalculation = riskSubFactorCalculation + " " + riskSubFactorScore;
+        riskSubFactor.setRiskSubFactorCalculation(riskSubFactorCalculation);
+
         return riskSubFactor;
     }
 

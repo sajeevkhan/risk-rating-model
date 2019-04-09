@@ -2,6 +2,7 @@ package com.pfs.riskmodel.domain;
 
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -72,6 +73,9 @@ public class RiskComponent extends AuditModel  {
 
     @NotNull
     private Double weightage;
+
+    @Nullable
+    public String riskComponentCalculation;
 
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )

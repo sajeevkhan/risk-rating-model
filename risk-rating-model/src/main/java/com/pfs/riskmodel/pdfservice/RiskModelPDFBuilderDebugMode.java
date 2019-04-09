@@ -24,19 +24,32 @@ public class RiskModelPDFBuilderDebugMode  {
 
 
     public ByteArrayOutputStream buildPdfDocument(RiskModelTemplate riskModelTemplate,
-                                                  WorkflowAssignment workflowAssignment, Task task
+                                                  WorkflowAssignment workflowAssignment,
+                                                  Task task
     ) throws Exception {
 
-        Document doc = new Document();
+        Document doc = new Document(PageSize.A4,36, 36, 70, 80);
+
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
-        PdfWriter.getInstance(doc,stream);
+        PdfWriter writer = PdfWriter.getInstance(doc,stream);
+
+
+        PDFFooter event = new PDFFooter( riskModelTemplate.getProjectName(),
+                riskModelTemplate.getLoanAmountInCrores().toString(),
+                riskModelTemplate.getRatingDate(),
+                riskModelTemplate.getRiskProjectType().getValue(),
+                riskModelTemplate.getProjectRiskLevel().getValue());
+
+        writer.setPageEvent(event);
 
         doc.open();
+
         doc.add(new Paragraph(" "));
         doc.add(new Paragraph(" "));
 
+        doc.addTitle(riskModelTemplate.getProjectName() + " " + riskModelTemplate.getProjectRiskLevel().getValue());
 
         // Header Table with Loan Details
         RiskModelPDFHeaderTable riskModelPDFHeaderTable = new RiskModelPDFHeaderTable();
@@ -47,7 +60,7 @@ public class RiskModelPDFBuilderDebugMode  {
         doc = riskModelPDFHeaderRatingOverviewTable.buildHeaderRatingTable(doc, riskModelTemplate);
 
         // Risk Component Scores
-        RiskModelPDFRiskTypeComponentTable riskModelPDFRiskTypeComponentOverviewTable = new RiskModelPDFRiskTypeComponentTable();
+        RiskModelPDFRiskTypeComponentTableDebugMode riskModelPDFRiskTypeComponentOverviewTable = new RiskModelPDFRiskTypeComponentTableDebugMode();
         doc = riskModelPDFRiskTypeComponentOverviewTable.buildRiskTypeComponentOverview(doc, riskModelTemplate);
 
 
@@ -72,20 +85,22 @@ public class RiskModelPDFBuilderDebugMode  {
             // Component, Factors, Sub Factors and Attribtues
             for (RiskComponent riskComponent: riskType.getRiskComponents()){
 
-                RiskModelPDFComponentTableDebugMode riskModelPDFComponentTableDebugMode = new RiskModelPDFComponentTableDebugMode();
-                riskModelPDFComponentTableDebugMode.buildRiskComponentTable(doc,riskModelTemplate,riskComponent);
+                // Skip Component if it not applicable: E.g. Account Conduct Risk
+                if (riskComponent.getIsApplicable() == false)
+                    continue;
+
+                RiskModelPDFComponentTableDebugMode riskModelPDFComponentTable = new RiskModelPDFComponentTableDebugMode();
+                riskModelPDFComponentTable.buildRiskComponentTable(doc,riskModelTemplate,riskComponent);
             }
         }
 
 
         // Rating Modifiers
-        RiskModelPDFRiskRatingModifiersTableDebugMode riskModelPDFRiskRatingModifiersTable =
-                new RiskModelPDFRiskRatingModifiersTableDebugMode();
+        RiskModelPDFRiskRatingModifiersTable riskModelPDFRiskRatingModifiersTable = new RiskModelPDFRiskRatingModifiersTable();
         doc = riskModelPDFRiskRatingModifiersTable.buildRatingModifiers(doc, riskModelTemplate);
 
         // Parental Notchup
-        RiskModelPDFRiskParentalNotchupTableDebugMode riskModelPDFRiskParentalNotchupTable =
-                new RiskModelPDFRiskParentalNotchupTableDebugMode();
+        RiskModelPDFRiskParentalNotchupTableDebugMode riskModelPDFRiskParentalNotchupTable = new RiskModelPDFRiskParentalNotchupTableDebugMode();
         doc = riskModelPDFRiskParentalNotchupTable.buildParentalNotchup(doc,riskModelTemplate);
 
         doc.close();
@@ -93,7 +108,6 @@ public class RiskModelPDFBuilderDebugMode  {
         return stream;
 
     }
-
 
 
 }

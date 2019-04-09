@@ -310,7 +310,13 @@ public class RiskModelPDFHeaderTable {
             }
 
         }
-
+        else {
+            if (riskModelTemplate.getWorkflowStatus().getCode().equals("04")) {
+                firstLevelApprovalStatus = 4;
+                secondLevelApprovalStatus = 1;
+                thirdLevelApprovalStatus = 1;
+            }
+        }
 
         if (riskModelTemplate.getWorkflowStatus().getCode().equals("08")) {
             firstLevelApprovalStatus = 3;

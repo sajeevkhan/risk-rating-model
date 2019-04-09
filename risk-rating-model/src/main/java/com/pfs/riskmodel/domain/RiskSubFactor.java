@@ -1,6 +1,7 @@
 package com.pfs.riskmodel.domain;
 
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
  import javax.validation.constraints.NotNull;
@@ -51,6 +52,8 @@ public class RiskSubFactor extends AuditModel  {
     private String scoreTypeCode;
     private String scoreTypeDescription;
 
+    @Nullable
+    private String riskSubFactorCalculation;
 
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )

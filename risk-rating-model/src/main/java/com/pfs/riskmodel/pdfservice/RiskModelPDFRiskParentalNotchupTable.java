@@ -153,9 +153,9 @@ public class RiskModelPDFRiskParentalNotchupTable {
                     break;
                 case 2:  //Nature of Rating of Parent Firm
                     if (riskParentalNotchUpCondition.getNatureOfRatingOfParentFirm() == '0')
-                          value  = "Long Term";
+                          value  = "Short Term";
                     if (riskParentalNotchUpCondition.getNatureOfRatingOfParentFirm() == '1')
-                        value  = "Short Term";
+                        value  = "Long Term";
                     break;
                 case 3: // Is Parent's rating at GRADE 10
                     if (riskParentalNotchUpCondition.getYesNoIndicatorValue() == 'Y')
@@ -168,6 +168,9 @@ public class RiskModelPDFRiskParentalNotchupTable {
                         value = "Yes";
                     if (riskParentalNotchUpCondition.getYesNoIndicatorValue() == 'N')
                         value = "No";
+                    break;
+                case 6: //Borrower Rating Grade of the Parent Firm
+                    value = riskParentalNotchUpCondition.getValue();
                     break;
             }
 

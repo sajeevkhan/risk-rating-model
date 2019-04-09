@@ -18,25 +18,49 @@ public class Renewables_AccountConduct_Redistribution {
         for (RiskType riskType: riskModelTemplate.getRiskTypes()) {
             for (RiskComponent riskComponent: riskType.getRiskComponents()){
                 if (riskComponent.getDescription().contains("Account Conduct") ){
-                        if ( riskComponent.getIsApplicable() == false )
+                        if ( riskComponent.getIsApplicable() == true )
+                            redistribute = false;
+                        else
                             redistribute = true;
                 }
             }
 
-            // If redistribution needs to be done, Reset the Weightage
-            if (redistribute == true) {
-                for (RiskComponent riskComponent : riskType.getRiskComponents()) {
-                    if (riskComponent.getDescription().contains("Business"))
-                        riskComponent.setWeightage(0.32);
-                    if (riskComponent.getDescription().contains("Financial"))
-                        riskComponent.setWeightage(0.32);
-                    if (riskComponent.getDescription().contains("Management"))
-                        riskComponent.setWeightage(0.20);
-                    if (riskComponent.getDescription().contains("Industry"))
-                        riskComponent.setWeightage(0.16);
-                    if (riskComponent.getDescription().contains("Account"))
-                        riskComponent.setWeightage(0.00);
 
+
+            if (riskType.getIsAccountConductRiskComponentPresent() == true) {
+
+                // If redistribution needs to be done, Reset the Weightage
+                if (redistribute == true) {
+                    for (RiskComponent riskComponent : riskType.getRiskComponents()) {
+                        if (riskComponent.getDescription().contains("Business"))
+                            riskComponent.setWeightage(0.32);
+                        if (riskComponent.getDescription().contains("Financial"))
+                            riskComponent.setWeightage(0.32);
+                        if (riskComponent.getDescription().contains("Management"))
+                            riskComponent.setWeightage(0.20);
+                        if (riskComponent.getDescription().contains("Industry"))
+                            riskComponent.setWeightage(0.16);
+                        if (riskComponent.getDescription().contains("Account"))
+                            riskComponent.setWeightage(0.00);
+
+                    }
+                }
+
+                // If redistribution is not requried, Keep the default weightages
+                if (redistribute == false) {
+                    for (RiskComponent riskComponent : riskType.getRiskComponents()) {
+                        if (riskComponent.getDescription().contains("Business"))
+                            riskComponent.setWeightage(0.28);
+                        if (riskComponent.getDescription().contains("Financial"))
+                            riskComponent.setWeightage(0.27);
+                        if (riskComponent.getDescription().contains("Management"))
+                            riskComponent.setWeightage(0.17);
+                        if (riskComponent.getDescription().contains("Industry"))
+                            riskComponent.setWeightage(0.14);
+                        if (riskComponent.getDescription().contains("Account"))
+                            riskComponent.setWeightage(0.13);
+
+                    }
                 }
             }
 

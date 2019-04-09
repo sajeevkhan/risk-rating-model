@@ -48,6 +48,8 @@ public class CommonComputation {
                         modifiedProjectGrade = Utils.getProjectGradeByGradeAsNumber(projectGradeList,7);
                         //modifiedProjectGrade.setCommonScaleGrade("GRADE 7");
                         ratingModifiersInAction = true;
+                        //ONLY relevant for PDF Printing
+                        riskModelTemplate.setSubInvestementGradeAfterRatingModifier(true);
                         continue;
                     }else{
                         modifiedProjectGrade = projectGradeObject;
@@ -63,8 +65,12 @@ public class CommonComputation {
                 // Find the the Modified Grade
                 modifiedProjectGrade = Utils.getProjectGradeByGradeAsNumber(projectGradeList, modifiedProjectGradeAsNumber);
                 ratingModifiersInAction = true;
+
+                //ONLY relevant for PDF Printing
+                riskModelTemplate.setNumberOfNotchesDownAfterRatingModifier(riskRatingModifier.getNumberOfNotchesDown().toString());
             }
         }
+
 
 
         if (ratingModifiersInAction == true) {
