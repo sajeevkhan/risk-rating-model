@@ -52,7 +52,7 @@ public class Renewables_AccountConduct_Redistribution {
                         if (riskComponent.getDescription().contains("Business"))
                             riskComponent.setWeightage(0.28);
                         if (riskComponent.getDescription().contains("Financial"))
-                            riskComponent.setWeightage(0.27);
+                            riskComponent.setWeightage(0.28);
                         if (riskComponent.getDescription().contains("Management"))
                             riskComponent.setWeightage(0.17);
                         if (riskComponent.getDescription().contains("Industry"))

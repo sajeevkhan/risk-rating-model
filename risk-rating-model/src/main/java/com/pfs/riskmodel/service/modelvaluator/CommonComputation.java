@@ -150,7 +150,7 @@ public class CommonComputation {
 
                 // Check if after grade notchup has crossed the highest grade.
                 //   If yes, cap it to the highest grade
-                if (afterParentNotchupGradeAsNumber < Utils.getHighestGrade(projectGradeList).getGradeAsNumber()) {
+                if (afterParentNotchupGradeAsNumber <= Utils.getHighestGrade(projectGradeList).getGradeAsNumber()) {
 
                     afterParentalNotchUpGradeObject = Utils.getHighestGrade(projectGradeList);
                     afterParentNotchupGradeAsNumber = afterParentalNotchUpGradeObject.getGradeAsNumber();
