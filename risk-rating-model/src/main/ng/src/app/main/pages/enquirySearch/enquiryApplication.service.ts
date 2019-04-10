@@ -632,7 +632,6 @@ export class LoanEnquiryService {
      * @param request: any
      */
     public searchLoanEnquiries(request: any): Observable<any> {
-        console.log(request);
         let str = '/api/loanApplications/search?';
         if (request.projectName) {
             str+= 'projectName=' + request.projectName + '&';

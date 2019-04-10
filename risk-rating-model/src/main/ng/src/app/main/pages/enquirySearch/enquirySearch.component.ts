@@ -45,11 +45,27 @@ export class EnquirySearchComponent implements OnChanges {
         this._service.searchLoanEnquiries(this.enquirySearchForm.value).subscribe((result) => {
             const enquiryApplications = new Array<EnquiryApplicationModel>();
             result.body.map(loanApplicationResourceModel => {
-                enquiryApplications.push(new EnquiryApplicationModel(loanApplicationResourceModel));
+                if (this._appService.userDetails.role === "ZLM023" || this._appService.userDetails.riskDepartment === '02' || this._appService.userDetails.departmentHead === true) {
+                    // Return all applications if the user is an admin or if he is from the risk assesssment department (02) or if he is a department head.
+                    enquiryApplications.push(new EnquiryApplicationModel(loanApplicationResourceModel));
+                }
+                else if (this._appService.userDetails.riskDepartment === '01') {
+                    // If the user is from the project assesssment department (01), return applications where application projectDepartmentInitiator is himself.
+                    if (loanApplicationResourceModel.loanApplication.projectDepartmentInitiator === this._appService.userDetails.email) {
+                        enquiryApplications.push(new EnquiryApplicationModel(loanApplicationResourceModel));
+                    }
+                }
+                else if (this._appService.userDetails.riskDepartment === '03') {
+                    // If the user is from the monitoring assesssment department (03), return applications where application monitoringDepartmentInitiator is himself.
+                    if (loanApplicationResourceModel.loanApplication.monitoringDepartmentInitiator === this._appService.userDetails.email) {
+                        enquiryApplications.push(new EnquiryApplicationModel(loanApplicationResourceModel));
+                    }
+                }
             });
+            console.log(this._appService.userDetails);
+            console.log(enquiryApplications);
             this.enquiryList = enquiryApplications;
-        },
-        error => {
+        }, error => {
             this.handleError(error);
         });
     }
