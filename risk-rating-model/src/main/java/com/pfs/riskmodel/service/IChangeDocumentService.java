@@ -23,10 +23,15 @@ public interface IChangeDocumentService {
 
     public ChangeDocument saveChangeDocument (ChangeDocument changeDocument);
 
+    public ChangeDocument updateChangeDocument(ChangeDocument changeDocument, RiskModelTemplate riskModelTemplate);
+
 
 
     Page<ChangeDocument> findByLoanNumber(String loanNumber, Pageable pageable);
+
     Page<ChangeDocument> findByLoanNumberAndDateBetween(String loanNumber, Date dateFrom, Date dateTo, Pageable pageable);
+
+
     Page<ChangeDocument> findByRiskModelTemplateId(Long id, Pageable pageable);
     Page<ChangeDocument> findByRiskModelTemplateIdAndLoanNumberAndDateBetween(Long id, String loanNumber, Date dateFrom, Date dateTo, Pageable pageable);
     Page<ChangeDocument> findByRiskModelTemplateIdAndDateBetween(Long id, Date dateFrom, Date dateTo, Pageable pageable);

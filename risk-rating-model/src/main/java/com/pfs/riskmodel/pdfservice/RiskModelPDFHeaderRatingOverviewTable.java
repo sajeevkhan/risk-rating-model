@@ -118,11 +118,30 @@ public class RiskModelPDFHeaderRatingOverviewTable {
         // First Column - Modified Rating Label
         if (riskModelTemplate.getApplyRatingModifiers() != null) {
             if (riskModelTemplate.getApplyRatingModifiers() == true) {
+
+                // Number of Notches down after rating modifiers
+                projectDetailsCell1 = new PdfPCell();
+                projectDetailsCell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
+                projectDetailsCell1.setPhrase(new Phrase("Number of Notches down after appyling Rating Modifiers", valueFont));
+
+                // Second Column - Number of Notches down
+                projectDetailsCell2 = new PdfPCell();
+                projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
+                projectDetailsCell2.setPhrase(new Phrase(riskModelTemplate.getNumberOfNotchesDownAfterRatingModifier(), valueFont));
+
+                projectDetailsCell2.setColspan(2);
+
+                projectDetailsTable.addCell(projectDetailsCell1);
+                projectDetailsTable.addCell(projectDetailsCell2);
+                projectDetailsTable.completeRow();
+
+
+                // Modified Rating
                 projectDetailsCell1 = new PdfPCell();
                 projectDetailsCell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
                 projectDetailsCell1.setPhrase(new Phrase("Modified Rating", valueFont));
 
-                // Second Column - Score Label
+                // Second Column - Modified Grade
                 projectDetailsCell2 = new PdfPCell();
                 projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
                 projectDetailsCell2.setPhrase(new Phrase(riskModelTemplate.getModifiedProjectGrade(), valueFont));
@@ -141,6 +160,29 @@ public class RiskModelPDFHeaderRatingOverviewTable {
         projectDetailsCell1 = new PdfPCell();
         projectDetailsCell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
         if (riskModelTemplate.getApplyParentalNotchup() != null) {
+
+
+            // Number of Notches up after applying parental Notchup
+            projectDetailsCell1 = new PdfPCell();
+            projectDetailsCell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            projectDetailsCell1.setPhrase(new Phrase("Number of Notches up after appyling Parental Notchup", valueFont));
+
+            // Second Column - Number of Notches down
+            projectDetailsCell2 = new PdfPCell();
+            projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
+            projectDetailsCell2.setPhrase(new Phrase(riskModelTemplate.getNumberOfNotchesUpAfterParentalNotchup(), valueFont));
+
+            projectDetailsCell2.setColspan(2);
+
+            projectDetailsTable.addCell(projectDetailsCell1);
+            projectDetailsTable.addCell(projectDetailsCell2);
+            projectDetailsTable.completeRow();
+
+
+
+
+
+
             if (riskModelTemplate.getApplyParentalNotchup() == true)
                 projectDetailsCell1.setPhrase(new Phrase("Final Rating  (Post Parental Notchup)", valueFont));
             else

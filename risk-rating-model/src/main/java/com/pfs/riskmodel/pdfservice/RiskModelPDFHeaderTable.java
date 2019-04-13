@@ -222,6 +222,36 @@ public class RiskModelPDFHeaderTable {
         workflowTable.addCell(workflowCell4);
         workflowTable.completeRow();
 
+        // Row 6 - Risk Model Id
+        // First Column - Risk Model Id
+        workflowCell1 = new PdfPCell();
+        workflowCell1.setBackgroundColor(BaseColor.BLACK);
+        workflowCell1.setPhrase(new Phrase( "Risk Model Id." ,headerfont));
+
+        // Second Column - Risk Model Id
+        workflowCell2 = new PdfPCell();
+        workflowCell2.setBackgroundColor(BaseColor.WHITE);
+        workflowCell2.setPhrase(new Phrase(riskModelTemplate.getId().toString(),valueFont));
+
+        // Third Column - Empty
+        workflowCell3 = new PdfPCell();
+        workflowCell3.setBackgroundColor(BaseColor.BLACK);
+        workflowCell3.setPhrase(new Phrase(" ",valueFont));
+
+        // Fourth Column - Empty
+        workflowCell4 = new PdfPCell();
+        workflowCell4.setBackgroundColor(BaseColor.WHITE);
+        workflowCell4.setHorizontalAlignment(Element.ALIGN_CENTER);
+        workflowCell4.setVerticalAlignment(Element.ALIGN_CENTER);
+        workflowCell4.setPhrase(new Phrase("", valueFont));
+
+
+        workflowTable.addCell(workflowCell1);
+        workflowTable.addCell(workflowCell2);
+        workflowTable.addCell(workflowCell3);
+        workflowTable.addCell(workflowCell4);
+        workflowTable.completeRow();
+
 
         // Row 2
         // First Column - Department
@@ -419,6 +449,9 @@ public class RiskModelPDFHeaderTable {
         workflowTable.addCell(workflowCell3);
         workflowTable.addCell(workflowCell4);
         workflowTable.completeRow();
+
+
+
 
         doc.add(workflowTable);
         return doc;

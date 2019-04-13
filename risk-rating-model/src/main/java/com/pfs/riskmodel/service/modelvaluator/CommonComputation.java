@@ -142,6 +142,10 @@ public class CommonComputation {
             // Apply after Parental Notchup
             Integer numberOfNotchesAfterParental = parentalNotchupResult.get("NotchupCalc");
 
+            //ONLY for PDF printing
+            riskModelTemplate.setNumberOfNotchesUpAfterParentalNotchup(numberOfNotchesAfterParental.toString());
+
+
             if (numberOfNotchesAfterParental > 0) {
                 Integer afterParentNotchupGradeItemNumber = 0;
                 Integer afterParentNotchupGradeAsNumber = 0;
@@ -160,6 +164,10 @@ public class CommonComputation {
                     Integer parentRating = parentalNotchupResult.get("Parent Rating");
                     if (afterParentNotchupGradeAsNumber >= parentRating) {
                         afterParentNotchupGradeAsNumber = parentRating + 1;
+
+                        //ONLY for PDF Printing
+                        riskModelTemplate.setNumberOfNotchesUpAfterParentalNotchup(riskModelTemplate.getNumberOfNotchesUpAfterParentalNotchup() + "  (Capped to 1 Level below parent's grade)");
+
                     }
 
                     // Get the Re-capped Grade
@@ -188,6 +196,10 @@ public class CommonComputation {
                     Integer parentRating = parentalNotchupResult.get("Parent Rating");
                     if (afterParentNotchupGradeAsNumber >= parentRating) {
                         afterParentNotchupGradeAsNumber = parentRating + 1;
+
+                        //Only for PDF Printing
+                        riskModelTemplate.setNumberOfNotchesUpAfterParentalNotchup(riskModelTemplate.getNumberOfNotchesUpAfterParentalNotchup() + "  (Capped to 1 Level below parent's grade)");
+
                     }
 
                     afterParentalNotchUpGradeObject =
@@ -202,6 +214,8 @@ public class CommonComputation {
 
                 Integer numberOfNotchesUpagraded = afterParentNotchupGradeItemNumber - modifiedProjectGrade.getItemNo();
                 riskModelTemplate.getRiskParentalNotchUps().get(0).setNumberOfNotchesUpgraded(numberOfNotchesUpagraded);
+
+
 
                 // Set the Grade after Parental Notchup
                 if (afterParentalNotchUpGradeObject != null) {
@@ -276,6 +290,16 @@ public class CommonComputation {
 
         if (riskModelTemplate.getApplyRatingModifiers() != null) {
             if (riskModelTemplate.getApplyRatingModifiers() == true) {
+
+                if (riskModelTemplate.getNumberOfNotchesDownAfterRatingModifier() != null) {
+                    riskModelSummary = new RiskModelSummary();
+                    itemNo++;
+                    riskModelSummary.setItemNo(itemNo);
+                    riskModelSummary.setName("Number of Notches Down after applying Rating Modifier");
+                    riskModelSummary.setGrade(riskModelTemplate.getNumberOfNotchesDownAfterRatingModifier());
+                    riskModelSummaries.add(riskModelSummary);
+                }
+
                 riskModelSummary = new RiskModelSummary();
                 itemNo++;
                 riskModelSummary.setItemNo(itemNo);
@@ -287,6 +311,16 @@ public class CommonComputation {
 
         if (riskModelTemplate.getApplyParentalNotchup() != null) {
             if (riskModelTemplate.getApplyParentalNotchup() == true) {
+
+                if (riskModelTemplate.getNumberOfNotchesUpAfterParentalNotchup()!= null) {
+                    riskModelSummary = new RiskModelSummary();
+                    itemNo++;
+                    riskModelSummary.setItemNo(itemNo);
+                    riskModelSummary.setName("Number of Notches up after applying Parental Notchup");
+                    riskModelSummary.setGrade(riskModelTemplate.getNumberOfNotchesUpAfterParentalNotchup());
+                    riskModelSummaries.add(riskModelSummary);
+                }
+
 
                 riskModelSummary = new RiskModelSummary();
                 itemNo++;

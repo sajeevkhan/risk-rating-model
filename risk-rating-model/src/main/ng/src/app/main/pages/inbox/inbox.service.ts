@@ -50,4 +50,7 @@ export class InboxService implements Resolve<any> {
         console.log('ID for Rejection :' + id);
         return this._httpClient.put(<any>('api/riskModel/process?action=4&id=' + id), id);
     }
+
+ 
+
 }

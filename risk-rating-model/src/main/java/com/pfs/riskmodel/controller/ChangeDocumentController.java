@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -41,12 +42,20 @@ public class ChangeDocumentController {
                                              Pageable pageable) throws Exception{
 
 
+         if (dateToString == null) dateToString = dateFromString;
+
         if (riskModelId != null && loanNumber != null && dateFromString != null && dateToString != null)
             return ResponseEntity.ok(this.getChangeDocumentForRiskModelLoanDateRange(riskModelId,loanNumber,dateFromString,dateToString, pageable));
 
         if (riskModelId != null && loanNumber == null && dateFromString == null && dateToString == null) {
             return ResponseEntity.ok(this.getChangeDocumentForRiskModel(riskModelId, pageable));
         }
+
+        if (riskModelId == null && loanNumber != null && dateFromString != null && dateToString != null) {
+            return ResponseEntity.ok(this.getChangeDocumentForLoanDateRange(loanNumber, dateFromString, dateToString,pageable));
+        }
+
+
 
         if (riskModelId == null && loanNumber != null && dateFromString == null && dateToString == null){
             return ResponseEntity.ok(this.getChangeDocumentForLoan(loanNumber,pageable));
@@ -103,6 +112,8 @@ public class ChangeDocumentController {
 
         Date dateFrom = format.parse(dateFromString);
         Date dateTo = format.parse(dateToString);
+        dateTo = setTimeToLastSecondOfDay(dateTo);
+
         return changeDocumentService.findByLoanNumberAndDateBetween(loanNumber, dateFrom, dateTo,pageable);
     }
 
@@ -150,6 +161,7 @@ public class ChangeDocumentController {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date dateFrom       = format.parse ( dateFromString);
         Date dateTo       = format.parse ( dateToString);
+        dateTo = setTimeToLastSecondOfDay(dateTo);
 
         return changeDocumentService.findByRiskModelTemplateIdAndLoanNumberAndDateBetween
                                                                 (riskModelId,loanNumber, dateFrom, dateTo, pageable);
@@ -163,7 +175,7 @@ public class ChangeDocumentController {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date dateFrom       = format.parse ( dateFromString);
         Date dateTo       = format.parse ( dateToString);
-
+        dateTo = setTimeToLastSecondOfDay(dateTo);
 
         List<ChangeDocument>  changeDocumentList = changeDocumentService.
                                                     findByRiskModelTemplateIdAndDateBetween(riskModelId, dateFrom  ,  dateTo);
@@ -175,5 +187,13 @@ public class ChangeDocumentController {
 
     }
 
+
+    private Date setTimeToLastSecondOfDay(Date date) {
+
+        date.setHours(23);
+        date.setMinutes(59);
+        date.setSeconds(59);
+        return date;
+    }
 
 }

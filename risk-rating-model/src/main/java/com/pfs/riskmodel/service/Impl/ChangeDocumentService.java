@@ -58,7 +58,7 @@ public class ChangeDocumentService implements IChangeDocumentService {
         switch (action) {
             case 1:
                 if (oldRiskModel.getId() == null) {
-                    changeDocument.setAction("New Valuation");
+                    changeDocument.setAction("Created");
                     changeDocument = prepareCreateChangeDocument(newRiskModel,userName);
                 }
                 else{
@@ -71,14 +71,23 @@ public class ChangeDocumentService implements IChangeDocumentService {
                 changeDocument = prepareUpdateChangeDocument(oldRiskModel,newRiskModel,userName);
                 break;
             case 3:
-                changeDocument.setAction("Rejected by Supervisor");
+                changeDocument.setAction("Rejected");
                 changeDocument = prepareUpdateChangeDocument(oldRiskModel,newRiskModel,userName);
                 break;
             case 4:
-                changeDocument.setAction("Approved by Supervisor ");
+                changeDocument.setAction("Approved");
                 changeDocument = prepareUpdateChangeDocument(oldRiskModel,newRiskModel,userName);
                 break;
         }
+
+        return changeDocument;
+    }
+
+    @Override
+    public ChangeDocument updateChangeDocument(ChangeDocument changeDocument, RiskModelTemplate riskModelTemplate) {
+
+        changeDocument.setAction(riskModelTemplate.getWorkflowStatus().getDescription());
+        changeDocument = changeDocumentRepository.save(changeDocument);
 
         return changeDocument;
     }
@@ -94,9 +103,12 @@ public class ChangeDocumentService implements IChangeDocumentService {
         return changeDocumentRepository.findByLoanNumber(loanNumber, pageable);
     }
 
+
     @Override
     public Page<ChangeDocument> findByLoanNumberAndDateBetween(String loanNumber, Date dateFrom, Date dateTo, Pageable pageable) {
-        return changeDocumentRepository.findByLoanNumberAndDateBetween(loanNumber, dateFrom, dateTo,pageable);
+        Page<ChangeDocument> changeDocuments = changeDocumentRepository.findByLoanNumberAndDateBetween(loanNumber, dateFrom, dateTo,pageable);
+        return changeDocuments;
+
     }
 
     @Override
@@ -194,6 +206,49 @@ public class ChangeDocumentService implements IChangeDocumentService {
         return changeDocument;
     }
 
+    private ChangeDocument prepareUpdateChangeDocumentForApproval(RiskModelTemplate oldRiskModel,
+                                                                  RiskModelTemplate newRiskModel,
+                                                                  String userName) {
+
+        changeDocument = prepareHeader(newRiskModel,userName);
+
+
+        // Compare RiskModel Header //given
+        Javers javers = JaversBuilder.javers()
+                .withListCompareAlgorithm(LEVENSHTEIN_DISTANCE)
+                .build();
+        RiskModelHeader oldRiskModelHeader = riskModelHeader.getRiskModelHeader(oldRiskModel);
+        RiskModelHeader newRiskModelHeader = riskModelHeader.getRiskModelHeader(newRiskModel);
+
+        Diff diff = javers.compare(oldRiskModelHeader,newRiskModelHeader);
+
+        List<ChangeDocumentItem> changeDocumentItems = new ArrayList<>();
+        changeDocumentItems = prepareChangeDocumentItems(diff,changeDocumentItems);
+
+
+        for (RiskType newriskType: newRiskModel.getRiskTypes()) {
+            for (RiskType oldRiskType: oldRiskModel.getRiskTypes()) {
+                if (oldRiskType.getId().equals(newriskType.getId())) {
+                    diff = javers.compare(oldRiskType,newriskType);
+                    changeDocumentItems = prepareChangeDocumentItems(diff,changeDocumentItems);
+                }
+            }
+        }
+
+        changeDocument.setChangeDocumentItems(changeDocumentItems);
+
+
+//        for (ChangeDocumentItem changeDocumentItem: changeDocumentItems) {
+//            System.out.println(changeDocumentItem.toString());
+//        }
+
+        return changeDocument;
+    }
+
+
+
+
+
 
     private List<ChangeDocumentItem> prepareChangeDocumentItems(Diff diff, List<ChangeDocumentItem> changeDocumentItems) {
 
@@ -216,9 +271,9 @@ public class ChangeDocumentService implements IChangeDocumentService {
                 continue;
 
             Object object = change.getAffectedObject().get();
-            Map<String, String> result = getObjectDetails(object.getClass().getName(),object);
+            Map<String, String> result = getObjectDetails(object.getClass().getSimpleName(),object);
 
-            changeDocumentItem.setEntityName(object.getClass().getName().toString());
+            changeDocumentItem.setEntityName(object.getClass().getSimpleName().toString());
             changeDocumentItem.setEntityDescription(result.get("description"));
             changeDocumentItem.setAttributeName(change.getPropertyName());
             if (change.getRight() != null)
@@ -253,32 +308,32 @@ public class ChangeDocumentService implements IChangeDocumentService {
         try {
 
             switch (className) {
-                case "com.pfs.riskmodel.domain.RiskType":
+                case "RiskType":
                     RiskType riskType = (RiskType) object;
                     result.put("id", riskType.getId().toString());
                     result.put("description", riskType.getDescription());
                     return result;
-                case "com.pfs.riskmodel.domain.RiskSubFactorAttribute":
+                case "RiskSubFactorAttribute":
                     RiskSubFactorAttribute riskSubFactorAttribute = (RiskSubFactorAttribute) object;
                     result.put("id", riskSubFactorAttribute.getId().toString());
                     result.put("description", riskSubFactorAttribute.getDescription());
                     return result;
-                case "com.pfs.riskmodel.domain.RiskSubFactor":
+                case "RiskSubFactor":
                     RiskSubFactor riskSubFactor = (RiskSubFactor) object;
                     result.put("id", riskSubFactor.getId().toString());
                     result.put("description", riskSubFactor.getDescription());
                     return result;
-                case "com.pfs.riskmodel.domain.RiskFactor":
+                case "RiskFactor":
                     RiskFactor riskFactor = (RiskFactor) object;
                     result.put("id", riskFactor.getId().toString());
                     result.put("description", riskFactor.getDescription());
                     return result;
-                case "com.pfs.riskmodel.domain.RiskComponent":
+                case "RiskComponent":
                     RiskComponent riskComponent = (RiskComponent) object;
                     result.put("id", riskComponent.getId().toString());
                     result.put("description", riskComponent.getDescription());
                     return result;
-                case "com.pfs.riskmodel.service.Impl.RiskModelHeader":
+                case "RiskModelHeader":
                     RiskModelHeader riskModelHeader = (RiskModelHeader) object;
                     result.put("id", riskModelHeader.getId().toString());
                     result.put("description", riskModelHeader.getDescription());

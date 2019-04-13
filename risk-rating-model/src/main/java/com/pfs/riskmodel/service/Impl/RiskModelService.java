@@ -197,10 +197,12 @@ public class RiskModelService implements IRiskModelService {
             }
         }
 
+        changeDocumentService.updateChangeDocument(changeDocument, riskModelTemplate);
 
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("-----------------> Current Processor:" + riskModelTemplate.getCurrentProcessorUserId());
         System.out.println("-------------------------------------------------------------------------------------");
+
 
 
 

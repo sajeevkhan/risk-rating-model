@@ -439,6 +439,13 @@ public class WorkflowService implements IWorkflowService {
         variables.put("riskLevel", riskModelTemplate.getProjectRiskLevel().getValue());
         variables.put("projectName", riskModelTemplate.getProjectName());
 
+        if (riskModelTemplate.getLoanNumber() != null)
+            variables.put("loanNumber", riskModelTemplate.getLoanNumber());
+        else
+            variables.put("loanNumber", "Not assinged yet(In Enquiry Phase)");
+
+
+
 
         WorkflowAssignment workflowAssignment = getWorkFlowProcessor(riskModelTemplate.getPurpose());
 
@@ -472,6 +479,11 @@ public class WorkflowService implements IWorkflowService {
         variables.put("projectType", riskModelTemplate.getRiskProjectType().getValue());
         variables.put("riskLevel", riskModelTemplate.getProjectRiskLevel().getValue());
         variables.put("projectName", riskModelTemplate.getProjectName());
+
+        if (riskModelTemplate.getLoanNumber() != null)
+            variables.put("loanNumber", riskModelTemplate.getLoanNumber());
+        else
+            variables.put("loanNumber", "Not assinged yet(In Enquiry Phase)");
 
         WorkflowAssignment workflowAssignment = getWorkFlowProcessor(riskModelTemplate.getPurpose());
 

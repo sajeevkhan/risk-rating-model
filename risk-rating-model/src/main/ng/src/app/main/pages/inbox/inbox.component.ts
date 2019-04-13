@@ -78,6 +78,7 @@ export class InboxComponent implements OnInit {
      * 
      */
     displayAsPDF(): void {
+        (window as any).open('api/riskModelPDF?id=' + this._inboxService.selectedItem.value.riskModelId, '_blank');
         this.inboxItemsComponent.refreshInboxItems();
     }
 

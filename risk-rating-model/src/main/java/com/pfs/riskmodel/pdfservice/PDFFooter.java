@@ -109,11 +109,11 @@ class PDFFooter extends PdfPageEventHelper {
 
         ColumnText.showTextAligned(writer.getDirectContent(),
                 Element.ALIGN_MIDDLE, header1,
-                headerBox.getLeft()+ 100, headerBox.getTop()+10, 0);
+                headerBox.getLeft()+ 175, headerBox.getTop()+10, 0);
 
         ColumnText.showTextAligned(writer.getDirectContent(),
                 Element.ALIGN_MIDDLE, header2,
-                headerBox.getLeft()+ 100, headerBox.getTop() , 0);
+                headerBox.getLeft()+ 150, headerBox.getTop() , 0);
 
 //       ColumnText.showTextAligned(cb, Element.ALIGN_CENTER,
 //                header,

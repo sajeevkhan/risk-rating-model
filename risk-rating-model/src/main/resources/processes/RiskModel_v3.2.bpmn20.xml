@@ -47,6 +47,7 @@
           <activiti:expression><![CDATA[Dear ${firstLevelApproverName}, <br> <br>
 You are requested to approve the following risk model evaluation: <br> <br>
     Project Name  : ${projectName} <br>
+    Loan Number   : ${loanNumber} <br>
     Phase         : ${riskLevel} <br>
     Risk Model Id : ${riskModelId} <br>
     Submitted By  : ${initiatorName} <br> <br>
@@ -106,6 +107,7 @@ PFS Risk Model System]]></activiti:expression>
           <activiti:expression><![CDATA[Dear ${secondLevelApproverName}, <br> <br>
 You are requested to approve the following risk model evaluation: <br> <br>
       Project Name  :  ${projectName} <br>
+      Loan Number   :  ${loanNumber} <br>
       Phase         :  ${riskLevel} <br>
       Risk Model Id :  ${riskModelId} <br>
       Submitted By  :  ${firstLevelApproverName} <br> <br>
@@ -143,6 +145,7 @@ PFS Risk Model System]]></activiti:expression>
           <activiti:expression><![CDATA[Dear ${thirdLevelApproverName}, <br> <br>
 You are requested to approve the following risk model evaluation: <br> <br>
       Project Name  :  ${projectName} <br>
+      Loan Number   :  ${loanNumber} <br>
       Phase         :  ${riskLevel} <br>
       Risk Model Id :  ${riskModelId} <br>
       Submitted By  :  ${secondLevelApproverName} <br> <br>
@@ -191,6 +194,7 @@ PFS Risk Model System]]></activiti:expression>
             <br> <br>
             Your evaluation request for the following risk model evaluation was approved: <br> <br>
                   Project Name  :  ${projectName} <br>
+                  Loan Number   :  ${loanNumber} <br>
                   Phase         :  ${riskLevel} <br>
                   Risk Model Id :  ${riskModelId} <br>
                   Processed By  :  ${thirdLevelApproverName} <br> <br>
@@ -224,8 +228,9 @@ PFS Risk Model System]]></activiti:expression>
           <br> <br>
           Your approval request for the following risk model evaluation was rejected: <br> <br>
                 Project Name  :  ${projectName} <br>
-                Phase                   :  ${riskLevel} <br>
-                Risk Model Id  :  ${riskModelId} <br>
+                Loan Number   :  ${loanNumber} <br>
+                Phase         :  ${riskLevel} <br>
+                Risk Model Id  : ${riskModelId} <br>
                 Processed By  :  ${thirdLevelApproverName} <br> <br>
            <br> <br>
           Regards <br>
@@ -250,6 +255,7 @@ PFS Risk Model System]]></activiti:expression>
           <br> <br>
           Your approval request for the following risk model evaluation was rejected: <br> <br>
                 Project Name  :  ${projectName} <br>
+                Loan Number   :  ${loanNumber} <br>
                 Phase         :  ${riskLevel} <br>
                 Risk Model Id :  ${riskModelId} <br>
                 Processed By  :  ${secondLevelApproverName} <br> <br>
@@ -283,6 +289,7 @@ PFS Risk Model System]]></activiti:expression>
           <br> <br>
           Your approval request for the following risk model evaluation was rejected: <br> <br>
                 Project Name  :  ${projectName} <br>
+                Loan Number   :  ${loanNumber} <br>
                 Phase         :  ${riskLevel} <br>
                 Risk Model Id :  ${riskModelId} <br>
                 Processed By  :  ${firstLevelApproverName} <br> <br>
