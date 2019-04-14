@@ -104,7 +104,7 @@ public class RiskFactorEvaluator {
                riskFactorCalculation = "( " + riskFactorCalculation + " ) " +   " * " + riskSubFactor.getScore().toString();
            }
        }
-        riskFactorScore = Utils.round(riskFactorScore);
+        //riskFactorScore = Utils.round(riskFactorScore);
 
         riskFactorCalculation = "Calculation :" + riskFactorCalculation + " = " + riskFactorScore.toString();
 

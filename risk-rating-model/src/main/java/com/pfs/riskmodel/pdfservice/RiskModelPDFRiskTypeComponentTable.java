@@ -6,6 +6,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.pfs.riskmodel.domain.RiskComponent;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
 import com.pfs.riskmodel.domain.RiskType;
+import com.pfs.riskmodel.service.modelvaluator.Utils;
 
 /**
  * Created by sajeev on 03-Jan-19.
@@ -76,7 +77,7 @@ public class RiskModelPDFRiskTypeComponentTable {
                 // Second Column - Riskc Component Score
                 projectDetailsCell2 = new PdfPCell();
                 projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
-                projectDetailsCell2.setPhrase(new Phrase(riskComponent.getScore().toString(), valueFont));
+                projectDetailsCell2.setPhrase(new Phrase(Utils.round(riskComponent.getScore()).toString(), valueFont));
                 projectDetailsCell2.setColspan(2);
 
                 projectDetailsTable.addCell(projectDetailsCell1);

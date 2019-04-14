@@ -5,6 +5,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
 import com.pfs.riskmodel.domain.RiskType;
+import com.pfs.riskmodel.service.modelvaluator.Utils;
 
 /**
  * Created by sajeev on 03-Jan-19.
@@ -76,7 +77,7 @@ public class RiskModelPDFHeaderRatingOverviewTable {
             // Second Column - Project Score
             projectDetailsCell2 = new PdfPCell();
             projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
-            projectDetailsCell2.setPhrase(new Phrase(riskType.getScore().toString(),valueFont));
+            projectDetailsCell2.setPhrase(new Phrase(Utils.round(riskType.getScore()).toString(),valueFont));
 
             // Third Column - Project Grade
             projectDetailsCell3 = new PdfPCell();
@@ -100,7 +101,7 @@ public class RiskModelPDFHeaderRatingOverviewTable {
         // Second Column - Project Score
         projectDetailsCell2 = new PdfPCell();
         projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
-        projectDetailsCell2.setPhrase(new Phrase(riskModelTemplate.getScore().toString(),valueFont));
+        projectDetailsCell2.setPhrase(new Phrase(Utils.round(riskModelTemplate.getScore()).toString(),valueFont));
 
         // Third Column - Project Grade
         projectDetailsCell3 = new PdfPCell();
@@ -161,25 +162,26 @@ public class RiskModelPDFHeaderRatingOverviewTable {
         projectDetailsCell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
         if (riskModelTemplate.getApplyParentalNotchup() != null) {
 
+            if (riskModelTemplate.getApplyParentalNotchup() == true) {
 
-            // Number of Notches up after applying parental Notchup
-            projectDetailsCell1 = new PdfPCell();
-            projectDetailsCell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            projectDetailsCell1.setPhrase(new Phrase("Number of Notches up after appyling Parental Notchup", valueFont));
+                // Number of Notches up after applying parental Notchup
+                projectDetailsCell1 = new PdfPCell();
+                projectDetailsCell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
+                projectDetailsCell1.setPhrase(new Phrase("Number of Notches up after appyling Parental Notchup", valueFont));
 
-            // Second Column - Number of Notches down
-            projectDetailsCell2 = new PdfPCell();
-            projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
-            projectDetailsCell2.setPhrase(new Phrase(riskModelTemplate.getNumberOfNotchesUpAfterParentalNotchup(), valueFont));
+                // Second Column - Number of Notches down
+                projectDetailsCell2 = new PdfPCell();
+                projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
+                projectDetailsCell2.setPhrase(new Phrase(riskModelTemplate.getNumberOfNotchesUpAfterParentalNotchup(), valueFont));
 
-            projectDetailsCell2.setColspan(2);
+                projectDetailsCell2.setColspan(2);
 
-            projectDetailsTable.addCell(projectDetailsCell1);
-            projectDetailsTable.addCell(projectDetailsCell2);
-            projectDetailsTable.completeRow();
+                projectDetailsTable.addCell(projectDetailsCell1);
+                projectDetailsTable.addCell(projectDetailsCell2);
+                projectDetailsTable.completeRow();
 
 
-
+            }
 
 
 

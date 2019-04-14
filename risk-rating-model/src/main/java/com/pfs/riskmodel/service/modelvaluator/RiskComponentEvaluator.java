@@ -94,7 +94,7 @@ public class RiskComponentEvaluator {
             }
         }
 
-        riskComponentScore = Utils.round(riskComponentScore);
+        //riskComponentScore = Utils.round(riskComponentScore);
         riskComponent.setScore(riskComponentScore);
 
         if (riskComponent.getIsApplicable() == false)

@@ -6,6 +6,7 @@ import com.pfs.riskmodel.dto.*;
 import com.pfs.riskmodel.repository.*;
 import com.pfs.riskmodel.service.IRiskModelService;
 import com.pfs.riskmodel.service.IRiskModelTemplateService;
+import com.pfs.riskmodel.service.modelvaluator.Utils;
 import com.pfs.riskmodel.util.Check;
 import com.pfs.riskmodel.util.CheckServiceResult;
 import lombok.RequiredArgsConstructor;
@@ -356,6 +357,8 @@ public class RiskModelTemplateController {
                   riskComponentDTO.setComputingMethodDescription(riskComponent.getComputingMethod().getValue());
                   riskComponentDTO.setScoreTypeCode(riskComponent.getScoreType().getCode());
                   riskComponentDTO.setScoreTypeDescription(riskComponent.getScoreType().getDescription());
+
+                  riskComponentDTO.setScore(Utils.round(riskComponentDTO.getScore()));
 
                   for (RiskFactorDTO riskFactorDTO: riskComponentDTO.getRiskFactors()) {
 

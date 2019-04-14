@@ -282,7 +282,7 @@ public class RiskParentalNotchUpEvaluator {
             score =  score + riskComponent.getScore() * riskComponent.getWeightage();
         }
 
-        score = Utils.round(score);
+        //score = Utils.round(score);
         return score;
     }
 
