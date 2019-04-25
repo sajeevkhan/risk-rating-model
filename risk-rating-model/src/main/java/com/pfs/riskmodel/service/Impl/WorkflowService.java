@@ -162,7 +162,7 @@ public class WorkflowService implements IWorkflowService {
         variables = prepareVariables(riskModelTemplate,httpServletRequest);
         riskModelTemplate.setCurrentWorkFlowLevel(1);
         try {
-
+            System.out.println("---------- STARTING WORKFLOW APPROVAL FOR PROJECT : " + riskModelTemplate.getProjectName());
 
         runtimeService = processEngine.getRuntimeService();
         ProcessInstance processInstance = runtimeService
