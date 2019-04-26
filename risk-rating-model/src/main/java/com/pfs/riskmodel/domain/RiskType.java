@@ -44,6 +44,9 @@ public class RiskType extends AuditModel  {
     private Boolean isAccountConductRiskComponentPresent;
 
     @Nullable
+    private Boolean isAccountConductRiskApplicable;
+
+    @Nullable
     private String riskTypeCalculation;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )

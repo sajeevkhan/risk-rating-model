@@ -21,6 +21,8 @@ public class RiskTypeDTO {
     private Double score;
     private String grade;
     private  Boolean isAccountConductRiskComponentPresent;
+    private Boolean isAccountConductRiskApplicable;
+
 
     private List<RiskComponentDTO> riskComponents;
 
