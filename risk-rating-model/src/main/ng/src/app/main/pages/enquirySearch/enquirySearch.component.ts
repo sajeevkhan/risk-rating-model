@@ -17,6 +17,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class EnquirySearchComponent implements OnChanges {
 
+    displaySpinner: boolean;
+
     enquirySearchForm: FormGroup;
 
     enquiryList: EnquiryApplicationModel[];
@@ -42,6 +44,7 @@ export class EnquirySearchComponent implements OnChanges {
      * searchEnquiries()
      */
     searchEnquiries(): void {
+        this.displaySpinner = true;
         this._service.searchLoanEnquiries(this.enquirySearchForm.value).subscribe((result) => {
             const enquiryApplications = new Array<EnquiryApplicationModel>();
             result.body.map(loanApplicationResourceModel => {
@@ -65,6 +68,7 @@ export class EnquirySearchComponent implements OnChanges {
             console.log(this._appService.userDetails);
             console.log(enquiryApplications);
             this.enquiryList = enquiryApplications;
+            this.displaySpinner = false;
         }, error => {
             this.handleError(error);
         });
