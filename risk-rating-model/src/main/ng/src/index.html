@@ -190,5 +190,20 @@
 </fuse-splash-screen>
 <!-- / FUSE Splash Screen -->
 <app></app>
+<script>        
+    // warning if the user tries to leave page when there is an active token.
+    window.addEventListener('beforeunload', function (e) {
+        // type casted element to HTMLInputElement to get the value property
+        // const currentState = (<HTMLInputElement>document.getElementById('currentState')).value;
+        // if (!(currentState === 'ready' || currentState === 'walkIn' || currentState === 'tokenCall')) {
+        //     const confirmationMessage = 'Complete the token before leaving the page.';
+
+        //     (e || window.event).returnValue = confirmationMessage; // Gecko + IE
+        //     return confirmationMessage; // Webkit, Safari, Chrome etc.
+        // }
+        const confirmationMessage = 'Complete the token before leaving the page.';
+        (e || window.event).returnValue = confirmationMessage; // Gecko + IE
+    });
+</script>
 </body>
 </html>
