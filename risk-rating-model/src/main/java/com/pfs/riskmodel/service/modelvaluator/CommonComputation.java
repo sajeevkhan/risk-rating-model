@@ -166,7 +166,7 @@ public class CommonComputation {
                         afterParentNotchupGradeAsNumber = parentRating + 1;
 
                         //ONLY for PDF Printing
-                        riskModelTemplate.setNumberOfNotchesUpAfterParentalNotchup(riskModelTemplate.getNumberOfNotchesUpAfterParentalNotchup() + "  (Capped to 1 Level below parent's grade)");
+                        riskModelTemplate.setNumberOfNotchesUpAfterParentalNotchup(riskModelTemplate.getNumberOfNotchesUpAfterParentalNotchup());// + "  (Capped to 1 Level below parent's grade)");
 
                     }
 
@@ -198,7 +198,7 @@ public class CommonComputation {
                         afterParentNotchupGradeAsNumber = parentRating + 1;
 
                         //Only for PDF Printing
-                        riskModelTemplate.setNumberOfNotchesUpAfterParentalNotchup(riskModelTemplate.getNumberOfNotchesUpAfterParentalNotchup() + "  (Capped to 1 Level below parent's grade)");
+                        riskModelTemplate.setNumberOfNotchesUpAfterParentalNotchup(riskModelTemplate.getNumberOfNotchesUpAfterParentalNotchup());// + "  (Capped to 1 Level below parent's grade)");
 
                     }
 

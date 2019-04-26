@@ -354,7 +354,10 @@ public class ChangeDocumentService implements IChangeDocumentService {
         //ChangeDocument changeDocument = new ChangeDocument();
         changeDocument.setRiskModelTemplateId(riskModelTemplate.getId());
         changeDocument.setLoanEnquiryId(riskModelTemplate.getLoanEnquiryId());
-        changeDocument.setLoanNumber(riskModelTemplate.getLoanNumber());
+
+        String loanNumber = riskModelTemplate.getLoanNumber().replaceFirst ("^0*", "");
+
+        changeDocument.setLoanNumber(loanNumber);
         changeDocument.setDate(new Date());
         changeDocument.setUserName(userName);
         changeDocument.setRiskProjectType(riskModelTemplate.getRiskProjectType());
