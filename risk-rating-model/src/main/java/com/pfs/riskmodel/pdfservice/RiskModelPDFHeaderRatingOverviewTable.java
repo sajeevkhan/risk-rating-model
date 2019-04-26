@@ -172,8 +172,12 @@ public class RiskModelPDFHeaderRatingOverviewTable {
                 // Second Column - Number of Notches down
                 projectDetailsCell2 = new PdfPCell();
                 projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
-                projectDetailsCell2.setPhrase(new Phrase(riskModelTemplate.getNumberOfNotchesUpAfterParentalNotchup()  + " (Capped to one level below parent's rating) ", valueFont));
-
+                if (riskModelTemplate.getNumberOfNotchesUpAfterParentalNotchup() != null) {
+                    projectDetailsCell2.setPhrase(new Phrase(riskModelTemplate.getNumberOfNotchesUpAfterParentalNotchup() + " (Capped to one level below parent's rating) ", valueFont));
+                }
+                else {
+                    projectDetailsCell2.setPhrase(new Phrase(" ", valueFont));
+                }
                 projectDetailsCell2.setColspan(2);
 
                 projectDetailsTable.addCell(projectDetailsCell1);
