@@ -218,6 +218,9 @@ PFS Risk Model System]]></activiti:expression>
     <serviceTask id="sid-5702CD1E-0274-461B-BFED-ACBCD8982755" name="ThirdLevelRejectNotification" activiti:type="mail">
       <extensionElements>
         <activiti:field name="to">
+          <activiti:expression><![CDATA[${firstLevelApproverEmailId}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="cc">
           <activiti:expression><![CDATA[${secondLevelApproverEmailId}]]></activiti:expression>
         </activiti:field>
         <activiti:field name="subject">

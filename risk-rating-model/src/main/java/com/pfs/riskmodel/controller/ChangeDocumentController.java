@@ -62,6 +62,7 @@ public class ChangeDocumentController {
         }
         if (riskModelId != null && loanNumber == null && dateFromString != null && dateToString != null) {
             return ResponseEntity.ok(this.getChangeDocumentForRiskModelDateRange(riskModelId,dateFromString,dateToString,pageable));
+
         }
         if (riskModelId != null && loanNumber != null && dateFromString != null && dateToString != null) {
             return ResponseEntity.ok(this.getChangeDocumentForLoanDateRange(loanNumber,dateFromString,dateToString,pageable));
