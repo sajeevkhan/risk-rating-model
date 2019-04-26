@@ -14,6 +14,9 @@ import { DataSource } from '@angular/cdk/table';
 })
 export class EnquirySearchListComponent implements OnInit {
 
+    @Input()
+    displaySpinner: boolean;
+
     dataSource: MatTableDataSource<any>;
 
     @ViewChild(MatSort) sort: MatSort;

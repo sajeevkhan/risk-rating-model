@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FuseSharedModule } from '@fuse/shared.module';
-import { MatExpansionModule, MatInputModule, MatButtonModule, MatFormFieldModule, MatTableModule,MatIconModule, MatSortModule, MatPaginatorModule, MatToolbarModule, MatSelectModule } from '@angular/material';
+import { MatExpansionModule, MatInputModule, MatButtonModule, MatFormFieldModule, MatTableModule,MatIconModule, MatSortModule, MatPaginatorModule, MatToolbarModule, MatSelectModule, MatProgressSpinnerModule } from '@angular/material';
 import { EnquirySearchListComponent } from './enquirySearchList/enquirySearchList.component';
 import { EnquirySearchComponent } from './enquirySearch.component';
 import { LoanEnquiryService } from './enquiryApplication.service';
@@ -29,7 +29,8 @@ const routes = [
         MatToolbarModule,
         MatIconModule,
         MatSelectModule,
-        MatSortModule
+        MatSortModule,
+        MatProgressSpinnerModule
     ],
     declarations: [
         EnquirySearchComponent,
