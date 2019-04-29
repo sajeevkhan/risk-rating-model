@@ -178,7 +178,7 @@ export class RiskModelUIComponent implements OnInit {
             this._riskModelTemplate.riskTypes.map(riskType => {
                 riskType.riskComponents.map(riskComponent => {
                     // Check if risk component is 'Account Conduct' and isApplicable is true.
-                    if (riskComponent.description === 'Account Conduct') { // Check above comment.
+                    if (riskComponent.description === 'Account Conduct Risk') { // Check above comment.
                         if (riskComponent.isApplicable === true) { // Check above comment.
                             riskComponent.riskFactors.map(riskFactor => {
                                 if (this.checkRiskSubFactorSelection(riskFactor) === false) {

@@ -63,19 +63,19 @@ export class RiskModelTemplateComponent implements OnInit, OnChanges {
      * applyAccountConductToTemplate()
      * @param event 
      */
-    applyAccountConductToTemplate(event: any): void {
-        this.riskModelTemplate.riskTypes[0].riskComponents.map(riskComponent => {
-            if (riskComponent.description === 'Account Conduct') {
+    applyAccountConductToTemplate(event: any, riskType: any): void {
+        riskType.riskComponents.map(riskComponent => {
+            if (riskComponent.description === 'Account Conduct Risk') {
                 riskComponent.isApplicable = event.checked;
             }
         });
-        if (this.riskModelTemplate.riskTypes[1] !== undefined) {
-            this.riskModelTemplate.riskTypes[1].riskComponents.map(riskComponent => {
-                if (riskComponent.description === 'Account Conduct') {
-                    riskComponent.isApplicable = event.checked;
-                }
-            });
-        }
+        // if (this.riskModelTemplate.riskTypes[1] !== undefined) {
+        //     this.riskModelTemplate.riskTypes[1].riskComponents.map(riskComponent => {
+        //         if (riskComponent.description === 'Account Conduct Risk') {
+        //             riskComponent.isApplicable = event.checked;
+        //         }
+        //     });
+        // }
         console.log(this.riskModelTemplate);
     }
 
@@ -188,7 +188,7 @@ export class RiskModelTemplateComponent implements OnInit, OnChanges {
     checkRiskComponentSelection(riskType: any): boolean {
         let riskComponentSelections = 0;
         riskType.riskComponents.map(riskComponent => {
-            if (riskComponent.description === 'Account Conduct') {
+            if (riskComponent.description === 'Account Conduct Risk') {
                 if (riskComponent.isApplicable) {
                     if (this.checkRiskFactorSelection(riskComponent) === true) {
                         riskComponentSelections++;

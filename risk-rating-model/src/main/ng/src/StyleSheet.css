@@ -12,9 +12,7 @@
             color:#ffffff;
             height:40px !important;
         }
-        #mat-tab-label-3-1, #mat-tab-label-4-1, #mat-tab-label-4-2{
-           
-        }
+
         #mat-tab-label-3-2, #mat-tab-label-4-3{
             border-top-right-radius: 5px;
             -moz-border-top-right-radius: 5px;
@@ -26,13 +24,8 @@
             color:#ffffff;
             height:40px !important;
         }
-        #mat-tab-label-4-0{
-            
-            width: 269.64px;
-        }
         #mat-tab-label-5-0{
             
-            width: 269.64px;
             color:#ffffff;
             height:40px !important;
         }
@@ -74,7 +67,7 @@
         }
         .condition{margin-bottom:15px;}
 		
-		body, html, input,{
+		body, html, input{
             font-family: Open Sans,sans-serif !important;
         }
         /*-- FOR Enquiry search start---*/

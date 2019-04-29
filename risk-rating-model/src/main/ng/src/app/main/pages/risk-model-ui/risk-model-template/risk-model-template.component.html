@@ -164,7 +164,7 @@
                         <div fxLayout="row" fxLayoutAlign="end center" fxFlex="100">
                             <mat-checkbox
                                 *ngIf="riskType.isAccountConductRiskComponentPresent"
-                                [(ngModel)]="riskType.isAccountConductRiskApplicable" (change)="applyAccountConductToTemplate($event)">
+                                [(ngModel)]="riskType.isAccountConductRiskApplicable" (change)="applyAccountConductToTemplate($event, riskType)">
                                 Account Conduct Risk Applicable
                             </mat-checkbox>
                         </div>
@@ -172,7 +172,7 @@
                         <!-- Risk Components Starts Here -->
                         <mat-tab-group>
                             <mat-tab *ngFor="let riskComponent of riskType.riskComponents"
-                                [disabled]="riskComponent.description == 'Account Conduct' && !riskComponent.isApplicable">
+                                [disabled]="riskComponent.description == 'Account Conduct Risk' && !riskComponent.isApplicable">
 
                                 <ng-template mat-tab-label>
                                     <mat-icon class="pr-32" *ngIf="checkRiskFactorSelection(riskComponent)">check_circle
