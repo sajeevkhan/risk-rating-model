@@ -37,7 +37,7 @@ public class ROP_BP_AccountConductRiskDTO {
         riskComponentDTO.setItemNo(5);
         riskComponentDTO.setComputingMethodCode("05");
         riskComponentDTO.setComputingMethodDescription("Equals");
-        riskComponentDTO.setDescription("Account Conduct");
+        riskComponentDTO.setDescription("Account Conduct Risk");
         riskComponentDTO.setScoreTypeDescription("01");
         riskComponentDTO.setScoreTypeCode("01");
         riskComponentDTO.setScoreTypeDescription("Normal");
