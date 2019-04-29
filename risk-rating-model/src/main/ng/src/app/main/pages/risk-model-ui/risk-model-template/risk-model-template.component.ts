@@ -12,8 +12,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class RiskModelTemplateComponent implements OnInit, OnChanges {
 
-    accountConductApplicable: boolean;
-
     @Input()
     riskModelTemplate: any;
 
@@ -203,13 +201,23 @@ export class RiskModelTemplateComponent implements OnInit, OnChanges {
                 }
             }
         });
-        if (!this.accountConductApplicable) {
-            // Account Conduct tab should not be validated.
-            return (riskComponentSelections === riskType.riskComponents.length - 1);
-        }
-        else {
+
+        if (riskType.isAccountConductRiskComponentPresent === false)
             return (riskComponentSelections === riskType.riskComponents.length);
+        else {
+            if (riskType.isAccountConductRiskApplicable === true)
+                return (riskComponentSelections === riskType.riskComponents.length);
+            else
+                return (riskComponentSelections === riskType.riskComponents.length - 1);
         }
+
+        // if (riskType.isAccountConductRiskApplicable === true) {
+        //     return (riskComponentSelections === riskType.riskComponents.length);
+        // }
+        // else {
+        //     // Account Conduct tab should not be validated.
+        //     return (riskComponentSelections === riskType.riskComponents.length - 1);
+        // }
     }
 
     /**
