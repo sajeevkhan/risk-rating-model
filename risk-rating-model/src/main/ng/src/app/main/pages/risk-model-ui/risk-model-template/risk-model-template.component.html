@@ -7,10 +7,10 @@
 
 <div id="risk-model-template" class="tabView" style="width:99%;" fxLayout="column" fusePerfectScrollbar>
     <div fxLayout="row" fxLayoutAlign="end center" fxFlex="100">
-        <mat-checkbox
+        <!-- <mat-checkbox
             *ngIf="riskModelTemplate.riskTypes[0].isAccountConductRiskComponentPresent || (riskModelTemplate.riskTypes[1] && riskModelTemplate.riskTypes[1].isAccountConductRiskComponentPresent)"
             [(ngModel)]="accountConductApplicable" (change)="applyAccountConductToTemplate($event)">Account Conduct
-            Risk Applicable</mat-checkbox>
+            Risk Applicable</mat-checkbox> -->
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <mat-checkbox [(ngModel)]="riskModelTemplate.applyRatingModifiers" (change)="applyRatingModifiers($event)">Apply
             Rating Modifiers</mat-checkbox>
@@ -161,10 +161,18 @@
                             <div>{{ riskType.description }}</div>
                         </ng-template>
 
+                        <div fxLayout="row" fxLayoutAlign="end center" fxFlex="100">
+                            <mat-checkbox
+                                *ngIf="riskType.isAccountConductRiskComponentPresent"
+                                [(ngModel)]="riskType.isAccountConductRiskApplicable" (change)="applyAccountConductToTemplate($event)">
+                                Account Conduct Risk Applicable
+                            </mat-checkbox>
+                        </div>
+
                         <!-- Risk Components Starts Here -->
                         <mat-tab-group>
                             <mat-tab *ngFor="let riskComponent of riskType.riskComponents"
-                                [disabled]="!accountConductApplicable && riskComponent.description == 'Account Conduct'">
+                                [disabled]="riskComponent.description == 'Account Conduct' && !riskComponent.isApplicable">
 
                                 <ng-template mat-tab-label>
                                     <mat-icon class="pr-32" *ngIf="checkRiskFactorSelection(riskComponent)">check_circle
