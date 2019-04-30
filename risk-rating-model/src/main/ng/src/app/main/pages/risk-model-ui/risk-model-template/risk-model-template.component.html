@@ -114,12 +114,13 @@
                 <!-- Risk Rating Summary Starts Here -->
                 <table class="pt-8 pb-16" cellpadding="0" cellspacing="0" width="100%" FxFlex="100">
                     <tr class="accent-100 row-header">
-                        <th class="column-header mainHeader" colspan="3" width="100%">Risk Rating</th>
+                        <th class="column-header mainHeader pl-16" style="text-align: left;" colspan="3" width="100%">
+                            Risk Rating</th>
                     </tr>
                     <tr class="accent-50 row-header">
-                        <th class="column-header" width="50%">Rating Type</th>
-                        <th class="column-header" width="25%">Score</th>
-                        <th class="column-header" width="25%">Grade</th>
+                        <th class="column-header pl-16" style="text-align: left;" width="50%">Rating Type</th>
+                        <th class="column-header pl-16" style="text-align: left;" width="25%">Score</th>
+                        <th class="column-header pl-16" style="text-align: left;" width="25%">Grade</th>
                     </tr>
                     <tr *ngFor="let riskModelSummary of riskModelTemplate.riskModelSummaries">
                         <td class="column-data tableRow">{{ riskModelSummary.name }}</td>
@@ -131,11 +132,11 @@
                 <table class="pt-8 pb-16" cellpadding="0" cellspacing="0" width="100%" FxFlex="100"
                     *ngFor="let riskType of riskModelTemplate.riskTypes">
                     <tr class="accent-100 row-header">
-                        <th class="column-header mainHeader" colspan="2" width="100%">{{ riskType.description }}</th>
+                        <th class="column-header mainHeader pl-16" style="text-align: left;" colspan="2" width="100%">{{ riskType.description }}</th>
                     </tr>
                     <tr class="accent-50 row-header">
-                        <th class="column-header" width="50%">Risk Component</th>
-                        <th class="column-header" width="50%">Score</th>
+                        <th class="column-header pl-16" style="text-align: left;" width="50%">Risk Component</th>
+                        <th class="column-header pl-16" style="text-align: left;" width="50%">Score</th>
                     </tr>
                     <tr *ngFor="let riskComponent of riskType.riskComponents">
                         <td class="column-data tableRow">{{ riskComponent.description }}</td>
@@ -162,9 +163,9 @@
                         </ng-template>
 
                         <div fxLayout="row" fxLayoutAlign="end center" fxFlex="100">
-                            <mat-checkbox
-                                *ngIf="riskType.isAccountConductRiskComponentPresent"
-                                [(ngModel)]="riskType.isAccountConductRiskApplicable" (change)="applyAccountConductToTemplate($event, riskType)">
+                            <mat-checkbox *ngIf="riskType.isAccountConductRiskComponentPresent"
+                                [(ngModel)]="riskType.isAccountConductRiskApplicable"
+                                (change)="applyAccountConductToTemplate($event, riskType)">
                                 Account Conduct Risk Applicable
                             </mat-checkbox>
                         </div>
@@ -200,15 +201,15 @@
                                                 <mat-radio-group class="example-radio-group">
                                                     <table cellpadding="0" cellspacing="0" width="100%" FxFlex="100">
                                                         <tr class="accent-100 row-header">
-                                                            <th class="column-header mainHeader" colspan="3"> {{
+                                                            <th class="column-header mainHeader pl-16" style="text-align: left;" colspan="3"> {{
                                                                 riskSubFactor.description }}</th>
 
                                                         </tr>
                                                         <tr class="accent-100 row-header">
-                                                            <th class="column-header" width="10%">Select</th>
-                                                            <th class="column-header" width="80%">Parameter
+                                                            <th class="column-header pl-16" style="text-align: left;" width="10%">Select</th>
+                                                            <th class="column-header pl-16" style="text-align: left;" width="80%">Parameter
                                                                 Selection</th>
-                                                            <th class="column-header" width="10%"><span
+                                                            <th class="column-header pl-16" style="text-align: left;" width="10%"><span
                                                                     *ngIf="_appService.userDetails.riskDepartment === '02'">Score</span>
                                                             </th>
                                                         </tr>
@@ -263,10 +264,10 @@
                             </mat-card-header-->
                             <table cellpadding="0" cellspacing="0" width="100%" FxFlex="100">
                                 <tr class="accent-100 row-header">
-                                    <th class="column-header mainHeader">
+                                    <th class="column-header mainHeader pl-16" style="text-align: left;">
                                         {{ riskRatingModifier.description }}
                                     </th>
-                                    <th class="column-header mainHeader"> N / Y </th>
+                                    <th class="column-header mainHeader pl-16" style="text-align: left;"> N / Y </th>
                                 </tr>
                                 <ng-container
                                     *ngFor="let riskRatingModifierAttribute of riskRatingModifier.riskRatingModifierAttributes">
@@ -417,14 +418,14 @@
                             <mat-radio-group class="example-radio-group" FxFlex="100">
                                 <table cellpadding="0" cellspacing="0" width="100%">
                                     <tr class="accent-100 row-header ">
-                                        <th class="column-header mainHeader" colspan="3">{{ riskSubFactor.description
+                                        <th class="column-header mainHeader pl-16" style="text-align: left;" colspan="3">{{ riskSubFactor.description
                                             }}</th>
 
                                     </tr>
                                     <tr class="accent-100 row-header">
-                                        <th class="column-header" width="10%">Select</th>
-                                        <th class="column-header">Parameter Selection</th>
-                                        <th class="column-header"
+                                        <th class="column-header pl-16" style="text-align: left;" width="10%">Select</th>
+                                        <th class="column-header pl-16" style="text-align: left;">Parameter Selection</th>
+                                        <th class="column-header pl-16" style="text-align: left;"
                                             *ngIf="_appService.userDetails.riskDepartment === '02'">Score</th>
                                     </tr>
                                     <tr *ngFor="let riskSubFactorAttribute of riskSubFactor.riskSubFactorAttributes">
