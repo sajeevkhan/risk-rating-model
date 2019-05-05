@@ -19,7 +19,15 @@ import java.util.Collection;
 
 @ApiController
 @RequiredArgsConstructor
-@Profile("!localdev")
+
+//Development
+//@Profile("!localdev")
+
+
+//Development
+@Profile("!pfsdevoauth")
+
+
 public class UserController {
 
     private final LMSEnquiryClient lmsEnquiryClient;

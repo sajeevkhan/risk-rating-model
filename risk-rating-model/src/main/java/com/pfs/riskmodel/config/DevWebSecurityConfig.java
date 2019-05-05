@@ -20,7 +20,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 
 // Production
-@Profile({ "!pfsprdoauth" })
+@Profile({ "!pfsprdoauth", "!oauth" })
 
 
 // For Development
