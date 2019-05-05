@@ -12,8 +12,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 //@Profile({ "oauth","pfsdevoauth"})
 //@Profile("pfsdevoauth")
-@Profile("pfsdevoauth")
 
+
+// For Production
+@Profile("pfsprdoauth")
+
+
+// - Activate this for development
+//@Profile("oauth")
 
 @EnableOAuth2Sso
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
