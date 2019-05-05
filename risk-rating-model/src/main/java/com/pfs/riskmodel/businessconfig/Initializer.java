@@ -147,14 +147,16 @@ public class Initializer implements CommandLineRunner{
             log.info("-------------------------- Added Risk Rating Modifier Computing Method data");
         }
 
+
+
         if(purposeRepository.count() == 0) {
-//
-//            RiskPurpose p1 = new RiskPurpose(null, "01", "Project Assessment");
-//            RiskPurpose p2 = new RiskPurpose(null, "02", "Risk Assessment");
-//            RiskPurpose p3 = new RiskPurpose(null, "03", "Monitoring");
+
+            RiskPurpose r1 = new RiskPurpose(null, "01", "Project Assessment");
+            RiskPurpose r2 = new RiskPurpose(null, "02", "Risk Assessment");
+            RiskPurpose r3 = new RiskPurpose(null, "03", "Monitoring");
 
 
-//            purposeRepository.saveAll(Arrays.asList(p1,p2,p3 ));
+            purposeRepository.saveAll(Arrays.asList(r1,r2,r3 ));
             log.info("-------------------------- Added Purposes data");
         }
 
@@ -195,70 +197,70 @@ public class Initializer implements CommandLineRunner{
 //        String activeProfile = profiles[0];
 //
 //
-//        //if(workflowAssignmentRepository.count() == 0) {
-//
-//            RiskPurpose p1 = riskPurposeRepository.findByCode("01");
-//            if (p1 == null)
-//                p1 = new RiskPurpose(null, "01", "Project");
-//
-//            RiskPurpose p2 = riskPurposeRepository.findByCode("02");
-//            if (p2 == null) {
-//                p2 = new RiskPurpose(null, "02", "Risk");
-//            }
-//            RiskPurpose p3 = riskPurposeRepository.findByCode("03");
-//            if (p3 == null) {
-//                p3 = new RiskPurpose(null, "03", "Monitoring");
-//            }
-//
-//            WorkflowAssignment wa1 = new WorkflowAssignment();
-//            WorkflowAssignment wa2 = new WorkflowAssignment();;
-//            WorkflowAssignment wa3 = new WorkflowAssignment();;
-//
-//
-//            wa1 = workflowAssignmentRepository.findByPurpose(p1);
-//            if (wa1 == null) {
-//                wa1 = new WorkflowAssignment(null, p1, "Project FunctionalHead", "pfsprojecthead@gmail.com",
-//                        "Risk Officer", "pfsriskofficer@gmail.com",
-//                        "Risk FunctionalHead", "pfsriskhead@gmail.com");
-//
-//            }else {
-//                wa1.setFirstLevelApproverEmailId("pfsprojecthead@gmail.com");
-//                wa1.setFirstLevelApproverName("Project FunctionalHead");
-//                wa1.setSecondLevelApproverEmailId("pfsriskofficer@gmail.com");
-//                wa1.setSecondLevelApproverName("Risk Officer");
-//                wa1.setThirdLevelApproverEmailId("pfsriskhead@gmail.com");
-//                wa1.setThirdLevelApproverName("Risk FunctionalHead");
-//            }
-//
-//            workflowAssignmentRepository.save(wa1);
-//
-//            wa2 = workflowAssignmentRepository.findByPurpose(p2);
-//            if (wa2 == null) {
-//                wa2 = new WorkflowAssignment(null, p2, "Monitoring FunctionalHead", "pfsprojecthead@gmail.com",
-//                        "Risk Officer", "pfsriskofficer@gmail.com",
-//                        "Risk FunctionalHead", "pfsriskhead@gmail.com");
-//
-//            }else {
-//                wa2.setFirstLevelApproverEmailId("pfsprojecthead@gmail.com");
-//                wa2.setFirstLevelApproverName("Monitoring FunctionalHead");
-//                wa2.setSecondLevelApproverEmailId("pfsriskofficer@gmail.com");
-//                wa2.setSecondLevelApproverName("Risk Officer");
-//                wa2.setThirdLevelApproverEmailId("pfsriskhead@gmail.com");
-//                wa2.setThirdLevelApproverName("Risk FunctionalHead");
-//            }
-//
-//            workflowAssignmentRepository.save(wa2);
-//
-//            wa3 = workflowAssignmentRepository.findByPurpose(p2);
-//            if (wa3 == null) {
-//                wa3 = new WorkflowAssignment(null,p3,"","","","","","");
-//            } else{
-//                wa3 = new WorkflowAssignment(null, p3, "","","","","","");
-//            }
-//           // workflowAssignmentRepository.save(wa3);
-//
-//
-//            log.info("-------------------------- Added Workflow Assignments data");
+        //if(workflowAssignmentRepository.count() == 0) {
+
+            RiskPurpose r1 = riskPurposeRepository.findByCode("01");
+            if (r1 == null)
+                r1 = new RiskPurpose(null, "01", "Project");
+
+            RiskPurpose r2 = riskPurposeRepository.findByCode("02");
+            if (r2 == null) {
+                r2 = new RiskPurpose(null, "02", "Risk");
+            }
+            RiskPurpose r3 = riskPurposeRepository.findByCode("03");
+            if (r3 == null) {
+                r3 = new RiskPurpose(null, "03", "Monitoring");
+            }
+
+            WorkflowAssignment wa1 = new WorkflowAssignment();
+            WorkflowAssignment wa2 = new WorkflowAssignment();;
+            WorkflowAssignment wa3 = new WorkflowAssignment();;
+
+
+            wa1 = workflowAssignmentRepository.findByPurpose(r1);
+            if (wa1 == null) {
+                wa1 = new WorkflowAssignment(null, r1, "Project FunctionalHead", "pfsprojecthead@gmail.com",
+                        "Risk Officer", "pfsriskofficer@gmail.com",
+                        "Risk FunctionalHead", "pfsriskhead@gmail.com");
+
+            }else {
+                wa1.setFirstLevelApproverEmailId("pfsprojecthead@gmail.com");
+                wa1.setFirstLevelApproverName("Project FunctionalHead");
+                wa1.setSecondLevelApproverEmailId("pfsriskofficer@gmail.com");
+                wa1.setSecondLevelApproverName("Risk Officer");
+                wa1.setThirdLevelApproverEmailId("pfsriskhead@gmail.com");
+                wa1.setThirdLevelApproverName("Risk FunctionalHead");
+            }
+
+            workflowAssignmentRepository.save(wa1);
+
+            wa2 = workflowAssignmentRepository.findByPurpose(r2);
+            if (wa2 == null) {
+                wa2 = new WorkflowAssignment(null, r2, "Monitoring FunctionalHead", "pfsprojecthead@gmail.com",
+                        "Risk Officer", "pfsriskofficer@gmail.com",
+                        "Risk FunctionalHead", "pfsriskhead@gmail.com");
+
+            }else {
+                wa2.setFirstLevelApproverEmailId("pfsprojecthead@gmail.com");
+                wa2.setFirstLevelApproverName("Monitoring FunctionalHead");
+                wa2.setSecondLevelApproverEmailId("pfsriskofficer@gmail.com");
+                wa2.setSecondLevelApproverName("Risk Officer");
+                wa2.setThirdLevelApproverEmailId("pfsriskhead@gmail.com");
+                wa2.setThirdLevelApproverName("Risk FunctionalHead");
+            }
+
+            workflowAssignmentRepository.save(wa2);
+
+            wa3 = workflowAssignmentRepository.findByPurpose(r3);
+            if (wa3 == null) {
+                wa3 = new WorkflowAssignment(null,r3,"","","","","","");
+            } else{
+                wa3 = new WorkflowAssignment(null, r3, "","","","","","");
+            }
+           // workflowAssignmentRepository.save(wa3);
+
+
+            log.info("-------------------------- Added Workflow Assignments data");
         }
 
 
