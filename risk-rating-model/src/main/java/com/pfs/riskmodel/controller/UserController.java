@@ -27,6 +27,9 @@ import java.util.Collection;
 //Development
 @Profile("!pfsdevoauth")
 
+//Production
+//@Profile("!pfsprdoauth")
+
 
 public class UserController {
 

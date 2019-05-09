@@ -10,12 +10,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Slf4j
 @Configuration
-//@Profile({ "oauth","pfsdevoauth"})
+@Profile({ "oauth","pfsdevoauth"})
 //@Profile("pfsdevoauth")
 
 
 // For Production
-@Profile("pfsprdoauth")
+//@Profile("pfsprdoauth")
 
 
 // - Activate this for development
