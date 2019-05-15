@@ -20,15 +20,7 @@ import java.util.Collection;
 @ApiController
 @RequiredArgsConstructor
 
-//Development
-//@Profile("!localdev")
 
-
-//Development
-@Profile("!pfsdevoauth")
-
-//Production
-//@Profile("!pfsprdoauth")
 
 
 public class UserController {

@@ -18,15 +18,8 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @Slf4j
 @Order(120)
 @Configuration
-@Profile({"!pfsdevoauth", "!oauth"})
 
-
-// Production
-//@Profile({ "!pfsprdoauth", "!oauth" })
-
-
-// For Development
-//@Profile({ "!oauth" })
+@Profile("dev")
 
 @EnableWebSecurity
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
