@@ -34,6 +34,6 @@ security:
     resource:
       userInfoUri: http://localhost:9999/auth/api/me
 lmsEnquiry:
-  baseUrl: http://localhost:8080/
+  baseUrl: http://localhost:8080/enquiry
 server:
   port: 8090

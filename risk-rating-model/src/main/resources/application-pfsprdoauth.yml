@@ -35,6 +35,6 @@ security:
     resource:
       userInfoUri: http://192.168.1.247:9999/auth/api/me
 lmsEnquiry:
-  baseUrl: http://192.168.1.247:8080/
+  baseUrl: http://192.168.1.247:8080/enquiry
 server:
   port: 8090

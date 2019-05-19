@@ -35,6 +35,6 @@ security:
     resource:
       userInfoUri: https://enquiry.pfs-ess.com:9999/auth/api/me
 lmsEnquiry:
-  baseUrl: https://enquiry.pfs-ess.com:8080/
+  baseUrl: https://enquiry.pfs-ess.com:8080/enquiry
 server:
   port: 8090
