@@ -18,6 +18,6 @@ export class ChangePasswordService {
      * changePassword()
      */
     changePassword(userResource: any): Observable<any> {
-        return this._httpClient.put<any>('api/password/modify', userResource);
+        return this._httpClient.put<any>('risk/api/password/modify', userResource);
     }
 }

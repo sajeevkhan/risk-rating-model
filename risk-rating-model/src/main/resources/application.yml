@@ -8,3 +8,6 @@ spring:
   data:
     rest:
       base-path: /api
+server:
+  servlet:
+    context-path: /risk

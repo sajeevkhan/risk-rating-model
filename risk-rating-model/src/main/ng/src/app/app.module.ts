@@ -24,6 +24,7 @@ import { InboxModule } from './main/pages/inbox/inbox.module';
 import { AppService } from './app.service';
 import { ChangeDocumentModule } from './main/pages/change-document/change-document.module';
 import { ChangePasswordModule } from './main/pages/change-password-dialog/change-password.module';
+import { APP_BASE_HREF } from '@angular/common';
 
 const appRoutes: Routes = [
     {
@@ -72,7 +73,8 @@ const appRoutes: Routes = [
         AppComponent
     ],
     providers: [
-        AppService
+        { provide: APP_BASE_HREF, useValue: '/risk'},
+        AppService,
     ]
 })
 export class AppModule

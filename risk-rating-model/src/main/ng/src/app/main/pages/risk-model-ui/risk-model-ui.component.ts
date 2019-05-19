@@ -139,7 +139,7 @@ export class RiskModelUIComponent implements OnInit {
      */
     displayAsPDF(): void {
         console.log(this._riskModelTemplate.projectName);
-        (window as any).open('api/riskModelPDF?id=' + this._riskModelTemplate.id, '_blank');
+        (window as any).open('risk/api/riskModelPDF?id=' + this._riskModelTemplate.id, '_blank');
     }
 
     /**
@@ -147,7 +147,7 @@ export class RiskModelUIComponent implements OnInit {
      */
     displayAsPDFDebugMode(): void {
         console.log(this._riskModelTemplate.projectName);
-        (window as any).open('api/riskModelPDFDebugMode?id=' + this._riskModelTemplate.id, '_blank');
+        (window as any).open('risk/api/riskModelPDFDebugMode?id=' + this._riskModelTemplate.id, '_blank');
     }
 
     /**

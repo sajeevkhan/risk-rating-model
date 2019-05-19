@@ -28,7 +28,7 @@ export class InboxService implements Resolve<any> {
      * fetchTasks()
      */
     fetchTasks(): Observable<any> {
-        return this._httpClient.get<any>('api/tasklist');
+        return this._httpClient.get<any>('risk/api/tasklist');
     }
 
 
@@ -38,7 +38,7 @@ export class InboxService implements Resolve<any> {
      */
     approveEvaluation(id: any): Observable<any> {
         console.log('ID for Approval :' + id);
-        return this._httpClient.put(<any>('api/riskModel/process?action=3&id=' + id), id);
+        return this._httpClient.put(<any>('risk/api/riskModel/process?action=3&id=' + id), id);
     }
 
 
@@ -48,7 +48,7 @@ export class InboxService implements Resolve<any> {
      */
     rejectEvaluation(id: any): Observable<any> {
         console.log('ID for Rejection :' + id);
-        return this._httpClient.put(<any>('api/riskModel/process?action=4&id=' + id), id);
+        return this._httpClient.put(<any>('risk/api/riskModel/process?action=4&id=' + id), id);
     }
 
  

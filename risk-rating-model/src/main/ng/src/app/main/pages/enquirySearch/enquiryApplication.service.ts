@@ -632,7 +632,7 @@ export class LoanEnquiryService {
      * @param request: any
      */
     public searchLoanEnquiries(request: any): Observable<any> {
-        let str = '/api/loanApplications/search?';
+        let str = 'risk/api/loanApplications/search?';
         if (request.projectName) {
             str+= 'projectName=' + request.projectName + '&';
         }
@@ -649,14 +649,14 @@ export class LoanEnquiryService {
      * getProjectDepartmentUsers()
      */
     public getProjectDepartmentUsers(): Observable<any> {
-        return this._http.get('api/users/department/01');
+        return this._http.get('risk/api/users/department/01');
     }
 
     /**
      * getMonitoringDepartmentUsers()
      */
     public getMonitoringDepartmentUsers(): Observable<any> {
-        return this._http.get('api/users/department/03');
+        return this._http.get('risk/api/users/department/03');
     }
 
     /**
@@ -672,6 +672,6 @@ export class LoanEnquiryService {
             projectDepartmentInitiator: processors.projectDepartmentInitiator,
             monitoringDepartmentInitiator: processors.monitoringDepartmentInitiator
         }
-        return this._http.put<any>('api/loanEnquiry/assignProcessors', processorResource);
+        return this._http.put<any>('risk/api/loanEnquiry/assignProcessors', processorResource);
     }
 }

@@ -11,7 +11,7 @@ export class ChangeDocumentService {
     constructor(private _httpClient: HttpClient) { }
 
     fetchChangeDocuments(loanNumber: string, riskModelId: string, dateFrom: Date, dateTo: Date, page: number, size: number): Observable<any> {
-        let api = 'api/changedocuments?page=' + page + '&size=' + size;
+        let api = 'risk/api/changedocuments?page=' + page + '&size=' + size;
         if (loanNumber !== null && loanNumber !== '') {
             api += '&loanNumber=' + loanNumber;
         }

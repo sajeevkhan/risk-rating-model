@@ -21,7 +21,7 @@ export class AppService {
      */
     fetchUserDetails(): Observable<any> {
         return new Observable<any>(observer => {
-            this._httpClient.get<any>('api/welcome').subscribe(data => {
+            this._httpClient.get<any>('risk/api/welcome').subscribe(data => {
                 this.userDetails = data;
                 observer.next(data);
             });

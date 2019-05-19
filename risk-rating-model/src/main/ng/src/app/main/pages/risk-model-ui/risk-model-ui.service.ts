@@ -18,7 +18,7 @@ export class RiskModelUIService {
      * @param projectRiskLevel: string
      */
     getRiskModelTemplate(projectType: string, projectRiskLevel: string): Observable<any> {
-        return this._httpClient.get<any>('api/riskModelTemplate?projectType=' + projectType +
+        return this._httpClient.get<any>('risk/api/riskModelTemplate?projectType=' + projectType +
             '&projectRiskLevel=' + projectRiskLevel);
     }
 
@@ -27,7 +27,7 @@ export class RiskModelUIService {
      * @param templateId: string
      */
     getRiskModelTemplateById(templateId: string): Observable<any> {
-        return this._httpClient.get<any>('api/riskModelTemplate/id/' + templateId);
+        return this._httpClient.get<any>('risk/api/riskModelTemplate/id/' + templateId);
     }
 
     /**
@@ -36,7 +36,7 @@ export class RiskModelUIService {
      */
     evaluateTemplate(template: any): Observable<any> {
 
-        return this._httpClient.post<any>('api/riskModel?action=1', template);
+        return this._httpClient.post<any>('risk/api/riskModel?action=1', template);
     }
 
     /**
@@ -44,21 +44,21 @@ export class RiskModelUIService {
      * @param template: any
      */
     approveTemplate(template: any): Observable<any> {
-        return this._httpClient.post<any>('api/riskModel?action=2', template);
+        return this._httpClient.post<any>('risk/api/riskModel?action=2', template);
     }
 
     /**
      * 
      */
     public getPurposes(): Observable<any> {
-        return this._httpClient.get<any>('api/purposes');
+        return this._httpClient.get<any>('risk/api/purposes');
     }
 
     /**
      * getRatingSources()
      */
     public getRatingSources(): Observable<any> {
-        return this._httpClient.get<any>('api/ratingSources');
+        return this._httpClient.get<any>('risk/api/ratingSources');
     }
 
     /**
@@ -67,7 +67,7 @@ export class RiskModelUIService {
      * @param natureOfRatingOfParentFirm: number
      */
     public getCreditRatings(ratingSource: string, natureOfRatingOfParentFirm: number): Observable<any> {
-        return this._httpClient.get<any>('api/creditRatings?ratingSource=' + ratingSource + '&natureOfRatingOfParentFirm=' +
+        return this._httpClient.get<any>('risk/api/creditRatings?ratingSource=' + ratingSource + '&natureOfRatingOfParentFirm=' +
             natureOfRatingOfParentFirm);
     }
 
@@ -78,7 +78,7 @@ export class RiskModelUIService {
      * @param creditRating: string
      */
     public getCreditRatingGrade(ratingSource: string, natureOfRatingOfParentFirm: number, creditRating: string) {
-        const uri = 'api/creditRatingGrade?ratingSource=' + ratingSource + '&natureOfRatingOfParentFirm=' +
+        const uri = 'risk/api/creditRatingGrade?ratingSource=' + ratingSource + '&natureOfRatingOfParentFirm=' +
             natureOfRatingOfParentFirm + '&creditRating=' + encodeURIComponent(creditRating);
         return this._httpClient.get<any>(uri);
     }

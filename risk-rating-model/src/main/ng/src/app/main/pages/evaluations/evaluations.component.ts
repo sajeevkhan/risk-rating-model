@@ -65,8 +65,8 @@ export class EvaluationComponent {
      */
     displayAsPDF(): void {
         // this._service.fetchModelPDF(this._service.selectedEvaluation.value).subscribe();
-        // this.document.location.href = 'api/riskModelPDF?id=' + this._service.selectedEvaluation.value.id;
-        (window as any).open('api/riskModelPDF?id=' + this._service.selectedEvaluation.value.id, '_blank');
+        // this.document.location.href = 'risk/api/riskModelPDF?id=' + this._service.selectedEvaluation.value.id;
+        (window as any).open('risk/api/riskModelPDF?id=' + this._service.selectedEvaluation.value.id, '_blank');
     }
 
     /**

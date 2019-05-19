@@ -35,7 +35,7 @@ export class EvaluationService implements Resolve<any> {
      * @param loanNumber: string
      */
     public fetchEvaluationsByLoanNumber(loanNumber: string): Observable<any> {
-        return this._http.get<any>('/api/riskModel/loanNumber/' + loanNumber);
+        return this._http.get<any>('risk/api/riskModel/loanNumber/' + loanNumber);
     }
 
     /**
@@ -43,28 +43,28 @@ export class EvaluationService implements Resolve<any> {
      * @param enquiryNumber: string
      */
     public fetchEvaluationsByEnquiryNumber(enquiryNumber: string): Observable<any> {
-        return this._http.get<any>('/api/riskModel/loanEnquiryId/' + enquiryNumber);
+        return this._http.get<any>('risk/api/riskModel/loanEnquiryId/' + enquiryNumber);
     }
 
     /**
      * 
      */
     public getProjectTypes(): Observable<any> {
-        return this._http.get<any>('api/projectTypes');
+        return this._http.get<any>('risk/api/projectTypes');
     }  
     
     /**
      * 
      */
     public getRiskLevels(): Observable<any> {
-        return this._http.get<any>('api/projectRiskLevels');
+        return this._http.get<any>('risk/api/projectRiskLevels');
     }
 
     /**
      * 
      */
     public getPurposes(): Observable<any> {
-        return this._http.get<any>('api/purposes');
+        return this._http.get<any>('risk/api/purposes');
     }
 
     /**
@@ -72,6 +72,6 @@ export class EvaluationService implements Resolve<any> {
      * @param evaluation: any
      */
     public fetchModelPDF(evaluation: any): Observable<any> {
-        return this._http.get<any>('api/riskModelPDF?id=' + evaluation.id);
+        return this._http.get<any>('risk/api/riskModelPDF?id=' + evaluation.id);
     }
 }
