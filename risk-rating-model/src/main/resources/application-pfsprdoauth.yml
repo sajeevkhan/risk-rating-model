@@ -30,11 +30,11 @@ security:
     client:
       client-id: pfs-client
       client-secret: pfs-secret
-      access-token-uri: http://192.168.1.247:9999/auth/oauth/token
-      user-authorization-uri: http://192.168.1.247:9999/auth/oauth/authorize
+      access-token-uri: https://enquiry.pfs-ess.com:9999/auth/oauth/token
+      user-authorization-uri: https://enquiry.pfs-ess.com:9999/auth/oauth/authorize
     resource:
-      userInfoUri: http://192.168.1.247:9999/auth/api/me
+      userInfoUri: https://enquiry.pfs-ess.com:9999/auth/api/me
 lmsEnquiry:
-  baseUrl: http://192.168.1.247:8080/enquiry
+  baseUrl: https://enquiry.pfs-ess.com:8080/enquiry
 server:
   port: 8090
