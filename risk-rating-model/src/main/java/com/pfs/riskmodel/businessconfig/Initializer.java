@@ -219,34 +219,33 @@ public class Initializer implements CommandLineRunner{
 
             wa1 = workflowAssignmentRepository.findByPurpose(r1);
             if (wa1 == null) {
-                wa1 = new WorkflowAssignment(null, r1, "Project FunctionalHead", "pfsprojecthead@gmail.com",
-                        "Risk Officer", "pfsriskofficer@gmail.com",
-                        "Risk FunctionalHead", "pfsriskhead@gmail.com");
+                wa1 = new WorkflowAssignment(null, r1, "Sitesh Kumar Sinha", "sksinha@ptcfinancial.com",
+                        "Neeraj Yadav", "neerajyadava@ptcfinancial.com",
+                        "Devesh Singh", "devesh@ptcfinancial.com");
 
             }else {
-                wa1.setFirstLevelApproverEmailId("pfsprojecthead@gmail.com");
-                wa1.setFirstLevelApproverName("Project FunctionalHead");
-                wa1.setSecondLevelApproverEmailId("pfsriskofficer@gmail.com");
-                wa1.setSecondLevelApproverName("Risk Officer");
-                wa1.setThirdLevelApproverEmailId("pfsriskhead@gmail.com");
-                wa1.setThirdLevelApproverName("Risk FunctionalHead");
+                wa1.setFirstLevelApproverEmailId("sksinha@ptcfinancial.com");
+                wa1.setFirstLevelApproverName("Sitesh Kumar Sinha");
+                wa1.setSecondLevelApproverEmailId("neerajyadava@ptcfinancial.com");
+                wa1.setSecondLevelApproverName("Neeraj Yadav");
+                wa1.setThirdLevelApproverEmailId("devesh@ptcfinancial.com");
+                wa1.setThirdLevelApproverName("Devesh Singh");
             }
 
             workflowAssignmentRepository.save(wa1);
 
             wa2 = workflowAssignmentRepository.findByPurpose(r2);
             if (wa2 == null) {
-                wa2 = new WorkflowAssignment(null, r2, "Monitoring FunctionalHead", "pfsprojecthead@gmail.com",
-                        "Risk Officer", "pfsriskofficer@gmail.com",
-                        "Risk FunctionalHead", "pfsriskhead@gmail.com");
-
+                wa2 = new WorkflowAssignment(null, r2, "Rony Mahajan", "pfsprojecthead@gmail.com",
+                        "Neeraj Yadav", "neerajyadava@ptcfinancial.com",
+                        "Devesh Singh", "devesh@ptcfinancial.com");
             }else {
-                wa2.setFirstLevelApproverEmailId("pfsprojecthead@gmail.com");
-                wa2.setFirstLevelApproverName("Monitoring FunctionalHead");
-                wa2.setSecondLevelApproverEmailId("pfsriskofficer@gmail.com");
-                wa2.setSecondLevelApproverName("Risk Officer");
-                wa2.setThirdLevelApproverEmailId("pfsriskhead@gmail.com");
-                wa2.setThirdLevelApproverName("Risk FunctionalHead");
+                wa2.setFirstLevelApproverEmailId("rony.mahajan@ptcfinancial.com");
+                wa2.setFirstLevelApproverName("Rony Mahajan");
+                wa2.setSecondLevelApproverEmailId("neerajyadava@ptcfinancial.com");
+                wa2.setSecondLevelApproverName("Neeraj Yadav");
+                wa2.setThirdLevelApproverEmailId("devesh@ptcfinancial.com");
+                wa2.setThirdLevelApproverName("Devesh Singh");
             }
 
             workflowAssignmentRepository.save(wa2);
