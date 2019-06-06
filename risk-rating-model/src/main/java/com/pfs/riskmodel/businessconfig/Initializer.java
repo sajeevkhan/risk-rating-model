@@ -201,39 +201,41 @@ public class Initializer implements CommandLineRunner{
 
 
         //if(workflowAssignmentRepository.count() == 0) {
-           System.out.println( "-------------------------- Starting to add Risk Purpose----------------------");
 
 
-            RiskPurpose r1 = riskPurposeRepository.findByCode("01");
-            if (r1 == null)
-                r1 = new RiskPurpose(null, "01", "Project");
+           if (riskPurposeRepository.count() == 0) {
+               System.out.println( "-------------------------- Starting to add Risk Purpose----------------------");
 
-            RiskPurpose r2 = riskPurposeRepository.findByCode("02");
-            if (r2 == null) {
-                r2 = new RiskPurpose(null, "02", "Risk");
-            }
-            RiskPurpose r3 = riskPurposeRepository.findByCode("03");
-            if (r3 == null) {
-                r3 = new RiskPurpose(null, "03", "Monitoring");
-            }
+               RiskPurpose r1 = riskPurposeRepository.findByCode("01");
+               if (r1 == null)
+                   r1 = new RiskPurpose(null, "01", "Project");
 
-        System.out.println( "Risk Purpose :" + r1.toString());
-        r1 = riskPurposeRepository.saveAndFlush(r1);
-        System.out.println( "-------------------------- Saved Risk Purpose :" +r1.toString());
+               RiskPurpose r2 = riskPurposeRepository.findByCode("02");
+               if (r2 == null) {
+                   r2 = new RiskPurpose(null, "02", "Risk");
+               }
+               RiskPurpose r3 = riskPurposeRepository.findByCode("03");
+               if (r3 == null) {
+                   r3 = new RiskPurpose(null, "03", "Monitoring");
+               }
 
-        System.out.println( "Risk Purpose :" + r2.toString());
-        r2 = riskPurposeRepository.saveAndFlush(r2);
-        System.out.println( "-------------------------- Saved Risk Purpose :" +r2.toString());
+               System.out.println("Risk Purpose :" + r1.toString());
+               r1 = riskPurposeRepository.saveAndFlush(r1);
+               System.out.println("-------------------------- Saved Risk Purpose :" + r1.toString());
 
-
-        System.out.println( "Risk Purpose :" + r3.toString());
-        r3 = riskPurposeRepository.saveAndFlush(r3);
-        System.out.println( "-------------------------- Saved Risk Purpose :" +r3.toString());
+               System.out.println("Risk Purpose :" + r2.toString());
+               r2 = riskPurposeRepository.saveAndFlush(r2);
+               System.out.println("-------------------------- Saved Risk Purpose :" + r2.toString());
 
 
-            WorkflowAssignment wa1 = new WorkflowAssignment();
-            WorkflowAssignment wa2 = new WorkflowAssignment();;
-            WorkflowAssignment wa3 = new WorkflowAssignment();;
+               System.out.println("Risk Purpose :" + r3.toString());
+               r3 = riskPurposeRepository.saveAndFlush(r3);
+               System.out.println("-------------------------- Saved Risk Purpose :" + r3.toString());
+           }
+
+        WorkflowAssignment wa1 = new WorkflowAssignment();
+        WorkflowAssignment wa2 = new WorkflowAssignment();;
+        WorkflowAssignment wa3 = new WorkflowAssignment();;
 
 
         System.out.println(" ");
@@ -241,7 +243,7 @@ public class Initializer implements CommandLineRunner{
         System.out.println( "-------------------------------------------------------------------------------------");
         System.out.println( "-------------------------- Starting to add Workflow Assignments----------------------");
 
-        r1 = riskPurposeRepository.findByCode("01");
+         RiskPurpose  r1 = riskPurposeRepository.findByCode("01");
 
         if (r1 != null) {
 
@@ -271,7 +273,7 @@ public class Initializer implements CommandLineRunner{
         }
 
 
-        r2 = riskPurposeRepository.findByCode("02");
+        RiskPurpose r2 = riskPurposeRepository.findByCode("02");
 
         if( r2 != null) {
 
@@ -296,7 +298,7 @@ public class Initializer implements CommandLineRunner{
 
         }
 
-        r3 = riskPurposeRepository.findByCode("03");
+        RiskPurpose r3 = riskPurposeRepository.findByCode("03");
 
         wa3 = workflowAssignmentRepository.findByPurpose(r3);
             if (wa3 == null) {
