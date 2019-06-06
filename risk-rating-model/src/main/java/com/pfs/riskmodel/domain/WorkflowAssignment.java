@@ -2,6 +2,7 @@ package com.pfs.riskmodel.domain;
 
 import lombok.*;
 import org.hibernate.annotations.Cascade;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -30,7 +31,7 @@ public class WorkflowAssignment implements Serializable {
         03 - Monitoring
      */
 
-    @NotNull
+    @Nullable
     @OneToOne(  fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
      private RiskPurpose purpose;
 
