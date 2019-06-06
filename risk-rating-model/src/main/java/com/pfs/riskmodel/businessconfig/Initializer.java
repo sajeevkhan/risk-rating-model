@@ -235,15 +235,30 @@ public class Initializer implements CommandLineRunner{
             WorkflowAssignment wa2 = new WorkflowAssignment();;
             WorkflowAssignment wa3 = new WorkflowAssignment();;
 
+
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println( "-------------------------------------------------------------------------------------");
         System.out.println( "-------------------------- Starting to add Workflow Assignments----------------------");
 
-            wa1 = workflowAssignmentRepository.findByPurpose(r1);
+             r1 = riskPurposeRepository.findByCode("01");
+             r2 = riskPurposeRepository.findByCode("02");
+             r2 = riskPurposeRepository.findByCode("03");
+
+
+        wa1 = workflowAssignmentRepository.findByPurpose(r1);
+
             if (wa1 == null) {
+                System.out.println(" Workflow Assignment Not Found for Risk Purpose " +r1.getDescription());
+                System.out.println( "-------------------------- Starting to add Workflow Assignments----------------------");
+
                 wa1 = new WorkflowAssignment(null, r1, "Sitesh Kumar Sinha", "sksinha@ptcfinancial.com",
                         "Neeraj Yadav", "neerajyadava@ptcfinancial.com",
                         "Devesh Singh", "devesh@ptcfinancial.com");
 
             }else {
+                System.out.println(" Workflow Assignment Found for Risk Purpose " +r1.getDescription());
+
                 wa1.setFirstLevelApproverEmailId("sksinha@ptcfinancial.com");
                 wa1.setFirstLevelApproverName("Sitesh Kumar Sinha");
                 wa1.setSecondLevelApproverEmailId("neerajyadava@ptcfinancial.com");
@@ -252,10 +267,13 @@ public class Initializer implements CommandLineRunner{
                 wa1.setThirdLevelApproverName("Devesh Singh");
             }
 
+            System.out.println(" Saving Workflow Assingement 1 :" + wa1.toString());
             workflowAssignmentRepository.save(wa1);
 
             wa2 = workflowAssignmentRepository.findByPurpose(r2);
             if (wa2 == null) {
+                System.out.println(" Workflow Assignment Not Found for Risk Purpose " +r2.getDescription());
+
                 wa2 = new WorkflowAssignment(null, r2, "Rony Mahajan", "pfsprojecthead@gmail.com",
                         "Neeraj Yadav", "neerajyadava@ptcfinancial.com",
                         "Devesh Singh", "devesh@ptcfinancial.com");
