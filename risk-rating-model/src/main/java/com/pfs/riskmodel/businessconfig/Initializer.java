@@ -245,6 +245,9 @@ public class Initializer implements CommandLineRunner{
 
          RiskPurpose  r1 = riskPurposeRepository.findByCode("01");
 
+        System.out.println("  Risk Purpose for code 01: " + r1.getDescription());
+
+
         if (r1 != null) {
 
             wa1 = workflowAssignmentRepository.findByPurpose(r1);
@@ -253,7 +256,7 @@ public class Initializer implements CommandLineRunner{
                 System.out.println(" Workflow Assignment Not Found for Risk Purpose " + r1.getDescription());
                 System.out.println("-------------------------- Starting to add Workflow Assignments----------------------");
 
-                wa1 = new WorkflowAssignment(null, null, "Sitesh Kumar Sinha", "sksinha@ptcfinancial.com",
+                wa1 = new WorkflowAssignment(null, r1, "Sitesh Kumar Sinha", "sksinha@ptcfinancial.com",
                         "Neeraj Yadav", "neerajyadava@ptcfinancial.com",
                         "Devesh Singh", "devesh@ptcfinancial.com");
 
@@ -281,7 +284,7 @@ public class Initializer implements CommandLineRunner{
             if (wa2 == null) {
                 System.out.println(" Workflow Assignment Not Found for Risk Purpose " + r2.getDescription());
 
-                wa2 = new WorkflowAssignment(null, null, "Rony Mahajan", "pfsprojecthead@gmail.com",
+                wa2 = new WorkflowAssignment(null, r2, "Rony Mahajan", "pfsprojecthead@gmail.com",
                         "Neeraj Yadav", "neerajyadava@ptcfinancial.com",
                         "Devesh Singh", "devesh@ptcfinancial.com");
             } else {
@@ -295,7 +298,7 @@ public class Initializer implements CommandLineRunner{
                 wa2.setThirdLevelApproverName("Devesh Singh");
             }
 
-            System.out.println(" Saving Workflow Assingment 2 :" + wa1.toString());
+            System.out.println(" Saving Workflow Assingment 2 :" + wa2.toString());
             workflowAssignmentRepository.save(wa2);
 
         }

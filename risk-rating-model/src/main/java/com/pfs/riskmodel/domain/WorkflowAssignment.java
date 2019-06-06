@@ -31,8 +31,8 @@ public class WorkflowAssignment implements Serializable {
         03 - Monitoring
      */
 
-    @Nullable
-    @OneToOne(  fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @NotNull
+    @OneToOne(  fetch = FetchType.EAGER, cascade = {CascadeType.MERGE,CascadeType.REFRESH})
      private RiskPurpose purpose;
 
 
