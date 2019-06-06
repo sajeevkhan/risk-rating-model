@@ -212,7 +212,12 @@ public class Initializer implements CommandLineRunner{
                 r3 = new RiskPurpose(null, "03", "Monitoring");
             }
 
-            WorkflowAssignment wa1 = new WorkflowAssignment();
+            r1 = riskPurposeRepository.save(r1);
+            r2 = riskPurposeRepository.save(r2);
+            r3 = riskPurposeRepository.save(r3);
+
+
+        WorkflowAssignment wa1 = new WorkflowAssignment();
             WorkflowAssignment wa2 = new WorkflowAssignment();;
             WorkflowAssignment wa3 = new WorkflowAssignment();;
 
