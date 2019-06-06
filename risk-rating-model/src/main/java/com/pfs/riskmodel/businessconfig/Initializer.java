@@ -253,13 +253,13 @@ public class Initializer implements CommandLineRunner{
                 System.out.println(" Workflow Assignment Not Found for Risk Purpose " + r1.getDescription());
                 System.out.println("-------------------------- Starting to add Workflow Assignments----------------------");
 
-                wa1 = new WorkflowAssignment(null, r1, "Sitesh Kumar Sinha", "sksinha@ptcfinancial.com",
+                wa1 = new WorkflowAssignment(null, null, "Sitesh Kumar Sinha", "sksinha@ptcfinancial.com",
                         "Neeraj Yadav", "neerajyadava@ptcfinancial.com",
                         "Devesh Singh", "devesh@ptcfinancial.com");
 
             } else {
                 System.out.println(" Workflow Assignment Found for Risk Purpose " + r1.getDescription());
-
+                wa1.setPurpose(r1);
                 wa1.setFirstLevelApproverEmailId("sksinha@ptcfinancial.com");
                 wa1.setFirstLevelApproverName("Sitesh Kumar Sinha");
                 wa1.setSecondLevelApproverEmailId("neerajyadava@ptcfinancial.com");
@@ -273,7 +273,7 @@ public class Initializer implements CommandLineRunner{
         }
 
 
-        RiskPurpose r2 = riskPurposeRepository.findByCode("02");
+        RiskPurpose r2 = riskPurposeRepository.findByCode("03");
 
         if( r2 != null) {
 
@@ -281,10 +281,12 @@ public class Initializer implements CommandLineRunner{
             if (wa2 == null) {
                 System.out.println(" Workflow Assignment Not Found for Risk Purpose " + r2.getDescription());
 
-                wa2 = new WorkflowAssignment(null, r2, "Rony Mahajan", "pfsprojecthead@gmail.com",
+                wa2 = new WorkflowAssignment(null, null, "Rony Mahajan", "pfsprojecthead@gmail.com",
                         "Neeraj Yadav", "neerajyadava@ptcfinancial.com",
                         "Devesh Singh", "devesh@ptcfinancial.com");
             } else {
+                wa1.setPurpose(r2);
+
                 wa2.setFirstLevelApproverEmailId("rony.mahajan@ptcfinancial.com");
                 wa2.setFirstLevelApproverName("Rony Mahajan");
                 wa2.setSecondLevelApproverEmailId("neerajyadava@ptcfinancial.com");

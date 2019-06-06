@@ -51,7 +51,7 @@ public class WorkflowConfig implements CommandLineRunner{
     @Override
     public void run(String... strings) throws Exception {
 
-        
+
 //        if (workflowAssignmentRepository.count() != 0)
 //            return;
 //
