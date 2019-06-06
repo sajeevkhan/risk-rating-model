@@ -31,6 +31,23 @@ public class CreditRatingsScoresInitializer implements CommandLineRunner{
     @Override
     public void run(String... strings) throws Exception {
 
+          if(creditRatingSourceRepository.count() == 0) {
+                CreditRatingSource c1 = new CreditRatingSource(null, "CRISIL", "CRISIL");
+                CreditRatingSource c2 = new CreditRatingSource(null, "ICRA", "ICRA");
+                CreditRatingSource c3 = new CreditRatingSource(null, "CARE", "CARE");
+                CreditRatingSource c4 = new CreditRatingSource(null, "BWR", "BWR");
+                CreditRatingSource c9 = new CreditRatingSource(null, "SMERA", "SMERA");
+                CreditRatingSource c5 = new CreditRatingSource(null, "S&P", "S&P");
+                CreditRatingSource c6 = new CreditRatingSource(null, "Moodys", "Moodys");
+                CreditRatingSource c7 = new CreditRatingSource(null, "Fitch", "Fitch");
+                CreditRatingSource c8 = new CreditRatingSource(null, "PFS", "PFS");
+
+                creditRatingSourceRepository.saveAll(Arrays.asList(c1,c2,c3,c4,c5,c6,c7,c8,c9));
+
+                log.info("-------------------------- Added Credit Rating Data for : " + c1.getCode());
+
+          }
+
 
       if(creditRatingMapRepository.count() == 0) {
             CreditRatingSource c1 = creditRatingSourceRepository.findByCode("CRISIL");
