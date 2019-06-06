@@ -1,6 +1,7 @@
 package com.pfs.riskmodel.domain;
 
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -30,8 +31,8 @@ public class WorkflowAssignment implements Serializable {
      */
 
     @NotNull
-    @OneToOne(  fetch = FetchType.EAGER)
-    private RiskPurpose purpose;
+    @OneToOne(  fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+     private RiskPurpose purpose;
 
 
     private String firstLevelApproverName;

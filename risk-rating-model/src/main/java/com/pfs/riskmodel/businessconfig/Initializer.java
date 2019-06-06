@@ -51,6 +51,7 @@ public class Initializer implements CommandLineRunner{
     @Override
     public void run(String... strings) throws Exception {
 
+        System.out.println("-------------------------- Adding Model Category  data");
 
 
         if(modelCategoryRepository.count() == 0) {
@@ -70,6 +71,7 @@ public class Initializer implements CommandLineRunner{
             log.info("-------------------------- Added Model Category  data");
         }
 
+        System.out.println("-------------------------- Adding computingMethodRepository ");
 
 
         if(computingMethodRepository.count() == 0) {
@@ -85,6 +87,8 @@ public class Initializer implements CommandLineRunner{
             log.info("-------------------------- Added Computing Methods data");
         }
 
+        System.out.println("-------------------------- Adding scoreTypeRepository ");
+
         if (scoreTypeRepository.count() == 0) {
             ScoreType s1 = new ScoreType(null,"01","Normal");
             ScoreType s2 = new ScoreType(null,"02","Deflator");
@@ -95,6 +99,7 @@ public class Initializer implements CommandLineRunner{
 
 
         }
+        System.out.println("-------------------------- Adding riskProjectTypeRepository ");
 
 
         if(riskProjectTypeRepository.count() == 0) {
@@ -110,6 +115,7 @@ public class Initializer implements CommandLineRunner{
             log.info("-------------------------- Added project Type   data");
         }
 
+        System.out.println("-------------------------- Adding projectRiskLevelRepository ");
 
         if(projectRiskLevelRepository.count() == 0) {
             ProjectRiskLevel p1 = new ProjectRiskLevel(null,"01", "Build Phase ");
@@ -134,6 +140,7 @@ public class Initializer implements CommandLineRunner{
         }
 
 
+        System.out.println("-------------------------- Adding riskRatingComputingMethodRepository ");
 
 
         if(riskRatingComputingMethodRepository.count() == 0) {
@@ -190,13 +197,9 @@ public class Initializer implements CommandLineRunner{
                 log.info("-------------------------- Added Work Flow Status: " + w1.toString());
             }
 
+        System.out.println("-------------------------- Added Work Flow Status: " + w1.toString());
 
 
-//
-//        String[] profiles = environment.getActiveProfiles();
-//        String activeProfile = profiles[0];
-//
-//
         //if(workflowAssignmentRepository.count() == 0) {
            System.out.println( "-------------------------- Starting to add Risk Purpose----------------------");
 
