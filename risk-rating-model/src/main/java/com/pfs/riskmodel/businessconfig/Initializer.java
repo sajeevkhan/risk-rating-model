@@ -198,6 +198,8 @@ public class Initializer implements CommandLineRunner{
 //
 //
         //if(workflowAssignmentRepository.count() == 0) {
+           System.out.println( "-------------------------- Starting to add Risk Purpose----------------------");
+
 
             RiskPurpose r1 = riskPurposeRepository.findByCode("01");
             if (r1 == null)
@@ -212,15 +214,25 @@ public class Initializer implements CommandLineRunner{
                 r3 = new RiskPurpose(null, "03", "Monitoring");
             }
 
-            r1 = riskPurposeRepository.save(r1);
-            r2 = riskPurposeRepository.save(r2);
-            r3 = riskPurposeRepository.save(r3);
+        System.out.println( "Risk Purpose :" + r1.toString());
+        r1 = riskPurposeRepository.saveAndFlush(r1);
+        System.out.println( "-------------------------- Saved Risk Purpose :" +r1.toString());
+
+        System.out.println( "Risk Purpose :" + r2.toString());
+        r2 = riskPurposeRepository.saveAndFlush(r2);
+        System.out.println( "-------------------------- Saved Risk Purpose :" +r2.toString());
 
 
-        WorkflowAssignment wa1 = new WorkflowAssignment();
+        System.out.println( "Risk Purpose :" + r3.toString());
+        r3 = riskPurposeRepository.saveAndFlush(r3);
+        System.out.println( "-------------------------- Saved Risk Purpose :" +r3.toString());
+
+
+            WorkflowAssignment wa1 = new WorkflowAssignment();
             WorkflowAssignment wa2 = new WorkflowAssignment();;
             WorkflowAssignment wa3 = new WorkflowAssignment();;
 
+        System.out.println( "-------------------------- Starting to add Workflow Assignments----------------------");
 
             wa1 = workflowAssignmentRepository.findByPurpose(r1);
             if (wa1 == null) {
