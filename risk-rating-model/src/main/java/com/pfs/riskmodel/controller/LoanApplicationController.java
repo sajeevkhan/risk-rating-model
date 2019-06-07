@@ -40,7 +40,7 @@ public class LoanApplicationController {
         return ResponseEntity.ok(resources);
     }
 
-    
+
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/loanEnquiry/assignProcessors")
     public ResponseEntity updateProcessors(@RequestBody ProcessorResource processorResource, HttpServletRequest request) {

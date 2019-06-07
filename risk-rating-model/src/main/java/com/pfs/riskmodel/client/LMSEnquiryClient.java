@@ -25,6 +25,7 @@ public interface LMSEnquiryClient {
     @RequestMapping(value = "/api/user/email", method = RequestMethod.PUT)
     ResponseEntity<User> getUserByEmail(@RequestBody EmailId emailId, @RequestHeader("Authorization") String authorization);
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @RequestMapping(value = "/api/loanEnquiry/assignProcessors", method = RequestMethod.PUT)
     ResponseEntity<LoanApplicationResource> updateProcessors(@RequestBody ProcessorResource processorResource, @RequestHeader("Authorization") String authorization);
 
