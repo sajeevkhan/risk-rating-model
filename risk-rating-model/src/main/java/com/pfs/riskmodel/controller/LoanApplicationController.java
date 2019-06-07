@@ -9,10 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
@@ -43,6 +40,8 @@ public class LoanApplicationController {
         return ResponseEntity.ok(resources);
     }
 
+    
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/loanEnquiry/assignProcessors")
     public ResponseEntity updateProcessors(@RequestBody ProcessorResource processorResource, HttpServletRequest request) {
         ResponseEntity<LoanApplicationResource> loanAppication = lmsEnquiryClient.updateProcessors(processorResource, getAuthorizationBearer(request.getUserPrincipal()));
