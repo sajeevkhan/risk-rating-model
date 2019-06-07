@@ -191,6 +191,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
 
     /**
      * logout()
+     * 
      */
     logout(): void {
         window.location.href = '/risk/logout';
