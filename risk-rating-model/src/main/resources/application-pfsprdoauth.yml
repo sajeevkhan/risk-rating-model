@@ -21,9 +21,9 @@ spring:
   activiti:
     mail-server-host: smtp.gmail.com
     mail-server-port: 587
-    mail-server-user-name: pfsriskmodel@gmail.com
-    mail-server-password: SapSap@123
-    mail-server-default-from: pfsriskmodel@gmail.com
+    mail-server-user-name: pfs_sapadmin@ptcfinancial.com
+    mail-server-password: SapAdmin@321#
+    mail-server-default-from: pfs_sapadmin@ptcfinancial.com
     mail-server-use-tls: true
 security:
   oauth2:
