@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AppService } from 'app/app.service';
 import { LoanEnquiryService } from '../enquiryApplication.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { EnquiryApplicationModel } from 'app/main/model/enquiryApplication.model';
 
 @Component({
     selector: 'app-assign-processors-dialog-componenet',
@@ -21,6 +22,9 @@ export class AssignProcessorsDialogComponent {
 
     projectUsers: Array<any> = [];
     monitoringUsers: Array<any> = [];
+
+    projectDepartmentInitiatorReadonly: boolean = true;
+    monitoringDepartmentInitiatorReadonly: boolean = true;
 
     constructor(public _dialogRef: MatDialogRef<AssignProcessorsDialogComponent>, @Inject(MAT_DIALOG_DATA) private _data: any,
         _formBuilder: FormBuilder, private _service: LoanEnquiryService, private _appService: AppService, private _matSnackBar: MatSnackBar) {
@@ -46,6 +50,17 @@ export class AssignProcessorsDialogComponent {
         error => {
             this.handleError(error);
         });
+
+        if (_service.selectedLoanApplicaton.functionalStatus == 6 || _service.selectedLoanApplicaton.functionalStatus === 7 || 
+            _service.selectedLoanApplicaton.functionalStatus === 8)
+        {
+            this.projectDepartmentInitiatorReadonly = false;
+            this.monitoringDepartmentInitiatorReadonly = true;            
+        }
+        else {
+            this.projectDepartmentInitiatorReadonly = true;
+            this.monitoringDepartmentInitiatorReadonly = false;
+        }
     }
 
     /**

@@ -14,7 +14,7 @@
         <div fxLayout="row">
             <!-- <mat-icon class="mr-12 mt-12">important_devices</mat-icon> -->
             <mat-form-field fxFlex="100">
-                <mat-select placeholder="Project Department Initiator" formControlName="projectDepartmentInitiator" required>
+                <mat-select placeholder="Project Department Initiator" formControlName="projectDepartmentInitiator" [required]="projectDepartmentInitiatorReadonly">
                     <mat-option *ngFor="let user of projectUsers" [value]="user.userName">
                         {{ user.firstName }} {{ user.lastName }}
                     </mat-option>
@@ -23,7 +23,7 @@
         </div>
         <div fxLayout="row">
             <mat-form-field fxFlex>
-                <mat-select placeholder="Monitoring Department Initiator" formControlName="monitoringDepartmentInitiator" required>
+                <mat-select placeholder="Monitoring Department Initiator" formControlName="monitoringDepartmentInitiator" [required]="monitoringDepartmentInitiatorReadonly">
                     <mat-option *ngFor="let user of monitoringUsers" [value]="user.userName">
                         {{ user.firstName }} {{ user.lastName }}
                     </mat-option>
