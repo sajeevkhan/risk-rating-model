@@ -35,5 +35,7 @@ security:
       userInfoUri: http://localhost:9999/auth/api/me
 lmsEnquiry:
   baseUrl: http://localhost:8080/
+  userName: sajeev
+  password: sapsap
 server:
   port: 8090

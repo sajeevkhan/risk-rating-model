@@ -41,6 +41,12 @@ public class SAPRiskModelIntegrationService implements ISAPRiskModelIntegrationS
     @Value("${sap.postUrl}")
     private String postURL;
 
+    @Value("${sap.userName}")
+    private String userName;
+
+    @Value("${sap.password}")
+    private String password;
+
     @Autowired
     private RiskModelTemplateRepository riskModelTemplateRepository;
 
@@ -53,7 +59,7 @@ public class SAPRiskModelIntegrationService implements ISAPRiskModelIntegrationS
 
         HttpHeaders headers = new HttpHeaders() {
             {
-                String auth = "PFS_IT" + ":" + "Sap@1357";
+                String auth =  userName + ":" + password; // "SAP_PFS_GW" + ":" + "Sapsap@4646";
                 byte[] encodedAuth = Base64.encodeBase64(
                         auth.getBytes(Charset.forName("US-ASCII")));
                 String authHeader = "Basic " + new String(encodedAuth);
