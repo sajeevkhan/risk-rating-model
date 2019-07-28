@@ -15,4 +15,6 @@ public interface IRiskModelService {
                                                Integer action,
                                                HttpServletRequest httpServletRequest);
 
+    public void replicateLoanToBackend(RiskModelTemplate riskModelTemplate);
+
 }

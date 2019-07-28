@@ -238,6 +238,7 @@ public class Initializer implements CommandLineRunner{
         WorkflowAssignment wa3 = new WorkflowAssignment();;
 
 
+/*
         System.out.println(" ");
         System.out.println(" ");
         System.out.println( "-------------------------------------------------------------------------------------");
@@ -316,10 +317,11 @@ public class Initializer implements CommandLineRunner{
 
             log.info("-------------------------- Added Workflow Assignments data");
         }
+*/
 
 
 
 
 
-   // }
+   }
 }

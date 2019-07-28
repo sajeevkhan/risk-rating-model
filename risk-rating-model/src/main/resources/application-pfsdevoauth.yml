@@ -36,5 +36,7 @@ security:
       userInfoUri: https://enquiry.pfs-ess.com/auth/api/me
 lmsEnquiry:
   baseUrl: https://enquiry.pfs-ess.com/enquiry
+sap:
+  postUrl: http://192.168.1.203:8000/sap/opu/odata/sap/ZPFS_RISK_MODEL_EVALUATION_SRV/RiskEvaluationSet?sap-client=300
 server:
   port: 8090

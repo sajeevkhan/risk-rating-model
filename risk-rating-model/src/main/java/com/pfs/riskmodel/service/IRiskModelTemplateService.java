@@ -2,6 +2,7 @@ package com.pfs.riskmodel.service;
 
 import com.pfs.riskmodel.domain.RiskModelTemplate;
 import com.pfs.riskmodel.domain.RiskType;
+import com.pfs.riskmodel.resource.RiskEvaluationInSAP;
 
 import java.util.Map;
 
@@ -14,6 +15,6 @@ public interface IRiskModelTemplateService {
     public Map<String, Object>  updateRiskModelTemplate(RiskModelTemplate riskModelTemplate);
     public Map<String , Object> findByProjectTypeAndRiskLevel (String projectType, String projectRiskLevel);
 
-
+    public RiskModelTemplate getByRiskModelId(Long id);
 
 }

@@ -5,6 +5,7 @@ import com.pfs.riskmodel.domain.RiskModelTemplate;
 import com.pfs.riskmodel.domain.WorkflowAssignment;
 import com.pfs.riskmodel.repository.*;
 import com.pfs.riskmodel.resource.EmailId;
+import com.pfs.riskmodel.resource.RiskEvaluationInSAP;
 import com.pfs.riskmodel.resource.User;
 import com.pfs.riskmodel.service.*;
 import com.pfs.riskmodel.service.modelvaluator.RiskModelEvaluator;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Created by sajeev on 17-Dec-18.
@@ -60,6 +62,10 @@ public class RiskModelService implements IRiskModelService {
 
     @Autowired
     IWelcomeService welcomeService;
+
+    @Autowired
+    ISAPRiskModelIntegrationService isapRiskModelIntegrationService;
+
 
     @Override
     public Map<String, Object> createRiskModel(RiskModelTemplate riskModelTemplate,
@@ -203,13 +209,32 @@ public class RiskModelService implements IRiskModelService {
         System.out.println("-----------------> Current Processor:" + riskModelTemplate.getCurrentProcessorUserId());
         System.out.println("-------------------------------------------------------------------------------------");
 
+        // Replicate Risk Model in SAP
+        RiskEvaluationInSAP riskEvaluationInSAP = isapRiskModelIntegrationService.mapRiskModelToSAPModel(riskModelTemplate);
+        CompletableFuture.runAsync(() -> {
+            // method call or code to be asynch.
+            isapRiskModelIntegrationService.replicateRiskModelInSAP(riskEvaluationInSAP);
 
 
+        });
 
         return result;
 
-
-
-
     }
+
+
+
+    @Override
+    public void replicateLoanToBackend(RiskModelTemplate riskModelTemplate) {
+
+        // Replicate Risk Model in SAP
+        RiskEvaluationInSAP riskEvaluationInSAP = isapRiskModelIntegrationService.mapRiskModelToSAPModel(riskModelTemplate);
+        CompletableFuture.runAsync(() -> {
+            // method call or code to be asynch.
+            isapRiskModelIntegrationService.replicateRiskModelInSAP(riskEvaluationInSAP);
+
+
+        });
+    }
+
 }

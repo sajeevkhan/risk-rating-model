@@ -17,10 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by sajeev on 17-Dec-18.
@@ -47,6 +44,13 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
 
     @Autowired
     ProjectRiskLevelRepository projectRiskLevelRepository;
+
+    @Override
+    public RiskModelTemplate getByRiskModelId(Long id) {
+       Optional<RiskModelTemplate> riskModelTemplateOptional = riskModelTemplateRepository.findById(id);
+       return riskModelTemplateOptional.get();
+
+    }
 
     @Override
     public Map<String, Object> findByProjectTypeAndRiskLevel(String projectTypeCode, String projectRiskLevelCode) {

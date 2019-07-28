@@ -1,6 +1,7 @@
 package com.pfs.riskmodel.domain;
 
 import com.pfs.riskmodel.dto.RiskTypeDTO;
+import javafx.scene.layout.BackgroundImage;
 import lombok.*;
 import org.hibernate.annotations.IndexColumn;
 import org.springframework.lang.Nullable;
@@ -197,6 +198,7 @@ public class RiskModelTemplate extends AuditModel {
     private String numberOfNotchesUpAfterParentalNotchup;
 
 
+
     @Nullable
     @IndexColumn (name = "INDEX_COL1")
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
@@ -251,15 +253,7 @@ public class RiskModelTemplate extends AuditModel {
     }
 
 
-//    //@Override
-//    public RiskModelTemplate clone( RiskModelTemplate riskModelTemplate) throws CloneNotSupportedException {
-//        RiskModelTemplate clonedObject =  (RiskModelTemplate) super.clone();
-//
-//        clonedObject = riskModelTemplate;
-//
-//        return  clonedObject;
-//
-//    }
+
 
     public RiskModelTemplate copy(RiskModelTemplate original) {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("data.obj"));
