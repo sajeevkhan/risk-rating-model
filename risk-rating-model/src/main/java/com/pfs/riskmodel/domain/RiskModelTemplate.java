@@ -1,7 +1,7 @@
 package com.pfs.riskmodel.domain;
 
-import com.pfs.riskmodel.dto.RiskTypeDTO;
-import javafx.scene.layout.BackgroundImage;
+ 
+
 import lombok.*;
 import org.hibernate.annotations.IndexColumn;
 import org.springframework.lang.Nullable;
@@ -38,7 +38,6 @@ public class RiskModelTemplate extends AuditModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
 
     @NotNull
