@@ -1,6 +1,6 @@
 package com.pfs.riskmodel.domain;
 
- 
+
 
 import lombok.*;
 import org.hibernate.annotations.IndexColumn;

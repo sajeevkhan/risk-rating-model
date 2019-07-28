@@ -53,7 +53,7 @@ public class SAPRiskModelIntegrationService implements ISAPRiskModelIntegrationS
 
         HttpHeaders headers = new HttpHeaders() {
             {
-                String auth = "sajeev" + ":" + "sapsap";
+                String auth = "PFS_IT" + ":" + "Sap@1357";
                 byte[] encodedAuth = Base64.encodeBase64(
                         auth.getBytes(Charset.forName("US-ASCII")));
                 String authHeader = "Basic " + new String(encodedAuth);
@@ -250,7 +250,7 @@ public class SAPRiskModelIntegrationService implements ISAPRiskModelIntegrationS
 
         HttpHeaders headers = new HttpHeaders() {
             {
-                String auth = "sajeev" + ":" + "sapsap";
+                String auth = "PFS_IT" + ":" + "Sap@1357";
                 byte[] encodedAuth = Base64.encodeBase64(
                         auth.getBytes(Charset.forName("US-ASCII")));
                 String authHeader = "Basic " + new String(encodedAuth);
