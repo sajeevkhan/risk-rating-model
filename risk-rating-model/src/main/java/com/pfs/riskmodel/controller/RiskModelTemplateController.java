@@ -80,7 +80,7 @@ public class RiskModelTemplateController {
     //      action 3 - Save and Approve
     //      action 4 - Save and Reject
     //-----------------------------------------------------------------------------------------------------------------
-
+    @CrossOrigin
     @PostMapping("/riskModel")
     public ResponseEntity createRiskModel(@RequestBody RiskModelTemplateDTO riskModelTemplateDTO,
                                           @RequestParam(value = "action",required = true) Integer action,
@@ -99,7 +99,7 @@ public class RiskModelTemplateController {
         return ResponseEntity.ok(riskModelTemplateDTOResponse);
     }
 
-
+    @CrossOrigin
     @PutMapping("/riskModel")
     public ResponseEntity updateRiskModel(@RequestBody RiskModelTemplateDTO riskModelTemplateDTO,
                                           @RequestParam(value = "action",required = true) Integer action,
@@ -116,7 +116,7 @@ public class RiskModelTemplateController {
         return ResponseEntity.ok(riskModelTemplateDTOResponse);
     }
 
-
+    @CrossOrigin
     @PutMapping("/riskModel/process")
     public ResponseEntity updateRiskModel(@RequestParam(value = "id",required = true) Long id,
                                           @RequestParam(value = "action",required = true) Integer action,
@@ -251,7 +251,7 @@ public class RiskModelTemplateController {
 
 
 
-
+    @CrossOrigin
     @PostMapping("/riskModelTemplate")
     public ResponseEntity create(@RequestBody RiskModelTemplateDTO riskModelTemplateDTO, HttpServletRequest request) {
 
@@ -281,7 +281,7 @@ public class RiskModelTemplateController {
         return ResponseEntity.ok(riskModelTemplateDTOResponse);
     }
 
-
+    @CrossOrigin
     @PutMapping("/riskModelTemplate")
     public ResponseEntity update(@RequestBody RiskModelTemplateDTO riskModelTemplateDTO,
                                  HttpServletRequest request) {

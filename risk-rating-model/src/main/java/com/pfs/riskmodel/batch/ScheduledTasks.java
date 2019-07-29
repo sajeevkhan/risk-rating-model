@@ -13,10 +13,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 /**
  * Created by sajeev on 28-Jul-19.
  */
-@Component
+@Service
 public class ScheduledTasks {
 
 @Autowired
@@ -46,6 +48,9 @@ private ISAPRiskModelIntegrationService isapRiskModelIntegrationService;
 //                if (riskModel.getLoanNumber() != null) {
 //                    System.out.println("Replicating Loan Contract: " + riskModel.getLoanNumber());
 //                    System.out.println("Replicating Risk Model Id: " + riskModel.getId().toString());
+//
+//                    riskModel = riskModelTemplateRepository.getOne(riskModel.getId());
+//
 //                    RiskEvaluationInSAP riskEvaluationInSAP =
 //                            isapRiskModelIntegrationService.mapRiskModelToSAPModel(riskModel);
 //                    isapRiskModelIntegrationService.replicateRiskModelInSAP(riskEvaluationInSAP);
