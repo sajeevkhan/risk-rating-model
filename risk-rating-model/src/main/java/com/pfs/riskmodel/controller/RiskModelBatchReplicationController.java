@@ -35,9 +35,9 @@ public class RiskModelBatchReplicationController {
         if (loanNumberTo != null)
             resource.setLoanNumberTo(loanNumberTo);
 
-        iBatchReplicationService.replicationService();
+        iBatchReplicationService.replicationService(request,loanNumberFrom,loanNumberTo);
 
-        ResponseEntity<List<LoanApplicationResource>> resources = lmsEnquiryClient.searchEnquiries(resource, getAuthorizationBearer(request.getUserPrincipal()));
+        //ResponseEntity<List<LoanApplicationResource>> resources = lmsEnquiryClient.searchEnquiries(resource, getAuthorizationBearer(request.getUserPrincipal()));
 
 
         return ResponseEntity.ok("Done");
