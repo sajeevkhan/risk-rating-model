@@ -143,7 +143,6 @@ public class SAPRiskModelIntegrationService implements ISAPRiskModelIntegrationS
 
 
 
-
         for (RiskType riskType : riskModel.getRiskTypes()) {
             riskEvaluationScore = new RiskEvaluationScore();
             ratingTypeId++;
@@ -254,9 +253,13 @@ public class SAPRiskModelIntegrationService implements ISAPRiskModelIntegrationS
         RiskEvaluationInSAP riskEvaluationInSAP = mapRiskModelToSAPModel(riskModel );
 
 
+        System.out.println("SAP User Name: " +userName);
+        System.out.println("SAP Pwd      : " +password);
+
+
         HttpHeaders headers = new HttpHeaders() {
             {
-                String auth = "PFS_IT" + ":" + "Sap@1357";
+                String auth = userName + ":" + password;
                 byte[] encodedAuth = Base64.encodeBase64(
                         auth.getBytes(Charset.forName("US-ASCII")));
                 String authHeader = "Basic " + new String(encodedAuth);
@@ -306,9 +309,14 @@ public class SAPRiskModelIntegrationService implements ISAPRiskModelIntegrationS
 
 
 
+        System.out.println("SAP User Name: " +userName);
+        System.out.println("SAP Pwd      : " +password);
+
         HttpHeaders headers = new HttpHeaders() {
             {
-                String auth = "sajeev" + ":" + "sapsap";
+//                String auth = "sajeev" + ":" + "sapsap";
+                String auth = userName + ":" + password;
+
                 byte[] encodedAuth = Base64.encodeBase64(
                         auth.getBytes(Charset.forName("US-ASCII")));
                 String authHeader = "Basic " + new String(encodedAuth);

@@ -40,6 +40,6 @@ sap:
   postUrl: http://192.168.1.199:8000/sap/opu/odata/sap/ZPFS_RISK_MODEL_EVALUATION_SRV/RiskEvaluationSet?sap-client=500
   userName: SAP_PFS_GW
   password: Sapsap@4646
-  
+
 server:
   port: 8090
