@@ -8,6 +8,7 @@ export class EnquiryApplicationModel {
     enquiryNumber: string;
     functionalStatus: number;
     loanAmount: number;
+    loanContractAmount:number;
     loanClass: string;
     loanContractId: string;
     projectCapacity: number;
@@ -33,6 +34,7 @@ export class EnquiryApplicationModel {
         this.enquiryNumber = _enquiryApplication.loanApplication.enquiryNo.id;
         this.functionalStatus = _enquiryApplication.loanApplication.functionalStatus;
         this.loanAmount = _enquiryApplication.loanApplication.pfsDebtAmount;
+        this.loanContractAmount = _enquiryApplication.loanApplication.loanContractAmount;
         this.loanClass = _enquiryApplication.loanApplication.loanClass;
         this.loanContractId = _enquiryApplication.loanApplication.loanContractId;
         this.projectCapacity = _enquiryApplication.loanApplication.projectCapacity;
