@@ -167,10 +167,25 @@ public class RiskModelTemplate extends AuditModel {
     @NotNull
     private Double loanAmountInCrores;
 
+    // Loan Revised Sanction Amount (CRORES)
+    @Nullable
+    private Double loanRevisedSanctionAmount;
+
+    // Loan Contract Amount
+    @Nullable
+    private Double loanContractAmount;
+
+    //Loan Current Contract Capital Amt. (CRORES)
+    @Nullable
+    private Double loanCurrentContractAmount;
+
+    // Loan Disbursed Amount (CRORES)
+    @Nullable
+    private Double loanDisbursedAmount;
+
+
     @NotNull
     private Date ratingDate;
-
-
 
 
     @NotNull
