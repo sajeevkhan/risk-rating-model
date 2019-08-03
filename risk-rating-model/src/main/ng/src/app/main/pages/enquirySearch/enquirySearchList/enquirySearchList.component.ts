@@ -31,12 +31,19 @@ export class EnquirySearchListComponent implements OnInit {
     }
 
     pageSizeOptions: number[] = [10, 25, 50, 100];
+    //
+    // displayedColumns = [
+    //     'functionalStatusDescription', 'createdOn', 'enquiryNumber', 'loanContractId', 'busPartnerNumber',
+    //     'projectDepartmentInitiator', 'monitoringDepartmentInitiator', 'riskDepartmentInitiator','projectName',
+    //     'projectLocationState', 'projectTypeDescription', 'loanClassDescription', 'projectCapacity', 'assistanceTypeDescription',
+    //     'projectCost', 'loanAmount'
+    // ];
 
     displayedColumns = [
-        'functionalStatusDescription', 'createdOn', 'enquiryNumber', 'loanContractId', 'busPartnerNumber',
-        'projectDepartmentInitiator', 'monitoringDepartmentInitiator', 'riskDepartmentInitiator','projectName', 
-        'projectLocationState', 'projectTypeDescription', 'loanClassDescription', 'projectCapacity', 'assistanceTypeDescription', 
-        'projectCost', 'loanAmount'
+        'functionalStatusDescription', 'enquiryNumber', 'loanContractId',
+        'projectDepartmentInitiator', 'monitoringDepartmentInitiator', 'riskDepartmentInitiator',
+        'projectName', 'projectLocationState',  'projectCapacity',
+        'loanContractAmount', 'loanAmount'
     ];
 
     selectedEnquiry: EnquiryApplicationModel;
