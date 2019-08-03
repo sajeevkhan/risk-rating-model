@@ -660,18 +660,39 @@ export class LoanEnquiryService {
     }
 
     /**
+     * getRiskDepartmentUsers()
+     */
+    public getRiskDepartmentUsers(): Observable<any> {
+        return this._http.get('risk/api/users/department/02');
+    }
+
+    /**
      * updateProcessors()
      * @param loanApplication 
      * @param processors 
      */
     public updateProcessors(loanApplication: any, processors: any): Observable<any> {
+
+ 
+        console.log("Processors Resource Project :" + processors.projectDepartmentInitiator);
+        console.log("Processors Resource Monitor :" + processors.monitoringDepartmentInitiator);
+        console.log("Processors Resource Risk    :" + processors.riskDepartmentInitiator);
+
         const processorResource = {
             enquiryNo: {
                 id: loanApplication.selectedEnquiry.enquiryNumber
             },
             projectDepartmentInitiator: processors.projectDepartmentInitiator,
-            monitoringDepartmentInitiator: processors.monitoringDepartmentInitiator
-        }
+            monitoringDepartmentInitiator: processors.monitoringDepartmentInitiator,
+            riskDepartmentInitiator: processors.riskDepartmentInitiator,
+         }
+
+        console.log("processorResource Project :" + processorResource.enquiryNo.id);
+        console.log("processorResource Project :" + processorResource.projectDepartmentInitiator);
+        console.log("processorResource Monitor :" + processorResource.monitoringDepartmentInitiator);
+        console.log("processorResource Risk    :" + processorResource.riskDepartmentInitiator);
+
+ 
         return this._http.put<any>('risk/api/loanEnquiry/assignProcessors', processorResource);
     }
 }

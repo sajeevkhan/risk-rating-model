@@ -4,9 +4,7 @@ import com.pfs.riskmodel.domain.ChangeDocument;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
 import com.pfs.riskmodel.domain.WorkflowAssignment;
 import com.pfs.riskmodel.repository.*;
-import com.pfs.riskmodel.resource.EmailId;
-import com.pfs.riskmodel.resource.RiskEvaluationInSAP;
-import com.pfs.riskmodel.resource.User;
+import com.pfs.riskmodel.resource.*;
 import com.pfs.riskmodel.service.*;
 import com.pfs.riskmodel.service.modelvaluator.RiskModelEvaluator;
 import com.pfs.riskmodel.service.validator.RiskModelTemplateValidator;
@@ -14,6 +12,7 @@ import com.pfs.riskmodel.util.ValidationResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +27,7 @@ import java.util.concurrent.CompletableFuture;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@EnableFeignClients
 public class RiskModelService implements IRiskModelService {
 
     @Autowired
@@ -64,6 +64,9 @@ public class RiskModelService implements IRiskModelService {
     IWelcomeService welcomeService;
 
     @Autowired
+    ILoanApplicationService loanApplicationService;
+
+    @Autowired
     ISAPRiskModelIntegrationService isapRiskModelIntegrationService;
 
 
@@ -85,13 +88,45 @@ public class RiskModelService implements IRiskModelService {
         if (riskModelTemplate.getCreatedByUserId() == null)
             riskModelTemplate.setCreatedByUserId(user.getEmail());
 
+        LoanApplication loanApplication = null; // = new LoanApplicationResource();
+
+        if (riskModelTemplate.getLoanNumber() != null) {
+            loanApplication =
+                    loanApplicationService.getEnquiryByLoanNumber(riskModelTemplate.getLoanNumber());
+        }else if (riskModelTemplate.getLoanEnquiryId() != null) {
+            loanApplication =    loanApplicationService.getEnquiryById(riskModelTemplate.getLoanEnquiryId());
+        }
+
+        String riskOfficer = null;
+        User riskDepartmentOfficer = new User();
+        if (loanApplication !=null){
+            riskOfficer = loanApplication.getRiskDepartmentInitiator();
+            if (riskOfficer != null && riskOfficer != "") {
+                riskDepartmentOfficer = welcomeService.getUserByEmail(new EmailId(riskOfficer));
+
+            }
+        }
+
+
+
 
         //Determine Approvers
         WorkflowAssignment workflowAssignment = workflowAssignmentRepository.findByPurpose(riskModelTemplate.getPurpose());
         if (workflowAssignment != null){
 
             EmailId firstLevelApproverEmail = new EmailId(workflowAssignment.getFirstLevelApproverEmailId());
-            EmailId secondLevelApproverEmail = new EmailId(workflowAssignment.getSecondLevelApproverEmailId());
+
+            // Risk Officer is always the second level approver
+            // If a risk officer is assigned to the loan, assign the risk officer as the second level approver
+            // ..... If not, get the second level approver from the Workflow Assignment
+            EmailId secondLevelApproverEmail = new EmailId();
+            if (riskDepartmentOfficer != null) {
+                if (riskDepartmentOfficer.getEmail() != null) {
+                    secondLevelApproverEmail = new EmailId(riskDepartmentOfficer.getEmail());
+                }
+            }else {
+                secondLevelApproverEmail = new EmailId(workflowAssignment.getSecondLevelApproverEmailId());
+            }
             EmailId thirdLevelApproverEmail = new EmailId(workflowAssignment.getThirdLevelApproverEmailId());
 
             User firstLevelApprover = welcomeService.getUserByEmail(firstLevelApproverEmail);

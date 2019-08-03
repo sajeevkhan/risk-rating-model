@@ -69,35 +69,35 @@ public class BatchReplicationService implements IBatchReplicationService {
         ResponseEntity<List<LoanApplicationResource>> resources =
                 lmsEnquiryClient.searchEnquiries(resource, getAuthorizationBearer(request.getUserPrincipal()));
 
-        List<RiskModelTemplate> riskModels = riskModelTemplateRepository.findAll();
+        List<LoanApplicationResource> loanApplicationResourceList = resources.getBody();
 
-        for (RiskModelTemplate riskModel : riskModels) {
 
-            if (riskModel.getModelType() == 1) {
-                if (riskModel.getLoanNumber() != null) {
+        for (LoanApplicationResource loanApplicationResource: loanApplicationResourceList) {
+            List<RiskModelTemplate> riskModelsForLoan
+                    = riskModelTemplateRepository.findByLoanNumber(loanApplicationResource.getLoanApplication().getLoanContractId());
+
+            for  (RiskModelTemplate riskModel: riskModelsForLoan) {
+
                     System.out.println("Replicating Loan Contract: " + riskModel.getLoanNumber());
                     System.out.println("Replicating Risk Model Id: " + riskModel.getId().toString());
 
-                    List<RiskModelTemplate> riskModelsForLoan
-                            = riskModelTemplateRepository.findByLoanNumber(riskModel.getLoanNumber());
+                RiskEvaluationInSAP riskEvaluationInSAP =
+                        isapRiskModelIntegrationService.mapRiskModelToSAPModel(riskModel);
+                isapRiskModelIntegrationService.replicateRiskModelInSAP(riskEvaluationInSAP);
 
-
-                    RiskEvaluationInSAP riskEvaluationInSAP =
-                            isapRiskModelIntegrationService.mapRiskModelToSAPModel(riskModel);
-                    isapRiskModelIntegrationService.replicateRiskModelInSAP(riskEvaluationInSAP);
-
-                    if (riskEvaluationInSAP == null) {
-                        System.out.println("Replication Failed for Loan Contract: "
-                                + riskModel.getLoanNumber() + "Risk Model Id:" + riskModel.getId());
-                    } else {
-                        System.out.println("Replication Successful for Loan Contract: "
-                                + riskModel.getLoanNumber() + "Risk Model Id:" + riskModel.getId());
-
-                    }
+                if (riskEvaluationInSAP == null) {
+                    System.out.println("Replication Failed for Loan Contract: "
+                            + riskModel.getLoanNumber() + "Risk Model Id:" + riskModel.getId());
+                } else {
+                    System.out.println("Replication Successful for Loan Contract: "
+                            + riskModel.getLoanNumber() + "Risk Model Id:" + riskModel.getId());
 
                 }
             }
+
         }
+
+
 
     }
 

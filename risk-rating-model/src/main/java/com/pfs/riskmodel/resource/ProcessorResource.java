@@ -8,4 +8,6 @@ public class ProcessorResource {
     private EnquiryNo enquiryNo;
     private String projectDepartmentInitiator;
     private String monitoringDepartmentInitiator;
+    private String riskDepartmentInitiator;
+    private String riskDepartmentHead;
 }

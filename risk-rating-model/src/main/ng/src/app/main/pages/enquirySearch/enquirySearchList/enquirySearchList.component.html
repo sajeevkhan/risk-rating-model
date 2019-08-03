@@ -72,6 +72,13 @@
             </mat-cell>
         </ng-container>
 
+        <!--Risk Officer Column -->
+        <ng-container matColumnDef="riskDepartmentInitiator">
+            <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="15">Risk Officer</mat-header-cell>
+            <mat-cell *matCellDef="let enquiry" fxFlex="15">
+                <span class="text-truncate">{{ enquiry.riskDepartmentInitiator }}</span>
+            </mat-cell>
+        </ng-container>
 
         <!-- projectName Column -->
         <ng-container matColumnDef="projectName">

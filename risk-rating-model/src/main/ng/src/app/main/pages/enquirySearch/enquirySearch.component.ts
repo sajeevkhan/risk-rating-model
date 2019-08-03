@@ -89,7 +89,11 @@ export class EnquirySearchComponent implements OnChanges {
      * 
      */
     fetchEvaluations(): void {
-        if (this._service.selectedLoanApplicaton.monitoringDepartmentInitiator === '' && this._service.selectedLoanApplicaton.projectDepartmentInitiator === '') {
+        console.log("Selected Enquiry Number" + this._service.selectedLoanApplicaton.id)
+        
+        if (this._service.selectedLoanApplicaton.monitoringDepartmentInitiator === '' && 
+            this._service.selectedLoanApplicaton.projectDepartmentInitiator === '') {
+            
             this._matSnackBar.open('Project Officer and Monitoring Officer is not assigned to the Loan. Please request your department ' +
                 'head to assign the officers', 'Ok', { duration: 7000 });
         }

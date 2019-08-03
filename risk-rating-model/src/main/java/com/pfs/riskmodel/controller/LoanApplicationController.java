@@ -2,10 +2,14 @@ package com.pfs.riskmodel.controller;
 
 import com.pfs.riskmodel.client.LMSEnquiryClient;
 import com.pfs.riskmodel.config.ApiController;
-import com.pfs.riskmodel.resource.LoanApplicationResource;
-import com.pfs.riskmodel.resource.ProcessorResource;
-import com.pfs.riskmodel.resource.SearchResource;
+import com.pfs.riskmodel.domain.RiskPurpose;
+import com.pfs.riskmodel.domain.WorkflowAssignment;
+import com.pfs.riskmodel.repository.RiskPurposeRepository;
+import com.pfs.riskmodel.repository.WorkflowAssignmentRepository;
+import com.pfs.riskmodel.resource.*;
+import com.pfs.riskmodel.service.IWelcomeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
@@ -21,6 +25,15 @@ public class LoanApplicationController {
 
     private final LMSEnquiryClient lmsEnquiryClient;
 
+    @Autowired
+    private WorkflowAssignmentRepository workflowAssignmentRepository;
+
+    @Autowired
+    private RiskPurposeRepository riskPurposeRepository;
+
+    @Autowired
+    private IWelcomeService iWelcomeService;
+
     @GetMapping("/loanApplications/search")
     public ResponseEntity searchLoanApplications(@RequestParam(value = "projectName", required = false) String projectName,
                                                  @RequestParam(value = "enquiryNumberFrom", required = false) Integer loanNumberFrom,
@@ -33,7 +46,8 @@ public class LoanApplicationController {
             resource.setLoanNumberFrom(loanNumberFrom);
         if (loanNumberTo != null)
             resource.setLoanNumberTo(loanNumberTo);
-        ResponseEntity<List<LoanApplicationResource>> resources = lmsEnquiryClient.searchEnquiries(resource, getAuthorizationBearer(request.getUserPrincipal()));
+        ResponseEntity<List<LoanApplicationResource>> resources =
+                lmsEnquiryClient.searchEnquiries(resource, getAuthorizationBearer(request.getUserPrincipal()));
 
         // ResponseEntity<List<LoanApplicationResource>> resources = lmsEnquiryClient.searchEnquiries(resource,"Basic YWRtaW46YWRtaW4");
 
@@ -44,7 +58,20 @@ public class LoanApplicationController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/loanEnquiry/assignProcessors")
     public ResponseEntity updateProcessors(@RequestBody ProcessorResource processorResource, HttpServletRequest request) {
-        ResponseEntity<LoanApplicationResource> loanAppication = lmsEnquiryClient.updateProcessors(processorResource, getAuthorizationBearer(request.getUserPrincipal()));
+
+        // Get Risk Dept. User
+        RiskPurpose riskPurpose = riskPurposeRepository.findByCode("01");
+        WorkflowAssignment workflowAssignment = workflowAssignmentRepository.findByPurpose(riskPurpose);
+        processorResource.setRiskDepartmentHead(workflowAssignment.getThirdLevelApproverEmailId());
+
+
+
+        ResponseEntity<LoanApplicationResource> loanAppication =
+                lmsEnquiryClient.updateProcessors(processorResource, getAuthorizationBearer(request.getUserPrincipal()));
+
+
+
+
         return ResponseEntity.ok(loanAppication.getBody());
     }
 

@@ -1,21 +1,29 @@
 package com.pfs.riskmodel.controller;
 
+import com.pfs.riskmodel.client.LMSEnquiryClient;
 import com.pfs.riskmodel.config.ApiController;
 import com.pfs.riskmodel.domain.*;
 import com.pfs.riskmodel.dto.*;
 import com.pfs.riskmodel.repository.*;
+import com.pfs.riskmodel.resource.LoanApplicationResource;
+import com.pfs.riskmodel.resource.LoanNumberResource;
 import com.pfs.riskmodel.service.IRiskModelService;
 import com.pfs.riskmodel.service.IRiskModelTemplateService;
 import com.pfs.riskmodel.service.modelvaluator.Utils;
 import com.pfs.riskmodel.util.Check;
 import com.pfs.riskmodel.util.CheckServiceResult;
+import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.ws.http.HTTPException;
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -72,6 +80,9 @@ public class RiskModelTemplateController {
     @Autowired
     IRiskModelService riskModelService;
 
+    @Autowired
+    LMSEnquiryClient lmsEnquiryClient;
+
 
     //-----------------------------------------------------------------------------------------------------------------
     //                              RISK MODEL - VALUATIONS
@@ -87,6 +98,25 @@ public class RiskModelTemplateController {
                                           HttpServletRequest request) {
 
         RiskModelTemplate riskModelTemplate = mapDTOToDomain(riskModelTemplateDTO);
+
+
+//              LoanNumberResource loanNumberResource = new LoanNumberResource();
+//        loanNumberResource.setLoanNumber("10003205");
+//        ResponseEntity<LoanApplicationResource> loanApplicationResourceResponseEntity;
+//        try {
+//            loanApplicationResourceResponseEntity
+//                    = lmsEnquiryClient.getEnquiryByLoanNumber(loanNumberResource, getAuthorizationBearer(request.getUserPrincipal()));
+//        } catch (  HTTPException httpException) {
+//            System.out.println("HTTP Exception -> Get Loan by Loan Number:" + loanNumberResource.getLoanNumber() + ": " + httpException.getMessage() );
+//            return null;
+//        } catch (FeignException feignException) {
+//            System.out.println("Feign Exception -> Get Loan by Loan Number:" + loanNumberResource.getLoanNumber()   +": " +  feignException.getMessage() );
+//            return null;
+//        }
+//        LoanApplicationResource loanApplicationResource = loanApplicationResourceResponseEntity.getBody();
+
+
+
 
 
         Map<String, Object> result = riskModelService.createRiskModel(riskModelTemplate,action, request);
@@ -304,7 +334,10 @@ public class RiskModelTemplateController {
 
 
 
-
+    public String getAuthorizationBearer(Principal user) {
+        OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) ((OAuth2Authentication) user).getDetails();
+        return "Bearer " + details.getTokenValue();
+    }
 
     //-----------------------------------------------------------------------------------------------------------------
     //                              DTO-> DOMAIN -> DTO Mappers

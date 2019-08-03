@@ -17,6 +17,7 @@ export class EnquiryApplicationModel {
     projectType: string;
     projectDepartmentInitiator: string;
     monitoringDepartmentInitiator: string;
+    riskDepartmentInitiator: string;
 
     /**
      * constructor()
@@ -41,6 +42,7 @@ export class EnquiryApplicationModel {
         this.projectType = _enquiryApplication.loanApplication.projectType;
         this.projectDepartmentInitiator = _enquiryApplication.loanApplication.projectDepartmentInitiator || '';
         this.monitoringDepartmentInitiator = _enquiryApplication.loanApplication.monitoringDepartmentInitiator || '';
+        this.riskDepartmentInitiator = _enquiryApplication.loanApplication.riskDepartmentInitiator || '';
 
     }
     
@@ -120,3 +122,14 @@ export class EnquiryApplicationModel {
         }
     }
 }
+
+/**
+ * 01-Enquiry Stage
+ * 02-ICC ApprovalStage
+ * 03-Apprisal Stage
+ * 04-Board Approval Stage
+ * 05-Loan Documenation Stage
+ * 06-Loan Disbursement Stage
+ * 07-Approved
+ * 08-Rejected
+ */

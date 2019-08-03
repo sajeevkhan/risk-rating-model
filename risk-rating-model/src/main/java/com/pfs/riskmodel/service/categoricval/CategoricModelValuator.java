@@ -90,6 +90,7 @@ public class CategoricModelValuator {
                 InfraRoadHAM_Transmission_AccountConduct_Redistribution infraRoadHAM_transmission_accountConduct_redistribution =
                         new InfraRoadHAM_Transmission_AccountConduct_Redistribution();
                 riskModelTemplate = infraRoadHAM_transmission_accountConduct_redistribution.executeAccountConductWeightageReDistrobution(riskModelTemplate);
+                return riskModelTemplate;
             case 7:
             case 8:
                 InfraRoadToll_AccountConduct_Redistribution infraRoadToll_accountConduct_redistribution =

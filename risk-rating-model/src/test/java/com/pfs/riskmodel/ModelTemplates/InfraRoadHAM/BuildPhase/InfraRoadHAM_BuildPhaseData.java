@@ -1,5 +1,6 @@
 package com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.BuildPhase;
 
+import com.pfs.riskmodel.ModelTemplates.AllParentalNotchupTemplate;
 import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.ParentalNotchUp.InfraRoadHAM_RiskParentalNotchUp;
 import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.RiskRatingModifier.InfraRoadHAM_RatingModifierDTO;
 import com.pfs.riskmodel.ModelTemplates.InfraRoadHAM.RiskTypes.InfraRoadHAM_PostProjectImplRiskTypes;
@@ -93,10 +94,14 @@ public class InfraRoadHAM_BuildPhaseData {
 
           riskModelTemplateDTO.setRiskRatingModifiers(riskRatingModifierDTOSet);
 
-        // Parental Notchup
+        // Parental Notchup  - Modified August 2 2019
         //  Parental Notch Up
-        ParentalNotchupTemplate parentalNotchupTemplate = new ParentalNotchupTemplate();
+        AllParentalNotchupTemplate parentalNotchupTemplate = new AllParentalNotchupTemplate();
         RiskParentalNotchUpDTO riskParentalNotchUpDTO = parentalNotchupTemplate.getParentalNotchUp();
+
+//          InfraRoadHAM_RiskParentalNotchUp infraRoadHAM_riskParentalNotchUp = new InfraRoadHAM_RiskParentalNotchUp();
+//          RiskParentalNotchUpDTO riskParentalNotchUpDTO = infraRoadHAM_riskParentalNotchUp.getInfraRoadHAM_ParentalNotchup();
+
 
         List<RiskParentalNotchUpDTO> riskParentalNotchUpDTOSet = new ArrayList<>();
         riskParentalNotchUpDTOSet.add(riskParentalNotchUpDTO);

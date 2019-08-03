@@ -106,6 +106,7 @@ public class RiskModelTemplate extends AuditModel {
     private String workflowStatusDescription;
 
 
+
     @Nullable
     private Boolean applyRatingModifiers;
 

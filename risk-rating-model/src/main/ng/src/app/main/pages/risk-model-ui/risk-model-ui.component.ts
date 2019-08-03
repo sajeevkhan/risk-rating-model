@@ -16,6 +16,9 @@ export class RiskModelUIComponent implements OnInit {
 
     disablePDFButton = true;
 
+    //Expert Button - Enable this only, if the user's department is Risk Department
+    displayPDFDebugModeButton = true;  
+
     disableSendForApprovalButton = false;
 
     mode: string;
@@ -72,6 +75,11 @@ export class RiskModelUIComponent implements OnInit {
                     // Enable the PDF button.
                     this.disablePDFButton = (this._riskModelTemplate.id === undefined || this._riskModelTemplate === null) ? true : false;
                     console.log('this._riskModelTemplate', this._riskModelTemplate);
+
+                    if (this._appService.userDetails.riskDepartment == "02") {
+                        this.displayPDFDebugModeButton = false;
+                    }
+                    
                 });
             }
         });
@@ -88,6 +96,8 @@ export class RiskModelUIComponent implements OnInit {
 
     ngOnInit(): void {
         this.disablePDFButton = true;
+        this.displayPDFDebugModeButton = true;
+        
     }
 
     /**
@@ -100,21 +110,71 @@ export class RiskModelUIComponent implements OnInit {
             disableButton = true;
         }
         else if (this._riskModelTemplate.id === undefined) {
+            console.log("this._riskModelTemplate.id == undefined")
             disableButton = true;
+            console.log("Line 114 diasableButton" + disableButton)
+
         }
         else if (this._riskModelTemplate.workflowStatusCode !== '01') {
+            console.log("this._riskModelTemplate.workflowStatusCode !== '01'")
+
             disableButton = true;
+            console.log("Line 119 diasableButton" + disableButton)
+
         }
         else if (this._riskModelTemplate.workflowStatusCode === '01' && this.validateTemplate()) {
+            console.log("this._riskModelTemplate.workflowStatusCode === '01' && this.validateTemplate()")
             disableButton = false;
+            console.log("Line 124 diasableButton" + disableButton)
+
+        }
+
+        //TODO
+        // If the status is rejected and and the current user is the initiator 
+        if (this._appService.userDetails.email == this._riskModelTemplate.createdByUserId &&
+            this._riskModelTemplate.workflowStatusCode == "04") {
+            console.log("Current Processord Id : " +this._riskModelTemplate.currentProcessorUserId);
+            console.log("Workflow Status code  : " +this._riskModelTemplate.workflowStatusCode);
+            console.log("diasableButton" + disableButton)
+
+            disableButton = false
+            console.log("Line 140 diasableButton" + disableButton)
+
         }
 
 
         // Added by Sajeev - If CurrentProcessor is the Creator and the Status is Rejected
         if (this._riskModelTemplate.createdByUserId == this._riskModelTemplate.currentProcessorUserId &&
-                                                                this._riskModelTemplate.workflowStatusCode == "04"){
+            this._riskModelTemplate.workflowStatusCode == "04" ){
+            console.log("Current Processord Id : " +this._riskModelTemplate.currentProcessorUserId);
+            console.log("Workflow Status code  : " +this._riskModelTemplate.workflowStatusCode);
+            console.log("current workflow level: " +this._riskModelTemplate.currentWorkflowLevel);
+
             disableButton = false;
+            console.log("Line 153 diasableButton" + disableButton)
+            
         }
+
+        //if (this._riskModelTemplate.cu)
+
+        // If 3rd Level Approval is completed, SendForApproval Button should be disbale.
+        if (this._riskModelTemplate.workFlowStatusCode == "08") {
+            disableButton = true;
+        }
+
+        // if (this._riskModelTemplate.createdByUserId == "" ||
+        //     this._riskModelTemplate.createdByUserId == undefined &&
+        //     this._riskModelTemplate.workflowStatusCode == "01") {
+        //     disableButton = false;
+        //     console.log("Line 168 diasableButton" + disableButton);
+        //
+        // }
+        // if (this._riskModelTemplate.workflowStatusCode == "01" &&
+        //     this._riskModelTemplate.id != undefined) {
+        //     disableButton = false;
+        // }
+            
+        console.log("Finally.....Disable Approval Button :" + disableButton);
 
         return disableButton;
     }
@@ -160,7 +220,7 @@ export class RiskModelUIComponent implements OnInit {
         if (this._riskModelTemplate.createdByUserId == this._riskModelTemplate.currentProcessorUserId && 
             this._riskModelTemplate.workflowStatusCode == "04"){
             isTemplateValid = true;
-            return isTemplateValid;
+            //return isTemplateValid;
         }
 
 
@@ -212,6 +272,11 @@ export class RiskModelUIComponent implements OnInit {
                 }
             }
         }
+        
+        // If third level approval is completed, no modifications are allowed anymore 
+        if (this._riskModelTemplate.workflowStatusCode == "08" )
+            isTemplateValid = false;
+        
         return isTemplateValid;
     }
 

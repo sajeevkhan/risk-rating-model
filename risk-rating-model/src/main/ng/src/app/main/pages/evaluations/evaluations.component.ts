@@ -36,6 +36,8 @@ export class EvaluationComponent {
 
         //
         this.loanApplicaton = _loanEnquiryService.selectedLoanApplicaton;
+        
+        console.log("Selected Loan Application Enquiry Id in Risk Evaluation Component" + _loanEnquiryService.selectedLoanApplicaton.id);
 
         // Fetch evaluations from route resolved data.
         _route.data.subscribe((data) => {
@@ -51,7 +53,7 @@ export class EvaluationComponent {
      */
     newEvaluation(): void {
         // this._router.navigate(['/riskModelTemplate']);
-        if (this.loanApplicaton.functionalStatus == 6 || this.loanApplicaton.functionalStatus == 7 || this.loanApplicaton.functionalStatus == 8)
+        if (this.loanApplicaton.functionalStatus == 6 || this.loanApplicaton.functionalStatus == 7 )
         {
             if (this.loanApplicaton.monitoringDepartmentInitiator === null || this.loanApplicaton.monitoringDepartmentInitiator === '')
             {

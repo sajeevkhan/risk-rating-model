@@ -210,6 +210,8 @@ public class LoanApplication {
 
     private String monitoringDepartmentInitiator;
 
+    private String riskDepartmentInitiator;
+
 
     @JsonCreator
     public LoanApplication(@JsonProperty("id") UUID id,
@@ -266,7 +268,8 @@ public class LoanApplication {
                   //         @JsonProperty("busPartnerNumber") String busPartnerNumber,
                            @JsonProperty("projectName") String projectName,
                            @JsonProperty("projectDepartmentInitiator") String projectDepartmentInitiator ,
-                           @JsonProperty("monitoringDepartmentInitiator") String monitoringDepartmentInitiator ) {
+                           @JsonProperty("monitoringDepartmentInitiator") String monitoringDepartmentInitiator,
+                           @JsonProperty("riskDepartmentInitiator") String riskDepartmentInitiator) {
         this.id = id;
         this.version = version;
         this.createdOn = createdOn;
@@ -322,6 +325,7 @@ public class LoanApplication {
         this.projectName = projectName;
         this.projectDepartmentInitiator  = projectDepartmentInitiator;
         this.monitoringDepartmentInitiator = monitoringDepartmentInitiator;
+        this.riskDepartmentInitiator = riskDepartmentInitiator;
     }
 //
 //
@@ -811,5 +815,13 @@ public class LoanApplication {
 
     public void setMonitoringDepartmentInitiator(String monitoringDepartmentInitiator) {
         this.monitoringDepartmentInitiator = monitoringDepartmentInitiator;
+    }
+
+    public String getRiskDepartmentInitiator() {
+        return riskDepartmentInitiator;
+    }
+
+    public void setRiskDepartmentInitiator(String riskDepartmentInitiator) {
+        this.riskDepartmentInitiator = riskDepartmentInitiator;
     }
 }

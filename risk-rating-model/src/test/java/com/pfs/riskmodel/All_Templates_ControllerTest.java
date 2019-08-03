@@ -38,15 +38,15 @@ public  class All_Templates_ControllerTest extends AbstractTest {
     @Test
     public  void createAllTemplates() throws Exception {
 //
-//        renewables_OPERATIONAL_Template();
-//        renewables_BUILD_Template();
-//        holdingCompanyTemplate();
-//        infraRoadHAM_BUILD_Template();
-//        infraRoadHAM_OPERATIONAL_Template();
-//        infraRoadToll_BUILD_Template();
-//        infraRoadToll_OPERATIONAL_Template();
-//        infraTrans_BUILD_Template();
-//        infraTransToll_OPERATIONAL_Template();
+        renewables_OPERATIONAL_Template();
+        renewables_BUILD_Template();
+        holdingCompanyTemplate();
+        infraRoadHAM_BUILD_Template();
+        infraRoadHAM_OPERATIONAL_Template();
+        infraRoadToll_BUILD_Template();
+        infraRoadToll_OPERATIONAL_Template();
+        infraTrans_BUILD_Template();
+        infraTransToll_OPERATIONAL_Template();
 
     }
 
