@@ -133,12 +133,12 @@ public class RiskModelPDFHeaderTable {
         // Third Column - Loan Number Text
         projectDetailsCell3 = new PdfPCell();
         projectDetailsCell3.setBackgroundColor(BaseColor.BLACK);
-        projectDetailsCell3.setPhrase(new Phrase("Loan Amount",headerfont));
+        projectDetailsCell3.setPhrase(new Phrase("Risk Model Evaluation Id",headerfont));
 
         // Fourth Column - Loan Number
         projectDetailsCell4 = new PdfPCell();
         projectDetailsCell4.setBackgroundColor(BaseColor.WHITE);
-        projectDetailsCell4.setPhrase(new Phrase(riskModelTemplate.getLoanAmountInCrores().toString() + " CR"  ,valueFont));
+        projectDetailsCell4.setPhrase(new Phrase(riskModelTemplate.getId().toString()    ,valueFont));
 
         projectDetailsTable.addCell(projectDetailsCell1);
         projectDetailsTable.addCell(projectDetailsCell2);
@@ -222,28 +222,65 @@ public class RiskModelPDFHeaderTable {
         workflowTable.addCell(workflowCell4);
         workflowTable.completeRow();
 
-        // Row 6 - Risk Model Id
-        // First Column - Risk Model Id
+//        // Row 6 - Risk Model Id
+//        // First Column - Risk Model Id
+//        workflowCell1 = new PdfPCell();
+//        workflowCell1.setBackgroundColor(BaseColor.BLACK);
+//        workflowCell1.setPhrase(new Phrase( "Risk Model Id." ,headerfont));
+//
+//        // Second Column - Risk Model Id
+//        workflowCell2 = new PdfPCell();
+//        workflowCell2.setBackgroundColor(BaseColor.WHITE);
+//        workflowCell2.setPhrase(new Phrase(riskModelTemplate.getId().toString(),valueFont));
+//
+//        // Third Column - Empty
+//        workflowCell3 = new PdfPCell();
+//        workflowCell3.setBackgroundColor(BaseColor.BLACK);
+//        workflowCell3.setPhrase(new Phrase(" ",valueFont));
+//
+//        // Fourth Column - Empty
+//        workflowCell4 = new PdfPCell();
+//        workflowCell4.setBackgroundColor(BaseColor.WHITE);
+//        workflowCell4.setHorizontalAlignment(Element.ALIGN_CENTER);
+//        workflowCell4.setVerticalAlignment(Element.ALIGN_CENTER);
+//        workflowCell4.setPhrase(new Phrase("", valueFont));
+//
+//
+//        workflowTable.addCell(workflowCell1);
+//        workflowTable.addCell(workflowCell2);
+//        workflowTable.addCell(workflowCell3);
+//        workflowTable.addCell(workflowCell4);
+//        workflowTable.completeRow();
+
+
+        // Row 6 - Loan Contract Amt and Loan Current Contract Amount
+        // First Column - Loan Contract Amt.
         workflowCell1 = new PdfPCell();
         workflowCell1.setBackgroundColor(BaseColor.BLACK);
-        workflowCell1.setPhrase(new Phrase( "Risk Model Id." ,headerfont));
+        workflowCell1.setPhrase(new Phrase( "Loan Contract Amt." ,headerfont));
 
-        // Second Column - Risk Model Id
+        // Second Column -  Loan Contract Amt
         workflowCell2 = new PdfPCell();
         workflowCell2.setBackgroundColor(BaseColor.WHITE);
-        workflowCell2.setPhrase(new Phrase(riskModelTemplate.getId().toString(),valueFont));
+        if (riskModelTemplate.getLoanContractAmount() != null)
+            workflowCell2.setPhrase(new Phrase(riskModelTemplate.getLoanContractAmount().toString()+" CR",valueFont));
+        else
+            workflowCell2.setPhrase(new Phrase("",valueFont));
 
-        // Third Column - Empty
+        // Third Column - Loan Current Contract Amount Label
         workflowCell3 = new PdfPCell();
         workflowCell3.setBackgroundColor(BaseColor.BLACK);
-        workflowCell3.setPhrase(new Phrase(" ",valueFont));
+        workflowCell3.setPhrase(new Phrase("Current Contract Amt.",headerfont));
 
-        // Fourth Column - Empty
+        // Fourth Column - oan Current Contract Amount
         workflowCell4 = new PdfPCell();
         workflowCell4.setBackgroundColor(BaseColor.WHITE);
         workflowCell4.setHorizontalAlignment(Element.ALIGN_CENTER);
         workflowCell4.setVerticalAlignment(Element.ALIGN_CENTER);
-        workflowCell4.setPhrase(new Phrase("", valueFont));
+        if (riskModelTemplate.getLoanContractAmount()!=null)
+            workflowCell4.setPhrase(new Phrase(riskModelTemplate.getLoanContractAmount().toString()+" CR", valueFont));
+        else
+            workflowCell4.setPhrase(new Phrase("", valueFont));
 
 
         workflowTable.addCell(workflowCell1);
@@ -253,7 +290,47 @@ public class RiskModelPDFHeaderTable {
         workflowTable.completeRow();
 
 
-        // Row 2
+        // Row 7 - Loan Application Capital and Disbursed Amount
+        // First Column - Loan Contract Amt.
+        workflowCell1 = new PdfPCell();
+        workflowCell1.setBackgroundColor(BaseColor.BLACK);
+        workflowCell1.setPhrase(new Phrase( "Application Capital" ,headerfont));
+
+        // Second Column -Loan Application Capital
+        workflowCell2 = new PdfPCell();
+        workflowCell2.setBackgroundColor(BaseColor.WHITE);
+        if (riskModelTemplate.getLoanAmountInCrores() != null)
+            workflowCell2.setPhrase(new Phrase(riskModelTemplate.getLoanAmountInCrores().toString() +" CR",valueFont));
+        else
+            workflowCell2.setPhrase(new Phrase("",valueFont));
+
+        // Third Column -  Disbursed Amount Label
+        workflowCell3 = new PdfPCell();
+        workflowCell3.setBackgroundColor(BaseColor.BLACK);
+        workflowCell3.setPhrase(new Phrase("Total Disbursed Amt.",headerfont));
+
+        // Fourth Column -  Disbursed Amount
+        workflowCell4 = new PdfPCell();
+        workflowCell4.setBackgroundColor(BaseColor.WHITE);
+        workflowCell4.setHorizontalAlignment(Element.ALIGN_CENTER);
+        workflowCell4.setVerticalAlignment(Element.ALIGN_CENTER);
+        if (riskModelTemplate.getLoanDisbursedAmount() != null)
+            workflowCell4.setPhrase(new Phrase(riskModelTemplate.getLoanDisbursedAmount().toString()+" CR", valueFont));
+        else
+            workflowCell4.setPhrase(new Phrase("", valueFont));
+
+        workflowTable.addCell(workflowCell1);
+        workflowTable.addCell(workflowCell2);
+        workflowTable.addCell(workflowCell3);
+        workflowTable.addCell(workflowCell4);
+        workflowTable.completeRow();
+
+
+
+
+
+
+        // Row 9
         // First Column - Department
         workflowCell1 = new PdfPCell();
         workflowCell1.setBackgroundColor(BaseColor.GRAY);
@@ -354,7 +431,7 @@ public class RiskModelPDFHeaderTable {
             thirdLevelApprovalStatus = 3;
         }
 
-        // Row 3 - First LEVEL Approval
+        // Row 10 - First LEVEL Approval
         // First Column - Department
         workflowCell1 = new PdfPCell();
         workflowCell1.setBackgroundColor(BaseColor.WHITE);
@@ -386,13 +463,13 @@ public class RiskModelPDFHeaderTable {
         workflowTable.completeRow();
 
 
-        // Row 4 - Second Level Approval
+        // Row 11 - Second Level Approval
         // First Column - Department
         workflowCell1 = new PdfPCell();
         workflowCell1.setBackgroundColor(BaseColor.WHITE);
         workflowCell1.setPhrase(new Phrase( "Risk" ,valueFont));
 
-        // Second Column - First Level Approver Name
+        // Second Column - Second Level Approver Name
         workflowCell2 = new PdfPCell();
         workflowCell2.setBackgroundColor(BaseColor.WHITE);
         workflowCell2.setPhrase(new Phrase(workflowAssignment.getSecondLevelApproverName(),valueFont));
@@ -419,13 +496,13 @@ public class RiskModelPDFHeaderTable {
 
 
 
-        // Row 5 - Third Level Approval
+        // Row 12 - Third Level Approval
         // First Column - Department
         workflowCell1 = new PdfPCell();
         workflowCell1.setBackgroundColor(BaseColor.WHITE);
         workflowCell1.setPhrase(new Phrase( "Risk" ,valueFont));
 
-        // Second Column - First Level Approver Name
+        // Second Column - Third Level Approver Name
         workflowCell2 = new PdfPCell();
         workflowCell2.setBackgroundColor(BaseColor.WHITE);
         workflowCell2.setPhrase(new Phrase(workflowAssignment.getThirdLevelApproverName(),valueFont));

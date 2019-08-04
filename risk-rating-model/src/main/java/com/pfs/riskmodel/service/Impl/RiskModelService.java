@@ -108,6 +108,13 @@ public class RiskModelService implements IRiskModelService {
         }
 
 
+        //TODO - Set Loan Capitals on the Risk Model
+        if (loanApplication != null) {
+            riskModelTemplate.setLoanContractAmount(loanApplication.getLoanContractAmount());
+            riskModelTemplate.setLoanCurrentContractAmount(loanApplication.getLoanCurrentContractAmount());
+            riskModelTemplate.setLoanRevisedSanctionAmount(loanApplication.getLoanRevisedSanctionAmount());
+            riskModelTemplate.setLoanDisbursedAmount(loanApplication.getLoanDisbursedAmount());
+        }
 
 
         //Determine Approvers

@@ -40,6 +40,12 @@ export class EnquirySearchComponent implements OnChanges {
         _service.selectedLoanApplicaton = undefined;
     }
 
+    onKey($event) {
+        if($event.keyCode === 13) {
+            this.searchEnquiries();
+        }
+    }
+
     /**
      * searchEnquiries()
      */

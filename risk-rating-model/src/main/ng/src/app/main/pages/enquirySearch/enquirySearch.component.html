@@ -37,7 +37,7 @@
 
                         <mat-form-field fxFlex="50" appearance="standard" floatLabel="always">
                             <mat-label>Name of the Project</mat-label>
-                            <input matInput placeholder="Project Name" style="color:green;" class="inputMat"
+                            <input matInput placeholder="Project Name" style="color:green;" class="inputMat" (keyup)="onKey($event)"
                                 formControlName="projectName">
                             <mat-icon matSuffix class="mr-8">edit</mat-icon>
 
@@ -51,7 +51,7 @@
 
                         <mat-form-field fxFlex="25" appearance="standard" floatLabel="always">
                             <mat-label>Loan Number From </mat-label>
-                            <input matInput placeholder="Loan Number" formControlName="loanNumberFrom">
+                            <input matInput placeholder="Loan Number" formControlName="loanNumberFrom" (keyup)="onKey($event)" >
                             <mat-icon matSuffix class="mr-8">edit</mat-icon>
 
                         </mat-form-field>
@@ -66,7 +66,7 @@
                         <mat-form-field fxFlex="25" appearance="standard" floatLabel="always">
                             <mat-label>Loan Number To</mat-label>
                             <mat-icon matSuffix class="mr-8">edit</mat-icon>
-                            <input matInput="" placeholder="Loan Number" formControlName="loanNumberTo">
+                            <input matInput="" placeholder="Loan Number" formControlName="loanNumberTo" (keyup)="onKey($event)" >
 
 
                         </mat-form-field>
