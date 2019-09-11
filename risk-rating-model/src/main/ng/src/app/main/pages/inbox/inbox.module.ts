@@ -8,6 +8,7 @@ import { FuseSharedModule } from '@fuse/shared.module';
 import { InboxItemsComponent } from './inbox-items/inbox-items.component';
 
 import {  MatSnackBar, MatSnackBarModule } from '@angular/material';
+import { AuthenticationGuard } from 'app/authentication.guard';
 
 
 const routes = [
@@ -16,7 +17,10 @@ const routes = [
         component: InboxComponent,
         resolve: {
             routeResolvedData: InboxService
-        }
+        },
+        canActivate: [ 
+            AuthenticationGuard
+        ]
     }
 ];
 
