@@ -20,6 +20,12 @@ export class EnquiryApplicationModel {
     monitoringDepartmentInitiator: string;
     riskDepartmentInitiator: string;
 
+    projectDebtAmount : string;
+    loanRevisedSanctionAmount : string;
+    // loanContractAmount : string;
+    loanCurrentContractAmount : string;
+    loanDisbursedAmount  : string;
+
     /**
      * constructor()
      * Initialize the object.
@@ -45,6 +51,12 @@ export class EnquiryApplicationModel {
         this.projectDepartmentInitiator = _enquiryApplication.loanApplication.projectDepartmentInitiator || '';
         this.monitoringDepartmentInitiator = _enquiryApplication.loanApplication.monitoringDepartmentInitiator || '';
         this.riskDepartmentInitiator = _enquiryApplication.loanApplication.riskDepartmentInitiator || '';
+
+        this.projectDebtAmount = _enquiryApplication.loanApplication.projectDebtAmount || '';
+        this.loanRevisedSanctionAmount = _enquiryApplication.loanApplication.loanRevisedSanctionAmount || '';
+        // this.loanContractAmount = _enquiryApplication.loanApplication.loanContractAmount || '';
+        this.loanCurrentContractAmount = _enquiryApplication.loanApplication.loanCurrentContractAmount || '';
+        this.loanDisbursedAmount = _enquiryApplication.loanApplication.loanDisbursedAmount || '';
 
     }
     

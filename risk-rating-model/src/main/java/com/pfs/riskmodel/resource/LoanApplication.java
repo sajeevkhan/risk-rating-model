@@ -227,6 +227,15 @@ public class LoanApplication {
 
     private String riskDepartmentInitiator;
 
+    private Integer postedInSAP;
+
+    private String contactBranchAddress;
+    private String contactDesignation;
+    private String contactDepartment;
+    private String contactTelePhone;
+    private String contactLandLinePhone;
+    private String contactEmail;
+    private String contactFaxNumber;
 
     @JsonCreator
     public LoanApplication(@JsonProperty("id") UUID id,
@@ -290,7 +299,20 @@ public class LoanApplication {
                            @JsonProperty("projectName") String projectName,
                            @JsonProperty("projectDepartmentInitiator") String projectDepartmentInitiator ,
                            @JsonProperty("monitoringDepartmentInitiator") String monitoringDepartmentInitiator,
-                           @JsonProperty("riskDepartmentInitiator") String riskDepartmentInitiator) {
+                           @JsonProperty("riskDepartmentInitiator") String riskDepartmentInitiator,
+                           @JsonProperty("postedInSAP") Integer postedInSAP,
+
+                           @JsonProperty("contactBranchAddress") String contactBranchAddress,
+                           @JsonProperty("contactDesignation") String contactDesignation,
+                           @JsonProperty("contactDepartment") String contactDepartment,
+                           @JsonProperty("contactTelePhone") String contactTelePhone,
+                           @JsonProperty("contactLandLinePhone") String contactLandLinePhone,
+                           @JsonProperty("contactEmail") String contactEmail,
+                           @JsonProperty("contactFaxNumber") String contactFaxNumber
+
+
+
+                            ) {
         this.id = id;
         this.version = version;
         this.createdOn = createdOn;
@@ -353,6 +375,17 @@ public class LoanApplication {
         this.projectDepartmentInitiator  = projectDepartmentInitiator;
         this.monitoringDepartmentInitiator = monitoringDepartmentInitiator;
         this.riskDepartmentInitiator = riskDepartmentInitiator;
+        this.postedInSAP = postedInSAP;
+
+
+        this.contactBranchAddress = contactBranchAddress;
+        this.contactDesignation = contactDesignation;
+        this.contactDepartment = contactDepartment;
+        this.contactTelePhone = contactTelePhone;
+        this.contactLandLinePhone =contactLandLinePhone;
+        this.contactEmail = contactEmail;
+        this.contactFaxNumber = contactFaxNumber;
+
     }
 
 
@@ -818,5 +851,85 @@ public class LoanApplication {
 
     public void setRiskDepartmentInitiator(String riskDepartmentInitiator) {
         this.riskDepartmentInitiator = riskDepartmentInitiator;
+    }
+
+    public void setLoanRevisedSanctionAmount(Double loanRevisedSanctionAmount) {
+        this.loanRevisedSanctionAmount = loanRevisedSanctionAmount;
+    }
+
+    public void setLoanCurrentContractAmount(Double loanCurrentContractAmount) {
+        this.loanCurrentContractAmount = loanCurrentContractAmount;
+    }
+
+    public void setLoanContractAmount(Double loanContractAmount) {
+        this.loanContractAmount = loanContractAmount;
+    }
+
+    public void setLoanDisbursedAmount(Double loanDisbursedAmount) {
+        this.loanDisbursedAmount = loanDisbursedAmount;
+    }
+
+    public Integer getPostedInSAP() {
+        return postedInSAP;
+    }
+
+    public void setPostedInSAP(Integer postedInSAP) {
+        this.postedInSAP = postedInSAP;
+    }
+
+    public String getContactBranchAddress() {
+        return contactBranchAddress;
+    }
+
+    public void setContactBranchAddress(String contactBranchAddress) {
+        this.contactBranchAddress = contactBranchAddress;
+    }
+
+    public String getContactDesignation() {
+        return contactDesignation;
+    }
+
+    public void setContactDesignation(String contactDesignation) {
+        this.contactDesignation = contactDesignation;
+    }
+
+    public String getContactDepartment() {
+        return contactDepartment;
+    }
+
+    public void setContactDepartment(String contactDepartment) {
+        this.contactDepartment = contactDepartment;
+    }
+
+    public String getContactTelePhone() {
+        return contactTelePhone;
+    }
+
+    public void setContactTelePhone(String contactTelePhone) {
+        this.contactTelePhone = contactTelePhone;
+    }
+
+    public String getContactLandLinePhone() {
+        return contactLandLinePhone;
+    }
+
+    public void setContactLandLinePhone(String contactLandLinePhone) {
+        this.contactLandLinePhone = contactLandLinePhone;
+    }
+
+    public String getContactEmail() {
+        return contactEmail;
+    }
+
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
+    }
+
+    public String getContactFaxNumber() {
+        return contactFaxNumber;
+    }
+
+    public void setContactFaxNumber(String contactFaxNumber) {
+        this.contactFaxNumber = contactFaxNumber;
     }
 }

@@ -63,6 +63,8 @@ export class EnquirySearchListComponent implements OnInit {
          * will not work. The below line has to be in ngOnInit() which is executed after all initializations.
          */
         this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+
     }
 
     /**
