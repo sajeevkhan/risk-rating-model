@@ -6,7 +6,6 @@ import java.time.LocalDate;
 
 @Data
 public class SearchResource {
-
     private LocalDate enquiryDateFrom;
     private LocalDate enquiryDateTo;
     private String partyName;
