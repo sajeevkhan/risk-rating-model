@@ -98,8 +98,8 @@ public class IRHAM_PPIR_FinancialRiskDTO {
         // 1.1.2      Risk Sub Factor Attributes
         // -> Four Attributes
         riskSubFactorAttributes = new ArrayList<>();
-        riskSubFactorAttributes.add(new RiskAttribute(0D, "More than 4"));
-        riskSubFactorAttributes.add(new RiskAttribute(3D,"Equal to or above 3 but less than or equal to 4"));
+        riskSubFactorAttributes.add(new RiskAttribute(0D, "Equal to or more than 4"));
+        riskSubFactorAttributes.add(new RiskAttribute(3D,"Equal to or above 3 but less than 4"));
         riskSubFactorAttributes.add(new RiskAttribute(7D,"Equal to or above 2.33 but less than 3"));
         riskSubFactorAttributes.add(new RiskAttribute(10D,"Less than 2.33"));
 

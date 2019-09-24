@@ -51,6 +51,10 @@ export class RiskModelUIComponent implements OnInit {
                     response.loanNumber = _loanEnquiryService.selectedLoanApplicaton.loanContractId;
                     response.loanAmountInCrores = _loanEnquiryService.selectedLoanApplicaton.loanAmount;
 
+                    response.loanEnquiryId = _loanEnquiryService.selectedLoanApplicaton.enquiryNumber;
+
+
+
                     // Initialize purpose code.
                     response.purposeCode = this.purpose;
 

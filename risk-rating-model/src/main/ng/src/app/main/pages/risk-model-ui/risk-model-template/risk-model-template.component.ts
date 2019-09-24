@@ -46,6 +46,8 @@ export class RiskModelTemplateComponent implements OnInit, OnChanges {
         _riskModelService.getRatingSources().subscribe(response => {
             this.ratingSources = response;
         });
+
+       // this.fetchCreditRatingGrade();
     }
 
     ngOnInit(): void {
