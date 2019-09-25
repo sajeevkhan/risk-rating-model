@@ -280,7 +280,13 @@ export class RiskModelUIComponent implements OnInit {
         // If third level approval is completed, no modifications are allowed anymore 
         if (this._riskModelTemplate.workflowStatusCode == "08" )
             isTemplateValid = false;
-        
+
+        // If second level approval is completed, user is a department head
+        if (this._appService.userDetails.departmentHead == true &&  this._riskModelTemplate.workflowStatusCode == "06"){
+            isTemplateValid = true;
+        }
+
+
         return isTemplateValid;
     }
 

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 //
@@ -42,7 +43,7 @@ public class WorkflowController {
         TaskService taskService = processEngine.getTaskService();
         String userName = httpServletRequest.getUserPrincipal().getName();
 
-        System.out.println("USER NAME: " + httpServletRequest.getUserPrincipal().getName());
+        System.out.println(LocalDate.now() + ": USER NAME: " + httpServletRequest.getUserPrincipal().getName());
 
         List<Task>  tasks = taskService.createTaskQuery()
                                         .taskAssignee(userName)
