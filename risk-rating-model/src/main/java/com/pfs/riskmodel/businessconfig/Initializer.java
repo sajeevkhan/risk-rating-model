@@ -172,12 +172,12 @@ public class Initializer implements CommandLineRunner{
         HashMap<String, String> workflowStatus = new HashMap<>();
         workflowStatus.put("01","Created");
         workflowStatus.put("02","Sent for 1st Level Approval");
-        workflowStatus.put("03", "First Level Approval Completed");
+        workflowStatus.put("03", "First Lvl Approval Completed");
         workflowStatus.put( "04", "Rejected");
         workflowStatus.put( "05", "Sent for 2nd Level Approval");
-        workflowStatus.put( "06", "Second Level Approval Completed");
+        workflowStatus.put( "06", "Second Lvl Approval Completed");
         workflowStatus.put( "07", "Sent for Third Level Approval");
-        workflowStatus.put( "08", "Third Level Approval Completed");
+        workflowStatus.put( "08", "Third Lvl Approval Completed");
 
             Integer codeAsInt = 1;
             for (Integer i=0; i<=7; i++) {
