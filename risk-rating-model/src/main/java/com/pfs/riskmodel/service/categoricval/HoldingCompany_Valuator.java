@@ -64,7 +64,7 @@ public class HoldingCompany_Valuator {
         modifiedProjectGrade = commonComputation.applyRatingModifier(riskModelTemplate,
                 projectGrade,
                 projectGradeList,
-                5.00);
+                4.25);
 
         // Check if Parental Notchup needs to be evaluated or not
         if ( modifiedProjectGrade.getGradeAsNumber() >= 7 ) {

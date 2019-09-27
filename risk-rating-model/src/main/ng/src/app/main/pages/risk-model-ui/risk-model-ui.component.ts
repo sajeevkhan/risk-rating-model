@@ -285,10 +285,16 @@ export class RiskModelUIComponent implements OnInit {
         if (this._appService.userDetails.departmentHead == true &&  this._riskModelTemplate.workflowStatusCode == "06"){
             isTemplateValid = true;
         }
-        // If second level approval is completed, user is a department head
+        // If firs level approval is reequested, user is a department head
         if (this._appService.userDetails.departmentHead == true &&  this._riskModelTemplate.workflowStatusCode == "02"){
             isTemplateValid = true;
         }
+
+        // If second level approval is requested, user is from Risk Monitoring Department(Code: 02)
+        if (this._appService.userDetails.riskDepartment == "02" &&  this._riskModelTemplate.workflowStatusCode == "03"){
+            isTemplateValid = true;
+        }
+        
 
         return isTemplateValid;
     }
