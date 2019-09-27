@@ -173,7 +173,9 @@ public class RiskModelPDFHeaderRatingOverviewTable {
                 projectDetailsCell2 = new PdfPCell();
                 projectDetailsCell2.setBackgroundColor(BaseColor.WHITE);
                 if (riskModelTemplate.getNumberOfNotchesUpAfterParentalNotchup() != null) {
-                    projectDetailsCell2.setPhrase(new Phrase(riskModelTemplate.getNumberOfNotchesUpAfterParentalNotchup() + " (Capped to one level below parent's rating) ", valueFont));
+                    //projectDetailsCell2.setPhrase(new Phrase(riskModelTemplate.getNumberOfNotchesUpAfterParentalNotchup() + " (Capped to one level below parent's rating) ", valueFont));
+                    projectDetailsCell2.setPhrase(new Phrase(riskModelTemplate.getNumberOfNotchesUpAfterParentalNotchup()  , valueFont));
+
                 }
                 else {
                     projectDetailsCell2.setPhrase(new Phrase(" ", valueFont));
