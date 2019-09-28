@@ -132,9 +132,10 @@ public class CommonComputation {
         Integer modifiedProjectGradeAsNumber = modifiedProjectGrade.getGradeAsNumber();
         ProjectGrade afterParentalNotchUpGradeObject = new ProjectGrade();
 
+        // Apply after Parental Notchup
         if (riskModelTemplate.getRiskParentalNotchUps().get(0).getIsParentalNotchUpApplicable() == true) {
 
-            // Apply after Parental Notchup
+            // Number of Notches after Parental Upgrade
             Integer numberOfNotchesAfterParental = parentalNotchupResult.get("NotchupCalc");
 
             //ONLY for PDF printing
@@ -142,88 +143,27 @@ public class CommonComputation {
 
 
             if (numberOfNotchesAfterParental > 0) {
-                Integer afterParentNotchupGradeItemNumber = 0;
-                Integer afterParentNotchupGradeAsNumber = 0;
 
+                // Calculate the Grade Number After Parental Notchup
+                Integer afterParentNotchupGradeAsNumber = 0;
                 afterParentNotchupGradeAsNumber = modifiedProjectGrade.getGradeAsNumber() - numberOfNotchesAfterParental;
 
 
-                /*
-                Clarified with PS:
-                It was clarified that the table holds true for standalone SPV rating,
-                however the benefit of good promotor is to be passed to the SPV,
-                though the rating post parental notch up shall be capped one grade below parent rating.
-                 */
-
-
-                // Check if after grade notchup has crossed the highest grade.
-                //   If yes, cap it to the highest grade
-//                if (afterParentNotchupGradeAsNumber <= Utils.getHighestGrade(projectGradeList).getGradeAsNumber()) {
-//
-//                    afterParentalNotchUpGradeObject = Utils.getHighestGrade(projectGradeList);
-//                    afterParentNotchupGradeAsNumber = afterParentalNotchUpGradeObject.getGradeAsNumber();
-//
-//                    //The post notch-up grade would be capped at one notch below the parent’s grade.
-//                    // Fetch Parent's Grade
-//                    Integer parentRating = parentalNotchupResult.get("Parent Rating");
-//                    if (afterParentNotchupGradeAsNumber >= parentRating) {
-//                        afterParentNotchupGradeAsNumber = parentRating + 1;
-//
-//                        //ONLY for PDF Printing
-//                        riskModelTemplate.setNumberOfNotchesUpAfterParentalNotchup(riskModelTemplate.getNumberOfNotchesUpAfterParentalNotchup());// + "  (Capped to 1 Level below parent's grade)");
-//
-//                    }
-//
-//                    // Get the Re-capped Grade
-//                    if(afterParentNotchupGradeAsNumber <= Utils.getHighestGrade(projectGradeList).getGradeAsNumber())
-//                        afterParentalNotchUpGradeObject = Utils.getHighestGrade(projectGradeList);
-//                    else
-//                        afterParentalNotchUpGradeObject =
-//                                Utils.getProjectGradeByGradeAsNumber(projectGradeList,afterParentNotchupGradeAsNumber);
-//
-//                    riskModelTemplate.setAfterParentalNotchUpGrade(afterParentalNotchUpGradeObject.getCommonScaleGrade());
-//                    riskModelTemplate.setFinalProjectGrade(afterParentalNotchUpGradeObject.getCommonScaleGrade());
-//                    return afterParentalNotchUpGradeObject;
-//
-//                }
-//                else {
-                afterParentNotchupGradeItemNumber = modifiedProjectGrade.getItemNo() + numberOfNotchesAfterParental;
-
-                if (afterParentNotchupGradeItemNumber >= totalItemsInGradeTable) {
-                    afterParentNotchupGradeItemNumber = totalItemsInGradeTable;
-                }
-                if (afterParentNotchupGradeItemNumber < 0)
-                    afterParentNotchupGradeItemNumber = 0;
-
                 //The post notch-up grade would be capped at one notch below the parent’s grade.
-                // Fetch Parent's Grade
-                Integer parentRating = parentalNotchupResult.get("Parent Rating");
+                Integer parentRating = parentalNotchupResult.get("Parent Rating"); // Fetch Parent's Grade
                 if (afterParentNotchupGradeAsNumber <= parentRating) {
                     afterParentNotchupGradeAsNumber = parentRating + 1;
-
                     //Only for PDF Printing
-                    riskModelTemplate.setNumberOfNotchesUpAfterParentalNotchup(riskModelTemplate.getNumberOfNotchesUpAfterParentalNotchup());// + "  (Capped to 1 Level below parent's grade)");
+                    riskModelTemplate.setNumberOfNotchesUpAfterParentalNotchup(riskModelTemplate.getNumberOfNotchesUpAfterParentalNotchup());
 
+                    //riskModelTemplate.getRiskParentalNotchUps().get(0).setNumberOfNotchesUpgraded(numberOfNotchesAfterParental);
                 }
 
-//                afterParentalNotchUpGradeObject =
-//                        Utils.getProjectGradeByGradeAsNumber(projectGradeList, afterParentNotchupGradeAsNumber);
-
-
-                //}
-                System.out.println("Modified Grade Item Number : " + modifiedProjectGrade.getItemNo());
-                System.out.println("Number of Notches after Parental : " + numberOfNotchesAfterParental);
-                System.out.println("After Parental Item Number : " + afterParentNotchupGradeItemNumber);
-
+                // Grade after Parental Notchup (Manually constructed - without using Grades Table)
                 String afterParentalNotchupGradeString = "GRADE " + afterParentNotchupGradeAsNumber;
-                System.out.println("After Parental GRADE : " + afterParentalNotchupGradeString);
 
-
-                Integer numberOfNotchesUpagraded = afterParentNotchupGradeItemNumber - modifiedProjectGrade.getItemNo();
-                riskModelTemplate.getRiskParentalNotchUps().get(0).setNumberOfNotchesUpgraded(numberOfNotchesUpagraded);
-
+                //Set the Manually constructed After Parental Notchup Grade to the CommonScaleGrade As well
                 afterParentalNotchUpGradeObject.setCommonScaleGrade(afterParentalNotchupGradeString);
-
 
                 // Set the Grade after Parental Notchup
                 if (afterParentalNotchUpGradeObject != null) {
