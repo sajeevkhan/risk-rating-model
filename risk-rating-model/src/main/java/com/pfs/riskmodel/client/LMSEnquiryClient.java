@@ -53,6 +53,7 @@ public interface LMSEnquiryClient {
     @RequestMapping(value = "/api/loanEnquiry/assignProcessors", method = RequestMethod.PUT)
     ResponseEntity<LoanApplicationResource> updateProcessors(@RequestBody ProcessorResource processorResource, @RequestHeader("Authorization") String authorization);
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/api/password/modify")
     ResponseEntity modifyPassword(@RequestBody SignupResource signupResource, @RequestHeader("Authorization") String authorization);
 
