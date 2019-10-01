@@ -3,6 +3,7 @@ package com.pfs.riskmodel.controller;
 import com.pfs.riskmodel.config.ApiController;
 import com.pfs.riskmodel.dto.WorkflowTaskDTO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 //
@@ -24,6 +26,7 @@ import java.util.*;
 /**
  * Created by sajeev on 15-Dec-18.
  */
+@Slf4j
 @ApiController
 @RequiredArgsConstructor
 public class WorkflowController {
@@ -43,7 +46,7 @@ public class WorkflowController {
         TaskService taskService = processEngine.getTaskService();
         String userName = httpServletRequest.getUserPrincipal().getName();
 
-        System.out.println(LocalDate.now() + ": USER NAME: " + httpServletRequest.getUserPrincipal().getName());
+        log.info(LocalDateTime.now() + ": USER NAME: " + httpServletRequest.getUserPrincipal().getName());
 
         List<Task>  tasks = taskService.createTaskQuery()
                                         .taskAssignee(userName)

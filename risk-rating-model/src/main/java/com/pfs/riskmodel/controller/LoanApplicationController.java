@@ -9,6 +9,7 @@ import com.pfs.riskmodel.repository.WorkflowAssignmentRepository;
 import com.pfs.riskmodel.resource.*;
 import com.pfs.riskmodel.service.IWelcomeService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -19,6 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.List;
 
+
+@Slf4j
 @ApiController
 @RequiredArgsConstructor
 public class LoanApplicationController {
