@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,7 @@ import java.util.Map;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class WorkflowService implements IWorkflowService {
 
 
@@ -109,13 +111,16 @@ public class WorkflowService implements IWorkflowService {
          emailId.setEmailId(firstLevelApproverEmailId);
          //First Level Approver Name
          User firsLevelApprover = welcomeService.getUserByEmail(emailId);
+         if (firsLevelApprover != null)
          firstLevelApproverName = firsLevelApprover.getFirstName() + firsLevelApprover.getLastName();
 
         emailId.setEmailId(secondLevelApproverEmailId);
         //Second Level Approver Name
         User secondLevelApprover = welcomeService.getUserByEmail(emailId);
-        secondLevelApproverName = secondLevelApprover.getFirstName() + secondLevelApprover.getLastName();
-
+        if (secondLevelApprover!= null) {
+            riskModelTemplate.setSecondLevelApprover(secondLevelApprover.getFirstName() + secondLevelApprover.getLastName());
+            secondLevelApproverName = secondLevelApprover.getFirstName() + secondLevelApprover.getLastName();
+        }
         emailId.setEmailId(thirdLevelApproverEmailId);
         User thirdLevelApprover = welcomeService.getUserByEmail(emailId);
         thirdLevelApproverName = thirdLevelApprover.getFirstName() + thirdLevelApprover.getLastName();
@@ -201,8 +206,23 @@ public class WorkflowService implements IWorkflowService {
     private Map<String, Object> startApprovalProcess(RiskModelTemplate riskModelTemplate, HttpServletRequest httpServletRequest) {
 
 
+
+
         Map<String, Object> output = new HashMap<>();
         ValidationResult validationResult = new ValidationResult();
+
+        // Check if an active workflow exists for the risk model.
+        // If yes, do not start a new workflow
+        List<Task>  tasks = taskService.createTaskQuery()
+                .processVariableValueEquals("riskModelId",riskModelTemplate.getId())
+                .list();
+
+        if (tasks.size() > 0) {
+            output.put("RiskModel", riskModelTemplate);
+            validationResult.setWorkflowError(false);
+            output.put("ValidationResult", validationResult);
+            return output;
+        }
 
         validationResult.setWorkflowError(false);
 

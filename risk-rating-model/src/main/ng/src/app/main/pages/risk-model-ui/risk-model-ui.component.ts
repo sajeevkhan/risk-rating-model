@@ -132,21 +132,22 @@ export class RiskModelUIComponent implements OnInit {
             console.log("Line 124 diasableButton" + disableButton)
 
         }
-
-        //TODO
-        // If the status is rejected and and the current user is the initiator 
+        // Enable Approval
+         // If the status is rejected and and the current user is the initiator
         if (this._appService.userDetails.email == this._riskModelTemplate.createdByUserId &&
             this._riskModelTemplate.workflowStatusCode == "04") {
+
             console.log("Current Processord Id : " +this._riskModelTemplate.currentProcessorUserId);
             console.log("Workflow Status code  : " +this._riskModelTemplate.workflowStatusCode);
             console.log("diasableButton" + disableButton)
 
-            disableButton = false
+            disableButton = false;
             console.log("Line 140 diasableButton" + disableButton)
 
         }
 
 
+        // Disable Approver
         // Added by Sajeev - If CurrentProcessor is the Creator and the Status is Rejected
         if (this._riskModelTemplate.createdByUserId == this._riskModelTemplate.currentProcessorUserId &&
             this._riskModelTemplate.workflowStatusCode == "04" ){
