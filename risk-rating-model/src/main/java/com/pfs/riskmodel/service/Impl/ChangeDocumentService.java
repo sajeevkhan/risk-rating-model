@@ -365,6 +365,7 @@ public class ChangeDocumentService implements IChangeDocumentService {
         changeDocument.setUserName(userName);
         changeDocument.setRiskProjectType(riskModelTemplate.getRiskProjectType());
         changeDocument.setProjectRiskLevel(riskModelTemplate.getProjectRiskLevel());
+        changeDocument.setLoanApplicationId(riskModelTemplate.getLoanEnquiryId());
         return changeDocument;
     }
 

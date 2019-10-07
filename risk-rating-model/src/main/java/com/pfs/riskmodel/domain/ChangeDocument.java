@@ -49,6 +49,9 @@ public class ChangeDocument extends AuditModel  {
     @Nullable
     private String loanEnquiryId;
 
+    @Nullable
+    private String loanApplicationId;
+
 
     @NotNull
     private String action;
