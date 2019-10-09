@@ -2,9 +2,7 @@ package com.pfs.riskmodel.ModelTemplates.InfraTransmission.OperationalPhase;
 
 import com.pfs.riskmodel.ModelTemplates.AllParentalNotchupTemplate;
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskTypes.InfraTrans_PostProjectImplRiskTypes;
-import com.pfs.riskmodel.ModelTemplates.InfraTransmission.ParentalNotchUp.InfraTrans_RiskParentalNotchUp;
 import com.pfs.riskmodel.ModelTemplates.InfraTransmission.RiskRatingModifiers.InfraTrans_RatingModifierDTO;
-import com.pfs.riskmodel.ModelTemplates.ParentalNotchupTemplate;
 import com.pfs.riskmodel.dto.*;
 
 import java.time.Instant;

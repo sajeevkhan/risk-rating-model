@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by sajeev on 03-Mar-19.
  */
-public class ParentalNotchupTemplate {
+public class RenewablesParentalNotchupTemplate {
 
     RiskAttribute riskAttribute;
     List<RiskAttribute> riskSubFactorAttributes = new ArrayList<>();
@@ -127,7 +127,7 @@ public class ParentalNotchupTemplate {
         parentFinancialDebtEquityRatioSubFactorDTO.setId(null);
         parentFinancialDebtEquityRatioSubFactorDTO.setItemNo(1);
         parentFinancialDebtEquityRatioSubFactorDTO.setDescription("Ownership/ShareHolding Strucuture");
-        parentFinancialDebtEquityRatioSubFactorDTO.setWeightage(0.25);
+        parentFinancialDebtEquityRatioSubFactorDTO.setWeightage(0.15);
         parentFinancialDebtEquityRatioSubFactorDTO.setScore(0D);
         parentFinancialDebtEquityRatioSubFactorDTO.setScoreTypeCode("01");
         parentFinancialDebtEquityRatioSubFactorDTO.setScoreTypeDescription("Normal");
@@ -154,7 +154,7 @@ public class ParentalNotchupTemplate {
         parentFinancialIntCovRationSubFactorDTO.setId(null);
         parentFinancialIntCovRationSubFactorDTO.setItemNo(2);
         parentFinancialIntCovRationSubFactorDTO.setDescription("Management Control");
-        parentFinancialIntCovRationSubFactorDTO.setWeightage(0.25);
+        parentFinancialIntCovRationSubFactorDTO.setWeightage(0.15);
         parentFinancialIntCovRationSubFactorDTO.setScore(0D);
         parentFinancialIntCovRationSubFactorDTO.setScoreTypeCode("01");
         parentFinancialIntCovRationSubFactorDTO.setScoreTypeDescription("Normal");
@@ -204,7 +204,7 @@ public class ParentalNotchupTemplate {
         pastTrackRecordRiskSubFactorDTO.setId(null);
         pastTrackRecordRiskSubFactorDTO.setItemNo(5);
         pastTrackRecordRiskSubFactorDTO.setDescription("Past Track Record Name");
-        pastTrackRecordRiskSubFactorDTO.setWeightage(0.15);
+        pastTrackRecordRiskSubFactorDTO.setWeightage(0.40);
         pastTrackRecordRiskSubFactorDTO.setScore(0D);
         pastTrackRecordRiskSubFactorDTO.setScoreTypeCode("01");
         pastTrackRecordRiskSubFactorDTO.setScoreTypeDescription("Normal");
@@ -229,7 +229,7 @@ public class ParentalNotchupTemplate {
         brandNameRiskSubFactorDTO.setId(null);
         brandNameRiskSubFactorDTO.setItemNo(3);
         brandNameRiskSubFactorDTO.setDescription("Brand Name");
-        brandNameRiskSubFactorDTO.setWeightage(0.15);
+        brandNameRiskSubFactorDTO.setWeightage(0.10);
         brandNameRiskSubFactorDTO.setScore(0D);
         brandNameRiskSubFactorDTO.setScoreTypeCode("01");
         brandNameRiskSubFactorDTO.setScoreTypeDescription("Normal");

@@ -1,7 +1,6 @@
 package com.pfs.riskmodel.ModelTemplates.Renewable.BuildPhase;
 
-import com.pfs.riskmodel.ModelTemplates.ParentalNotchupTemplate;
-import com.pfs.riskmodel.ModelTemplates.Renewable.ParentalNotchUp.Renewable_RiskParentalNotchUp;
+import com.pfs.riskmodel.ModelTemplates.RenewablesParentalNotchupTemplate;
 import com.pfs.riskmodel.ModelTemplates.Renewable.RiskRatingModifiers.Renewable_RatingModifierDTO;
 import com.pfs.riskmodel.ModelTemplates.Renewable.RiskTypes.RenewablePostProjectRiskTypes;
 import com.pfs.riskmodel.ModelTemplates.Renewable.RiskTypes.RenewableProjectRiskTypes;
@@ -89,8 +88,8 @@ public class RenewableProjectBuildPhaseData {
         riskModelTemplateDTO.setRiskRatingModifiers(riskRatingModifierDTOSet);
 
         //  Parental Notch Up
-        ParentalNotchupTemplate parentalNotchupTemplate = new ParentalNotchupTemplate();
-        RiskParentalNotchUpDTO riskParentalNotchUpDTO = parentalNotchupTemplate.getParentalNotchUp();
+        RenewablesParentalNotchupTemplate renewablesParentalNotchupTemplate = new RenewablesParentalNotchupTemplate();
+        RiskParentalNotchUpDTO riskParentalNotchUpDTO = renewablesParentalNotchupTemplate.getParentalNotchUp();
 
 
         List<RiskParentalNotchUpDTO> riskParentalNotchUpDTOSet = new ArrayList<>();

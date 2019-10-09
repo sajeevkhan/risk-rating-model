@@ -198,6 +198,43 @@ public class RiskModelPDFRiskParentalNotchupTableDebugMode {
         parentalNotchupSubFactorsTable.setSpacingBefore(10);
 
 
+        String calculation = "Calculation : ";  Double parentalNotchupScore = 0D;
+
+        // Construct Calculation String for Expert Mode
+        for (RiskSubFactor riskSubFactor: riskParentalNotchUp.getRiskSubFactors()){
+
+
+            for (RiskSubFactorAttribute riskSubFactorAttribute: riskSubFactor.getRiskSubFactorAttributes()){
+                if (riskSubFactorAttribute.getIsSelected() == true) {
+                    parentalNotchupScore = parentalNotchupScore + riskSubFactorAttribute.getScore() * riskSubFactor.getWeightage();
+
+
+                    if (riskSubFactor.getItemNo() == 1)
+                        calculation = calculation + riskSubFactorAttribute.getScore().toString() + " x " + riskSubFactor.getWeightage().toString();
+
+                    if (riskSubFactor.getItemNo() > 1 && riskSubFactor.getItemNo() <  riskParentalNotchUp.getRiskSubFactors().size())
+                        calculation = calculation + " + " + riskSubFactorAttribute.getScore().toString() + " x " + riskSubFactor.getWeightage().toString();
+
+
+                    if ( riskParentalNotchUp.getRiskSubFactors().size() == riskSubFactor.getItemNo()){
+                        calculation = calculation + " + " + riskSubFactorAttribute.getScore().toString() + " x " + riskSubFactor.getWeightage().toString() + " = ";
+                    }
+                }
+            }
+
+        }
+
+        // Add Row for ParentalNotchup Score  - for Expert Mode
+        calculation = calculation + " " + parentalNotchupScore.toString();
+        cell1 = new PdfPCell();
+        cell1.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        cell1.setBackgroundColor(BaseColor.ORANGE);
+        cell1.setPhrase(new Phrase(calculation, valueFont));
+        cell1.setColspan(3);
+        parentalNotchupSubFactorsTable.addCell(cell1);
+        parentalNotchupSubFactorsTable.completeRow();
+
+
 
 
         for (RiskSubFactor riskSubFactor : riskParentalNotchUp.getRiskSubFactors()) {
@@ -212,7 +249,7 @@ public class RiskModelPDFRiskParentalNotchupTableDebugMode {
 
             sectionNumber =  riskSubFactor.getItemNo().toString();
 
-            cell1.setPhrase(new Phrase(sectionNumber + "  " + riskSubFactor.getDescription(), headerfont));
+            cell1.setPhrase(new Phrase(sectionNumber + "  " + riskSubFactor.getDescription() + " (" +riskSubFactor.getWeightage().toString() + "%)", headerfont));
             cell1.setColspan(3);
             cell1.setHorizontalAlignment(Element.ALIGN_LEFT);
             parentalNotchupSubFactorsTable.addCell(cell1);
@@ -242,7 +279,7 @@ public class RiskModelPDFRiskParentalNotchupTableDebugMode {
                         cell2.setPhrase(new Phrase(riskSubFactorAttribute.getScore().toString(), valueFont));
                 }
                 else {
-                    cell2.setPhrase(new Phrase(" ", valueFont));
+                    cell2.setPhrase(new Phrase(riskSubFactorAttribute.getScore().toString(), valueFont));
                     cell2.setBackgroundColor(BaseColor.GRAY.brighter());
                 }
                 // Third Column - Score Label
