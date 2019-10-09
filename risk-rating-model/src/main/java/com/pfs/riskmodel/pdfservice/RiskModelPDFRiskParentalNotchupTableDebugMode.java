@@ -280,7 +280,7 @@ public class RiskModelPDFRiskParentalNotchupTableDebugMode {
         cell1 = new PdfPCell();
         cell1.setHorizontalAlignment(Element.ALIGN_LEFT);
         cell1.setBackgroundColor(BaseColor.ORANGE);
-        if (riskParentalNotchUp.getNotchupCalculation().toString() != null) {
+        if (riskParentalNotchUp.getNotchupCalculation() != null) {
             cell1.setPhrase(new Phrase(riskParentalNotchUp.getNotchupCalculation().toString(), valueFont));
         } else {
             cell1.setPhrase(new Phrase("", valueFont));

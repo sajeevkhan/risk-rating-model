@@ -138,17 +138,19 @@ public class RiskParentalNotchUpEvaluator {
 
          Utils.round(numberOfNotches);
 
-         int number = (int) Math.round(numberOfNotches);
-         if (number < 0 )
-             number = number * -1;
+         if (numberOfNotches < 0)
+             numberOfNotches = numberOfNotches * -1;
+
+         int number = (int) Math.floor(numberOfNotches);
+
+//         if (number < 0 )
+//             number = number * -1;
+//             number = (int) Math.floor(numberOfNotches);
 
          return number;
 
 
      }
-
-
-
 
 
     // Check Notchup Criteria is Applicable or not
