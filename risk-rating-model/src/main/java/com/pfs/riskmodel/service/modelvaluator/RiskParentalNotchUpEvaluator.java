@@ -2,6 +2,7 @@ package com.pfs.riskmodel.service.modelvaluator;
 
 import com.pfs.riskmodel.domain.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,8 @@ public class RiskParentalNotchUpEvaluator {
         private Integer numberOfNotchesForUpgrade;
 
         private Integer numberOfNotchesCalculated;
+
+        private Double interimNotchUpValue;
 
  // TODO
 ////The post notch-up grade would be capped at one notch below the parent’s grad
@@ -89,6 +92,17 @@ public class RiskParentalNotchUpEvaluator {
         numberOfNotchesCalculated = calculateNumberOfNotches();
         riskParentalNotchUp.setNumberOfNotchesCalculated(numberOfNotchesCalculated);
 
+        riskParentalNotchUp
+                .setNotchupScoreAsAPctOfMaxScoreCalculation( "Notch up as a Percentage of Max. Score = " +
+                                                                    notchupScore.toString() + " / " + maximumScoreParentalNotchup.toString()  + " = " + notchupScoreAsAPctOfMaxScore);
+
+        riskParentalNotchUp.setNotchupScoreAsAPctOfMaxScore(notchupScoreAsAPctOfMaxScore.toString());
+        riskParentalNotchUp
+                .setNotchupScoreCalculation("Number of Notches Calculation =" +
+                                                                    notchupScoreAsAPctOfMaxScore.toString() + " x (" + parentsRating.toString() + " - " +borrowersRating +") = " + interimNotchUpValue );
+
+
+        riskParentalNotchUp.setNotchupCalculation("Actual Notchup Calculation =" + "Round ( " + interimNotchUpValue + " )");
 
         result.put("NotchupCalc",numberOfNotchesCalculated);
 
@@ -110,6 +124,8 @@ public class RiskParentalNotchUpEvaluator {
 
          try {
              numberOfNotches = notchupScoreAsAPctOfMaxScore * (parentsRating - borrowersRating);
+             interimNotchUpValue = numberOfNotches;
+
          }
          catch (Exception ex) {
 

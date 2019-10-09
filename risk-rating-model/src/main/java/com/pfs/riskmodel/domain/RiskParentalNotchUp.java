@@ -49,6 +49,20 @@ public class RiskParentalNotchUp extends AuditModel  {
     @Nullable
     private Integer numberOfNotchesCalculated;
 
+
+    @Nullable
+    private String notchupScoreAsAPctOfMaxScoreCalculation;
+
+    @Nullable
+    private String notchupScoreAsAPctOfMaxScore;
+
+    @Nullable
+    private String notchupScoreCalculation;
+
+    @Nullable
+    private String notchupCalculation;
+
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
     @JoinColumn(name="riskType__id",referencedColumnName = "id")
     private List<RiskSubFactor> riskSubFactors;

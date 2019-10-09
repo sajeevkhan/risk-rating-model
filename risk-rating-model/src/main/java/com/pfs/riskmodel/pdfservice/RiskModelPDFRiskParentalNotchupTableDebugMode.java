@@ -225,15 +225,82 @@ public class RiskModelPDFRiskParentalNotchupTableDebugMode {
         }
 
         // Add Row for ParentalNotchup Score  - for Expert Mode
-        calculation = calculation + " " + parentalNotchupScore.toString();
         cell1 = new PdfPCell();
-        cell1.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        cell1.setHorizontalAlignment(Element.ALIGN_LEFT);
         cell1.setBackgroundColor(BaseColor.ORANGE);
-        cell1.setPhrase(new Phrase(calculation, valueFont));
+
+        if (parentalNotchupScore !=null) {
+            calculation = "Parental Notchup Score: " + " " + parentalNotchupScore.toString();
+            cell1.setPhrase(new Phrase(calculation, valueFont));
+        } else {
+            cell1.setPhrase(new Phrase(""));
+        }
         cell1.setColspan(3);
         parentalNotchupSubFactorsTable.addCell(cell1);
         parentalNotchupSubFactorsTable.completeRow();
 
+        // Add Row for notchupScoreAsAPctOfMaxScore  Calculation - for Expert Mode
+
+        cell1 = new PdfPCell();
+        cell1.setHorizontalAlignment(Element.ALIGN_LEFT);
+        cell1.setBackgroundColor(BaseColor.ORANGE);
+        if (riskParentalNotchUp.getNotchupScoreAsAPctOfMaxScoreCalculation() != null) {
+            cell1.setPhrase(new Phrase("Parental Notchup As a Pct. Max Score (COMPUTATION): " + riskParentalNotchUp.getNotchupScoreAsAPctOfMaxScoreCalculation(), valueFont));
+        } else {
+            cell1.setPhrase(new Phrase(""));
+        }
+        cell1.setColspan(3);
+        parentalNotchupSubFactorsTable.addCell(cell1);
+        parentalNotchupSubFactorsTable.completeRow();
+
+//        // Add Row for notchupScoreAsAPctOfMaxScore  - for Expert Mode
+//        cell1 = new PdfPCell();
+//        cell1.setHorizontalAlignment(Element.ALIGN_LEFT);
+//        cell1.setBackgroundColor(BaseColor.ORANGE);
+//        cell1.setPhrase(new Phrase(riskParentalNotchUp.getNotchupScoreAsAPctOfMaxScore(), valueFont));
+//        cell1.setColspan(3);
+//        parentalNotchupSubFactorsTable.addCell(cell1);
+//        parentalNotchupSubFactorsTable.completeRow();
+
+
+
+        cell1 = new PdfPCell();
+        cell1.setHorizontalAlignment(Element.ALIGN_LEFT);
+        cell1.setBackgroundColor(BaseColor.ORANGE);
+        if (riskParentalNotchUp.getNotchupScoreCalculation() != null) {
+            cell1.setPhrase(new Phrase("Number of Notches (COMPUTATION): " + riskParentalNotchUp.getNotchupScoreCalculation(), valueFont));
+        } else {
+            cell1.setPhrase(new Phrase("", valueFont));
+        }
+        cell1.setColspan(3);
+        parentalNotchupSubFactorsTable.addCell(cell1);
+        parentalNotchupSubFactorsTable.completeRow();
+
+        // Actual Number of Notches Computation
+        cell1 = new PdfPCell();
+        cell1.setHorizontalAlignment(Element.ALIGN_LEFT);
+        cell1.setBackgroundColor(BaseColor.ORANGE);
+        if (riskParentalNotchUp.getNotchupCalculation().toString() != null) {
+            cell1.setPhrase(new Phrase(riskParentalNotchUp.getNotchupCalculation().toString(), valueFont));
+        } else {
+            cell1.setPhrase(new Phrase("", valueFont));
+        }
+        cell1.setColspan(3);
+        parentalNotchupSubFactorsTable.addCell(cell1);
+        parentalNotchupSubFactorsTable.completeRow();
+
+        //Final Number of Notches
+        cell1 = new PdfPCell();
+        cell1.setHorizontalAlignment(Element.ALIGN_LEFT);
+        cell1.setBackgroundColor(BaseColor.ORANGE);
+        if (riskParentalNotchUp.getNumberOfNotchesCalculated() != null) {
+            cell1.setPhrase(new Phrase("Number of Notches : " + riskParentalNotchUp.getNumberOfNotchesCalculated(), headerfont));
+        }else {
+            cell1.setPhrase(new Phrase("", valueFont));
+        }
+        cell1.setColspan(3);
+        parentalNotchupSubFactorsTable.addCell(cell1);
+        parentalNotchupSubFactorsTable.completeRow();
 
 
 
