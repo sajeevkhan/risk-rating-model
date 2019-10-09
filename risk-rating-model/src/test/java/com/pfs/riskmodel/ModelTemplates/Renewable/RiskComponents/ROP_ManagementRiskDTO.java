@@ -114,7 +114,7 @@ public class ROP_ManagementRiskDTO {
         riskSubFactorAttributes.add(new RiskAttribute(10D, "Company is part of an extremely financially sound group"));
         riskSubFactorAttributes.add(new RiskAttribute(8D,"The group has high financial strength"));
         riskSubFactorAttributes.add(new RiskAttribute(6D,"The group has above average financial strength"));
-        riskSubFactorAttributes.add(new RiskAttribute(4D,"The group has low financial strength"));
+        riskSubFactorAttributes.add(new RiskAttribute(4D,"The group has average  financial strength"));
         riskSubFactorAttributes.add(new RiskAttribute(2D,"The group has low financial strength"));
         riskSubFactorAttributes.add(new RiskAttribute(0D,"The group has very low financial strength"));
 

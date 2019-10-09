@@ -105,7 +105,7 @@ public class ROP_FinancialRiskDTO {
         // -> Six Attributes
         riskSubFactorAttributes = new ArrayList<>();
         riskSubFactorAttributes.add(new RiskAttribute(0D, "Less than 1"));
-        riskSubFactorAttributes.add(new RiskAttribute(2D,"Equal to or above 1 but less than 1.01"));
+        riskSubFactorAttributes.add(new RiskAttribute(2D,"Equal to or above 1 but less than 1.10"));
         riskSubFactorAttributes.add(new RiskAttribute(4D,"Equal to or above 1.1 but less than 1.2"));
         riskSubFactorAttributes.add(new RiskAttribute(6D,"Equal to or above 1.2 but less than 1.3"));
         riskSubFactorAttributes.add(new RiskAttribute(8D,"Equal to or above 1.3 but less than 1.5"));
