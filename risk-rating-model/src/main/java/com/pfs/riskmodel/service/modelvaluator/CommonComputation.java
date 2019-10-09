@@ -155,7 +155,7 @@ public class CommonComputation {
                     afterParentNotchupGradeAsNumber = parentRating + 1;
                     //Only for PDF Printing
                     riskModelTemplate.setNumberOfNotchesUpAfterParentalNotchup(riskModelTemplate.getNumberOfNotchesUpAfterParentalNotchup());
-                    riskModelTemplate.setNumberOfNotchesUpAfterParentalNotchup("CAPPED AT ONE LEVEL BELOW PARENT's GRADE");
+                    riskModelTemplate.setNumberOfNotchesUpAfterParentalNotchup("0");
 
 
                     //riskModelTemplate.getRiskParentalNotchUps().get(0).setNumberOfNotchesUpgraded(numberOfNotchesAfterParental);
