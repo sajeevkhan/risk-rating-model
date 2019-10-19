@@ -203,6 +203,15 @@ public class LoanApplication {
      */
     private Integer finalDecisionStatus;
 
+    /*
+    1 - Rejected by Borrower
+    2 - Rejected by BD
+    3 - Rejected by ICC
+    4 - Rejected by Appraisal
+    5 - Rejected by Board
+    */
+    private Integer rejectionCategory;
+
     @Size(max = 100)
     private String rejectionReason;
 
@@ -289,6 +298,7 @@ public class LoanApplication {
                            @JsonProperty("technicalStatus") Integer technicalStatus,
                            @JsonProperty("functionalStatus") Integer functionalStatus,
                            @JsonProperty("finalDecisionStatus") Integer finalDecisionStatus,
+                           @JsonProperty("rejectionCategory") Integer rejectionCategory,
                            @JsonProperty("rejectionReason") String rejectionReason,
                            @JsonProperty("rejectionDate") LocalDateTime rejectionDate,
                            @JsonProperty("decisionDate") LocalDate decisionDate,
@@ -364,6 +374,7 @@ public class LoanApplication {
         this.technicalStatus = technicalStatus;
         this.functionalStatus = functionalStatus;
         this.finalDecisionStatus = finalDecisionStatus;
+        this.rejectionCategory = rejectionCategory;
         this.rejectionReason = rejectionReason;
         this.rejectionDate = rejectionDate;
         this.decisionDate = decisionDate;
@@ -763,6 +774,14 @@ public class LoanApplication {
 
     public void setFinalDecisionStatus(Integer finalDecisionStatus) {
         this.finalDecisionStatus = finalDecisionStatus;
+    }
+
+    public Integer getRejectionCategory() {
+        return rejectionCategory;
+    }
+
+    public void setRejectionCategory(Integer rejectionCategory) {
+        this.rejectionCategory = rejectionCategory;
     }
 
     public String getRejectionReason() {

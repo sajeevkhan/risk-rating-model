@@ -124,7 +124,11 @@ public class RiskFactorEvaluator {
         for (RiskSubFactor riskSubFactor: riskSubFactorSet) {
             String scoreTypeCode = riskSubFactor.getScoreType().getCode();
             if (scoreTypeCode.equals("01")) {//Only Normal - Exclude Deflators or Multiplier
-                score = score + riskSubFactor.getScore() * riskSubFactor.getWeightage();
+
+                Double interimScore = 0D;
+                interimScore = (riskSubFactor.getScore() * ( riskSubFactor.getWeightage() * 100) ) / 100;
+
+                score = score + interimScore;
             }
         }
 

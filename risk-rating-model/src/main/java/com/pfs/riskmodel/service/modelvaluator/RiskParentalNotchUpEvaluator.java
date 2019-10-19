@@ -66,7 +66,7 @@ public class RiskParentalNotchUpEvaluator {
         this.calcMaxPossibleScore( riskParentalNotchUp);
 
         // Calculate Notchup Score
-        this.calcNotchupScore(riskParentalNotchUp);
+         this.calcNotchupScore(riskParentalNotchUp);
 
         //The notch-up score would then be represented as a percentage of maximum possible score.
         notchupScoreAsAPctOfMaxScore = notchupScore / maximumScoreParentalNotchup;
