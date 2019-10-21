@@ -219,10 +219,10 @@ public class CommonComputation {
         riskModelSummary.setItemNo(itemNo);
         postProjectScore = Utils.round(postProjectScore);
 
-            if (riskModelTemplate.getRiskProjectType().getCode().equals("05"))
-                riskModelSummary.setName("Holding Company Risk Score");
-            else
-                riskModelSummary.setName("Post Project Implementation Risk");
+        if (riskModelTemplate.getRiskProjectType().getCode().equals("05"))
+            riskModelSummary.setName("Holding Company Risk Score");
+        else
+            riskModelSummary.setName("Post Project Implementation Risk");
 
         riskModelSummary.setScore(postProjectScore.toString());
         riskModelSummary.setGrade(postProjectGrade);

@@ -296,6 +296,11 @@ export class RiskModelUIComponent implements OnInit {
             isTemplateValid = true;
         }
         
+        //Allow evaluation for admin always.
+
+        if (this._appService.userDetails.email == "admin@gmail.com" ) {
+            isTemplateValid = true;
+        }
 
         return isTemplateValid;
     }
