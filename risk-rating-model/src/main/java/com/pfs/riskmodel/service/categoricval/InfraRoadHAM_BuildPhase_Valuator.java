@@ -18,7 +18,7 @@ public class InfraRoadHAM_BuildPhase_Valuator {
 
 
     List<ProjectGrade> projectGradeList = InfraRoad_HAM_BuildPhaseGrade.projectGradeList;
-    List<ProjectGrade> operationalProjectGradeList = InfraRoad_HAM_OperationalPhaseGrade.projectGradeList;
+  //  List<ProjectGrade> operationalProjectGradeList = InfraRoad_HAM_OperationalPhaseGrade.projectGradeList;
 
 
     public RiskModelTemplate valuate (RiskModelTemplate riskModelTemplate) {
@@ -44,7 +44,7 @@ public class InfraRoadHAM_BuildPhase_Valuator {
 
             if (riskType.getDescription().contains("Post")) {
                 // PPIR GRADE = Operational Phase GRADE
-                projectGrade = Utils.fetchGrade(operationalProjectGradeList,riskType.getScore());
+                    projectGrade = Utils.fetchGrade(projectGradeList,riskType.getScore());
                 postProjectIRScore = riskType.getScore();
                 postProjectIRGrade = projectGrade.getCommonScaleGrade();
                 riskType.setGrade(projectGrade.getCommonScaleGrade());
@@ -68,7 +68,7 @@ public class InfraRoadHAM_BuildPhase_Valuator {
         if (projectIRScore < postProjectIRScore ) {
             overallProjectGradeObject = Utils.fetchGrade(projectGradeList, overallProjectScore);
         }else {
-            overallProjectGradeObject = Utils.fetchGrade(operationalProjectGradeList, overallProjectScore);
+            overallProjectGradeObject = Utils.fetchGrade(projectGradeList, overallProjectScore);
         }
 
         overallProjectGrade = overallProjectGradeObject.getCommonScaleGrade();

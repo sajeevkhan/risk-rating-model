@@ -82,7 +82,9 @@ public class RiskModelPDFHeaderRatingOverviewTable {
             // Third Column - Project Grade
             projectDetailsCell3 = new PdfPCell();
             projectDetailsCell3.setBackgroundColor(BaseColor.WHITE);
-            projectDetailsCell3.setPhrase(new Phrase(riskType.getGrade(),valueFont));
+            //projectDetailsCell3.setPhrase(new Phrase(riskType.getGrade(),valueFont));
+            projectDetailsCell3.setPhrase(new Phrase(" ",valueFont));
+
 
             projectDetailsTable.addCell(projectDetailsCell1);
             projectDetailsTable.addCell(projectDetailsCell2);

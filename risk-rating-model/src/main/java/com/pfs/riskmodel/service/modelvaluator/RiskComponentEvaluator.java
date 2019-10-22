@@ -116,7 +116,7 @@ public class RiskComponentEvaluator {
 
             String scoreTypeCode = riskFactor.getScoreType().getCode();
             if (scoreTypeCode.equals("01")) {
-                score = score + riskFactor.getScore() * riskFactor.getWeightage();
+                score = score + riskFactor.getScore() * ( riskFactor.getWeightage() * 100) / 100;
             }
         }
         return score;

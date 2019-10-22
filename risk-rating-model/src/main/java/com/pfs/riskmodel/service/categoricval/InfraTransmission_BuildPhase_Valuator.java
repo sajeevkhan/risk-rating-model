@@ -18,7 +18,7 @@ public class InfraTransmission_BuildPhase_Valuator {
     List<ProjectGrade> projectGradeList = Infra_Transmission_BuildPhaseGrade.projectGradeList;
 
 
-    List<ProjectGrade> operatonalPhaseProjectGradeList = Infra_Transmission_OperationalPhaseGrade.projectGradeList;
+    //List<ProjectGrade> operatonalPhaseProjectGradeList = Infra_Transmission_OperationalPhaseGrade.projectGradeList;
 
     public RiskModelTemplate valuate (RiskModelTemplate riskModelTemplate) {
 
@@ -49,8 +49,8 @@ public class InfraTransmission_BuildPhase_Valuator {
 
                 // PPIR Grade is the Operational Phase Grade
                  ProjectGrade postProjectGrade =
-                        Utils.fetchGrade(operatonalPhaseProjectGradeList,riskType.getScore());
-                        //Utils.fetchGrade(projectGradeList,riskType.getScore());
+                        //Utils.fetchGrade(operatonalPhaseProjectGradeList,riskType.getScore());
+                        Utils.fetchGrade(projectGradeList,riskType.getScore());
 
 
                 postProjectImplScore = riskType.getScore();
@@ -79,8 +79,8 @@ public class InfraTransmission_BuildPhase_Valuator {
         if (projectImplScore < postProjectImplScore ) {
             overallProjectGradeObject = Utils.fetchGrade(projectGradeList, overallProjectScore);
         }else {
-            overallProjectGradeObject = Utils.fetchGrade(operatonalPhaseProjectGradeList, overallProjectScore);
-            //overallProjectGradeObject = Utils.fetchGrade(projectGradeList, overallProjectScore);
+            //overallProjectGradeObject = Utils.fetchGrade(operatonalPhaseProjectGradeList, overallProjectScore);
+            overallProjectGradeObject = Utils.fetchGrade(projectGradeList, overallProjectScore);
 
         }
 

@@ -43,7 +43,7 @@ public class RiskTypeEvaluator {
         // Computing Method = 01 - Weighted
         for (RiskComponent riskComponent: riskComponentSet) {
             String scoreTypeCode = riskComponent.getScoreType().getCode();
-            score =  score + riskComponent.getScore() * riskComponent.getWeightage();
+            score =  score + riskComponent.getScore() * ( riskComponent.getWeightage() * 100 ) / 100;
         }
 
         //score = Utils.round(score);

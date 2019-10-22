@@ -210,7 +210,9 @@ public class CommonComputation {
             riskModelSummary.setName("Project Implementation Risk");
             projectScore = Utils.round(projectScore);
             riskModelSummary.setScore(projectScore.toString());
-            riskModelSummary.setGrade(projectGrade.toString());
+            //riskModelSummary.setGrade(projectGrade.toString());
+            riskModelSummary.setGrade(" ");
+
             riskModelSummaries.add(riskModelSummary);
         }
 
@@ -225,7 +227,9 @@ public class CommonComputation {
             riskModelSummary.setName("Post Project Implementation Risk");
 
         riskModelSummary.setScore(postProjectScore.toString());
-        riskModelSummary.setGrade(postProjectGrade);
+        //riskModelSummary.setGrade(postProjectGrade);
+        riskModelSummary.setGrade("");
+
         riskModelSummaries.add(riskModelSummary);
 
 //            riskModelSummary = new RiskModelSummary();
