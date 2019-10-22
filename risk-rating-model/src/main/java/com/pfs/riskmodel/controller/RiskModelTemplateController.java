@@ -15,6 +15,7 @@ import com.pfs.riskmodel.util.CheckServiceResult;
 import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import org.dozer.DozerBeanMapper;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -264,6 +265,8 @@ public class RiskModelTemplateController {
 
 
         riskModelTemplate = (RiskModelTemplate) result.get("RiskModelTemplate");
+
+        riskModelTemplate.setRatingDate(DateTime.now().toDate());
 
         if (riskModelTemplate == null) {
             Check.notNull(riskModelTemplate.getId(), "Exception.notFound",
