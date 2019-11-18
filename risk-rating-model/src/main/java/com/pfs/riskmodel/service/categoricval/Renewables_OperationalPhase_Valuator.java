@@ -60,7 +60,8 @@ public class Renewables_OperationalPhase_Valuator {
                                                                      projectGradeList,
                                                                     4.25);
 
-        System.out.println("------------MODIFIED PROJECT GRADE ........ :" + modifiedProjectGrade.toString());
+        System.out.println("------------MODIFIED PROJECT GRADE : " + modifiedProjectGrade.toString());
+        System.out.println("------------MODIFIED PROJECT GRADE : " + modifiedProjectGrade.getGradeAsNumber().toString());
 
 
 
