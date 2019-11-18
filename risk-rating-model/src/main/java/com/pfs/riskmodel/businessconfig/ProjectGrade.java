@@ -28,4 +28,16 @@ public class ProjectGrade {
     private Integer gradeAsNumber;
    // private Integer pGrade;
 
+    @Override
+    public String toString() {
+        return "ProjectGrade{" +
+                "itemNo=" + itemNo +
+                ", modelCategory='" + modelCategory + '\'' +
+                ", fromScore=" + fromScore +
+                ", toScore=" + toScore +
+                ", gradeCategory='" + gradeCategory + '\'' +
+                ", commonScaleGrade='" + commonScaleGrade + '\'' +
+                ", gradeAsNumber=" + gradeAsNumber +
+                '}';
+    }
 }
