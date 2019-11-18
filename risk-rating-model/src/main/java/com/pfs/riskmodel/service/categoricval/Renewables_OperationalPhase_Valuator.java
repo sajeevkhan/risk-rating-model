@@ -49,10 +49,19 @@ public class Renewables_OperationalPhase_Valuator {
 
         // Compute Modified Project Grade
         CommonComputation commonComputation = new CommonComputation();
+
+        System.out.println("------------ Renewables Operational Phase Valuator........ ");
+        System.out.println("------------ PROJECT GRADE ........ :" + projectGrade.toString());
+        System.out.println("------------ PROJECT GRADE LIST........ :" + projectGradeList.toString());
+
+
         modifiedProjectGrade = commonComputation.applyRatingModifier(riskModelTemplate,
                                                                      projectGrade,
                                                                      projectGradeList,
                                                                     4.25);
+
+        System.out.println("------------MODIFIED PROJECT GRADE ........ :" + modifiedProjectGrade.toString());
+
 
 
         // Check if Parental Notchup needs to be evaluated or not
