@@ -21,7 +21,7 @@ public class RenewablesOperatonalRiskTypes {
 
         riskTypeDTO.setId(null);
         riskTypeDTO.setItemNo(1);
-        riskTypeDTO.setDescription("Post Project Implementation Risk");
+        riskTypeDTO.setDescription("Post Project (Operational) Implementation Risk");
         riskTypeDTO.setScore(0D);
         riskTypeDTO.setGrade(" ");
         riskTypeDTO.setIsAccountConductRiskComponentPresent(true);
