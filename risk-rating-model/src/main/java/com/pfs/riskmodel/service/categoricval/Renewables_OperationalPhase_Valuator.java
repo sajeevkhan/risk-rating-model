@@ -31,7 +31,15 @@ public class Renewables_OperationalPhase_Valuator {
 
         // Risk Type Score
         for (RiskType riskType : riskModelTemplate.getRiskTypes()) {
+
+            System.out.println("------------ Renewables Operational Phase Valuator: RISK TYPE DESC: " + riskType.getDescription());
+
             if (riskType.getDescription().contains("Operational")) {
+
+                System.out.println("------------ Renewables Operational Phase Valuator: RISK TYPE DESC: ........ ");
+                System.out.println("------------ RISK TYPE SCORE : " + riskType.getScore().toString());
+                System.out.println("------------ PROJECT GRADE LIST........ :" + projectGradeList.toString());
+
                 projectGrade = Utils.fetchGrade(projectGradeList,riskType.getScore());
 
                 projectScore = riskType.getScore();
