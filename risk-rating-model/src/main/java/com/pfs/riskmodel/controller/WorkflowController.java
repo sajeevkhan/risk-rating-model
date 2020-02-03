@@ -1,7 +1,9 @@
 package com.pfs.riskmodel.controller;
 
 import com.pfs.riskmodel.config.ApiController;
+import com.pfs.riskmodel.domain.RiskModelTemplate;
 import com.pfs.riskmodel.dto.WorkflowTaskDTO;
+import com.pfs.riskmodel.repository.RiskModelTemplateRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.activiti.engine.ProcessEngine;
@@ -37,6 +39,9 @@ public class WorkflowController {
     @Autowired
     private ProcessEngine processEngine;
 
+    @Autowired
+    private RiskModelTemplateRepository riskModelTemplateRepository;
+
 
     @GetMapping("/tasklist")
     public ResponseEntity<List<WorkflowTaskDTO>> getTasks(HttpServletRequest httpServletRequest) {
@@ -61,7 +66,12 @@ public class WorkflowController {
             Map<String, Object> variables = task.getProcessVariables();
 
             WorkflowTaskDTO workflowTaskDTO = prepareWorkflowTask(task,variables);
-            workflowTaskDTOList.add(workflowTaskDTO);
+
+            List<RiskModelTemplate> riskModelTemplateList = new ArrayList<>();
+            // Eliminate Duplicate Workflow Tasks
+            riskModelTemplateList = riskModelTemplateRepository.findByProcessInstanceId(task.getProcessInstanceId());
+            if (riskModelTemplateList.size() > 0)
+                workflowTaskDTOList.add(workflowTaskDTO);
 
         }
 
