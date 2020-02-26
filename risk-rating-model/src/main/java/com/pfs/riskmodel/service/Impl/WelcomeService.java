@@ -24,7 +24,7 @@ public class WelcomeService implements IWelcomeService {
     LMSEnquiryClient lmsEnquiryClient;
 
     @Override
-    public User getUser() {
+    public User     getUser() {
         ResponseEntity<User> user = lmsEnquiryClient.getUser(getAuthorizationBearer());
         return user.getBody();
     }

@@ -79,6 +79,8 @@ public class RiskModelService implements IRiskModelService {
 
         RiskModelTemplate existingRiskModel = new RiskModelTemplate();
 
+       // if (risk)
+
         User user = welcomeService.getUser();
         String userFullName = user.getFirstName() + " " + user.getLastName();
 

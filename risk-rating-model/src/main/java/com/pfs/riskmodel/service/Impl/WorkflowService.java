@@ -22,6 +22,7 @@ import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,6 +43,10 @@ public class WorkflowService implements IWorkflowService {
 
 
     private final LMSEnquiryClient lmsEnquiryClient;
+
+    @Value( "${spring.activiti.mail-server-user-name}" )
+    private String username;
+
 
     @Autowired
     private RuntimeService runtimeService;
@@ -513,7 +518,8 @@ public class WorkflowService implements IWorkflowService {
 
         WorkflowAssignment workflowAssignment = getWorkFlowProcessor(riskModelTemplate.getPurpose());
 
-        variables.put("fromEmailId", "pfsriskmodel@gmail.com");
+        //variables.put("fromEmailId", "pfsriskmodel@gmail.com");
+        variables.put("fromEmailId", username);
         variables.put("initiatorName", riskModelTemplate.getCreatedBy());
         variables.put("initiatorEmailId", riskModelTemplate.getCreatedByUserId());
         variables.put("firstLevelApproval", false);
@@ -551,7 +557,9 @@ public class WorkflowService implements IWorkflowService {
 
         WorkflowAssignment workflowAssignment = getWorkFlowProcessor(riskModelTemplate.getPurpose());
 
-        variables.put("fromEmailId", "pfsriskmodel@gmail.com");
+        //variables.put("fromEmailId", "pfsriskmodel@gmail.com");
+        variables.put("fromEmailId", username);
+
         variables.put("initiatorName", riskModelTemplate.getCreatedBy());
         variables.put("initiatorEmailId", riskModelTemplate.getCreatedByUserId());
 
