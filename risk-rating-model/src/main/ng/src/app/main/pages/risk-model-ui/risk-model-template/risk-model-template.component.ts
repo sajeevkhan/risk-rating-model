@@ -35,7 +35,7 @@ export class RiskModelTemplateComponent implements OnInit, OnChanges {
     savingTemplate: boolean;
 
     constructor(private _appService: AppService, private _riskModelService: RiskModelUIService, private _matSnackBar: MatSnackBar) {
-        console.log('_appService', _appService.userDetails);
+        //console.log('_appService', _appService.userDetails);
 
         // Fetch purposes.
         _riskModelService.getPurposes().subscribe(response => {
@@ -78,7 +78,7 @@ export class RiskModelTemplateComponent implements OnInit, OnChanges {
         //         }
         //     });
         // }
-        console.log(this.riskModelTemplate);
+        //console.log(this.riskModelTemplate);
     }
 
     /**
@@ -88,7 +88,7 @@ export class RiskModelTemplateComponent implements OnInit, OnChanges {
      */
     riskSubFactorSelectionChanged(event: any, riskSubFactorAttributes: any): void {
         // Change the isSelected value to true of the selected attribute only. Set others to false.
-        console.log(event);
+        //console.log(event);
         riskSubFactorAttributes.map(riskSubFactorAttribute => {
             if (riskSubFactorAttribute.itemNo === event.value) {
                 riskSubFactorAttribute.isSelected = true;
@@ -97,7 +97,7 @@ export class RiskModelTemplateComponent implements OnInit, OnChanges {
                 riskSubFactorAttribute.isSelected = false;
             }
         });
-        console.log(this.riskModelTemplate);
+        //console.log(this.riskModelTemplate);
     }
 
     /**
@@ -114,7 +114,7 @@ export class RiskModelTemplateComponent implements OnInit, OnChanges {
         else {
             riskRatingModifierAttribute.yesOrNoIndicator = 'N';
         }
-        console.log(this.riskModelTemplate);
+        //console.log(this.riskModelTemplate);
     }
 
     /**
@@ -132,7 +132,7 @@ export class RiskModelTemplateComponent implements OnInit, OnChanges {
                 riskSubFactorAttribute.isSelected = false;
             }
         });
-        console.log(this.riskModelTemplate.riskParentalNotchUps);
+        //console.log(this.riskModelTemplate.riskParentalNotchUps);
     }
 
     /**
@@ -315,7 +315,7 @@ export class RiskModelTemplateComponent implements OnInit, OnChanges {
     getDepartment(): string {
         let department = '';
         this.purposes.map(purpose => {
-            console.log(purpose.code, this.riskModelTemplate.purposeCode);
+            //console.log(purpose.code, this.riskModelTemplate.purposeCode);
             if (purpose.code === this.riskModelTemplate.purposeCode) {
                 department = purpose.description;
             }

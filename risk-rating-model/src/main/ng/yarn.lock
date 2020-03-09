@@ -296,6 +296,18 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
+"@ng-idle/core@8.0.0-beta.4":
+  version "8.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@ng-idle/core/-/core-8.0.0-beta.4.tgz#c856bb2dd3c8407321380faac8c5692a5728fd0d"
+  dependencies:
+    tslib "^1.9.0"
+
+"@ng-idle/keepalive@8.0.0-beta.4":
+  version "8.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@ng-idle/keepalive/-/keepalive-8.0.0-beta.4.tgz#db385ad8833a9c42d1d8301531c47a68515a3089"
+  dependencies:
+    tslib "^1.9.0"
+
 "@ngrx/effects@6.1.0":
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-6.1.0.tgz#3c1e1ab1e5a86c6d9c29d4f3771e42cc9bd8576c"
@@ -4484,6 +4496,10 @@ ngrx-store-freeze@0.2.4:
   resolved "https://registry.yarnpkg.com/ngrx-store-freeze/-/ngrx-store-freeze-0.2.4.tgz#146687cdf7e21244eb9003c7e883f2125847076c"
   dependencies:
     deep-freeze-strict "^1.1.1"
+
+ngx-bootstrap@2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/ngx-bootstrap/-/ngx-bootstrap-2.0.5.tgz#83aab39d1e4fe811fad2b34f7927f9ce19d68daa"
 
 ngx-color-picker@6.7.0:
   version "6.7.0"

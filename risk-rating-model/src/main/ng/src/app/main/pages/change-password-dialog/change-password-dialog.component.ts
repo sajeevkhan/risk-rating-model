@@ -33,7 +33,7 @@ export class ChangePasswordDialogComponent {
      * changePassword()
      */
     changePassword() {
-        console.log(this._appService.userDetails);
+        //console.log(this._appService.userDetails);
         const userResource = {
             'firstName': this._appService.userDetails.firstName,
             'lastName': this._appService.userDetails.lastName,

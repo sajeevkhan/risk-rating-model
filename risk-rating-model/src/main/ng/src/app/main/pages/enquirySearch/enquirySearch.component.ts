@@ -24,7 +24,7 @@ export class EnquirySearchComponent implements OnChanges {
     enquiryList: EnquiryApplicationModel[];
 
     ngOnChanges(changes: SimpleChanges): void {
-        console.log('changes', changes);
+        //console.log('changes', changes);
     }
 
     constructor(_formBuilder: FormBuilder, private _dialog: MatDialog, public _service: LoanEnquiryService,
@@ -71,8 +71,8 @@ export class EnquirySearchComponent implements OnChanges {
                     }
                 }
             });
-            console.log(this._appService.userDetails);
-            console.log(enquiryApplications);
+            //console.log(this._appService.userDetails);
+            //console.log(enquiryApplications);
             this.enquiryList = enquiryApplications;
             this.displaySpinner = false;
         }, error => {
@@ -95,7 +95,7 @@ export class EnquirySearchComponent implements OnChanges {
      * 
      */
     fetchEvaluations(): void {
-        console.log("Selected Enquiry Number" + this._service.selectedLoanApplicaton.id)
+       // console.log("Selected Enquiry Number" + this._service.selectedLoanApplicaton.id)
         
         if (this._service.selectedLoanApplicaton.monitoringDepartmentInitiator === '' && 
             this._service.selectedLoanApplicaton.projectDepartmentInitiator === '') {

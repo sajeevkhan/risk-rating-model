@@ -130,7 +130,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
         if (this._appService.userDetails.firstName === undefined) {
             this._appService.fetchUserDetails().subscribe(data => {
                 this.userDetails = data;
-                console.log('userDetails', this.userDetails);
+                //console.log('userDetails', this.userDetails);
             });
         }
         else {

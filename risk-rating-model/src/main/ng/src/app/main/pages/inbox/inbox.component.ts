@@ -36,7 +36,7 @@ export class InboxComponent implements OnInit {
      * rejectEvalaution()
      */
     rejectEvaluation(): void {
-        console.log('REJECT SELECTED INBOX ITEM : ' + this._inboxService.selectedItem.value.riskModelId);
+        //console.log('REJECT SELECTED INBOX ITEM : ' + this._inboxService.selectedItem.value.riskModelId);
 
         this.savingTemplate = true;
         
@@ -57,7 +57,7 @@ export class InboxComponent implements OnInit {
      * approveEvaluation()
      */
     approveEvaluation(): void {
-        console.log('APPROVE SELECTED INBOX ITEM : ' + this._inboxService.selectedItem.value.riskModelId);
+       // console.log('APPROVE SELECTED INBOX ITEM : ' + this._inboxService.selectedItem.value.riskModelId);
 
         this.savingTemplate = true;
         

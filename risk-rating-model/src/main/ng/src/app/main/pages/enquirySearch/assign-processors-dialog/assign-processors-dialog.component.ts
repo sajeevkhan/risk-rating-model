@@ -82,7 +82,7 @@ export class AssignProcessorsDialogComponent {
         this.monitoringDepartmentInitiatorSelected = _service.selectedLoanApplicaton.monitoringDepartmentInitiator;
         this.riskDepartmentOfficerSelected = _service.selectedLoanApplicaton.riskDepartmentInitiator;
 
-        console.log( "User's Department : " + _appService.userDetails.riskDepartment )
+        //console.log( "User's Department : " + _appService.userDetails.riskDepartment )
 
         if (_appService.userDetails.riskDepartment == "01") {
             this.projectDepartmentInitiatorReadonly = true;
@@ -133,8 +133,8 @@ export class AssignProcessorsDialogComponent {
     updateLoanApplication(): void {
         if (!this.assignProcessorsForm.invalid) {
             
-            console.log("assignProcessorsForm" , this.assignProcessorsForm);
-            console.log("this.assignProcessorsForm.value", this.assignProcessorsForm.value);
+            //console.log("assignProcessorsForm" , this.assignProcessorsForm);
+            //console.log("this.assignProcessorsForm.value", this.assignProcessorsForm.value);
 
 
             this._service.updateProcessors(this._data, this.assignProcessorsForm.value).subscribe(response => {

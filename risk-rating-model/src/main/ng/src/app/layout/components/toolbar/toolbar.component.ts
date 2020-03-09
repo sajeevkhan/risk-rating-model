@@ -100,7 +100,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
         if (_appService.userDetails === undefined) {
             _appService.fetchUserDetails().subscribe(data => {
                 this.userDetails = data;
-                console.log('userDetails', this.userDetails);
+                //console.log('userDetails', this.userDetails);
             });
         }
         else {
@@ -162,7 +162,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
     search(value): void
     {
         // Do your search here...
-        console.log(value);
+        //console.log(value);
     }
 
     /**

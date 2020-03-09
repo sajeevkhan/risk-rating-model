@@ -674,9 +674,9 @@ export class LoanEnquiryService {
     public updateProcessors(loanApplication: any, processors: any): Observable<any> {
 
  
-        console.log("Processors Resource Project :" + processors.projectDepartmentInitiator);
-        console.log("Processors Resource Monitor :" + processors.monitoringDepartmentInitiator);
-        console.log("Processors Resource Risk    :" + processors.riskDepartmentInitiator);
+        // console.log("Processors Resource Project :" + processors.projectDepartmentInitiator);
+        // console.log("Processors Resource Monitor :" + processors.monitoringDepartmentInitiator);
+        // console.log("Processors Resource Risk    :" + processors.riskDepartmentInitiator);
 
         const processorResource = {
             enquiryNo: {
@@ -687,10 +687,10 @@ export class LoanEnquiryService {
             riskDepartmentInitiator: processors.riskDepartmentInitiator,
          }
 
-        console.log("processorResource Project :" + processorResource.enquiryNo.id);
-        console.log("processorResource Project :" + processorResource.projectDepartmentInitiator);
-        console.log("processorResource Monitor :" + processorResource.monitoringDepartmentInitiator);
-        console.log("processorResource Risk    :" + processorResource.riskDepartmentInitiator);
+        // console.log("processorResource Project :" + processorResource.enquiryNo.id);
+        // console.log("processorResource Project :" + processorResource.projectDepartmentInitiator);
+        // console.log("processorResource Monitor :" + processorResource.monitoringDepartmentInitiator);
+        // console.log("processorResource Risk    :" + processorResource.riskDepartmentInitiator);
 
  
         return this._http.put<any>('risk/api/loanEnquiry/assignProcessors', processorResource);

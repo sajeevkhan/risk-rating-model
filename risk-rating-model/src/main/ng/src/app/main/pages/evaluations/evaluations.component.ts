@@ -37,7 +37,7 @@ export class EvaluationComponent {
         //
         this.loanApplicaton = _loanEnquiryService.selectedLoanApplicaton;
         
-        console.log("Selected Loan Application Enquiry Id in Risk Evaluation Component" + _loanEnquiryService.selectedLoanApplicaton.id);
+        //console.log("Selected Loan Application Enquiry Id in Risk Evaluation Component" + _loanEnquiryService.selectedLoanApplicaton.id);
 
         // Fetch evaluations from route resolved data.
         _route.data.subscribe((data) => {

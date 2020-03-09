@@ -33,7 +33,7 @@ export class InboxItemsComponent implements OnInit {
         // Fetch evaluations from route resolved data.
         _route.data.subscribe((data) => {
             this.inboxItems = data.routeResolvedData;
-            console.log('inboxItems', this.inboxItems);
+           // console.log('inboxItems', this.inboxItems);
         });
     }
 
