@@ -233,12 +233,15 @@ public class WorkflowService implements IWorkflowService {
 
         WorkflowAssignment workflowAssignment = getWorkFlowProcessor(riskModelTemplate.getPurpose());
 
+        // Default
+        riskModelTemplate.setRejectedByRiskDepartment(false);
 
         Map<String, Object> variables = new HashMap<>();
         variables = prepareVariables(riskModelTemplate, httpServletRequest);
         riskModelTemplate.setCurrentWorkFlowLevel(1);
         try {
             System.out.println("---------- STARTING WORKFLOW APPROVAL FOR PROJECT : " + riskModelTemplate.getProjectName());
+
 
             runtimeService = processEngine.getRuntimeService();
             ProcessInstance processInstance = runtimeService
@@ -427,13 +430,14 @@ public class WorkflowService implements IWorkflowService {
                 variables.put("rejectedInSecondLevel", "X");
                 variables.put("secondLevelApproval", false);
                 riskModelTemplate.setCurrentProcessorUserId(firstLevelApproverEmailId);
-
+                riskModelTemplate.setRejectedByRiskDepartment(true);
                 break;
             case "06":
             case "07": // Sent for Third Level Approval
                 variables.put("rejectedInThirdLevel", "X");
                 variables.put("thirdLevelApproval", false);
                 riskModelTemplate.setCurrentProcessorUserId(secondLevelApproverEmailId);
+                riskModelTemplate.setRejectedByRiskDepartment(true);
 
         }
 

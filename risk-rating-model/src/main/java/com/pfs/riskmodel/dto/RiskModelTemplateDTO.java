@@ -54,6 +54,8 @@ public class RiskModelTemplateDTO {
     private String workflowStatusCode;
     private String workflowStatusDescription;
 
+    //If this attribute is true, no further changes are allowed to the risk evaluation
+    private Boolean rejectedByRiskDepartment;
 
 
     // 0 - Template

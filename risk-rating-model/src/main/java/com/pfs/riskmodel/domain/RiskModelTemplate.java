@@ -105,7 +105,9 @@ public class RiskModelTemplate extends AuditModel {
     @Nullable
     private String workflowStatusDescription;
 
-
+    //If this attribute is true, no further changes are allowed to the risk evaluation
+    @Nullable
+    private Boolean rejectedByRiskDepartment;
 
     @Nullable
     private Boolean applyRatingModifiers;
