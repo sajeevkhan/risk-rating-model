@@ -112,6 +112,9 @@ export class RiskModelUIComponent implements OnInit {
 
         if (this.disableSendForApprovalButton) {
             disableButton = true;
+        } else if (this._riskModelTemplate.rejectedByRiskDepartment == true ) {
+            disableButton = true;
+            return disableButton;
         }
         else if (this._riskModelTemplate.id === undefined) {
             //console.log("this._riskModelTemplate.id == undefined");

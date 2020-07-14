@@ -117,8 +117,14 @@ public class RiskModelTemplateDTO {
     private Boolean applyRatingModifiers;
     private Boolean applyParentalNotchup;
 
+    private Date firstApprovalReceiptDate;
+    private Date firstApprovalProcessDate;
 
+    private Date secondApprovalReceiptDate;
+    private Date secondApprovalProcessDate;
 
+    private Date thirdApprovalReceiptDate;
+    private Date thirdApprovalProcessDate;
 
     // Risk Types
     private List<RiskTypeDTO> riskTypes;

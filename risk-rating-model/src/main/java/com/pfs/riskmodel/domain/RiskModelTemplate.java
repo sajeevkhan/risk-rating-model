@@ -215,6 +215,21 @@ public class RiskModelTemplate extends AuditModel {
     private String numberOfNotchesUpAfterParentalNotchup;
 
 
+    @Nullable
+    private Date firstApprovalReceiptDate;
+    @Nullable
+    private Date firstApprovalProcessDate;
+
+    @Nullable
+    private Date secondApprovalReceiptDate;
+    @Nullable
+    private Date secondApprovalProcessDate;
+
+    @Nullable
+    private Date thirdApprovalReceiptDate;
+    @Nullable
+    private Date thirdApprovalProcessDate;
+
 
     @Nullable
     @IndexColumn (name = "INDEX_COL1")

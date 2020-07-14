@@ -27,6 +27,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -216,6 +217,17 @@ public class WorkflowService implements IWorkflowService {
         Map<String, Object> output = new HashMap<>();
         ValidationResult validationResult = new ValidationResult();
 
+        // Set the firstApprovalReceiptDate and all other workflow dates as null
+        riskModelTemplate.setFirstApprovalReceiptDate(DateTime.now().toDate());
+        riskModelTemplate.setFirstApprovalProcessDate(null);
+        riskModelTemplate.setSecondApprovalReceiptDate(null);
+        riskModelTemplate.setSecondApprovalProcessDate(null);
+        riskModelTemplate.setThirdApprovalProcessDate(null);
+        riskModelTemplate.setThirdApprovalProcessDate(null);
+
+
+
+
         // Check if an active workflow exists for the risk model.
         // If yes, do not start a new workflow
         List<Task>  tasks = taskService.createTaskQuery()
@@ -288,6 +300,10 @@ public class WorkflowService implements IWorkflowService {
         switch (riskModelTemplate.getWorkflowStatus().getCode()) {
             case "02": //Sent for First Level Approval
                 riskModelTemplate.setCurrentWorkFlowLevel(1);
+
+                riskModelTemplate.setFirstApprovalProcessDate(DateTime.now().toDate());
+                riskModelTemplate.setSecondApprovalReceiptDate(DateTime.now().toDate());
+
                 riskModelTemplate.setCurrentProcessorUserId(secondLevelApproverEmailId);
                 variables.put("rejectedInFirstLevel", " ");
                 variables.put("firstLevelApproval", true);
@@ -295,6 +311,10 @@ public class WorkflowService implements IWorkflowService {
             case "03": //First Level Approval Completed
             case "05": //Sent for Second Level Approval
                 riskModelTemplate.setCurrentWorkFlowLevel(2);
+
+                riskModelTemplate.setSecondApprovalProcessDate(DateTime.now().toDate());
+                riskModelTemplate.setThirdApprovalReceiptDate(DateTime.now().toDate());
+
                 riskModelTemplate.setCurrentProcessorUserId(secondLevelApproverEmailId);
                 variables.put("rejectedInSecondLevel", " ");
                 variables.put("secondLevelApproval", true);
@@ -303,6 +323,9 @@ public class WorkflowService implements IWorkflowService {
             case "07": //Sent for Third Level Approval
                 variables.put("rejectedInThirdLevel", " ");
                 riskModelTemplate.setCurrentWorkFlowLevel(3);
+
+                riskModelTemplate.setThirdApprovalProcessDate(DateTime.now().toDate());
+
                 riskModelTemplate.setCurrentProcessorUserId(riskModelTemplate.getCreatedByUserId());
                 variables.put("thirdLevelApproval", true);
                 break;
@@ -310,17 +333,28 @@ public class WorkflowService implements IWorkflowService {
                 if (riskModelTemplate.getCurrentWorkFlowLevel() == 1) {
                     variables.put("rejectedInFirstLevel", " ");
                     variables.put("firstLevelApproval", true);
+
+                    riskModelTemplate.setFirstApprovalProcessDate(DateTime.now().toDate());
+                    riskModelTemplate.setSecondApprovalReceiptDate(DateTime.now().toDate());
+
                     riskModelTemplate.setCurrentProcessorUserId(secondLevelApproverEmailId);
                 }
                 if (riskModelTemplate.getCurrentWorkFlowLevel() == 2) {
                     variables.put("rejectedInSecondLevel", " ");
                     variables.put("secondLevelApproval", true);
+
+                    riskModelTemplate.setSecondApprovalProcessDate(DateTime.now().toDate());
+                    riskModelTemplate.setThirdApprovalReceiptDate(DateTime.now().toDate());
+
                     riskModelTemplate.setCurrentProcessorUserId(thirdLevelApproverEmailId);
 
                 }
                 if (riskModelTemplate.getCurrentWorkFlowLevel() == 3) {
                     variables.put("rejectedInThirdLevel", " ");
                     variables.put("thirdLevelApproval", true);
+
+                    riskModelTemplate.setThirdApprovalProcessDate(DateTime.now().toDate());
+
                     riskModelTemplate.setCurrentProcessorUserId(thirdLevelApproverEmailId);
 
                 }
@@ -423,21 +457,41 @@ public class WorkflowService implements IWorkflowService {
                 variables.put("firstLevelApproval", false);
                 variables.put("rejectedInFirstLevel", "X");
                 riskModelTemplate.setCurrentProcessorUserId(riskModelTemplate.getCreatedByUserId());
+
+                riskModelTemplate.setFirstApprovalProcessDate(DateTime.now().toDate());
+                riskModelTemplate.setSecondApprovalReceiptDate(null);
+                riskModelTemplate.setSecondApprovalProcessDate(null);
+                riskModelTemplate.setThirdApprovalReceiptDate(null);
+                riskModelTemplate.setThirdApprovalProcessDate(null);
+
+
                 //riskModelTemplate.setWorkflowStatusCode("01");
                 break;
             case "03":
             case "05": // Sent for Second Level Approval
                 variables.put("rejectedInSecondLevel", "X");
                 variables.put("secondLevelApproval", false);
+
                 riskModelTemplate.setCurrentProcessorUserId(firstLevelApproverEmailId);
+                //riskModelTemplate.setCurrentProcessorUserId("");
+
                 riskModelTemplate.setRejectedByRiskDepartment(true);
+
+                riskModelTemplate.setSecondApprovalProcessDate(DateTime.now().toDate());
+                riskModelTemplate.setThirdApprovalReceiptDate(null);
+                riskModelTemplate.setThirdApprovalProcessDate(null);
+
                 break;
             case "06":
             case "07": // Sent for Third Level Approval
                 variables.put("rejectedInThirdLevel", "X");
                 variables.put("thirdLevelApproval", false);
                 riskModelTemplate.setCurrentProcessorUserId(secondLevelApproverEmailId);
+
                 riskModelTemplate.setRejectedByRiskDepartment(true);
+
+                riskModelTemplate.setThirdApprovalProcessDate(DateTime.now().toDate());
+
 
         }
 
@@ -459,7 +513,17 @@ public class WorkflowService implements IWorkflowService {
 
         System.out.println("--------------- Workflow Task Execution Started @ " + DateTime.now());
         try {
-            taskService.complete(task.getId(), variables);
+
+            if (riskModelTemplate.getRejectedByRiskDepartment() == true) {
+               // taskService.setAssignee(task.getId(),null);
+                taskService.complete(task.getId(), variables);
+                // If Rejected by Risk Officer, then the workflow is deemed as complete
+                runtimeService.suspendProcessInstanceById(riskModelTemplate.getProcessInstanceId());
+                //runtimeService.deleteProcessInstance(riskModelTemplate.getProcessInstanceId(),null);
+            } else {
+                taskService.complete(task.getId(), variables);
+
+            }
 
         } catch (Exception ex) {
             validationResult =

@@ -62,17 +62,19 @@ public class WorkflowController {
 
         for (Task task: tasks) {
 
-           // System.out.println(task.getAssignee() + task.getId() + task.getProcessDefinitionId() );
-            Map<String, Object> variables = task.getProcessVariables();
+            // Only Active Tasks
+            if (task.isSuspended() == false) {
+                // System.out.println(task.getAssignee() + task.getId() + task.getProcessDefinitionId() );
+                Map<String, Object> variables = task.getProcessVariables();
 
-            WorkflowTaskDTO workflowTaskDTO = prepareWorkflowTask(task,variables);
+                WorkflowTaskDTO workflowTaskDTO = prepareWorkflowTask(task, variables);
 
-            List<RiskModelTemplate> riskModelTemplateList = new ArrayList<>();
-            // Eliminate Duplicate Workflow Tasks
-            riskModelTemplateList = riskModelTemplateRepository.findByProcessInstanceId(task.getProcessInstanceId());
-            if (riskModelTemplateList.size() > 0)
-                workflowTaskDTOList.add(workflowTaskDTO);
-
+                List<RiskModelTemplate> riskModelTemplateList = new ArrayList<>();
+                // Eliminate Duplicate Workflow Tasks
+                riskModelTemplateList = riskModelTemplateRepository.findByProcessInstanceId(task.getProcessInstanceId());
+                if (riskModelTemplateList.size() > 0)
+                    workflowTaskDTOList.add(workflowTaskDTO);
+            }
         }
 
 
