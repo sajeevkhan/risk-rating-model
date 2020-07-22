@@ -37,7 +37,7 @@ security:
 lmsEnquiry:
   baseUrl: https://enquiry.pfs-ess.com/enquiry
 sap:
-  postUrl: http://192.168.1.199:8000/sap/opu/odata/sap/ZPFS_RISK_MODEL_EVALUATION_SRV/RiskEvaluationSet?sap-client=500
+  postUrl: http://192.168.1.207:8000/sap/opu/odata/sap/ZPFS_RISK_MODEL_EVALUATION_SRV/RiskEvaluationSet?sap-client=500
   userName: SAP_PFS_GW
   password: Sapsap@4646
 

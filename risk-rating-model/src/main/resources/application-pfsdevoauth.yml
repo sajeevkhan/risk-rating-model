@@ -37,7 +37,7 @@ security:
 lmsEnquiry:
   baseUrl: http://192.168.1.246:8080/enquiry
 sap:
-  postUrl: http://192.168.1.203:8000/sap/opu/odata/sap/ZPFS_RISK_MODEL_EVALUATION_SRV/RiskEvaluationSet?sap-client=300
+  postUrl: http://192.168.1.205:8000/sap/opu/odata/sap/ZPFS_RISK_MODEL_EVALUATION_SRV/RiskEvaluationSet?sap-client=300
   userName: sajeev
   password: sapsap
 server:
