@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by sajeev on 17-Dec-18.
@@ -195,9 +196,8 @@ public class Initializer implements CommandLineRunner{
                 codeAsInt ++;
 
                 log.info("-------------------------- Added Work Flow Status: " + w1.toString());
-            }
+             }
 
-        System.out.println("-------------------------- Added Work Flow Status: " + w1.toString());
 
 
         //if(workflowAssignmentRepository.count() == 0) {
@@ -320,8 +320,13 @@ public class Initializer implements CommandLineRunner{
 */
 
 
+        List<WorkflowAssignment> workflowAssignmentList = workflowAssignmentRepository.findAll();
+        log.info("Running with the following Workflow Assignments");
+        for (WorkflowAssignment workflowAssignment: workflowAssignmentList
+             ) {
+            log.info(workflowAssignment.toString());
 
-
+        }
 
    }
 }
