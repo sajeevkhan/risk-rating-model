@@ -5,6 +5,7 @@ import com.pfs.riskmodel.resource.EmailId;
 import com.pfs.riskmodel.resource.User;
 import com.pfs.riskmodel.service.IWelcomeService;
 import feign.FeignException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.ws.http.HTTPException;
-
+@Slf4j
 @Service
 public class WelcomeService implements IWelcomeService {
 
@@ -25,6 +26,7 @@ public class WelcomeService implements IWelcomeService {
 
     @Override
     public User     getUser() {
+        log.info("WELCOME SERVICE : GetUser.........................");
         ResponseEntity<User> user = lmsEnquiryClient.getUser(getAuthorizationBearer());
         return user.getBody();
     }
