@@ -22,7 +22,7 @@ spring:
     mail-server-host: smtp.office365.com
     mail-server-port: 587
     mail-server-user-name: pfs_sapadmin@ptcfinancial.com
-    mail-server-password: PFSsapadmin@5674
+    mail-server-password: SAP$admin@456#!%*
     mail-server-default-from: pfs_sapadmin@ptcfinancial.com
     mail-server-use-tls: true
 security:
