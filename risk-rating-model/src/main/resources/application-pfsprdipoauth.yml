@@ -21,9 +21,9 @@ spring:
   activiti:
     mail-server-host: smtp.office365.com
     mail-server-port: 587
-    mail-server-user-name: pfs_sapadmin@ptcfinancial.com
-    mail-server-password: SAP$admin@456#!%*
-    mail-server-default-from: pfs_sapadmin@ptcfinancial.com
+    mail-server-user-name: pfs.sap@ptcfinancial.com
+    mail-server-password: Sap$#!%*@admin&369!&*
+    mail-server-default-from: pfs.sap@ptcfinancial.com
     mail-server-use-tls: true
 security:
   oauth2:
