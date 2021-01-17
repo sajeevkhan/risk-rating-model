@@ -3,7 +3,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: dn47gh3y
+    password: Pfsltd@12345
     maximum-pool-size: 40
     url: jdbc:mysql://localhost:3306/pfsriskmodel?createDatabaseIfNotExist=true&useUnicode=yes&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&allowPublicKeyRetrieval=true
     validation-query: select 1
@@ -30,12 +30,12 @@ security:
     client:
       client-id: pfs-client
       client-secret: pfs-secret
-      access-token-uri: http://192.168.1.246:9999/auth/oauth/token
-      user-authorization-uri: http://192.168.1.246:9999/auth/oauth/authorize
+      access-token-uri: http://192.168.1.205:9999/auth/oauth/token
+      user-authorization-uri: http://192.168.1.205:9999/auth/oauth/authorize
     resource:
-      userInfoUri: http://192.168.1.246:9999/auth/api/me
+      userInfoUri: http://192.168.1.205:9999/auth/api/me
 lmsEnquiry:
-  baseUrl: http://192.168.1.246:8080/enquiry
+  baseUrl: http://192.168.1.205:8080/enquiry
 sap:
   postUrl: http://192.168.1.205:8000/sap/opu/odata/sap/ZPFS_RISK_MODEL_EVALUATION_SRV/RiskEvaluationSet?sap-client=300
   userName: sajeev
