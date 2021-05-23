@@ -38,6 +38,13 @@ export const navigation: FuseNavigation[] = [
                 icon: 'view_list',
                 children: [
                     {
+                        id: 'riskReport',
+                        title: 'Risk Model Report',
+                        translate: 'NAV.RISKMODELREPORT',
+                        type: 'item',
+                        icon: 'view_list',
+                        url: '/riskReport'
+                    }, {
                         id: 'changeHistory',
                         title: 'Change History',
                         translate: 'NAV.CHANGEHISTORY',

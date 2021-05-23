@@ -35,11 +35,18 @@ public interface RiskModelTemplateRepository extends JpaRepository<RiskModelTemp
 
     List<RiskModelTemplate> findByProcessInstanceId(String processInstanceId);
 
-    List<RiskModelTemplate> findByLoanNumber(String loanNumber);
 
     List<RiskModelTemplate> findByLoanEnquiryId(String loanEnquiryId);
 
     List<RiskModelTemplate> findByStatus(String status);
+
+
+
+    List<RiskModelTemplate> findByLoanNumber(String loanNumber);
+    List<RiskModelTemplate> findByProjectName(String projectName);
+    List<RiskModelTemplate> findByRiskProjectType(RiskProjectType riskProjectType);
+    List<RiskModelTemplate> findByProjectNameAndRiskProjectType(String projectName, RiskProjectType riskProjectType);
+   // List<RiskModelTemplate> findByLoanNumberAndRiskProjectTypeAndProjectName(String loanNumber,RiskProjectType riskProjectType,String projectName);
 
 
 

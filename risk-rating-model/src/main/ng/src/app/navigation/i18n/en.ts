@@ -10,7 +10,8 @@ export const locale = {
             'PROJECTS': 'Projects',
             'INBOX': 'Inbox',
             'REPORTS': 'Reports',
-            'CHANGEHISTORY': 'Change History'
+            'CHANGEHISTORY': 'Change History',
+            'RISKMODELREPORT': 'Risk Model Report'
         }
     }
 };

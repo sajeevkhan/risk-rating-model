@@ -4,6 +4,7 @@ import com.pfs.riskmodel.domain.ProjectRiskLevel;
 import com.pfs.riskmodel.domain.RiskProjectType;
 import com.pfs.riskmodel.domain.RiskModelTemplate;
 import com.pfs.riskmodel.domain.RiskType;
+import com.pfs.riskmodel.dto.RiskModelReportDTO;
 import com.pfs.riskmodel.repository.ProjectRiskLevelRepository;
 import com.pfs.riskmodel.repository.RiskProjectTypeRepository;
 import com.pfs.riskmodel.repository.RiskModelTemplateRepository;
@@ -50,6 +51,46 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
        Optional<RiskModelTemplate> riskModelTemplateOptional = riskModelTemplateRepository.findById(id);
        return riskModelTemplateOptional.get();
 
+    }
+
+    @Override
+    public List<RiskModelReportDTO> findByLoanNumberAndRiskProjectTypeAndProjectName(String loanNumber, String riskProjectTypeCode, String projectName) {
+
+        List<RiskModelTemplate> riskModelTemplates = new ArrayList<>();
+
+        RiskProjectType riskProjectType = riskProjectTypeRepository.findByCode(riskProjectTypeCode);
+
+
+        // Find by Loan Number
+        if (loanNumber != null && riskProjectType == null && projectName == null){
+            riskModelTemplates = riskModelTemplateRepository.findByLoanNumber(  loanNumber);
+        }
+
+        // Find by Risk Project Type
+        if (loanNumber == null && riskProjectType != null && projectName == null){
+             riskModelTemplates = riskModelTemplateRepository.findByRiskProjectType(riskProjectType);
+
+        }
+
+        // Find by Project Name
+        if (loanNumber != null && riskProjectType != null && projectName == null){
+             riskModelTemplates = riskModelTemplateRepository.findByProjectName(projectName);
+        }
+
+        //Find by Risk Project Type and Project Name
+        if (loanNumber == null && riskProjectType != null && projectName != null){
+             riskModelTemplates = riskModelTemplateRepository.findByProjectNameAndRiskProjectType( projectName,riskProjectType);
+        }
+
+
+        List<RiskModelReportDTO> riskModelReportDTOS = new ArrayList<>();
+        for (RiskModelTemplate riskModelTemplate: riskModelTemplates) {
+          RiskModelReportDTO riskModelReportDTO =   mapRiskModelTemplateToRiskModelDTO(riskModelTemplate);
+          riskModelReportDTOS.add(riskModelReportDTO);
+        }
+
+
+        return riskModelReportDTOS;
     }
 
     @Override
@@ -235,6 +276,48 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
         result.put("RiskModelTemplate", riskModelTemplateExisting);
 
         return result;
+
+    }
+
+
+    private RiskModelReportDTO mapRiskModelTemplateToRiskModelDTO(RiskModelTemplate riskModelTemplate) {
+
+        RiskModelReportDTO riskModelReportDTO = new RiskModelReportDTO();
+
+
+        //    Loannumber
+        riskModelReportDTO.setLoanNumber(riskModelTemplate.getLoanNumber());
+        //    Project Name
+        riskModelReportDTO.setProjectName(riskModelTemplate.getProjectName());
+        //    Project Type
+        riskModelReportDTO.setProjectType(riskModelTemplate.getRiskProjectType().getValue());
+        //    Project Phase
+        riskModelReportDTO.setProjectPhase(riskModelTemplate.getProjectRiskLevel().getValue());
+
+        //    InitiatingDepartment
+        riskModelReportDTO.setInitiatingDepartment(riskModelTemplate.getPurpose().getDescription());
+
+        //    Loan contractamount(Rs Crores)
+        riskModelReportDTO.setLoanContractAmount(riskModelTemplate.getLoanContractAmount());
+
+        //    Total DisbursedAmt(Rs Crores)
+        riskModelReportDTO.setTotalLoanDisbursedAmount(riskModelTemplate.getLoanDisbursedAmount());
+
+        //    Initiator
+        riskModelReportDTO.setInitiator(riskModelTemplate.getCreatedBy());
+
+        // Creation date
+        riskModelReportDTO.setCreateDate(riskModelTemplate.getRatingDate());
+
+        //    Process date (After finalapproval)
+        riskModelReportDTO.setProcessDate(riskModelTemplate.getSecondApprovalProcessDate());
+
+        //    FinalRating
+        riskModelReportDTO.setFinalRating(riskModelTemplate.getFinalProjectGrade());
+
+
+        return riskModelReportDTO;
+
 
     }
 

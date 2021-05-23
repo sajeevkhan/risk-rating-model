@@ -212,6 +212,16 @@ public class RiskModelTemplateController {
     }
 
 
+    @GetMapping("riskModel/report")
+    public ResponseEntity findByLoanNumberRiskProjectTypeProjectName(@RequestParam(required = false) String loanNumber,
+                                                                     @RequestParam(required = false) String riskProjectTypeCode,
+                                                                     @RequestParam(required = false) String projectName) {
+
+        List<RiskModelReportDTO> riskModelTemplates
+                    = riskModelTemplateService.findByLoanNumberAndRiskProjectTypeAndProjectName(loanNumber,riskProjectTypeCode,projectName);
+
+        return ResponseEntity.ok(riskModelTemplates);
+    }
 
     @GetMapping("/riskModel/loanEnquiryId/{loanEnquiryId}")
     public ResponseEntity findByLoanEnquiryId (@PathVariable("loanEnquiryId") String loanEnquiryId,
