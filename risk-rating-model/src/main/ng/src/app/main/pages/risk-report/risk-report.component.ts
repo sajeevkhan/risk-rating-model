@@ -5,9 +5,9 @@ import {BehaviorSubject} from "rxjs/Rx";
 import {fuseAnimations } from '@fuse/animations';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
-import {RiskReportService} from 'risk-report.service';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
+import { RiskReportService } from './risk-report.service';
 
 @Component({
   selector: 'app-risk-report',

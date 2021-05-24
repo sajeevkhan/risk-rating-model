@@ -25,7 +25,7 @@ import { AppService } from './app.service';
 import { ChangeDocumentModule } from './main/pages/change-document/change-document.module';
 import { ChangePasswordModule } from './main/pages/change-password-dialog/change-password.module';
 import { APP_BASE_HREF } from '@angular/common';
-import {RiskReportModule} from "./main/pages/risk-report/risk-report.module";
+import { RiskReportModule } from './main/pages/risk-report/risk-report.module';
 
 const appRoutes: Routes = [
     {
