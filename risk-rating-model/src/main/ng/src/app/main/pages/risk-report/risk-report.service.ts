@@ -3,9 +3,6 @@ import {Observable, BehaviorSubject, forkJoin} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import {ActivatedRouteSnapshot, RouterStateSnapshot} from "@angular/router";
-
-
 
 @Injectable()
 export class RiskReportService {
@@ -28,27 +25,11 @@ export class RiskReportService {
 
 
     /**
-     * resolve()
-     * Router resolver, fetches data before the ui is created.
-     * @param route
-     * @param state
-     */
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-        if (route.routeConfig.path === 'riskReport') {
-
-        }
-        else {
-            return forkJoin([
-             ]);
-        }
-    }
-
-    /**
      * fetchRiskReport()
      * @param Array[loanNumber, projectName, projectPhase]
      */
     public getRiskReport(request: Array<string>): Observable<RiskReportModel[]> {
-        let queryParams;
+        let queryParams = '';
 
         request.forEach(function(value) {
             if (value != undefined){

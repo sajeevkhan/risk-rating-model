@@ -10,22 +10,20 @@ import {
     MatSelectModule,
     MatSnackBarModule,
     MatSortModule,
-    MatTableModule, MatToolbarModule
+    MatTableModule, MatToolbarModule, MAT_DATE_LOCALE
 } from "@angular/material";
 import {FuseSharedModule} from "../../../../@fuse/shared.module";
 import {AuthenticationGuard} from "../../../authentication.guard";
 import {CdkTableModule} from "@angular/cdk/table";
 import {TranslateModule} from "@ngx-translate/core";
+import { RiskReportService } from './risk-report.service';
 
 
 
 const routes = [
     {
         path: 'riskReport',
-        component: RiskReportComponent,
-        canActivate: [
-            AuthenticationGuard
-        ]
+        component: RiskReportComponent
     }
 ];
 
@@ -53,7 +51,13 @@ const routes = [
       MatPaginatorModule
 
   ],
-  declarations: [RiskReportComponent]
+  declarations: [RiskReportComponent],
+  providers: [
+    RiskReportService,
+    {
+        provide: MAT_DATE_LOCALE, useValue: 'en-GB'
+    }
+]
 })
 export class RiskReportModule { }
 

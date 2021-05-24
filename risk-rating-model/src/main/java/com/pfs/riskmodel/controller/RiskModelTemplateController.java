@@ -23,7 +23,7 @@ import org.springframework.security.oauth2.provider.authentication.OAuth2Authent
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.ws.http.HTTPException;
+// import javax.xml.ws.http.HTTPException;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.util.*;
@@ -217,11 +217,11 @@ public class RiskModelTemplateController {
                                                                      @RequestParam(required = false) String riskProjectTypeCode,
                                                                      @RequestParam(required = false) String projectName) {
 
-        if (loanNumber.length() == 0 )
+        if (loanNumber != null && loanNumber.length() == 0 )
             loanNumber = null;
-        if (riskProjectTypeCode.length() == 0 )
+        if (riskProjectTypeCode != null && riskProjectTypeCode.length() == 0 )
             riskProjectTypeCode = null;
-        if (projectName.length() == 0 )
+        if (projectName != null && projectName.length() == 0 )
             projectName = null;
 
 
