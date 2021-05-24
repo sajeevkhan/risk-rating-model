@@ -13,6 +13,9 @@ import java.util.Date;
 @Setter
 public class RiskModelReportDTO {
 
+      // Risk Model Id
+            private Long riskModelId;
+
       //    Loannumber
             private String loanNumber;
       //    Project Name
@@ -22,7 +25,7 @@ public class RiskModelReportDTO {
       //    Project Phase
             private String projectPhase;
       //    InitiatingDepartment
-            private String InitiatingDepartment;
+            private String initiatingDepartment;
       //    Loan contractamount(Rs Crores)
             private Double loanContractAmount;
       //    Total DisbursedAmt(Rs Crores)

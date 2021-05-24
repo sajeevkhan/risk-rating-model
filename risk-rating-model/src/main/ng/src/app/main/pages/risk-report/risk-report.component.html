@@ -1,0 +1,170 @@
+<div id="tickers" class="page-layout simple" fusePerfectScrollbar>
+
+    <!-- HEADER -->
+    <div class="sub-header p-6 blue-grey-200-bg" fxLayout="row" fxLayoutAlign="space-between center">
+
+        <!-- BREADCRUMB -->
+        <div class="breadcrumb text-truncate h1 pl-24 pt-12 pb-12" fxLayout="row" fxLayoutAlign="start center"
+             *fuseIfOnDom [@animate]="{value:'*',params:{x:'50px'}}">
+            Business Partners
+        </div>
+        <!-- / BREADCRUMB -->
+
+
+
+    </div>
+
+
+    <!-- SEARCH PANEL -->
+    <div id="risk-report-search" class="w-100-p p-16" fxLayout="column" fusePerfectScrollbar>
+
+        <mat-expansion-panel [expanded]="expandPanel" hideToggle="false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Risk Assesssment Evaluation Report
+                </mat-panel-title>
+                <!--mat-panel-description>
+                    Use the search form to filter data.
+                </mat-panel-description-->
+            </mat-expansion-panel-header>
+
+            <form [formGroup]="riskReportSearchForm">
+                <div fxLayout="row">
+                    <mat-form-field fxFlex="25">
+                        <input matInput placeholder="Loan Number" formControlName="loanNumber">
+                    </mat-form-field>
+                    <mat-form-field fxFlex="25">
+                        <input matInput placeholder="Project Name" formControlName="projectName">
+                    </mat-form-field>
+                    <mat-form-field fxFlex="25">
+                        <input matInput placeholder="Project Phase" formControlName="projectPhase">
+                    </mat-form-field>
+
+                </div>
+
+                <div class="pt-12" fxLayout="row" fxLayoutAlign="left center">
+                    <button class="mr-8" mat-raised-button type="button" color="accent" (click)="fetchRiskReport()">
+                        Search
+                    </button>
+                </div>
+            </form>
+        </mat-expansion-panel>
+    </div>
+
+    <!-- / SEARCH PANEL -->
+
+    <!-- / SEARCH Results-->
+
+
+    <div class="mat-table-container" style="width: 100%">
+        <!-- <mat-table class="enquiries-table" #table [dataSource]="dataSource" *fuseIfOnDom [@animateStagger]="{value:'50'}" fusePerfectScrollbar> -->
+        <mat-table class="risk-report-table" [dataSource]="dataSource" matSort fusePerfectScrollbar>
+
+            <!-- ID -->
+            <ng-container matColumnDef="riskModelId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  fxFlex="15">Evaluation Id. </mat-header-cell>
+                <mat-cell *matCellDef="let riskModelId" fxFlex="15">
+                    <p class="text-truncate">{{ riskReport.riskModelId}}</p>
+                </mat-cell>
+            </ng-container>
+
+            <!-- Loan Number Column -->
+            <ng-container matColumnDef="loanNumber">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  fxFlex="15">Loan Number</mat-header-cell>
+                <mat-cell *matCellDef="let riskReport" fxFlex="15">
+                    <p class="text-truncate">{{ riskReport.loanNumber}}</p>
+                </mat-cell>
+            </ng-container>
+
+            <!--Project Name -->
+            <ng-container matColumnDef="projectName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="20">Project Name</mat-header-cell>
+                <mat-cell *matCellDef="let riskReport" fxFlex="20">
+                    <p class="text-truncate">{{ riskReport.projectName}}</p>
+                </mat-cell>
+            </ng-container>
+
+            <!-- Project Type -->
+            <ng-container matColumnDef="projectType">
+                <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="20">projectType</mat-header-cell>
+                <mat-cell *matCellDef="let riskReport" fxFlex="20">
+                    <p class="text-truncate">{{ riskReport.projectType }}</p>
+                </mat-cell>
+            </ng-container>
+
+            <!-- Project Phase-->
+            <ng-container matColumnDef="projectPhase">
+                <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="15">Project Phase </mat-header-cell>
+                <mat-cell *matCellDef="let riskReport"fxFlex="15">
+                    <p class="text-truncate">{{ riskReport.projectPhase}}</p>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="InitiatingDepartment">
+                <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="15">Initiating Department </mat-header-cell>
+                <mat-cell *matCellDef="let riskReport"fxFlex="15">
+                    <p class="text-truncate">{{ riskReport.initiatingDepartment}}</p>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="loanContractAmount">
+                <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="15">Loan Contract Amount(Rs Crores) </mat-header-cell>
+                <mat-cell *matCellDef="let riskReport"fxFlex="15">
+                    <p class="text-truncate">{{ riskReport.loanContractAmount}}</p>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="totalLoanDisbursedAmount">
+                <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="15">Total Disbursed Amt(Rs Crores)</mat-header-cell>
+                <mat-cell *matCellDef="let riskReport"fxFlex="15">
+                    <p class="text-truncate">{{ riskReport.totalLoanDisbursedAmount}}</p>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="initiator">
+                <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="15">Initiator</mat-header-cell>
+                <mat-cell *matCellDef="let riskReport"fxFlex="15">
+                    <p class="text-truncate">{{ riskReport.initiator}}</p>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="createDate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="15">Creation date</mat-header-cell>
+                <mat-cell *matCellDef="let riskReport"fxFlex="15">
+                    <p class="text-truncate">{{ riskReport.createDate}}</p>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="processDate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="15">Process Date</mat-header-cell>
+                <mat-cell *matCellDef="let riskReport"fxFlex="15">
+                    <p class="text-truncate">{{ riskReport.processDate}}</p>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="finalRating">
+                <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="15">Final Rating</mat-header-cell>
+                <mat-cell *matCellDef="let riskReport"fxFlex="15">
+                    <p class="text-truncate">{{ riskReport.finalRating}}</p>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+            <mat-row *matRowDef="let partner; columns: displayedColumns;" class="riskReport" matRipple
+                     (click)="onSelect(riskReport)"
+                     [ngClass]="{'mat-light-blue-50-bg':riskReport == selectedRiskReportItem}"
+                     [@animate]="{value:'*',params:{y:'100%'}}">
+            </mat-row>
+
+        </mat-table>
+
+
+        <mat-paginator [pageSizeOptions]="pageSizeOptions" showFirstLastButtons></mat-paginator>
+
+    </div>
+
+
+
+
+</div>

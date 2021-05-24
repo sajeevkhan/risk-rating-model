@@ -217,6 +217,14 @@ public class RiskModelTemplateController {
                                                                      @RequestParam(required = false) String riskProjectTypeCode,
                                                                      @RequestParam(required = false) String projectName) {
 
+        if (loanNumber.length() == 0 )
+            loanNumber = null;
+        if (riskProjectTypeCode.length() == 0 )
+            riskProjectTypeCode = null;
+        if (projectName.length() == 0 )
+            projectName = null;
+
+
         List<RiskModelReportDTO> riskModelTemplates
                     = riskModelTemplateService.findByLoanNumberAndRiskProjectTypeAndProjectName(loanNumber,riskProjectTypeCode,projectName);
 

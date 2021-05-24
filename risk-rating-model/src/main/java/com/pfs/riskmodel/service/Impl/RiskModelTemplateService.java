@@ -60,6 +60,12 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
 
         RiskProjectType riskProjectType = riskProjectTypeRepository.findByCode(riskProjectTypeCode);
 
+        // Find All
+        if (loanNumber == null && riskProjectTypeCode == null && projectName == null) {
+            riskModelTemplates = riskModelTemplateRepository.findAll();
+
+        }
+
 
         // Find by Loan Number
         if (loanNumber != null && riskProjectType == null && projectName == null){
@@ -85,8 +91,10 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
 
         List<RiskModelReportDTO> riskModelReportDTOS = new ArrayList<>();
         for (RiskModelTemplate riskModelTemplate: riskModelTemplates) {
-          RiskModelReportDTO riskModelReportDTO =   mapRiskModelTemplateToRiskModelDTO(riskModelTemplate);
-          riskModelReportDTOS.add(riskModelReportDTO);
+            if (riskModelTemplate.getModelType() == 1) {
+                RiskModelReportDTO riskModelReportDTO = mapRiskModelTemplateToRiskModelDTO(riskModelTemplate);
+                riskModelReportDTOS.add(riskModelReportDTO);
+            }
         }
 
 
@@ -284,8 +292,9 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
 
         RiskModelReportDTO riskModelReportDTO = new RiskModelReportDTO();
 
-
-        //    Loannumber
+        //Id
+        riskModelReportDTO.setRiskModelId(riskModelTemplate.getId());
+        //    Loan number
         riskModelReportDTO.setLoanNumber(riskModelTemplate.getLoanNumber());
         //    Project Name
         riskModelReportDTO.setProjectName(riskModelTemplate.getProjectName());
