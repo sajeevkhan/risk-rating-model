@@ -8,6 +8,8 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import { RiskReportService } from './risk-report.service';
+import {RiskModelConstants} from "../../model/riskModelConstants.model";
+
 
 @Component({
   selector: 'app-risk-report',
@@ -29,6 +31,11 @@ export class RiskReportComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
+    projectPhases: Array<any>;
+    projectTypes: Array<any>;
+
+
+
     @Input()
     set riskReportList(riskReportList: RiskReportModel[]) {
         this.dataSource = new MatTableDataSource(riskReportList);
@@ -39,9 +46,9 @@ export class RiskReportComponent implements OnInit {
 
 
     displayedColumns = [
-        'loanNumber', 'projectName', 'projectType', 'projectPhase','initiatingDepartment', 'loanContractAmount', 'totalLoanDisbursedAmount' , 'initiator', 'createDate', 'processDate', 'finalRating'
+        'riskModelId','loanNumber', 'projectName', 'projectType', 'projectPhase','initiatingDepartment', 'loanContractAmount', 'totalLoanDisbursedAmount' , 'initiator', 'createDate', 'processDate', 'finalRating'
     ];
-    columnsToDisplay = [ 'loanNumber', 'projectName', 'projectType', 'projectPhase','initiatingDepartment', 'loanContractAmount', 'totalLoanDisbursedAmount' , 'initiator', 'createDate', 'processDate', 'finalRating'];
+    columnsToDisplay = ['riskModelId', 'loanNumber', 'projectName', 'projectType', 'projectPhase','initiatingDepartment', 'loanContractAmount', 'totalLoanDisbursedAmount' , 'initiator', 'createDate', 'processDate', 'finalRating'];
 
 
 
@@ -51,16 +58,21 @@ export class RiskReportComponent implements OnInit {
 
     expandPanel = true;
 
-    pageSizeOptions: number[] = [10, 25, 50, 100];
+    pageSizeOptions: number[] = [50, 100, 150, 200,500];
 
     constructor(private _service: RiskReportService,_formBuilder: FormBuilder, private _router: Router,private _matSnackBar: MatSnackBar) {
         this.riskReportSearchForm = _formBuilder.group({
             loanNumber: [],
             projectName: [],
-            projectPhase: []
-
+            projectType: []
+            //projectPhase:[]
         });
         _service.selectedRiskReportItemId = undefined;
+
+        // Initialize Dropdowns
+        this.projectPhases = RiskModelConstants.projectPhases;
+        this.projectTypes = RiskModelConstants.projectTypes;
+
     }
 
     ngOnInit() {
@@ -72,9 +84,14 @@ export class RiskReportComponent implements OnInit {
     fetchRiskReport():void{
         const searchForm = this.riskReportSearchForm.value;
 
+        console.log("SEARCH PARAMS STRUCT   : " +this.riskReportSearchForm)
+        console.log("SEARCH PARAMS          : " +this.riskReportSearchForm.value)
+
         let searchParameters: Array<string> = [ searchForm.loanNumber,
                                                 searchForm.projectName,
-                                                searchForm.projectPhase];
+                                                searchForm.projectType
+                                                //searchForm.projectPhase
+                                               ];
 
 
         this._service.getRiskReport(searchParameters).subscribe((result) => {

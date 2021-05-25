@@ -79,13 +79,13 @@ public class RiskModelTemplateService implements IRiskModelTemplateService {
         }
 
         // Find by Project Name
-        if (loanNumber != null && riskProjectType != null && projectName == null){
-             riskModelTemplates = riskModelTemplateRepository.findByProjectName(projectName);
+        if (loanNumber == null && riskProjectType == null && projectName != null){
+             riskModelTemplates = riskModelTemplateRepository.findByProjectNameContaining(projectName);
         }
 
         //Find by Risk Project Type and Project Name
         if (loanNumber == null && riskProjectType != null && projectName != null){
-             riskModelTemplates = riskModelTemplateRepository.findByProjectNameAndRiskProjectType( projectName,riskProjectType);
+             riskModelTemplates = riskModelTemplateRepository.findByProjectNameContainingAndRiskProjectType( projectName,riskProjectType);
         }
 
 

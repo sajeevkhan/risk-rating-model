@@ -31,11 +31,33 @@ export class RiskReportService {
     public getRiskReport(request: Array<string>): Observable<RiskReportModel[]> {
         let queryParams = '';
 
+        let i = 0;
+
         request.forEach(function(value) {
             if (value != undefined){
-                queryParams = queryParams + value + "&";
+                switch (i) {
+                    case 0: {
+                        queryParams = queryParams + "loanNumber=" + value + "&";
+                        break;
+                    }
+                    case 1: {
+                        queryParams = queryParams + "projectName=" + value + "&";
+                        break;
+                    }
+                    case 2: {
+                        queryParams = queryParams + "riskProjectTypeCode=" + value + "&";
+                        break;
+                    }
+                    // case 3: {
+                    //     queryParams = queryParams + "projectPhase=" + value + "&";
+                    //     break;
+                    // }
+                }
             }
+            i++;
         });
+
+        console.log("queryParams :" + queryParams)
 
         return new Observable(observer => {
 

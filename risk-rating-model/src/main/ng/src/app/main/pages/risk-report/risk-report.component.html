@@ -6,11 +6,9 @@
         <!-- BREADCRUMB -->
         <div class="breadcrumb text-truncate h1 pl-24 pt-12 pb-12" fxLayout="row" fxLayoutAlign="start center"
              *fuseIfOnDom [@animate]="{value:'*',params:{x:'50px'}}">
-            Business Partners
+            Risk Assessment Report
         </div>
         <!-- / BREADCRUMB -->
-
-
 
     </div>
 
@@ -21,7 +19,7 @@
         <mat-expansion-panel [expanded]="expandPanel" hideToggle="false">
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    Risk Assesssment Evaluation Report
+                    Risk Assesssment Evaluation Report : Selection Criteria
                 </mat-panel-title>
                 <!--mat-panel-description>
                     Use the search form to filter data.
@@ -37,8 +35,22 @@
                         <input matInput placeholder="Project Name" formControlName="projectName">
                     </mat-form-field>
                     <mat-form-field fxFlex="25">
-                        <input matInput placeholder="Project Phase" formControlName="projectPhase">
+                        <mat-select placeholder="Project Type" formControlName="projectType"  >
+                            <mat-option> </mat-option>
+                            <mat-option *ngFor="let pT of projectTypes" [value]="pT.code">
+                                {{ pT.value }}
+                            </mat-option>
+                        </mat-select>
                     </mat-form-field>
+
+                    <!--<mat-form-field fxFlex="25">-->
+                        <!--<mat-select placeholder="Project Status" formControlName="projectPhase"  >-->
+                            <!--<mat-option> </mat-option>-->
+                            <!--<mat-option *ngFor="let pS of projectPhases" [value]="pS.code">-->
+                                <!--{{ pS.value }}-->
+                            <!--</mat-option>-->
+                        <!--</mat-select>-->
+                    <!--</mat-form-field>-->
 
                 </div>
 
@@ -63,7 +75,7 @@
             <!-- ID -->
             <ng-container matColumnDef="riskModelId">
                 <mat-header-cell *matHeaderCellDef mat-sort-header  fxFlex="15">Evaluation Id. </mat-header-cell>
-                <mat-cell *matCellDef="let riskModelId" fxFlex="15">
+                <mat-cell *matCellDef="let riskReport" fxFlex="15">
                     <p class="text-truncate">{{ riskReport.riskModelId}}</p>
                 </mat-cell>
             </ng-container>

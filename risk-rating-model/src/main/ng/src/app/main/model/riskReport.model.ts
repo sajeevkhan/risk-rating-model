@@ -1,5 +1,5 @@
 export class RiskReportModel {
-    riskModelId: number;
+    riskModelId: string;
     loanNumber: string;
     projectName: string;
     projectType: string;
