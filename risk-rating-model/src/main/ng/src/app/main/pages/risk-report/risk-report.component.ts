@@ -113,6 +113,22 @@ export class RiskReportComponent implements OnInit {
         });
     }
 
+    fetchRiskReportInExcel():void{
+       // this.fetchRiskReport();
 
+        const searchForm = this.riskReportSearchForm.value;
+
+        console.log("EXCEL SEARCH PARAMS STRUCT   : " +this.riskReportSearchForm)
+        console.log("EXCEL SEARCH PARAMS          : " +this.riskReportSearchForm.value)
+
+        let searchParameters: Array<string> = [ searchForm.loanNumber,
+            searchForm.projectName,
+            searchForm.projectType
+            //searchForm.projectPhase
+        ];
+
+        this._service.getRiskReportInExcel(searchParameters);
+
+    }
 
 }

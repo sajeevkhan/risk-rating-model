@@ -8,7 +8,11 @@
              *fuseIfOnDom [@animate]="{value:'*',params:{x:'50px'}}">
             Risk Assessment Report
         </div>
-        <!-- / BREADCRUMB -->
+
+        <!--<button class="mr-8" mat-raised-button type="button" color="accent" (click)="fetchRiskReport()">-->
+            <!--Generate Excel File-->
+        <!--</button>-->
+        <!--&lt;!&ndash; / BREADCRUMB &ndash;&gt;-->
 
     </div>
 
@@ -58,7 +62,12 @@
                     <button class="mr-8" mat-raised-button type="button" color="accent" (click)="fetchRiskReport()">
                         Search
                     </button>
+
+                    <button class="mr-8" mat-raised-button type="button" color="accent" (click)="fetchRiskReportInExcel()">
+                        Generate Excel File
+                    </button>
                 </div>
+
             </form>
         </mat-expansion-panel>
     </div>
@@ -90,7 +99,7 @@
 
             <!--Project Name -->
             <ng-container matColumnDef="projectName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="20">Project Name</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="30">Project Name</mat-header-cell>
                 <mat-cell *matCellDef="let riskReport" fxFlex="20">
                     <p class="text-truncate">{{ riskReport.projectName}}</p>
                 </mat-cell>
@@ -141,14 +150,14 @@
             </ng-container>
 
             <ng-container matColumnDef="createDate">
-                <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="15">Creation date</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="20">Creation date</mat-header-cell>
                 <mat-cell *matCellDef="let riskReport"fxFlex="15">
                     <p class="text-truncate">{{ riskReport.createDate}}</p>
                 </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="processDate">
-                <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="15">Process Date</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="20">Process Date</mat-header-cell>
                 <mat-cell *matCellDef="let riskReport"fxFlex="15">
                     <p class="text-truncate">{{ riskReport.processDate}}</p>
                 </mat-cell>

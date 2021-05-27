@@ -23,4 +23,5 @@ public interface IRiskModelTemplateService {
     public List<RiskModelReportDTO> findByLoanNumberAndRiskProjectTypeAndProjectName(String loanNumber, String riskProjectTypeCode, String projectName);
 
 
+
 }

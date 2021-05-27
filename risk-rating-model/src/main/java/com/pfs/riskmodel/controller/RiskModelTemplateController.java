@@ -4,6 +4,7 @@ import com.pfs.riskmodel.client.LMSEnquiryClient;
 import com.pfs.riskmodel.config.ApiController;
 import com.pfs.riskmodel.domain.*;
 import com.pfs.riskmodel.dto.*;
+import com.pfs.riskmodel.excel.RiskEvaluationReportExcelGen;
 import com.pfs.riskmodel.repository.*;
 import com.pfs.riskmodel.resource.LoanApplicationResource;
 import com.pfs.riskmodel.resource.LoanNumberResource;
@@ -23,8 +24,12 @@ import org.springframework.security.oauth2.provider.authentication.OAuth2Authent
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 // import javax.xml.ws.http.HTTPException;
+import java.io.IOException;
 import java.security.Principal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -230,6 +235,36 @@ public class RiskModelTemplateController {
 
         return ResponseEntity.ok(riskModelTemplates);
     }
+
+    @GetMapping("riskModel/report/excel")
+    public void generateExcelForFindByLoanNumberRiskProjectTypeProjectName(
+            HttpServletResponse response,
+            @RequestParam(required = false) String loanNumber,
+            @RequestParam(required = false) String riskProjectTypeCode,
+            @RequestParam(required = false) String projectName) throws IOException {
+
+        response.setContentType("application/octet-stream");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=RiskEvaluationReport_" + currentDateTime + ".xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        if (loanNumber != null && loanNumber.length() == 0 )
+            loanNumber = null;
+        if (riskProjectTypeCode != null && riskProjectTypeCode.length() == 0 )
+            riskProjectTypeCode = null;
+        if (projectName != null && projectName.length() == 0 )
+            projectName = null;
+
+
+        List<RiskModelReportDTO> riskModelTemplates
+                = riskModelTemplateService.findByLoanNumberAndRiskProjectTypeAndProjectName(loanNumber,riskProjectTypeCode,projectName);
+
+        RiskEvaluationReportExcelGen riskEvaluationReportExcelGen = new RiskEvaluationReportExcelGen(riskModelTemplates);
+        riskEvaluationReportExcelGen.export(response);
+     }
 
     @GetMapping("/riskModel/loanEnquiryId/{loanEnquiryId}")
     public ResponseEntity findByLoanEnquiryId (@PathVariable("loanEnquiryId") String loanEnquiryId,

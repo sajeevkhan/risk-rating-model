@@ -31,31 +31,7 @@ export class RiskReportService {
     public getRiskReport(request: Array<string>): Observable<RiskReportModel[]> {
         let queryParams = '';
 
-        let i = 0;
-
-        request.forEach(function(value) {
-            if (value != undefined){
-                switch (i) {
-                    case 0: {
-                        queryParams = queryParams + "loanNumber=" + value + "&";
-                        break;
-                    }
-                    case 1: {
-                        queryParams = queryParams + "projectName=" + value + "&";
-                        break;
-                    }
-                    case 2: {
-                        queryParams = queryParams + "riskProjectTypeCode=" + value + "&";
-                        break;
-                    }
-                    // case 3: {
-                    //     queryParams = queryParams + "projectPhase=" + value + "&";
-                    //     break;
-                    // }
-                }
-            }
-            i++;
-        });
+        queryParams = this.generateQueryParamsUrl(request);
 
         console.log("queryParams :" + queryParams)
 
@@ -72,5 +48,61 @@ export class RiskReportService {
             });
         });
      }
+
+    public getRiskReportInExcel(request: Array<string>): Observable<any> {
+        let queryParams = '';
+
+        queryParams = this.generateQueryParamsUrl(request);
+
+        console.log("Excel Service Call queryParams :" + queryParams);
+
+
+        //this._http.get<any>('risk/api/riskModel/report/excel?' + queryParams);
+        (window as any).open('risk/api/riskModel/report/excel?' + queryParams);
+
+
+        // this._http.get<any>('risk/api/riskModel/report/excel?' + queryParams).subscribe(result => {
+        //     // result.map(riskReportModel => {
+        //     //     riskReportResults.push(new RiskReportModel(riskReportModel));
+        //     // });
+        //     // observer.next(riskReportResults);
+        //     //observer.complete();
+        // });
+
+        return null;
+
+    }
+
+     private generateQueryParamsUrl(request: Array<String>): string {
+         let i = 0;
+         let queryParams = '';
+
+         request.forEach(function(value) {
+             if (value != undefined){
+                 switch (i) {
+                     case 0: {
+                         queryParams = queryParams + "loanNumber=" + value + "&";
+                         break;
+                     }
+                     case 1: {
+                         queryParams = queryParams + "projectName=" + value + "&";
+                         break;
+                     }
+                     case 2: {
+                         queryParams = queryParams + "riskProjectTypeCode=" + value + "&";
+                         break;
+                     }
+                     // case 3: {
+                     //     queryParams = queryParams + "projectPhase=" + value + "&";
+                     //     break;
+                     // }
+                 }
+             }
+             i++;
+         });
+         return queryParams;
+     }
+
+
 
 }
