@@ -11,6 +11,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -50,8 +52,10 @@ public class RiskEvaluationReportExcelGen {
         createCell(row, 7, "Total Disbursement Amount", style);
         createCell(row, 8, "Initiator", style);
         createCell(row, 9, "Creation Date", style);
-        createCell(row, 10, "Process Date", style);
-        createCell(row, 11, "Final Rating", style);
+        createCell(row, 10, "Creation Time", style);
+        createCell(row, 11, "Process Date", style);
+        createCell(row, 12, "Process Time", style);
+        createCell(row, 13, "Final Rating", style);
 
 
     }
@@ -69,7 +73,7 @@ public class RiskEvaluationReportExcelGen {
         cell.setCellStyle(style);
     }
 
-    private void writeDataLines() {
+    private void writeDataLines() throws ParseException {
         int rowCount = 1;
 
         CellStyle style = workbook.createCellStyle();
@@ -126,15 +130,46 @@ public class RiskEvaluationReportExcelGen {
             else
                 createCell(row, columnCount++, "", style);
 
-            if (riskModelReportDTO.getCreateDate() != null)
-            createCell(row, columnCount++, riskModelReportDTO.getCreateDate().toString(), style);
+            SimpleDateFormat formatter = new SimpleDateFormat(
+                    "dd/MM/yyyy");
+            SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm:ss");
+
+            if (riskModelReportDTO.getCreateDate() != null) {
+                String date =  formatter.parse(formatter.format(riskModelReportDTO.getCreateDate())).toString();
+                createCell(row, columnCount++, date.substring(0,10), style);
+            }
             else
             createCell(row, columnCount++, "", style);
 
-            if (riskModelReportDTO.getProcessDate() != null)
-            createCell(row, columnCount++, riskModelReportDTO.getProcessDate().toString(), style);
+
+            if (riskModelReportDTO.getCreateDate() != null) {
+                String time = localDateFormat.format(riskModelReportDTO.getCreateDate()).toString();
+
+                createCell(row, columnCount++, time, style);
+            }
+            else
+                createCell(row, columnCount++, "", style);
+
+
+
+            if (riskModelReportDTO.getProcessDate() != null){
+                String date =  formatter.parse(formatter.format(riskModelReportDTO.getProcessDate())).toString();
+
+                createCell(row, columnCount++, date.toString().substring(0,10), style);
+            }
             else
             createCell(row, columnCount++, "", style);
+
+            if (riskModelReportDTO.getProcessDate() != null){
+                String time = localDateFormat.format(riskModelReportDTO.getProcessDate()).toString();
+
+                createCell(row, columnCount++, time, style);
+            }
+            else
+                createCell(row, columnCount++, "", style);
+
+
+
 
             if (riskModelReportDTO.getFinalRating() != null)
                 createCell(row, columnCount++, riskModelReportDTO.getFinalRating(), style);
@@ -144,9 +179,13 @@ public class RiskEvaluationReportExcelGen {
         }
     }
 
-    public void export(HttpServletResponse response) throws IOException {
+    public void export(HttpServletResponse response) throws IOException  {
         writeHeaderLine();
-        writeDataLines();
+        try {
+            writeDataLines();
+        } catch (ParseException p){
+            System.out.println(p.toString());
+        }
 
         ServletOutputStream outputStream = response.getOutputStream();
         workbook.write(outputStream);
