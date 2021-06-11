@@ -7,4 +7,15 @@
     .mat-column-tableKey {
         max-width: 8%;
     }
+
+    mwlResizable {
+		box-sizing: border-box; 
+	}
+
+
+}
+
+td, th {
+    white-space: normal;
+    word-wrap: normal;
 }

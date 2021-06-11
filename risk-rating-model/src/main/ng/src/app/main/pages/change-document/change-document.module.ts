@@ -6,6 +6,7 @@ import { ChangeDocumentService } from './change-document.service';
 import { RouterModule } from '@angular/router';
 import { MatExpansionModule, MatInputModule, MatIconModule, MatButtonModule, MatTableModule, MatPaginatorModule, MatDatepickerModule, MAT_DATE_LOCALE } from '@angular/material';
 import { FuseSharedModule } from '@fuse/shared.module';
+import { ResizableModule } from 'angular-resizable-element';
 
 const routes = [
     {
@@ -25,7 +26,8 @@ const routes = [
         MatInputModule,
         MatTableModule,
         MatPaginatorModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        ResizableModule
     ],
     declarations: [
         ChangeDocumentComponent,

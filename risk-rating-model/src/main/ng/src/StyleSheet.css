@@ -126,6 +126,7 @@
             color:#010101 !important;
             font-family: Open Sans  !important;
             font-size:12px;
+            white-space: normal !important;
         }
         .mat-row:nth-child(even){
             background-color:#cccccc;

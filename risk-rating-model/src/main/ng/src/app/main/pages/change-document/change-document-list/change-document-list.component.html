@@ -74,7 +74,8 @@
 
         <!-- entityDescription column -->
         <ng-container matColumnDef="entityDescription">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Entity description</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header mwlResizable [enableGhostResize]="true" (resizeEnd)="onResizeEnd($event, column)"
+            [resizeEdges]="{bottom: false, right: true, top: false, left: true}">Entity description</mat-header-cell>
             <mat-cell *matCellDef="let documentItem">
                 <div class="text-truncate">{{ documentItem.entityDescription }}</div>
             </mat-cell>

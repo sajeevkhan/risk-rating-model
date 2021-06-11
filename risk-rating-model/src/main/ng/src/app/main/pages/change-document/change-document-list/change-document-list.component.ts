@@ -2,6 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { PageEvent, MatTableDataSource } from '@angular/material';
 import { ChangeDocumentService } from '../change-document.service';
+import {
+	ResizeEvent
+} from 'angular-resizable-element';
 
 @Component({
     selector: 'app-change-document-list',
@@ -10,6 +13,17 @@ import { ChangeDocumentService } from '../change-document.service';
     animations: fuseAnimations
 })
 export class ChangeDocumentListComponent implements OnInit {
+
+    onResizeEnd(event: ResizeEvent, columnName): void {
+		if (event.edges.right) {
+			const cssValue = event.rectangle.width + 'px';
+			const columnElts = document.getElementsByClassName('mat-column-' + columnName);
+			for (let i = 0; i < columnElts.length; i++) {
+				const currentEl = columnElts[i] as HTMLDivElement;
+				currentEl.style.width = cssValue;
+			}
+		}
+	}
 
     dataSource: MatTableDataSource<any>;
     searchParameters: any;
