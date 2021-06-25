@@ -4,9 +4,10 @@ import { ChangeDocumentListComponent } from './change-document-list/change-docum
 import { ChangeDocumentComponent } from './change-document.component';
 import { ChangeDocumentService } from './change-document.service';
 import { RouterModule } from '@angular/router';
-import { MatExpansionModule, MatInputModule, MatIconModule, MatButtonModule, MatTableModule, MatPaginatorModule, MatDatepickerModule, MAT_DATE_LOCALE } from '@angular/material';
+import { MatExpansionModule, MatInputModule, MatIconModule, MatButtonModule, MatTableModule, MatPaginatorModule, MatDatepickerModule, MAT_DATE_LOCALE, MatSortModule } from '@angular/material';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { ResizableModule } from 'angular-resizable-element';
+import { ChangeDocumentItemListComponent } from './change-document-item-list/change-document-item-list.component';
 
 const routes = [
     {
@@ -25,13 +26,15 @@ const routes = [
         MatIconModule,
         MatInputModule,
         MatTableModule,
+        MatSortModule,
         MatPaginatorModule,
         RouterModule.forChild(routes),
         ResizableModule
     ],
     declarations: [
         ChangeDocumentComponent,
-        ChangeDocumentListComponent
+        ChangeDocumentListComponent,
+        ChangeDocumentItemListComponent
     ],
     providers: [
         ChangeDocumentService,

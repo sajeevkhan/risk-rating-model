@@ -1,7 +1,7 @@
 <div class="mat-table-container">
 
     <!-- <mat-table class="enquiries-table" #table [dataSource]="dataSource" *fuseIfOnDom [@animateStagger]="{value:'50'}" fusePerfectScrollbar> -->
-    <mat-table class="change-documents-table" [dataSource]="dataSource" matSort fusePerfectScrollbar>
+        <mat-table class="enquiries-table" [dataSource]="dataSource1" matSort fusePerfectScrollbar>
         <!-- data column -->
         <ng-container matColumnDef="date">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
@@ -29,7 +29,7 @@
         <!-- loanNumber column -->
         <ng-container matColumnDef="loanNumber">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Loan Number</mat-header-cell>
-            <mat-cell *matCellDef="let changeDocument">
+            <mat-cell *matCellDef="let changeDocument"> 
                 <div class="text-truncate">{{ changeDocument.loanNumber }}</div>
             </mat-cell>
         </ng-container>
@@ -56,77 +56,5 @@
 </div>
 
 <br>
-<div class="mat-table-container" *ngIf="selectedDocument">
 
-    <div style="padding-bottom: 5px"><span>Document Items</span></div>
-
-    <!-- <mat-table class="enquiries-table" #table [dataSource]="dataSource" *fuseIfOnDom [@animateStagger]="{value:'50'}" fusePerfectScrollbar> -->
-    <mat-table class="change-documents-table" [dataSource]="selectedDocument.changeDocumentItems" matSort
-        fusePerfectScrollbar>
-
-        <!-- itemNo column -->
-        <ng-container matColumnDef="itemNo">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Item No</mat-header-cell>
-            <mat-cell *matCellDef="let documentItem">
-                <div class="text-truncate">{{ documentItem.itemNo }}</div>
-            </mat-cell>
-        </ng-container>
-
-        <!-- entityDescription column -->
-        <ng-container matColumnDef="entityDescription">
-            <mat-header-cell *matHeaderCellDef mat-sort-header mwlResizable [enableGhostResize]="true" (resizeEnd)="onResizeEnd($event, column)"
-            [resizeEdges]="{bottom: false, right: true, top: false, left: true}">Entity description</mat-header-cell>
-            <mat-cell *matCellDef="let documentItem">
-                <div class="text-truncate">{{ documentItem.entityDescription }}</div>
-            </mat-cell>
-        </ng-container>
-
-        <!-- entityName column -->
-        <ng-container matColumnDef="entityName">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Entity Name</mat-header-cell>
-            <mat-cell *matCellDef="let documentItem">
-                <div class="text-truncate">{{ documentItem.entityName }}</div>
-            </mat-cell>
-        </ng-container>
-
-        <!-- attributeName column -->
-        <ng-container matColumnDef="attributeName">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Attribute</mat-header-cell>
-            <mat-cell *matCellDef="let documentItem">
-                <div class="text-truncate">{{ documentItem.attributeName }}</div>
-            </mat-cell>
-        </ng-container>
-
-        <!-- tableKey column -->
-        <ng-container matColumnDef="tableKey">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Table Key</mat-header-cell>
-            <mat-cell *matCellDef="let documentItem">
-                <div class="text-truncate">{{ documentItem.tableKey }}</div>
-            </mat-cell>
-        </ng-container>
-
-        <!-- oldValue column -->
-        <ng-container matColumnDef="oldValue">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Old Value</mat-header-cell>
-            <mat-cell *matCellDef="let documentItem">
-                <div class="text-truncate">{{ documentItem.oldValue }}</div>
-            </mat-cell>
-        </ng-container>
-
-        <!-- newValue column -->
-        <ng-container matColumnDef="newValue">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>New Value</mat-header-cell>
-            <mat-cell *matCellDef="let documentItem">
-                <div class="text-truncate">{{ documentItem.newValue }}</div>
-            </mat-cell>
-        </ng-container>
-
-        <mat-header-row *matHeaderRowDef="itemColumns"></mat-header-row>
-
-        <mat-row *matRowDef="let documentItem; columns: itemColumns;" class="documentItem" matRipple (click)="onItemSelect(documentItem)"
-            [ngClass]="{'light-orange-50':documentItem === selectedItem}" [@animate]="{value:'*',params:{y:'100%'}}">
-        </mat-row>
-    </mat-table>
-
-    <!--mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]"></mat-paginator-->
-</div>
+<app-change-document-item-list [changeDocumentItems]="changeDocumentItems" *ngIf="selectedDocument"></app-change-document-item-list>

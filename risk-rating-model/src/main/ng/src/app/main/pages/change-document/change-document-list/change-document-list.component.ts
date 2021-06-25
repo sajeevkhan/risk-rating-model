@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { PageEvent, MatTableDataSource } from '@angular/material';
+import { PageEvent, MatTableDataSource, MatSort } from '@angular/material';
 import { ChangeDocumentService } from '../change-document.service';
 import {
 	ResizeEvent
@@ -14,6 +14,10 @@ import {
 })
 export class ChangeDocumentListComponent implements OnInit {
 
+    changeDocumentItems: any;
+
+    @ViewChild(MatSort) sort1: MatSort;
+
     onResizeEnd(event: ResizeEvent, columnName): void {
 		if (event.edges.right) {
 			const cssValue = event.rectangle.width + 'px';
@@ -25,12 +29,14 @@ export class ChangeDocumentListComponent implements OnInit {
 		}
 	}
 
-    dataSource: MatTableDataSource<any>;
+    dataSource1: MatTableDataSource<any>;
+
     searchParameters: any;
 
     @Input()
     set changeDocuments(changeDocuments: any) {
-        this.dataSource = new MatTableDataSource(changeDocuments);
+        this.dataSource1 = new MatTableDataSource(changeDocuments);
+        this.dataSource1.sort = this.sort1;
     }
 
     @Input()
@@ -66,7 +72,8 @@ export class ChangeDocumentListComponent implements OnInit {
      * ngOnInit()
      */
     ngOnInit(): void {
-        this.dataSource = new MatTableDataSource(this.changeDocuments);
+        this.dataSource1 = new MatTableDataSource(this.changeDocuments);
+        this.dataSource1.sort = this.sort1;
     }
 
     /**
@@ -75,6 +82,7 @@ export class ChangeDocumentListComponent implements OnInit {
      */
     onDocumentSelect(changeDocument: any): void {
         this.selectedDocument = changeDocument;
+        this.changeDocumentItems = this.selectedDocument.changeDocumentItems;
     }
 
     /**
@@ -96,7 +104,7 @@ export class ChangeDocumentListComponent implements OnInit {
             this.searchParameters.dateTo,
             event.pageIndex, event.pageSize).subscribe(data => {
                 //
-                this.dataSource = data.content;
+                this.dataSource1 = data.content;
                 this.page = data.pageable;
                 this.page.totalElements = data.totalElements;
                 this.selectedDocument = undefined;
