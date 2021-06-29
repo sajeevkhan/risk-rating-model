@@ -19,12 +19,13 @@ spring:
     generate-ddl: true
 
   activiti:
-    mail-server-host: smtp.office365.com
+    mail-server-host: us2.smtp.mailhostbox.com
     mail-server-port: 587
-    mail-server-user-name: pfs.sap@ptcfinancial.com
-    mail-server-password: Sap$#!%*@admin&369!&*
-    mail-server-default-from: pfs.sap@ptcfinancial.com
+    mail-server-user-name: portal.admin@pfs-ess.com
+    mail-server-password: Pfs@HyyXIAn2#HyyXIAn2
+    mail-server-default-from: portal.admin@pfs-ess.com
     mail-server-use-tls: true
+    database-schema-update: true
 security:
   oauth2:
     client:

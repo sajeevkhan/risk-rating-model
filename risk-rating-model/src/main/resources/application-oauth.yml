@@ -17,6 +17,7 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQL57InnoDBDialect
     generate-ddl: true
+    show-sql: true
   activiti:
     mail-server-host: smtp.gmail.com
     mail-server-port: 587
